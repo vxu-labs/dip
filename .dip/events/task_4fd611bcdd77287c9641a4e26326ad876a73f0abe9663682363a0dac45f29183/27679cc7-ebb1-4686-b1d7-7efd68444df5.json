@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "27679cc7-ebb1-4686-b1d7-7efd68444df5",
+  "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "v0.3.4 code and truthful QA reports published in 6d5a75b. CI 37457880077 passed Windows, Linux and macOS, including Linux browser QA. Local configured unit verification passed 68 cases with no source/intent drift; clean package and browser checks passed. Installed source matches the release files. Trusted live Codex prompt and matching pre/post tool delivery are confirmed. DIP-L01 remains backlog for native plan-tool delivery, live trusted Claude Code and long-session behavior.",
+    "next": "Follow DIP-L01's remaining host/lifecycle coverage; the verified subset must not be represented as complete automatic capture.",
+    "head": "6d5a75b98858d5449163a26c7cc44ad467cfa7f8"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:41:53.654Z",
+  "parents": [
+    "45cf5510-4058-4339-849e-05bc3daec850"
+  ],
+  "branch": "main"
+}
