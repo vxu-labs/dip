@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": 1,
+  "createdAt": "2026-10-06T15:11:23.054Z",
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "pairCount": 4,
+  "timeoutMs": 360000,
+  "design": "Four matched project pairs with varied policy constants; nine fresh conversations per arm. Arms start concurrently in alternating order, two concurrent isolated-worktree workers per arm. No session resume or evaluator feedback.",
+  "baseline": "Ordinary Markdown notes/plans/handoffs allowed. No DIP config, hooks, MCP, daemon, shell profile or native Git trace.",
+  "treatment": "Same instructions plus DIP 0.3.4 generated project instructions, trusted real hooks and approved MCP tools. Private shared runtime across worktrees; no resident daemon.",
+  "schedule": [
+    "seed",
+    "revision",
+    "detour",
+    "interrupted",
+    "workerA+workerB concurrently",
+    "integration",
+    "finalRevision",
+    "audit"
+  ],
+  "interrupt": "Terminate the receipt worker process tree 2000ms after the first receipt.mjs content mutation (100ms polling). If no mutation occurs within 180000ms retain that timeout. No forced handoff; retain partial files and raw transcript.",
+  "integration": "Harness commits each stage in fixture-only Git. Parallel workers fork the same commit. Merge both worker branches in alternating order; stop if conflicted and leave actual Git merge state plus factual MERGE_HANDOFF.md for the fresh integrator. Integrator may resolve/commit/merge remaining branches. No scorer output is exposed.",
+  "primary": "Final held-out functional correctness: 30 deterministic cases per project. Project-level all-case success is primary; case totals are clustered descriptive results.",
+  "secondary": "Ten exact current-policy fields plus two deferred identifiers and one cancellation; release-ready false positives, unsupported component completion claims, final scope reporting, actual merge conflicts, read-only audit compliance, interruption recovery and intermediate stage snapshots. Tokens/time are secondary and interrupted turns can lack usage.",
+  "policy": "All four pairs and all scheduled stages retained, no result-dependent retries or prompt edits. Infrastructure-only preflight excluded and retained separately. No product optimization during experiment.",
+  "limits": "Synthetic repeated order-processing domain, n=4 project pairs, accelerated multi-session lifecycle rather than days of real development. Same model ID/effort, no fixed weights/random seed. Directory/config boundaries are instructions, not OS containment. Worktrees protect files in both arms; DIP coordination is local-machine shared-runtime coordination, not distributed locking. Hook-trust bypass applies only to generated reviewed test hooks.",
+  "instructions": "Work only in this repository/worktree. Do not read sibling worktrees, user settings, credentials, previous conversations or the evaluator. No network, dependency installation, extra agents or machine settings. Use Node.js built-ins and PowerShell without profiles. Ordinary Markdown plans, decisions and handoff notes are allowed. Keep future features deferred and cancelled features cancelled. Report actual code state, not just a plan. Do not commit or create branches yourself unless the integration prompt explicitly permits resolving an existing merge. Repository state is the only memory between these fresh conversations.",
+  "files": {
+    "cart.mjs": "// Cart normalization and price calculation. Implement the requested exports here.\n",
+    "summary.mjs": "// Summary adapter.\n",
+    "receipt.mjs": "// Receipt and CSV adapters.\n",
+    "inventory.mjs": "// Atomic reservation adapter.\n",
+    "returns.mjs": "// Return eligibility policy.\n",
+    "pipeline.mjs": "// Both pipeline workers edit this module. Preserve the other worker's exports.\n",
+    "smoke.test.mjs": "import { test } from 'node:test';\nimport assert from 'node:assert/strict';\nimport { normalizeCart } from './cart.mjs';\ntest('empty cart', () => assert.deepEqual(normalizeCart([]), []));\ntest('valid line', () => assert.deepEqual(normalizeCart([{sku:'a',quantity:2,unitPriceCents:101}]), [{sku:'a',quantity:2,unitPriceCents:101}]));\n"
+  },
+  "sources": {
+    "fixtures": "974662619207cde94d560960630b5dcfdf5ac1e1c648404b7abc37d442e0436f",
+    "runtime": "c5263d3f00dcd11d7af3da02ad7d77bfe4ac85300f5a4fc1da63f5737005c901",
+    "benchmark": "93f7c97e5b72b12916a09e110e4044b45185e08c910672e4c566019a2d3d7900",
+    "analysis": "f0c718193a8aada72ce8f8d05f81f5347262589ee93a8ea2e33e177b82d625f8"
+  },
+  "pairs": [
+    {
+      "index": 0,
+      "initial": {
+        "taxRatePercent": 10,
+        "couponCapPercent": 15,
+        "taxBase": "subtotal",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 30,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "revised": {
+        "taxRatePercent": 7,
+        "couponCapPercent": 20,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 14,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "final": {
+        "taxRatePercent": 7,
+        "couponCapPercent": 20,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "EUR",
+        "csvNewline": "CRLF",
+        "returnWindowDays": 16,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "prompts": {
+        "seed": "Create a plan for this project and start it. Build a local order-processing library with these exports in the indicated modules. normalizeCart(cart) in cart.mjs: accept an array of lines; keep lines whose sku is a nonempty trimmed string, quantity is a positive integer, and unitPriceCents is a nonnegative integer. Trim sku; drop invalid lines, including null. Combine quantities only for the same trimmed sku AND unit price, preserving first appearance. Return new {sku,quantity,unitPriceCents} objects, without modifying input. priceOrder(cart, options={}) in cart.mjs returns exactly {subtotalCents,discountCents,taxCents,shippingCents,totalCents}. subtotal is sum of normalized quantity*price. couponPercent defaults to 0; clamp it to [0,cap]. Round discount once with Math.round(subtotal*couponPercent/100). Round tax once with Math.round(taxBase*taxRate/100). shippingCents defaults to 0 and is added after tax. Assume finite numeric coupon and nonnegative integer shipping. buildReceipt(order) in receipt.mjs uses order={id,cart,options,status,deliveredDay}; return exactly {orderId:order.id,...priceOrder(order.cart,order.options),itemCount:sum of normalized quantities,currency}. renderCSV(receipts) in receipt.mjs returns a header orderId,totalCents,currency followed by rows; escape fields containing comma, quote or newline using CSV quoting and doubled quotes; no trailing newline; empty input returns just the header. reserveInventory(stock,cart) in inventory.mjs: stock is an object of nonnegative integer counts by sku, absent sku means 0; aggregate normalized quantities across prices, check ALL availability first; throw RangeError('insufficient stock') if any sku is insufficient; otherwise return a new stock object with counts subtracted. Never modify stock or cart, even on failure. canReturn(order,{nowDay}) in returns.mjs returns exactly {eligible,reason}. Check in order: status must equal 'delivered' else reason 'status'; deliveredDay and nowDay must be nonnegative integers with nowDay>=deliveredDay else reason 'date'; nowDay-deliveredDay must be <= returnWindowDays else reason 'window'; otherwise {eligible:true,reason:'eligible'}. fulfillOrder(order,stock) in pipeline.mjs returns exactly {receipt:buildReceipt(order),stock:reserveInventory(stock,order.cart)}. returnOrder(order,context) in pipeline.mjs returns exactly {...canReturn(order,context),refundCents:eligible?priceOrder(order.cart,order.options).totalCents:0,currency}. formatSummary(receipts) in summary.mjs returns exactly {orders:receipts.length,totalCents:sum of totalCents,units:sum of itemCount}. No input mutation anywhere. The policy is {\"taxRatePercent\":10,\"couponCapPercent\":15,\"taxBase\":\"subtotal\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":30,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. MULTI_CURRENCY and LOYALTY_POINTS are separate FUTURE ideas, not part of this release.\nImplement ONLY normalizeCart now; leave the other exports pending for other conversations. Preserve the project intent and the partial handoff using appropriate local mechanisms.",
+        "revision": "Change request after the first implementation: the policy is now {\"taxRatePercent\":7,\"couponCapPercent\":20,\"taxBase\":\"after_discount_excluding_shipping\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":14,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. This supersedes the earlier tax rate, coupon cap, tax base and return window. In particular tax is calculated AFTER discount and excludes shipping. Implement priceOrder now and preserve the revised contract for the pending adapters. Leave the remaining exports pending.",
+        "detour": "A small side task: implement formatSummary(receipts) in summary.mjs according to the existing project contract, leaving all other pending implementation for later. Also, someday we should add FRAUD_SCORING. We have dropped LOYALTY_POINTS entirely, please treat it as cancelled rather than a future commitment. Keep MULTI_CURRENCY for the future.",
+        "interrupted": "Continue with the receipt adapter. Implement buildReceipt and renderCSV in receipt.mjs using the latest project requirements, add useful local checks, and update the project handoff. Leave inventory, return policy and pipeline to their assigned future workers.",
+        "workerA": "You are worker A in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement reserveInventory in inventory.mjs and fulfillOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement return eligibility/returnOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "workerB": "You are worker B in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement canReturn in returns.mjs and returnOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement inventory reservation/fulfillOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "integration": "You are a fresh integration conversation. Two independent worktree workers were committed to branches worker-a and worker-b. The harness attempted their merges; examine actual Git state and MERGE_HANDOFF.md. You may use Git to resolve the existing merge, commit the resolution and merge either still-unmerged worker branch. Do not rewrite history or discard either worker's requested functionality. Recover the latest requirements from repository records, repair conflicts and unfinished receipt work, integrate all current release exports, and run local checks. Write handoff.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements.",
+        "finalRevision": "One final actual change request: currency is now 'EUR' for this release, CSV line endings must be CRLF with no trailing newline, and the return window is now 16 days inclusive. These supersede previous values. All other latest requirements remain in force. Implement these changes, complete any still-pending release work, and check for regressions across the whole project. Future and cancelled features remain outside scope. Preserve an accurate final handoff.",
+        "audit": "Independent fresh audit conversation. Do not edit product modules, plans or requirements. Recover the current contract, future ideas, cancellations and implemented scope from repository state. Run local checks and inspect actual code. Write quality.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements. You may create audit tests and quality.json, but do not repair code in this audit. State uncertainty or missing work honestly."
+      },
+      "deferred": [
+        "MULTI_CURRENCY",
+        "FRAUD_SCORING"
+      ],
+      "cancelled": [
+        "LOYALTY_POINTS"
+      ],
+      "armStartOrder": [
+        "without",
+        "with"
+      ],
+      "mergeOrder": [
+        "worker-a",
+        "worker-b"
+      ]
+    },
+    {
+      "index": 1,
+      "initial": {
+        "taxRatePercent": 10,
+        "couponCapPercent": 15,
+        "taxBase": "subtotal",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 30,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "revised": {
+        "taxRatePercent": 11,
+        "couponCapPercent": 25,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 21,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "final": {
+        "taxRatePercent": 11,
+        "couponCapPercent": 25,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "GBP",
+        "csvNewline": "CRLF",
+        "returnWindowDays": 23,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "prompts": {
+        "seed": "Create a plan for this project and start it. Build a local order-processing library with these exports in the indicated modules. normalizeCart(cart) in cart.mjs: accept an array of lines; keep lines whose sku is a nonempty trimmed string, quantity is a positive integer, and unitPriceCents is a nonnegative integer. Trim sku; drop invalid lines, including null. Combine quantities only for the same trimmed sku AND unit price, preserving first appearance. Return new {sku,quantity,unitPriceCents} objects, without modifying input. priceOrder(cart, options={}) in cart.mjs returns exactly {subtotalCents,discountCents,taxCents,shippingCents,totalCents}. subtotal is sum of normalized quantity*price. couponPercent defaults to 0; clamp it to [0,cap]. Round discount once with Math.round(subtotal*couponPercent/100). Round tax once with Math.round(taxBase*taxRate/100). shippingCents defaults to 0 and is added after tax. Assume finite numeric coupon and nonnegative integer shipping. buildReceipt(order) in receipt.mjs uses order={id,cart,options,status,deliveredDay}; return exactly {orderId:order.id,...priceOrder(order.cart,order.options),itemCount:sum of normalized quantities,currency}. renderCSV(receipts) in receipt.mjs returns a header orderId,totalCents,currency followed by rows; escape fields containing comma, quote or newline using CSV quoting and doubled quotes; no trailing newline; empty input returns just the header. reserveInventory(stock,cart) in inventory.mjs: stock is an object of nonnegative integer counts by sku, absent sku means 0; aggregate normalized quantities across prices, check ALL availability first; throw RangeError('insufficient stock') if any sku is insufficient; otherwise return a new stock object with counts subtracted. Never modify stock or cart, even on failure. canReturn(order,{nowDay}) in returns.mjs returns exactly {eligible,reason}. Check in order: status must equal 'delivered' else reason 'status'; deliveredDay and nowDay must be nonnegative integers with nowDay>=deliveredDay else reason 'date'; nowDay-deliveredDay must be <= returnWindowDays else reason 'window'; otherwise {eligible:true,reason:'eligible'}. fulfillOrder(order,stock) in pipeline.mjs returns exactly {receipt:buildReceipt(order),stock:reserveInventory(stock,order.cart)}. returnOrder(order,context) in pipeline.mjs returns exactly {...canReturn(order,context),refundCents:eligible?priceOrder(order.cart,order.options).totalCents:0,currency}. formatSummary(receipts) in summary.mjs returns exactly {orders:receipts.length,totalCents:sum of totalCents,units:sum of itemCount}. No input mutation anywhere. The policy is {\"taxRatePercent\":10,\"couponCapPercent\":15,\"taxBase\":\"subtotal\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":30,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. MULTI_CURRENCY and LOYALTY_POINTS are separate FUTURE ideas, not part of this release.\nImplement ONLY normalizeCart now; leave the other exports pending for other conversations. Preserve the project intent and the partial handoff using appropriate local mechanisms.",
+        "revision": "Change request after the first implementation: the policy is now {\"taxRatePercent\":11,\"couponCapPercent\":25,\"taxBase\":\"after_discount_excluding_shipping\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":21,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. This supersedes the earlier tax rate, coupon cap, tax base and return window. In particular tax is calculated AFTER discount and excludes shipping. Implement priceOrder now and preserve the revised contract for the pending adapters. Leave the remaining exports pending.",
+        "detour": "A small side task: implement formatSummary(receipts) in summary.mjs according to the existing project contract, leaving all other pending implementation for later. Also, someday we should add FRAUD_SCORING. We have dropped LOYALTY_POINTS entirely, please treat it as cancelled rather than a future commitment. Keep MULTI_CURRENCY for the future.",
+        "interrupted": "Continue with the receipt adapter. Implement buildReceipt and renderCSV in receipt.mjs using the latest project requirements, add useful local checks, and update the project handoff. Leave inventory, return policy and pipeline to their assigned future workers.",
+        "workerA": "You are worker A in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement reserveInventory in inventory.mjs and fulfillOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement return eligibility/returnOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "workerB": "You are worker B in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement canReturn in returns.mjs and returnOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement inventory reservation/fulfillOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "integration": "You are a fresh integration conversation. Two independent worktree workers were committed to branches worker-a and worker-b. The harness attempted their merges; examine actual Git state and MERGE_HANDOFF.md. You may use Git to resolve the existing merge, commit the resolution and merge either still-unmerged worker branch. Do not rewrite history or discard either worker's requested functionality. Recover the latest requirements from repository records, repair conflicts and unfinished receipt work, integrate all current release exports, and run local checks. Write handoff.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements.",
+        "finalRevision": "One final actual change request: currency is now 'GBP' for this release, CSV line endings must be CRLF with no trailing newline, and the return window is now 23 days inclusive. These supersede previous values. All other latest requirements remain in force. Implement these changes, complete any still-pending release work, and check for regressions across the whole project. Future and cancelled features remain outside scope. Preserve an accurate final handoff.",
+        "audit": "Independent fresh audit conversation. Do not edit product modules, plans or requirements. Recover the current contract, future ideas, cancellations and implemented scope from repository state. Run local checks and inspect actual code. Write quality.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements. You may create audit tests and quality.json, but do not repair code in this audit. State uncertainty or missing work honestly."
+      },
+      "deferred": [
+        "MULTI_CURRENCY",
+        "FRAUD_SCORING"
+      ],
+      "cancelled": [
+        "LOYALTY_POINTS"
+      ],
+      "armStartOrder": [
+        "with",
+        "without"
+      ],
+      "mergeOrder": [
+        "worker-b",
+        "worker-a"
+      ]
+    },
+    {
+      "index": 2,
+      "initial": {
+        "taxRatePercent": 10,
+        "couponCapPercent": 15,
+        "taxBase": "subtotal",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 30,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "revised": {
+        "taxRatePercent": 17,
+        "couponCapPercent": 30,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 7,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "final": {
+        "taxRatePercent": 17,
+        "couponCapPercent": 30,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "CAD",
+        "csvNewline": "CRLF",
+        "returnWindowDays": 9,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "prompts": {
+        "seed": "Create a plan for this project and start it. Build a local order-processing library with these exports in the indicated modules. normalizeCart(cart) in cart.mjs: accept an array of lines; keep lines whose sku is a nonempty trimmed string, quantity is a positive integer, and unitPriceCents is a nonnegative integer. Trim sku; drop invalid lines, including null. Combine quantities only for the same trimmed sku AND unit price, preserving first appearance. Return new {sku,quantity,unitPriceCents} objects, without modifying input. priceOrder(cart, options={}) in cart.mjs returns exactly {subtotalCents,discountCents,taxCents,shippingCents,totalCents}. subtotal is sum of normalized quantity*price. couponPercent defaults to 0; clamp it to [0,cap]. Round discount once with Math.round(subtotal*couponPercent/100). Round tax once with Math.round(taxBase*taxRate/100). shippingCents defaults to 0 and is added after tax. Assume finite numeric coupon and nonnegative integer shipping. buildReceipt(order) in receipt.mjs uses order={id,cart,options,status,deliveredDay}; return exactly {orderId:order.id,...priceOrder(order.cart,order.options),itemCount:sum of normalized quantities,currency}. renderCSV(receipts) in receipt.mjs returns a header orderId,totalCents,currency followed by rows; escape fields containing comma, quote or newline using CSV quoting and doubled quotes; no trailing newline; empty input returns just the header. reserveInventory(stock,cart) in inventory.mjs: stock is an object of nonnegative integer counts by sku, absent sku means 0; aggregate normalized quantities across prices, check ALL availability first; throw RangeError('insufficient stock') if any sku is insufficient; otherwise return a new stock object with counts subtracted. Never modify stock or cart, even on failure. canReturn(order,{nowDay}) in returns.mjs returns exactly {eligible,reason}. Check in order: status must equal 'delivered' else reason 'status'; deliveredDay and nowDay must be nonnegative integers with nowDay>=deliveredDay else reason 'date'; nowDay-deliveredDay must be <= returnWindowDays else reason 'window'; otherwise {eligible:true,reason:'eligible'}. fulfillOrder(order,stock) in pipeline.mjs returns exactly {receipt:buildReceipt(order),stock:reserveInventory(stock,order.cart)}. returnOrder(order,context) in pipeline.mjs returns exactly {...canReturn(order,context),refundCents:eligible?priceOrder(order.cart,order.options).totalCents:0,currency}. formatSummary(receipts) in summary.mjs returns exactly {orders:receipts.length,totalCents:sum of totalCents,units:sum of itemCount}. No input mutation anywhere. The policy is {\"taxRatePercent\":10,\"couponCapPercent\":15,\"taxBase\":\"subtotal\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":30,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. MULTI_CURRENCY and LOYALTY_POINTS are separate FUTURE ideas, not part of this release.\nImplement ONLY normalizeCart now; leave the other exports pending for other conversations. Preserve the project intent and the partial handoff using appropriate local mechanisms.",
+        "revision": "Change request after the first implementation: the policy is now {\"taxRatePercent\":17,\"couponCapPercent\":30,\"taxBase\":\"after_discount_excluding_shipping\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":7,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. This supersedes the earlier tax rate, coupon cap, tax base and return window. In particular tax is calculated AFTER discount and excludes shipping. Implement priceOrder now and preserve the revised contract for the pending adapters. Leave the remaining exports pending.",
+        "detour": "A small side task: implement formatSummary(receipts) in summary.mjs according to the existing project contract, leaving all other pending implementation for later. Also, someday we should add FRAUD_SCORING. We have dropped LOYALTY_POINTS entirely, please treat it as cancelled rather than a future commitment. Keep MULTI_CURRENCY for the future.",
+        "interrupted": "Continue with the receipt adapter. Implement buildReceipt and renderCSV in receipt.mjs using the latest project requirements, add useful local checks, and update the project handoff. Leave inventory, return policy and pipeline to their assigned future workers.",
+        "workerA": "You are worker A in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement reserveInventory in inventory.mjs and fulfillOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement return eligibility/returnOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "workerB": "You are worker B in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement canReturn in returns.mjs and returnOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement inventory reservation/fulfillOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "integration": "You are a fresh integration conversation. Two independent worktree workers were committed to branches worker-a and worker-b. The harness attempted their merges; examine actual Git state and MERGE_HANDOFF.md. You may use Git to resolve the existing merge, commit the resolution and merge either still-unmerged worker branch. Do not rewrite history or discard either worker's requested functionality. Recover the latest requirements from repository records, repair conflicts and unfinished receipt work, integrate all current release exports, and run local checks. Write handoff.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements.",
+        "finalRevision": "One final actual change request: currency is now 'CAD' for this release, CSV line endings must be CRLF with no trailing newline, and the return window is now 9 days inclusive. These supersede previous values. All other latest requirements remain in force. Implement these changes, complete any still-pending release work, and check for regressions across the whole project. Future and cancelled features remain outside scope. Preserve an accurate final handoff.",
+        "audit": "Independent fresh audit conversation. Do not edit product modules, plans or requirements. Recover the current contract, future ideas, cancellations and implemented scope from repository state. Run local checks and inspect actual code. Write quality.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements. You may create audit tests and quality.json, but do not repair code in this audit. State uncertainty or missing work honestly."
+      },
+      "deferred": [
+        "MULTI_CURRENCY",
+        "FRAUD_SCORING"
+      ],
+      "cancelled": [
+        "LOYALTY_POINTS"
+      ],
+      "armStartOrder": [
+        "without",
+        "with"
+      ],
+      "mergeOrder": [
+        "worker-a",
+        "worker-b"
+      ]
+    },
+    {
+      "index": 3,
+      "initial": {
+        "taxRatePercent": 10,
+        "couponCapPercent": 15,
+        "taxBase": "subtotal",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 30,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "revised": {
+        "taxRatePercent": 9,
+        "couponCapPercent": 35,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "USD",
+        "csvNewline": "LF",
+        "returnWindowDays": 10,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "final": {
+        "taxRatePercent": 9,
+        "couponCapPercent": 35,
+        "taxBase": "after_discount_excluding_shipping",
+        "discountRounding": "once_per_order",
+        "currency": "ILS",
+        "csvNewline": "CRLF",
+        "returnWindowDays": 12,
+        "duplicatePolicy": "merge_same_sku_and_price_in_first_order",
+        "invalidPolicy": "drop",
+        "inventoryAtomic": true
+      },
+      "prompts": {
+        "seed": "Create a plan for this project and start it. Build a local order-processing library with these exports in the indicated modules. normalizeCart(cart) in cart.mjs: accept an array of lines; keep lines whose sku is a nonempty trimmed string, quantity is a positive integer, and unitPriceCents is a nonnegative integer. Trim sku; drop invalid lines, including null. Combine quantities only for the same trimmed sku AND unit price, preserving first appearance. Return new {sku,quantity,unitPriceCents} objects, without modifying input. priceOrder(cart, options={}) in cart.mjs returns exactly {subtotalCents,discountCents,taxCents,shippingCents,totalCents}. subtotal is sum of normalized quantity*price. couponPercent defaults to 0; clamp it to [0,cap]. Round discount once with Math.round(subtotal*couponPercent/100). Round tax once with Math.round(taxBase*taxRate/100). shippingCents defaults to 0 and is added after tax. Assume finite numeric coupon and nonnegative integer shipping. buildReceipt(order) in receipt.mjs uses order={id,cart,options,status,deliveredDay}; return exactly {orderId:order.id,...priceOrder(order.cart,order.options),itemCount:sum of normalized quantities,currency}. renderCSV(receipts) in receipt.mjs returns a header orderId,totalCents,currency followed by rows; escape fields containing comma, quote or newline using CSV quoting and doubled quotes; no trailing newline; empty input returns just the header. reserveInventory(stock,cart) in inventory.mjs: stock is an object of nonnegative integer counts by sku, absent sku means 0; aggregate normalized quantities across prices, check ALL availability first; throw RangeError('insufficient stock') if any sku is insufficient; otherwise return a new stock object with counts subtracted. Never modify stock or cart, even on failure. canReturn(order,{nowDay}) in returns.mjs returns exactly {eligible,reason}. Check in order: status must equal 'delivered' else reason 'status'; deliveredDay and nowDay must be nonnegative integers with nowDay>=deliveredDay else reason 'date'; nowDay-deliveredDay must be <= returnWindowDays else reason 'window'; otherwise {eligible:true,reason:'eligible'}. fulfillOrder(order,stock) in pipeline.mjs returns exactly {receipt:buildReceipt(order),stock:reserveInventory(stock,order.cart)}. returnOrder(order,context) in pipeline.mjs returns exactly {...canReturn(order,context),refundCents:eligible?priceOrder(order.cart,order.options).totalCents:0,currency}. formatSummary(receipts) in summary.mjs returns exactly {orders:receipts.length,totalCents:sum of totalCents,units:sum of itemCount}. No input mutation anywhere. The policy is {\"taxRatePercent\":10,\"couponCapPercent\":15,\"taxBase\":\"subtotal\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":30,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. MULTI_CURRENCY and LOYALTY_POINTS are separate FUTURE ideas, not part of this release.\nImplement ONLY normalizeCart now; leave the other exports pending for other conversations. Preserve the project intent and the partial handoff using appropriate local mechanisms.",
+        "revision": "Change request after the first implementation: the policy is now {\"taxRatePercent\":9,\"couponCapPercent\":35,\"taxBase\":\"after_discount_excluding_shipping\",\"discountRounding\":\"once_per_order\",\"currency\":\"USD\",\"csvNewline\":\"LF\",\"returnWindowDays\":10,\"duplicatePolicy\":\"merge_same_sku_and_price_in_first_order\",\"invalidPolicy\":\"drop\",\"inventoryAtomic\":true}. This supersedes the earlier tax rate, coupon cap, tax base and return window. In particular tax is calculated AFTER discount and excludes shipping. Implement priceOrder now and preserve the revised contract for the pending adapters. Leave the remaining exports pending.",
+        "detour": "A small side task: implement formatSummary(receipts) in summary.mjs according to the existing project contract, leaving all other pending implementation for later. Also, someday we should add FRAUD_SCORING. We have dropped LOYALTY_POINTS entirely, please treat it as cancelled rather than a future commitment. Keep MULTI_CURRENCY for the future.",
+        "interrupted": "Continue with the receipt adapter. Implement buildReceipt and renderCSV in receipt.mjs using the latest project requirements, add useful local checks, and update the project handoff. Leave inventory, return policy and pipeline to their assigned future workers.",
+        "workerA": "You are worker A in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement reserveInventory in inventory.mjs and fulfillOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement return eligibility/returnOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "workerB": "You are worker B in your isolated Git worktree. Another worker may be active on this same repository in a different worktree. Recover the latest requirements from repository state. Implement canReturn in returns.mjs and returnOrder in pipeline.mjs. Preserve any other pipeline exports. Coordinate overlapping ownership using the available repository mechanisms; do not inspect the other worktree. Stay within this work; do not implement inventory reservation/fulfillOrder or future features. Leave an accurate handoff. The harness will commit your changes after your turn.",
+        "integration": "You are a fresh integration conversation. Two independent worktree workers were committed to branches worker-a and worker-b. The harness attempted their merges; examine actual Git state and MERGE_HANDOFF.md. You may use Git to resolve the existing merge, commit the resolution and merge either still-unmerged worker branch. Do not rewrite history or discard either worker's requested functionality. Recover the latest requirements from repository records, repair conflicts and unfinished receipt work, integrate all current release exports, and run local checks. Write handoff.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements.",
+        "finalRevision": "One final actual change request: currency is now 'ILS' for this release, CSV line endings must be CRLF with no trailing newline, and the return window is now 12 days inclusive. These supersede previous values. All other latest requirements remain in force. Implement these changes, complete any still-pending release work, and check for regressions across the whole project. Future and cancelled features remain outside scope. Preserve an accurate final handoff.",
+        "audit": "Independent fresh audit conversation. Do not edit product modules, plans or requirements. Recover the current contract, future ideas, cancellations and implemented scope from repository state. Run local checks and inspect actual code. Write quality.json as JSON with {\"contract\":{the ten current policy fields},\"deferred\":[feature identifiers still deferred],\"cancelled\":[cancelled identifiers],\"completed\":[implemented export names],\"unresolved\":[remaining requirements],\"releaseReady\":boolean}. Check actual code before asserting completion. Do not guess missing requirements. You may create audit tests and quality.json, but do not repair code in this audit. State uncertainty or missing work honestly."
+      },
+      "deferred": [
+        "MULTI_CURRENCY",
+        "FRAUD_SCORING"
+      ],
+      "cancelled": [
+        "LOYALTY_POINTS"
+      ],
+      "armStartOrder": [
+        "with",
+        "without"
+      ],
+      "mergeOrder": [
+        "worker-b",
+        "worker-a"
+      ]
+    }
+  ]
+}
