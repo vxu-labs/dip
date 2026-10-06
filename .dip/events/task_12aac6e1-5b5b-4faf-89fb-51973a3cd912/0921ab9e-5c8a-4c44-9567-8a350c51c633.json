@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0921ab9e-5c8a-4c44-9567-8a350c51c633",
+  "taskId": "task_12aac6e1-5b5b-4faf-89fb-51973a3cd912",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "DIP v0.1.0 was published under VXU Labs at https://github.com/vxu-labs/dip/releases/tag/v0.1.0, tag efc932f. The release includes vxu-labs-dip-0.1.0.tgz (SHA-256 613e05ba8a38ff24a4f183ef6e101ba5f069f25e743f788bacf7f40c9349de11). Organization CI passed for main and the release tag on Windows, Linux and macOS, including Linux Chromium. Clean tarball and direct organization GitHub installs passed. Configured task verification is current and the source is integrated.",
+    "next": "Collect real agent-host feedback and extend distributed coordination, scheduling and integrations through separate backlog tasks.",
+    "head": "efc932f0042614f246c35e789223afae0aa349d9"
+  },
+  "actor": "codex:development",
+  "createdAt": "2026-10-06T06:58:26.195Z",
+  "parents": [
+    "e0d3c811-7657-4451-b7e4-c6cfd75409e0"
+  ],
+  "branch": "main"
+}
