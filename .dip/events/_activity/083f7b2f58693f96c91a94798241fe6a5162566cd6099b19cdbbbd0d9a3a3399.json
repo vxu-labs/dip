@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "083f7b2f58693f96c91a94798241fe6a5162566cd6099b19cdbbbd0d9a3a3399",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T08:47:44.379Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/quickstart.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "fe0f4dd0-2356-474b-b743-03be978cc2c4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T08:47:44.384Z",
+  "parents": [],
+  "branch": "main"
+}

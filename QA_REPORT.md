@@ -1,4 +1,12 @@
-# DIP v0.2 release validation
+# DIP release validation
+
+## v0.3 native Git discovery
+
+The suite now contains 51 cases. Additional native Git tests initialize unmonitored worktrees on status, diff, branch, ls-files, rev-parse, local config and an unsuccessful log command, without profiles or lifecycle hooks. They also verify absolute executable invocation, credential exclusion from durable discovery records, trace-target preservation/restoration, disappearing temporary worktrees, isolated capability probing, and service-driven adoption outside configured roots. Clean `npm ci` and cross-platform CI passed for this release.
+
+The actual Windows installation was upgraded with native discovery enabled. A newly constructed existing repository without `.dip` received it after a raw `git.exe -C PATH status` invocation; no shell profile participated and Git output was preserved. This validates compatible native Git execution, not independent Git libraries or overridden global/environment settings. See [native discovery](docs/git-discovery.md).
+
+## v0.2 workflow hardening
 
 The supported target is a local development workflow on Node.js 24, with Git, trusted agent hooks and a shared runtime for one worktree family. This is a hardened release; this report does not claim exhaustive QA or multi-day model-backed operation.
 

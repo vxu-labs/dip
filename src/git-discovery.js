@@ -7,31 +7,40 @@ import { ensure } from "./core.js";
 export const traceDirectory = () => path.join(home(), "git-trace");
 
 export function probeGitTrace(directory) {
-  const marker = "dip.traceprobe=" + id();
-  const before = new Set(fs.readdirSync(directory));
-  execFileSync("git", ["-c", marker, "--version"], {
-    env: { ...process.env, GIT_TRACE2_EVENT: directory },
-    stdio: "pipe",
-    windowsHide: true,
-  });
-  for (const name of fs.readdirSync(directory)) {
-    if (before.has(name)) continue;
-    const file = path.join(directory, name),
-      stat = fs.lstatSync(file);
-    if (!stat.isFile() || stat.isSymbolicLink()) continue;
-    if (
-      sample(file, stat.size).some(
-        (e) =>
-          e.event === "start" &&
-          Array.isArray(e.argv) &&
-          e.argv.includes(marker),
-      )
-    ) {
-      fs.unlinkSync(file);
-      return true;
+  const parent = path.resolve(directory);
+  const probe = fs.mkdtempSync(path.join(parent, ".probe-"));
+  try {
+    const marker = "dip.traceprobe=" + id();
+    execFileSync("git", ["-c", marker, "--version"], {
+      env: { ...process.env, GIT_TRACE2_EVENT: probe },
+      stdio: "pipe",
+      windowsHide: true,
+    });
+    for (const name of fs.readdirSync(probe)) {
+      const file = path.join(probe, name),
+        stat = fs.lstatSync(file);
+      if (!stat.isFile() || stat.isSymbolicLink()) continue;
+      if (
+        sample(file, stat.size).some(
+          (e) =>
+            e.event === "start" &&
+            Array.isArray(e.argv) &&
+            e.argv.includes(marker),
+        )
+      ) {
+        fs.unlinkSync(file);
+        return true;
+      }
     }
+    return false;
+  } finally {
+    if (
+      path.dirname(probe) !== parent ||
+      !path.basename(probe).startsWith(".probe-")
+    )
+      throw new Error("Invalid native probe cleanup target");
+    fs.rmSync(probe, { recursive: true, force: true });
   }
-  return false;
 }
 
 function sample(file, size) {
@@ -126,6 +135,7 @@ export class GitDiscovery {
             )
             .map((e) => e.worktree),
         )) {
+          if (!fs.existsSync(worktree)) continue;
           const hadLedger = fs.existsSync(
             path.join(worktree, ".dip", "config.json"),
           );

@@ -7,7 +7,11 @@ import { execFileSync, spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { Runtime, ensure, project } from "../src/core.js";
 import { install, uninstall, stopDaemon } from "../src/automation.js";
-import { GitDiscovery, traceDirectory } from "../src/git-discovery.js";
+import {
+  GitDiscovery,
+  traceDirectory,
+  probeGitTrace,
+} from "../src/git-discovery.js";
 import { git, json } from "../src/util.js";
 
 const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "dip-native-git-"));
@@ -178,6 +182,26 @@ test("installer preserves unrelated trace targets and restores disabled settings
   assert.equal(git(sandbox, ["config", "--get", "trace2.eventTarget"]), "0");
 });
 
+test("completed commands from disappeared temporary worktrees are drained without retry loops", () => {
+  const root = fixture();
+  install(opts);
+  execFileSync(executable, ["-C", root, "status", "--porcelain"], {
+    env,
+    windowsHide: true,
+    stdio: "pipe",
+  });
+  assert.ok(root.startsWith(fs.realpathSync.native(sandbox) + path.sep));
+  fs.rmSync(root, { recursive: true, force: true });
+  const rt = new Runtime();
+  try {
+    assert.deepEqual(new GitDiscovery(rt).drain().errors, []);
+    assert.equal(fs.readdirSync(traceDirectory()).length, 0);
+  } finally {
+    rt.close();
+  }
+  uninstall();
+});
+
 test("service consumes raw executable Git activity outside its configured roots", async () => {
   const root = fixture();
   install(opts);
@@ -192,6 +216,10 @@ test("service consumes raw executable Git activity outside its configured roots"
       () =>
         json(path.join(process.env.DIP_HOME, "daemon.json"), null)?.instance,
     );
+    for (let n = 0; n < 4; n++) {
+      assert.equal(probeGitTrace(traceDirectory()), true);
+      await pause(300);
+    }
     execFileSync(executable, ["-C", root, "status", "--porcelain"], {
       env,
       stdio: "pipe",
