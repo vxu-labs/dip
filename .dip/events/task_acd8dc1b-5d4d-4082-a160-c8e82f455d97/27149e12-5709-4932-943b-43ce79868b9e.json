@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "27149e12-5709-4932-943b-43ce79868b9e",
+  "taskId": "task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+  "type": "task.create",
+  "payload": {
+    "title": "Make README more compelling and remove em dashes",
+    "description": "Sharpen the product pitch, put benefits and installation before the contributor section, keep capability claims accurate, and check all published Markdown for U+2014.",
+    "scope": [
+      "README.md"
+    ],
+    "status": "backlog"
+  },
+  "actor": "agent",
+  "createdAt": "2026-10-06T09:04:03.830Z",
+  "parents": [],
+  "branch": "main"
+}

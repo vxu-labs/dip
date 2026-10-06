@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "161dafbd-1b77-4cd2-9bb4-bf1524fd2a71",
+  "taskId": "task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Reworked the README opening around concrete development pain and five user benefits. Installation now precedes the preserved contributor section. Formatted the Markdown, reviewed the diff, and scanned all 18 tracked Markdown files: zero U+2014 em dashes.",
+    "next": "Collect feedback on whether the opening motivates readers to try DIP.",
+    "head": "b4caa9e1bccadd3a1060cd915ac1d7ffb19f7802"
+  },
+  "actor": "codex:readme",
+  "createdAt": "2026-10-06T09:06:52.296Z",
+  "parents": [
+    "901921c8-cd33-41d4-9fb6-eaf39b1dafd7"
+  ],
+  "branch": "main"
+}
