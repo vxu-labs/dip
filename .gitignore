@@ -1,0 +1,5 @@
+node_modules/
+*.tgz
+.dip-local/
+coverage/
+playwright-report/

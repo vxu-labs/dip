@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DIP · Development Intelligence Platform</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="/">◈ <span>DIP</span></a
+      ><span class="edition">LOCAL PROJECT MEMORY</span
+      ><label class="project-label" for="projects">PROJECT</label
+      ><select id="projects" aria-label="Project"></select>
+      <nav>
+        <button class="nav active" data-view="overview">▦ Overview</button
+        ><button class="nav" data-view="board">▤ Work board</button
+        ><button class="nav" data-view="activity">◷ Activity</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <span class="live-dot"></span> <span id="connection">Connecting</span>
+        <p>
+          Your work stays with your code.<br />No model calls. No cloud account.
+        </p>
+        <small>v0.1.0 · Apache-2.0</small>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div>
+          <div class="eyebrow">WORKSPACE / <span id="branch">—</span></div>
+          <h1 id="heading">Project overview</h1>
+          <p class="subtitle">
+            A persistent record of what’s planned, running, and actually
+            verified.
+          </p>
+        </div>
+        <button class="primary" id="new-task">＋ New task</button>
+      </header>
+      <div id="notice" role="status" hidden></div>
+      <section class="metrics" id="metrics"></section>
+      <div class="toolbar">
+        <div class="section-label" id="section-label">
+          YOUR WORK, AT A GLANCE
+        </div>
+        <input
+          id="search"
+          type="search"
+          placeholder="Search tasks, agents, or scope"
+          aria-label="Search tasks"
+        />
+      </div>
+      <section id="content"></section>
+      <footer>
+        Automatic activity capture · Intent and evidence stay explicit
+        <span id="updated"></span>
+      </footer>
+    </main>
+    <dialog id="task-dialog">
+      <form id="task-form">
+        <div class="dialog-head">
+          <h2>Save a task or future idea</h2>
+          <button type="button" class="icon close">×</button>
+        </div>
+        <label
+          >Title<input
+            name="title"
+            required
+            maxlength="240"
+            placeholder="What should we build or remember?" /></label
+        ><label
+          >Description<textarea
+            name="description"
+            rows="3"
+            placeholder="Context, intended outcome, or a future idea"
+          ></textarea>
+        </label>
+        <div class="form-row">
+          <label
+            >Scope<input
+              name="scope"
+              placeholder="src/auth, tests/auth (optional)" /></label
+          ><label>Target date<input type="date" name="due" /></label>
+        </div>
+        <label
+          >Acceptance criteria<textarea
+            name="acceptance"
+            rows="3"
+            placeholder="One criterion per line"
+          ></textarea></label
+        ><button class="primary" type="submit">Save to project</button>
+      </form>
+    </dialog>
+    <dialog id="detail-dialog">
+      <div class="dialog-head">
+        <h2 id="detail-title"></h2>
+        <button class="icon close">×</button>
+      </div>
+      <div id="detail"></div>
+    </dialog>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

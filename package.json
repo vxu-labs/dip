@@ -1,0 +1,44 @@
+{
+  "name": "@itayzrihan/dip",
+  "version": "0.1.0",
+  "description": "Automatic local-first development activity and task coordination for coding agents",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "dip": "bin/dip.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "public",
+    "skills",
+    "docs",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test --test-concurrency=1",
+    "start": "node bin/dip.js serve",
+    "check": "node scripts/check.mjs",
+    "test:browser": "node scripts/browser-smoke.mjs",
+    "test:package": "node scripts/package-smoke.mjs",
+    "benchmark": "node scripts/benchmark.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "smol-toml": "^1.4.2",
+    "zod": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itayzrihan/dip.git"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "prettier": "^3.9.9"
+  }
+}

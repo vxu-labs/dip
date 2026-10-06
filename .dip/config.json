@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "verification": {
+    "unit": {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1"
+      ],
+      "timeoutMs": 120000
+    }
+  },
+  "mode": "coordinate"
+}
