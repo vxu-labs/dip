@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "be9f2343-86d2-48d2-9f91-99db21a4d498",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "New longitudinal quality evidence: four matched pairs/72 scheduled turns completed with 8 planned interruptions, no other timeout. Both arms 120/120 primary, 52/52 intent and 9216/9216 exploratory stress. DIP used 571 completed MCP calls, 9,977,526 reported input tokens and 204,686 output tokens versus baseline 5,592,412 input and 133,438 output (missing interrupted-turn usage excluded). Median summed turn duration was 1859.8s with DIP vs1035.8s baseline; includes concurrent worker time twice, not elapsed completion time. Candidate overhead includes semantic fragmentation, duplicate Markdown/ledger memory and scope contention; no causal decomposition or optimization yet.",
+    "next": "Profile and reduce management overhead without weakening memory, fencing or snapshot-based verification; retain the current datasets unchanged as baselines.",
+    "head": "db044b113d64d4135ac85102261d544776a8244b"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:02:15.433Z",
+  "parents": [
+    "8a49953a-4c01-4391-a9a5-ed6ceb278f6d"
+  ],
+  "branch": "main"
+}

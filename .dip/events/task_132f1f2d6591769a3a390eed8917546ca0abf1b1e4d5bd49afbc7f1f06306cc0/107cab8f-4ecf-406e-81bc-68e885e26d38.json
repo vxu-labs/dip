@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "107cab8f-4ecf-406e-81bc-68e885e26d38",
+  "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Longitudinal runner session 57735 still active; two of four pairs nearly complete. Pair 1 final audits both 30/30 functional and 13/13 exact recovery; pair 2 baseline audit identical and treatment final revision 30/30, audit pending. All normal completed stages exit 0; planned forced receipt interruptions retained. Real MCP scope ownership refusals and subsequent acquisition observed, with later pipeline Git conflicts in both arms. Supplementary 256-scenario/9-export stress protocol published before stress evaluation (76bcaf2, then d04a5ef added per-project subprocess isolation; no participant stress outcome evaluated yet). Scorer calibration 360+60 mutations; stress oracle 132 independent checks and 36 broken modules. Report/replay/redaction helpers and CI/config checks prepared locally; original participant protocol/source unchanged.",
+    "next": "Complete all 72 scheduled turns; redact completed public evidence preserving prompts/scores, replay 72 snapshots, run all eight project stress evaluations and replay, generate honest report/README, verify and publish.",
+    "head": "d04a5ef01fff000867759288ed9ce018ef1e0aee"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T16:07:58.640Z",
+  "parents": [
+    "eff1b1d0-1740-4862-9e15-75601447727f"
+  ],
+  "branch": "main"
+}

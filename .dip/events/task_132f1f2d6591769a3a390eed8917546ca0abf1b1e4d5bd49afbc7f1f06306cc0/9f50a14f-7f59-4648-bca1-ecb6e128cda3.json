@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9f50a14f-7f59-4648-bca1-ecb6e128cda3",
+  "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Preregistered fixed 4-pair, 72-turn longitudinal quality experiment in f1bd593 before scored run started 2026-10-06T15:11:34Z. Calibration 360 reference passes/60 mutations caught; infrastructure preflight passed both shells, actual DIP MCP persistence and worktree merge conflict. Runner session 57735 active, pair 0 underway. Old controlled evidence/runtime left unchanged. Independent evidence replay and report generator added locally; no evaluator feedback or adaptive participant prompts.",
+    "next": "Let all 72 scheduled stages complete, preserve interruptions/timeouts and all outcomes, replay every snapshot, then publish quality findings with clustered small-sample limits.",
+    "head": "f1bd593b5f126abc1a772d65b16f9c8290d47b70"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T15:16:22.878Z",
+  "parents": [
+    "1ec00551-767e-4afb-b8e2-c676247da23e"
+  ],
+  "branch": "main"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4e21cdd4-0141-4231-9f51-04b9660c9cf7",
+  "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+  "type": "task.update",
+  "payload": {
+    "acceptance": [
+      "Retain and independently replay all 72 scheduled primary stages under the published fixed protocol, including forced interruption outcomes and failures.",
+      "Evaluate and replay all eight final artifacts under the published exploratory seeded stress supplement, without participant feedback or code repairs.",
+      "Publish honest primary and supplementary quality/intent/coordination findings, raw artifacts, costs and limits in README and benchmark docs; preserve prior pilot evidence.",
+      "Remove private authentication copies, redact public-only owner paths/signed URL credentials without changing scores/prompts, and pass configured evidence checks plus cross-platform CI."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T16:50:30.070Z",
+  "parents": [
+    "d964ed57-f944-4a9c-9460-2592df5a3d7d"
+  ],
+  "branch": "main"
+}

@@ -20,6 +20,10 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: node scripts/model-benchmark-evidence.mjs
+      - run: node scripts/longitudinal-calibrate.mjs
+      - run: node scripts/longitudinal-evidence.mjs
+      - run: node scripts/longitudinal-stress-oracle.mjs
+      - run: node scripts/longitudinal-stress-evidence.mjs
       - run: npm test
       - run: npm pack --dry-run
       - if: runner.os == 'Linux'

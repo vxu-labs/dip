@@ -1,5 +1,9 @@
 # DIP benchmarks
 
+## Longitudinal controlled quality experiment
+
+Four matched project pairs used 72 scheduled fresh conversations with real revisions, interruption, concurrent workers and final audits. Final primary code cases: 120/120 without DIP and 120/120 with DIP. Exact intent checks: 52/52 and 52/52. No primary quality advantage was observed against the Markdown baseline. Supplementary exploratory contract stress is reported separately. [Every result, fixed method, supplement, costs and replay](longitudinal.md).
+
 ## Controlled model-backed pilot
 
 Six matched pairs used GPT-6.1 Sol with High reasoning, identical task prompts, alternating arm order and two fresh sessions per arm. Ordinary Markdown handoffs were allowed in the baseline. Both arms passed 48/48 functional cases, recovered 24/24 contract fields and retained 6/6 deferred feature identifiers. Median total workflow time was 164.19 seconds without DIP and 360.84 seconds with DIP. Reported input/output token usage was higher with DIP. No productivity advantage was observed in these solo microtasks.

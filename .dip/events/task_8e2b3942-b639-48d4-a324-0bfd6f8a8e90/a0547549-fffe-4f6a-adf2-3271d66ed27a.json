@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a0547549-fffe-4f6a-adf2-3271d66ed27a",
+  "taskId": "task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-B02: Evaluate worktree-aware scope coordination and merge-aware handoffs",
+    "description": "The longitudinal controlled experiment observed actual shared-file ownership refusals across isolated worktrees (7 captured hook denial records and 10 denied MCP claim replies). All 4 DIP projects still encountered a pipeline.mjs merge conflict, as did all 4 controls. Workers deliberately forked the same base and were committed only after both finished; waiting could not update the other worker's branch in this schedule. Final quality remained identical (120/120 primary, 52/52 exact intent, 9216/9216 exploratory stress per arm). This is a local scheduling/merge-handoff limitation to investigate, not evidence that all scope locking is ineffective or that conflicts imply lost code.",
+    "acceptance": [
+      "Profile actual contention, waiting and repeated model/tool loops using the published raw traces before changing scope policy.",
+      "Evaluate how to allow legitimate edits in isolated worktrees while preserving same-worktree fencing and ownership of the same logical task; make branch/base freshness visible.",
+      "Test merge-aware handoffs under induced overlap and report code preservation, coordination cost and remaining Git conflicts without promising automatic conflict-free integration."
+    ],
+    "scope": [
+      "src/core.js",
+      "src/automation.js",
+      "docs/protocol.md",
+      "scripts/longitudinal-benchmark.mjs"
+    ],
+    "priority": 2,
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "status": "backlog"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:02:14.297Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,10 +1,16 @@
 # DIP release validation
 
+## Longitudinal controlled quality experiment
+
+Four matched pairs ran 72 scheduled fresh Codex turns with actual requirement changes, eight intentional process interruptions, concurrent worktree workers, real Git merges and final read-only audits. Primary final functional results were 120/120 without DIP and 120/120 with DIP; exact policy/future/cancellation recovery was 52/52 and 52/52. False release-ready claims against primary cases: 0 and 0. No primary quality advantage was observed against the Markdown-capable baseline.
+
+The supplementary exploratory seeded contract stress checks passed 9216/9216 without DIP and 9216/9216 with DIP. Main protocol/source hashes were published before model execution; the stress supplement was specified later, before inspecting participant source or evaluating stress outcomes. Original protocols and every stage are retained. Separate Node subprocesses prevent stress-project global-state contamination. The configured quality-benchmark and stress-benchmark checks replay public evidence without model calls. [Full report, limitations and raw data](docs/benchmarks/longitudinal.md).
+
 ## Controlled model-backed benchmark
 
 Six counterbalanced matched pairs ran 24 fresh Codex turns with GPT-6.1 Sol/High, using identical task prompts and separate configuration/repositories. Ordinary Markdown handoffs were allowed in the baseline. Both arms passed all 48 held-out functional cases, replayed all 24 contract fields and retained all six deferred feature identifiers. Each had one strict completion-report mismatch, with no observed lost contract requirement. Median total workflow time was 164.19 seconds without DIP and 360.84 seconds with DIP; reported token use was higher with DIP. This pilot establishes added management cost in these solo microtasks, without an observed productivity advantage.
 
-The v3 protocol and source hashes were published before scored execution in 05ee687. Earlier MCP-approval and Windows-sandbox setup failures are retained separately; all arms restarted. Actual shell writes and MCP persistence were preflighted. The evidence check independently reconstructed and re-scored all 24 saved stages, validated the six matched pairs and reproduced aggregate totals without model calls. The main project now has a configured `benchmark` check. [Full method, failed attempts and raw artifacts](docs/benchmarks/model-controlled.md). Concurrent-agent, natural-reminder and long-running evaluations remain future work.
+The v3 protocol and source hashes were published before scored execution in 05ee687. Earlier MCP-approval and Windows-sandbox setup failures are retained separately; all arms restarted. Actual shell writes and MCP persistence were preflighted. The evidence check independently reconstructed and re-scored all 24 saved stages, validated the six matched pairs and reproduced aggregate totals without model calls. The main project now has a configured `benchmark` check. [Full method, failed attempts and raw artifacts](docs/benchmarks/model-controlled.md). Those dimensions were outside this small pilot; the newer longitudinal experiment adds revisions, interruption and concurrent worktrees. Natural-reminder field evaluation and multi-day reliability remain open.
 
 ## v0.3.4 trusted hook capture
 

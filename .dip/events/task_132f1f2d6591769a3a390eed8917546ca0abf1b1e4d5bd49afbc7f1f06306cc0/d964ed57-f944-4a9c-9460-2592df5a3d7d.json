@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d964ed57-f944-4a9c-9460-2592df5a3d7d",
+  "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "scripts",
+      "docs/benchmarks",
+      "README.md",
+      "QA_REPORT.md",
+      ".dip/config.json",
+      ".github/workflows/ci.yml",
+      "scripts/longitudinal-fixtures.mjs",
+      "scripts/longitudinal-analysis.mjs",
+      "scripts/longitudinal-benchmark.mjs",
+      "scripts/longitudinal-runtime.mjs",
+      "scripts/longitudinal-calibrate.mjs",
+      "docs/benchmarks/longitudinal.md",
+      "scripts/longitudinal-evidence.mjs",
+      "scripts/longitudinal-report.mjs",
+      "scripts/longitudinal-redact.mjs",
+      "scripts/longitudinal-stress.mjs",
+      "scripts/longitudinal-stress-oracle.mjs",
+      "scripts/longitudinal-stress-evidence.mjs",
+      "scripts/longitudinal-readme.mjs"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T16:29:42.550Z",
+  "parents": [
+    "107cab8f-4ecf-406e-81bc-68e885e26d38"
+  ],
+  "branch": "main"
+}

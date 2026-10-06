@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c1e429e8-de03-44c9-a679-7610e85fd09f",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "The longer experiment completed four matched pairs and 72 scheduled fresh Codex turns, including eight intentional process interruptions, actual revisions and parallel worktrees. Both arms passed 120/120 primary functional cases, 52/52 exact intent checks and 9,216/9,216 exploratory stress checks. No primary quality advantage was observed against an explicitly instructed Markdown baseline. All 72 snapshots and 18,432 stress checks replayed independently. Actual scope refusals were observed; the induced shared-file merge conflict remained in all four projects per arm. Authentication copies were removed. Full publication and cross-platform CI are being finalized.",
+    "next": "Natural default-agent workflows, multi-day and multi-domain field studies, real desktop/Claude runs and independent duplicate-effort scoring remain open.",
+    "head": "db044b113d64d4135ac85102261d544776a8244b"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:05:11.053Z",
+  "parents": [
+    "b69ab1fc-b7d9-4db8-a215-27e473395b8b"
+  ],
+  "branch": "main"
+}

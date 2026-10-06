@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b69ab1fc-b7d9-4db8-a215-27e473395b8b",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Broader controlled lifecycle now completed: 4 matched pairs, 72 fresh Codex CLI turns, actual revisions, forced receipt-process interruption, concurrent worktrees and final audits. No primary or exploratory quality advantage versus an explicitly instructed Markdown baseline: both120/120 functional,52/52 intent,9216/9216 seeded stress. Real scope refusal/acquisition observed but pipeline merge conflicts remained4perarm under the induced same-base overlap schedule. All72snapshots and18432stresschecks independently replayed. Dataset/report publication and cross-platform CI being finalized.",
+    "next": "Natural default-agent workflows without durable-memory instructions, multi-day projects, multiple domains, actual desktop/Claude and independent duplicate-effort scoring remain open; do not infer general efficacy from this synthetic study.",
+    "head": "db044b113d64d4135ac85102261d544776a8244b"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:02:16.568Z",
+  "parents": [
+    "e91c1429-b95d-4d92-94e3-2fff749a646f"
+  ],
+  "branch": "main"
+}

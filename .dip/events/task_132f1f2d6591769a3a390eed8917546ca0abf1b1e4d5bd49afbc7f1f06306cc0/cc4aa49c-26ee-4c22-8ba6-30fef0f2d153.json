@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cc4aa49c-26ee-4c22-8ba6-30fef0f2d153",
+  "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "text": "1. Build and calibrate a fixed multi-stage matched quality fixture and infrastructure preflight. 2. Publish protocol, prompts, scoring and interruption/concurrency schedule before scored execution. 3. Run all scheduled independent arms without result-dependent retries or coaching; preserve stage snapshots, model outputs and failures. 4. Independently replay held-out quality/intent/completion scoring and report project-level outcomes, regressions, overlaps and cost. 5. Publish honest README/report/raw evidence, verify CI, and capture actionable product limitations in DIP."
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T15:01:00.020Z",
+  "parents": [
+    "d226dfb0-6cf6-48c0-8d10-c0324f88c4bf"
+  ],
+  "branch": "main"
+}

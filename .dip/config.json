@@ -23,6 +23,20 @@
         "scripts/model-benchmark-evidence.mjs"
       ],
       "timeoutMs": 60000
+    },
+    "quality-benchmark": {
+      "command": [
+        "node",
+        "scripts/longitudinal-evidence.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    "stress-benchmark": {
+      "command": [
+        "node",
+        "scripts/longitudinal-stress-evidence.mjs"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate"

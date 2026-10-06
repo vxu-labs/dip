@@ -70,7 +70,21 @@ No manual logging per edit, no repeated plan upload, no separate model account. 
 
 When the current hook has not supplied a task ID, the agent must explicitly save intent and plans through MCP or CLI. `dip doctor` and the dashboard report unobserved prompt capture; installed configuration alone is insufficient. `dip --help` and task-specific help work outside Git. `dip status` returns a compact summary, with `--full` available for raw history.
 
-## Measured cost and real workflow QA
+## Measured quality, cost and real workflow QA
+
+A longer controlled quality experiment used **four matched project pairs and 72 scheduled fresh Codex turns**, including actual requirement revisions, abrupt process interruption, two concurrent Git worktree workers, real merges and final audits. Both arms were instructed to preserve repository intent and handoffs; the baseline used ordinary Markdown.
+
+| Final quality measure                            | Without DIP |  With DIP |
+| ------------------------------------------------ | ----------: | --------: |
+| Projects passing every primary code case         |         4/4 |       4/4 |
+| Primary functional cases                         |     120/120 |   120/120 |
+| Current policy fields recovered                  |       40/40 |     40/40 |
+| Deferred feature identifiers retained            |         8/8 |       8/8 |
+| Cancelled feature identifiers retained           |         4/4 |       4/4 |
+| False release-ready claims against primary cases |           0 |         0 |
+| Supplementary exploratory stress checks          |   9216/9216 | 9216/9216 |
+
+**No advantage was observed in the primary code-correctness or intent-recovery outcomes against this capable Markdown baseline.** DIP ownership checks produced observable claim refusals; Git integration still required conflict resolution. The stress supplement was specified after the primary run started and was evaluated only after collection finished. Thousands of input checks are clustered within four project pairs, not independent projects. This accelerated synthetic lifecycle does not establish general productivity, maintainability or multi-day reliability. [Longitudinal method, every outcome and replayable evidence](docs/benchmarks/longitudinal.md).
 
 A controlled Codex pilot used **six matched pairs and 24 fresh model-backed turns**, with the same GPT-6.1 Sol model and High reasoning. The baseline could save ordinary Markdown plans and handoffs. Both arms passed **48/48 held-out code cases**, recovered **24/24 contract fields** and retained **6/6 deferred feature identifiers**.
 
