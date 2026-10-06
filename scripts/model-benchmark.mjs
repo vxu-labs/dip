@@ -29,7 +29,7 @@ const timeoutMs = 240000;
 const sha = (text) => createHash("sha256").update(text).digest("hex");
 const protocol = {
   schemaVersion: 1,
-  protocolVersion: 2,
+  protocolVersion: 3,
   createdAt: new Date().toISOString(),
   model,
   effort,
@@ -48,6 +48,8 @@ const protocol = {
     "all scheduled trials retained; no scored-run retries, adaptive prompt edits or omitted failures; preflight excluded and reported separately",
   priorAttempt:
     "Attempt 1 aborted after missing MCP approvals were observed. Its raw outcomes remain separate. Version 2 changes infrastructure only: explicitly authorize reviewed fixture-local MCP tools, configure the same visible node --test command, and strengthen preflight with actual intent persistence. All scored arms restart from fresh repositories; scoring and prompts are unchanged.",
+  secondAttempt:
+    "Attempt 2 aborted after fresh Windows elevated-sandbox shell initialization failed (helper cancellation 1223). Version 3 uses the same ordinary-user danger-full-access execution mode for both arms and gates on actual shell writes as well as MCP persistence. Repositories, config, Git and runtime remain separated; directory boundaries are instructions, not OS sandbox containment. Scoring and task prompts are unchanged, and all arms restart.",
   trust:
     "only generated, source-reviewed DIP command hooks in an isolated config; --dangerously-bypass-hook-trust authorizes this vetted automation, not normal installation",
   sources: {
@@ -77,7 +79,7 @@ const output = path.resolve(
   values.output ||
     (values.preflight
       ? ".dip-local/model-preflight.json"
-      : "docs/benchmarks/2026-10-06-model-controlled-v2.json"),
+      : "docs/benchmarks/2026-10-06-model-controlled-v3.json"),
 );
 fs.mkdirSync(path.dirname(output), { recursive: true });
 if (values.protocol) {
@@ -243,7 +245,7 @@ async function run(trial, phase, prompt) {
     "--ephemeral",
     "--ignore-rules",
     "--sandbox",
-    "workspace-write",
+    "danger-full-access",
     "--model",
     model,
     "--cd",
@@ -390,14 +392,18 @@ try {
         trial,
         "preflight",
         arm === "with"
-          ? "Infrastructure preflight only. Use DIP MCP project_context, save a prose-only plan containing 'PREFLIGHT-MCP-OK' on this captured task using task_plan, then read the task back with task_get. Use the supplied task ID and actor. Do not implement code or change settings. Return 4 after the saved plan is read back."
-          : "This is an infrastructure preflight. Return the number 4. Do not change any files or call tools.",
+          ? "Infrastructure preflight only. First use exec_command to run Node.js, write preflight.txt containing exactly PREFLIGHT-SHELL-OK in this repository, and read it back. Then use DIP MCP project_context, save a prose-only plan containing PREFLIGHT-MCP-OK on this captured task with task_plan, and read it back with task_get. Use supplied task ID and actor. Do not change code or settings. Return 4 after both readbacks succeed."
+          : "Infrastructure preflight only. Use exec_command to run Node.js, write preflight.txt containing exactly PREFLIGHT-SHELL-OK in this repository, and read it back. Do not change code or settings. Return 4 after readback succeeds.",
       );
       result.pairs.push({
         arm,
         setup: trial.setup,
         run: runResult,
         capture: capture(trial),
+        shellWriteObserved:
+          fs.existsSync(path.join(trial.root, "preflight.txt")) &&
+          fs.readFileSync(path.join(trial.root, "preflight.txt"), "utf8") ===
+            "PREFLIGHT-SHELL-OK",
       });
       save();
     }
@@ -405,6 +411,8 @@ try {
       (x) =>
         x.run.completed &&
         x.run.exitCode === 0 &&
+        x.shellWriteObserved &&
+        (x.run.itemCounts.command_execution || 0) > 0 &&
         (x.arm === "with"
           ? x.capture.tasks.some((t) => t.planPresent) &&
             (x.run.itemCounts.mcp_tool_call || 0) >= 2 &&
