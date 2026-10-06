@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4ae4670c26d1f54c0f09cd49064b59d5b8dd66c8cb42d8995c08289812540736",
+  "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+  "type": "task.create",
+  "payload": {
+    "title": "תעשה ניסוי מבוקר",
+    "description": "תעשה ניסוי מבוקר \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:53:14.167Z",
+  "parents": [],
+  "branch": "main"
+}
