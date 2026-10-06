@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e91c1429-b95d-4d92-94e3-2fff749a646f",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Matched pilot completed with preregistered protocol 05ee687 and all six pairs. Code, contract and deferred-feature outcomes matched; no productivity advantage observed. DIP's median total time was 2.20x a strong Markdown baseline, with higher reported usage and 134 MCP calls. Independent reconstruction reproduced all 24 stage scores. Raw task counts/status are reported without claiming a semantic duplicate score. Infrastructure attempts retained. Optimization now belongs to DIP-B01.",
+    "next": "Run broader natural-reminder and concurrent-worker evaluations after reducing measured management friction; preserve the current pilot as a baseline.",
+    "head": "05ee6872a7a9024cba1e9a9c2190dc4c10d69974"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T13:37:05.507Z",
+  "parents": [
+    "6d000e1c-3ce2-463c-9ac7-41069e8fa9ec"
+  ],
+  "branch": "main"
+}

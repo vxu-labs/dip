@@ -1,0 +1,258 @@
+{
+  "protocol": {
+    "schemaVersion": 1,
+    "protocolVersion": 3,
+    "createdAt": "2026-10-06T12:31:27.238Z",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "pairCount": 6,
+    "timeoutMs": 240000,
+    "design": "six matched pairs; three tasks repeated twice with revised constants; counterbalanced arm order; seed and fresh recovery per arm; no resumed sessions",
+    "baseline": "ordinary repository instructions, Markdown plans and handoffs allowed; no DIP hooks/MCP/config, profiles or native Git trace",
+    "treatment": "same baseline plus DIP 0.3.4 instructions, real Codex hooks and MCP; isolated runtime with immediate durable fallback; no resident recorder",
+    "primary": "all eight held-out functional cases pass in fresh-session recovery",
+    "secondary": "six exact contract/deferred/completion recovery checks, seed partial-work checks, wall time, reported token usage and tool counts",
+    "policy": "all scheduled trials retained; no scored-run retries, adaptive prompt edits or omitted failures; preflight excluded and reported separately",
+    "priorAttempt": "Attempt 1 aborted after missing MCP approvals were observed. Its raw outcomes remain separate. Version 2 changes infrastructure only: explicitly authorize reviewed fixture-local MCP tools, configure the same visible node --test command, and strengthen preflight with actual intent persistence. All scored arms restart from fresh repositories; scoring and prompts are unchanged.",
+    "secondAttempt": "Attempt 2 aborted after fresh Windows elevated-sandbox shell initialization failed (helper cancellation 1223). Version 3 uses the same ordinary-user danger-full-access execution mode for both arms and gates on actual shell writes as well as MCP persistence. Repositories, config, Git and runtime remain separated; directory boundaries are instructions, not OS sandbox containment. Scoring and task prompts are unchanged, and all arms restart.",
+    "trust": "only generated, source-reviewed DIP command hooks in an isolated config; --dangerously-bypass-hook-trust authorizes this vetted automation, not normal installation",
+    "sources": {
+      "fixtures": "959de4eb4ab97661703ef11e1730a3f5ded6d0e0415a2890f95cc63baba3342f",
+      "harness": "e7488b61b62cdee2a74efb1db475aa3e936484e901b63815a59f5ccdf6f0a09f"
+    },
+    "commonInstructions": "Work only in this repository. Do not inspect sibling directories, user settings, credentials, previous sessions or external projects. Do not use the network, browse, install dependencies, spawn agents, commit or change machine settings. Use the repository's provided tools and state. Ordinary Markdown planning/handoff notes are allowed. Use Node.js built-ins. Run PowerShell without a profile. Keep future features deferred. A stopped turn is not completed development.",
+    "recoveryPrompt": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 functions in lib.mjs, honor the latest revision, and do not implement the deferred feature. Check your work with local Node.js checks. Create recovery.json with {\"contract\":{the recovered contract fields and values},\"deferred\":[feature identifiers],\"completed\":[implemented function names],\"unresolved\":[remaining work]}. State uncertainty instead of inventing lost requirements. Do not access anything outside this repository.",
+    "pairs": [
+      {
+        "index": 0,
+        "scenario": "queue",
+        "repeat": 0,
+        "order": [
+          "without",
+          "with"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeJobs(jobs) and scheduleJobs(jobs) from lib.mjs. normalizeJobs returns new {id,duration} objects for jobs whose id is a nonempty string and duration is a positive integer; drop other jobs, preserve input order and duplicate ids, and do not mutate input. scheduleJobs consumes the normalized jobs and returns {id,start,end,slot} entries in input order. Maintain 2 slots initially free at time 0, assigning each next job to the earliest available slot, with ties going to the lowest zero-based slot. Ignore all priority fields. The early proposal was to sort by priority; the FINAL revision explicitly requires input order. PRIORITY_SCHEDULING is a distinct deferred future feature and must not be implemented in v1.\nThe latest contract is {\"capacity\":2,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}. Implement ONLY normalizeJobs now. Leave scheduleJobs unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement scheduleJobs, and do not implement PRIORITY_SCHEDULING.",
+        "expectedContract": {
+          "capacity": 2,
+          "order": "input",
+          "invalid": "drop",
+          "mutate": false
+        },
+        "deferred": "PRIORITY_SCHEDULING"
+      },
+      {
+        "index": 1,
+        "scenario": "csv",
+        "repeat": 0,
+        "order": [
+          "with",
+          "without"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export encodeCell(value) and encodeTable(rows) from lib.mjs. The delimiter is \",\". encodeCell converts null/undefined to an empty string, otherwise uses String(value). If a cell contains the delimiter, a double quote, CR or LF, quote the cell and double embedded quotes; otherwise leave it unquoted. encodeTable accepts an array of array rows, joins encoded cells with the delimiter, joins rows with CRLF, and has no final newline. Empty rows are empty records; an empty table is an empty string. Do not mutate rows. The early proposal used LF; the FINAL revision is CRLF. CSV_IMPORT is deferred, with no parser or import feature in v1.\nThe latest contract is {\"separator\":\",\",\"newline\":\"CRLF\",\"nullValue\":\"\",\"trailingNewline\":false}. Implement ONLY encodeCell now. Leave encodeTable unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement encodeTable, and do not implement CSV_IMPORT.",
+        "expectedContract": {
+          "separator": ",",
+          "newline": "CRLF",
+          "nullValue": "",
+          "trailingNewline": false
+        },
+        "deferred": "CSV_IMPORT"
+      },
+      {
+        "index": 2,
+        "scenario": "search",
+        "repeat": 0,
+        "order": [
+          "without",
+          "with"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeQuery(query) and findMatches(items,query) from lib.mjs. normalizeQuery returns query.trim().toLowerCase() for string input and an empty string otherwise. findMatches returns up to 3 original item objects whose string label contains the normalized query, case-insensitively; skip non-string labels, preserve input order, do not mutate input. An empty normalized query returns []. Do not strip accents or normalize Unicode. The early proposal sorted alphabetically; the FINAL revision preserves input order. FUZZY_SEARCH is deferred and must not be implemented in v1.\nThe latest contract is {\"limit\":3,\"order\":\"input\",\"query\":\"trim-lowercase\",\"empty\":\"no-results\"}. Implement ONLY normalizeQuery now. Leave findMatches unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement findMatches, and do not implement FUZZY_SEARCH.",
+        "expectedContract": {
+          "limit": 3,
+          "order": "input",
+          "query": "trim-lowercase",
+          "empty": "no-results"
+        },
+        "deferred": "FUZZY_SEARCH"
+      },
+      {
+        "index": 3,
+        "scenario": "queue",
+        "repeat": 1,
+        "order": [
+          "with",
+          "without"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeJobs(jobs) and scheduleJobs(jobs) from lib.mjs. normalizeJobs returns new {id,duration} objects for jobs whose id is a nonempty string and duration is a positive integer; drop other jobs, preserve input order and duplicate ids, and do not mutate input. scheduleJobs consumes the normalized jobs and returns {id,start,end,slot} entries in input order. Maintain 3 slots initially free at time 0, assigning each next job to the earliest available slot, with ties going to the lowest zero-based slot. Ignore all priority fields. The early proposal was to sort by priority; the FINAL revision explicitly requires input order. PRIORITY_SCHEDULING is a distinct deferred future feature and must not be implemented in v1.\nThe latest contract is {\"capacity\":3,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}. Implement ONLY normalizeJobs now. Leave scheduleJobs unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement scheduleJobs, and do not implement PRIORITY_SCHEDULING.",
+        "expectedContract": {
+          "capacity": 3,
+          "order": "input",
+          "invalid": "drop",
+          "mutate": false
+        },
+        "deferred": "PRIORITY_SCHEDULING"
+      },
+      {
+        "index": 4,
+        "scenario": "csv",
+        "repeat": 1,
+        "order": [
+          "without",
+          "with"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export encodeCell(value) and encodeTable(rows) from lib.mjs. The delimiter is \"\\t\". encodeCell converts null/undefined to an empty string, otherwise uses String(value). If a cell contains the delimiter, a double quote, CR or LF, quote the cell and double embedded quotes; otherwise leave it unquoted. encodeTable accepts an array of array rows, joins encoded cells with the delimiter, joins rows with CRLF, and has no final newline. Empty rows are empty records; an empty table is an empty string. Do not mutate rows. The early proposal used LF; the FINAL revision is CRLF. CSV_IMPORT is deferred, with no parser or import feature in v1.\nThe latest contract is {\"separator\":\"\\t\",\"newline\":\"CRLF\",\"nullValue\":\"\",\"trailingNewline\":false}. Implement ONLY encodeCell now. Leave encodeTable unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement encodeTable, and do not implement CSV_IMPORT.",
+        "expectedContract": {
+          "separator": "\t",
+          "newline": "CRLF",
+          "nullValue": "",
+          "trailingNewline": false
+        },
+        "deferred": "CSV_IMPORT"
+      },
+      {
+        "index": 5,
+        "scenario": "search",
+        "repeat": 1,
+        "order": [
+          "with",
+          "without"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeQuery(query) and findMatches(items,query) from lib.mjs. normalizeQuery returns query.trim().toLowerCase() for string input and an empty string otherwise. findMatches returns up to 2 original item objects whose string label contains the normalized query, case-insensitively; skip non-string labels, preserve input order, do not mutate input. An empty normalized query returns []. Do not strip accents or normalize Unicode. The early proposal sorted alphabetically; the FINAL revision preserves input order. FUZZY_SEARCH is deferred and must not be implemented in v1.\nThe latest contract is {\"limit\":2,\"order\":\"input\",\"query\":\"trim-lowercase\",\"empty\":\"no-results\"}. Implement ONLY normalizeQuery now. Leave findMatches unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement findMatches, and do not implement FUZZY_SEARCH.",
+        "expectedContract": {
+          "limit": 2,
+          "order": "input",
+          "query": "trim-lowercase",
+          "empty": "no-results"
+        },
+        "deferred": "FUZZY_SEARCH"
+      }
+    ]
+  },
+  "startedAt": "2026-10-06T12:31:27.247Z",
+  "platform": "win32",
+  "node": "v24.14.0",
+  "codexVersion": "codex-cli 0.160.0",
+  "dipVersion": "0.3.4",
+  "preflight": true,
+  "pairs": [
+    {
+      "arm": "without",
+      "setup": {
+        "hooks": false,
+        "dipDirectory": false,
+        "mcp": false,
+        "profilesDisabled": true,
+        "traceDisabled": true,
+        "reviewedMcpToolsApproved": []
+      },
+      "run": {
+        "phase": "preflight",
+        "startedAt": "2026-10-06T12:31:27.626Z",
+        "wallMs": 33732,
+        "exitCode": 0,
+        "timedOut": false,
+        "completed": true,
+        "usage": {
+          "input_tokens": 32908,
+          "cached_input_tokens": 10368,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 653,
+          "reasoning_output_tokens": 323
+        },
+        "itemCounts": {
+          "agent_message": 2,
+          "command_execution": 2
+        },
+        "answers": [
+          "I’ll use Node.js to write `preflight.txt` in this repository and verify its exact contents.\n",
+          "4"
+        ],
+        "errors": [],
+        "mcpErrors": [],
+        "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"<temp>\\\\\" (codex_home: AbsolutePathBuf(\"<temp>\\\\dip-model-controlled-yeBibI\\\\pair--1\\\\without\\\\user\\\\.codex\"))\n2026-10-06T12:31:29.203726Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell\n"
+      },
+      "capture": {
+        "present": false,
+        "taskCount": 0,
+        "kinds": {}
+      },
+      "shellWriteObserved": true
+    },
+    {
+      "arm": "with",
+      "setup": {
+        "hooks": true,
+        "dipDirectory": true,
+        "mcp": true,
+        "profilesDisabled": true,
+        "traceDisabled": true,
+        "reviewedMcpToolsApproved": [
+          "project_context",
+          "task_get",
+          "task_next",
+          "task_plan",
+          "task_create",
+          "task_update",
+          "task_claim",
+          "task_checkpoint",
+          "task_heartbeat",
+          "task_release",
+          "task_decision",
+          "task_verify",
+          "project_reconcile"
+        ]
+      },
+      "run": {
+        "phase": "preflight",
+        "startedAt": "2026-10-06T12:32:01.856Z",
+        "wallMs": 37189,
+        "exitCode": 0,
+        "timedOut": false,
+        "completed": true,
+        "usage": {
+          "input_tokens": 36123,
+          "cached_input_tokens": 20224,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 487,
+          "reasoning_output_tokens": 32
+        },
+        "itemCounts": {
+          "error": 2,
+          "agent_message": 2,
+          "command_execution": 1,
+          "mcp_tool_call": 3
+        },
+        "answers": [
+          "I’ll run the file readback first, then save and read back the DIP plan on the supplied task.\n",
+          "4"
+        ],
+        "errors": [],
+        "mcpErrors": [],
+        "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"<temp>\\\\\" (codex_home: AbsolutePathBuf(\"<temp>\\\\dip-model-controlled-yeBibI\\\\pair--1\\\\with\\\\user\\\\.codex\"))\n2026-10-06T12:32:03.410999Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell\n"
+      },
+      "capture": {
+        "present": true,
+        "taskCount": 1,
+        "kinds": {
+          "SessionEnd": 1,
+          "Stop": 1,
+          "PostToolUse": 4,
+          "PreToolUse": 4,
+          "UserPromptSubmit": 1,
+          "SessionStart": 1
+        },
+        "tasks": [
+          {
+            "title": "Infrastructure preflight only. First use exec_command to run Node.js, write preflight.txt containing exactly PREFLIGHT-SHELL-OK in this repository, and read it ",
+            "status": "in_progress",
+            "planPresent": true,
+            "planTool": "task_plan",
+            "checkpointPresent": true
+          }
+        ]
+      },
+      "shellWriteObserved": true
+    }
+  ],
+  "preflightPassed": true,
+  "completedAt": "2026-10-06T12:32:39.401Z"
+}

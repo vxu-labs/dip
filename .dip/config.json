@@ -16,6 +16,13 @@
         "--no-screenshots"
       ],
       "timeoutMs": 120000
+    },
+    "benchmark": {
+      "command": [
+        "node",
+        "scripts/model-benchmark-evidence.mjs"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate"

@@ -1,4 +1,12 @@
-# Tracking overhead benchmark
+# DIP benchmarks
+
+## Controlled model-backed pilot
+
+Six matched pairs used GPT-6.1 Sol with High reasoning, identical task prompts, alternating arm order and two fresh sessions per arm. Ordinary Markdown handoffs were allowed in the baseline. Both arms passed 48/48 functional cases, recovered 24/24 contract fields and retained 6/6 deferred feature identifiers. Median total workflow time was 164.19 seconds without DIP and 360.84 seconds with DIP. Reported input/output token usage was higher with DIP. No productivity advantage was observed in these solo microtasks.
+
+[Full controlled report](model-controlled.md) includes all valid outcomes, source artifacts, reported usage, preregistered protocols, two retained infrastructure attempts, replay validation and limitations. This is a small pilot against an explicitly instructed note-taking baseline; it does not measure parallel coordination or implicit reminders.
+
+## Synthetic tracking overhead
 
 Measured on 6 October 2026 with Node.js 24.14.0, Windows x64 and an Intel Core i7-8750H. Each run uses 30 paired samples after three warm-up pairs, alternating the execution order. Both conditions launch the same Node file-write subprocess with identical content.
 

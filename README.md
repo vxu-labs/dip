@@ -8,7 +8,7 @@ You ask your agent to remember a feature for later. A migration stops halfway th
 
 **DIP keeps that development memory in your repository.** Plans, future ideas, handoffs, task ownership and verification evidence live in **`.dip/`** and travel with your code through Git.
 
-Your coding agent supplies the intent. DIP captures routine activity automatically, with **zero additional model calls**.
+Your coding agent supplies the intent. DIP's automatic capture makes **no model calls**. Planning and task management use your agent's normal tool loop and add measurable overhead.
 
 ## What you get
 
@@ -71,6 +71,17 @@ No manual logging per edit, no repeated plan upload, no separate model account. 
 When the current hook has not supplied a task ID, the agent must explicitly save intent and plans through MCP or CLI. `dip doctor` and the dashboard report unobserved prompt capture; installed configuration alone is insufficient. `dip --help` and task-specific help work outside Git. `dip status` returns a compact summary, with `--full` available for raw history.
 
 ## Measured cost and real workflow QA
+
+A controlled Codex pilot used **six matched pairs and 24 fresh model-backed turns**, with the same GPT-6.1 Sol model and High reasoning. The baseline could save ordinary Markdown plans and handoffs. Both arms passed **48/48 held-out code cases**, recovered **24/24 contract fields** and retained **6/6 deferred feature identifiers**.
+
+| Complete workflow                   | Without DIP |  With DIP |
+| ----------------------------------- | ----------: | --------: |
+| Median time                         |    164.19 s |  360.84 s |
+| Reported input tokens, all 12 turns |   1,056,828 | 2,124,368 |
+| Of those, cached input tokens       |     826,624 | 1,782,784 |
+| Reported output tokens              |      32,170 |    67,732 |
+
+**No productivity or recovery advantage was observed in this small solo-task pilot.** DIP's median workflow time was **2.20 times** the note-taking baseline. Each arm had one strict completion-report mismatch. The study covers explicit durable handoffs, isolated CLI configuration and no resident recorder; parallel coordination and long-running development were not measured. The full report retains infrastructure failures, every valid outcome and reproducible scoring. [Controlled pilot, method and raw evidence](docs/benchmarks/model-controlled.md).
 
 DIP adds measurable tracking overhead. A Windows/Node.js 24 benchmark used 30 alternating pairs of identical file writes after three warm-up pairs:
 

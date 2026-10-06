@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8a49953a-4c01-4391-a9a5-ed6ceb278f6d",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-B01: Reduce semantic management overhead observed in the controlled pilot",
+    "description": "The controlled six-pair gpt-6.1-sol/high pilot passed all 48 functional cases in both arms, with all contract fields and deferred features retained. Median workflow time was 164.19 s for a Markdown baseline and 360.84 s with DIP; input/output usage increased. DIP emitted 134 MCP calls in 12 scored turns. Full evidence: docs/benchmarks/model-controlled.md. Investigate redundant reads, fragmented intent/claim/checkpoint operations and excessive management output. No causal attribution to one component is established. This task is future improvement work; no runtime optimization was made during the experiment.",
+    "acceptance": [
+      "Profile actual management sequences from the retained trial evidence before choosing an optimization.",
+      "Reduce redundant management round trips or payloads while preserving ownership fencing, future backlog, durable intent and snapshot-based verification.",
+      "Repeat the same preregistered matched scenarios against the optimized implementation and report all outcomes/costs, including regressions."
+    ],
+    "scope": [
+      "src/mcp.js",
+      "src/core.js",
+      "src/automation.js",
+      "scripts/model-benchmark.mjs",
+      "docs/automation.md"
+    ],
+    "priority": 1,
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "status": "backlog"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T13:36:10.423Z",
+  "parents": [],
+  "branch": "main"
+}

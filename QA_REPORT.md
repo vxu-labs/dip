@@ -1,5 +1,11 @@
 # DIP release validation
 
+## Controlled model-backed benchmark
+
+Six counterbalanced matched pairs ran 24 fresh Codex turns with GPT-6.1 Sol/High, using identical task prompts and separate configuration/repositories. Ordinary Markdown handoffs were allowed in the baseline. Both arms passed all 48 held-out functional cases, replayed all 24 contract fields and retained all six deferred feature identifiers. Each had one strict completion-report mismatch, with no observed lost contract requirement. Median total workflow time was 164.19 seconds without DIP and 360.84 seconds with DIP; reported token use was higher with DIP. This pilot establishes added management cost in these solo microtasks, without an observed productivity advantage.
+
+The v3 protocol and source hashes were published before scored execution in 05ee687. Earlier MCP-approval and Windows-sandbox setup failures are retained separately; all arms restarted. Actual shell writes and MCP persistence were preflighted. The evidence check independently reconstructed and re-scored all 24 saved stages, validated the six matched pairs and reproduced aggregate totals without model calls. The main project now has a configured `benchmark` check. [Full method, failed attempts and raw artifacts](docs/benchmarks/model-controlled.md). Concurrent-agent, natural-reminder and long-running evaluations remain future work.
+
 ## v0.3.4 trusted hook capture
 
 The user approved DIP's Codex hooks and then the corrected PostToolUse definition. Real UserPromptSubmit capture supplied the current task identity to the agent. A read-only shell probe produced matching PreToolUse and PostToolUse records for one call, task and session, without manual hook invocation. Ordinary shell and MCP post records were also observed. The prior general matcher used negative lookahead, unsupported by Codex's Rust regex engine; a portable catch-all plus a Node-side plan filter fixes delivery while keeping plan writes synchronous and ordered.

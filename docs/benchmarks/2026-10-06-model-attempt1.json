@@ -1,0 +1,781 @@
+{
+  "protocol": {
+    "schemaVersion": 1,
+    "createdAt": "2026-10-06T12:03:17.480Z",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "pairCount": 6,
+    "timeoutMs": 240000,
+    "design": "six matched pairs; three tasks repeated twice with revised constants; counterbalanced arm order; seed and fresh recovery per arm; no resumed sessions",
+    "baseline": "ordinary repository instructions, Markdown plans and handoffs allowed; no DIP hooks/MCP/config, profiles or native Git trace",
+    "treatment": "same baseline plus DIP 0.3.4 instructions, real Codex hooks and MCP; isolated runtime with immediate durable fallback; no resident recorder",
+    "primary": "all eight held-out functional cases pass in fresh-session recovery",
+    "secondary": "six exact contract/deferred/completion recovery checks, seed partial-work checks, wall time, reported token usage and tool counts",
+    "policy": "all scheduled trials retained; no scored-run retries, adaptive prompt edits or omitted failures; preflight excluded and reported separately",
+    "trust": "only generated, source-reviewed DIP command hooks in an isolated config; --dangerously-bypass-hook-trust authorizes this vetted automation, not normal installation",
+    "sources": {
+      "fixtures": "959de4eb4ab97661703ef11e1730a3f5ded6d0e0415a2890f95cc63baba3342f",
+      "harness": "906ce55ee9ccdca120a70b599889364fc04e94834b0fafe8124dc94d8864cedd"
+    },
+    "commonInstructions": "Work only in this repository. Do not inspect sibling directories, user settings, credentials, previous sessions or external projects. Do not use the network, browse, install dependencies, spawn agents, commit or change machine settings. Use the repository's provided tools and state. Ordinary Markdown planning/handoff notes are allowed. Use Node.js built-ins. Run PowerShell without a profile. Keep future features deferred. A stopped turn is not completed development.",
+    "recoveryPrompt": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 functions in lib.mjs, honor the latest revision, and do not implement the deferred feature. Check your work with local Node.js checks. Create recovery.json with {\"contract\":{the recovered contract fields and values},\"deferred\":[feature identifiers],\"completed\":[implemented function names],\"unresolved\":[remaining work]}. State uncertainty instead of inventing lost requirements. Do not access anything outside this repository.",
+    "pairs": [
+      {
+        "index": 0,
+        "scenario": "queue",
+        "repeat": 0,
+        "order": [
+          "without",
+          "with"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeJobs(jobs) and scheduleJobs(jobs) from lib.mjs. normalizeJobs returns new {id,duration} objects for jobs whose id is a nonempty string and duration is a positive integer; drop other jobs, preserve input order and duplicate ids, and do not mutate input. scheduleJobs consumes the normalized jobs and returns {id,start,end,slot} entries in input order. Maintain 2 slots initially free at time 0, assigning each next job to the earliest available slot, with ties going to the lowest zero-based slot. Ignore all priority fields. The early proposal was to sort by priority; the FINAL revision explicitly requires input order. PRIORITY_SCHEDULING is a distinct deferred future feature and must not be implemented in v1.\nThe latest contract is {\"capacity\":2,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}. Implement ONLY normalizeJobs now. Leave scheduleJobs unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement scheduleJobs, and do not implement PRIORITY_SCHEDULING.",
+        "expectedContract": {
+          "capacity": 2,
+          "order": "input",
+          "invalid": "drop",
+          "mutate": false
+        },
+        "deferred": "PRIORITY_SCHEDULING"
+      },
+      {
+        "index": 1,
+        "scenario": "csv",
+        "repeat": 0,
+        "order": [
+          "with",
+          "without"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export encodeCell(value) and encodeTable(rows) from lib.mjs. The delimiter is \",\". encodeCell converts null/undefined to an empty string, otherwise uses String(value). If a cell contains the delimiter, a double quote, CR or LF, quote the cell and double embedded quotes; otherwise leave it unquoted. encodeTable accepts an array of array rows, joins encoded cells with the delimiter, joins rows with CRLF, and has no final newline. Empty rows are empty records; an empty table is an empty string. Do not mutate rows. The early proposal used LF; the FINAL revision is CRLF. CSV_IMPORT is deferred, with no parser or import feature in v1.\nThe latest contract is {\"separator\":\",\",\"newline\":\"CRLF\",\"nullValue\":\"\",\"trailingNewline\":false}. Implement ONLY encodeCell now. Leave encodeTable unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement encodeTable, and do not implement CSV_IMPORT.",
+        "expectedContract": {
+          "separator": ",",
+          "newline": "CRLF",
+          "nullValue": "",
+          "trailingNewline": false
+        },
+        "deferred": "CSV_IMPORT"
+      },
+      {
+        "index": 2,
+        "scenario": "search",
+        "repeat": 0,
+        "order": [
+          "without",
+          "with"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeQuery(query) and findMatches(items,query) from lib.mjs. normalizeQuery returns query.trim().toLowerCase() for string input and an empty string otherwise. findMatches returns up to 3 original item objects whose string label contains the normalized query, case-insensitively; skip non-string labels, preserve input order, do not mutate input. An empty normalized query returns []. Do not strip accents or normalize Unicode. The early proposal sorted alphabetically; the FINAL revision preserves input order. FUZZY_SEARCH is deferred and must not be implemented in v1.\nThe latest contract is {\"limit\":3,\"order\":\"input\",\"query\":\"trim-lowercase\",\"empty\":\"no-results\"}. Implement ONLY normalizeQuery now. Leave findMatches unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement findMatches, and do not implement FUZZY_SEARCH.",
+        "expectedContract": {
+          "limit": 3,
+          "order": "input",
+          "query": "trim-lowercase",
+          "empty": "no-results"
+        },
+        "deferred": "FUZZY_SEARCH"
+      },
+      {
+        "index": 3,
+        "scenario": "queue",
+        "repeat": 1,
+        "order": [
+          "with",
+          "without"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeJobs(jobs) and scheduleJobs(jobs) from lib.mjs. normalizeJobs returns new {id,duration} objects for jobs whose id is a nonempty string and duration is a positive integer; drop other jobs, preserve input order and duplicate ids, and do not mutate input. scheduleJobs consumes the normalized jobs and returns {id,start,end,slot} entries in input order. Maintain 3 slots initially free at time 0, assigning each next job to the earliest available slot, with ties going to the lowest zero-based slot. Ignore all priority fields. The early proposal was to sort by priority; the FINAL revision explicitly requires input order. PRIORITY_SCHEDULING is a distinct deferred future feature and must not be implemented in v1.\nThe latest contract is {\"capacity\":3,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}. Implement ONLY normalizeJobs now. Leave scheduleJobs unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement scheduleJobs, and do not implement PRIORITY_SCHEDULING.",
+        "expectedContract": {
+          "capacity": 3,
+          "order": "input",
+          "invalid": "drop",
+          "mutate": false
+        },
+        "deferred": "PRIORITY_SCHEDULING"
+      },
+      {
+        "index": 4,
+        "scenario": "csv",
+        "repeat": 1,
+        "order": [
+          "without",
+          "with"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export encodeCell(value) and encodeTable(rows) from lib.mjs. The delimiter is \"\\t\". encodeCell converts null/undefined to an empty string, otherwise uses String(value). If a cell contains the delimiter, a double quote, CR or LF, quote the cell and double embedded quotes; otherwise leave it unquoted. encodeTable accepts an array of array rows, joins encoded cells with the delimiter, joins rows with CRLF, and has no final newline. Empty rows are empty records; an empty table is an empty string. Do not mutate rows. The early proposal used LF; the FINAL revision is CRLF. CSV_IMPORT is deferred, with no parser or import feature in v1.\nThe latest contract is {\"separator\":\"\\t\",\"newline\":\"CRLF\",\"nullValue\":\"\",\"trailingNewline\":false}. Implement ONLY encodeCell now. Leave encodeTable unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement encodeTable, and do not implement CSV_IMPORT.",
+        "expectedContract": {
+          "separator": "\t",
+          "newline": "CRLF",
+          "nullValue": "",
+          "trailingNewline": false
+        },
+        "deferred": "CSV_IMPORT"
+      },
+      {
+        "index": 5,
+        "scenario": "search",
+        "repeat": 1,
+        "order": [
+          "with",
+          "without"
+        ],
+        "seedPrompt": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeQuery(query) and findMatches(items,query) from lib.mjs. normalizeQuery returns query.trim().toLowerCase() for string input and an empty string otherwise. findMatches returns up to 2 original item objects whose string label contains the normalized query, case-insensitively; skip non-string labels, preserve input order, do not mutate input. An empty normalized query returns []. Do not strip accents or normalize Unicode. The early proposal sorted alphabetically; the FINAL revision preserves input order. FUZZY_SEARCH is deferred and must not be implemented in v1.\nThe latest contract is {\"limit\":2,\"order\":\"input\",\"query\":\"trim-lowercase\",\"empty\":\"no-results\"}. Implement ONLY normalizeQuery now. Leave findMatches unfinished for another conversation. Keep the plan, revised requirements, deferred idea and handoff durably in this repository using whatever local mechanism is appropriate. You may create Markdown notes. Do not create recovery.json yet, do not implement findMatches, and do not implement FUZZY_SEARCH.",
+        "expectedContract": {
+          "limit": 2,
+          "order": "input",
+          "query": "trim-lowercase",
+          "empty": "no-results"
+        },
+        "deferred": "FUZZY_SEARCH"
+      }
+    ]
+  },
+  "startedAt": "2026-10-06T12:03:17.483Z",
+  "platform": "win32",
+  "node": "v24.14.0",
+  "codexVersion": "codex-cli 0.160.0",
+  "dipVersion": "0.3.4",
+  "preflight": false,
+  "pairs": [
+    {
+      "index": 0,
+      "scenario": "queue",
+      "repeat": 0,
+      "order": [
+        "without",
+        "with"
+      ],
+      "arms": {
+        "without": {
+          "setup": {
+            "hooks": false,
+            "dipDirectory": false,
+            "mcp": false,
+            "profilesDisabled": true,
+            "traceDisabled": true
+          },
+          "seed": {
+            "phase": "seed",
+            "startedAt": "2026-10-06T12:03:17.733Z",
+            "wallMs": 118053,
+            "exitCode": 0,
+            "timedOut": false,
+            "completed": true,
+            "usage": {
+              "input_tokens": 89733,
+              "cached_input_tokens": 73728,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 2295,
+              "reasoning_output_tokens": 216
+            },
+            "itemCounts": {
+              "agent_message": 3,
+              "command_execution": 4,
+              "file_change": 2
+            },
+            "answers": [
+              "I’ll inspect the repository, implement only `normalizeJobs`, and save the final v1 contract, deferred feature, and handoff in Markdown.",
+              "The repository has only `package.json` and its instructions. I’ll add `normalizeJobs` and focused tests, and document that the `scheduleJobs` export remains unfinished. The handoff will record input order as the final requirement and keep `PRIORITY_SCHEDULING` deferred.",
+              "Implemented only `normalizeJobs` in [lib.mjs](lib.mjs), preserving order and duplicates, dropping invalid jobs, and returning fresh objects without mutation.\n\nSaved the final contract, plan, deferred feature, and handoff in [PLAN.md](PLAN.md).\n\n`node --test`: all 3 tests passed.\n\n`scheduleJobs` remains unfinished. `PRIORITY_SCHEDULING` is deferred. No `recovery.json` was created."
+            ],
+            "errors": [],
+            "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"<temp>\\\\\" (codex_home: AbsolutePathBuf(\"<temp>\\\\dip-model-controlled-xn6mAE\\\\pair-0\\\\without\\\\user\\\\.codex\"))\n2026-10-06T12:03:19.155053Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell\n"
+          },
+          "seedScore": {
+            "checks": [
+              {
+                "name": "normalization",
+                "passed": true
+              },
+              {
+                "name": "invalid input",
+                "passed": true
+              },
+              {
+                "name": "duplicates",
+                "passed": true
+              },
+              {
+                "name": "later function unfinished",
+                "passed": true
+              }
+            ],
+            "passed": 4,
+            "total": 4,
+            "allPassed": true,
+            "memory": [],
+            "memoryPassed": 0,
+            "memoryTotal": 0,
+            "recovery": null
+          },
+          "seedArtifacts": {
+            "AGENTS.md": {
+              "sha256": "2f79389cc3f79093fb5164e02445e25b9491c652a10760a6c3fb14fd48b33900",
+              "text": "Work only in this repository. Do not inspect sibling directories, user settings, credentials, previous sessions or external projects. Do not use the network, browse, install dependencies, spawn agents, commit or change machine settings. Use the repository's provided tools and state. Ordinary Markdown planning/handoff notes are allowed. Use Node.js built-ins. Run PowerShell without a profile. Keep future features deferred. A stopped turn is not completed development.\n"
+            },
+            "lib.mjs": {
+              "sha256": "b2a5f3e8b308bd50f4315104df7629bbd94f28bbc221873ca48e68ff4d8b66e9",
+              "text": "/** Return fresh job records in input order, dropping invalid jobs. */\nexport function normalizeJobs(jobs) {\n  const normalized = [];\n\n  for (const job of jobs) {\n    if (job == null) continue;\n    const { id, duration } = job;\n    if (typeof id !== 'string' || id.length === 0) continue;\n    if (!Number.isInteger(duration) || duration <= 0) continue;\n    normalized.push({ id, duration });\n  }\n\n  return normalized;\n}\n"
+            },
+            "package.json": {
+              "sha256": "5232a0566ad7fd2cd34d6374247335fe24572fc7a710ba0e70a7ed1c1ae67bd4",
+              "text": "{\n  \"name\": \"controlled-module-fixture\",\n  \"private\": true,\n  \"type\": \"module\"\n}"
+            },
+            "PLAN.md": {
+              "sha256": "c6097e92bef3fdca6b79c72d097a5a8a0adf58916fbc152ce44b07f14facd60d",
+              "text": "# v1 requirements and handoff\n\n## Final contract\n\n```json\n{\"capacity\":2,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}\n```\n\nThe early proposal to sort by priority is superseded. The FINAL revision requires input order. Ignore all priority fields throughout v1. Preserve duplicate ids and do not mutate input.\n\nThe completed v1 module will export `normalizeJobs(jobs)` and `scheduleJobs(jobs)` from `lib.mjs`.\n\n- `normalizeJobs(jobs)`: given an array of jobs, return new objects containing only `{id,duration}` for jobs with a nonempty string id and a positive integer duration. Drop other jobs and preserve input order and duplicates. A whitespace-only string is nonempty; no trimming or coercion is required.\n- `scheduleJobs(jobs)`: consume normalized jobs and return `{id,start,end,slot}` entries in input order. Maintain exactly two slots initially free at time 0. Assign each next job to the earliest available slot; ties go to the lowest zero-based slot. Its start is that slot's available time, its end is start plus duration, and the slot becomes available at end. Do not sort by priority or mutate inputs.\n\n## Plan and current scope\n\n1. Implement and verify `normalizeJobs` only in this conversation.\n2. Leave `scheduleJobs` unfinished for another conversation. Its export and implementation are currently absent; do not treat v1 as completed.\n3. In that later conversation, implement the scheduler and verify initial ties, later ties, slot reuse, input order, duplicate ids, ignored priorities and nonmutation against the final contract above.\n\n## Separate deferred feature\n\n`PRIORITY_SCHEDULING` is a distinct future feature, outside v1. It is not implemented and must not influence normalization or scheduling in v1. No priority sorting, priority option or feature scaffolding is authorized now.\n\n## Handoff\n\n- `lib.mjs` implements only the named `normalizeJobs` export.\n- `test/lib.test.mjs` covers invalid records, empty input, order, duplicates, ignored priority fields, fresh output objects and nonmutation using Node.js built-ins.\n- Run verification with `node --test` from this repository.\n- Verification on 2026-10-06: all 3 tests passed.\n- The next development work is the unfinished scheduler described above, in another conversation. This is intentionally partial development, not completion of the module.\n- Do not create `recovery.json` yet. This Markdown file is the durable plan, revised requirements, deferred idea and handoff.\n- Continue following `AGENTS.md`: repository-only work, no network, dependencies, agents, commits or machine-setting changes; PowerShell without a profile.\n"
+            }
+          },
+          "seedCapture": {
+            "present": false,
+            "taskCount": 0,
+            "kinds": {}
+          },
+          "recovery": {
+            "phase": "recovery",
+            "startedAt": "2026-10-06T12:05:15.799Z",
+            "wallMs": 104167,
+            "exitCode": 0,
+            "timedOut": false,
+            "completed": true,
+            "usage": {
+              "input_tokens": 94125,
+              "cached_input_tokens": 65408,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 3050,
+              "reasoning_output_tokens": 702
+            },
+            "itemCounts": {
+              "agent_message": 3,
+              "command_execution": 5,
+              "file_change": 2
+            },
+            "answers": [
+              "I’ll recover the latest v1 contract from the repository, finish the pending functions in `lib.mjs`, and run local Node.js checks. I’ll record any gaps in `recovery.json` and keep the deferred feature out of scope.",
+              "`PLAN.md` records the final contract: two slots, input order, invalid jobs dropped during normalization, and no mutation. It explicitly supersedes priority sorting and defers `PRIORITY_SCHEDULING`. `normalizeJobs` is already implemented; I’ll add `scheduleJobs` for normalized input and verify ties, slot reuse, order, duplicates, ignored priorities, and nonmutation.",
+              "Implemented `scheduleJobs` using the recovered final contract: two slots, input order, lowest-slot tie breaking, and no mutation.\n\nCreated [recovery.json](recovery.json) and updated `PLAN.md`. `PRIORITY_SCHEDULING` remains deferred.\n\nAll 6 Node.js tests and both syntax checks passed. No v1 work remains. Behavior outside the documented input contract is unspecified."
+            ],
+            "errors": [],
+            "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"<temp>\\\\\" (codex_home: AbsolutePathBuf(\"<temp>\\\\dip-model-controlled-xn6mAE\\\\pair-0\\\\without\\\\user\\\\.codex\"))\n2026-10-06T12:05:15.966593Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell\n"
+          },
+          "score": {
+            "checks": [
+              {
+                "name": "normalization",
+                "passed": true
+              },
+              {
+                "name": "invalid input",
+                "passed": true
+              },
+              {
+                "name": "duplicates",
+                "passed": true
+              },
+              {
+                "name": "immutable",
+                "passed": true
+              },
+              {
+                "name": "capacity and tie",
+                "passed": true
+              },
+              {
+                "name": "latest order",
+                "passed": true
+              },
+              {
+                "name": "earliest slot",
+                "passed": true
+              },
+              {
+                "name": "empty",
+                "passed": true
+              }
+            ],
+            "passed": 8,
+            "total": 8,
+            "allPassed": true,
+            "memory": [
+              {
+                "name": "capacity",
+                "passed": true
+              },
+              {
+                "name": "order",
+                "passed": true
+              },
+              {
+                "name": "invalid",
+                "passed": true
+              },
+              {
+                "name": "mutate",
+                "passed": true
+              },
+              {
+                "name": "future deferred",
+                "passed": true
+              },
+              {
+                "name": "completion report",
+                "passed": true
+              }
+            ],
+            "memoryPassed": 6,
+            "memoryTotal": 6,
+            "recovery": {
+              "contract": {
+                "capacity": 2,
+                "order": "input",
+                "invalid": "drop",
+                "mutate": false
+              },
+              "deferred": [
+                "PRIORITY_SCHEDULING"
+              ],
+              "completed": [
+                "normalizeJobs",
+                "scheduleJobs"
+              ],
+              "unresolved": []
+            }
+          },
+          "artifacts": {
+            "AGENTS.md": {
+              "sha256": "2f79389cc3f79093fb5164e02445e25b9491c652a10760a6c3fb14fd48b33900",
+              "text": "Work only in this repository. Do not inspect sibling directories, user settings, credentials, previous sessions or external projects. Do not use the network, browse, install dependencies, spawn agents, commit or change machine settings. Use the repository's provided tools and state. Ordinary Markdown planning/handoff notes are allowed. Use Node.js built-ins. Run PowerShell without a profile. Keep future features deferred. A stopped turn is not completed development.\n"
+            },
+            "lib.mjs": {
+              "sha256": "092304cbe6746fdd3aadcb47c283def570cae8f3f7e3a35bfa3788de557ec5e4",
+              "text": "/** Return fresh job records in input order, dropping invalid jobs. */\nexport function normalizeJobs(jobs) {\n  const normalized = [];\n\n  for (const job of jobs) {\n    if (job == null) continue;\n    const { id, duration } = job;\n    if (typeof id !== 'string' || id.length === 0) continue;\n    if (!Number.isInteger(duration) || duration <= 0) continue;\n    normalized.push({ id, duration });\n  }\n\n  return normalized;\n}\n\n/** Schedule normalized jobs in input order using two slots. */\nexport function scheduleJobs(jobs) {\n  const available = [0, 0];\n  const scheduled = [];\n\n  for (const { id, duration } of jobs) {\n    const slot = available[0] <= available[1] ? 0 : 1;\n    const start = available[slot];\n    const end = start + duration;\n    scheduled.push({ id, start, end, slot });\n    available[slot] = end;\n  }\n\n  return scheduled;\n}\n"
+            },
+            "package.json": {
+              "sha256": "5232a0566ad7fd2cd34d6374247335fe24572fc7a710ba0e70a7ed1c1ae67bd4",
+              "text": "{\n  \"name\": \"controlled-module-fixture\",\n  \"private\": true,\n  \"type\": \"module\"\n}"
+            },
+            "PLAN.md": {
+              "sha256": "cfae236428debce0fad9ff1e5dbfb560d067603b5bcbfd4dcfec385603228a96",
+              "text": "# v1 requirements and handoff\n\n## Final contract\n\n```json\n{\"capacity\":2,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}\n```\n\nThe early proposal to sort by priority is superseded. The FINAL revision requires input order. Ignore all priority fields throughout v1. Preserve duplicate ids and do not mutate input.\n\nThe completed v1 module exports `normalizeJobs(jobs)` and `scheduleJobs(jobs)` from `lib.mjs`.\n\n- `normalizeJobs(jobs)`: given an array of jobs, return new objects containing only `{id,duration}` for jobs with a nonempty string id and a positive integer duration. Drop other jobs and preserve input order and duplicates. A whitespace-only string is nonempty; no trimming or coercion is required.\n- `scheduleJobs(jobs)`: consume normalized jobs and return `{id,start,end,slot}` entries in input order. Maintain exactly two slots initially free at time 0. Assign each next job to the earliest available slot; ties go to the lowest zero-based slot. Its start is that slot's available time, its end is start plus duration, and the slot becomes available at end. Do not sort by priority or mutate inputs.\n\n## Plan and current scope\n\n1. `normalizeJobs` was implemented and verified in the earlier conversation.\n2. The recovery conversation implemented the pending `scheduleJobs` export against the final contract above.\n3. Both v1 functions are now verified, including initial ties, later ties, slot reuse, input order, duplicate ids, ignored priorities and nonmutation.\n\n## Separate deferred feature\n\n`PRIORITY_SCHEDULING` is a distinct future feature, outside v1. It is not implemented and must not influence normalization or scheduling in v1. No priority sorting, priority option or feature scaffolding is authorized now.\n\n## Handoff\n\n- `lib.mjs` implements both named v1 exports, `normalizeJobs` and `scheduleJobs`.\n- `test/lib.test.mjs` covers invalid records, empty input, order, duplicates, ignored priority fields, fresh output objects, nonmutation, scheduler ties, slot reuse and normalization-to-scheduling integration using Node.js built-ins.\n- Run verification with `node --test` from this repository.\n- Verification on 2026-10-06 after recovery: all 6 tests passed; `node --check` passed for the module and test file.\n- The requested v1 implementation is complete. `PRIORITY_SCHEDULING` remains deferred.\n- `recovery.json` records the recovered final contract, deferred feature, completed exports and no remaining v1 work, as requested in the recovery conversation.\n- The repository does not specify behavior for non-array normalization inputs or unnormalized scheduler inputs. The scheduler consumes normalized jobs as documented; no additional requirements were inferred.\n- Continue following `AGENTS.md`: repository-only work, no network, dependencies, agents, commits or machine-setting changes; PowerShell without a profile.\n"
+            },
+            "recovery.json": {
+              "sha256": "1dabc02b153797e92965282083488b721619d506b18dd929f08bec6a5065d366",
+              "text": "{\n  \"contract\": {\n    \"capacity\": 2,\n    \"order\": \"input\",\n    \"invalid\": \"drop\",\n    \"mutate\": false\n  },\n  \"deferred\": [\"PRIORITY_SCHEDULING\"],\n  \"completed\": [\"normalizeJobs\", \"scheduleJobs\"],\n  \"unresolved\": []\n}\n"
+            }
+          },
+          "capture": {
+            "present": false,
+            "taskCount": 0,
+            "kinds": {}
+          },
+          "contamination": false,
+          "success": true,
+          "seedProtocolDeviation": false
+        },
+        "with": {
+          "setup": {
+            "hooks": true,
+            "dipDirectory": true,
+            "mcp": true,
+            "profilesDisabled": true,
+            "traceDisabled": true
+          },
+          "seed": {
+            "phase": "seed",
+            "startedAt": "2026-10-06T12:07:00.459Z",
+            "wallMs": 182269,
+            "exitCode": 0,
+            "timedOut": false,
+            "completed": true,
+            "usage": {
+              "input_tokens": 132676,
+              "cached_input_tokens": 111104,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4660,
+              "reasoning_output_tokens": 667
+            },
+            "itemCounts": {
+              "error": 2,
+              "agent_message": 4,
+              "command_execution": 5,
+              "mcp_tool_call": 4,
+              "file_change": 3
+            },
+            "answers": [
+              "I’ll save the final contract and handoff in the repository, keep priority scheduling deferred, and implement only `normalizeJobs` in this turn.",
+              "The final input-order contract takes precedence over the earlier priority proposal. I’ll record that decision and leave `scheduleJobs` absent, with its requirements saved for the next conversation.\n\nDIP’s MCP calls require unavailable approval, and its CLI is access-denied. I’ll use the permitted Markdown fallback to preserve the plan and handoff, including that tracking limitation.",
+              "`normalizeJobs` is implemented, and all four Node.js tests pass. They cover invalid jobs, input order and duplicate ids, ignored priority fields, and fresh objects without input mutation. I’m saving the handoff with `scheduleJobs` and the deferred feature still unfinished.",
+              "Implemented only `normalizeJobs` in [lib.mjs](<temp>/dip-model-controlled-xn6mAE/pair-0/with/project/lib.mjs). All 4 tests pass.\n\nSaved the final contract, revised input-order requirement, deferred `PRIORITY_SCHEDULING` feature, plan, and handoff in [PLAN.md](<temp>/dip-model-controlled-xn6mAE/pair-0/with/project/PLAN.md).\n\n`scheduleJobs` remains unimplemented, v1 remains unfinished, and `recovery.json` was not created. DIP access was blocked; the Markdown handoff records that limitation."
+            ],
+            "errors": [],
+            "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"<temp>\\\\\" (codex_home: AbsolutePathBuf(\"<temp>\\\\dip-model-controlled-xn6mAE\\\\pair-0\\\\with\\\\user\\\\.codex\"))\n2026-10-06T12:07:01.871598Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell\n"
+          },
+          "seedScore": {
+            "checks": [
+              {
+                "name": "normalization",
+                "passed": true
+              },
+              {
+                "name": "invalid input",
+                "passed": true
+              },
+              {
+                "name": "duplicates",
+                "passed": true
+              },
+              {
+                "name": "later function unfinished",
+                "passed": true
+              }
+            ],
+            "passed": 4,
+            "total": 4,
+            "allPassed": true,
+            "memory": [],
+            "memoryPassed": 0,
+            "memoryTotal": 0,
+            "recovery": null
+          },
+          "seedArtifacts": {
+            "AGENTS.md": {
+              "sha256": "1b79c97729e52dcb1c45db86f4bc01c537326e5d7092d93c4a2ab9f0ff83ed94",
+              "text": "Work only in this repository. Do not inspect sibling directories, user settings, credentials, previous sessions or external projects. Do not use the network, browse, install dependencies, spawn agents, commit or change machine settings. Use the repository's provided tools and state. Ordinary Markdown planning/handoff notes are allowed. Use Node.js built-ins. Run PowerShell without a profile. Keep future features deferred. A stopped turn is not completed development.\n\n<!-- dip:start -->\nDIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nIf no current hook supplied task_id, automatic prompt/plan capture is unconfirmed. Use MCP or CLI to create/refine intent and explicitly save plans; never assume a plan tool was recorded. Use dip task create --help or dip task plan --help instead of reading implementation source. On Windows, if dip is absent from PATH, the standard npm shim may be at $env:APPDATA/npm/dip.cmd.\nThe prompt hook supplies task_id, actor and session_id. Refine that captured task with task_update instead of creating a duplicate; create separate tasks only for distinct requirements.\nStructured update_plan/TodoWrite calls are captured automatically. Save prose-only plans with task_plan (CLI: dip task plan --id ID --text \"...\").\nClaim a task before development using the hook actor/session; planning and known read tools leave future ideas in backlog. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title \"...\"; dip context; dip task checkpoint --id ID --summary \"...\".\nRun dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.\n<!-- dip:end -->\n"
+            },
+            "CLAUDE.md": {
+              "sha256": "10dcf6f775bbcec0ece74cfa28b25db2eea672d06fcbcf979ab1ffd125a600cf",
+              "text": "<!-- dip:start -->\nDIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nIf no current hook supplied task_id, automatic prompt/plan capture is unconfirmed. Use MCP or CLI to create/refine intent and explicitly save plans; never assume a plan tool was recorded. Use dip task create --help or dip task plan --help instead of reading implementation source. On Windows, if dip is absent from PATH, the standard npm shim may be at $env:APPDATA/npm/dip.cmd.\nThe prompt hook supplies task_id, actor and session_id. Refine that captured task with task_update instead of creating a duplicate; create separate tasks only for distinct requirements.\nStructured update_plan/TodoWrite calls are captured automatically. Save prose-only plans with task_plan (CLI: dip task plan --id ID --text \"...\").\nClaim a task before development using the hook actor/session; planning and known read tools leave future ideas in backlog. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title \"...\"; dip context; dip task checkpoint --id ID --summary \"...\".\nRun dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.\n<!-- dip:end -->\n"
+            },
+            "lib.mjs": {
+              "sha256": "2e04eaca4d2e38ed8630ae39c0bc8db46b6e636184bd129ca210d77a19663a30",
+              "text": "export function normalizeJobs(jobs) {\n  const normalized = [];\n\n  for (const job of jobs) {\n    if (\n      job != null &&\n      typeof job.id === 'string' &&\n      job.id.length > 0 &&\n      Number.isInteger(job.duration) &&\n      job.duration > 0\n    ) {\n      normalized.push({ id: job.id, duration: job.duration });\n    }\n  }\n\n  return normalized;\n}\n"
+            },
+            "package.json": {
+              "sha256": "bc834dc30ea590b748edc37320467bcce4c0cfaf617ac654f46a39d545d10a83",
+              "text": "{\n  \"name\": \"controlled-module-fixture\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"test\": \"node --test\"\n  }\n}\n"
+            },
+            "PLAN.md": {
+              "sha256": "2eb232422c2cb88e516743f02695abf05e24699a96f7cf0cfd20323193876708",
+              "text": "# Jobs module v1: plan and handoff\n\nCaptured task: `task_8eb5b8013423e2ccbbcafdc142d95e5cc5aabed6ef89a4908ae95d8cb8f33fa3`.\nActor: `codex:01a1111c-2a43-7281-aeb4-546a809c2e94`.\nSession: `01a1111c-2a43-7281-aeb4-546a809c2e94`.\n\n## Final requirements\n\nThe latest contract is exactly:\n\n```json\n{\"capacity\":2,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}\n```\n\nThe early proposal to sort by priority is superseded. The FINAL revision\nrequires input order. All priority fields are ignored in v1.\n\nThe completed v1 module will export `normalizeJobs(jobs)` and\n`scheduleJobs(jobs)` from `lib.mjs`. This conversation implements ONLY\n`normalizeJobs`; the scheduling export and implementation remain unfinished\nfor another conversation. Do not create `recovery.json` yet.\n\n### normalizeJobs\n\n- Accept jobs with a nonempty string `id` and positive integer `duration`.\n- Drop all other jobs.\n- Return new objects with exactly `{id, duration}`.\n- Preserve input order and duplicate ids; ignore extra fields including priority.\n- Do not mutate the input array or its jobs.\n- A nonempty string is tested by length, without trimming or coercion.\n\n### scheduleJobs (unfinished)\n\n- Consume the normalized jobs and return `{id, start, end, slot}` entries in\n  input order.\n- Maintain exactly two slots initially free at time zero.\n- Assign each next job to the slot with the earliest available time.\n- Break availability ties using the lowest zero-based slot index.\n- Set `start` to that slot's availability, `end` to `start + duration`, then\n  update its availability to `end`.\n- Preserve duplicate ids and ignore all priority fields. Do not mutate input.\n\nFor normalized jobs `[{id:\"a\",duration:3},{id:\"b\",duration:1},\n{id:\"c\",duration:2},{id:\"d\",duration:1}]`, the future scheduler should return:\n\n```json\n[\n  {\"id\":\"a\",\"start\":0,\"end\":3,\"slot\":0},\n  {\"id\":\"b\",\"start\":0,\"end\":1,\"slot\":1},\n  {\"id\":\"c\",\"start\":1,\"end\":3,\"slot\":1},\n  {\"id\":\"d\",\"start\":3,\"end\":4,\"slot\":0}\n]\n```\n\n## Plan\n\n1. Save the final requirements and superseding input-order decision here.\n2. Implement only `normalizeJobs` in `lib.mjs`.\n3. Check filtering, duplicates, ordering, ignored priority, fresh objects and\n   immutability using Node.js built-in tests.\n4. Record the partial result and verification evidence here, leaving v1 open.\n5. In another conversation, implement and verify the scheduling requirements\n   above, including both exports. Do not start this step now.\n\n## Separate deferred feature\n\n`PRIORITY_SCHEDULING` is a distinct future feature in **backlog**. It is not\npart of v1, is not claimed for development, and must not be implemented now.\nAny later priority behavior requires a separate contract; it cannot silently\nreplace v1's input-order behavior.\n\n## Tracking limitation\n\nThe trusted hook supplied the captured task above. DIP task retrieval, update\nand claim were attempted; the MCP reported that approval is required while\nthe approval policy is never. The documented CLI fallback was access-denied,\nincluding `dip doctor`. No successful claim or task refinement is asserted.\nThis file is the durable local fallback for revised intent, plan, deferred\nidea and handoff. Do not mark the whole task complete or verified merely\nbecause this conversation ends. When DIP becomes available, reconcile the\nexisting captured task, save this plan, keep the distinct future feature in\nbacklog, and run configured checks through `task_verify`.\n\n## Handoff status\n\n`normalizeJobs` is implemented and exported from `lib.mjs`. It filters invalid\njobs and creates fresh `{id, duration}` objects in input order, preserving\nduplicates and ignoring priority. Only this function is currently exported.\n\nVerification on 2026-10-06: `node --test` exited 0 with 4 passing tests and no\nfailures. The built-in Node tests cover invalid values without coercion,\nnonempty whitespace ids, input order despite different priorities, duplicate\nids, discarded extra fields, frozen input, independent output objects, and\nempty results. `package.json` provides the same check as the `test` script.\nThis is direct test evidence, not DIP task verification: `.dip/config.json`\ncurrently has no configured checks and DIP access is unavailable. The final\nMCP checkpoint attempt was also denied by the same approval limitation;\nthis section preserves the handoff locally.\n\nNext conversation: implement and export `scheduleJobs` according to the\nrequirements and example above, add scheduling checks, and verify both\nexports. Reconcile the captured DIP task when available; do not create a\nduplicate task for this request. Keep `PRIORITY_SCHEDULING` as a separate\nbacklog feature. `recovery.json` has not been created.\n\nScheduling is unfinished. The v1 module is not complete; ending this turn\ndoes not complete development. No scheduler or priority feature was\nimplemented in this conversation.\n"
+            }
+          },
+          "seedCapture": {
+            "present": true,
+            "taskCount": 1,
+            "kinds": {
+              "SessionEnd": 1,
+              "Stop": 1,
+              "PostToolUse": 8,
+              "PreToolUse": 12,
+              "UserPromptSubmit": 1,
+              "SessionStart": 1
+            },
+            "tasks": [
+              {
+                "title": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeJobs(jobs) and scheduleJo",
+                "status": "in_progress",
+                "planPresent": false,
+                "checkpointPresent": false
+              }
+            ]
+          },
+          "recovery": {
+            "phase": "recovery",
+            "startedAt": "2026-10-06T12:10:02.959Z",
+            "wallMs": 157757,
+            "exitCode": 0,
+            "timedOut": false,
+            "completed": true,
+            "usage": {
+              "input_tokens": 112426,
+              "cached_input_tokens": 87936,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 4624,
+              "reasoning_output_tokens": 848
+            },
+            "itemCounts": {
+              "error": 2,
+              "agent_message": 4,
+              "command_execution": 5,
+              "mcp_tool_call": 6,
+              "file_change": 3
+            },
+            "answers": [
+              "I’ll recover the latest contract and deferred feature from the repository, finish the v1 functions, and run local Node.js checks. I’ll record any gaps in `recovery.json`.\n",
+              "`PLAN.md` records the final contract: two slots, input order, invalid jobs dropped, and no input mutation. Priority sorting was superseded; `PRIORITY_SCHEDULING` remains deferred. `normalizeJobs` is implemented, while `scheduleJobs` is missing.\n\nDIP task retrieval was rejected because it requires approval and approval is disabled. I’ll try the local CLI fallback and keep the recovery plan in the repository.\n",
+              "`scheduleJobs` is implemented, and all eight Node.js tests pass. They cover the recovered scheduling example, slot ties, input order, duplicates, invalid jobs, ignored priority, and frozen inputs. I’ll now write `recovery.json` and the completion handoff; DIP tracking is still unavailable.\n",
+              "Finished v1: both functions are exported, with two slots, input order, invalid jobs dropped, and no input mutation. `PRIORITY_SCHEDULING` remains deferred.\n\nCreated [recovery.json](<temp>/dip-model-controlled-xn6mAE/pair-0/with/project/recovery.json). Syntax, JSON/export checks, and all 8 Node.js tests passed.\n\nDIP tracking remains unresolved because its tools require disabled approval and the CLI is unavailable. Undocumented input behavior remains unspecified."
+            ],
+            "errors": [],
+            "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"<temp>\\\\\" (codex_home: AbsolutePathBuf(\"<temp>\\\\dip-model-controlled-xn6mAE\\\\pair-0\\\\with\\\\user\\\\.codex\"))\n2026-10-06T12:10:03.105494Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell\n"
+          },
+          "score": {
+            "checks": [
+              {
+                "name": "normalization",
+                "passed": true
+              },
+              {
+                "name": "invalid input",
+                "passed": true
+              },
+              {
+                "name": "duplicates",
+                "passed": true
+              },
+              {
+                "name": "immutable",
+                "passed": true
+              },
+              {
+                "name": "capacity and tie",
+                "passed": true
+              },
+              {
+                "name": "latest order",
+                "passed": true
+              },
+              {
+                "name": "earliest slot",
+                "passed": true
+              },
+              {
+                "name": "empty",
+                "passed": true
+              }
+            ],
+            "passed": 8,
+            "total": 8,
+            "allPassed": true,
+            "memory": [
+              {
+                "name": "capacity",
+                "passed": true
+              },
+              {
+                "name": "order",
+                "passed": true
+              },
+              {
+                "name": "invalid",
+                "passed": true
+              },
+              {
+                "name": "mutate",
+                "passed": true
+              },
+              {
+                "name": "future deferred",
+                "passed": true
+              },
+              {
+                "name": "completion report",
+                "passed": false
+              }
+            ],
+            "memoryPassed": 5,
+            "memoryTotal": 6,
+            "recovery": {
+              "contract": {
+                "capacity": 2,
+                "order": "input",
+                "invalid": "drop",
+                "mutate": false
+              },
+              "deferred": [
+                "PRIORITY_SCHEDULING"
+              ],
+              "completed": [
+                "normalizeJobs",
+                "scheduleJobs"
+              ],
+              "unresolved": [
+                "DIP task reconciliation and configured verification remain unavailable: MCP approval is disabled, the CLI is absent from PATH, and no verification checks are configured. Local Node.js checks passed."
+              ]
+            }
+          },
+          "artifacts": {
+            "AGENTS.md": {
+              "sha256": "1b79c97729e52dcb1c45db86f4bc01c537326e5d7092d93c4a2ab9f0ff83ed94",
+              "text": "Work only in this repository. Do not inspect sibling directories, user settings, credentials, previous sessions or external projects. Do not use the network, browse, install dependencies, spawn agents, commit or change machine settings. Use the repository's provided tools and state. Ordinary Markdown planning/handoff notes are allowed. Use Node.js built-ins. Run PowerShell without a profile. Keep future features deferred. A stopped turn is not completed development.\n\n<!-- dip:start -->\nDIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nIf no current hook supplied task_id, automatic prompt/plan capture is unconfirmed. Use MCP or CLI to create/refine intent and explicitly save plans; never assume a plan tool was recorded. Use dip task create --help or dip task plan --help instead of reading implementation source. On Windows, if dip is absent from PATH, the standard npm shim may be at $env:APPDATA/npm/dip.cmd.\nThe prompt hook supplies task_id, actor and session_id. Refine that captured task with task_update instead of creating a duplicate; create separate tasks only for distinct requirements.\nStructured update_plan/TodoWrite calls are captured automatically. Save prose-only plans with task_plan (CLI: dip task plan --id ID --text \"...\").\nClaim a task before development using the hook actor/session; planning and known read tools leave future ideas in backlog. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title \"...\"; dip context; dip task checkpoint --id ID --summary \"...\".\nRun dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.\n<!-- dip:end -->\n"
+            },
+            "CLAUDE.md": {
+              "sha256": "10dcf6f775bbcec0ece74cfa28b25db2eea672d06fcbcf979ab1ffd125a600cf",
+              "text": "<!-- dip:start -->\nDIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nIf no current hook supplied task_id, automatic prompt/plan capture is unconfirmed. Use MCP or CLI to create/refine intent and explicitly save plans; never assume a plan tool was recorded. Use dip task create --help or dip task plan --help instead of reading implementation source. On Windows, if dip is absent from PATH, the standard npm shim may be at $env:APPDATA/npm/dip.cmd.\nThe prompt hook supplies task_id, actor and session_id. Refine that captured task with task_update instead of creating a duplicate; create separate tasks only for distinct requirements.\nStructured update_plan/TodoWrite calls are captured automatically. Save prose-only plans with task_plan (CLI: dip task plan --id ID --text \"...\").\nClaim a task before development using the hook actor/session; planning and known read tools leave future ideas in backlog. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title \"...\"; dip context; dip task checkpoint --id ID --summary \"...\".\nRun dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.\n<!-- dip:end -->\n"
+            },
+            "lib.mjs": {
+              "sha256": "ddcb56f972c029a67e2404ccd67de80c8ecf9eacb7bb702e1b23b2d806e04393",
+              "text": "export function normalizeJobs(jobs) {\n  const normalized = [];\n\n  for (const job of jobs) {\n    if (\n      job != null &&\n      typeof job.id === 'string' &&\n      job.id.length > 0 &&\n      Number.isInteger(job.duration) &&\n      job.duration > 0\n    ) {\n      normalized.push({ id: job.id, duration: job.duration });\n    }\n  }\n\n  return normalized;\n}\n\nexport function scheduleJobs(jobs) {\n  const availability = [0, 0];\n\n  return normalizeJobs(jobs).map(({ id, duration }) => {\n    const slot = availability[0] <= availability[1] ? 0 : 1;\n    const start = availability[slot];\n    const end = start + duration;\n    availability[slot] = end;\n\n    return { id, start, end, slot };\n  });\n}\n"
+            },
+            "package.json": {
+              "sha256": "bc834dc30ea590b748edc37320467bcce4c0cfaf617ac654f46a39d545d10a83",
+              "text": "{\n  \"name\": \"controlled-module-fixture\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"test\": \"node --test\"\n  }\n}\n"
+            },
+            "PLAN.md": {
+              "sha256": "3c78bdaf64632779bf14d8f008ba9d7e2dd61a0185c7e66d704fc5efbd9f0014",
+              "text": "# Jobs module v1: plan and handoff\n\n## Current recovery plan (2026-10-06)\n\nThe sections below preserve the earlier partial handoff. The current request\nauthorizes finishing v1 and creating `recovery.json`; earlier instructions to\nstop after normalization and omit recovery.json are superseded.\n\nCurrent captured task: `task_8ef6f0524b8a104d201cea7e9bc473d4d6f1c03a06ab8995dd7bdb3d5f3eebeb`.\nActor: `codex:01a1111e-f1d8-7273-80a1-2bcf4b4ba235`.\nSession: `01a1111e-f1d8-7273-80a1-2bcf4b4ba235`.\n\n1. Recover the final contract from this handoff and existing normalization tests.\n2. Finish `scheduleJobs` using `normalizeJobs`, two slots, earliest availability,\n   and lowest-index ties. Preserve input order and duplicates.\n3. Run local Node.js built-in tests for both exports, including filtering,\n   scheduling, ties, immutability, and independent calls.\n4. Write `recovery.json` and record results and unresolved tracking below.\n\n`PRIORITY_SCHEDULING` remains deferred. The recovered requirements do not specify\nbehavior for non-array input; no new requirement is inferred for that case.\n\nDIP task retrieval, refinement, plan saving and claim were attempted, but each\nMCP call requires approval while approval is disabled. The CLI is absent from\nPATH (`dip doctor` and `dip task --help` could not run). This repository note\npreserves the plan; no successful DIP claim or update is asserted.\n\nCaptured task: `task_8eb5b8013423e2ccbbcafdc142d95e5cc5aabed6ef89a4908ae95d8cb8f33fa3`.\nActor: `codex:01a1111c-2a43-7281-aeb4-546a809c2e94`.\nSession: `01a1111c-2a43-7281-aeb4-546a809c2e94`.\n\n## Final requirements\n\nThe latest contract is exactly:\n\n```json\n{\"capacity\":2,\"order\":\"input\",\"invalid\":\"drop\",\"mutate\":false}\n```\n\nThe early proposal to sort by priority is superseded. The FINAL revision\nrequires input order. All priority fields are ignored in v1.\n\nThe completed v1 module will export `normalizeJobs(jobs)` and\n`scheduleJobs(jobs)` from `lib.mjs`. This conversation implements ONLY\n`normalizeJobs`; the scheduling export and implementation remain unfinished\nfor another conversation. Do not create `recovery.json` yet.\n\n### normalizeJobs\n\n- Accept jobs with a nonempty string `id` and positive integer `duration`.\n- Drop all other jobs.\n- Return new objects with exactly `{id, duration}`.\n- Preserve input order and duplicate ids; ignore extra fields including priority.\n- Do not mutate the input array or its jobs.\n- A nonempty string is tested by length, without trimming or coercion.\n\n### scheduleJobs (unfinished)\n\n- Consume the normalized jobs and return `{id, start, end, slot}` entries in\n  input order.\n- Maintain exactly two slots initially free at time zero.\n- Assign each next job to the slot with the earliest available time.\n- Break availability ties using the lowest zero-based slot index.\n- Set `start` to that slot's availability, `end` to `start + duration`, then\n  update its availability to `end`.\n- Preserve duplicate ids and ignore all priority fields. Do not mutate input.\n\nFor normalized jobs `[{id:\"a\",duration:3},{id:\"b\",duration:1},\n{id:\"c\",duration:2},{id:\"d\",duration:1}]`, the future scheduler should return:\n\n```json\n[\n  {\"id\":\"a\",\"start\":0,\"end\":3,\"slot\":0},\n  {\"id\":\"b\",\"start\":0,\"end\":1,\"slot\":1},\n  {\"id\":\"c\",\"start\":1,\"end\":3,\"slot\":1},\n  {\"id\":\"d\",\"start\":3,\"end\":4,\"slot\":0}\n]\n```\n\n## Plan\n\n1. Save the final requirements and superseding input-order decision here.\n2. Implement only `normalizeJobs` in `lib.mjs`.\n3. Check filtering, duplicates, ordering, ignored priority, fresh objects and\n   immutability using Node.js built-in tests.\n4. Record the partial result and verification evidence here, leaving v1 open.\n5. In another conversation, implement and verify the scheduling requirements\n   above, including both exports. Do not start this step now.\n\n## Separate deferred feature\n\n`PRIORITY_SCHEDULING` is a distinct future feature in **backlog**. It is not\npart of v1, is not claimed for development, and must not be implemented now.\nAny later priority behavior requires a separate contract; it cannot silently\nreplace v1's input-order behavior.\n\n## Tracking limitation\n\nThe trusted hook supplied the captured task above. DIP task retrieval, update\nand claim were attempted; the MCP reported that approval is required while\nthe approval policy is never. The documented CLI fallback was access-denied,\nincluding `dip doctor`. No successful claim or task refinement is asserted.\nThis file is the durable local fallback for revised intent, plan, deferred\nidea and handoff. Do not mark the whole task complete or verified merely\nbecause this conversation ends. When DIP becomes available, reconcile the\nexisting captured task, save this plan, keep the distinct future feature in\nbacklog, and run configured checks through `task_verify`.\n\n## Handoff status\n\n`normalizeJobs` is implemented and exported from `lib.mjs`. It filters invalid\njobs and creates fresh `{id, duration}` objects in input order, preserving\nduplicates and ignoring priority. Only this function is currently exported.\n\nVerification on 2026-10-06: `node --test` exited 0 with 4 passing tests and no\nfailures. The built-in Node tests cover invalid values without coercion,\nnonempty whitespace ids, input order despite different priorities, duplicate\nids, discarded extra fields, frozen input, independent output objects, and\nempty results. `package.json` provides the same check as the `test` script.\nThis is direct test evidence, not DIP task verification: `.dip/config.json`\ncurrently has no configured checks and DIP access is unavailable. The final\nMCP checkpoint attempt was also denied by the same approval limitation;\nthis section preserves the handoff locally.\n\nNext conversation: implement and export `scheduleJobs` according to the\nrequirements and example above, add scheduling checks, and verify both\nexports. Reconcile the captured DIP task when available; do not create a\nduplicate task for this request. Keep `PRIORITY_SCHEDULING` as a separate\nbacklog feature. `recovery.json` has not been created.\n\nScheduling is unfinished. The v1 module is not complete; ending this turn\ndoes not complete development. No scheduler or priority feature was\nimplemented in this conversation.\n\n## Recovery completion (2026-10-06)\n\nThe historical scheduling handoff above is now fulfilled. `lib.mjs` exports\nboth `normalizeJobs` and `scheduleJobs`. Scheduling normalizes its input, uses\ntwo slots initially available at zero, picks earliest availability with\nlowest-index ties, and emits fresh `{id, start, end, slot}` entries in input\norder. Invalid jobs are dropped, duplicates are retained, and priorities are\nignored. `PRIORITY_SCHEDULING` remains a separate backlog feature.\n\n`recovery.json` records the exact recovered four-field contract, deferred\nidentifier, both completed exports, and the outstanding tracking limitation.\nThere is no remaining v1 implementation work under the recovered contract.\nRequirements outside the documented array-of-jobs contract remain unspecified.\n\nVerification: `node --check lib.mjs` passed; `node --test` exited 0 with 8 tests\npassing and no failures. The four original normalization tests and four new\nscheduling tests cover the recovered example, later availability ties,\nconsecutive assignments to the earliest slot, invalid jobs, ignored priority,\nduplicate ids, empty results, frozen input, fresh output objects, and reset\navailability between calls.\n\nDIP verification and checkpoint were attempted and rejected because approval\nis required while approval is disabled. `.dip/config.json` contains no\nconfigured verification checks. The CLI is absent from PATH. No DIP-verified\nstatus is asserted. When tracking becomes available, reconcile this recovery\ntask with the earlier partial task and run configured verification. This\nsection is the local completion handoff, with tracking still unresolved.\n"
+            },
+            "recovery.json": {
+              "sha256": "aec95c93ae71d59ce290750e6e6e5aa89d59c0a9e4ab94382d5b00aacf37c87b",
+              "text": "{\n  \"contract\": {\n    \"capacity\": 2,\n    \"order\": \"input\",\n    \"invalid\": \"drop\",\n    \"mutate\": false\n  },\n  \"deferred\": [\"PRIORITY_SCHEDULING\"],\n  \"completed\": [\"normalizeJobs\", \"scheduleJobs\"],\n  \"unresolved\": [\n    \"DIP task reconciliation and configured verification remain unavailable: MCP approval is disabled, the CLI is absent from PATH, and no verification checks are configured. Local Node.js checks passed.\"\n  ]\n}\n"
+            }
+          },
+          "capture": {
+            "present": true,
+            "taskCount": 2,
+            "kinds": {
+              "SessionEnd": 2,
+              "Stop": 2,
+              "PostToolUse": 16,
+              "PreToolUse": 26,
+              "UserPromptSubmit": 2,
+              "SessionStart": 2
+            },
+            "tasks": [
+              {
+                "title": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeJobs(jobs) and scheduleJo",
+                "status": "in_progress",
+                "planPresent": false,
+                "checkpointPresent": false
+              },
+              {
+                "title": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 funct",
+                "status": "in_progress",
+                "planPresent": false,
+                "checkpointPresent": false
+              }
+            ]
+          },
+          "contamination": false,
+          "success": true,
+          "seedProtocolDeviation": false
+        }
+      }
+    },
+    {
+      "index": 1,
+      "scenario": "csv",
+      "repeat": 0,
+      "order": [
+        "with",
+        "without"
+      ],
+      "arms": {
+        "with": {
+          "setup": {
+            "hooks": true,
+            "dipDirectory": true,
+            "mcp": true,
+            "profilesDisabled": true,
+            "traceDisabled": true
+          },
+          "seed": {
+            "phase": "seed",
+            "startedAt": "2026-10-06T12:12:41.076Z",
+            "wallMs": 146644,
+            "exitCode": 0,
+            "timedOut": false,
+            "completed": true,
+            "usage": {
+              "input_tokens": 133711,
+              "cached_input_tokens": 112256,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 3151,
+              "reasoning_output_tokens": 499
+            },
+            "itemCounts": {
+              "error": 2,
+              "agent_message": 5,
+              "command_execution": 6,
+              "mcp_tool_call": 1,
+              "file_change": 2
+            },
+            "answers": [
+              "I’ll save the final v1 contract and plan, implement only `encodeCell`, and leave a durable handoff for `encodeTable` with `CSV_IMPORT` deferred.\n",
+              "The repository is a minimal module scaffold. I’ll preserve CRLF as the final table requirement and leave `encodeTable` pending.\n\nThe DIP MCP call was rejected because it requires approval and this environment disallows approvals. I’m trying the documented local CLI fallback to save the plan and handoff.\n",
+              "The CLI fallback is also blocked by access denial. I’ll save the intent, plan, deferred feature, and handoff in repository Markdown, and record direct test results there. DIP claim and verification will remain unconfirmed.\n",
+              "`encodeCell` passes both test groups, covering conversion and escaping. I’m saving those results in the handoff, with `encodeTable` still pending and the final CRLF contract preserved.\n",
+              "Implemented only `encodeCell` in [lib.mjs](lib.mjs). Both test groups pass across 20 cases.\n\nSaved the final CRLF contract, plan, deferred `CSV_IMPORT`, and handoff in [V1_PLAN.md](V1_PLAN.md). `encodeTable` remains unfinished; no `recovery.json` was created.\n\nDIP access required unavailable approval, and its CLI fallback was denied access. Tracking is preserved in Markdown; DIP verification is unconfirmed."
+            ],
+            "errors": [],
+            "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"<temp>\\\\\" (codex_home: AbsolutePathBuf(\"<temp>\\\\dip-model-controlled-xn6mAE\\\\pair-1\\\\with\\\\user\\\\.codex\"))\n2026-10-06T12:12:42.335250Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell\n"
+          },
+          "seedScore": {
+            "checks": [
+              {
+                "name": "ordinary cell",
+                "passed": true
+              },
+              {
+                "name": "null conversion",
+                "passed": true
+              },
+              {
+                "name": "delimiter escape",
+                "passed": true
+              },
+              {
+                "name": "quote escape",
+                "passed": true
+              },
+              {
+                "name": "line escape",
+                "passed": true
+              },
+              {
+                "name": "later function unfinished",
+                "passed": true
+              }
+            ],
+            "passed": 6,
+            "total": 6,
+            "allPassed": true,
+            "memory": [],
+            "memoryPassed": 0,
+            "memoryTotal": 0,
+            "recovery": null
+          },
+          "seedArtifacts": {
+            "AGENTS.md": {
+              "sha256": "1b79c97729e52dcb1c45db86f4bc01c537326e5d7092d93c4a2ab9f0ff83ed94",
+              "text": "Work only in this repository. Do not inspect sibling directories, user settings, credentials, previous sessions or external projects. Do not use the network, browse, install dependencies, spawn agents, commit or change machine settings. Use the repository's provided tools and state. Ordinary Markdown planning/handoff notes are allowed. Use Node.js built-ins. Run PowerShell without a profile. Keep future features deferred. A stopped turn is not completed development.\n\n<!-- dip:start -->\nDIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nIf no current hook supplied task_id, automatic prompt/plan capture is unconfirmed. Use MCP or CLI to create/refine intent and explicitly save plans; never assume a plan tool was recorded. Use dip task create --help or dip task plan --help instead of reading implementation source. On Windows, if dip is absent from PATH, the standard npm shim may be at $env:APPDATA/npm/dip.cmd.\nThe prompt hook supplies task_id, actor and session_id. Refine that captured task with task_update instead of creating a duplicate; create separate tasks only for distinct requirements.\nStructured update_plan/TodoWrite calls are captured automatically. Save prose-only plans with task_plan (CLI: dip task plan --id ID --text \"...\").\nClaim a task before development using the hook actor/session; planning and known read tools leave future ideas in backlog. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title \"...\"; dip context; dip task checkpoint --id ID --summary \"...\".\nRun dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.\n<!-- dip:end -->\n"
+            },
+            "CLAUDE.md": {
+              "sha256": "10dcf6f775bbcec0ece74cfa28b25db2eea672d06fcbcf979ab1ffd125a600cf",
+              "text": "<!-- dip:start -->\nDIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nIf no current hook supplied task_id, automatic prompt/plan capture is unconfirmed. Use MCP or CLI to create/refine intent and explicitly save plans; never assume a plan tool was recorded. Use dip task create --help or dip task plan --help instead of reading implementation source. On Windows, if dip is absent from PATH, the standard npm shim may be at $env:APPDATA/npm/dip.cmd.\nThe prompt hook supplies task_id, actor and session_id. Refine that captured task with task_update instead of creating a duplicate; create separate tasks only for distinct requirements.\nStructured update_plan/TodoWrite calls are captured automatically. Save prose-only plans with task_plan (CLI: dip task plan --id ID --text \"...\").\nClaim a task before development using the hook actor/session; planning and known read tools leave future ideas in backlog. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title \"...\"; dip context; dip task checkpoint --id ID --summary \"...\".\nRun dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.\n<!-- dip:end -->\n"
+            },
+            "lib.mjs": {
+              "sha256": "72b32e61a2866af80475938d94ef01d08797c5f21f893298f011a00778d193a2",
+              "text": "export function encodeCell(value) {\n  const cell = value == null ? '' : String(value);\n  return /[,\"\\r\\n]/.test(cell) ? `\"${cell.replaceAll('\"', '\"\"')}\"` : cell;\n}\n"
+            },
+            "package.json": {
+              "sha256": "5232a0566ad7fd2cd34d6374247335fe24572fc7a710ba0e70a7ed1c1ae67bd4",
+              "text": "{\n  \"name\": \"controlled-module-fixture\",\n  \"private\": true,\n  \"type\": \"module\"\n}"
+            },
+            "V1_PLAN.md": {
+              "sha256": "53cb64fed4520913d53f5ecba662b721960536c1c0f6883259502ffc2240fa7c",
+              "text": "# CSV encoder v1 plan and handoff\n\n## Local intent and ownership\n\n- Captured task: `task_7c00b4a1f002dea3557ad5cdfebd5b993719c1eab66da37dbeb779a9cdde6626`.\n- Local work owner: `codex:01a11121-5c5e-78f2-8111-2f31f11452fd`.\n- Session: `01a11121-5c5e-78f2-8111-2f31f11452fd`.\n- Scope for this conversation: persist the final contract and plan, implement only\n  `encodeCell`, check its behavior, and hand off unfinished v1 work.\n- DIP MCP access requires approval unavailable in this environment. The CLI is\n  absent from PATH and the documented npm shim fails with access denied. DIP\n  claim, task refinement, doctor, and verification could not run. This Markdown\n  records local intent and ownership; it does not assert a successful DIP claim.\n\n## Final v1 contract\n\n```json\n{\"separator\":\",\",\"newline\":\"CRLF\",\"nullValue\":\"\",\"trailingNewline\":false}\n```\n\nThe earlier LF proposal is superseded. The final record separator is CRLF\n(`\\r\\n`). Preserve this decision when implementing the remaining work.\n\nThe completed v1 module will export `encodeCell(value)` and `encodeTable(rows)`\nfrom `lib.mjs`.\n\n- `encodeCell`: convert null and undefined to an empty string; otherwise use\n  `String(value)`. Quote the resulting string if it contains a comma, double\n  quote, CR, or LF. Double every embedded double quote inside a quoted cell.\n  Leave other strings unquoted.\n- `encodeTable`: accept an array of array rows. Join encoded cells with commas\n  and records with CRLF, with no final newline. Empty rows are empty records;\n  an empty table is an empty string. Do not mutate the rows.\n- v1 includes encoding only. No parser or import feature.\n\n## Plan\n\n1. Save the final contract, the partial implementation scope, and the deferred\n   idea in this repository.\n2. Implement and export only `encodeCell` in `lib.mjs` now.\n3. Check conversion and escaping with Node.js built-in assertions and test runner.\n4. Save test results and a handoff. The overall v1 remains unfinished.\n5. In another conversation, implement and export `encodeTable`. Check comma\n   separation, CRLF records, no trailing newline, empty rows, empty tables,\n   delegated cell escaping, and nonmutation of input rows.\n\nDo not create `recovery.json`. Do not implement `encodeTable` in this conversation,\nincluding a placeholder export. Keep future features deferred.\n\n## Handoff checkpoint\n\nStatus: partial v1 implementation. `lib.mjs` exports `encodeCell`; `encodeTable`\nis intentionally absent and unfinished. The overall task remains incomplete.\n\nObserved verification on 2026-10-06: `node --test test/encode-cell.test.mjs`\nexited 0, with two test groups passing (20 conversion/escaping cases) and zero\nfailures. These checks use only Node.js built-ins. DIP verification could not\nrun; its project configuration also contains no configured checks. No DIP\nverified status is asserted.\n\nNext conversation: read this final contract, implement `encodeTable` and its\ntests as described in step 5, then run the cell tests and table tests together.\nDo not revert to LF, add a final newline, mutate input rows, or implement\nCSV_IMPORT. No `recovery.json` has been created. The future feature stays in\nbacklog. Ending this conversation does not complete v1 development.\n\n## Separate future feature: CSV_IMPORT\n\nStatus: backlog / deferred, outside v1. A future CSV parser/import feature may\nbe planned separately. No parser, import API, implementation, or parser tests\nare authorized now. Revisit its requirements in a future conversation.\n"
+            }
+          },
+          "seedCapture": {
+            "present": true,
+            "taskCount": 1,
+            "kinds": {
+              "SessionEnd": 1,
+              "Stop": 1,
+              "PostToolUse": 8,
+              "PreToolUse": 9,
+              "UserPromptSubmit": 1,
+              "SessionStart": 1
+            },
+            "tasks": [
+              {
+                "title": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export encodeCell(value) and encodeTable(",
+                "status": "in_progress",
+                "planPresent": false,
+                "checkpointPresent": false
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "abortedAt": "2026-10-06T12:16:00.561Z",
+  "abortReason": "Infrastructure invalid: isolated noninteractive MCP tool approvals blocked DIP calls. Hooks worked. One matched pair completed, later active invocation terminated; its usage is unavailable. This attempt is retained and not treated as the valid comparison.",
+  "publicationRedaction": "Personal path prefixes replaced. Original local copies retained; numerical metrics and score flags unchanged."
+}

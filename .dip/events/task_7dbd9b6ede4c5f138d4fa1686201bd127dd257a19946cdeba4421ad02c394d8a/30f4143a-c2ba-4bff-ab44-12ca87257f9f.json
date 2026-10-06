@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "30f4143a-c2ba-4bff-ab44-12ca87257f9f",
+  "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Controlled protocol v3 at 05ee687 is running all six counterbalanced matched pairs with gpt-6.1-sol/high and fresh seed/recovery CLI sessions. Nine of twelve arms completed so far, all passing eight functional cases. One baseline CSV completion list omitted an already implemented function; all four contract fields and its deferred feature were retained. Earlier attempts 1/2 were stopped for missing MCP approvals and Windows elevated-sandbox setup failure, retained separately. Shell/MCP preflight v3 passed. Independent artifact replay and a transparent report generator are prepared.",
+    "next": "Finish all scheduled arms without changing prompts/scoring; audit/redact raw paths, independently replay scores, report time/tokens and narrow limits, publish evidence and update contributor backlog.",
+    "head": "05ee6872a7a9024cba1e9a9c2190dc4c10d69974"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T13:21:31.540Z",
+  "parents": [
+    "1b10a483-9d87-4ab8-a1d8-3ff1f34b6caa"
+  ],
+  "branch": "main"
+}

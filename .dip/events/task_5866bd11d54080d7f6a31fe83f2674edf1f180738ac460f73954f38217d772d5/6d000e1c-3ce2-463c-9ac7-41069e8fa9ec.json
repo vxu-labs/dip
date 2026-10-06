@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6d000e1c-3ce2-463c-9ac7-41069e8fa9ec",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.update",
+  "payload": {
+    "description": "Initial matched model-backed evaluation completed on 6 October 2026: six counterbalanced pairs, 24 fresh gpt-6.1-sol/high turns, fixed prompts and external scoring. Both arms passed 48/48 functional cases, recovered 24/24 contract fields and retained 6/6 deferred identifiers. Median time 164.19 s without DIP versus 360.84 s with DIP. All outcomes, source artifacts, reported token usage, task counts/status and two infrastructure attempts are retained in docs/benchmarks/model-controlled.md. Independent replay reproduced all 24 stages and aggregate totals. No productivity advantage is claimed. Semantic duplicate judgments, implicit reminders, concurrency and long-running development remain separate evaluations. Follow-up overhead optimization is DIP-B01.",
+    "status": "implemented"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T13:37:04.412Z",
+  "parents": [
+    "7a9e124fe311e54c7a8343d36138984226f21e291ea486698396be4068198639"
+  ],
+  "branch": "main"
+}
