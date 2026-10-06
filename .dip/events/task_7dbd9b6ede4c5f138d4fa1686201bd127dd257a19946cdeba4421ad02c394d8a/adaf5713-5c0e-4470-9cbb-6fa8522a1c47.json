@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "adaf5713-5c0e-4470-9cbb-6fa8522a1c47",
+  "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Controlled pilot published in f601566; cross-platform artifact replay added in bb602d4. CI 37472750261 passed Windows/Linux/macOS, including all 24-stage evidence replays and Linux browser QA. Both arms passed 48/48 code cases, restored 24/24 contract fields and retained 6/6 deferred identifiers; each had one strict completion-report mismatch. Median workflow time 164.193 s without DIP vs 360.844 s with DIP (2.20x). Input less cache: 230204 vs 341584; output: 32170 vs 67732. No productivity or recovery advantage claimed. README and full raw evidence published; two infrastructure attempts retained, authentication copies removed, public paths redacted. L07 initial pilot implemented; DIP-B01 tracks management overhead optimization.",
+    "next": "Use DIP-B01 to profile and reduce 134 semantic MCP calls, then repeat the fixed comparison. Broader natural-reminder, concurrency and long-running evaluations remain separate.",
+    "head": "bb602d41545e2c8854117d781c0a0264414987ac"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T13:43:37.889Z",
+  "parents": [
+    "26a97b29-c3d7-497a-b0fc-f4038447b1f0"
+  ],
+  "branch": "main"
+}
