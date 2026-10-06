@@ -29,6 +29,8 @@ dip install
 
 The installer merges global Codex and Claude Code hooks/MCP configuration, chains existing Git hooks, initializes existing repositories under your home directory, and starts a local discovery/activity service. It adds startup entries and terminal-profile integration. Restart your coding tools and terminal and approve the hook definitions when your agent asks. It never bypasses the agent's trust settings.
 
+Ask naturally for a plan, a feature or a future idea. Trusted hooks save the request and structured plan updates automatically; the agent receives the captured task ID so it can refine the existing requirement. Future ideas stay in backlog during planning and known read tools. Prose-only plans require the agent's `task_plan` tool. The dashboard and `dip doctor` show whether prompt capture has actually been observed in the selected project. See [workflow coverage](docs/automation.md#requests-plans-and-future-ideas).
+
 ![DIP local project dashboard](docs/images/dashboard.png)
 
 Native Git discovery also adopts existing repositories outside watched roots when compatible Git opens them, including on `git status` or `git diff`, without a shell profile. The running recorder processes this native signal shortly after the command completes. See [native discovery and its boundaries](docs/git-discovery.md).

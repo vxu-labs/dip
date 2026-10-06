@@ -1,5 +1,17 @@
 # DIP release validation
 
+## v0.3.1 workflow audit
+
+The audit found that plan metadata was durable but not displayed on its task, planning/read tools could start a future idea, and the agent did not receive the current captured request ID. The fixes store full successful structured plans on the task, show the latest revision in the dashboard/MCP, keep known planning/read tools from claiming work, provide prompt task identity, deduplicate Codex turn retries and expose observed prompt delivery. Prose plans use a dedicated intent tool. Plans do not change verification evidence.
+
+The suite contains 61 cases. Added scenarios cover Hebrew future requests, plan revisions/retries, edit-triggered work, request identity, Claude TodoWrite, failed plans, prose persistence, bounded context, real MCP refinement without duplicate tasks, observed capture health, plan-aware verification, identical IDs queued in separate projects and preservation of managed instructions during reads. Chromium checked the captured plan in task details, existing board/handoff flows and mobile layout. A Windows Node.js 24 sample measured routine hook medians of 20.8 ms in process and 174.7 ms including a fresh Node process, with zero capture model calls. These are local measurements, not a latency guarantee.
+
+The actual local installation passed six future/plan/development cases through installed Codex/Claude hook commands, with 38 hook invocations and a median 431 ms including PowerShell startup. Both adapters kept future/planning requests in backlog and started development on the same captured task. No model was invoked. These installed command checks use synthetic lifecycle inputs, not actual model-backed host delivery.
+
+A repeated installed test exposed queue IDs shared between projects: retained records from a removed test project could suppress reused IDs in a new project. Queue keys are now namespaced by project root while durable record IDs preserve replay deduplication. A legacy preview also rewrote agent instructions while tests were running; it was stopped, and context/dashboard read paths now preserve managed instruction blocks. Tests passing while files change are correctly rejected as verification evidence until rerun against a stable snapshot.
+
+The current long-lived desktop conversation had no recorded UserPromptSubmit events in this project during the audit, despite configured hooks and an active Git/file recorder. Automatic capture in that conversation therefore remains unproven. Installed command tests use synthetic payloads and do not substitute for a fresh model-backed host session with hooks loaded and trusted. `scripts/live-workflow-smoke.mjs` reproduces future/plan/development scenarios through the actual installed Codex and Claude hook commands without launching another model.
+
 ## v0.3 native Git discovery
 
 The suite now contains 51 cases. Additional native Git tests initialize unmonitored worktrees on status, diff, branch, ls-files, rev-parse, local config and an unsuccessful log command, without profiles or lifecycle hooks. They also verify absolute executable invocation, credential exclusion from durable discovery records, trace-target preservation/restoration, disappearing temporary worktrees, isolated capability probing, and service-driven adoption outside configured roots. Clean `npm ci` and cross-platform CI passed for this release.

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a89e8945a3d0ce637b5f03da3f54a95b5e6b16c3096c0bf493ec0699488a49f8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:12:36.576Z",
+        "kind": "files.changed",
+        "files": [
+          ".gitignore",
+          "bin",
+          "skills/dip",
+          "skills",
+          "SECURITY.md",
+          "docs/protocol.md",
+          "skills/dip/SKILL.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "e5e2155d-e3ee-4695-86cd-7df45619c1ff"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:12:36.582Z",
+  "parents": [],
+  "branch": "main"
+}

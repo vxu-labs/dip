@@ -10,6 +10,7 @@ import {
   append,
 } from "./core.js";
 import { captureSnapshot, redact, git, digest, inScope } from "./util.js";
+import { planIntent } from "./workflow.js";
 
 const intentHash = (task) =>
   digest(
@@ -18,11 +19,16 @@ const intentHash = (task) =>
       task.acceptance || [],
       task.scope || [],
       task.dependencies || [],
+      ...(task.plan ? [planIntent(task.plan)] : []),
     ]),
   );
 
 export async function execute(action, args = {}, cwd = process.cwd()) {
-  const repo = ensure(cwd),
+  const repo = ensure(cwd, {
+      instructions: !["context", "status", "get", "next", "reconcile"].includes(
+        action,
+      ),
+    }),
     rt = new Runtime();
   try {
     rt.register(repo);
@@ -34,6 +40,23 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
     }
     if (action === "create") return { id: createTask(repo, args, actor) };
     if (action === "get") return taskGet(repo, args.id);
+    if (action === "plan") {
+      taskGet(repo, args.id);
+      rt.guard(repo, args.id, actor, args.token);
+      if (typeof args.text !== "string" || !args.text.trim())
+        throw new Error("Plan text is required");
+      append(
+        repo,
+        args.id,
+        "task.plan",
+        {
+          tool: "task_plan",
+          input: { text: redact(args.text) },
+        },
+        { actor },
+      );
+      return { saved: true, id: args.id };
+    }
     if (action === "next") {
       const state = reconcile(repo, rt);
       return state.tasks

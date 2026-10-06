@@ -10,7 +10,7 @@ import { automationHealth } from "./health.js";
 const publicDir = fileURLToPath(new URL("../public/", import.meta.url));
 export function createServer({ root = process.cwd(), port = 4317 } = {}) {
   try {
-    root = ensure(root).root;
+    root = ensure(root, { instructions: false }).root;
   } catch {
     root = null;
   }

@@ -86,7 +86,7 @@ async function refresh(force = false) {
         : "automation";
       $("#automation-status").textContent = messages.length
         ? messages.join(" ")
-        : `Recorder running · ${health.watcherAttached ? "Project watcher active" : "Hooks available"} · Agent hooks require host trust`;
+        : `Recorder running · ${health.watcherAttached ? "Project watcher active" : "Hooks available"} · ${health.agentCapture?.status === "observed" ? "Agent prompt capture observed" : "Agent prompts not observed in this project; check host hooks and trust"}`;
     }
     $("#connection").textContent = "Local connection active";
     $("#branch").textContent = state.repo?.branch || "No project yet";
@@ -298,6 +298,22 @@ function renderDetail(taskId) {
         }
       };
   };
+  if (t.plan) {
+    const input = t.plan.input,
+      steps = input.plan || input.todos || input.steps,
+      content = Array.isArray(steps)
+        ? steps
+            .map(
+              (s) =>
+                `${s.status || "pending"}: ${s.step || s.content || s.title || ""}`,
+            )
+            .join("\n")
+        : input.text || JSON.stringify(input, null, 2);
+    $("#detail").insertAdjacentHTML(
+      "afterbegin",
+      `<div class="detail-section" id="captured-plan"><h3>Latest captured plan</h3><small>${escape(t.plan.tool)} · ${escape(date(t.plan.at))}</small><p>Agent-reported progress. Completion requires verification.</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${escape(content)}</pre></div>`,
+    );
+  }
   $("#detail").insertAdjacentHTML(
     "afterbegin",
     '<button id="edit-intent">Edit requirements & schedule</button>',

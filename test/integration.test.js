@@ -9,7 +9,12 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 import { fileURLToPath } from "node:url";
 import { ensure, createTask, Runtime, project } from "../src/core.js";
 import { git, atomic } from "../src/util.js";
-import { install, uninstall, writeGitHooks } from "../src/automation.js";
+import {
+  install,
+  uninstall,
+  writeGitHooks,
+  handleHook,
+} from "../src/automation.js";
 
 const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "dip-integration-"));
 const cli = fileURLToPath(new URL("../bin/dip.js", import.meta.url));
@@ -82,6 +87,69 @@ test("MCP transport exposes concise intent tools and creates/claims persistent w
     await client.close();
   }
 });
+test("MCP refines a captured prompt and saves a prose plan without a duplicate task", async () => {
+  const before = project(repo).tasks.length;
+  const context = JSON.parse(
+    handleHook(
+      {
+        cwd: repoRoot,
+        session_id: "intent-qa",
+        hook_event_name: "UserPromptSubmit",
+        prompt: "Remember CSV exports for later",
+      },
+      "codex",
+    ).hookSpecificOutput.additionalContext,
+  );
+  assert.ok(JSON.stringify(context).length < 1500);
+  const client = new Client({ name: "intent-test", version: "1.0.0" });
+  try {
+    await client.connect(
+      new StdioClientTransport({
+        command: process.execPath,
+        args: [cli, "mcp"],
+        cwd: repoRoot,
+        env: { ...process.env },
+      }),
+    );
+    for (const request of [
+      {
+        name: "task_update",
+        arguments: {
+          id: context.task_id,
+          actor: context.actor,
+          patch: {
+            title: "Future CSV export",
+            status: "backlog",
+            acceptance: ["UTF-8 export"],
+          },
+        },
+      },
+      {
+        name: "task_plan",
+        arguments: {
+          id: context.task_id,
+          actor: context.actor,
+          text: "Inspect the serializer, then implement streaming.",
+        },
+      },
+    ])
+      assert.ok(!(await client.callTool(request)).isError);
+    const read = JSON.parse(
+      (
+        await client.callTool({
+          name: "task_get",
+          arguments: { id: context.task_id },
+        })
+      ).content[0].text,
+    );
+    assert.equal(read.status, "backlog");
+    assert.match(read.plan.text, /streaming/);
+    assert.equal(project(repo).tasks.length, before + 1);
+  } finally {
+    await client.close();
+  }
+});
+
 test("claims from two independent processes have exactly one winner", async () => {
   const task = createTask(repo, { title: "Concurrent process claim" });
   const run = (actor) =>

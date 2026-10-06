@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "eventId": "eabac6c38e7b7843a387ed3b4173f617adc5a9c3a8ad46550a96c308426a85e8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:24:32.993Z",
+        "kind": "files.changed",
+        "files": [
+          "AGENTS.md.e56f1277-5352-4763-899e-5cd619a550b6.tmp",
+          "AGENTS.md",
+          "CLAUDE.md.ce53a029-eef3-4781-bd65-f7983b22132e.tmp",
+          "CLAUDE.md",
+          "src/workflow.js",
+          "src/actions.js",
+          "test/workflow.test.js",
+          "AGENTS.md.139f8aa0-e278-4305-9ded-00949bf2bde1.tmp",
+          "CLAUDE.md.3f1f9a42-df65-4e8b-8272-76104126d2dd.tmp"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "901a1466-5686-4440-8549-3b24bc13b3ae"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:24:32.998Z",
+  "parents": [],
+  "branch": "main"
+}

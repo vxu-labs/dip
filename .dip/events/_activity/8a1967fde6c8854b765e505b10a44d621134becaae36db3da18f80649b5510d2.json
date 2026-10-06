@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8a1967fde6c8854b765e505b10a44d621134becaae36db3da18f80649b5510d2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:11:23.193Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/contributing.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "71d3e8c6-f4fe-4546-8b64-e8e6226b291c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:11:23.199Z",
+  "parents": [],
+  "branch": "main"
+}

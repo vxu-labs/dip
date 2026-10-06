@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6854ff62-6a92-462f-85df-af8b4da7c05a",
+  "taskId": "task_e5c5814d-214c-43ef-950b-47eb0175fa1f",
+  "type": "task.update",
+  "payload": {
+    "status": "verified"
+  },
+  "actor": "codex:workflow",
+  "createdAt": "2026-10-06T09:33:22.401Z",
+  "parents": [
+    "6715b787-4057-496e-ad6a-fce3c7a23344"
+  ],
+  "branch": "main"
+}

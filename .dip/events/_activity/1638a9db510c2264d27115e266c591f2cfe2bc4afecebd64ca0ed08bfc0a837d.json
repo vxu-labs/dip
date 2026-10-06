@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1638a9db510c2264d27115e266c591f2cfe2bc4afecebd64ca0ed08bfc0a837d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:28:49.761Z",
+        "kind": "files.changed",
+        "files": [
+          "AGENTS.md.5dc59297-3fbc-4fd2-bb0d-e4166027cd0c.tmp",
+          "AGENTS.md",
+          "CLAUDE.md.f0bc53f4-f909-4d66-bcbb-04b6da18c295.tmp",
+          "CLAUDE.md",
+          "AGENTS.md.2d963d9e-0c32-4c60-b9ff-1a068c1d94ec.tmp",
+          "CLAUDE.md.5c811fd1-9179-4117-9b9d-ca9182be5835.tmp"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "ea7cf5ef-7123-4aea-8df7-397648fc9be5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:28:49.766Z",
+  "parents": [],
+  "branch": "main"
+}

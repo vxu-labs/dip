@@ -25,6 +25,7 @@ import {
 } from "./util.js";
 import { writeGitHooks, restoreProjectHooks } from "./git-hooks.js";
 import { installTransaction } from "./install-transaction.js";
+import { planningTool, readingTool } from "./workflow.js";
 import {
   GitDiscovery,
   traceDirectory,
@@ -286,9 +287,25 @@ function installAgents(state) {
         handler.commandWindows = `node --disable-warning=ExperimentalWarning ${quote(CLI)} hook --dip-hook --runtime ${quote(home())} --agent codex`;
       }
       groups.push({
-        ...(event.includes("ToolUse") ? { matcher: ".*" } : {}),
+        ...(event.includes("ToolUse")
+          ? {
+              matcher:
+                event === "PostToolUse"
+                  ? "^(?!(?:.*[.:])?(?:update_plan|TodoWrite)$).*"
+                  : ".*",
+            }
+          : {}),
         hooks: [handler],
       });
+      // Plan revisions must arrive in order. Ordinary post-tool capture stays asynchronous.
+      if (event === "PostToolUse") {
+        const synchronous = { ...handler };
+        delete synchronous.async;
+        groups.push({
+          matcher: "(?:^|[.:])(?:update_plan|TodoWrite)$",
+          hooks: [synchronous],
+        });
+      }
       settings.hooks[event] = groups;
     }
     backup(file);
@@ -500,7 +517,12 @@ export function handleHook(input, agent = "unknown") {
     const event = input.hook_event_name || "Unknown";
     let active = rt.session(repo, session);
     if (event === "UserPromptSubmit") {
-      if (active?.task) {
+      const requestKey = input.turn_id
+        ? `${repo.root}:${actor}:prompt:${input.turn_id}`
+        : null;
+      const repeated =
+        requestKey && active?.task === "task_" + digest(requestKey);
+      if (active?.task && !repeated) {
         const lease = rt.db
           .prepare("SELECT * FROM leases WHERE repo=? AND task=?")
           .get(repo.key, active.task);
@@ -517,13 +539,19 @@ export function handleHook(input, agent = "unknown") {
           source: "prompt",
         },
         actor,
+        requestKey,
       );
-      rt.setSession(repo, session, task, actor, prompt);
+      if (!repeated) rt.setSession(repo, session, task, actor, prompt);
       active = rt.session(repo, session);
     }
     const tool = input.tool_name || "",
       toolInput = input.tool_input || {};
-    if (event === "PreToolUse" && !tool.includes("dip")) {
+    if (
+      event === "PreToolUse" &&
+      !tool.includes("dip") &&
+      !planningTool(tool) &&
+      !readingTool(tool)
+    ) {
       if (!active?.task) {
         const task = createTask(
           repo,
@@ -633,6 +661,36 @@ export function handleHook(input, agent = "unknown") {
     }
     if (/plan|task|todo/i.test(tool) && !tool.includes("dip"))
       summary.plan = redact(JSON.stringify(toolInput));
+    if (
+      event === "PostToolUse" &&
+      planningTool(tool) &&
+      !input.tool_response?.isError &&
+      !input.tool_response?.is_error
+    ) {
+      if (!active?.task) {
+        const task = createTask(repo, { title: "Development plan" }, actor);
+        rt.setSession(repo, session, task, actor);
+        active = rt.session(repo, session);
+        summary.taskId = active.task;
+      }
+      append(
+        repo,
+        active.task,
+        "task.plan",
+        {
+          tool,
+          input: JSON.parse(redact(JSON.stringify(toolInput))),
+        },
+        {
+          actor,
+          ...(input.tool_use_id
+            ? {
+                eventId: digest(`${actor}:plan:${input.tool_use_id}`),
+              }
+            : {}),
+        },
+      );
+    }
     if (toolInput.file_path || toolInput.path)
       summary.path = redact(toolInput.file_path || toolInput.path);
     if (input.tool_response?.exit_code !== undefined)
@@ -641,7 +699,9 @@ export function handleHook(input, agent = "unknown") {
       summary.path = "[sensitive file]";
     const unique = input.tool_use_id
       ? `${agent}:${session}:${event}:${input.tool_use_id}`
-      : id();
+      : event === "UserPromptSubmit" && input.turn_id
+        ? `${actor}:prompt:${input.turn_id}`
+        : id();
     if (
       ["PostToolUse", "PostToolUseFailure"].includes(event) &&
       input.tool_use_id
@@ -681,6 +741,19 @@ export function handleHook(input, agent = "unknown") {
     }
     // Without a running daemon, every hook persists its queue immediately; no data depends on process lifetime.
     if (!daemonAlive()) rt.flush(repo.root);
+    if (event === "UserPromptSubmit")
+      return {
+        hookSpecificOutput: {
+          hookEventName: "UserPromptSubmit",
+          additionalContext: JSON.stringify({
+            task_id: active.task,
+            actor,
+            session_id: session,
+            instructions:
+              "This request is already saved in DIP. Refine this task with task_update instead of creating a duplicate. Keep future ideas in backlog. Structured update_plan/TodoWrite calls are captured automatically; save a prose-only plan with task_plan. Claim with this actor/session only when starting development. Split distinct requirements with task_create as needed; do not call another model for tracking.",
+          }),
+        },
+      };
     if (event === "SessionStart")
       return {
         hookSpecificOutput: {
@@ -689,6 +762,7 @@ export function handleHook(input, agent = "unknown") {
             ...compactContext(repo, rt),
             session_id: session,
             actor,
+            task_id: active?.task || null,
           }),
         },
       };

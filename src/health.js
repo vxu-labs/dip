@@ -51,7 +51,8 @@ export function automationHealth(root) {
     sources = [],
     pending = 0,
     failures = [],
-    dataErrors = [];
+    dataErrors = [],
+    captured = { promptCount: 0, planCount: 0, lastPromptAt: null };
   try {
     if (root) {
       try {
@@ -70,7 +71,16 @@ export function automationHealth(root) {
         failures = runtime.db
           .prepare("SELECT root,error,at FROM queue_errors WHERE root=?")
           .all(repo.root);
-        dataErrors = project(repo).errors;
+        const state = project(repo);
+        dataErrors = state.errors;
+        const prompts = state.activity.filter(
+          (a) => a.kind === "UserPromptSubmit",
+        );
+        captured = {
+          promptCount: prompts.length,
+          planCount: state.tasks.filter((t) => t.plan).length,
+          lastPromptAt: prompts[0]?.at || null,
+        };
       }
     } else
       failures = runtime.db
@@ -161,6 +171,12 @@ export function automationHealth(root) {
       lastError: daemon?.lastError || null,
     },
     adapters,
+    agentCapture: {
+      ...captured,
+      status: captured.promptCount ? "observed" : "unobserved",
+      meaning:
+        "Observed hook records in this project; configuration alone does not prove host delivery or trust.",
+    },
     gitHooksConfigured,
     watcherAttached:
       !!repo &&

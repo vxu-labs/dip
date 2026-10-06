@@ -3,6 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { execute } from "./actions.js";
 import { VERSION } from "./version.js";
+import { briefPlan } from "./workflow.js";
 
 export async function runMcp() {
   const server = new McpServer({ name: "dip", version: VERSION });
@@ -66,6 +67,7 @@ export async function runMcp() {
                   }
                 : null,
               conflicts: result.conflicts,
+              plan: briefPlan(result.plan),
             };
           if (action === "update")
             result = {
@@ -104,8 +106,19 @@ export async function runMcp() {
     "next",
   );
   add(
+    "task_plan",
+    "Save a prose-only plan on the current captured task. update_plan/TodoWrite are already captured by hooks. Plans never establish verified completion.",
+    {
+      id: z.string(),
+      text: z.string(),
+      actor: z.string().optional(),
+      token: z.string().optional(),
+    },
+    "plan",
+  );
+  add(
     "task_create",
-    "Save a future idea or meaningful task. Use the current model; no separate AI request is made.",
+    "Save a distinct future idea or requirement. The prompt hook already supplies task_id for the current request: refine that task instead of duplicating it. Use the current model; no separate AI request is made.",
     {
       title: z.string(),
       description: z.string().optional(),

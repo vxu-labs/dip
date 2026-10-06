@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "281a3cd4-ede1-42b7-ad09-d551b297ef41",
+  "taskId": "task_e5c5814d-214c-43ef-950b-47eb0175fa1f",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "text": "Audit prompt/plan/future capture. Expose current request identity and latest plans. Preserve future backlog during planning. Validate unit, real MCP, dashboard, latency, and installed hook commands; distinguish live host delivery from synthetic inputs."
+    }
+  },
+  "actor": "codex:workflow",
+  "createdAt": "2026-10-06T09:21:58.310Z",
+  "parents": [
+    "6130439d-679a-4e4b-8dbc-b37054477ace"
+  ],
+  "branch": "main"
+}

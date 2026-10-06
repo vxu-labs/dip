@@ -15,8 +15,9 @@ import {
   inScope,
 } from "./util.js";
 import { ensureProjectHooks } from "./git-hooks.js";
+import { briefPlan } from "./workflow.js";
 
-export const INSTRUCTIONS = `DIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nClaim a task before working; the hook creates a lightweight request/task if none is selected. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title "..."; dip context; dip task checkpoint --id ID --summary "...".\nRun dip doctor to see automation coverage and health. Data lives in .dip and follows Git; commit it with the work.`;
+export const INSTRUCTIONS = `DIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.\nUse the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.\nAt session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.\nThe prompt hook supplies task_id, actor and session_id. Refine that captured task with task_update instead of creating a duplicate; create separate tasks only for distinct requirements.\nStructured update_plan/TodoWrite calls are captured automatically. Save prose-only plans with task_plan (CLI: dip task plan --id ID --text "...").\nClaim a task before development using the hook actor/session; planning and known read tools leave future ideas in backlog. Separate worktrees isolate parallel agents.\nCheckpoint unfinished work before handing off. Never mark a task verified from your own assertion: run configured checks using task_verify.\nA completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.\nFallback CLI: dip task create --title "..."; dip context; dip task checkpoint --id ID --summary "...".\nRun dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.`;
 
 export function ensure(cwd = process.cwd(), { instructions = true } = {}) {
   const repo = repoAt(cwd),
@@ -261,7 +262,7 @@ export class Runtime {
     this.db
       .prepare("INSERT OR IGNORE INTO queue VALUES (?,?,?,?,?)")
       .run(
-        key,
+        digest(repo.root + "\0" + key),
         repo.root,
         session,
         JSON.stringify({ ...data, recordId: key }),
@@ -398,6 +399,14 @@ export function events(repo, task = null) {
           throw new Error("Event ID differs from filename");
         if (e.type === "activity.batch" && !Array.isArray(e.payload.records))
           throw new Error("Activity records must be an array");
+        if (
+          e.type === "task.plan" &&
+          (typeof e.payload.tool !== "string" ||
+            !e.payload.input ||
+            typeof e.payload.input !== "object" ||
+            Array.isArray(e.payload.input))
+        )
+          throw new Error("Plan requires a tool name and input object");
         if (["task.create", "task.update", "task.resolve"].includes(e.type))
           updateValidation(e.payload);
         result.push(e);
@@ -496,6 +505,7 @@ export function project(repo, runtime = null, taskOnly = null) {
       checkpoints: [],
       decisions: [],
       evidence: [],
+      plan: null,
       history: ordered,
       heads: heads(list),
       conflicts: [],
@@ -541,6 +551,8 @@ export function project(repo, runtime = null, taskOnly = null) {
         state.decisions.push({ ...e.payload, at: e.createdAt, actor: e.actor });
       if (e.type === "task.evidence")
         state.evidence.push({ ...e.payload, at: e.createdAt });
+      if (e.type === "task.plan")
+        state.plan = { ...e.payload, at: e.createdAt, actor: e.actor };
       state.updatedAt = e.createdAt;
     }
     for (const [field, writers] of writes)
@@ -598,9 +610,9 @@ export function project(repo, runtime = null, taskOnly = null) {
     errors,
   };
 }
-export function createTask(repo, payload, actor = "human") {
+export function createTask(repo, payload, actor = "human", requestKey = null) {
   if (!payload.title?.trim()) throw new Error("Task title is required");
-  const taskId = "task_" + id();
+  const taskId = "task_" + (requestKey ? digest(requestKey) : id());
   updateValidation({ ...payload, status: payload.status || "backlog" });
   append(
     repo,
@@ -612,7 +624,10 @@ export function createTask(repo, payload, actor = "human") {
       description: redact(payload.description || ""),
       status: payload.status || "backlog",
     },
-    { actor },
+    {
+      actor,
+      ...(requestKey ? { eventId: digest(requestKey + ":create") } : {}),
+    },
   );
   return taskId;
 }
@@ -743,4 +758,7 @@ const brief = (t) => ({
   status: t.status,
   scope: t.scope,
   checkpoint: t.checkpoints.at(-1)?.summary,
+  plan: t.plan
+    ? { stepCount: briefPlan(t.plan).stepCount, at: t.plan.at }
+    : null,
 });

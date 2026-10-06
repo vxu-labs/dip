@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7194359c13cc395a1188bf05f05aea8e93c30b55df38bc02c9ce69cdffde6e7c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:21:54.373Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/automation.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "e245854b-8846-4001-b9b1-014e6d28e358"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:21:54.378Z",
+  "parents": [],
+  "branch": "main"
+}

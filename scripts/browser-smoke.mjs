@@ -21,6 +21,10 @@ const parser = createTask(repo, {
     "Large exports stream without blocking",
   ],
 });
+append(repo, parser, "task.plan", {
+  tool: "update_plan",
+  input: { plan: [{ step: "Verify UTF-8 export", status: "pending" }] },
+});
 append(
   repo,
   parser,
@@ -125,6 +129,11 @@ try {
     .getByRole("button", { name: "Add CSV export", exact: false })
     .click();
   await page.locator("#detail-title").waitFor();
+  assert.ok(
+    (await page.locator("#captured-plan").innerText()).includes(
+      "Verify UTF-8 export",
+    ),
+  );
   assert.ok(
     (await page.locator("#detail").innerText()).includes(
       "CSV writer is complete",

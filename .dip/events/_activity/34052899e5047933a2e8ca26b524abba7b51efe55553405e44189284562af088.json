@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "34052899e5047933a2e8ca26b524abba7b51efe55553405e44189284562af088",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:17:07.455Z",
+        "kind": "files.changed",
+        "files": [
+          "MVP_PLAN.md",
+          "scripts/check.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "5dc67448-e685-49e1-a037-51980c4c1c3c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:17:07.463Z",
+  "parents": [],
+  "branch": "main"
+}

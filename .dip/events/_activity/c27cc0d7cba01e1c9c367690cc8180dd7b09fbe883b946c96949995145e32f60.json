@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c27cc0d7cba01e1c9c367690cc8180dd7b09fbe883b946c96949995145e32f60",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:26:37.026Z",
+        "kind": "files.changed",
+        "files": [
+          "AGENTS.md.0fccd596-3bd0-4ef7-87fd-72165013fa74.tmp",
+          "AGENTS.md",
+          "CLAUDE.md.c455e8b0-b009-4e6f-8df5-e4c0713cc307.tmp",
+          "CLAUDE.md",
+          "AGENTS.md.ea9a7325-c81d-4dc1-ab7d-0e7c91acd5bd.tmp",
+          "CLAUDE.md.bf6a2dad-5158-4238-9103-bd0d8893098d.tmp",
+          "vxu-labs-dip-0.3.1.tgz"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "b33ed0b0-766a-4799-a5ae-2c2d3520bdf0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:26:37.034Z",
+  "parents": [],
+  "branch": "main"
+}

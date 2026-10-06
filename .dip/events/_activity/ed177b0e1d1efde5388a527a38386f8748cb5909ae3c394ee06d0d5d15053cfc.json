@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ed177b0e1d1efde5388a527a38386f8748cb5909ae3c394ee06d0d5d15053cfc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:19:34.010Z",
+        "kind": "files.changed",
+        "files": [
+          "src/git-hooks.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "0b903fba-2a38-4e2f-aeeb-58693cc8e344"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:19:34.019Z",
+  "parents": [],
+  "branch": "main"
+}

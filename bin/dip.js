@@ -25,6 +25,7 @@ const options = {
   title: { type: "string" },
   id: { type: "string" },
   summary: { type: "string" },
+  text: { type: "string" },
   next: { type: "string" },
   root: { type: "string" },
   runtime: { type: "string" },

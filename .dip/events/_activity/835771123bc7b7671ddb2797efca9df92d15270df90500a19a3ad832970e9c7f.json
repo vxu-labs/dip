@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "eventId": "835771123bc7b7671ddb2797efca9df92d15270df90500a19a3ad832970e9c7f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:18:53.678Z",
+        "kind": "files.changed",
+        "files": [
+          "src/workflow.js",
+          "src/core.js",
+          "src/automation.js",
+          "src/actions.js",
+          "src/mcp.js",
+          "src/health.js",
+          "public/app.js",
+          "test/workflow.test.js",
+          "test/integration.test.js",
+          "scripts/browser-smoke.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "ba8188c4-beeb-4027-9924-73e56c9efc9c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:18:53.688Z",
+  "parents": [],
+  "branch": "main"
+}
