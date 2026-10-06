@@ -1,13 +1,11 @@
 {
   "schemaVersion": 1,
-  "protocolVersion": 2,
-  "createdAt": "2026-10-06T15:49:05.428Z",
+  "createdAt": "2026-10-06T15:41:33.965Z",
   "label": "Supplementary exploratory contract stress test, specified after the primary run began and after pair 1 primary outcomes, before inspecting participant implementation source or evaluating stress outcomes. Not the original preregistered primary endpoint.",
   "seed": 41729,
   "iterationsPerProject": 256,
   "checksPerIteration": 9,
-  "isolation": "Each participant project is evaluated in a separate ordinary Node.js subprocess, preventing prototype/global state contamination between projects. Version 2 adds this isolation before any participant stress evaluation; inputs and oracle are unchanged.",
-  "sourceHash": "40df474c93caa6235def4834795432d120a0ab936247ae454dc82e7b962e9b5a",
+  "sourceHash": "378763cbe1658fc71da0203a4ec949d1a8d261c0ac5120e86bc5b5dccfc5889d",
   "policy": "Evaluate every final audited project under identical deterministic inputs. No participant feedback, code repair or model calls. Preserve every pass/fail flag; collect the first ten failure examples per group, including inputs. Calibrate against an independent built-in oracle and deliberately broken modules first.",
   "inputs": "Bounded integer prices/quantities/shipping, fractional finite coupons, invalid lines, duplicate SKU/price combinations, trimmed Unicode and punctuation SKUs, own stock properties named __proto__/constructor/toString/hasOwnProperty, missing SKU stock, inclusive/expired/invalid return dates, comma/quote/newline receipt identifiers. No out-of-contract non-array cart, negative stock or unsafe numeric magnitudes."
 }

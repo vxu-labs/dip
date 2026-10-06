@@ -4,6 +4,7 @@ import os from "node:os";
 import assert from "node:assert/strict";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { fixture } from "./longitudinal-fixtures.mjs";
 const workspace = fileURLToPath(new URL("../", import.meta.url));
 const hash = (s) => createHash("sha256").update(s).digest("hex");
@@ -20,12 +21,15 @@ const sourceHash = () =>
 const iterations = 256;
 const protocol = {
   schemaVersion: 1,
+  protocolVersion: 2,
   createdAt: new Date().toISOString(),
   label:
     "Supplementary exploratory contract stress test, specified after the primary run began and after pair 1 primary outcomes, before inspecting participant implementation source or evaluating stress outcomes. Not the original preregistered primary endpoint.",
   seed: 41729,
   iterationsPerProject: iterations,
   checksPerIteration: 9,
+  isolation:
+    "Each participant project is evaluated in a separate ordinary Node.js subprocess, preventing prototype/global state contamination between projects. Version 2 adds this isolation before any participant stress evaluation; inputs and oracle are unchanged.",
   sourceHash: sourceHash(),
   policy:
     "Evaluate every final audited project under identical deterministic inputs. No participant feedback, code repair or model calls. Preserve every pass/fail flag; collect the first ten failure examples per group, including inputs. Calibrate against an independent built-in oracle and deliberately broken modules first.",
@@ -338,6 +342,43 @@ if (process.argv.includes("--calibrate")) {
   );
   process.exit(0);
 }
+if (process.argv.includes("--project-worker")) {
+  const at = process.argv.indexOf("--project-worker"),
+    root = path.resolve(process.argv[at + 1]),
+    index = Number(process.argv[at + 2]);
+  const temp = fs.realpathSync(os.tmpdir());
+  assert.ok(
+    root.startsWith(temp + path.sep) &&
+      path
+        .relative(temp, root)
+        .split(path.sep)[0]
+        .startsWith("dip-longitudinal-stress-") &&
+      index >= 0 &&
+      index < 4,
+    "Worker must evaluate its supplied temporary project only",
+  );
+  const m = {},
+    loadErrors = [];
+  for (const file of [
+    "cart.mjs",
+    "summary.mjs",
+    "receipt.mjs",
+    "inventory.mjs",
+    "returns.mjs",
+    "pipeline.mjs",
+  ]) {
+    try {
+      Object.assign(m, await import(pathToFileURL(path.join(root, file)).href));
+    } catch (e) {
+      loadErrors.push({ file, error: e.message.replaceAll(root, "<project>") });
+    }
+  }
+  console.log(
+    "STRESS_RESULT:" +
+      JSON.stringify({ ...evaluate(m, fixture(index).final), loadErrors }),
+  );
+  process.exit(0);
+}
 const data = JSON.parse(
   fs.readFileSync(
     path.join(workspace, "docs/benchmarks/2026-10-06-longitudinal.json"),
@@ -375,28 +416,26 @@ try {
         fs.mkdirSync(path.dirname(target), { recursive: true });
         fs.writeFileSync(target, file.text);
       }
-      const m = {};
-      const loadErrors = [];
-      for (const file of [
-        "cart.mjs",
-        "summary.mjs",
-        "receipt.mjs",
-        "inventory.mjs",
-        "returns.mjs",
-        "pipeline.mjs",
-      ])
-        try {
-          Object.assign(
-            m,
-            await import(pathToFileURL(path.join(root, file)).href),
-          );
-        } catch (e) {
-          loadErrors.push({
-            file,
-            error: e.message.replaceAll(root, "<project>"),
-          });
-        }
-      row.arms[arm] = { ...evaluate(m, fixture(pair.index).final), loadErrors };
+      const stdout = execFileSync(
+        process.execPath,
+        [
+          fileURLToPath(import.meta.url),
+          "--project-worker",
+          root,
+          String(pair.index),
+        ],
+        {
+          encoding: "utf8",
+          windowsHide: true,
+          timeout: 30000,
+          maxBuffer: 5 * 1024 * 1024,
+        },
+      );
+      const line = stdout
+        .split(/\r?\n/)
+        .findLast((line) => line.startsWith("STRESS_RESULT:"));
+      assert.ok(line, "Isolated worker must return all stress flags");
+      row.arms[arm] = JSON.parse(line.slice("STRESS_RESULT:".length));
     }
   }
   results.completedAt = new Date().toISOString();
