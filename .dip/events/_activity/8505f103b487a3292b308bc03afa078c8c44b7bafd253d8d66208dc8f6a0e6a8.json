@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8505f103b487a3292b308bc03afa078c8c44b7bafd253d8d66208dc8f6a0e6a8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:28:54.124Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npx prettier --write src/workflow.js src/automation.js; node --test --test-name-pattern 'large requests|ambient browser' test/core.test.js test/workflow.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-fbe5c6c2-ec7d-4ee3-a94d-9e7104096969"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:28:55.005Z",
+  "parents": [],
+  "branch": "main"
+}

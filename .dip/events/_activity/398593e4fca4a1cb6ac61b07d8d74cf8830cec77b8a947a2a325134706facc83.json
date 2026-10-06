@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "398593e4fca4a1cb6ac61b07d8d74cf8830cec77b8a947a2a325134706facc83",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:37:26.200Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'trust|unobserv|0.3.3|0.3.4|automatic|hooks' README.md | Select-Object -First 32; @'\nimport fs from 'node:fs';\nconst install=JSON.parse(fs.readFileSync('C:/Users/offic/.dip/install.json','utf8'));console.log(JSON.stringify({keys:Object.keys(install)}));const config=JSON.parse(fs.readFileSync('C:/Users/offic/.codex/hooks.json','utf8'));console.log(JSON.stringify({post:config.hooks.PostToolUse.filter(g=>g.hooks.some(h=>h.command.includes('--dip-hook'))).map(g=>({matcher:g.matcher,handlers:g.hooks.map(h=>({async:!!h.async,skipPlans:h.command.includes('--skip-plan-tools')}))}))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-75ab56ae-e8a9-4952-be3e-b915cc0c2776"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:37:26.238Z",
+  "parents": [],
+  "branch": "main"
+}

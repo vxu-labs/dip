@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b64a472f1f85262812fa43d259aeabb6c8af37495d63a4f7826e959739c38e60",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:31:06.071Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/live-workflow-smoke.mjs; npm pack --silent; npm install -g .\\vxu-labs-dip-0.3.4.tgz; node bin/dip.js task verify --id task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183 --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --check unit",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-64fd7fce-a1c3-4429-8725-9db559243865"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:31:06.995Z",
+  "parents": [],
+  "branch": "main"
+}

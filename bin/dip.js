@@ -50,6 +50,7 @@ const options = {
   port: { type: "string" },
   agent: { type: "string" },
   "dip-hook": { type: "boolean" },
+  "skip-plan-tools": { type: "boolean" },
   "no-start": { type: "boolean" },
   "no-startup": { type: "boolean" },
   "no-agents": { type: "boolean" },
@@ -138,7 +139,9 @@ try {
       if (text.length > 8 * 1024 * 1024)
         throw new Error("Hook input too large");
     }
-    const output = handleHook(JSON.parse(text || "{}"), flags.agent);
+    const output = handleHook(JSON.parse(text || "{}"), flags.agent, {
+      skipPlanTools: !!flags["skip-plan-tools"],
+    });
     if (Object.keys(output).length) print(output);
   } else if (command === "git-hook") {
     handleGitHook(positionals[0], cwd);

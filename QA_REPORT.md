@@ -1,5 +1,13 @@
 # DIP release validation
 
+## v0.3.4 trusted hook capture
+
+The user approved DIP's Codex hooks and then the corrected PostToolUse definition. Real UserPromptSubmit capture supplied the current task identity to the agent. A read-only shell probe produced matching PreToolUse and PostToolUse records for one call, task and session, without manual hook invocation. Ordinary shell and MCP post records were also observed. The prior general matcher used negative lookahead, unsupported by Codex's Rust regex engine; a portable catch-all plus a Node-side plan filter fixes delivery while keeping plan writes synchronous and ordered.
+
+Automatic browser transport text no longer becomes task intent. Ordinary request bytes and embedded text remain intact. Claude ExitPlanMode's injected prose is retained as a plan, alongside TodoWrite support. Three regression cases cover these changes. Local configured verification passed 68 cases: 66 Windows passes, two POSIX skips, zero failures, and no source or intent change during the check.
+
+The actual installed v0.3.4 command routes passed six synthetic future/plan/development cases, with 44 invocations and a median 573 ms including PowerShell startup. These inputs are synthetic and do not prove host delivery. A separate model-backed follow-up saved a two-step QA plan and a distinct future idea through MCP; disk inspection confirmed both in backlog. Native update_plan was unavailable and no hook identity was supplied to that app-tool-created turn, so it proves explicit persistence rather than automatic native-plan capture. Trusted Claude Code operation, native planning-tool delivery and multi-day reliability remain open in DIP-L01. See [the updated desktop report](docs/desktop-qa.md#trusted-hook-follow-up-v034).
+
 ## v0.3.2 desktop QA and benchmark
 
 Windows Computer Use inspected the actual Codex app, entered/sent prompts and checked outcomes in two project workflows. Four model-backed trials covered creation, future ideas, fresh-session recovery and acceptance refinement. Disk state confirmed preserved plans, stable task counts and backlog status. Hooks remained untrusted and no automatic prompt events were observed, so the trials establish explicit CLI/MCP fallback behavior. See [the desktop QA report](docs/desktop-qa.md).

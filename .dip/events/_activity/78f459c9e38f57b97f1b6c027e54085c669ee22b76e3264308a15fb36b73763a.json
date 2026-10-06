@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "78f459c9e38f57b97f1b6c027e54085c669ee22b76e3264308a15fb36b73763a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:31:55.423Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Write-Output 'DIP live post-hook probe'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-16d8dcd0-eb19-4657-88f6-dbb83c934622"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:31:56.288Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e9b4c82fba0e19c89fa249e276717d0cb039dda039d29a5c5c2d95b96b496068",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:27:02.683Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nfor(const [file,before,after] of [['public/index.html','v0.3.3 · Apache-2.0','v0.3.4 · Apache-2.0'],['scripts/package-smoke.mjs','vxu-labs-dip-0.3.3.tgz','vxu-labs-dip-0.3.4.tgz']]) fs.writeFileSync(file,fs.readFileSync(file,'utf8').replaceAll(before,after));\nconst file='scripts/package-smoke.mjs';fs.writeFileSync(file,fs.readFileSync(file,'utf8').replace('\"0.3.3\"','\"0.3.4\"'));\n'@ | node --input-type=module; npm run check; git diff --check; npm pack --silent; dip stop; npm install -g .\\vxu-labs-dip-0.3.4.tgz; dip install",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-989e4ca4-fd28-4d03-87b4-1e14a28f8966"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:27:03.473Z",
+  "parents": [],
+  "branch": "main"
+}

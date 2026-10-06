@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cbc9a308ea2c71b88b8b4df2734f515a4add9f59f65c0fc1c315bbc98c07e453",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:10:10.485Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {ensure,project,Runtime} from './src/core.js';\nconst r=ensure(process.cwd(),{instructions:false});const rt=new Runtime();rt.flush(r.root);\nconsole.log(JSON.stringify(project(r).activity.filter(a=>a.session==='01a10fa9-6164-7550-bdf9-5c21b772eafd'&&a.at>='2026-10-06T11:06:00').map(a=>({kind:a.kind,tool:a.tool})).slice(0,30)));rt.close();\n'@ | node --input-type=module; rg --files C:\\Users\\offic\\.codex\\log | Select-Object -First 12",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d26ad233-0619-4430-b273-de4417d4908c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:10:11.878Z",
+  "parents": [],
+  "branch": "main"
+}

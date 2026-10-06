@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1f3d7238ebeb1219088ed6301873c26cc8c25b3e66c633b03ccfda9791dad912",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T11:13:22.603Z",
+        "kind": "files.changed",
+        "files": [
+          ".github/workflows"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "13ca18f2-5f43-4352-9fb5-28a81b45445a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:13:22.608Z",
+  "parents": [],
+  "branch": "main"
+}

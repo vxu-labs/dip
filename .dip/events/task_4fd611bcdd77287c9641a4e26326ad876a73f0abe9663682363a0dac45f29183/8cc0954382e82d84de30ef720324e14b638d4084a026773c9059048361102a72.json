@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8cc0954382e82d84de30ef720324e14b638d4084a026773c9059048361102a72",
+  "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+  "type": "task.create",
+  "payload": {
+    "title": "\n<in-app-browser-context source=\"ambient-ui-state\">\nThis block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an",
+    "description": "\n<in-app-browser-context source=\"ambient-ui-state\">\nThis block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.\n# In app browser:\n- The user has the in-app browser open with 3 tabs.\n- Current URL: http://127.0.0.1:4317/?root=C%3A%5CUsers%5Coffic%5CDocuments%5CChatGPT%5CCUSTOM%20GIT\n</in-app-browser-context>\n\n## My request:\nאישרתי את הכל בוא נבדוק, והאם זה אותו מנגנון גם בclaude code ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:06:08.823Z",
+  "parents": [],
+  "branch": "main"
+}

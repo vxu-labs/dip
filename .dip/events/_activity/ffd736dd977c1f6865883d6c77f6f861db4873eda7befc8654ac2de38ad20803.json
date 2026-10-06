@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ffd736dd977c1f6865883d6c77f6f861db4873eda7befc8654ac2de38ad20803",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:26:01.255Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npm version patch --no-git-tag-version; npx prettier --write scripts/live-workflow-smoke.mjs docs/compatibility.md docs/automation.md; npm test",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c874fe1f-5b8a-439a-b26e-dbdf6ef109d0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:26:02.369Z",
+  "parents": [],
+  "branch": "main"
+}

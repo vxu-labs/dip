@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { ensure, project, Runtime } from "../src/core.js";
-import { handleHook } from "../src/automation.js";
+import { handleHook, install, uninstall } from "../src/automation.js";
 import { execute } from "../src/actions.js";
 import { automationHealth } from "../src/health.js";
 import { git, atomic } from "../src/util.js";
@@ -64,6 +64,132 @@ test("changed plan intent invalidates evidence while a progress-only update pres
 test.after(() => {
   assert.ok(sandbox.startsWith(path.join(os.tmpdir(), "dip-workflow-")));
   fs.rmSync(sandbox, { recursive: true, force: true });
+});
+
+test("ambient browser transport context is not task intent; ordinary embedded text is preserved", () => {
+  const { repo, hook } = fixture();
+  const request = "תזכור להוסיף CSV בעתיד";
+  hook({
+    hook_event_name: "UserPromptSubmit",
+    prompt:
+      '\n<in-app-browser-context source="ambient-ui-state">\nCurrent URL: https://example.invalid/private\n</in-app-browser-context>\n\n## My request:\n' +
+      request,
+  });
+  assert.equal(project(repo).tasks[0].title, request);
+  assert.equal(project(repo).tasks[0].description, request);
+  const embedded =
+    'Explain this literal XML: <in-app-browser-context source="ambient-ui-state">example</in-app-browser-context>';
+  hook({ hook_event_name: "UserPromptSubmit", prompt: embedded });
+  assert.ok(project(repo).tasks.some((t) => t.description === embedded));
+});
+
+test("installed post routes use portable matchers and late asynchronous plans cannot replace a newer plan", () => {
+  const { repo, hook } = fixture();
+  install({
+    roots: [],
+    start: false,
+    startup: false,
+    gitHooks: false,
+    gitDiscovery: false,
+  });
+  try {
+    const config = JSON.parse(
+      fs.readFileSync(
+        path.join(process.env.DIP_USER_HOME, ".codex", "hooks.json"),
+        "utf8",
+      ),
+    );
+    const groups = config.hooks.PostToolUse;
+    for (const group of groups) assert.ok(!/\(\?[=!<]/.test(group.matcher));
+    const handlers = groups
+      .filter((g) => new RegExp(g.matcher).test("update_plan"))
+      .flatMap((g) => g.hooks);
+    assert.equal(handlers.length, 2);
+    assert.ok(
+      handlers.find((h) => h.async).command.includes("--skip-plan-tools"),
+    );
+    assert.ok(
+      !handlers.find((h) => !h.async).command.includes("--skip-plan-tools"),
+    );
+    hook({ hook_event_name: "UserPromptSubmit", prompt: "Make a plan" });
+    const payload = {
+      cwd: repo.root,
+      session_id: "workflow",
+      hook_event_name: "PostToolUse",
+      tool_name: "update_plan",
+      tool_use_id: "old",
+      tool_input: { plan: [{ step: "Old", status: "pending" }] },
+    };
+    handleHook(payload, "codex");
+    handleHook(
+      {
+        ...payload,
+        tool_use_id: "new",
+        tool_input: { plan: [{ step: "New", status: "pending" }] },
+      },
+      "codex",
+    );
+    handleHook(payload, "codex", { skipPlanTools: true });
+    const task = project(repo).tasks[0];
+    assert.equal(task.plan.input.plan[0].step, "New");
+    assert.equal(task.history.filter((e) => e.type === "task.plan").length, 2);
+    handleHook(
+      {
+        ...payload,
+        tool_name: "Bash",
+        tool_use_id: "command",
+        tool_input: { command: "echo ok" },
+      },
+      "codex",
+      { skipPlanTools: true },
+    );
+    assert.ok(
+      project(repo).activity.some(
+        (a) => a.kind === "PostToolUse" && a.tool === "Bash",
+      ),
+    );
+  } finally {
+    uninstall();
+  }
+});
+
+test("Claude ExitPlanMode preserves injected prose and planning does not claim development", () => {
+  const { repo } = fixture();
+  const base = { cwd: repo.root, session_id: "claude-exit" };
+  handleHook(
+    {
+      ...base,
+      hook_event_name: "UserPromptSubmit",
+      prompt: "Create a future plan",
+    },
+    "claude",
+  );
+  handleHook(
+    {
+      ...base,
+      hook_event_name: "PreToolUse",
+      tool_name: "ExitPlanMode",
+      tool_input: {},
+    },
+    "claude",
+  );
+  const input = {
+    ...base,
+    hook_event_name: "PostToolUse",
+    tool_name: "ExitPlanMode",
+    tool_use_id: "exit",
+    tool_input: {
+      plan: "# Future plan\nAdd CSV export",
+      plan_file_path: "plans/export.md",
+    },
+  };
+  handleHook(input, "claude", { skipPlanTools: true });
+  assert.equal(project(repo).tasks[0].plan, null);
+  handleHook(input, "claude");
+  const task = project(repo).tasks[0];
+  assert.equal(task.status, "backlog");
+  assert.equal(task.plan.input.text, "# Future plan\nAdd CSV export");
+  assert.equal(briefPlan(task.plan).text, "# Future plan\nAdd CSV export");
 });
 
 test("standalone intent CLI calls preserve future backlog while compound shell commands still claim work", () => {

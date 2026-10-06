@@ -81,7 +81,7 @@ DIP adds measurable tracking overhead. A Windows/Node.js 24 benchmark used 30 al
 
 The paired added median was **150.88 ms**. Capture made **zero additional model calls**, and a separate check recovered the task, plan and handoff after runtime deletion. This measures synthetic local tracking cost with no daemon; it does not establish faster coding, better model reasoning or token savings. [Method, both measured runs and raw samples](docs/benchmarks/README.md).
 
-Real Codex desktop QA covered planning, future ideas, cross-session recovery and refinement in two projects. Existing plans were recovered without duplicate tasks, and a future idea gained acceptance criteria while staying in backlog. The hooks were awaiting user trust, so persistence used the explicit CLI/MCP fallback. Automatic prompt capture in a trusted desktop session remains unverified. [Desktop trial results and fixes](docs/desktop-qa.md).
+Real Codex desktop QA covered planning, future ideas, cross-session recovery and refinement in two projects. Existing plans were recovered without duplicate tasks, and a future idea gained acceptance criteria while staying in backlog. Those trials used the explicit CLI/MCP fallback while hooks awaited trust. A later trusted-session test observed actual prompt capture and matching pre/post records for an ordinary tool call; v0.3.4 fixes a matcher incompatibility found in that test. Native planning-tool delivery, a trusted live Claude Code run and long-session reliability remain open. [Desktop trial results and fixes](docs/desktop-qa.md).
 
 ## Verification against real code
 

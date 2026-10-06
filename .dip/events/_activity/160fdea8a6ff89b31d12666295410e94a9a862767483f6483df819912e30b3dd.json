@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "160fdea8a6ff89b31d12666295410e94a9a862767483f6483df819912e30b3dd",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:34:34.446Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content AGENTS.md; Get-Content package.json; git status --short",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4d99921b-dcad-4d9d-854c-f33a464575f5"
+      },
+      {
+        "at": "2026-10-06T11:34:34.462Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/live-workflow-smoke.mjs; npm pack --silent; npm install -g .\\vxu-labs-dip-0.3.4.tgz; node bin/dip.js task verify --id task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183 --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --check unit",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-64fd7fce-a1c3-4429-8725-9db559243865"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:34:34.572Z",
+  "parents": [],
+  "branch": "main"
+}

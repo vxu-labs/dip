@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3bf280e0e0eac40a84b8f38231b1c60a9d40c1d24388e68d3d508ed463b6e141",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T11:13:02.540Z",
+        "kind": "files.changed",
+        "files": [
+          "bin",
+          "skills/dip",
+          "skills"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "268722fd-5eed-4535-970a-938d5552c634"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:13:02.553Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -6,6 +6,7 @@ import { performance } from "node:perf_hooks";
 import { execFileSync } from "node:child_process";
 import { ensure, project, Runtime } from "../src/core.js";
 import { automationHealth } from "../src/health.js";
+import { planningTool } from "../src/workflow.js";
 
 if (process.platform !== "win32")
   throw new Error("Installed Windows hook check");
@@ -44,29 +45,45 @@ try {
       const handlers = groups
         .flatMap((g) => g.hooks)
         .filter((h) => h.command?.includes("--dip-hook"));
-      assert.equal(
-        handlers.length,
-        1,
-        "Expected exactly one installed DIP handler",
+      const effective = handlers.filter(
+        (h) =>
+          !(
+            planningTool(input.tool_name || "") &&
+            input.hook_event_name === "PostToolUse" &&
+            h.command.includes("--skip-plan-tools")
+          ),
       );
-      const handler = handlers[0];
+      assert.equal(
+        effective.length,
+        1,
+        "Expected exactly one effective installed DIP handler",
+      );
+      const handler = effective[0];
       if (
         input.tool_name === "update_plan" &&
         input.hook_event_name === "PostToolUse"
       )
         assert.ok(!handler.async, "Plan updates must remain ordered");
-      const start = performance.now();
-      const output = execFileSync(
-        "powershell",
-        ["-NoProfile", "-Command", handler.commandWindows || handler.command],
-        {
-          input: JSON.stringify({ cwd: repoRoot, ...input }),
-          encoding: "utf8",
-          windowsHide: true,
-        },
-      );
-      times.push(performance.now() - start);
-      return output.trim() ? JSON.parse(output) : {};
+      let result = {};
+      for (const selected of handlers) {
+        const start = performance.now();
+        const output = execFileSync(
+          "powershell",
+          [
+            "-NoProfile",
+            "-Command",
+            selected.commandWindows || selected.command,
+          ],
+          {
+            input: JSON.stringify({ cwd: repoRoot, ...input }),
+            encoding: "utf8",
+            windowsHide: true,
+          },
+        );
+        times.push(performance.now() - start);
+        if (output.trim()) result = JSON.parse(output);
+      }
+      return result;
     };
     for (const kind of ["future", "plan", "development"]) {
       const session_id = `live-flow-${agent}-${kind}`;

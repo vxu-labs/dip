@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cc5d9b5d7abb8abdc363b1d6ca0a894be2c1198a3c1d4d47e5f70498320acd31",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:08:49.469Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {ensure,project,Runtime} from './src/core.js';\nconst repo=ensure(process.cwd(),{instructions:false});const rt=new Runtime();\nrt.flush(repo.root);\nconst state=project(repo,rt);\nconst id='task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183';\nconsole.log(JSON.stringify({task:state.tasks.filter(t=>t.id===id).map(t=>({id:t.id,title:t.title,status:t.status,active:t.active})),events:state.activity.filter(a=>a.taskId===id).map(a=>({kind:a.kind,tool:a.tool,agent:a.agent,session:a.session})).slice(0,15)}));\nrt.close();\n'@ | node --input-type=module; Get-Command claude -ErrorAction SilentlyContinue | Select-Object Name,Source",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e84ae3b5-25ba-477c-baf2-c255396d87d9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:08:50.108Z",
+  "parents": [],
+  "branch": "main"
+}

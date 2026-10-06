@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9ca03108db693b2bc88edbacfaa604c769a509d91d0444da9969ba9255f63eeb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:34:49.427Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {ensure, Runtime, project} from './src/core.js';\nconst rt=new Runtime();const repo=ensure(process.cwd(),{instructions:false});rt.flush(repo.root);const p=project(repo,rt);const a=p.activity.filter(x=>JSON.stringify(x).includes('01a10fa9-6164-7550-bdf9-5c21b772eafd'));console.log(JSON.stringify({count:a.length,probe:a.filter(x=>JSON.stringify(x).includes('DIP live post-hook probe')),recent:a.slice(0,4)},null,2));rt.close();\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b8f5948e-3601-4750-96f7-db3be16c959c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:34:49.823Z",
+  "parents": [],
+  "branch": "main"
+}

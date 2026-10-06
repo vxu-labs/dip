@@ -32,3 +32,22 @@ The desktop hook review showed DIP handlers as **New**, awaiting user trust. Com
 App-tool-created initial turns must not be treated as equivalent to a UI-submitted user prompt for hook coverage. The automatic channel limitation above was also checked after the UI submissions. A trusted-host automatic-capture trial remains necessary. Claude model-backed desktop operation was not tested; its installed command adapters have separate synthetic coverage.
 
 The controlled [with/without benchmark](benchmarks/README.md) measures local tracking cost, separately from these model-backed observations.
+
+## Trusted hook follow-up, v0.3.4
+
+Later on the same test date, the user approved the hook definitions in the DIP project conversation. Actual UserPromptSubmit capture supplied a task ID and actor/session context. PreToolUse delivery worked, but ordinary PostToolUse did not: the installed matcher contained negative lookahead, which Codex's Rust regex engine does not support. The corrected definition uses `.*` and filters plan tools inside Node, leaving a separate synchronous route for ordered plan updates.
+
+The user approved this changed definition separately. A read-only shell call then produced these actual durable records, with no manual hook invocation:
+
+| Field        | Before                                    | After                                     |
+| ------------ | ----------------------------------------- | ----------------------------------------- |
+| Kind         | PreToolUse                                | PostToolUse                               |
+| UTC time     | 11:31:55.423                              | 11:31:59.500                              |
+| Tool         | Bash                                      | Bash                                      |
+| Tool-call ID | exec-16d8dcd0-eb19-4657-88f6-dbb83c934622 | exec-16d8dcd0-eb19-4657-88f6-dbb83c934622 |
+| Task         | Same captured request                     | Same captured request                     |
+| Session      | Same Codex conversation                   | Same Codex conversation                   |
+
+Ordinary shell and MCP post records were also observed. This evidence establishes the tested prompt and ordinary-tool paths after trust. Native planning-tool delivery and the full lifecycle still require separate live evidence.
+
+A model-backed app-tool follow-up in the duplicate-file project took 53.237 seconds. It saved a two-step management-only QA plan and a distinct future Hebrew-search test idea. Both were read back and independently confirmed in backlog on disk. The native update_plan tool was unavailable, and the turn supplied no hook task identity; the agent correctly used explicit DIP task_plan. Recovery in another session remains a future test. No product code or user settings were changed. Claude Code has installed command/fixture coverage, including TodoWrite and injected ExitPlanMode prose, but no trusted model-backed run on this machine.

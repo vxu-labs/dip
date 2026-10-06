@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f51a3026f6540e5d51a6f1445cbf5854162722af7739fed2354b4009bed3f2c4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:38:36.553Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npm pack --silent; npm install -g .\\vxu-labs-dip-0.3.4.tgz; @'\nimport fs from 'node:fs';\nfs.mkdirSync('.dip-local',{recursive:true});fs.writeFileSync('.dip-local/release-0.3.4.md',`DIP now records ordinary Codex tool completion after the user trusts the updated hook definition. Live QA found that the previous matcher used negative lookahead, unsupported by Codex's Rust regex engine. A portable catch-all with a Node-side plan filter restores delivery while preserving synchronous plan ordering.\n\nActual trusted Codex delivery was observed for a user prompt and matching pre/post records for a read-only shell call, plus ordinary MCP post events. Automatic browser transport context is excluded from task intent while ordinary request content remains intact. Claude ExitPlanMode's injected prose is retained alongside TodoWrite plans.\n\nValidation: 68 unit cases, 66 Windows passes and two POSIX skips; configured Chromium verification; clean package install/uninstall smoke; six synthetic installed-command workflow cases. The public QA report distinguishes this live proof from synthetic inputs. A model-backed second-project plan/future trial used explicit MCP because native update_plan was unavailable.\n\nNative planning-tool delivery, a trusted model-backed Claude Code run and long-session reliability remain open in the contributor backlog. Codex and Claude Code have separate host trust requirements. Use is at your own responsibility; review installation, capture and coordination boundaries in the README.\n`);console.log('Release notes saved.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c5531e15-3afe-4518-a360-58ce7bf765ae"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:38:36.862Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5d5f1e07-d6e9-4788-99ca-9de6f676f52c",
+  "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Approved live Codex UserPromptSubmit supplied task identity. A real shell probe produced matching pre/post records after corrected hook approval; ordinary MCP post delivery observed. Fixed Rust-incompatible matcher using catch-all plus Node plan filter; normalized automatic browser wrapper and preserved Claude ExitPlanMode prose. Configured unit check passed 68 cases (66 Windows passes, 2 POSIX skips), browser verification and clean package smoke passed. Live second-project plan/future QA persisted through explicit MCP in backlog; native update_plan unavailable. DIP-L01 updated with partial proof and remaining coverage.",
+    "next": "Publish v0.3.4 and verify Windows/Linux/macOS CI. Keep native plan delivery, trusted live Claude operation and long-session coverage open.",
+    "head": "427260818b73ec15e53eca289c1a2566297655bf"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:37:15.042Z",
+  "parents": [
+    "693d3b23-17a3-49ad-8945-15e972568aea"
+  ],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4215ff12837e0292e7e9e05d272a4b147d50110e07ad481288ef6f39c56c5cc4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T11:11:56.222Z",
+        "kind": "files.changed",
+        "files": [
+          "src/install-transaction.js",
+          "test/git-discovery.test.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "e1901df2-b0a9-4364-b11d-72669f018cad"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:11:56.226Z",
+  "parents": [],
+  "branch": "main"
+}

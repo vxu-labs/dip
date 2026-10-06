@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "689337acf8ebe059db2404054a77af4238e09c9dc717e13a3e6cc6c80b57861d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:35:29.546Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {Runtime,ensure,project} from './src/core.js';\nconst r=new Runtime();const roots=r.db.prepare('SELECT root FROM repositories').all().filter(x=>/dupe/i.test(x.root));for(const {root} of roots){r.flush(root);const p=project(ensure(root,{instructions:false}),r);console.log(JSON.stringify({root,tasks:p.tasks.filter(x=>JSON.stringify(x).includes('QA-TRUST-20261006')).map(x=>({id:x.id,title:x.title,status:x.status,plan:x.plan}))},null,2));}r.close();\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-bb18d7f5-e3f2-410f-9f40-1ba75f37e757"
+      },
+      {
+        "at": "2026-10-06T11:35:29.576Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "mcp__dip__task_claim",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-86c23d57-ebf3-475f-a09b-e2529d81d32f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:35:30.751Z",
+  "parents": [],
+  "branch": "main"
+}

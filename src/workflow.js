@@ -1,6 +1,22 @@
 // Only known structured plan tools are promoted; unrelated task tools remain activity.
 export const planningTool = (name) =>
-  /(?:^|[.:])(?:update_plan|TodoWrite)$/i.test(name);
+  /(?:^|[.:])(?:update_plan|TodoWrite|ExitPlanMode)$/i.test(name);
+
+export function promptRequest(raw) {
+  const text = String(raw || "");
+  const wrapper =
+    /^<in-app-browser-context\s+source=["']ambient-ui-state["']>[\s\S]*?<\/in-app-browser-context>\s*## My request:[ \t]*\r?\n([\s\S]*)$/;
+  const match = wrapper.exec(text.trimStart());
+  return match ? match[1] : text;
+}
+
+export function planInput(tool, input) {
+  if (/(?:^|[.:])ExitPlanMode$/i.test(tool) && typeof input.plan === "string") {
+    const { plan, ...rest } = input;
+    return { ...rest, text: plan };
+  }
+  return input;
+}
 
 export const readingTool = (name) =>
   /(?:^|[.:])(?:Read|Glob|Grep|read_file|list_files)$/i.test(name);

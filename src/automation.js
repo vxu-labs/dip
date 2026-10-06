@@ -25,7 +25,13 @@ import {
 } from "./util.js";
 import { writeGitHooks, restoreProjectHooks } from "./git-hooks.js";
 import { installTransaction } from "./install-transaction.js";
-import { planningTool, readingTool, intentCommand } from "./workflow.js";
+import {
+  planningTool,
+  readingTool,
+  intentCommand,
+  promptRequest,
+  planInput,
+} from "./workflow.js";
 import {
   GitDiscovery,
   traceDirectory,
@@ -286,23 +292,28 @@ function installAgents(state) {
       if (process.platform === "win32" && agent === "codex") {
         handler.commandWindows = `node --disable-warning=ExperimentalWarning ${quote(CLI)} hook --dip-hook --runtime ${quote(home())} --agent codex`;
       }
+      const synchronous = { ...handler };
+      delete synchronous.async;
+      if (event === "PostToolUse") {
+        handler.command += " --skip-plan-tools";
+        if (handler.commandWindows)
+          handler.commandWindows += " --skip-plan-tools";
+      }
       groups.push({
         ...(event.includes("ToolUse")
           ? {
-              matcher:
-                event === "PostToolUse"
-                  ? "^(?!(?:.*[.:])?(?:update_plan|TodoWrite)$).*"
-                  : ".*",
+              matcher: ".*",
             }
           : {}),
         hooks: [handler],
       });
       // Plan revisions must arrive in order. Ordinary post-tool capture stays asynchronous.
       if (event === "PostToolUse") {
-        const synchronous = { ...handler };
-        delete synchronous.async;
         groups.push({
-          matcher: "(?:^|[.:])(?:update_plan|TodoWrite)$",
+          matcher:
+            agent === "claude"
+              ? "(?:^|[.:])(?:update_plan|TodoWrite|ExitPlanMode)$"
+              : "(?:^|[.:])(?:update_plan|TodoWrite)$",
           hooks: [synchronous],
         });
       }
@@ -497,7 +508,17 @@ export function uninstall() {
   return { uninstalled: true, dataPreserved: true };
 }
 
-export function handleHook(input, agent = "unknown") {
+export function handleHook(
+  input,
+  agent = "unknown",
+  { skipPlanTools = false } = {},
+) {
+  if (
+    skipPlanTools &&
+    input.hook_event_name === "PostToolUse" &&
+    planningTool(input.tool_name || "")
+  )
+    return {};
   if (!input.cwd) return {};
   let repo;
   try {
@@ -529,11 +550,13 @@ export function handleHook(input, agent = "unknown") {
         if (lease?.actor === actor && lease.expires > Date.now())
           rt.release(repo, active.task, lease.token);
       }
-      const prompt = redact(input.prompt || input.user_prompt || "");
+      const prompt = redact(
+        promptRequest(input.prompt || input.user_prompt || ""),
+      );
       const task = createTask(
         repo,
         {
-          title: prompt.slice(0, 160) || "Agent request",
+          title: prompt.trim().slice(0, 160) || "Agent request",
           description: prompt,
           status: "backlog",
           source: "prompt",
@@ -684,7 +707,7 @@ export function handleHook(input, agent = "unknown") {
         "task.plan",
         {
           tool,
-          input: JSON.parse(redact(JSON.stringify(toolInput))),
+          input: JSON.parse(redact(JSON.stringify(planInput(tool, toolInput)))),
         },
         {
           actor,

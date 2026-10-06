@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fdf7a6c36640b2ffa09c208a651d29ebdd568c9520af3ea522a7e35d813ade0c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:12:35.907Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/workflow.js -TotalCount 103; Get-Content src/automation.js | Select-Object -Skip 262 -First 76; Get-Content src/automation.js | Select-Object -Skip 501 -First 28; Get-Content bin/dip.js | Select-Object -Skip 23 -First 58; rg -n 'PostToolUse|planningTool|update_plan|turn_id' test/workflow.test.js scripts/live-workflow-smoke.mjs | Select-Object -First 22",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-417b52b8-33ef-4be6-8981-02c5896705b0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:12:36.418Z",
+  "parents": [],
+  "branch": "main"
+}

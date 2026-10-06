@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6f3c0a97-2fe0-433a-b10b-2dbaba715fdd",
+  "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+  "type": "task.update",
+  "payload": {
+    "title": "Verify live capture after Codex hook approval",
+    "description": "Verify actual UserPromptSubmit and tool association after user approval, exercise a live structured plan/future idea, and distinguish Claude Code adapter configuration from a trusted live-host test.",
+    "acceptance": [
+      "Confirm this real user prompt and associated tools are durable in the project ledger.",
+      "Check live structured-plan and future-idea behavior without inferring completion from a plan.",
+      "Explain shared Codex/Claude lifecycle concepts and separate host trust accurately."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:08:48.832Z",
+  "parents": [
+    "1093db37-f271-41eb-a304-2186d7b6b995"
+  ],
+  "branch": "main"
+}

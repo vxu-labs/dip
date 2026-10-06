@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "44d81671-359c-4d6b-9b0f-84d1a07b24ea",
+  "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src",
+      "bin",
+      "test",
+      "scripts",
+      "docs",
+      "package.json",
+      "package-lock.json",
+      "public/index.html",
+      "QA_REPORT.md",
+      "docs/compatibility.md",
+      "docs/desktop-qa.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:36:06.493Z",
+  "parents": [
+    "6ec9b1ee-1767-4b9c-b63f-575151b8d561"
+  ],
+  "branch": "main"
+}

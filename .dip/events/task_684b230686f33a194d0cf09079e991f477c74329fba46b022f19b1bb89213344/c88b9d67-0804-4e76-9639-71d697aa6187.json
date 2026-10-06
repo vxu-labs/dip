@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c88b9d67-0804-4e76-9639-71d697aa6187",
+  "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Partial live proof on 2026-10-06: approved Codex prompt supplied task identity; approved v0.3.4 portable PostToolUse route recorded matching pre/post for a real shell probe and ordinary MCP posts. Model-backed follow-up persisted plan/future backlog explicitly via MCP; native update_plan unavailable and no hook identity on app-tool turn. Claude TodoWrite/ExitPlanMode fixture coverage passed. This backlog item remains open.",
+    "next": "Verify native planning-tool delivery in a trusted session, perform a trusted live Claude Code run, and exercise stop/reload/long-session recovery.",
+    "head": "427260818b73ec15e53eca289c1a2566297655bf"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:36:07.826Z",
+  "parents": [
+    "27362035e4b690dfa54e5993fd8f69d7bdbd0d28bfd71f3ba9fc7bf732601668"
+  ],
+  "branch": "main"
+}

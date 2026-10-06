@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "77b34a6a0e64d890f227f1819055ec5576b7845998155b5736b9c724da5b6ecc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:31:59.500Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Write-Output 'DIP live post-hook probe'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-16d8dcd0-eb19-4657-88f6-dbb83c934622"
+      },
+      {
+        "at": "2026-10-06T11:31:59.629Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "mcp__codex_app__wait_threads",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-df4fd3aa-bb20-45de-81c2-2723d24c639b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:32:01.393Z",
+  "parents": [],
+  "branch": "main"
+}

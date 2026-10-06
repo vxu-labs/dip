@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2c6af66de5baf30de120207e1ff5747b4d7afedcba7d2c2141f730a6a4dd0e66",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T11:19:53.130Z",
+        "kind": "files.changed",
+        "files": [
+          "bin/dip.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "4cea2678-de4f-4cbc-985b-f38ba785eefc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:19:53.135Z",
+  "parents": [],
+  "branch": "main"
+}
