@@ -17,6 +17,7 @@ import {
   daemonAlive,
 } from "../src/automation.js";
 import { home, json } from "../src/util.js";
+import { VERSION } from "../src/version.js";
 
 const argv = process.argv.slice(2);
 const command = argv.shift() || "help";
@@ -58,7 +59,7 @@ const print = (value) =>
   process.stdout.write(JSON.stringify(value, null, 2) + "\n");
 try {
   if (command === "--version" || command === "version")
-    process.stdout.write("0.1.0\n");
+    process.stdout.write(VERSION + "\n");
   else if (command === "init") {
     const r = ensure(cwd),
       rt = new Runtime();
@@ -76,6 +77,7 @@ try {
         startup: !flags["no-startup"],
         agents: !flags["no-agents"],
         gitHooks: !flags["no-git-hooks"],
+        port: flags.port === undefined ? undefined : Number(flags.port),
       }),
     );
   else if (command === "uninstall") print(uninstall());
@@ -92,7 +94,14 @@ try {
     );
   else if (command === "start") print(startDaemon());
   else if (command === "stop") print(stopDaemon());
-  else if (command === "daemon") await runDaemon();
+  else if (command === "flush") {
+    const rt = new Runtime();
+    try {
+      print({ flushed: rt.flush(), errors: rt.lastFlushErrors });
+    } finally {
+      rt.close();
+    }
+  } else if (command === "daemon") await runDaemon();
   else if (command === "discover")
     print(
       scan(
@@ -143,35 +152,19 @@ try {
       };
     print(await execute(action, args, cwd));
   } else if (command === "doctor") {
-    const repo = ensure(cwd),
-      rt = new Runtime();
-    try {
-      const state = project(repo, rt);
-      print({
-        version: "0.1.0",
-        node: process.version,
-        repo: repo.root,
-        branch: repo.branch,
-        daemon: daemonAlive(),
-        installation: json(path.join(home(), "install.json"), null),
-        errors: state.errors,
-        pendingEvents: rt.db
-          .prepare("SELECT count(*) AS count FROM queue WHERE root=?")
-          .get(repo.root).count,
-        coverage: [
-          "agent lifecycle hooks (trusted and enabled)",
-          "Git hooks (where not overridden)",
-          "filesystem watcher (registered roots)",
-        ],
-        limitations: [
-          "Independent clones need shared live coordination",
-          "Hooks do not cover unobserved tools or bypassed integrations",
-          "Model assertions never establish verified completion",
-        ],
-      });
-    } finally {
-      rt.close();
-    }
+    const { automationHealth } = await import("../src/health.js");
+    print({
+      version: VERSION,
+      node: process.version,
+      repo: path.resolve(cwd),
+      runtime: home(),
+      automation: automationHealth(cwd),
+      limitations: [
+        "Independent clones need shared live coordination",
+        "Hooks do not cover unobserved tools or bypassed integrations",
+        "Model assertions never establish verified completion",
+      ],
+    });
   } else {
     process.stdout.write(
       `DIP — automatic project memory and development activity\n\ndip install [--roots PATH]  One-time machine integration and discovery\ndip init                   Initialize this project\ndip serve                  Open the local dashboard URL\ndip context                Compact agent handoff\ndip task create --title X  Save meaningful intent\ndip task next              Find unblocked work\ndip task claim --id ID --actor AGENT\ndip task checkpoint --id ID --summary X\ndip task verify --id ID --check NAME\ndip reconcile              Compare evidence with current code\ndip doctor                 Inspect automation coverage\ndip uninstall              Remove machine integration; preserve data\n\nRequires Node.js 24+. No separate model calls or API key.\n`,

@@ -30,6 +30,7 @@ const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "dip-test-"));
 process.env.DIP_HOME = path.join(sandbox, "runtime");
 process.env.DIP_USER_HOME = path.join(sandbox, "user");
 process.env.DIP_GIT_CONFIG = path.join(sandbox, "global.gitconfig");
+process.env.GIT_CONFIG_GLOBAL = process.env.DIP_GIT_CONFIG;
 let serial = 0;
 function fixture() {
   const root = path.join(sandbox, `repo-${++serial}`);

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7f1224df-28b4-49af-8f97-144793dff3cb",
+  "taskId": "task_ffbc8bab-2730-4469-8a22-8cbbb39fe2f2",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Implemented install rollback and crash journals, owned MCP upgrades, graceful recorder stop/recovery, per-project outbox fault isolation, truthful health, bounded dashboard previews, guarded semantic/scope changes, intent-aware verification, in-flight renewal and scheduling/editing UI. The 46-case suite, Chromium workflow and clean package installation pass locally. Real machine installation and organization CI are next.",
+    "next": "Validate actual machine recording and publish the hardened release after cross-platform CI.",
+    "head": "e5ade22bf10bdf9aecdb4d7ec869d025294be8e6"
+  },
+  "actor": "codex:hardening",
+  "createdAt": "2026-10-06T07:29:19.201Z",
+  "parents": [
+    "34358b31-e027-423e-afdc-8729d18e252b"
+  ],
+  "branch": "main"
+}

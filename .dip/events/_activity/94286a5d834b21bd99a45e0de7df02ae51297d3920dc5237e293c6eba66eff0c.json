@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "94286a5d834b21bd99a45e0de7df02ae51297d3920dc5237e293c6eba66eff0c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T07:30:41.230Z",
+        "kind": "files.changed",
+        "files": [
+          "src/util.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "7d727814-614e-487c-ad5a-f973c4574f2f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T07:30:41.235Z",
+  "parents": [],
+  "branch": "main"
+}

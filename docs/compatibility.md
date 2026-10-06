@@ -14,4 +14,4 @@ Node.js 24+ is required. The implementation uses built-in SQLite, which Node cur
 
 An already-running agent must reload configuration. User hooks are subject to the agent's policies. Installing on a desktop does not deploy scripts to a remote/cloud execution host. Run installation on each execution host.
 
-Machine discovery uses native recursive watchers with a periodic scan fallback. Independent clones and machines synchronize event history via Git but do not share live local leases. Long unattended workers should renew leases with `dip task heartbeat --id ID --token TOKEN`; ordinary agent boundaries renew automatically.
+Machine discovery uses native recursive watchers with a periodic scan fallback. Independent clones and machines synchronize event history via Git but do not share live local leases. Supported in-flight tool IDs allow bounded recorder renewal; configured verification renews ownership itself. External workers can use `dip task heartbeat --id ID --token TOKEN`. `dip doctor` reports configuration and observed sources without asserting agent trust or reload.

@@ -9,7 +9,17 @@ import {
   updateTask,
   append,
 } from "./core.js";
-import { captureSnapshot, redact, git } from "./util.js";
+import { captureSnapshot, redact, git, digest, inScope } from "./util.js";
+
+const intentHash = (task) =>
+  digest(
+    JSON.stringify([
+      task.description || "",
+      task.acceptance || [],
+      task.scope || [],
+      task.dependencies || [],
+    ]),
+  );
 
 export async function execute(action, args = {}, cwd = process.cwd()) {
   const repo = ensure(cwd),
@@ -24,14 +34,26 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
     }
     if (action === "create") return { id: createTask(repo, args, actor) };
     if (action === "get") return taskGet(repo, args.id);
-    if (action === "next")
-      return reconcile(repo, rt)
-        .tasks.filter(
+    if (action === "next") {
+      const state = reconcile(repo, rt);
+      return state.tasks
+        .filter(
           (t) =>
             !t.active &&
             !t.blockedBy.length &&
             !t.dependencyCycle &&
+            !state.activeWorkers.some((w) =>
+              t.scope.some((s) =>
+                w.scope.some((o) => inScope(s, o) || inScope(o, s)),
+              ),
+            ) &&
             ["ready", "backlog"].includes(t.status),
+        )
+        .sort(
+          (a, b) =>
+            (a.priority || 3) - (b.priority || 3) ||
+            (a.due || "9999").localeCompare(b.due || "9999") ||
+            a.id.localeCompare(b.id),
         )
         .slice(0, 10)
         .map((t) => ({
@@ -40,17 +62,21 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
           status: t.status,
           scope: t.scope,
           priority: t.priority,
+          due: t.due,
         }));
+    }
     if (action === "update" || action === "resolve") {
-      if (args.token) rt.assert(repo, args.id, args.token);
-      if (repo.config.mode === "strict" && !args.token)
-        throw new Error("Strict mode requires an ownership token");
+      const lease = rt.guard(repo, args.id, actor, args.token);
       return updateTask(
         repo,
         args.id,
         args.patch || {},
         actor,
         action === "resolve" || args.resolve === true,
+        () => {
+          if (lease && args.patch?.scope)
+            rt.claim(repo, args.id, lease.actor, 120000, args.patch.scope);
+        },
       );
     }
     if (action === "claim") {
@@ -120,9 +146,7 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
     }
     if (action === "checkpoint" || action === "decision") {
       taskGet(repo, args.id);
-      if (args.token) rt.assert(repo, args.id, args.token);
-      if (repo.config.mode === "strict" && !args.token)
-        throw new Error("Strict mode requires an ownership token");
+      rt.guard(repo, args.id, actor, args.token);
       append(
         repo,
         args.id,
@@ -137,10 +161,21 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       return { saved: true };
     }
     if (action === "verify") {
-      if (args.token) rt.assert(repo, args.id, args.token);
-      if (repo.config.mode === "strict" && !args.token)
-        throw new Error("Strict mode requires an ownership token");
-      return await verify(repo, args, actor);
+      const lease = rt.guard(repo, args.id, actor, args.token);
+      const renewal = lease
+        ? setInterval(() => {
+            try {
+              rt.heartbeat(repo, args.id, lease.token);
+            } catch {}
+          }, 10000)
+        : null;
+      try {
+        return await verify(repo, args, actor, () => {
+          if (lease) rt.assert(repo, args.id, lease.token);
+        });
+      } finally {
+        if (renewal) clearInterval(renewal);
+      }
     }
     if (action === "reconcile") return reconcile(repo, rt);
     throw new Error(`Unknown action ${action}`);
@@ -149,7 +184,7 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
   }
 }
 
-async function verify(repo, args, actor) {
+async function verify(repo, args, actor, assertOwnership) {
   const task = taskGet(repo, args.id),
     name = args.check;
   const check = repo.config.verification?.[name];
@@ -193,8 +228,14 @@ async function verify(repo, args, actor) {
       resolve({ exitCode, signal, summary: redact(output).slice(-2000) });
     });
   });
+  assertOwnership();
   const after = captureSnapshot(repo),
-    passed = result.exitCode === 0 && before.hash === after.hash;
+    changedIntentDuringCheck =
+      intentHash(task) !== intentHash(taskGet(repo, args.id)),
+    passed =
+      result.exitCode === 0 &&
+      before.hash === after.hash &&
+      !changedIntentDuringCheck;
   append(
     repo,
     args.id,
@@ -206,6 +247,8 @@ async function verify(repo, args, actor) {
       ...result,
       snapshot: after,
       changedDuringCheck: before.hash !== after.hash,
+      intentHash: intentHash(task),
+      changedIntentDuringCheck,
       codeHead: after.committed ? repo.head : null,
     },
     { actor },
@@ -216,6 +259,7 @@ async function verify(repo, args, actor) {
     passed,
     ...result,
     changedDuringCheck: before.hash !== after.hash,
+    changedIntentDuringCheck,
     snapshot: after.hash,
   };
 }
@@ -240,9 +284,7 @@ export function reconcile(repo, rt) {
         [
           ...Object.keys(evidence.snapshot?.files || {}),
           ...Object.keys(snapshot.files),
-        ].filter((p) =>
-          task.scope.some((s) => p === s || p.startsWith(s + "/")),
-        ),
+        ].filter((p) => task.scope.some((s) => inScope(p, s))),
       );
       task.verification = [...names].every(
         (p) => evidence.snapshot.files[p] === snapshot.files[p],
@@ -255,6 +297,7 @@ export function reconcile(repo, rt) {
       JSON.stringify(evidence.command)
     )
       task.verification = "stale";
+    if (evidence.intentHash !== intentHash(task)) task.verification = "stale";
     task.integrated = snapshot.committed && task.verification === "current";
     task.verifiedComplete =
       task.status === "verified" && task.verification === "current";

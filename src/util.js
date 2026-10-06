@@ -9,6 +9,19 @@ export const home = () =>
 export const digest = (value) =>
   crypto.createHash("sha256").update(value).digest("hex");
 export const id = () => crypto.randomUUID();
+export function canonicalScope(value) {
+  const normalized = value
+    .replaceAll("\\", "/")
+    .split("/")
+    .filter((p) => p && p !== ".")
+    .join("/");
+  return process.platform === "win32" ? normalized.toLowerCase() : normalized;
+}
+export function inScope(file, scope) {
+  const name = canonicalScope(file),
+    parent = canonicalScope(scope);
+  return !parent || name === parent || name.startsWith(parent + "/");
+}
 export function git(cwd, args, optional = false, { raw = false } = {}) {
   try {
     const output = execFileSync("git", ["-C", cwd, ...args], {
@@ -16,6 +29,12 @@ export function git(cwd, args, optional = false, { raw = false } = {}) {
       windowsHide: true,
       stdio: ["ignore", "pipe", "pipe"],
       maxBuffer: 16 * 1024 * 1024,
+      env: {
+        ...process.env,
+        ...(process.env.DIP_GIT_CONFIG
+          ? { GIT_CONFIG_GLOBAL: process.env.DIP_GIT_CONFIG }
+          : {}),
+      },
     });
     return raw ? output : output.trim();
   } catch (e) {
@@ -31,10 +50,30 @@ export function atomic(file, data) {
   try {
     fs.writeFileSync(
       temp,
-      typeof data === "string" ? data : JSON.stringify(data, null, 2) + "\n",
+      typeof data === "string" || Buffer.isBuffer(data)
+        ? data
+        : JSON.stringify(data, null, 2) + "\n",
       { mode: 0o600 },
     );
-    fs.renameSync(temp, file);
+    for (let attempt = 0; ; attempt++) {
+      try {
+        fs.renameSync(temp, file);
+        break;
+      } catch (e) {
+        if (
+          process.platform !== "win32" ||
+          !["EPERM", "EACCES", "EBUSY"].includes(e.code) ||
+          attempt >= 5
+        )
+          throw e;
+        Atomics.wait(
+          new Int32Array(new SharedArrayBuffer(4)),
+          0,
+          0,
+          20 * (attempt + 1),
+        );
+      }
+    }
   } finally {
     if (fs.existsSync(temp)) fs.unlinkSync(temp);
   }

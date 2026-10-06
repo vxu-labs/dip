@@ -12,6 +12,7 @@ import {
   managed,
   redact,
   captureSnapshot,
+  inScope,
 } from "./util.js";
 import { ensureProjectHooks } from "./git-hooks.js";
 
@@ -62,7 +63,7 @@ export function ensure(cwd = process.cwd(), { instructions = true } = {}) {
 
 export class Runtime {
   constructor(directory = home()) {
-    fs.mkdirSync(directory, { recursive: true });
+    fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
     this.db = new DatabaseSync(path.join(directory, "runtime.sqlite"));
     this.db.exec("PRAGMA busy_timeout=5000");
     if (this.db.prepare("PRAGMA journal_mode").get().journal_mode !== "wal")
@@ -71,6 +72,9 @@ export class Runtime {
       CREATE TABLE IF NOT EXISTS leases (repo TEXT, task TEXT, actor TEXT, token TEXT, expires INTEGER, scope TEXT DEFAULT '[]', descriptor TEXT DEFAULT '{}', PRIMARY KEY(repo,task));
       CREATE TABLE IF NOT EXISTS sessions (repo TEXT, session TEXT, task TEXT, actor TEXT, prompt TEXT, last INTEGER, PRIMARY KEY(repo,session));
       CREATE TABLE IF NOT EXISTS queue (id TEXT PRIMARY KEY, root TEXT, session TEXT, data TEXT, at INTEGER);
+      CREATE TABLE IF NOT EXISTS queue_errors (root TEXT PRIMARY KEY, error TEXT, at INTEGER);
+      CREATE TABLE IF NOT EXISTS recorder_sources (root TEXT, source TEXT, kind TEXT, last INTEGER, PRIMARY KEY(root,source));
+      CREATE TABLE IF NOT EXISTS operations (repo TEXT, session TEXT, use_id TEXT, task TEXT, token TEXT, deadline INTEGER, PRIMARY KEY(repo,session,use_id));
       CREATE TABLE IF NOT EXISTS repositories (root TEXT PRIMARY KEY, family TEXT, last INTEGER);`);
     const hasDescriptor = () =>
       this.db
@@ -173,6 +177,23 @@ export class Runtime {
       throw new Error("Ownership expired or changed; claim the task again");
     return lease;
   }
+  guard(repo, task, actor, token) {
+    if (token) return this.assert(repo, task, token);
+    if (repo.config.mode === "strict")
+      throw new Error("Strict mode requires an ownership token");
+    const lease = this.db
+      .prepare("SELECT * FROM leases WHERE repo=? AND task=?")
+      .get(repo.key, task);
+    if (
+      repo.config.mode !== "observe" &&
+      lease?.expires > Date.now() &&
+      lease.actor !== actor
+    )
+      throw new Error(
+        `Task owned by ${lease.actor}; claim it before changing its state`,
+      );
+    return lease?.expires > Date.now() ? lease : null;
+  }
   heartbeat(repo, task, token) {
     this.assert(repo, task, token);
     this.db
@@ -181,10 +202,46 @@ export class Runtime {
       )
       .run(Date.now() + 120000, repo.key, task, token);
   }
+  beginTool(repo, session, useId, task, token, duration = 1800000) {
+    this.assert(repo, task, token);
+    this.db
+      .prepare("INSERT OR REPLACE INTO operations VALUES (?,?,?,?,?,?)")
+      .run(
+        repo.key,
+        session,
+        useId,
+        task,
+        token,
+        Date.now() +
+          Math.max(1000, Math.min(Number(duration) || 1800000, 3600000)),
+      );
+  }
+  endTool(repo, session, useId) {
+    this.db
+      .prepare("DELETE FROM operations WHERE repo=? AND session=? AND use_id=?")
+      .run(repo.key, session, useId);
+  }
+  endSessionTools(repo, session) {
+    this.db
+      .prepare("DELETE FROM operations WHERE repo=? AND session=?")
+      .run(repo.key, session);
+  }
+  renewRunningTools() {
+    const now = Date.now();
+    this.db.prepare("DELETE FROM operations WHERE deadline<=?").run(now);
+    this.db
+      .prepare(
+        "UPDATE leases SET expires=? WHERE expires>? AND EXISTS (SELECT 1 FROM operations o WHERE o.repo=leases.repo AND o.task=leases.task AND o.token=leases.token AND o.deadline>?)",
+      )
+      .run(now + 120000, now, now);
+  }
   release(repo, task, token) {
     this.assert(repo, task, token);
     this.db
       .prepare("DELETE FROM leases WHERE repo=? AND task=? AND token=?")
+      .run(repo.key, task, token);
+    this.db
+      .prepare("DELETE FROM operations WHERE repo=? AND task=? AND token=?")
       .run(repo.key, task, token);
   }
   leases(repo) {
@@ -210,58 +267,78 @@ export class Runtime {
         JSON.stringify({ ...data, recordId: key }),
         Date.now(),
       );
+    this.db
+      .prepare("INSERT OR REPLACE INTO recorder_sources VALUES (?,?,?,?)")
+      .run(
+        repo.root,
+        data.agent || "unknown",
+        data.kind || "unknown",
+        Date.now(),
+      );
   }
   flush(root = null) {
     const rows = root
       ? this.db
           .prepare("SELECT * FROM queue WHERE root=? ORDER BY at LIMIT 500")
           .all(root)
-      : this.db.prepare("SELECT * FROM queue ORDER BY at LIMIT 500").all();
+      : this.db
+          .prepare(
+            "SELECT q.* FROM queue q LEFT JOIN queue_errors e ON q.root=e.root ORDER BY (e.root IS NOT NULL), q.at LIMIT 500",
+          )
+          .all();
     const groups = new Map();
     for (const row of rows) {
       const key = row.root + "\0" + row.session;
       if (!groups.has(key)) groups.set(key, []);
       groups.get(key).push(row);
     }
+    let flushed = 0;
+    this.lastFlushErrors = [];
     for (const group of groups.values()) {
-      const repo = ensure(group[0].root, { instructions: false });
-      const eventId = digest(group.map((r) => r.id).join("\0"));
-      append(
-        repo,
-        "_activity",
-        "activity.batch",
-        {
-          session: group[0].session,
-          records: group.map((r) => JSON.parse(r.data)),
-        },
-        { eventId, actor: "recorder", parents: [] },
-      );
-      this.db.exec("BEGIN IMMEDIATE");
       try {
-        for (const row of group)
-          this.db.prepare("DELETE FROM queue WHERE id=?").run(row.id);
-        this.db.exec("COMMIT");
+        const repo = ensure(group[0].root, { instructions: false });
+        const eventId = digest(group.map((r) => r.id).join("\0"));
+        append(
+          repo,
+          "_activity",
+          "activity.batch",
+          {
+            session: group[0].session,
+            records: group.map((r) => JSON.parse(r.data)),
+          },
+          { eventId, actor: "recorder", parents: [] },
+        );
+        this.db.exec("BEGIN IMMEDIATE");
+        try {
+          for (const row of group)
+            this.db.prepare("DELETE FROM queue WHERE id=?").run(row.id);
+          this.db.exec("COMMIT");
+        } catch (e) {
+          this.db.exec("ROLLBACK");
+          throw e;
+        }
+        flushed += group.length;
+        this.db
+          .prepare("DELETE FROM queue_errors WHERE root=?")
+          .run(group[0].root);
       } catch (e) {
-        this.db.exec("ROLLBACK");
-        throw e;
+        const failure = {
+          root: group[0].root,
+          error: redact(e.message),
+          at: Date.now(),
+        };
+        this.lastFlushErrors.push(failure);
+        this.db
+          .prepare("INSERT OR REPLACE INTO queue_errors VALUES (?,?,?)")
+          .run(failure.root, failure.error, failure.at);
       }
     }
-    return rows.length;
+    return flushed;
   }
 }
 
 function scopesOverlap(a, b) {
-  const normalize = (value) => {
-    const normalized = value
-      .replaceAll("\\", "/")
-      .replace(/^\.\//, "")
-      .replace(/\/+$/, "");
-    if (normalized === ".") return "";
-    return process.platform === "win32" ? normalized.toLowerCase() : normalized;
-  };
-  a = normalize(a);
-  b = normalize(b);
-  return !a || !b || a === b || a.startsWith(b + "/") || b.startsWith(a + "/");
+  return inScope(a, b) || inScope(b, a);
 }
 
 function validateId(value) {
@@ -293,6 +370,8 @@ export function events(repo, task = null) {
       .readdirSync(folder)
       .filter((n) => n.endsWith(".json"))) {
       try {
+        if (fs.lstatSync(path.join(folder, file)).isSymbolicLink())
+          throw new Error("Event files must not be symbolic links");
         const e = json(path.join(folder, file));
         if (
           e.schemaVersion !== 1 ||
@@ -304,6 +383,17 @@ export function events(repo, task = null) {
           typeof e.payload !== "object"
         )
           throw new Error("Invalid event schema");
+        if (
+          !/^[a-zA-Z0-9_-]{1,100}$/.test(e.eventId) ||
+          typeof e.actor !== "string" ||
+          typeof e.createdAt !== "string"
+        )
+          throw new Error("Invalid event identity");
+        if (
+          e.type === "task.create" &&
+          (typeof e.payload.title !== "string" || !e.payload.title.trim())
+        )
+          throw new Error("Task creation requires a title");
         if (`${e.eventId}.json` !== file)
           throw new Error("Event ID differs from filename");
         if (e.type === "activity.batch" && !Array.isArray(e.payload.records))
@@ -320,7 +410,10 @@ export function events(repo, task = null) {
 }
 export function append(repo, task, type, payload, options = {}) {
   validateId(task);
-  const current = events(repo, task);
+  const current =
+    type === "activity.batch" && options.parents?.length === 0
+      ? { events: [], errors: [] }
+      : events(repo, task);
   if (current.errors.length)
     throw new Error("Repair corrupt events before updating this record");
   const parents = options.parents ?? heads(current.events);
@@ -395,6 +488,8 @@ export function project(repo, runtime = null, taskOnly = null) {
     const state = {
       id: taskId,
       title: "",
+      description: "",
+      acceptance: [],
       status: "backlog",
       dependencies: [],
       scope: [],
@@ -522,8 +617,33 @@ export function createTask(repo, payload, actor = "human") {
   return taskId;
 }
 export function updateValidation(patch) {
+  for (const field of ["title", "description", "due"])
+    if (patch[field] !== undefined && typeof patch[field] !== "string")
+      throw new Error(`${field} must be a string`);
+  if (patch.title !== undefined && !patch.title.trim())
+    throw new Error("Task title is required");
   if (
-    patch.status &&
+    patch.acceptance !== undefined &&
+    (!Array.isArray(patch.acceptance) ||
+      patch.acceptance.some((a) => typeof a !== "string"))
+  )
+    throw new Error("Acceptance criteria must be strings");
+  if (
+    patch.priority !== undefined &&
+    (!Number.isInteger(patch.priority) ||
+      patch.priority < 1 ||
+      patch.priority > 5)
+  )
+    throw new Error("Priority must be an integer from 1 (highest) to 5");
+  if (
+    patch.due &&
+    (!/^\d{4}-\d{2}-\d{2}$/.test(patch.due) ||
+      new Date(patch.due + "T00:00:00Z").toISOString().slice(0, 10) !==
+        patch.due)
+  )
+    throw new Error("Target date must be a valid YYYY-MM-DD date");
+  if (
+    patch.status !== undefined &&
     ![
       "backlog",
       "ready",
@@ -538,13 +658,13 @@ export function updateValidation(patch) {
   )
     throw new Error("Unknown task status");
   if (
-    patch.dependencies &&
+    patch.dependencies !== undefined &&
     (!Array.isArray(patch.dependencies) ||
       patch.dependencies.some((d) => !/^[\w-]+$/.test(d)))
   )
     throw new Error("Invalid dependencies");
   if (
-    patch.scope &&
+    patch.scope !== undefined &&
     (!Array.isArray(patch.scope) ||
       patch.scope.some(
         (p) =>
@@ -571,6 +691,7 @@ export function updateTask(
   patch,
   actor = "human",
   resolve = false,
+  beforeAppend = null,
 ) {
   const task = taskGet(repo, taskId);
   updateValidation(patch);
@@ -581,6 +702,7 @@ export function updateTask(
   if (patch.dependencies?.includes(taskId))
     throw new Error("A task cannot depend on itself");
   for (const dep of patch.dependencies || []) taskGet(repo, dep);
+  beforeAppend?.();
   append(repo, taskId, resolve ? "task.resolve" : "task.update", patch, {
     actor,
   });

@@ -30,7 +30,7 @@ Compact context and the dashboard show active workers across the local Git famil
 
 Root watchers discover new repository candidates directly; ordinary source renames and commits in known repositories do not trigger a full discovery scan. A periodic scan provides fallback coverage. File activity is batched locally without model calls.
 
-Lease refresh occurs at agent tool boundaries. Long-running operations with no observed boundary may exceed the lease period; isolated worktrees protect source files, and the next observed operation must acquire current ownership. Use the heartbeat CLI/API for workers that run long unattended operations. This release does not yet provide distributed leases.
+Lease refresh occurs at agent tool boundaries. With a running recorder and supported tool IDs, in-flight operations also renew ownership up to a bounded deadline; closing tool/session events stop renewal. Configured verification renews its own ownership. Unobserved operations and disabled hooks cannot prove liveness. See [operations](operations.md) for deadlines and recovery. External unattended workers can use the heartbeat CLI/API. This release does not provide distributed leases.
 
 Coordinate mode is the default. It records activity, creates task associations automatically and rejects conflicting claims on supported tool paths. Direct file writes infer project-relative scope automatically. Observe mode records without blocking. Strict mode additionally requires tokens on semantic task mutations. Hooks are workflow controls, not an operating-system security boundary. Arbitrary shell commands, nested processes or an agent editing the integration can bypass them.
 

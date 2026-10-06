@@ -8,6 +8,7 @@ import { handleHook } from "../src/automation.js";
 import { git } from "../src/util.js";
 const folder = fs.mkdtempSync(path.join(os.tmpdir(), "dip-bench-"));
 process.env.DIP_HOME = path.join(folder, "runtime");
+process.env.GIT_CONFIG_GLOBAL = path.join(folder, "global.gitconfig");
 git(folder, ["init"]);
 ensure(folder);
 const sample = {

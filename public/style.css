@@ -349,6 +349,17 @@ footer {
   color: var(--orange);
   border-radius: 8px;
 }
+.automation {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--accent);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.automation.warning {
+  color: var(--orange);
+}
 dialog {
   background: var(--panel);
   color: var(--text);

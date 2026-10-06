@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a9c54717-ec2d-48a9-b8ac-8a19ad04b15f",
+  "taskId": "task_ffbc8bab-2730-4469-8a22-8cbbb39fe2f2",
+  "type": "task.create",
+  "payload": {
+    "title": "Harden DIP for reliable daily development",
+    "description": "Reliable lifecycle and installation/upgrade rollback, truthful automation health, resilient recording, long-running local ownership, usable task scheduling and real dogfooding. Validate current supported platforms and publish a hardened release under VXU Labs.",
+    "scope": [
+      "src",
+      "bin",
+      "public"
+    ],
+    "status": "backlog"
+  },
+  "actor": "agent",
+  "createdAt": "2026-10-06T07:07:21.089Z",
+  "parents": [],
+  "branch": "main"
+}

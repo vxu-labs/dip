@@ -16,6 +16,7 @@ const cli = fileURLToPath(new URL("../bin/dip.js", import.meta.url));
 process.env.DIP_HOME = path.join(sandbox, "runtime");
 process.env.DIP_USER_HOME = path.join(sandbox, "user");
 process.env.DIP_GIT_CONFIG = path.join(sandbox, "gitconfig");
+process.env.GIT_CONFIG_GLOBAL = process.env.DIP_GIT_CONFIG;
 const repoRoot = path.join(sandbox, "project");
 fs.mkdirSync(repoRoot);
 git(repoRoot, ["init", "-b", "main"]);

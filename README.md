@@ -4,7 +4,7 @@
 
 DIP keeps plans, future ideas, checkpoints, ownership and verification evidence alongside your code. It records ordinary agent, Git and file activity automatically. Your existing coding agent handles meaningful intent; DIP makes **zero model/API calls**.
 
-**Status:** early release, Node.js 24+, local-first. Agent hooks must be enabled and trusted in the coding tool. Worktree-family coordination is local to one machine. See [automation coverage](docs/automation.md) for exact triggers and boundaries.
+**Status:** hardened local release, Node.js 24+. Agent hooks must be enabled and trusted in the coding tool. Worktree-family coordination is local to one machine. See [automation coverage](docs/automation.md), [operations and recovery](docs/operations.md), and [adapter verification](docs/compatibility.md) for exact behavior and boundaries.
 
 ## Install once
 

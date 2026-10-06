@@ -24,6 +24,7 @@ import {
   digest,
 } from "./util.js";
 import { writeGitHooks, restoreProjectHooks } from "./git-hooks.js";
+import { installTransaction } from "./install-transaction.js";
 export { writeGitHooks } from "./git-hooks.js";
 
 export const CLI = fileURLToPath(new URL("../bin/dip.js", import.meta.url));
@@ -53,41 +54,120 @@ export function install({
   agents = true,
   gitHooks = true,
   startup = true,
+  port,
 } = {}) {
+  if (
+    port !== undefined &&
+    (!Number.isInteger(port) || port < 0 || port > 65535)
+  )
+    throw new Error("Dashboard port must be between 0 and 65535");
   const directory = home();
   fs.mkdirSync(directory, { recursive: true });
-  let state = json(path.join(directory, "install.json"), {});
-  state = {
-    ...state,
-    active: true,
-    version: 1,
-    roots: [...new Set(roots.map((p) => path.resolve(p)))],
-    installedAt: state.installedAt || new Date().toISOString(),
-    cli: CLI,
-    node: process.execPath,
-  };
-  if (agents) installAgents(state);
-  if (gitHooks) {
-    const hooks = path.join(directory, "git-hooks");
-    const previous = configGit(["--get", "core.hooksPath"], true);
-    if (previous !== hooks) state.previousHooksPath = previous || null;
-    writeGitHooks(hooks, state.previousHooksPath);
-    configGit(["core.hooksPath", hooks]);
-    state.hooksPath = hooks;
-  }
-  if (startup) installStartup(state);
-  atomic(path.join(directory, "install.json"), state);
-  const discovered = scan(state.roots);
-  if (start) startDaemon();
-  return {
-    roots: state.roots,
-    initialized: discovered.initialized,
-    errors: discovered.errors,
-    agents: !!agents,
-    daemon: start,
-    restartAgents: true,
-    trustRequired: true,
-  };
+  const user = USER_HOME();
+  const agentFiles = [
+    path.join(user, ".codex", "hooks.json"),
+    path.join(user, ".codex", "config.toml"),
+    path.join(user, ".claude", "settings.json"),
+    path.join(user, ".claude.json"),
+  ];
+  const profiles =
+    process.platform === "win32"
+      ? [
+          path.join(
+            user,
+            "Documents",
+            "PowerShell",
+            "Microsoft.PowerShell_profile.ps1",
+          ),
+          path.join(
+            user,
+            "Documents",
+            "WindowsPowerShell",
+            "Microsoft.PowerShell_profile.ps1",
+          ),
+        ]
+      : [path.join(user, ".bashrc"), path.join(user, ".zshrc")];
+  const startupFile =
+    process.platform === "win32"
+      ? path.join(
+          user,
+          "AppData",
+          "Roaming",
+          "Microsoft",
+          "Windows",
+          "Start Menu",
+          "Programs",
+          "Startup",
+          "DIP.vbs",
+        )
+      : process.platform === "darwin"
+        ? path.join(user, "Library", "LaunchAgents", "dev.dip.plist")
+        : path.join(user, ".config", "autostart", "dip.desktop");
+  const gitFiles = process.env.DIP_GIT_CONFIG
+    ? [process.env.DIP_GIT_CONFIG]
+    : process.env.GIT_CONFIG_GLOBAL
+      ? [process.env.GIT_CONFIG_GLOBAL]
+      : [
+          path.join(os.homedir(), ".gitconfig"),
+          path.join(
+            process.env.XDG_CONFIG_HOME || path.join(os.homedir(), ".config"),
+            "git",
+            "config",
+          ),
+        ];
+  const files = [
+    path.join(directory, "install.json"),
+    ...gitFiles,
+    ...(agents ? agentFiles.flatMap((f) => [f, f + ".dip-backup"]) : []),
+    ...(startup ? [...profiles, startupFile] : []),
+    ...(gitHooks
+      ? [
+          "pre-commit",
+          "post-commit",
+          "post-checkout",
+          "post-merge",
+          "post-rewrite",
+          "pre-push",
+        ].map((n) => path.join(directory, "git-hooks", n))
+      : []),
+  ];
+  return installTransaction(directory, files, () => {
+    let state = json(path.join(directory, "install.json"), {});
+    state = {
+      ...state,
+      cliBeforeUpgrade: state.cli,
+      active: true,
+      version: 1,
+      roots: [...new Set(roots.map((p) => path.resolve(p)))],
+      installedAt: state.installedAt || new Date().toISOString(),
+      cli: CLI,
+      node: process.execPath,
+      port: port ?? state.port ?? 4317,
+    };
+    if (agents) installAgents(state);
+    if (gitHooks) {
+      const hooks = path.join(directory, "git-hooks");
+      const previous = configGit(["--get", "core.hooksPath"], true);
+      if (previous !== hooks) state.previousHooksPath = previous || null;
+      writeGitHooks(hooks, state.previousHooksPath);
+      configGit(["core.hooksPath", hooks]);
+      state.hooksPath = hooks;
+    }
+    if (startup) installStartup(state);
+    if (start && daemonAlive()) stopDaemon();
+    atomic(path.join(directory, "install.json"), state);
+    const discovered = scan(state.roots);
+    if (start) startDaemon();
+    return {
+      roots: state.roots,
+      initialized: discovered.initialized,
+      errors: discovered.errors,
+      agents: !!agents,
+      daemon: start,
+      restartAgents: true,
+      trustRequired: true,
+    };
+  });
 }
 function installAgents(state) {
   const user = USER_HOME(),
@@ -103,7 +183,14 @@ function installAgents(state) {
     settings.mcp_servers?.dip,
     claudeSettings.mcpServers?.dip,
   ])
-    if (existing && !existing.args?.includes(CLI))
+    if (
+      existing &&
+      !existing.args?.includes(CLI) &&
+      !(
+        state.cliBeforeUpgrade &&
+        existing.args?.includes(state.cliBeforeUpgrade)
+      )
+    )
       throw new Error(
         "An unrelated MCP server named dip already exists; choose another name before installing DIP",
       );
@@ -126,7 +213,8 @@ function installAgents(state) {
       "SubagentStop",
     ];
     if (agent === "codex") eventNames.push("Interrupt");
-    if (agent === "claude") eventNames.push("StopFailure");
+    if (agent === "claude")
+      eventNames.push("StopFailure", "PostToolUseFailure");
     for (const event of eventNames) {
       const groups = (settings.hooks[event] || [])
         .map((g) => ({
@@ -160,7 +248,8 @@ function installAgents(state) {
     state.agentFiles.push(file);
   }
   settings.features ||= {};
-  state.previousCodexHooks ??= settings.features.hooks ?? null;
+  if (!Object.hasOwn(state, "previousCodexHooks"))
+    state.previousCodexHooks = settings.features.hooks ?? null;
   settings.features.hooks = true;
   settings.mcp_servers ||= {};
   settings.mcp_servers.dip = {
@@ -188,7 +277,7 @@ function backup(file) {
 }
 function installStartup(state) {
   const user = USER_HOME(),
-    command = `${quote(process.execPath)} ${quote(CLI)} start`;
+    command = `${quote(process.execPath)} --disable-warning=ExperimentalWarning ${quote(CLI)} start`;
   if (process.platform === "win32") {
     const file = path.join(
       user,
@@ -250,7 +339,16 @@ function installStartup(state) {
       process.platform === "win32"
         ? `if (Test-Path -LiteralPath '${escapedCli}') {\n  & '${escapedNode}' '${escapedCli}' start | Out-Null\n  if (-not (Get-Command git -CommandType Function -ErrorAction SilentlyContinue)) {\n    function global:git {\n      $alGitArgs = @($args)\n      & (Get-Command git -CommandType Application | Select-Object -First 1).Source @alGitArgs\n      $alGitExit = $LASTEXITCODE\n      if ($alGitExit -eq 0 -and ($alGitArgs -contains 'init' -or $alGitArgs -contains 'clone')) {\n        & '${escapedNode}' '${escapedCli}' after-git -- @alGitArgs | Out-Null\n      }\n      $global:LASTEXITCODE = $alGitExit\n    }\n  }\n}`
         : `[ ! -f ${shellQuote(CLI)} ] || ${shellQuote(process.execPath)} ${shellQuote(CLI)} start >/dev/null 2>&1\nif ! typeset -f git >/dev/null 2>&1; then\n  git() {\n    command git "$@"\n    al_git_exit=$?\n    if [ "$al_git_exit" -eq 0 ]; then\n      case " $* " in *" init "*|*" clone "*) ${shellQuote(process.execPath)} ${shellQuote(CLI)} after-git -- "$@" >/dev/null ;; esac\n    fi\n    return "$al_git_exit"\n  }\nfi`;
-    const block = `${begin}\n${body}\n${end}`;
+    const quietBody = body
+      .replaceAll(
+        `'${escapedNode}' '${escapedCli}'`,
+        `'${escapedNode}' --disable-warning=ExperimentalWarning '${escapedCli}'`,
+      )
+      .replaceAll(
+        `${shellQuote(process.execPath)} ${shellQuote(CLI)}`,
+        `${shellQuote(process.execPath)} --disable-warning=ExperimentalWarning ${shellQuote(CLI)}`,
+      );
+    const block = `${begin}\n${quietBody}\n${end}`;
     const regex = /# dip:start[\s\S]*?# dip:end/g;
     atomic(
       file,
@@ -342,6 +440,13 @@ export function handleHook(input, agent = "unknown") {
     const event = input.hook_event_name || "Unknown";
     let active = rt.session(repo, session);
     if (event === "UserPromptSubmit") {
+      if (active?.task) {
+        const lease = rt.db
+          .prepare("SELECT * FROM leases WHERE repo=? AND task=?")
+          .get(repo.key, active.task);
+        if (lease?.actor === actor && lease.expires > Date.now())
+          rt.release(repo, active.task, lease.token);
+      }
       const prompt = redact(input.prompt || input.user_prompt || "");
       const task = createTask(
         repo,
@@ -405,7 +510,17 @@ export function handleHook(input, agent = "unknown") {
             );
           scope = [...new Set([...scope, ...inferred])];
         }
-        rt.claim(repo, active.task, actor, 120000, scope);
+        const lease = rt.claim(repo, active.task, actor, 120000, scope);
+        if (input.tool_use_id && daemonAlive())
+          rt.beginTool(
+            repo,
+            session,
+            String(input.tool_use_id),
+            active.task,
+            lease.token,
+            toolInput.timeout_ms ||
+              (toolInput.timeout ? Number(toolInput.timeout) * 1000 : 1800000),
+          );
         if (JSON.stringify(scope) !== JSON.stringify(task.scope))
           append(repo, active.task, "task.update", { scope }, { actor });
         if (["backlog", "ready"].includes(task.status))
@@ -467,6 +582,11 @@ export function handleHook(input, agent = "unknown") {
     const unique = input.tool_use_id
       ? `${agent}:${session}:${event}:${input.tool_use_id}`
       : id();
+    if (
+      ["PostToolUse", "PostToolUseFailure"].includes(event) &&
+      input.tool_use_id
+    )
+      rt.endTool(repo, session, String(input.tool_use_id));
     rt.enqueue(repo, session, summary, unique);
     if (
       ["Stop", "SessionEnd", "PreCompact", "Interrupt", "StopFailure"].includes(
@@ -486,6 +606,7 @@ export function handleHook(input, agent = "unknown") {
           },
           { actor },
         );
+      rt.endSessionTools(repo, session);
       rt.flush(repo.root);
       if (
         ["Stop", "SessionEnd", "Interrupt", "StopFailure"].includes(event) &&
@@ -529,6 +650,10 @@ export function handleGitHook(name, cwd = process.cwd()) {
       agent: "git",
     });
     rt.flush(repo.root);
+    if (rt.lastFlushErrors.length && ["pre-commit", "pre-push"].includes(name))
+      throw new Error(
+        "DIP outbox could not be persisted; run dip doctor and repair the reported project before publishing",
+      );
     if (name === "pre-commit") git(repo.root, ["add", "--", ".dip"]);
     return { recorded: name };
   } finally {
@@ -685,17 +810,56 @@ export function daemonAlive() {
     return false;
   }
 }
+function processAlive(pid) {
+  if (!Number.isInteger(pid) || pid < 1) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+export function recordablePath(root, name) {
+  const file = String(name || "").replaceAll("\\", "/");
+  const parts = file.split("/");
+  const relativeRuntime = path.relative(home(), path.resolve(root, file));
+  return (
+    !!file &&
+    !parts.some((p) =>
+      [".git", ".dip", ".dip-local", "node_modules", ".venv", "venv"].includes(
+        p,
+      ),
+    ) &&
+    !sensitive(file) &&
+    (relativeRuntime.startsWith(".." + path.sep) ||
+      relativeRuntime === ".." ||
+      path.isAbsolute(relativeRuntime))
+  );
+}
 export function startDaemon() {
   if (daemonAlive()) return { running: true, alreadyRunning: true };
+  const owner = json(path.join(home(), "daemon.lock", "owner.json"), null);
+  if (owner?.pid && processAlive(owner.pid))
+    return {
+      running: true,
+      unhealthy: true,
+      pid: owner.pid,
+      message:
+        "Recorder process exists but its heartbeat is stale; run dip stop then dip start",
+    };
   const file = path.join(home(), "daemon.log");
   fs.mkdirSync(home(), { recursive: true });
   const log = fs.openSync(file, "a");
-  const child = spawn(process.execPath, [CLI, "daemon"], {
-    detached: true,
-    windowsHide: true,
-    stdio: ["ignore", log, log],
-    env: process.env,
-  });
+  const child = spawn(
+    process.execPath,
+    ["--disable-warning=ExperimentalWarning", CLI, "daemon"],
+    {
+      detached: true,
+      windowsHide: true,
+      stdio: ["ignore", log, log],
+      env: process.env,
+    },
+  );
   child.unref();
   fs.closeSync(log);
   atomic(path.join(home(), "daemon.json"), {
@@ -708,12 +872,27 @@ export function startDaemon() {
 export function stopDaemon() {
   const file = path.join(home(), "daemon.json"),
     state = json(file, null);
-  if (state?.pid && daemonAlive()) {
+  if (!state?.pid || !processAlive(state.pid)) return { stopped: true };
+  atomic(path.join(home(), "stop-request.json"), {
+    pid: state.pid,
+    instance: state.instance,
+    at: Date.now(),
+  });
+  const until = Date.now() + 4000;
+  const sleeper = new Int32Array(new SharedArrayBuffer(4));
+  while (
+    processAlive(state.pid) &&
+    json(file, null)?.pid === state.pid &&
+    Date.now() < until
+  )
+    Atomics.wait(sleeper, 0, 0, 50);
+  if (processAlive(state.pid) && json(file, null)?.pid === state.pid) {
     try {
       process.kill(state.pid);
     } catch {}
+    return { stopped: true, forced: true, outboxPreserved: true };
   }
-  return { stopped: true };
+  return { stopped: true, graceful: true };
 }
 export async function runDaemon() {
   const lock = path.join(home(), "daemon.lock");
@@ -721,14 +900,19 @@ export async function runDaemon() {
   try {
     fs.mkdirSync(lock);
   } catch (e) {
-    if (daemonAlive()) return;
+    const owner = json(path.join(lock, "owner.json"), null);
+    if (owner?.pid && processAlive(owner.pid)) return;
     try {
+      if (fs.existsSync(path.join(lock, "owner.json")))
+        fs.unlinkSync(path.join(lock, "owner.json"));
       fs.rmdirSync(lock);
       fs.mkdirSync(lock);
     } catch {
       return;
     }
   }
+  const instance = id();
+  atomic(path.join(lock, "owner.json"), { pid: process.pid, instance });
   const rt = new Runtime(),
     watchers = new Map(),
     pending = new Map(),
@@ -737,6 +921,13 @@ export async function runDaemon() {
     roots: [USER_HOME()],
   });
   const attach = () => {
+    const roots = new Set(rt.repositories().map((r) => r.root));
+    for (const [root, watcher] of watchers)
+      if (!roots.has(root) || !fs.existsSync(root)) {
+        watcher.close();
+        watchers.delete(root);
+        pending.delete(root);
+      }
     for (const registered of rt.repositories()) {
       if (watchers.has(registered.root) || !fs.existsSync(registered.root))
         continue;
@@ -745,14 +936,7 @@ export async function runDaemon() {
           registered.root,
           fs.watch(registered.root, { recursive: true }, (event, filename) => {
             const file = String(filename || "").replaceAll("\\", "/");
-            if (
-              !file ||
-              file.startsWith(".dip/") ||
-              file.startsWith(".git/") ||
-              file.startsWith("node_modules/") ||
-              sensitive(file)
-            )
-              return;
+            if (!recordablePath(registered.root, file)) return;
             if (!pending.has(registered.root))
               pending.set(registered.root, new Set());
             pending.get(registered.root).add(file);
@@ -776,11 +960,16 @@ export async function runDaemon() {
         fs.watch(root, { recursive: true }, (event, name) => {
           const value = String(name || "").replaceAll("\\", "/");
           if (
-            value.startsWith(".dip/") ||
-            value.includes("/.dip/") ||
-            value.startsWith("node_modules/") ||
-            value.includes("/node_modules/") ||
-            path.resolve(root, value).startsWith(home() + path.sep)
+            !value ||
+            value
+              .split("/")
+              .some(
+                (p) => p !== ".git" && (excluded.has(p) || p === ".dip-local"),
+              ) ||
+            !recordablePath(
+              root,
+              value.replace(/(^|\/)\.git(?=\/|$)/, "$1git-marker"),
+            )
           )
             return;
           const segments = value.split("/"),
@@ -819,17 +1008,28 @@ export async function runDaemon() {
     }
   atomic(path.join(home(), "daemon.json"), {
     pid: process.pid,
+    instance,
     heartbeat: Date.now(),
   });
   discover();
   const { createServer } = await import("./server.js");
   const dashboard = createServer({
     root: rt.repositories()[0]?.root || USER_HOME(),
-    port: 4317,
+    port: state.port ?? 4317,
   });
-  dashboard.on("error", (e) => console.error(`Dashboard: ${e.message}`));
-  const timer = setInterval(() => {
+  let dashboardUrl = null,
+    lastError = null;
+  dashboard.on("error", (e) => {
+    lastError = `Dashboard: ${e.message}`;
+    if (e.code === "EADDRINUSE") dashboard.listen(0, "127.0.0.1");
+    else console.error(lastError);
+  });
+  dashboard.on("listening", () => {
+    dashboardUrl = `http://127.0.0.1:${dashboard.address().port}`;
+  });
+  const flushPending = () => {
     try {
+      rt.renewRunningTools();
       for (const [root, files] of pending) {
         if (!files.size) continue;
         const repo = ensure(root, { instructions: false });
@@ -843,14 +1043,31 @@ export async function runDaemon() {
         pending.delete(root);
       }
       rt.flush();
+      if (rt.lastFlushErrors.length)
+        lastError = rt.lastFlushErrors.map((e) => e.error).join("; ");
       attach();
       atomic(path.join(home(), "daemon.json"), {
         pid: process.pid,
+        instance,
         heartbeat: Date.now(),
+        dashboard: dashboardUrl,
+        watchedRepositories: [...watchers.keys()],
+        watchedRoots: state.roots,
+        lastError,
       });
     } catch (e) {
       console.error(e.stack);
+      lastError = redact(e.message);
     }
+  };
+  const timer = setInterval(() => {
+    flushPending();
+    const request = json(path.join(home(), "stop-request.json"), null);
+    if (
+      request?.pid === process.pid &&
+      (!request.instance || request.instance === instance)
+    )
+      cleanup();
   }, 1000);
   const periodic = setInterval(discover, 60000);
   const cleanup = () => {
@@ -860,12 +1077,21 @@ export async function runDaemon() {
     dashboard.close();
     for (const w of [...watchers.values(), ...rootWatchers]) w.close();
     try {
+      flushPending();
       rt.flush();
     } catch {}
     rt.close();
     try {
+      fs.unlinkSync(path.join(lock, "owner.json"));
       fs.rmdirSync(lock);
     } catch {}
+    const request = path.join(home(), "stop-request.json");
+    if (json(request, null)?.pid === process.pid) fs.unlinkSync(request);
+    if (json(path.join(home(), "daemon.json"), null)?.instance === instance)
+      atomic(path.join(home(), "daemon.json"), {
+        pid: null,
+        stoppedAt: Date.now(),
+      });
     process.exit(0);
   };
   process.on("SIGTERM", cleanup);

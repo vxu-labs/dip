@@ -2,9 +2,10 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { execute } from "./actions.js";
+import { VERSION } from "./version.js";
 
 export async function runMcp() {
-  const server = new McpServer({ name: "dip", version: "0.1.0" });
+  const server = new McpServer({ name: "dip", version: VERSION });
   const root = {
     root: z
       .string()
@@ -171,6 +172,30 @@ export async function runMcp() {
       token: z.string().optional(),
     },
     "checkpoint",
+  );
+  add(
+    "task_heartbeat",
+    "Renew ownership for an external unattended worker; ordinary agent tool boundaries renew automatically.",
+    { id: z.string(), token: z.string() },
+    "heartbeat",
+  );
+  add(
+    "task_release",
+    "Release owned work explicitly so another local worker can proceed.",
+    { id: z.string(), token: z.string() },
+    "release",
+  );
+  add(
+    "task_decision",
+    "Persist a meaningful development decision using the current agent.",
+    {
+      id: z.string(),
+      summary: z.string(),
+      next: z.string().optional(),
+      actor: z.string().optional(),
+      token: z.string().optional(),
+    },
+    "decision",
   );
   add(
     "task_verify",

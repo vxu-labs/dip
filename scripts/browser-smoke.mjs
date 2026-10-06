@@ -9,6 +9,7 @@ import { createServer } from "../src/server.js";
 
 const root = fs.mkdtempSync(path.join(os.tmpdir(), "dip-browser-"));
 process.env.DIP_HOME = path.join(root, ".runtime");
+process.env.GIT_CONFIG_GLOBAL = path.join(root, ".gitconfig");
 git(root, ["init", "-b", "main"]);
 const repo = ensure(root);
 const parser = createTask(repo, {
@@ -91,10 +92,35 @@ try {
   await page
     .getByPlaceholder("What should we build or remember?")
     .fill("Browser-created task");
+  await page.locator('[name="due"]').fill("2030-01-01");
+  await page.locator('[name="priority"]').selectOption("2");
   await page.getByRole("button", { name: "Save to project" }).click();
   await page
     .getByRole("button", { name: "Browser-created task", exact: false })
     .waitFor();
+  assert.ok(
+    (await page.locator("#automation-status").textContent()).includes(
+      "not installed",
+    ),
+  );
+  await page
+    .getByRole("button", { name: "Browser-created task", exact: false })
+    .click();
+  await page
+    .getByRole("button", { name: "Edit requirements & schedule" })
+    .click();
+  await page
+    .locator('[name="description"]')
+    .fill("Updated requirement through the dashboard");
+  await page.getByRole("button", { name: "Save to project" }).click();
+  await page.getByRole("button", { name: "Schedule", exact: false }).click();
+  await page.getByRole("heading", { name: "Schedule & priorities" }).waitFor();
+  assert.ok(
+    (await page.locator("#content").textContent()).includes(
+      "Browser-created task",
+    ),
+  );
+  await page.getByRole("button", { name: "Overview", exact: false }).click();
   await page
     .getByRole("button", { name: "Add CSV export", exact: false })
     .click();

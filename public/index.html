@@ -16,13 +16,14 @@
         <button class="nav active" data-view="overview">▦ Overview</button
         ><button class="nav" data-view="board">▤ Work board</button
         ><button class="nav" data-view="activity">◷ Activity</button>
+        <button class="nav" data-view="schedule">▥ Schedule</button>
       </nav>
       <div class="sidebar-bottom">
         <span class="live-dot"></span> <span id="connection">Connecting</span>
         <p>
           Your work stays with your code.<br />No model calls. No cloud account.
         </p>
-        <small>v0.1.0 · Apache-2.0</small>
+        <small>v0.2.0 · Apache-2.0</small>
       </div>
     </aside>
     <main>
@@ -38,6 +39,7 @@
         <button class="primary" id="new-task">＋ New task</button>
       </header>
       <div id="notice" role="status" hidden></div>
+      <div id="automation-status" role="status"></div>
       <section class="metrics" id="metrics"></section>
       <div class="toolbar">
         <div class="section-label" id="section-label">
@@ -59,8 +61,23 @@
     <dialog id="task-dialog">
       <form id="task-form">
         <div class="dialog-head">
-          <h2>Save a task or future idea</h2>
+          <h2 id="task-form-title">Save a task or future idea</h2>
           <button type="button" class="icon close">×</button>
+        </div>
+        <div class="form-row">
+          <label
+            >Priority<select name="priority">
+              <option value="1">1 · Critical</option>
+              <option value="2">2 · High</option>
+              <option value="3" selected>3 · Normal</option>
+              <option value="4">4 · Low</option>
+              <option value="5">5 · Later</option>
+            </select></label
+          ><label
+            >Dependencies<input
+              name="dependencies"
+              placeholder="Task IDs, separated by commas"
+          /></label>
         </div>
         <label
           >Title<input

@@ -17,6 +17,9 @@ let state = { tasks: [], activity: [], checks: [] },
   token = "",
   signature = "",
   currentDetail = null;
+let editingTask = null;
+let healthAt = 0,
+  healthRoot = "";
 const leases = new Map();
 const url = (p) =>
   p + (selected ? "?root=" + encodeURIComponent(selected) : "");
@@ -51,7 +54,7 @@ async function action(action, args) {
   const res = await fetch(url("/api/action"), {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-dip-token": token },
-    body: JSON.stringify({ action, args }),
+    body: JSON.stringify({ action, args: { actor: "dashboard", ...args } }),
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Request failed");
@@ -73,6 +76,18 @@ async function refresh(force = false) {
     const data = await (await fetch(url("/api/state"))).json();
     if (data.error) throw new Error(data.error);
     state = data;
+    if (selected !== healthRoot || Date.now() - healthAt > 10000) {
+      const health = await (await fetch(url("/api/health"))).json();
+      healthAt = Date.now();
+      healthRoot = selected;
+      const messages = health.issues || [];
+      $("#automation-status").className = messages.length
+        ? "automation warning"
+        : "automation";
+      $("#automation-status").textContent = messages.length
+        ? messages.join(" ")
+        : `Recorder running · ${health.watcherAttached ? "Project watcher active" : "Hooks available"} · Agent hooks require host trust`;
+    }
     $("#connection").textContent = "Local connection active";
     $("#branch").textContent = state.repo?.branch || "No project yet";
     $("#updated").textContent = "Updated " + new Date().toLocaleTimeString();
@@ -141,11 +156,13 @@ function render() {
     overview: "Project overview",
     board: "Work board",
     activity: "Development activity",
+    schedule: "Schedule & priorities",
   }[view];
   $("#section-label").textContent = {
     overview: "YOUR WORK, AT A GLANCE",
     board: "PERSISTENT TASKS",
     activity: "AUTOMATIC EVENT STREAM",
+    schedule: "TARGET DATES & DEPENDENCIES",
   }[view];
   if (view === "activity")
     $("#content").innerHTML = `<div class="activity-list">${
@@ -159,7 +176,30 @@ function render() {
         .join("") ||
       '<div class="empty">Agent, Git, and file activity will appear here automatically.</div>'
     }</div>`;
-  else if (view === "board")
+  else if (view === "schedule") {
+    const today = new Date().toLocaleDateString("en-CA"),
+      scheduled = filtered
+        .filter(
+          (t) =>
+            !t.verifiedComplete &&
+            !["cancelled", "superseded"].includes(t.status),
+        )
+        .sort(
+          (a, b) =>
+            (a.due || "9999").localeCompare(b.due || "9999") ||
+            (a.priority || 3) - (b.priority || 3),
+        );
+    $("#content").innerHTML = `<div class="columns">${column(
+      "Overdue",
+      scheduled.filter((t) => t.due && t.due < today),
+    )}${column(
+      "Upcoming",
+      scheduled.filter((t) => t.due && t.due >= today),
+    )}${column(
+      "No target date",
+      scheduled.filter((t) => !t.due),
+    )}</div>`;
+  } else if (view === "board")
     $("#content").innerHTML = `<div class="board">${column(
       "Backlog",
       filtered.filter((t) => ["backlog", "ready"].includes(t.status)),
@@ -254,6 +294,24 @@ function renderDetail(taskId) {
         }
       };
   };
+  $("#detail").insertAdjacentHTML(
+    "afterbegin",
+    '<button id="edit-intent">Edit requirements & schedule</button>',
+  );
+  bind("#edit-intent", () => {
+    editingTask = t.id;
+    const form = $("#task-form");
+    for (const field of ["title", "description", "due"])
+      form.elements[field].value = t[field] || "";
+    form.elements.acceptance.value = (t.acceptance || []).join("\n");
+    form.elements.scope.value = t.scope.join(", ");
+    form.elements.dependencies.value = t.dependencies.join(", ");
+    form.elements.priority.value = t.priority || 3;
+    $("#task-form-title").textContent = "Update requirements & schedule";
+    $("#detail-dialog").close();
+    currentDetail = null;
+    $("#task-dialog").showModal();
+  });
   bind("#save-status", () =>
     action("update", {
       id: t.id,
@@ -308,7 +366,12 @@ $("#projects").onchange = () => {
   signature = "";
   refresh(true);
 };
-$("#new-task").onclick = () => $("#task-dialog").showModal();
+$("#new-task").onclick = () => {
+  editingTask = null;
+  $("#task-form").reset();
+  $("#task-form-title").textContent = "Save a task or future idea";
+  $("#task-dialog").showModal();
+};
 document.querySelectorAll(".close").forEach(
   (b) =>
     (b.onclick = () => {
@@ -320,7 +383,7 @@ $("#task-form").onsubmit = async (e) => {
   e.preventDefault();
   const form = new FormData(e.target);
   try {
-    await action("create", {
+    const payload = {
       title: form.get("title"),
       description: form.get("description"),
       acceptance: form.get("acceptance").split("\n").filter(Boolean),
@@ -329,8 +392,22 @@ $("#task-form").onsubmit = async (e) => {
         .split(",")
         .map((x) => x.trim())
         .filter(Boolean),
-      due: form.get("due") || undefined,
-    });
+      due: form.get("due") || "",
+      priority: Number(form.get("priority")),
+      dependencies: form
+        .get("dependencies")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+    };
+    if (editingTask)
+      await action("update", {
+        id: editingTask,
+        patch: payload,
+        token: leases.get(editingTask)?.token,
+      });
+    else await action("create", payload);
+    editingTask = null;
     e.target.reset();
     $("#task-dialog").close();
   } catch (e) {

@@ -5,11 +5,12 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { execute } from "./actions.js";
 import { ensure, Runtime } from "./core.js";
+import { automationHealth } from "./health.js";
 
 const publicDir = fileURLToPath(new URL("../public/", import.meta.url));
 export function createServer({ root = process.cwd(), port = 4317 } = {}) {
   try {
-    ensure(root);
+    root = ensure(root).root;
   } catch {
     root = null;
   }
@@ -40,7 +41,10 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
       const runtime = new Runtime();
       let repos;
       try {
-        repos = runtime.repositories().map((r) => r.root);
+        repos = runtime
+          .repositories()
+          .map((r) => r.root)
+          .filter((p) => fs.existsSync(p));
       } finally {
         runtime.close();
       }
@@ -53,21 +57,49 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
         res.end(JSON.stringify(repos));
         return;
       }
+      if (url.pathname === "/api/health") {
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify(automationHealth(selected)));
+        return;
+      }
       if (url.pathname === "/api/state") {
         res.setHeader("Content-Type", "application/json");
-        res.end(
-          JSON.stringify(
-            selected
-              ? {
-                  ...(await execute("reconcile", {}, selected)),
-                  checks: Object.keys(
-                    ensure(selected, { instructions: false }).config
-                      .verification || {},
-                  ),
-                }
-              : { tasks: [], activity: [], errors: [], repo: null, checks: [] },
-          ),
-        );
+        const data = selected
+          ? {
+              ...(await execute("reconcile", {}, selected)),
+              checks: Object.keys(
+                ensure(selected, { instructions: false }).config.verification ||
+                  {},
+              ),
+            }
+          : { tasks: [], activity: [], errors: [], repo: null, checks: [] };
+        data.activityTotal = data.activity.length;
+        data.activity = data.activity.slice(0, 200).map((a) => ({
+          ...a,
+          ...(a.plan
+            ? {
+                plan: a.plan.slice(0, 1500),
+                planTruncated: a.plan.length > 1500,
+              }
+            : {}),
+        }));
+        data.tasks = data.tasks.map((t) => ({
+          ...t,
+          history: t.history.slice(-50).map((e) => ({
+            type: e.type,
+            actor: e.actor,
+            createdAt: e.createdAt,
+          })),
+          evidence: t.evidence.slice(-10).map((e) => ({
+            check: e.check,
+            result: e.result,
+            at: e.at,
+            summary: e.summary,
+          })),
+          checkpoints: t.checkpoints.slice(-5),
+          decisions: t.decisions.slice(-5),
+        }));
+        res.end(JSON.stringify(data));
         return;
       }
       if (url.pathname === "/api/events") {
