@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "338bdd30-c75f-4dce-8c32-41d1d3a653c9",
+  "taskId": "task_961a3099-11c8-49d1-98c9-6c422a347fc8",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Published dashboard redesign commit 9746845. CI 37453439997 passed Windows, Linux and macOS including browser workflows. Clean v0.3.3 package installation smoke passed. The live project dashboard was refreshed and a local preview was saved. Task browser evidence remains current; capture trust/coordination boundaries are unchanged.",
+    "next": "",
+    "head": "9746845500d0398292c06c3b3e149d5e790b1f17"
+  },
+  "actor": "codex:dashboard-design",
+  "createdAt": "2026-10-06T11:03:06.699Z",
+  "parents": [
+    "7f625cdf-0c0d-491a-8acd-4d8823b409f9"
+  ],
+  "branch": "main"
+}
