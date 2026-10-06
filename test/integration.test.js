@@ -8,7 +8,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { fileURLToPath } from "node:url";
 import { ensure, createTask, Runtime, project } from "../src/core.js";
-import { git, atomic } from "../src/util.js";
+import { git, atomic, json } from "../src/util.js";
 import {
   install,
   uninstall,
@@ -265,14 +265,20 @@ test("background service discovers a newly created repo and batches filesystem c
   daemon.stderr.on("data", (c) => (logs += c.toString()));
   daemon.stdout.on("data", () => {});
   try {
-    await until(() =>
-      fs.existsSync(path.join(process.env.DIP_HOME, "daemon.json")),
-    );
+    await until(() => {
+      const state = json(path.join(process.env.DIP_HOME, "daemon.json"), null);
+      return state?.pid === daemon.pid && !!state.dashboard;
+    });
     const fresh = path.join(sandbox, "discovered-new");
     fs.mkdirSync(fresh);
     git(fresh, ["init"]);
     await until(() => fs.existsSync(path.join(fresh, ".dip", "config.json")));
-    await wait(1500);
+    await until(() =>
+      json(
+        path.join(process.env.DIP_HOME, "daemon.json"),
+        null,
+      )?.watchedRepositories?.includes(ensure(fresh).root),
+    );
     fs.writeFileSync(path.join(fresh, "app.js"), "console.log(42)");
     await until(() =>
       project(ensure(fresh)).activity.some(
@@ -280,6 +286,8 @@ test("background service discovers a newly created repo and batches filesystem c
       ),
     );
     assert.ok(!logs.includes("SQLITE_BUSY"));
+  } catch (e) {
+    throw new Error(`${e.message}\nRecorder stderr: ${logs}`, { cause: e });
   } finally {
     daemon.kill();
     await new Promise((resolve) => daemon.once("exit", resolve));
