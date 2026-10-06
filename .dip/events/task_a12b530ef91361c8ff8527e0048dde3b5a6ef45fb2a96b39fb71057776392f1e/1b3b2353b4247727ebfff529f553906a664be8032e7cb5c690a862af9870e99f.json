@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1b3b2353b4247727ebfff529f553906a664be8032e7cb5c690a862af9870e99f",
+  "taskId": "task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L05: Design opt-in coordination across independent clones and machines",
+    "description": "Scope boundary. QA baseline: DIP v0.3.2, 6 October 2026.\n\nLive claims are local to a shared Git worktree family. Independent clones and computers merge durable intent through Git but do not share live leases. Push/merge alone cannot prevent simultaneous execution or guarantee exclusivity.\n\nEvidence and starting points: docs/compatibility.md, docs/automation.md, README.md.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 3,
+    "scope": [
+      "src/core.js",
+      "src/actions.js",
+      "docs/protocol.md"
+    ],
+    "acceptance": [
+      "Document an opt-in shared coordinator and stable project identity while preserving the default offline/local workflow.",
+      "Two independent clones claiming overlapping scope have exactly one winner under the selected coordination mode.",
+      "Test expiry, fencing, partitions, recovery and explicit offline behavior; never imply global ownership from local ASSIGNED state.",
+      "Keep shared data minimal and preserve zero additional capture model calls; disclose network requirements for the optional mode."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.969Z",
+  "parents": [],
+  "branch": "main"
+}

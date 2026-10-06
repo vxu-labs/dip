@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2a2b2a0e7e5fab9c102df6e0b0195a3e3c43fb6802d1963fa8d05a3ca9ba9c7b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T10:33:49.771Z",
+        "kind": "files.changed",
+        "files": [
+          ".github"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "4ce17f67-81ef-4569-ad72-ad90c735c0e5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T10:33:49.776Z",
+  "parents": [],
+  "branch": "main"
+}

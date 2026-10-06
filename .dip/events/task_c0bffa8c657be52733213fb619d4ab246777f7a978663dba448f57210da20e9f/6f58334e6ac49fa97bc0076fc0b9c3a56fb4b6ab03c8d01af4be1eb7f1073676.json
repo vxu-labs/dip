@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6f58334e6ac49fa97bc0076fc0b9c3a56fb4b6ab03c8d01af4be1eb7f1073676",
+  "taskId": "task_c0bffa8c657be52733213fb619d4ab246777f7a978663dba448f57210da20e9f",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L03: Supervise the recorder and recover safely after failure",
+    "description": "Implementation gap. QA baseline: DIP v0.3.2, 6 October 2026.\n\nLogin/profile startup exists, but the recorder has no complete OS-supervised crash recovery. Stale-heartbeat detection can still ask the user to stop/start it. Native Git trace files queue while it is stopped; filesystem and exact tool events cannot be assumed to have been observed during downtime.\n\nEvidence and starting points: src/automation.js, docs/operations.md, docs/git-discovery.md.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 1,
+    "scope": [
+      "src/automation.js",
+      "src/install-transaction.js",
+      "src/health.js",
+      "docs/operations.md"
+    ],
+    "acceptance": [
+      "Use user-level supervision or bounded recovery on supported platforms; validate crash, stale heartbeat, restart races and single-instance ownership.",
+      "Preserve the outbox and fencing rules across recovery; never revive expired/replaced leases or claim to reconstruct unobserved tool invocations.",
+      "Respect deliberate stop/uninstall and preserve existing startup settings, rollback and removal behavior.",
+      "Expose current health versus historical errors and any observation gap with reproducible failure/recovery tests."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.965Z",
+  "parents": [],
+  "branch": "main"
+}

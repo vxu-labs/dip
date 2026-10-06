@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a4126e08dd6863bfb6da4a9f78f01094e27d5db0c227812339e0b1f742b741d2",
+  "taskId": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L02: Ship repository-contained skills and a portable intent fallback",
+    "description": "Implementation gap. QA baseline: DIP v0.3.2, 6 October 2026.\n\nAGENTS.md and CLAUDE.md travel with Git, but automatic per-project .agents/.claude skill generation and a complete intent writer independent of global DIP installation are not implemented. Full runtime use currently requires Node.js 24+ and installation on each execution host.\n\nEvidence and starting points: src/core.js, skills/dip/SKILL.md, docs/compatibility.md.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 1,
+    "scope": [
+      "src/core.js",
+      "skills",
+      "docs/automation.md",
+      "docs/protocol.md"
+    ],
+    "acceptance": [
+      "Generate supported repository skill entry points without overwriting unrelated project instructions or user skills; preserve a versioned upgrade/removal path.",
+      "A fresh clone without globally installed DIP can read outstanding intent and save a plan, future idea and handoff using a documented portable path.",
+      "Prove that portable events project and merge correctly through the standard runtime, including divergent updates and corrupt-history diagnostics.",
+      "Clearly distinguish portable intent persistence from automatic capture/live leases; do not silently install or execute untrusted cloned scripts."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.963Z",
+  "parents": [],
+  "branch": "main"
+}

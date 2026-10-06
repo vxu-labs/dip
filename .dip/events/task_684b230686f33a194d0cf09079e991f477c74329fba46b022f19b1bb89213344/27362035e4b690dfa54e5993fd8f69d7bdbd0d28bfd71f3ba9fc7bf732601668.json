@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "27362035e4b690dfa54e5993fd8f69d7bdbd0d28bfd71f3ba9fc7bf732601668",
+  "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L01: Verify trusted automatic capture in real coding hosts",
+    "description": "Verification gap. QA baseline: DIP v0.3.2, 6 October 2026.\n\nThe v0.3.2 desktop trials validated CLI/MCP fallback, not trusted automatic prompt/plan capture. DIP hooks were awaiting user trust and UserPromptSubmit was unobserved. Claude has installed-command fixture coverage rather than a model-backed host trial.\n\nEvidence and starting points: docs/desktop-qa.md, docs/compatibility.md.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 1,
+    "scope": [
+      "src/automation.js",
+      "src/health.js",
+      "docs/compatibility.md",
+      "docs/desktop-qa.md"
+    ],
+    "acceptance": [
+      "Run bounded real Codex and Claude sessions with hooks loaded and explicitly trusted; record host/OS/version and distinguish UI prompts from app-tool-created turns.",
+      "Verify injected task identity, durable prompt and structured-plan events, future backlog, resume/compaction and handoff behavior against disk state.",
+      "Disabled, untrusted or unsupported hooks remain visibly unconfirmed and preserve the explicit fallback; never bypass host trust.",
+      "Publish redacted reproduction steps, failures and actual coverage; do not infer host delivery from installed configuration."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.960Z",
+  "parents": [],
+  "branch": "main"
+}

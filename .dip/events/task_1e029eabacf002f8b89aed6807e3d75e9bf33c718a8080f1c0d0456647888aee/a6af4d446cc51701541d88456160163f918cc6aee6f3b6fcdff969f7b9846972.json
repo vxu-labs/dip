@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a6af4d446cc51701541d88456160163f918cc6aee6f3b6fcdff969f7b9846972",
+  "taskId": "task_1e029eabacf002f8b89aed6807e3d75e9bf33c718a8080f1c0d0456647888aee",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L06: Expand explicit discovery adapters beyond native Git execution",
+    "description": "Coverage boundary. QA baseline: DIP v0.3.2, 6 October 2026.\n\nTrace2 covers compatible native Git that identifies a worktree. Independent Git libraries, alternate execution hosts/configurations and environment overrides can bypass it. Commands without worktree identity and bare repositories cannot be treated as project discovery signals.\n\nEvidence and starting points: docs/git-discovery.md, docs/compatibility.md.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 3,
+    "scope": [
+      "src/git-discovery.js",
+      "src/automation.js",
+      "docs/git-discovery.md",
+      "docs/compatibility.md"
+    ],
+    "acceptance": [
+      "Choose and verify at least one additional host/client adapter using real worktree context instead of promising universal Git interception.",
+      "Maintain a capability matrix including remote hosts, independent libraries, override conflicts and unsupported/no-worktree cases.",
+      "Preserve unrelated Trace2 targets, existing Git hooks and Git stdout/exit codes; no implicit cloud/model call.",
+      "Test adoption outside discovery roots and truthful unsupported/disabled diagnostics on the selected adapter."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.971Z",
+  "parents": [],
+  "branch": "main"
+}

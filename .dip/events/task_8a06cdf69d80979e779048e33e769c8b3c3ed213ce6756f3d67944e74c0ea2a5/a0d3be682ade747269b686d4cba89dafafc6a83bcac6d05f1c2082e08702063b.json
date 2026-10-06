@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a0d3be682ade747269b686d4cba89dafafc6a83bcac6d05f1c2082e08702063b",
+  "taskId": "task_8a06cdf69d80979e779048e33e769c8b3c3ed213ce6756f3d67944e74c0ea2a5",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L09: Add explicit capture privacy controls and redaction audit fixtures",
+    "description": "Privacy boundary. QA baseline: DIP v0.3.2, 6 October 2026.\n\nCaptured prompts and activity can become committed project data. Redaction is heuristic and does not guarantee removal of every secret/private detail; temporary native trace files can contain raw arguments. The README requires user review before publishing.\n\nEvidence and starting points: README.md, docs/git-discovery.md, docs/operations.md.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 2,
+    "scope": [
+      "src/util.js",
+      "src/automation.js",
+      "src/core.js",
+      "docs/operations.md"
+    ],
+    "acceptance": [
+      "Define documented per-project capture/minimization controls and validate configuration without disabling explicit intent persistence silently.",
+      "Audit known secret/PII fixtures across prompt, plan, intent and diagnostic paths; distinguish sanitized data from raw temporary trace files.",
+      "Expose intentional capture disablement distinctly from unobserved/broken hooks and document retention/review behavior.",
+      "Use deterministic local controls with no implicit telemetry, cloud upload or extra model call; keep warranty/responsibility language accurate."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.977Z",
+  "parents": [],
+  "branch": "main"
+}

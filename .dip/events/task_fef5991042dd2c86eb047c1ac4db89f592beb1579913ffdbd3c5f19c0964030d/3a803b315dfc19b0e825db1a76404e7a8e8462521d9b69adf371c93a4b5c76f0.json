@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3a803b315dfc19b0e825db1a76404e7a8e8462521d9b69adf371c93a4b5c76f0",
+  "taskId": "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L08: Validate large-ledger performance and reduce measured capture overhead",
+    "description": "Measured cost and scale gap. QA baseline: DIP v0.3.2, 6 October 2026.\n\nThe v0.3.2 fallback benchmark measured 150.88 ms paired added blocking median on one Windows machine. It is not a latency guarantee; cold/warm, daemon-backed and large-ledger performance have not been comprehensively characterized.\n\nEvidence and starting points: docs/benchmarks/README.md, src/core.js, src/automation.js.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 2,
+    "scope": [
+      "src/core.js",
+      "src/automation.js",
+      "scripts/benchmark-comparison.mjs",
+      "docs/benchmarks"
+    ],
+    "acceptance": [
+      "Publish p50/p95 and memory/event-volume measurements for cold, warm, batched and immediate-fallback paths with explicit sample sizes.",
+      "Use bounded synthetic ledgers at multiple sizes and declare budgets before optimizing; report setup and projection costs separately.",
+      "Reduce demonstrated bottlenecks while preserving durable capture, retries, causal merges, corruption detection and branch isolation.",
+      "Keep default agent context bounded and add no model or remote API dependency to routine recording."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.975Z",
+  "parents": [],
+  "branch": "main"
+}

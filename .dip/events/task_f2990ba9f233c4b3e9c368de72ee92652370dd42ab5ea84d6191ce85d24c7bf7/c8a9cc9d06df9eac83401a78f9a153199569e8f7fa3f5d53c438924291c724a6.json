@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c8a9cc9d06df9eac83401a78f9a153199569e8f7fa3f5d53c438924291c724a6",
+  "taskId": "task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L04: Reconcile follow-up intent and prose plans without backlog noise",
+    "description": "Protocol boundary. QA baseline: DIP v0.3.2, 6 October 2026.\n\nPrompt capture is conservative. Semantic refinement, selection of an existing task, splitting future ideas and saving prose-only plans still rely on the current agent's explicit intent calls. Instructions and skills cannot guarantee compliance by every agent.\n\nEvidence and starting points: docs/automation.md, docs/desktop-qa.md, src/automation.js.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 2,
+    "scope": [
+      "src/automation.js",
+      "src/mcp.js",
+      "src/core.js",
+      "skills/dip/SKILL.md"
+    ],
+    "acceptance": [
+      "A follow-up refines the existing requirement without leaving an orphaned duplicate actionable request; informational questions do not accumulate as development work.",
+      "Save prose and structured plans under both confirmed-hook and fallback paths while keeping future ideas in backlog.",
+      "Provide a concise intent transition protocol using the existing agent; add no implicit classifier/model call or per-edit semantic logging.",
+      "Test changed requirements, scope/dependencies, interrupted work and truthful verification; agent claims never establish completion."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.967Z",
+  "parents": [],
+  "branch": "main"
+}

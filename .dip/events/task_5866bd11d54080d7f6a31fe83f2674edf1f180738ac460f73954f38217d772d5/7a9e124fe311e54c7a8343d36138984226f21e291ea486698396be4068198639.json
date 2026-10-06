@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7a9e124fe311e54c7a8343d36138984226f21e291ea486698396be4068198639",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.create",
+  "payload": {
+    "title": "DIP-L07: Run a matched model-backed with/without DIP evaluation",
+    "description": "Verification gap. QA baseline: DIP v0.3.2, 6 October 2026.\n\nThe published 30-pair benchmark measures synthetic tracking overhead. The four live desktop trials differ in request/history and have no matched model baseline. They establish no coding-speed, quality or token-saving advantage.\n\nEvidence and starting points: docs/benchmarks/README.md, docs/desktop-qa.md.\n\nThis is unassigned contributor backlog, not implemented work. Preserve the existing license, DCO and local/offline defaults.",
+    "status": "backlog",
+    "priority": 2,
+    "scope": [
+      "scripts/benchmark-comparison.mjs",
+      "docs/benchmarks",
+      "docs/desktop-qa.md"
+    ],
+    "acceptance": [
+      "Predefine bounded scenarios, metrics and run budget; isolate with/without conditions without altering a developer's live integrations.",
+      "Use matched fixtures, prompts, model/settings and fresh-session histories; alternate/randomize condition order and include repeated trials.",
+      "Measure intent retention, duplicate tasks, accurate completion and elapsed/token costs only where observable; account for failures and setup costs.",
+      "Publish sanitized raw results, environment, uncertainty and limitations; no cherry-picking or productivity claim unsupported by the data."
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.972Z",
+  "parents": [],
+  "branch": "main"
+}

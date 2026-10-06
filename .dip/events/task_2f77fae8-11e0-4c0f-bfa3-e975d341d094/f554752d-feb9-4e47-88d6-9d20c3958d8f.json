@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f554752d-feb9-4e47-88d6-9d20c3958d8f",
+  "taskId": "task_2f77fae8-11e0-4c0f-bfa3-e975d341d094",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "CONTRIBUTING.md",
+      "README.md"
+    ]
+  },
+  "actor": "codex:contributor-backlog",
+  "createdAt": "2026-10-06T10:35:52.108Z",
+  "parents": [
+    "4efe6529-fb13-4735-84a1-eae756e5efb4"
+  ],
+  "branch": "main"
+}

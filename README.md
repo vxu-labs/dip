@@ -137,6 +137,8 @@ Uninstall removes DIP's machine integrations while retaining project history and
 
 DIP is early. Help a developer return to a project and understand what happened, what remains and what has actually been checked.
 
+The [QA contributor backlog](CONTRIBUTING.md#project-backlog-from-qa) lists nine actionable limitations stored in this project's `.dip`, with priorities, evidence and acceptance criteria.
+
 - **Start with documentation:** [write a reproducible single-project walkthrough](https://github.com/vxu-labs/dip/issues/1).
 - **Bring your environment:** [report one real OS, shell and agent combination](https://github.com/vxu-labs/dip/issues/2).
 - **Make the dashboard easier to use:** [audit one keyboard-only task flow](https://github.com/vxu-labs/dip/issues/3).

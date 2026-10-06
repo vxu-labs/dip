@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2f931f08da50b6212569d69d06c03d629e8ccdfcc105265becaf74e3d6ec0ad0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T10:33:23.692Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/git-discovery.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "23533c08-db35-49b8-a490-e876ea2d5665"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T10:33:23.696Z",
+  "parents": [],
+  "branch": "main"
+}
