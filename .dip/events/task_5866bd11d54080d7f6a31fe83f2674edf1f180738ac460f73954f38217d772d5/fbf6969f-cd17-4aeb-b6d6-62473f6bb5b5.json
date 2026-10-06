@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fbf6969f-cd17-4aeb-b6d6-62473f6bb5b5",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Longitudinal controlled pilot, supplementary stress, every original result and README are published. Both arms passed all measured quality/intent endpoints; no quality superiority claim is supported. Independent replay and CI 37502649321 passed all three platforms after retained macOS replay-infrastructure repairs. The scoring/input/oracle hash and original flags remained unchanged.",
+    "next": "Broader naturalistic, multi-domain, desktop/Claude, multi-day and duplicate-effort studies remain open.",
+    "head": "b00fc0caf02999dd0c3869c66467e7d84f0b05ce"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:22:21.442Z",
+  "parents": [
+    "c1e429e8-de03-44c9-a679-7610e85fd09f"
+  ],
+  "branch": "main"
+}

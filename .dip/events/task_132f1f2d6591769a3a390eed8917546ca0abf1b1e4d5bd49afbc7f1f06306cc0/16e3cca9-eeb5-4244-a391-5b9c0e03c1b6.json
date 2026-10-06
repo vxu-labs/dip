@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "16e3cca9-eeb5-4244-a391-5b9c0e03c1b6",
+  "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Published complete longitudinal quality evidence and README under VXU Labs. All four paired projects passed 120/120 primary functional cases, 52/52 exact intent checks and 9,216/9,216 exploratory stress checks in each arm; no quality advantage over instructed Markdown baseline observed. All 72 primary snapshots and all 18,432 stress flags independently replayed. Version 2 stress protocol/results retained; version 3 repaired macOS path/output infrastructure only, preserves original scoring/input/oracle hash and every original flag. Configured quality and stress checks passed stable snapshot 26b13599b59995cbef86f7a79872aca42552109d2e6b67e7380bd55359cb745b. CI 37502649321 on b00fc0c passed Windows, Linux and macOS. No authentication copies remain, public credential/path scan clean, all 22 tracked Markdown files have no em dash. Future improvements B01 and B02 remain backlog.",
+    "next": "Experiment complete. Preserve datasets unchanged; future naturalistic/default-agent and multi-day studies require separate protocols.",
+    "head": "b00fc0caf02999dd0c3869c66467e7d84f0b05ce"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:22:20.356Z",
+  "parents": [
+    "d3b10714-2fdf-47a9-a31c-be101efc7174"
+  ],
+  "branch": "main"
+}
