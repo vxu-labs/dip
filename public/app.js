@@ -126,7 +126,11 @@ function render() {
     [
       "Needs attention",
       tasks.filter(
-        (t) => t.interrupted || t.conflicts.length || t.blockedBy.length,
+        (t) =>
+          t.interrupted ||
+          t.conflicts.length ||
+          t.blockedBy.length ||
+          (t.status === "verified" && t.verification === "stale"),
       ).length,
       "Paused, blocked or conflicting",
     ],
@@ -211,7 +215,7 @@ function render() {
       filtered.filter(
         (t) =>
           ["implemented", "blocked", "conflict"].includes(t.status) ||
-          t.verification === "stale",
+          (t.status === "verified" && t.verification === "stale"),
       ),
     )}${column(
       "Verified",

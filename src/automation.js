@@ -1032,7 +1032,13 @@ export async function runDaemon() {
       rt.renewRunningTools();
       for (const [root, files] of pending) {
         if (!files.size) continue;
-        const repo = ensure(root, { instructions: false });
+        let repo;
+        try {
+          repo = ensure(root, { instructions: false });
+        } catch (e) {
+          repo = { root, branch: "unavailable" };
+          lastError = redact(e.message);
+        }
         rt.enqueue(repo, "filesystem", {
           at: new Date().toISOString(),
           kind: "files.changed",

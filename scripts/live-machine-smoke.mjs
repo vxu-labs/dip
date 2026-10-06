@@ -33,6 +33,13 @@ try {
     "Integrated git init did not create DIP immediately",
   );
   repo = ensure(root);
+  const attachDeadline = Date.now() + 10000;
+  while (Date.now() < attachDeadline && !automationHealth(root).watcherAttached)
+    await wait(150);
+  assert.ok(
+    automationHealth(root).watcherAttached,
+    "Project watcher did not attach",
+  );
   fs.writeFileSync(
     path.join(root, "observed.js"),
     "export const observed = true;\n",
@@ -105,6 +112,12 @@ try {
     rt.flush(root);
     rt.db.prepare("DELETE FROM repositories WHERE root=?").run(repo.root);
     rt.close();
+    const detachDeadline = Date.now() + 10000;
+    while (
+      Date.now() < detachDeadline &&
+      automationHealth(root).watcherAttached
+    )
+      await wait(150);
   }
   assert.ok(root.startsWith(path.join(os.tmpdir(), "dip-live-machine-")));
   fs.rmSync(root, { recursive: true, force: true });
