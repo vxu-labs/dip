@@ -25,7 +25,7 @@ import {
 } from "./util.js";
 import { writeGitHooks, restoreProjectHooks } from "./git-hooks.js";
 import { installTransaction } from "./install-transaction.js";
-import { planningTool, readingTool } from "./workflow.js";
+import { planningTool, readingTool, intentCommand } from "./workflow.js";
 import {
   GitDiscovery,
   traceDirectory,
@@ -550,7 +550,12 @@ export function handleHook(input, agent = "unknown") {
       event === "PreToolUse" &&
       !tool.includes("dip") &&
       !planningTool(tool) &&
-      !readingTool(tool)
+      !readingTool(tool) &&
+      !(
+        /(?:^|[.:])(?:Bash|PowerShell|exec_command|shell_command)$/i.test(
+          tool,
+        ) && intentCommand(toolInput)
+      )
     ) {
       if (!active?.task) {
         const task = createTask(
@@ -960,9 +965,22 @@ export function recordablePath(root, name) {
   return (
     !!file &&
     !parts.some((p) =>
-      [".git", ".dip", ".dip-local", "node_modules", ".venv", "venv"].includes(
-        p,
-      ),
+      [
+        ".git",
+        ".dip",
+        ".dip-local",
+        "node_modules",
+        ".venv",
+        "venv",
+        "target",
+        "dist",
+        "build",
+        "coverage",
+        "__pycache__",
+        ".next",
+        ".nuxt",
+        ".turbo",
+      ].includes(p),
     ) &&
     !sensitive(file) &&
     (relativeRuntime.startsWith(".." + path.sep) ||

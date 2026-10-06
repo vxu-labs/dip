@@ -233,6 +233,12 @@ test("watcher filters runtime, nested ledgers and dependencies", () => {
   assert.equal(recordablePath(root, "runtime/runtime.sqlite"), false);
   assert.equal(recordablePath(root, "nested/.dip/events/record.json"), false);
   assert.equal(recordablePath(root, "nested/node_modules/module.js"), false);
+  assert.equal(
+    recordablePath(root, "src-tauri/target/debug/build/output"),
+    false,
+  );
+  assert.equal(recordablePath(root, "dist/bundle.js"), false);
+  assert.equal(recordablePath(root, ".next/cache/generated.json"), false);
   assert.equal(recordablePath(root, "src/code.js"), true);
 });
 

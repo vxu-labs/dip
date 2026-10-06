@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "510d17fec78c8fe43b6d42b1d1b9275c85610f84cf3879cd0115973b518257c5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T09:59:33.329Z",
+        "kind": "files.changed",
+        "files": [
+          "test/cli.test.js",
+          "test",
+          "test/hardening.test.js",
+          "public/index.html",
+          "scripts/package-smoke.mjs",
+          "skills/dip/SKILL.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "3cfff04a-11ac-4ae1-b919-a7f28d52cc06"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T09:59:33.339Z",
+  "parents": [],
+  "branch": "main"
+}

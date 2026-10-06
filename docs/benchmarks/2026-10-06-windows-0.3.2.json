@@ -1,0 +1,496 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-10-06T10:07:50.743Z",
+  "node": "v24.14.0",
+  "platform": "win32",
+  "arch": "x64",
+  "cpu": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+  "logicalCpus": 12,
+  "packageVersion": "0.3.2",
+  "samples": 30,
+  "warmupPairs": 3,
+  "order": "Alternating paired order",
+  "mode": "Fresh Node subprocess hooks, recorder absent, immediate durable fallback; no model calls",
+  "baseline": "Identical file-write subprocess without DIP hooks, instructions, Git integrations or recorder",
+  "withoutDIP": {
+    "medianMs": 79.17,
+    "p95Ms": 85.43
+  },
+  "withDIPBlocking": {
+    "medianMs": 229.25,
+    "p95Ms": 251.2
+  },
+  "withDIPIncludingPostCapture": {
+    "medianMs": 369.57,
+    "p95Ms": 401.26
+  },
+  "pairedAddedBlocking": {
+    "medianMs": 150.88,
+    "p95Ms": 167.37
+  },
+  "recoveryFeatureCheck": {
+    "taskRetained": true,
+    "planRetained": true,
+    "handoffRetained": true,
+    "afterRuntimeDeletion": true
+  },
+  "captureModelCalls": 0,
+  "limitations": [
+    "Synthetic tool payloads, not a model-backed productivity comparison",
+    "Sequential post-hook timing is not the host's asynchronous blocking time",
+    "No daemon; normal installed mode batches capture",
+    "No inference about coding speed, correctness, token savings or all agent surfaces"
+  ],
+  "pairs": [
+    {
+      "index": 0,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 80.35590000000002,
+        "completeMs": 80.36400000000003
+      },
+      "with": {
+        "blockingMs": 225.56849999999986,
+        "completeMs": 369.56899999999996
+      }
+    },
+    {
+      "index": 1,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 227.5353,
+        "completeMs": 364.37459999999965
+      },
+      "without": {
+        "blockingMs": 78.64030000000002,
+        "completeMs": 78.65020000000004
+      }
+    },
+    {
+      "index": 2,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 75.79870000000028,
+        "completeMs": 75.80460000000039
+      },
+      "with": {
+        "blockingMs": 232.32909999999993,
+        "completeMs": 383.3609999999999
+      }
+    },
+    {
+      "index": 3,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 238.51810000000023,
+        "completeMs": 384.9438
+      },
+      "without": {
+        "blockingMs": 84.61500000000024,
+        "completeMs": 84.61670000000004
+      }
+    },
+    {
+      "index": 4,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 83.55110000000013,
+        "completeMs": 83.55259999999998
+      },
+      "with": {
+        "blockingMs": 242.54230000000007,
+        "completeMs": 391.31150000000025
+      }
+    },
+    {
+      "index": 5,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 244.47499999999945,
+        "completeMs": 390.53639999999996
+      },
+      "without": {
+        "blockingMs": 84.33199999999943,
+        "completeMs": 84.33419999999933
+      }
+    },
+    {
+      "index": 6,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 87.97439999999915,
+        "completeMs": 87.97579999999925
+      },
+      "with": {
+        "blockingMs": 253.7479999999996,
+        "completeMs": 401.4499999999998
+      }
+    },
+    {
+      "index": 7,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 240.51020000000062,
+        "completeMs": 383.78540000000066
+      },
+      "without": {
+        "blockingMs": 81.77579999999944,
+        "completeMs": 81.77689999999984
+      }
+    },
+    {
+      "index": 8,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 85.42990000000009,
+        "completeMs": 85.43119999999999
+      },
+      "with": {
+        "blockingMs": 247.51699999999983,
+        "completeMs": 389.5787
+      }
+    },
+    {
+      "index": 9,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 248.6886000000004,
+        "completeMs": 393.2499000000007
+      },
+      "without": {
+        "blockingMs": 81.3202999999994,
+        "completeMs": 81.32139999999981
+      }
+    },
+    {
+      "index": 10,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 80.73869999999988,
+        "completeMs": 80.73979999999938
+      },
+      "with": {
+        "blockingMs": 242.20849999999973,
+        "completeMs": 379.2574999999997
+      }
+    },
+    {
+      "index": 11,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 224.44570000000022,
+        "completeMs": 358.40340000000015
+      },
+      "without": {
+        "blockingMs": 76.28449999999975,
+        "completeMs": 76.28569999999945
+      }
+    },
+    {
+      "index": 12,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 77.58110000000033,
+        "completeMs": 77.58359999999993
+      },
+      "with": {
+        "blockingMs": 240.30100000000039,
+        "completeMs": 401.259
+      }
+    },
+    {
+      "index": 13,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 229.2494999999999,
+        "completeMs": 368.4838
+      },
+      "without": {
+        "blockingMs": 77.52380000000085,
+        "completeMs": 77.52520000000004
+      }
+    },
+    {
+      "index": 14,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 77.41469999999936,
+        "completeMs": 77.41780000000108
+      },
+      "with": {
+        "blockingMs": 223.08640000000014,
+        "completeMs": 359.9238000000005
+      }
+    },
+    {
+      "index": 15,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 228.35889999999927,
+        "completeMs": 365.7633000000005
+      },
+      "without": {
+        "blockingMs": 80.22479999999996,
+        "completeMs": 80.22659999999996
+      }
+    },
+    {
+      "index": 16,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 77.89279999999962,
+        "completeMs": 77.89370000000054
+      },
+      "with": {
+        "blockingMs": 225.09629999999925,
+        "completeMs": 359.9393
+      }
+    },
+    {
+      "index": 17,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 240.34869999999864,
+        "completeMs": 381.16439999999966
+      },
+      "without": {
+        "blockingMs": 80.89800000000105,
+        "completeMs": 80.89919999999984
+      }
+    },
+    {
+      "index": 18,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 81.70749999999862,
+        "completeMs": 81.70929999999862
+      },
+      "with": {
+        "blockingMs": 223.9451999999983,
+        "completeMs": 357.84559999999874
+      }
+    },
+    {
+      "index": 19,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 227.38780000000042,
+        "completeMs": 364.01560000000063
+      },
+      "without": {
+        "blockingMs": 78.07790000000023,
+        "completeMs": 78.07949999999983
+      }
+    },
+    {
+      "index": 20,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 77.94909999999982,
+        "completeMs": 77.95049999999901
+      },
+      "with": {
+        "blockingMs": 224.45139999999992,
+        "completeMs": 359.4376999999986
+      }
+    },
+    {
+      "index": 21,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 218.9943999999996,
+        "completeMs": 356.73469999999907
+      },
+      "without": {
+        "blockingMs": 77.87329999999929,
+        "completeMs": 77.8744000000006
+      }
+    },
+    {
+      "index": 22,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 79.16610000000037,
+        "completeMs": 79.16750000000138
+      },
+      "with": {
+        "blockingMs": 229.5568999999996,
+        "completeMs": 380.6100999999999
+      }
+    },
+    {
+      "index": 23,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 227.41789999999855,
+        "completeMs": 362.0080999999991
+      },
+      "without": {
+        "blockingMs": 76.53549999999996,
+        "completeMs": 76.53659999999945
+      }
+    },
+    {
+      "index": 24,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 77.4395999999997,
+        "completeMs": 77.44050000000061
+      },
+      "with": {
+        "blockingMs": 226.52249999999913,
+        "completeMs": 364.7436999999991
+      }
+    },
+    {
+      "index": 25,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 223.1260999999995,
+        "completeMs": 355.6998999999996
+      },
+      "without": {
+        "blockingMs": 77.46149999999943,
+        "completeMs": 77.46269999999822
+      }
+    },
+    {
+      "index": 26,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 79.16209999999955,
+        "completeMs": 79.16349999999875
+      },
+      "with": {
+        "blockingMs": 234.2499000000007,
+        "completeMs": 388.8154000000013
+      }
+    },
+    {
+      "index": 27,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 251.1970999999994,
+        "completeMs": 399.5818999999992
+      },
+      "without": {
+        "blockingMs": 79.38919999999962,
+        "completeMs": 79.39069999999992
+      }
+    },
+    {
+      "index": 28,
+      "order": [
+        "without",
+        "with"
+      ],
+      "without": {
+        "blockingMs": 80.21969999999965,
+        "completeMs": 80.22109999999884
+      },
+      "with": {
+        "blockingMs": 224.2573999999986,
+        "completeMs": 364.1947999999993
+      }
+    },
+    {
+      "index": 29,
+      "order": [
+        "with",
+        "without"
+      ],
+      "with": {
+        "blockingMs": 245.58239999999932,
+        "completeMs": 386.21759999999995
+      },
+      "without": {
+        "blockingMs": 81.32020000000011,
+        "completeMs": 81.32179999999971
+      }
+    }
+  ]
+}

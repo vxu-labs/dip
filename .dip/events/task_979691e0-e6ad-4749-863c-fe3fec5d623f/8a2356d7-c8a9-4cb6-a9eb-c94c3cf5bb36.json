@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8a2356d7-c8a9-4cb6-a9eb-c94c3cf5bb36",
+  "taskId": "task_979691e0-e6ad-4749-863c-fe3fec5d623f",
+  "type": "task.create",
+  "payload": {
+    "title": "Desktop QA and with-versus-without DIP benchmark",
+    "description": "Run real Codex desktop prompts across projects, audit durable intent/plan capture, fix demonstrated friction, measure controlled local overhead and recovery, publish reproducible results and user-responsibility terms.",
+    "actor": "codex:desktop-qa",
+    "status": "backlog"
+  },
+  "actor": "codex:desktop-qa",
+  "createdAt": "2026-10-06T09:48:57.019Z",
+  "parents": [],
+  "branch": "main"
+}

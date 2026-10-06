@@ -10,6 +10,8 @@ Install the new package, then run `dip install` again. Owned MCP registrations a
 
 The dashboard prefers port 4317 and selects an available port if it is occupied. The actual address is reported by `dip doctor`. You can choose a port with `dip install --port 4318`. `dip serve --port 0` starts a separate viewer on an available port; a viewer alone does not activate recording.
 
+Use doctor's `projectDashboard` URL to open the current project directly. The unqualified dashboard URL remains a machine-wide project picker. Default `dip status` is compact and paginated (`--limit`, `--offset`); use `dip status --full` for raw history. CLI and task-specific `--help` work outside Git. Unobserved prompt capture produces a coverage advisory until the current agent hook is confirmed.
+
 ## Work and verification
 
 Tasks support requirements, acceptance criteria, dependencies, priorities (1 highest, 5 lowest) and target dates. Edit these in the dashboard or through MCP. The Schedule view separates overdue, upcoming and undated work. `task_next` respects priority, dependencies and busy scopes. No automatic completion is inferred from a closed conversation.

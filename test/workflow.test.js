@@ -66,6 +66,34 @@ test.after(() => {
   fs.rmSync(sandbox, { recursive: true, force: true });
 });
 
+test("standalone intent CLI calls preserve future backlog while compound shell commands still claim work", () => {
+  for (const command of [
+    "dip context",
+    "dip task create --title Future",
+    "& 'C:/npm/dip.cmd' task plan --id ID --text Plan",
+  ]) {
+    const { repo, hook } = fixture();
+    hook({
+      hook_event_name: "UserPromptSubmit",
+      prompt: "Remember a future feature",
+    });
+    hook({
+      hook_event_name: "PreToolUse",
+      tool_name: "Bash",
+      tool_input: { command },
+    });
+    assert.equal(project(repo).tasks[0].status, "backlog");
+  }
+  const { repo, hook } = fixture();
+  hook({ hook_event_name: "UserPromptSubmit", prompt: "Develop a feature" });
+  hook({
+    hook_event_name: "PreToolUse",
+    tool_name: "Bash",
+    tool_input: { command: "dip context; npm run build" },
+  });
+  assert.equal(project(repo).tasks[0].status, "in_progress");
+});
+
 test("context and dashboard reads preserve managed agent instructions from another installation", async () => {
   const { repo, hook } = fixture();
   const context = JSON.parse(

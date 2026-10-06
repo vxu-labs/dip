@@ -18,9 +18,18 @@ import {
 } from "../src/automation.js";
 import { home, json } from "../src/util.js";
 import { VERSION } from "../src/version.js";
+import { cliHelp, compactStatus } from "../src/cli-help.js";
 
 const argv = process.argv.slice(2);
 const command = argv.shift() || "help";
+if (
+  ["help", "--help", "-h"].includes(command) ||
+  argv.includes("--help") ||
+  argv.includes("-h")
+) {
+  process.stdout.write(cliHelp(command, argv[0]));
+  process.exit(0);
+}
 const options = {
   title: { type: "string" },
   id: { type: "string" },
@@ -47,14 +56,23 @@ const options = {
   "no-git-hooks": { type: "boolean" },
   "no-git-discovery": { type: "boolean" },
   json: { type: "boolean" },
+  full: { type: "boolean" },
+  limit: { type: "string" },
+  offset: { type: "string" },
   patch: { type: "string" },
 };
-const { values: flags, positionals } = parseArgs({
-  args: argv,
-  options,
-  allowPositionals: true,
-  strict: true,
-});
+let flags, positionals;
+try {
+  ({ values: flags, positionals } = parseArgs({
+    args: argv,
+    options,
+    allowPositionals: true,
+    strict: true,
+  }));
+} catch (e) {
+  process.stderr.write(`DIP: ${e.message}. Run dip --help.\n`);
+  process.exit(1);
+}
 const cwd = flags.root || process.cwd();
 if (flags.runtime) process.env.DIP_HOME = path.resolve(flags.runtime);
 const print = (value) =>
@@ -142,9 +160,18 @@ try {
     command === "context" ||
     command === "status" ||
     command === "reconcile"
-  )
-    print(await execute(command, {}, cwd));
-  else if (command === "task") {
+  ) {
+    const result = await execute(command, {}, cwd);
+    print(
+      command === "status" && !flags.full
+        ? compactStatus(
+            result,
+            Number(flags.limit || 30),
+            Number(flags.offset || 0),
+          )
+        : result,
+    );
+  } else if (command === "task") {
     const action = positionals.shift();
     const args = { ...flags };
     if (flags.patch) args.patch = JSON.parse(flags.patch);

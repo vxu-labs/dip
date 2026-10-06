@@ -13,7 +13,7 @@ const $ = (s) => document.querySelector(s),
     );
 let state = { tasks: [], activity: [], checks: [] },
   view = "overview",
-  selected = "",
+  selected = new URLSearchParams(location.search).get("root") || "",
   token = "",
   signature = "",
   currentDetail = null;
@@ -80,7 +80,7 @@ async function refresh(force = false) {
       const health = await (await fetch(url("/api/health"))).json();
       healthAt = Date.now();
       healthRoot = selected;
-      const messages = health.issues || [];
+      const messages = [...(health.issues || []), ...(health.advisories || [])];
       $("#automation-status").className = messages.length
         ? "automation warning"
         : "automation";

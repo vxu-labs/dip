@@ -1,5 +1,13 @@
 # DIP release validation
 
+## v0.3.2 desktop QA and benchmark
+
+Windows Computer Use inspected the actual Codex app, entered/sent prompts and checked outcomes in two project workflows. Four model-backed trials covered creation, future ideas, fresh-session recovery and acceptance refinement. Disk state confirmed preserved plans, stable task counts and backlog status. Hooks remained untrusted and no automatic prompt events were observed, so the trials establish explicit CLI/MCP fallback behavior. See [the desktop QA report](docs/desktop-qa.md).
+
+Demonstrated friction led to CLI help support, compact/paginated default status, conditional capture instructions, coverage advisories, browser no-store responses, project dashboard links and generated-folder filtering. Standalone intent CLI actions preserve backlog while compound shell commands retain coordination. Four added regression cases bring the suite to 65 cases. Browser QA passed after these changes.
+
+The paired benchmark publishes raw data and both measured runs. v0.3.2's added blocking median was 150.88 ms over 30 alternating pairs, with no additional capture model calls. This is a synthetic overhead benchmark, not a model-productivity A/B claim. [Method and raw samples](docs/benchmarks/README.md).
+
 ## v0.3.1 workflow audit
 
 The audit found that plan metadata was durable but not displayed on its task, planning/read tools could start a future idea, and the agent did not receive the current captured request ID. The fixes store full successful structured plans on the task, show the latest revision in the dashboard/MCP, keep known planning/read tools from claiming work, provide prompt task identity, deduplicate Codex turn retries and expose observed prompt delivery. Prose plans use a dedicated intent tool. Plans do not change verification evidence.

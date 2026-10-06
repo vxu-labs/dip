@@ -87,7 +87,13 @@ try {
   });
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto(`http://127.0.0.1:${server.address().port}`);
+  await page.goto(
+    `http://127.0.0.1:${server.address().port}/?root=${encodeURIComponent(workerRepo.root)}`,
+  );
+  await page.waitForFunction(
+    () => document.querySelector("#branch").textContent === "agent-export",
+  );
+  await page.locator("#projects").selectOption(repo.root);
   await page.getByRole("heading", { name: "Project overview" }).waitFor();
   await page
     .getByRole("button", { name: "Add CSV export", exact: false })

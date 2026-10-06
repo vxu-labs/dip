@@ -5,6 +5,21 @@ export const planningTool = (name) =>
 export const readingTool = (name) =>
   /(?:^|[.:])(?:Read|Glob|Grep|read_file|list_files)$/i.test(name);
 
+export function intentCommand(input) {
+  const command = String(input.command || input.cmd || "")
+    .trim()
+    .replace(/^&\s+/, "");
+  // Recognize only a standalone DIP CLI action; compound commands retain coordination.
+  if (/[;&|\n\r`]/.test(command) || command.includes("$(")) return false;
+  const launcher =
+    /^(?:dip(?:\.cmd|\.ps1)?|["'][^"']*[/\\]dip(?:\.cmd|\.ps1)["'])\s+/i;
+  const args = command.replace(launcher, "");
+  if (args === command) return false;
+  return /^(?:context|status|doctor|init|task\s+(?:create|get|next|update|plan|checkpoint|decision|claim|release|heartbeat|verify))(?:\s|$)/.test(
+    args,
+  );
+}
+
 export function planSteps(input) {
   const entries = input?.plan || input?.todos || input?.steps;
   if (!Array.isArray(entries)) return [];

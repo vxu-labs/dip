@@ -13,7 +13,7 @@ const env = {
   DIP_GIT_CONFIG: path.join(root, "gitconfig"),
   GIT_CONFIG_GLOBAL: path.join(root, "gitconfig"),
 };
-const archive = path.resolve("vxu-labs-dip-0.3.1.tgz");
+const archive = path.resolve("vxu-labs-dip-0.3.2.tgz");
 try {
   execFileSync(
     process.execPath,
@@ -43,7 +43,7 @@ try {
       env,
       windowsHide: true,
     }).trim(),
-    "0.3.1",
+    "0.3.2",
   );
   const project = path.join(root, "project");
   fs.mkdirSync(project);

@@ -20,6 +20,8 @@ Your coding agent supplies the intent. DIP captures routine activity automatical
 
 **Local-first. Apache-2.0. Works with Codex and Claude Code.** DIP requires Node.js 24+ and enabled, trusted agent hooks. Live coordination covers one Git worktree family on one machine. See [automation coverage](docs/automation.md), [operations and recovery](docs/operations.md), and [adapter verification](docs/compatibility.md) for supported behavior and QA boundaries.
 
+**Experimental software. Use at your own risk.** You are responsible for reviewing agent actions, hook permissions, backups and captured `.dip` data before committing or publishing it. Redaction does not guarantee that every secret or private detail is removed. See the [Apache-2.0 license](LICENSE) for warranty and liability terms.
+
 ## Install once
 
 ```sh
@@ -65,6 +67,21 @@ Use the MCP tools for meaningful transitions only:
 6. `project_reconcile` when answering whether something actually exists now.
 
 No manual logging per edit, no repeated plan upload, no separate model account. `project_context` is available for a compact refresh; it is not needed after every tool call. The durable format is documented in [the protocol](docs/protocol.md).
+
+When the current hook has not supplied a task ID, the agent must explicitly save intent and plans through MCP or CLI. `dip doctor` and the dashboard report unobserved prompt capture; installed configuration alone is insufficient. `dip --help` and task-specific help work outside Git. `dip status` returns a compact summary, with `--full` available for raw history.
+
+## Measured cost and real workflow QA
+
+DIP adds measurable tracking overhead. A Windows/Node.js 24 benchmark used 30 alternating pairs of identical file writes after three warm-up pairs:
+
+| Blocking path | Without DIP |  With DIP |
+| ------------- | ----------: | --------: |
+| Median        |    79.17 ms | 229.25 ms |
+| p95           |    85.43 ms | 251.20 ms |
+
+The paired added median was **150.88 ms**. Capture made **zero additional model calls**, and a separate check recovered the task, plan and handoff after runtime deletion. This measures synthetic local tracking cost with no daemon; it does not establish faster coding, better model reasoning or token savings. [Method, both measured runs and raw samples](docs/benchmarks/README.md).
+
+Real Codex desktop QA covered planning, future ideas, cross-session recovery and refinement in two projects. Existing plans were recovered without duplicate tasks, and a future idea gained acceptance criteria while staying in backlog. The hooks were awaiting user trust, so persistence used the explicit CLI/MCP fallback. Automatic prompt capture in a trusted desktop session remains unverified. [Desktop trial results and fixes](docs/desktop-qa.md).
 
 ## Verification against real code
 

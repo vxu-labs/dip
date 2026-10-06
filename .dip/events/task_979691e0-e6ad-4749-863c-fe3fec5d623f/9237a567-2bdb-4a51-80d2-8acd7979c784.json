@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9237a567-2bdb-4a51-80d2-8acd7979c784",
+  "taskId": "task_979691e0-e6ad-4749-863c-fe3fec5d623f",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Four real Codex trials across two projects: two app-tool setup chats and two desktop UI submissions. Disk verified backlog persistence, fresh-chat plan recovery without duplicates and two acceptance refinements. Automatic UserPromptSubmit stayed unobserved; user trust remains pending. Controlled 30-pair benchmark: 79.17 ms baseline, 229.25 ms DIP blocking median, 150.88 ms paired added median; zero capture model calls. Same-ledger status size reduced from 338526 to 757 bytes. Stable configured verification: 65 cases, 63 passed, 2 POSIX skips; browser/deep-link and package checks passed.",
+    "next": "",
+    "head": "48d48a4344da77289cf0969d6da5ccdbdedae001"
+  },
+  "actor": "codex:desktop-qa",
+  "createdAt": "2026-10-06T10:24:04.328Z",
+  "parents": [
+    "f53dd046-bc9b-4857-87ef-75c6455b174d"
+  ],
+  "branch": "main"
+}

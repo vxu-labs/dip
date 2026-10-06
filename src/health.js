@@ -11,6 +11,7 @@ export function automationHealth(root) {
   const daemon = json(path.join(home(), "daemon.json"), null);
   const user = path.resolve(process.env.DIP_USER_HOME || os.homedir());
   const issues = [],
+    advisories = [],
     adapters = {};
   const configuration = (name, hookFile, mcpFile, toml = false) => {
     try {
@@ -90,6 +91,10 @@ export function automationHealth(root) {
     runtime.close();
   }
   const running = daemonAlive();
+  if (repo && installation?.active && !captured.promptCount)
+    advisories.push(
+      "Agent prompt capture has not been observed in this project. Review/load the host hooks; use explicit intent tools until the current hook supplies a task ID.",
+    );
   const nativeGit = {
     enabled: !!installation?.gitDiscovery?.enabled,
     running: !!installation?.gitDiscovery?.enabled && running,
@@ -171,6 +176,10 @@ export function automationHealth(root) {
       lastError: daemon?.lastError || null,
     },
     adapters,
+    projectDashboard:
+      repo && daemon?.dashboard
+        ? `${daemon.dashboard}/?root=${encodeURIComponent(repo.root)}`
+        : null,
     agentCapture: {
       ...captured,
       status: captured.promptCount ? "observed" : "unobserved",
@@ -187,5 +196,6 @@ export function automationHealth(root) {
     failures,
     dataErrors,
     issues,
+    advisories,
   };
 }

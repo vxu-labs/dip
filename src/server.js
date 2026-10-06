@@ -17,6 +17,7 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
   const token = crypto.randomBytes(32).toString("hex");
   const clients = new Set();
   const server = http.createServer(async (req, res) => {
+    res.setHeader("Cache-Control", "no-store");
     try {
       const url = new URL(req.url, "http://127.0.0.1");
       if (

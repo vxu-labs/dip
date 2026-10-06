@@ -33,6 +33,8 @@ Planning and known read tools (`Read`, `Glob`, `Grep`, `read_file`, `list_files`
 
 Changing plan step text or a prose plan invalidates previous verification even when code is unchanged. Updating only structured step progress preserves its requirements hash. Explicit acceptance criteria and scope still belong in the task's intent fields.
 
+Standalone DIP intent CLI actions through known shell tools also leave future requests in backlog. Compound shell commands retain coordination. Common generated folders such as Rust `target`, `dist`, `build`, `coverage`, `.next`, `.nuxt`, `.turbo` and Python `__pycache__` are excluded from future file capture.
+
 `dip doctor` exposes `agentCapture` with delivered prompt count, tasks with captured plans and the last observed prompt time. The dashboard explicitly reports when no agent prompt has been observed in the selected project. This measures durable hook records, including manually supplied test payloads; it cannot prove that a particular live host loaded/trusted its integration. Git/file capture does not reconstruct an unobserved chat request. Restart or reload the host and review its hook trust when configuration changes. Codex documents its [hook review and trust requirements](https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks).
 
 ## Ownership
