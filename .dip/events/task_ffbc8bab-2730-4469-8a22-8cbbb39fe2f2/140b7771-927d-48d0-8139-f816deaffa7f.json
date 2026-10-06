@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "140b7771-927d-48d0-8139-f816deaffa7f",
+  "taskId": "task_ffbc8bab-2730-4469-8a22-8cbbb39fe2f2",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "DIP v0.2.0 is published at https://github.com/vxu-labs/dip/releases/tag/v0.2.0 with the validated package. Real machine automation is installed, the recorder runs at http://127.0.0.1:4317, 17 accessible repositories were adopted, and real native smoke passed for Git bootstrap, installed hook commands and file recording. QA_REPORT.md states remaining host reload/trust and multi-day validation boundaries.",
+    "next": "Restart and trust the integrations in coding hosts, then use the installed workflow for continuing development.",
+    "head": "319c42e074efb85ffff677b50d504245f085ffdf"
+  },
+  "actor": "codex:hardening",
+  "createdAt": "2026-10-06T07:43:54.582Z",
+  "parents": [
+    "5b3f0fd7-2f5d-436d-8cf1-f5b2e7293bfb"
+  ],
+  "branch": "main"
+}
