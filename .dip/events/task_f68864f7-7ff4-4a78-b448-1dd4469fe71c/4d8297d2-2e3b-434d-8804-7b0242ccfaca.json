@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4d8297d2-2e3b-434d-8804-7b0242ccfaca",
+  "taskId": "task_f68864f7-7ff4-4a78-b448-1dd4469fe71c",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Native Git discovery passed the 51-case suite, all three CI platforms, browser and clean package smoke, plus the installed raw-git.exe status bootstrap without profiles. Capability probes are isolated from the live collector and disappeared temporary worktrees are drained safely. Machine discovery is configured and running. Ready to publish v0.3.0.",
+    "next": "Publish v0.3.0 and use ordinary native Git commands to adopt unmonitored projects.",
+    "head": "c2c2c833b8ca544d0f624734970d29facbee1d17"
+  },
+  "actor": "codex:git-discovery",
+  "createdAt": "2026-10-06T08:59:10.374Z",
+  "parents": [
+    "14c77546-9fc7-458f-b605-963be0644a4c"
+  ],
+  "branch": "main"
+}
