@@ -64,7 +64,10 @@ export class Runtime {
   constructor(directory = home()) {
     fs.mkdirSync(directory, { recursive: true });
     this.db = new DatabaseSync(path.join(directory, "runtime.sqlite"));
-    this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;
+    this.db.exec("PRAGMA busy_timeout=5000");
+    if (this.db.prepare("PRAGMA journal_mode").get().journal_mode !== "wal")
+      this.db.exec("PRAGMA journal_mode=WAL");
+    this.db.exec(`
       CREATE TABLE IF NOT EXISTS leases (repo TEXT, task TEXT, actor TEXT, token TEXT, expires INTEGER, scope TEXT DEFAULT '[]', PRIMARY KEY(repo,task));
       CREATE TABLE IF NOT EXISTS sessions (repo TEXT, session TEXT, task TEXT, actor TEXT, prompt TEXT, last INTEGER, PRIMARY KEY(repo,session));
       CREATE TABLE IF NOT EXISTS queue (id TEXT PRIMARY KEY, root TEXT, session TEXT, data TEXT, at INTEGER);

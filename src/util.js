@@ -67,7 +67,7 @@ export function safePath(root, relative) {
   return target;
 }
 export function repoAt(cwd = process.cwd()) {
-  let root = fs.realpathSync(cwd);
+  let root = fs.realpathSync.native(cwd);
   if (!fs.statSync(root).isDirectory()) root = path.dirname(root);
   while (!fs.existsSync(path.join(root, ".git"))) {
     const parent = path.dirname(root);
@@ -85,7 +85,7 @@ export function repoAt(cwd = process.cwd()) {
           .trim()
           .replace(/^gitdir:\s*/, ""),
       );
-  const common = fs.realpathSync(
+  const common = fs.realpathSync.native(
     fs.existsSync(path.join(gitDir, "commondir"))
       ? path.resolve(
           gitDir,

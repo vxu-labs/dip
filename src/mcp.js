@@ -28,20 +28,18 @@ export async function runMcp() {
               repo: result.repo,
               total: all.length,
               nextOffset: all.length > offset + limit ? offset + limit : null,
-              tasks: all
-                .slice(offset, offset + limit)
-                .map((t) => ({
-                  id: t.id,
-                  title: t.title,
-                  status: t.status,
-                  active: t.active,
-                  interrupted: t.interrupted,
-                  verification: t.verification,
-                  integrated: t.integrated,
-                  blockedBy: t.blockedBy,
-                  conflicts: t.conflicts,
-                  checkpoint: t.checkpoints.at(-1)?.summary,
-                })),
+              tasks: all.slice(offset, offset + limit).map((t) => ({
+                id: t.id,
+                title: t.title,
+                status: t.status,
+                active: t.active,
+                interrupted: t.interrupted,
+                verification: t.verification,
+                integrated: t.integrated,
+                blockedBy: t.blockedBy,
+                conflicts: t.conflicts,
+                checkpoint: t.checkpoints.at(-1)?.summary,
+              })),
               errors: result.errors,
               activityRecords: result.activity.length,
             };

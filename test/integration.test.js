@@ -117,7 +117,11 @@ test("worktrees share ownership but their durable task state remains branch-spec
   const otherRoot = path.join(sandbox, "worktree");
   git(repoRoot, ["worktree", "add", otherRoot, "-b", "parallel"]);
   const other = ensure(otherRoot);
-  assert.equal(other.key, repo.key);
+  assert.equal(
+    other.key,
+    repo.key,
+    JSON.stringify({ expected: repo.common, actual: other.common }),
+  );
   const rt = new Runtime();
   try {
     rt.claim(repo, task, "first");
@@ -295,3 +299,39 @@ test("repo-local hook overrides are wrapped automatically and restored on remova
   );
   git(repoRoot, ["config", "--unset", "core.hooksPath"]);
 });
+test(
+  "installed Windows hooks execute with paths containing spaces",
+  { skip: process.platform !== "win32" },
+  () => {
+    install({ roots: [], gitHooks: false, startup: false, start: false });
+    for (const [agent, file] of [
+      ["codex", path.join(process.env.DIP_USER_HOME, ".codex", "hooks.json")],
+      [
+        "claude",
+        path.join(process.env.DIP_USER_HOME, ".claude", "settings.json"),
+      ],
+    ]) {
+      const settings = JSON.parse(fs.readFileSync(file, "utf8"));
+      const handler = settings.hooks.SessionStart.find((g) =>
+        g.hooks.some((h) => h.command.includes("--dip-hook")),
+      ).hooks[0];
+      const output = execFileSync(
+        "powershell",
+        ["-NoProfile", "-Command", handler.commandWindows || handler.command],
+        {
+          input: JSON.stringify({
+            cwd: repoRoot,
+            session_id: "native-hook-" + agent,
+            hook_event_name: "SessionStart",
+          }),
+          env: process.env,
+          windowsHide: true,
+          encoding: "utf8",
+        },
+      );
+      const response = JSON.parse(output);
+      assert.ok(response.hookSpecificOutput.additionalContext.includes(agent));
+    }
+    uninstall();
+  },
+);

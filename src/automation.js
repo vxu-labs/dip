@@ -91,7 +91,7 @@ export function install({
 }
 function installAgents(state) {
   const user = USER_HOME(),
-    command = `${quote(process.execPath)} --disable-warning=ExperimentalWarning ${quote(CLI)} hook --dip-hook`;
+    command = `${quote(process.execPath)} --disable-warning=ExperimentalWarning ${quote(CLI)} hook --dip-hook --runtime ${quote(home())}`;
   state.agentFiles = [];
   for (const [agent, file] of [
     ["codex", path.join(user, ".codex", "hooks.json")],
@@ -110,6 +110,8 @@ function installAgents(state) {
       "SubagentStart",
       "SubagentStop",
     ];
+    if (agent === "codex") eventNames.push("Interrupt");
+    if (agent === "claude") eventNames.push("StopFailure");
     for (const event of eventNames) {
       const groups = (settings.hooks[event] || [])
         .map((g) => ({
@@ -122,12 +124,15 @@ function installAgents(state) {
       const handler = {
         type: "command",
         command: `${command} --agent ${agent}`,
-        timeout: event === "SessionEnd" ? 3 : 10,
+        timeout: ["SessionEnd", "Interrupt"].includes(event) ? 3 : 10,
       };
       if (event === "PostToolUse") handler.async = true;
       if (process.platform === "win32" && agent === "claude") {
         handler.shell = "powershell";
         handler.command = `& ${handler.command}`;
+      }
+      if (process.platform === "win32" && agent === "codex") {
+        handler.commandWindows = `node --disable-warning=ExperimentalWarning ${quote(CLI)} hook --dip-hook --runtime ${quote(home())} --agent codex`;
       }
       groups.push({
         ...(event.includes("ToolUse") ? { matcher: ".*" } : {}),
@@ -335,10 +340,7 @@ export function handleHook(input, agent = "unknown") {
     const event = input.hook_event_name || "Unknown";
     let active = rt.session(repo, session);
     if (event === "UserPromptSubmit") {
-      const prompt = redact(input.prompt || input.user_prompt || "").slice(
-        0,
-        4000,
-      );
+      const prompt = redact(input.prompt || input.user_prompt || "");
       const task = createTask(
         repo,
         {
@@ -453,7 +455,7 @@ export function handleHook(input, agent = "unknown") {
       } else summary.command = redact(command).slice(0, 2000);
     }
     if (/plan|task|todo/i.test(tool) && !tool.includes("dip"))
-      summary.plan = redact(JSON.stringify(toolInput)).slice(0, 12000);
+      summary.plan = redact(JSON.stringify(toolInput));
     if (toolInput.file_path || toolInput.path)
       summary.path = redact(toolInput.file_path || toolInput.path);
     if (input.tool_response?.exit_code !== undefined)
@@ -464,7 +466,11 @@ export function handleHook(input, agent = "unknown") {
       ? `${agent}:${session}:${event}:${input.tool_use_id}`
       : id();
     rt.enqueue(repo, session, summary, unique);
-    if (["Stop", "SessionEnd", "PreCompact"].includes(event)) {
+    if (
+      ["Stop", "SessionEnd", "PreCompact", "Interrupt", "StopFailure"].includes(
+        event,
+      )
+    ) {
       if (active?.task)
         append(
           repo,
@@ -479,7 +485,10 @@ export function handleHook(input, agent = "unknown") {
           { actor },
         );
       rt.flush(repo.root);
-      if (["Stop", "SessionEnd"].includes(event) && active?.task) {
+      if (
+        ["Stop", "SessionEnd", "Interrupt", "StopFailure"].includes(event) &&
+        active?.task
+      ) {
         const lease = rt.db
           .prepare("SELECT * FROM leases WHERE repo=? AND task=? AND actor=?")
           .get(repo.key, active?.task, actor);

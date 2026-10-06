@@ -26,6 +26,7 @@ const options = {
   summary: { type: "string" },
   next: { type: "string" },
   root: { type: "string" },
+  runtime: { type: "string" },
   roots: { type: "string", multiple: true },
   actor: { type: "string" },
   session: { type: "string" },
@@ -51,6 +52,7 @@ const { values: flags, positionals } = parseArgs({
   strict: true,
 });
 const cwd = flags.root || process.cwd();
+if (flags.runtime) process.env.DIP_HOME = path.resolve(flags.runtime);
 const print = (value) =>
   process.stdout.write(JSON.stringify(value, null, 2) + "\n");
 try {

@@ -465,3 +465,28 @@ test("automatic file scope denies a second worker writing the same component", (
     project(repo).activity.some((a) => a.kind === "coordination.denied"),
   );
 });
+test("large requests and emitted plans are retained without silent truncation", () => {
+  const repo = fixture(),
+    prompt = "Detailed requirement ".repeat(500),
+    plan = {
+      steps: Array.from({ length: 1000 }, (_, n) => ({
+        step: "Step " + n,
+        requirement: "preserve this detail",
+      })),
+    },
+    base = { cwd: repo.root, session_id: "large" };
+  handleHook({ ...base, hook_event_name: "UserPromptSubmit", prompt }, "codex");
+  handleHook(
+    {
+      ...base,
+      hook_event_name: "PostToolUse",
+      tool_name: "update_plan",
+      tool_input: plan,
+      tool_use_id: "large-plan",
+    },
+    "codex",
+  );
+  const state = project(repo);
+  assert.equal(state.tasks[0].description, prompt);
+  assert.deepEqual(JSON.parse(state.activity.find((a) => a.plan).plan), plan);
+});
