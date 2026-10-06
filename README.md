@@ -1,10 +1,24 @@
 # Development Intelligence Platform
 
+**Your session ends. Your project remembers.**
+
+[Product overview](https://vxu.me/products/dip) · [Launch story](https://vxu.me/blog/introducing-dip) · [Find your first contribution](https://github.com/vxu-labs/dip/contribute)
+
 **DIP** provides persistent project memory and automatic development activity for coding agents. Project data lives in **`.dip/`**.
 
 DIP keeps plans, future ideas, checkpoints, ownership and verification evidence alongside your code. It records ordinary agent, Git and file activity automatically. Your existing coding agent handles meaningful intent; DIP makes **zero model/API calls**.
 
 **Status:** hardened local release, Node.js 24+. Agent hooks must be enabled and trusted in the coding tool. Worktree-family coordination is local to one machine. See [automation coverage](docs/automation.md), [operations and recovery](docs/operations.md), and [adapter verification](docs/compatibility.md) for exact behavior and boundaries.
+
+## Help build the next useful handoff
+
+DIP is early. Help a developer return to a project and understand what happened, what remains and what has actually been checked.
+
+- **Start with documentation:** [write a reproducible single-project walkthrough](https://github.com/vxu-labs/dip/issues/1).
+- **Bring your environment:** [report one real OS, shell and agent combination](https://github.com/vxu-labs/dip/issues/2).
+- **Make the dashboard easier to use:** [audit one keyboard-only task flow](https://github.com/vxu-labs/dip/issues/3).
+
+Each issue defines a concrete deliverable. Comment with your intended scope before starting, and read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, isolated testing and DCO sign-off. Reproducible bug reports and documentation improvements are welcome alongside code.
 
 ## Install once
 

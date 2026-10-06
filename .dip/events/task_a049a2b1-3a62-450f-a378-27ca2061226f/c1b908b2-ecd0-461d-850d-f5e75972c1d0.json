@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c1b908b2-ecd0-461d-850d-f5e75972c1d0",
+  "taskId": "task_a049a2b1-3a62-450f-a378-27ca2061226f",
+  "type": "task.create",
+  "payload": {
+    "title": "Launch contributor onboarding and DIP marketing",
+    "description": "Publish contributor entry points, launch article and GitHub discovery metadata.",
+    "status": "backlog"
+  },
+  "actor": "agent",
+  "createdAt": "2026-10-06T07:14:17.579Z",
+  "parents": [],
+  "branch": "main"
+}
