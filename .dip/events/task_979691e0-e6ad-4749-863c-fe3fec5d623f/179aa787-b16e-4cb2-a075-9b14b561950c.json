@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "179aa787-b16e-4cb2-a075-9b14b561950c",
+  "taskId": "task_979691e0-e6ad-4749-863c-fe3fec5d623f",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Published README/benchmark commit c87848b. CI 37449549888 passed Windows, Linux and macOS including Linux browser QA. GitHub README blob matches the local file. Local v0.3.2 recorder active with project-specific dashboard links; prompt capture remains advisory/unobserved until user trust. Model-backed fallback and actual UI submissions documented without productivity or token-saving claims.",
+    "next": "",
+    "head": "c87848b9ca46235d5cdaca4270ba4b38821201f6"
+  },
+  "actor": "codex:desktop-qa",
+  "createdAt": "2026-10-06T10:28:49.498Z",
+  "parents": [
+    "9237a567-2bdb-4a51-80d2-8acd7979c784"
+  ],
+  "branch": "main"
+}
