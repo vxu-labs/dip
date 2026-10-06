@@ -1,17 +1,14 @@
 {
   "protocol": {
     "schemaVersion": 1,
-    "protocolVersion": 3,
-    "createdAt": "2026-10-06T17:18:31.783Z",
-    "label": "Supplementary exploratory contract stress originally specified after the primary run began and pair 1 primary outcomes, before inspecting participant implementation source or evaluating any stress outcome. Version 3 is an infrastructure replay repair after the original version 2 outcomes; input generation, oracle and scoring are unchanged. Not the original preregistered primary endpoint.",
+    "protocolVersion": 2,
+    "createdAt": "2026-10-06T15:49:05.428Z",
+    "label": "Supplementary exploratory contract stress test, specified after the primary run began and after pair 1 primary outcomes, before inspecting participant implementation source or evaluating stress outcomes. Not the original preregistered primary endpoint.",
     "seed": 41729,
     "iterationsPerProject": 256,
     "checksPerIteration": 9,
     "isolation": "Each participant project is evaluated in a separate ordinary Node.js subprocess, preventing prototype/global state contamination between projects. Version 2 adds this isolation before any participant stress evaluation; inputs and oracle are unchanged.",
-    "sourceHash": "bea41c5a1465deb24de367466a3a5fc9da1fb242df9e34ad70764cb1258b6784",
-    "originalVersion2SourceHash": "40df474c93caa6235def4834795432d120a0ab936247ae454dc82e7b962e9b5a",
-    "scoringHash": "49f29a35ea5d48d604c98851affc0732aeacb6d0e423f5cad97c3f15335d4b9d",
-    "replayRepair": "Version 3 canonicalizes the worker path and waits for stdout to drain before exit, after macOS CI replay exposed path aliasing and incomplete large JSON output. Original version 2 protocol/results are retained. Input generation, oracle and scoring functions retain their original hash; no model reruns or participant code repairs.",
+    "sourceHash": "40df474c93caa6235def4834795432d120a0ab936247ae454dc82e7b962e9b5a",
     "policy": "Evaluate every final audited project under identical deterministic inputs. No participant feedback, code repair or model calls. Preserve every pass/fail flag; collect the first ten failure examples per group, including inputs. Calibrate against an independent built-in oracle and deliberately broken modules first.",
     "inputs": "Bounded integer prices/quantities/shipping, fractional finite coupons, invalid lines, duplicate SKU/price combinations, trimmed Unicode and punctuation SKUs, own stock properties named __proto__/constructor/toString/hasOwnProperty, missing SKU stock, inclusive/expired/invalid return dates, comma/quote/newline receipt identifiers. No out-of-contract non-array cart, negative stock or unsafe numeric magnitudes."
   },
@@ -21,7 +18,7 @@
     "benchmark": "93f7c97e5b72b12916a09e110e4044b45185e08c910672e4c566019a2d3d7900",
     "analysis": "f0c718193a8aada72ce8f8d05f81f5347262589ee93a8ea2e33e177b82d625f8"
   },
-  "startedAt": "2026-10-06T17:18:31.916Z",
+  "startedAt": "2026-10-06T17:00:21.106Z",
   "pairs": [
     {
       "index": 0,
@@ -92572,7 +92569,7 @@
       }
     }
   ],
-  "completedAt": "2026-10-06T17:18:34.384Z",
+  "completedAt": "2026-10-06T17:00:23.408Z",
   "summary": {
     "without": {
       "passed": 9216,

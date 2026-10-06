@@ -11,6 +11,35 @@ const expected = JSON.parse(
     "utf8",
   ),
 );
+const original = JSON.parse(
+  fs.readFileSync(
+    path.join(
+      workspace,
+      "docs/benchmarks/2026-10-06-longitudinal-stress-v2.json",
+    ),
+    "utf8",
+  ),
+);
+assert.equal(
+  original.protocol.sourceHash,
+  expected.protocol.originalVersion2SourceHash,
+);
+for (const key of [
+  "seed",
+  "iterationsPerProject",
+  "checksPerIteration",
+  "inputs",
+])
+  assert.deepEqual(expected.protocol[key], original.protocol[key]);
+assert.deepEqual(expected.summary, original.summary);
+for (let i = 0; i < 4; i++)
+  for (const arm of ["without", "with"])
+    for (const key of ["passed", "total", "groups", "flags"])
+      assert.deepEqual(
+        expected.pairs[i].arms[arm][key],
+        original.pairs[i].arms[arm][key],
+        "Infrastructure replay repairs must preserve original results",
+      );
 const sandbox = fs.mkdtempSync(
   path.join(os.tmpdir(), "dip-longitudinal-stress-evidence-"),
 );

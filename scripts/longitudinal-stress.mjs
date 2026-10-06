@@ -19,18 +19,39 @@ const sourceHash = () =>
       .replaceAll("\r\n", "\n"),
   );
 const iterations = 256;
+const scoringHash = () => {
+  const source = fs
+    .readFileSync(fileURLToPath(import.meta.url), "utf8")
+    .replaceAll("\r\n", "\n");
+  return hash(
+    source.slice(
+      source.search(/^function random\(/m),
+      source.search(/^if \(process\.argv\.includes\("--calibrate"\)\)/m),
+    ),
+  );
+};
+assert.equal(
+  scoringHash(),
+  "49f29a35ea5d48d604c98851affc0732aeacb6d0e423f5cad97c3f15335d4b9d",
+  "Scoring/input/oracle functions must match the original version 2 evaluator",
+);
 const protocol = {
   schemaVersion: 1,
-  protocolVersion: 2,
+  protocolVersion: 3,
   createdAt: new Date().toISOString(),
   label:
-    "Supplementary exploratory contract stress test, specified after the primary run began and after pair 1 primary outcomes, before inspecting participant implementation source or evaluating stress outcomes. Not the original preregistered primary endpoint.",
+    "Supplementary exploratory contract stress originally specified after the primary run began and pair 1 primary outcomes, before inspecting participant implementation source or evaluating any stress outcome. Version 3 is an infrastructure replay repair after the original version 2 outcomes; input generation, oracle and scoring are unchanged. Not the original preregistered primary endpoint.",
   seed: 41729,
   iterationsPerProject: iterations,
   checksPerIteration: 9,
   isolation:
     "Each participant project is evaluated in a separate ordinary Node.js subprocess, preventing prototype/global state contamination between projects. Version 2 adds this isolation before any participant stress evaluation; inputs and oracle are unchanged.",
   sourceHash: sourceHash(),
+  originalVersion2SourceHash:
+    "40df474c93caa6235def4834795432d120a0ab936247ae454dc82e7b962e9b5a",
+  scoringHash: scoringHash(),
+  replayRepair:
+    "Version 3 canonicalizes the worker path and waits for stdout to drain before exit, after macOS CI replay exposed path aliasing and incomplete large JSON output. Original version 2 protocol/results are retained. Input generation, oracle and scoring functions retain their original hash; no model reruns or participant code repairs.",
   policy:
     "Evaluate every final audited project under identical deterministic inputs. No participant feedback, code repair or model calls. Preserve every pass/fail flag; collect the first ten failure examples per group, including inputs. Calibrate against an independent built-in oracle and deliberately broken modules first.",
   inputs:
@@ -344,7 +365,7 @@ if (process.argv.includes("--calibrate")) {
 }
 if (process.argv.includes("--project-worker")) {
   const at = process.argv.indexOf("--project-worker"),
-    root = path.resolve(process.argv[at + 1]),
+    root = fs.realpathSync(path.resolve(process.argv[at + 1])),
     index = Number(process.argv[at + 2]);
   const temp = fs.realpathSync(os.tmpdir());
   assert.ok(
@@ -373,9 +394,14 @@ if (process.argv.includes("--project-worker")) {
       loadErrors.push({ file, error: e.message.replaceAll(root, "<project>") });
     }
   }
-  console.log(
+  const output =
     "STRESS_RESULT:" +
-      JSON.stringify({ ...evaluate(m, fixture(index).final), loadErrors }),
+    JSON.stringify({ ...evaluate(m, fixture(index).final), loadErrors }) +
+    "\n";
+  await new Promise((resolve, reject) =>
+    process.stdout.write(output, (error) =>
+      error ? reject(error) : resolve(),
+    ),
   );
   process.exit(0);
 }
