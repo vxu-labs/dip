@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e0b3daa1c680ae35bc6d6ed16d33e0939c9cb05b76bab6d1eeae14e5355c46fc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T08:19:33.322Z",
+        "kind": "files.changed",
+        "files": [
+          "src/git-discovery.js",
+          "src/git-hooks.js",
+          "bin/dip.js",
+          "src/health.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "026a6ea6-f148-4505-bcda-34875a417a3d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T08:19:33.329Z",
+  "parents": [],
+  "branch": "main"
+}

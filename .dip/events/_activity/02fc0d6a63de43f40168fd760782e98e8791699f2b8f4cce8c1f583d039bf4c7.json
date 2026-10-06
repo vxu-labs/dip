@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "02fc0d6a63de43f40168fd760782e98e8791699f2b8f4cce8c1f583d039bf4c7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T08:29:47.347Z",
+        "kind": "files.changed",
+        "files": [
+          "src/health.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "c1fb0259-4035-40a9-8629-ffb6f48b7c31"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T08:29:47.354Z",
+  "parents": [],
+  "branch": "main"
+}

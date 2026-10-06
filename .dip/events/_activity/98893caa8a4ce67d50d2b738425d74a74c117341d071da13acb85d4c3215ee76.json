@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "98893caa8a4ce67d50d2b738425d74a74c117341d071da13acb85d4c3215ee76",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T08:33:15.112Z",
+        "kind": "files.changed",
+        "files": [
+          "vxu-labs-dip-0.3.0.tgz"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "f777ded8-50c9-49d4-9447-7e13663678f7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T08:33:15.118Z",
+  "parents": [],
+  "branch": "main"
+}

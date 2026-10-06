@@ -31,6 +31,8 @@ The installer merges global Codex and Claude Code hooks/MCP configuration, chain
 
 ![DIP local project dashboard](docs/images/dashboard.png)
 
+Native Git discovery also adopts existing repositories outside watched roots when compatible Git opens them, including on `git status` or `git diff`, without a shell profile. The running recorder processes this native signal shortly after the command completes. See [native discovery and its boundaries](docs/git-discovery.md).
+
 New `git init` and `git clone` commands in integrated shells initialize DIP immediately, including outside watched roots. Git hooks and agent session entry initialize existing repositories on first use. Background discovery handles repositories created by other apps under monitored roots. Add external project directories or mounted drives:
 
 ```sh

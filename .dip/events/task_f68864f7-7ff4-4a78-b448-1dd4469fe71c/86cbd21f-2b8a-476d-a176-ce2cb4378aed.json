@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "86cbd21f-2b8a-476d-a176-ce2cb4378aed",
+  "taskId": "task_f68864f7-7ff4-4a78-b448-1dd4469fe71c",
+  "type": "task.create",
+  "payload": {
+    "title": "Bootstrap unmonitored repositories from native Git activity",
+    "description": "Use a native Git signal to initialize repositories outside discovery roots even for read-only commands, preserving existing integrations and Git behavior. Test without shell profiles and explicit executable paths, and publish/install the update.",
+    "scope": [
+      "src",
+      "bin",
+      "scripts",
+      "test"
+    ],
+    "status": "backlog"
+  },
+  "actor": "agent",
+  "createdAt": "2026-10-06T08:14:13.420Z",
+  "parents": [],
+  "branch": "main"
+}

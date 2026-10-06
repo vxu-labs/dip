@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a0fe2a2e-9b94-4420-8e75-9cfa30646044",
+  "taskId": "task_f68864f7-7ff4-4a78-b448-1dd4469fe71c",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Native Git Trace2 discovery now initializes worktrees outside configured roots on minor commands without profiles or Git lifecycle hooks. Tests cover status/diff/branch/ls-files/rev-parse/config and failed log, raw executable invocation, credential metadata exclusion, existing trace-target preservation and background consumption. The full 50-case suite and browser smoke pass locally; preparing cross-platform CI and machine upgrade.",
+    "next": "Validate organization CI and the installed raw-Git bootstrap, then publish v0.3.0.",
+    "head": "5fb0e55a777e56f795b162568af84a81f01db559"
+  },
+  "actor": "codex:git-discovery",
+  "createdAt": "2026-10-06T08:35:45.126Z",
+  "parents": [
+    "8a07dcb5-f7d4-4da5-8d77-058f15bd870d"
+  ],
+  "branch": "main"
+}

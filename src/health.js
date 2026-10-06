@@ -80,6 +80,41 @@ export function automationHealth(root) {
     runtime.close();
   }
   const running = daemonAlive();
+  const nativeGit = {
+    enabled: !!installation?.gitDiscovery?.enabled,
+    running: !!installation?.gitDiscovery?.enabled && running,
+    conflict: !!installation?.gitDiscovery?.conflict,
+    environmentOverride: !!process.env.GIT_TRACE2_EVENT,
+    pendingFiles:
+      installation?.gitDiscovery?.enabled &&
+      fs.existsSync(installation.gitDiscovery.target)
+        ? fs.readdirSync(installation.gitDiscovery.target).length
+        : 0,
+  };
+  if (nativeGit.conflict)
+    issues.push(
+      "An existing Git Trace2 target was preserved; native Git discovery is unavailable.",
+    );
+  if (nativeGit.environmentOverride)
+    issues.push(
+      "GIT_TRACE2_EVENT overrides Git's configured discovery signal in this environment.",
+    );
+  if (installation?.gitDiscovery?.unsupported)
+    issues.push(
+      "The installed Git executable does not support native Trace2 discovery.",
+    );
+  if (repo && nativeGit.enabled) {
+    nativeGit.configured =
+      git(
+        repo.root,
+        ["config", "--global", "--get", "trace2.eventTarget"],
+        true,
+      ) === installation.gitDiscovery.target;
+    if (!nativeGit.configured)
+      issues.push(
+        "Native Git discovery target changed. Run dip install to inspect the configuration.",
+      );
+  }
   let gitHooksConfigured = false;
   if (repo && installation?.active && installation.hooksPath) {
     const hooksPath = git(
@@ -116,6 +151,7 @@ export function automationHealth(root) {
     );
   return {
     installed: !!installation?.active,
+    gitDiscovery: nativeGit,
     roots: installation?.roots || [],
     daemon: {
       running,

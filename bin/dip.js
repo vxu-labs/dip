@@ -44,6 +44,7 @@ const options = {
   "no-startup": { type: "boolean" },
   "no-agents": { type: "boolean" },
   "no-git-hooks": { type: "boolean" },
+  "no-git-discovery": { type: "boolean" },
   json: { type: "boolean" },
   patch: { type: "string" },
 };
@@ -77,6 +78,7 @@ try {
         startup: !flags["no-startup"],
         agents: !flags["no-agents"],
         gitHooks: !flags["no-git-hooks"],
+        gitDiscovery: !flags["no-git-discovery"],
         port: flags.port === undefined ? undefined : Number(flags.port),
       }),
     );
@@ -90,6 +92,7 @@ try {
         start: false,
         startup: false,
         gitHooks: false,
+        gitDiscovery: false,
       }),
     );
   else if (command === "start") print(startDaemon());

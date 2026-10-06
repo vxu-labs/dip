@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0f48e075affa6d2b46b4974e7c1e07659e10abf2e0433a7bbd9b2f57bcbe6374",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T08:35:42.522Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/live-native-git-smoke.mjs",
+          "src/git-discovery.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "59db8960-d779-441b-8438-63a3b285cb3f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T08:35:42.529Z",
+  "parents": [],
+  "branch": "main"
+}

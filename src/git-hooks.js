@@ -16,7 +16,7 @@ export function writeGitHooks(directory, previous) {
   ]) {
     const original = previous
       ? `al_original=${quote(path.join(previous, name).replaceAll("\\", "/"))}`
-      : `al_original="$(git rev-parse --git-path hooks)/${name}"`;
+      : `al_original="$(GIT_TRACE2_EVENT=0 git rev-parse --git-path hooks)/${name}"`;
     atomic(
       path.join(directory, name),
       `#!/bin/sh\n# DIP managed hook; existing hooks are chained.\n${quote(process.execPath.replaceAll("\\", "/"))} --disable-warning=ExperimentalWarning ${quote(CLI.replaceAll("\\", "/"))} git-hook ${name}\nal_status=$?\nif [ "$al_status" -ne 0 ]; then exit "$al_status"; fi\n${original}\nif [ -x "$al_original" ] && [ "$al_original" != "$0" ]; then exec "$al_original" "$@"; fi\nexit 0\n`,

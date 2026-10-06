@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ad19e39b086cec14f06824671787c8016006a7cc2ee9c4f44e1588d77dc41fc1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T08:00:52.686Z",
+        "kind": "files.changed",
+        "files": [
+          ".github/workflows",
+          "CODE_OF_CONDUCT.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "66bccf26-a46f-48c7-900c-46fc7262de61"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T08:00:52.690Z",
+  "parents": [],
+  "branch": "main"
+}

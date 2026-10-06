@@ -25,6 +25,11 @@ import {
 } from "./util.js";
 import { writeGitHooks, restoreProjectHooks } from "./git-hooks.js";
 import { installTransaction } from "./install-transaction.js";
+import {
+  GitDiscovery,
+  traceDirectory,
+  probeGitTrace,
+} from "./git-discovery.js";
 export { writeGitHooks } from "./git-hooks.js";
 
 export const CLI = fileURLToPath(new URL("../bin/dip.js", import.meta.url));
@@ -40,6 +45,7 @@ function configGit(args, optional = false) {
       encoding: "utf8",
       windowsHide: true,
       stdio: ["ignore", "pipe", "pipe"],
+      env: { ...process.env, GIT_TRACE2_EVENT: "0" },
     }).trim();
   } catch (e) {
     if (optional) return "";
@@ -53,6 +59,7 @@ export function install({
   start = true,
   agents = true,
   gitHooks = true,
+  gitDiscovery = true,
   startup = true,
   port,
 } = {}) {
@@ -133,6 +140,15 @@ export function install({
   ];
   return installTransaction(directory, files, () => {
     let state = json(path.join(directory, "install.json"), {});
+    if (!state.active)
+      for (const key of [
+        "previousTraceTarget",
+        "previousCodexHooks",
+        "previousHooksPath",
+        "hooksPath",
+        "gitDiscovery",
+      ])
+        delete state[key];
     state = {
       ...state,
       cliBeforeUpgrade: state.cli,
@@ -153,6 +169,37 @@ export function install({
       configGit(["core.hooksPath", hooks]);
       state.hooksPath = hooks;
     }
+    if (gitDiscovery) {
+      const target = traceDirectory().replaceAll("\\", "/");
+      const previous = configGit(["--get", "trace2.eventTarget"], true);
+      if (previous && ![target, "0", "false"].includes(previous)) {
+        state.gitDiscovery = {
+          enabled: false,
+          conflict: true,
+          reason: "An existing Git Trace2 event target was preserved",
+        };
+      } else {
+        fs.mkdirSync(traceDirectory(), { recursive: true, mode: 0o700 });
+        if (fs.lstatSync(traceDirectory()).isSymbolicLink())
+          throw new Error("Git trace directory must not be a symbolic link");
+        if (!Object.hasOwn(state, "previousTraceTarget"))
+          state.previousTraceTarget = previous || null;
+        configGit(["trace2.eventTarget", target]);
+        if (probeGitTrace(traceDirectory()))
+          state.gitDiscovery = { enabled: true, target };
+        else {
+          if (state.previousTraceTarget === null)
+            configGit(["--unset", "trace2.eventTarget"]);
+          else configGit(["trace2.eventTarget", state.previousTraceTarget]);
+          state.gitDiscovery = {
+            enabled: false,
+            unsupported: true,
+            reason:
+              "The installed Git executable did not emit native Trace2 events",
+          };
+        }
+      }
+    }
     if (startup) installStartup(state);
     if (start && daemonAlive()) stopDaemon();
     atomic(path.join(directory, "install.json"), state);
@@ -164,6 +211,7 @@ export function install({
       errors: discovered.errors,
       agents: !!agents,
       daemon: start,
+      gitDiscovery: state.gitDiscovery || { enabled: false },
       restartAgents: true,
       trustRequired: true,
     };
@@ -363,6 +411,18 @@ export function uninstall() {
   const state = json(path.join(home(), "install.json"), {});
   stopDaemon();
   const runtime = new Runtime();
+  if (
+    state.gitDiscovery?.enabled &&
+    configGit(["--get", "trace2.eventTarget"], true) ===
+      state.gitDiscovery.target
+  ) {
+    if (
+      state.previousTraceTarget !== null &&
+      state.previousTraceTarget !== undefined
+    )
+      configGit(["trace2.eventTarget", state.previousTraceTarget]);
+    else configGit(["--unset", "trace2.eventTarget"]);
+  }
   try {
     for (const repo of runtime.repositories())
       if (fs.existsSync(repo.root)) restoreProjectHooks(repo.root);
@@ -920,6 +980,7 @@ export async function runDaemon() {
   const state = json(path.join(home(), "install.json"), {
     roots: [USER_HOME()],
   });
+  const nativeGit = state.gitDiscovery?.enabled ? new GitDiscovery(rt) : null;
   const attach = () => {
     const roots = new Set(rt.repositories().map((r) => r.root));
     for (const [root, watcher] of watchers)
@@ -1029,6 +1090,11 @@ export async function runDaemon() {
   });
   const flushPending = () => {
     try {
+      if (nativeGit) {
+        const discovery = nativeGit.drain();
+        if (discovery.errors.length)
+          lastError = discovery.errors.map((e) => e.error).join("; ");
+      }
       rt.renewRunningTools();
       for (const [root, files] of pending) {
         if (!files.size) continue;

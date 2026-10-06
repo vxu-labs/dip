@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0a0ed291549d4b80b1bb9431bd85406c10b2b5a446c207096c07fe0625910110",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T08:11:42.337Z",
+        "kind": "files.changed",
+        "files": [
+          "src/install-transaction.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "ab9a28c9-4c6c-4afd-8d3f-9e493340802a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T08:11:42.341Z",
+  "parents": [],
+  "branch": "main"
+}

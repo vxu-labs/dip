@@ -31,6 +31,7 @@ export function git(cwd, args, optional = false, { raw = false } = {}) {
       maxBuffer: 16 * 1024 * 1024,
       env: {
         ...process.env,
+        GIT_TRACE2_EVENT: "0",
         ...(process.env.DIP_GIT_CONFIG
           ? { GIT_CONFIG_GLOBAL: process.env.DIP_GIT_CONFIG }
           : {}),
