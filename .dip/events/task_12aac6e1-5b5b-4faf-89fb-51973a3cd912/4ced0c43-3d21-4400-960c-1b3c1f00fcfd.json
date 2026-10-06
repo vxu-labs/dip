@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4ced0c43-3d21-4400-960c-1b3c1f00fcfd",
+  "taskId": "task_12aac6e1-5b5b-4faf-89fb-51973a3cd912",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Transferred the public repository to vxu-labs/dip and updated package identity and install URLs. Added cross-worktree worker visibility, locally waiting claims, normalized scope exclusion and non-destructive installer preflight. 35 unit/integration tests completed (33 passed, two POSIX-only skips on Windows); browser navigation/mobile and clean package installation passed. Discovery now targets new candidates instead of rescanning roots on known source renames. Release awaits CI for the current organization-owned revision.",
+    "next": "Validate organization CI and create the v0.1.0 release with a current package.",
+    "head": "37c20d3169a284c044268558a05380b6f2d28978"
+  },
+  "actor": "codex:development",
+  "createdAt": "2026-10-06T06:52:37.538Z",
+  "parents": [
+    "e6fa31ff-05dd-4a85-b95f-63cc53d72e56"
+  ],
+  "branch": "main"
+}

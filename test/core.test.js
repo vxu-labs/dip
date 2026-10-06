@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
+import { DatabaseSync } from "node:sqlite";
 import { execFileSync } from "node:child_process";
 import {
   ensure,
@@ -151,6 +152,82 @@ test("scope ownership is atomically checked across different tasks", () => {
       /Scope owned/,
     );
   } finally {
+    rt.close();
+  }
+});
+
+test("scope paths normalize separators, root scopes and Windows case", () => {
+  const repo = fixture(),
+    rt = new Runtime();
+  const a = createTask(repo, { title: "A" }),
+    b = createTask(repo, { title: "B" });
+  try {
+    const first = rt.claim(repo, a, "a", 120000, ["src\\Auth/"]);
+    assert.throws(
+      () => rt.claim(repo, b, "b", 120000, ["./src/Auth/file.js"]),
+      /Scope owned/,
+    );
+    if (process.platform === "win32")
+      assert.throws(
+        () => rt.claim(repo, b, "b", 120000, ["src/auth"]),
+        /Scope owned/,
+      );
+    assert.throws(() => rt.claim(repo, b, "b", 120000, ["."]), /Scope owned/);
+    rt.release(repo, a, first.token);
+  } finally {
+    rt.close();
+  }
+});
+
+test("an existing runtime migrates without losing live ownership", () => {
+  const directory = path.join(sandbox, "legacy-runtime");
+  fs.mkdirSync(directory);
+  const db = new DatabaseSync(path.join(directory, "runtime.sqlite"));
+  db.exec(
+    "CREATE TABLE leases (repo TEXT, task TEXT, actor TEXT, token TEXT, expires INTEGER, scope TEXT DEFAULT '[]', PRIMARY KEY(repo,task))",
+  );
+  const repo = fixture();
+  db.prepare("INSERT INTO leases VALUES (?,?,?,?,?,?)").run(
+    repo.key,
+    "old-task",
+    "existing",
+    "secret",
+    Date.now() + 120000,
+    "[]",
+  );
+  db.close();
+  const rt = new Runtime(directory);
+  try {
+    const lease = rt.leases(repo)[0];
+    assert.equal(lease.actor, "existing");
+    assert.equal(lease.active, true);
+    assert.deepEqual(lease.descriptor, {});
+    assert.ok(!("token" in lease));
+  } finally {
+    rt.close();
+  }
+});
+
+test("waiting claims acquire released ownership and time out without extra model calls", async () => {
+  const repo = fixture(),
+    rt = new Runtime();
+  const task = createTask(repo, { title: "Waitable" });
+  const lease = rt.claim(repo, task, "first");
+  const release = setTimeout(() => rt.release(repo, task, lease.token), 80);
+  try {
+    const next = await execute(
+      "claim",
+      { id: task, actor: "second", waitMs: 2000 },
+      repo.root,
+    );
+    assert.notEqual(next.token, lease.token);
+    await assert.rejects(
+      execute("claim", { id: task, actor: "third", waitMs: 30 }, repo.root),
+      /Task owned/,
+    );
+    rt.release(repo, task, next.token);
+  } finally {
+    clearTimeout(release);
     rt.close();
   }
 });
@@ -342,6 +419,33 @@ test("installation and removal preserve unrelated agent settings and Git hook co
     "old/hooks",
   );
 });
+test("installer rejects MCP name collisions before modifying agent files", () => {
+  const user = process.env.DIP_USER_HOME;
+  const hookFile = path.join(user, ".codex", "hooks.json");
+  const codexFile = path.join(user, ".codex", "config.toml");
+  const claudeFile = path.join(user, ".claude.json");
+  const beforeHook = fs.readFileSync(hookFile, "utf8");
+  const beforeCodex = fs.readFileSync(codexFile, "utf8");
+  const beforeClaude = fs.readFileSync(claudeFile, "utf8");
+  try {
+    atomic(claudeFile, {
+      mcpServers: { dip: { command: "unrelated", args: [] } },
+    });
+    assert.throws(
+      () => install({ roots: [], start: false, startup: false }),
+      /unrelated MCP/,
+    );
+    assert.equal(fs.readFileSync(hookFile, "utf8"), beforeHook);
+    assert.equal(fs.readFileSync(codexFile, "utf8"), beforeCodex);
+    assert.equal(
+      JSON.parse(fs.readFileSync(claudeFile)).mcpServers.dip.command,
+      "unrelated",
+    );
+  } finally {
+    atomic(claudeFile, beforeClaude);
+  }
+});
+
 test("dashboard rejects cross-origin writes and serves task data", async () => {
   const repo = fixture(),
     server = createServer({ root: repo.root, port: 0 });

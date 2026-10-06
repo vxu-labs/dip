@@ -400,6 +400,18 @@ label textarea {
 .detail-section {
   margin: 22px 0;
 }
+.worker-section {
+  margin-top: 28px;
+}
+.worker-section h2 {
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+.worker-section small {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 10px;
+}
 .detail-section h3 {
   font-size: 10px;
   letter-spacing: 1.5px;

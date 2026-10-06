@@ -9,7 +9,7 @@ DIP keeps plans, future ideas, checkpoints, ownership and verification evidence 
 ## Install once
 
 ```sh
-npm install -g github:itayzrihan/dip
+npm install -g github:vxu-labs/dip
 dip install
 ```
 
@@ -76,6 +76,8 @@ Evidence records the command, exit result, sanitized output and code snapshot. C
 Independent field changes merge naturally. Competing task states produce a visible conflict even if Git's text merge succeeds. Resolve them explicitly with a task update using `resolve: true` or the dashboard. Dependency cycles are also visible.
 
 Use separate Git worktrees for parallel agents. A shared local SQLite coordinator provides atomic ownership and scope claims, expiry and fencing tokens. Separate machines/clones require a shared coordinator to guarantee live exclusivity; ordinary Git synchronization alone cannot provide that guarantee.
+
+Active workers appear across local worktrees even when their tasks exist only in another branch. Pass `waitMs` (up to 30000) to `task_claim` to wait locally for conflicting ownership to release in one MCP call.
 
 ## Useful commands
 

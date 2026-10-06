@@ -12,7 +12,7 @@ const env = {
   DIP_USER_HOME: path.join(root, "user"),
   DIP_GIT_CONFIG: path.join(root, "gitconfig"),
 };
-const archive = path.resolve("itayzrihan-dip-0.1.0.tgz");
+const archive = path.resolve("vxu-labs-dip-0.1.0.tgz");
 try {
   execFileSync(
     process.execPath,
@@ -31,7 +31,7 @@ try {
   const cli = path.join(
     root,
     "node_modules",
-    "@itayzrihan",
+    "@vxu-labs",
     "dip",
     "bin",
     "dip.js",

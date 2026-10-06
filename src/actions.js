@@ -62,13 +62,43 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         task.blockedBy.length
       )
         throw new Error("Task has unresolved blockers");
-      const lease = rt.claim(
-        repo,
-        args.id,
-        actor,
-        args.ttl || 120000,
-        args.scope || task.scope,
-      );
+      const waitMs = Number(args.waitMs || 0);
+      if (!Number.isFinite(waitMs) || waitMs < 0 || waitMs > 30000)
+        throw new Error("waitMs must be between 0 and 30000");
+      const deadline = Date.now() + waitMs;
+      let lease;
+      for (;;) {
+        try {
+          lease = rt.claim(
+            repo,
+            args.id,
+            actor,
+            args.ttl || 120000,
+            args.scope || task.scope,
+          );
+          break;
+        } catch (e) {
+          if (
+            !/^(Task|Scope) owned by /.test(e.message) ||
+            Date.now() >= deadline
+          )
+            throw e;
+          await new Promise((resolve) =>
+            setTimeout(resolve, Math.min(200, deadline - Date.now())),
+          );
+          const current = reconcile(repo, rt).tasks.find(
+            (t) => t.id === args.id,
+          );
+          if (
+            !current ||
+            current.conflicts.length ||
+            current.dependencyCycle ||
+            current.blockedBy.length
+          )
+            throw new Error("Task changed while waiting; refresh its context");
+          if (!args.scope) task.scope = current.scope;
+        }
+      }
       if (args.scope) updateTask(repo, args.id, { scope: args.scope }, actor);
       append(
         repo,

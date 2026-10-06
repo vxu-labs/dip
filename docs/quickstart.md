@@ -1,6 +1,6 @@
 # First project walkthrough
 
-Install Node.js 24+, then run `npm install -g github:itayzrihan/dip` and `dip install`. Restart your terminal and coding tools and approve the installed hooks in your agent when prompted.
+Install Node.js 24+, then run `npm install -g github:vxu-labs/dip` and `dip install`. Restart your terminal and coding tools and approve the installed hooks in your agent when prompted.
 
 Open any existing Git project with Codex or Claude Code. The session hook initializes the ledger and injects a compact context. Ask the agent to remember a future feature, then begin a separate implementation task. Open http://127.0.0.1:4317 and select the project to see both requests and automatic activity.
 

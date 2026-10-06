@@ -2,6 +2,8 @@
 
 DIP v0.1 implements the persistent local workflow described in MVP_PLAN.md. The runtime uses JavaScript ESM on Node.js 24, Zod schemas, SQLite and a browser dashboard without a build step. This replaces the proposed TypeScript/React stack to keep source installation and local hooks simple.
 
+The public repository is maintained under [VXU Labs](https://github.com/vxu-labs/dip), with package identity `@vxu-labs/dip`. Cross-worktree worker visibility and locally waiting claims extend the original coordination workflow. Node 24 CI runs on Windows, Linux and macOS; Linux also runs the browser smoke test.
+
 | Requirement                              | Current implementation                                                                  | Evidence                                                  |
 | ---------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | Apache-2.0 open source                   | Canonical LICENSE, NOTICE, package metadata, contributor policy                         | License file and package packing                          |

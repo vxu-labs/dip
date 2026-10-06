@@ -126,6 +126,31 @@ test("worktrees share ownership but their durable task state remains branch-spec
   try {
     rt.claim(repo, task, "first");
     assert.throws(() => rt.claim(other, task, "second"), /owned/);
+    const branchTask = createTask(other, {
+      title: "Branch-only work",
+      scope: ["src/branch"],
+    });
+    rt.register(other);
+    rt.claim(other, branchTask, "branch-worker", 120000, ["src/branch"]);
+    const mainState = project(repo, rt);
+    assert.ok(!mainState.tasks.some((t) => t.id === branchTask));
+    assert.deepEqual(
+      mainState.activeWorkers.find((w) => w.task === branchTask),
+      {
+        task: branchTask,
+        actor: "branch-worker",
+        scope: ["src/branch"],
+        expires: rt.leases(other).find((l) => l.task === branchTask).expires,
+        root: other.root,
+        branch: "parallel",
+        title: "Branch-only work",
+        visibleInBranch: false,
+      },
+    );
+    assert.throws(
+      () => rt.claim(repo, task, "first", 120000, ["src/branch/file"]),
+      /Scope owned/,
+    );
   } finally {
     rt.close();
   }

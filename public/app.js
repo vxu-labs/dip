@@ -105,8 +105,8 @@ function render() {
   const metrics = [
     [
       "Active agents",
-      tasks.filter((t) => t.active).length,
-      "Live task ownership",
+      new Set((state.activeWorkers || []).map((w) => w.actor)).size,
+      "Across local worktrees",
     ],
     [
       "Needs attention",
@@ -190,6 +190,24 @@ function render() {
         ["implemented", "verified", "blocked", "conflict"].includes(t.status),
       ),
     )}</div>`;
+  const elsewhere = (state.activeWorkers || []).filter(
+    (w) => w.root && w.root !== state.repo?.root,
+  );
+  if (elsewhere.length && view !== "activity") {
+    $("#content").insertAdjacentHTML(
+      "beforeend",
+      `<div class="worker-section"><h2>Workers in other worktrees</h2><div class="columns">${elsewhere.map((w) => `<button class="card" data-worker-root="${escape(w.root)}"><span class="badge running">running</span><h3>${escape(w.title || w.task)}</h3><p>${escape(w.actor)} · ${escape(w.branch)}</p><p>${escape(w.scope.join(" · "))}</p><small>${escape(w.root)}</small></button>`).join("")}</div></div>`,
+    );
+    document.querySelectorAll("[data-worker-root]").forEach(
+      (b) =>
+        (b.onclick = async () => {
+          selected = b.dataset.workerRoot;
+          $("#projects").value = selected;
+          currentDetail = null;
+          await refresh(true);
+        }),
+    );
+  }
   if (state.errors?.length)
     notify(
       "Project data needs repair: " +

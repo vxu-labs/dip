@@ -3,7 +3,7 @@ import path from "node:path";
 import os from "node:os";
 import assert from "node:assert/strict";
 import { chromium } from "@playwright/test";
-import { ensure, createTask, append } from "../src/core.js";
+import { ensure, createTask, append, Runtime } from "../src/core.js";
 import { git } from "../src/util.js";
 import { createServer } from "../src/server.js";
 
@@ -55,6 +55,24 @@ const checks = createTask(repo, {
   scope: ["src/verification"],
 });
 append(repo, checks, "task.update", { status: "implemented" });
+git(root, ["config", "user.name", "Browser QA"]);
+git(root, ["config", "user.email", "qa@example.invalid"]);
+git(root, ["add", ".dip", "AGENTS.md", "CLAUDE.md"]);
+git(root, ["commit", "-m", "Browser fixture"]);
+const workerRoot = root + "-worker";
+git(root, ["worktree", "add", workerRoot, "-b", "agent-export"]);
+const workerRepo = ensure(workerRoot);
+const workerTask = createTask(workerRepo, {
+  title: "Branch-only Unicode tests",
+  scope: ["src/unicode"],
+});
+const runtime = new Runtime();
+runtime.register(repo);
+runtime.register(workerRepo);
+runtime.claim(workerRepo, workerTask, "claude:unicode", 120000, [
+  "src/unicode",
+]);
+runtime.close();
 const server = createServer({ root, port: 0 });
 await new Promise((resolve) => server.on("listening", resolve));
 const browser = await chromium.launch({ headless: true });
@@ -90,6 +108,23 @@ try {
   await page.getByRole("button", { name: "Work board" }).click();
   await page.getByRole("heading", { name: "Work board" }).waitFor();
   await page.getByRole("button", { name: "Overview", exact: false }).click();
+  const workerButton = page.locator("[data-worker-root]");
+  await workerButton.waitFor();
+  const workerText = await workerButton.textContent();
+  assert.ok(workerText.includes("Branch-only Unicode tests"), workerText);
+  await workerButton.click();
+  await page.waitForFunction(
+    () => document.querySelector("#branch").textContent === "agent-export",
+  );
+  assert.ok(
+    (await page.locator("#content").textContent()).includes(
+      "Branch-only Unicode tests",
+    ),
+  );
+  await page.locator("#projects").selectOption(repo.root);
+  await page.waitForFunction(
+    () => document.querySelector("#branch").textContent === "main",
+  );
   fs.mkdirSync("docs/images", { recursive: true });
   await page.screenshot({
     path: path.resolve("docs/images/dashboard.png"),
@@ -108,11 +143,13 @@ try {
   );
   assert.deepEqual(errors, []);
   console.log(
-    "Browser smoke passed: task creation, handoff display, board, mobile layout; no JavaScript errors.",
+    "Browser smoke passed: task creation, handoff, board, cross-worktree workers/navigation and mobile layout; no JavaScript errors.",
   );
 } finally {
   await browser.close();
   await new Promise((resolve) => server.close(resolve));
   assert.ok(root.startsWith(path.join(os.tmpdir(), "dip-browser-")));
+  assert.equal(workerRoot, root + "-worker");
+  fs.rmSync(workerRoot, { recursive: true, force: true });
   fs.rmSync(root, { recursive: true, force: true });
 }

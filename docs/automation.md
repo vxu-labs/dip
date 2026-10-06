@@ -26,6 +26,10 @@ The normal hook path reads Git HEAD/ref files directly rather than spawning Git 
 
 Claims are transactions scoped to the repository's common Git directory. Worktrees share the same coordinator. Conflicting declared file/directory scopes are rejected atomically. Different computers and independent clones can still work offline; merging their histories detects competing intent but does not prevent concurrent execution.
 
+Compact context and the dashboard show active workers across the local Git family, including tasks that exist only in another branch. The dashboard can switch directly to the owning worktree. `task_claim` accepts `waitMs` up to 30000 to wait locally for release in one MCP call. CLI workers can use `dip task claim --id ID --actor ACTOR --waitMs 30000`. Expired ownership remains subject to a fresh fencing token.
+
+Root watchers discover new repository candidates directly; ordinary source renames and commits in known repositories do not trigger a full discovery scan. A periodic scan provides fallback coverage. File activity is batched locally without model calls.
+
 Lease refresh occurs at agent tool boundaries. Long-running operations with no observed boundary may exceed the lease period; isolated worktrees protect source files, and the next observed operation must acquire current ownership. Use the heartbeat CLI/API for workers that run long unattended operations. This release does not yet provide distributed leases.
 
 Coordinate mode is the default. It records activity, creates task associations automatically and rejects conflicting claims on supported tool paths. Direct file writes infer project-relative scope automatically. Observe mode records without blocking. Strict mode additionally requires tokens on semantic task mutations. Hooks are workflow controls, not an operating-system security boundary. Arbitrary shell commands, nested processes or an agent editing the integration can bypass them.

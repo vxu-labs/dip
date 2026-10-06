@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "eventId": "05c820dc-1855-4c70-9642-b2328002c148",
+  "taskId": "task_12aac6e1-5b5b-4faf-89fb-51973a3cd912",
+  "type": "task.evidence",
+  "payload": {
+    "check": "unit",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1"
+    ],
+    "result": "passed",
+    "exitCode": 0,
+    "signal": null,
+    "summary": "ords (299.5546ms)\n✔ automatic file scope denies a second worker writing the same component (330.2521ms)\n✔ large requests and emitted plans are retained without silent truncation (325.9844ms)\n(node:28368) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:23412) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n✔ MCP transport exposes concise intent tools and creates/claims persistent work (433.4525ms)\n✔ claims from two independent processes have exactly one winner (169.1412ms)\n✔ worktrees share ownership but their durable task state remains branch-specific (664.9668ms)\n✔ Git hook chain retains the original hook and stages ledger events (1083.7193ms)\n(node:22972) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:21384) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:23292) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n✔ background service discovers a newly created repo and batches filesystem changes (3285.1527ms)\n✔ integrated PowerShell initializes git init outside discovery roots (1034.2772ms)\n﹣ integrated Bash initializes repositories outside discovery roots (0.1137ms) # SKIP\n﹣ integrated Zsh initializes repositories outside discovery roots (0.086ms) # SKIP\n✔ repo-local hook overrides are wrapped automatically and restored on removal (1251.2616ms)\n✔ installed Windows hooks execute with paths containing spaces (1174.1068ms)\nℹ tests 35\nℹ suites 0\nℹ pass 33\nℹ fail 0\nℹ cancelled 0\nℹ skipped 2\nℹ todo 0\nℹ duration_ms 24597.9621\n",
+    "snapshot": {
+      "hash": "a8d3d464c1422afb7da4c0d7a4aaf68fb8322731e3ba05103bd0a361bf9116c8",
+      "files": {
+        ".gitattributes": "27f68564d7aaefb2ec39af6b97e2756dab2bd5069431b6cfe5c67bbe979ed00f",
+        ".github/workflows/ci.yml": "0a56c71f22dae6eb21499b385e16f12837e072184372edcec52a85be7940009a",
+        ".gitignore": "7502adbdefe75d0215391d7053372dfe8b47f1f815dc88505f64f3df99b23e6d",
+        "AGENTS.md": "5a2542e229580ff429385b16f496ccb272c462b2209da9f0d62e9656e156575b",
+        "CLAUDE.md": "5a2542e229580ff429385b16f496ccb272c462b2209da9f0d62e9656e156575b",
+        "CODE_OF_CONDUCT.md": "6616d25d459e8693faa744bdaba9fc88dcae1564beb3826e02e32f7a4a90dca2",
+        "CONTRIBUTING.md": "4cf6824e8b82413c60d6d2e459cd7988bfcc72bad436cf00cfb0a0cf62f20d2b",
+        "IMPLEMENTATION_STATUS.md": "b23e9431b89a707e661015d73d6f4971ba1ff17720f6330a1ea7d39a4b2f2cfd",
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "MVP_PLAN.md": "da9c9db21b0a01e466cb2affe80496b0916700781ba0e925e78c5fe30c3cc2e9",
+        "NOTICE": "1ef8957d1557b0f2c8cc01297ad79535f72a1cfe0a16f9eb8acdcf096e2b4981",
+        "README.md": "ab68f8d5b530777cd5caaa7e5eb22f94a5e01e7f788739fda635febe54d1b7f8",
+        "SECURITY.md": "02f5239013252b7f5fd7ec6f7af77c0041253922ce1637165a8553b5308c6705",
+        "bin/dip.js": "7be00e6d204a9a20e3bdae8b6eee734bf0443d74622c334941ba485f3f52c75a",
+        "docs/automation.md": "bb70a8fc9fe7d3b0bac015149766504b4bba7e494b9e814e334c88f3e2db4bb6",
+        "docs/compatibility.md": "2468f52f857df7f4c85a94780284101ff3b244dbcaf334e1bbcfeb374312584f",
+        "docs/contributing.md": "f62443661600bb17658510b89c5081f222d3723984adb8fca78110089142c1cb",
+        "docs/images/dashboard-mobile.png": "f0e9eb160e328a769edc71bca3d9a9deb4c6dc20ac08b8e81772505a7327ad7d",
+        "docs/images/dashboard.png": "258b229279a6062e25eaece9f0777ce095b0ed2a244643855e83fbd430cdf5dd",
+        "docs/protocol.md": "45328d6de89c751ead626dae6c5d31a15742d97de301a88c8ba1114de5b6a522",
+        "docs/quickstart.md": "ac334b640161ac686292974557a762db01728f890ebc97b787088194668c1cab",
+        "package-lock.json": "0f4a5d6e57dfd9eb53057740d664290396acb87fd22edd4201a8aea138da7601",
+        "package.json": "7179a8d9cceb08d9ba9b7984b54037beedd0f11f31b7074a2008e644d42c0a02",
+        "public/app.js": "59f29f077a76a46ec7dbe08b8b8a7d0c7cd27185e9b51878071228148391b271",
+        "public/index.html": "308695dc6c84a05713c7258be6b273504973aff0e3c992c032ef5e4bd92b1dd3",
+        "public/style.css": "51a79a7c3335c76bb115bf2199014578d34962b13b1a405ad8c6f1fe570c8379",
+        "scripts/benchmark.mjs": "53bb068df731bd7913c4f81f188c433e5e28c6930c2117fdb318ae8030270efd",
+        "scripts/browser-smoke.mjs": "f46ec7efa3e3c339ead1f0d8ff4f5ffa50aa6e924f0cfd670a1fa85f79029f4d",
+        "scripts/check.mjs": "0f6738dc952b85cc0a033320b0d7eb6ae89949c3e5c69ae92bc77cabc2a3f49c",
+        "scripts/package-smoke.mjs": "0741fc0a8d48a81e7fce4d691983453ac12fb762a51907bc5933ca171b223f6f",
+        "skills/dip/SKILL.md": "5fe03102342b26ea622484b7d1a6e47d7d9c0d69ab3d7f8e938dedc1fabd45d9",
+        "src/actions.js": "87e85e37d3531bc744168b53afef797776c98997679c1f0a80b18b177f82020d",
+        "src/automation.js": "50754e139d627dfb210b6413044e36163ffeb060f717d5c2073b0df56c315b40",
+        "src/core.js": "3a0d8a98c9fa425b057ab61bef2e594f6d89ec3df609e207134b67d2f57ba96c",
+        "src/git-hooks.js": "768d71773cb6f3c82b0ede14976173f68b3a0d02a1e2fbc2208710ae03c615e5",
+        "src/mcp.js": "67b350ccbf41a404a0321f36326e4cf380a64f3426b1100808bbb59398daf534",
+        "src/server.js": "cf641cc19ce7baa94f026edbac5f01b098e5bee847c6b859d3758e226556f534",
+        "src/util.js": "0a1ce9b7ff38a13ed1a8d2de38f3ec601e106edea784131c46e2a1161efda08f",
+        "test/core.test.js": "b7d376b1f36bb4734ee8027357e24bca51b26b29c63e2c7a374d9d6b56eab4be",
+        "test/integration.test.js": "7821fd1c19a5e645bf2666efb1abfc852b7e0814be9f298e6d948a7d60362a37"
+      },
+      "head": "37c20d3169a284c044268558a05380b6f2d28978",
+      "committed": false
+    },
+    "changedDuringCheck": false,
+    "codeHead": null
+  },
+  "actor": "codex:development",
+  "createdAt": "2026-10-06T06:51:01.577Z",
+  "parents": [
+    "cadcd034-7cef-4b31-974e-ec174ff9222b"
+  ],
+  "branch": "main"
+}

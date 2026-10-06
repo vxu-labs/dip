@@ -92,6 +92,21 @@ export function install({
 function installAgents(state) {
   const user = USER_HOME(),
     command = `${quote(process.execPath)} --disable-warning=ExperimentalWarning ${quote(CLI)} hook --dip-hook --runtime ${quote(home())}`;
+  // Validate both agent configurations before changing either integration.
+  const codex = path.join(user, ".codex", "config.toml");
+  const settings = fs.existsSync(codex)
+    ? parse(fs.readFileSync(codex, "utf8"))
+    : {};
+  const claude = path.join(user, ".claude.json");
+  const claudeSettings = json(claude, {});
+  for (const existing of [
+    settings.mcp_servers?.dip,
+    claudeSettings.mcpServers?.dip,
+  ])
+    if (existing && !existing.args?.includes(CLI))
+      throw new Error(
+        "An unrelated MCP server named dip already exists; choose another name before installing DIP",
+      );
   state.agentFiles = [];
   for (const [agent, file] of [
     ["codex", path.join(user, ".codex", "hooks.json")],
@@ -144,16 +159,10 @@ function installAgents(state) {
     atomic(file, settings);
     state.agentFiles.push(file);
   }
-  const codex = path.join(user, ".codex", "config.toml");
-  const settings = fs.existsSync(codex)
-    ? parse(fs.readFileSync(codex, "utf8"))
-    : {};
   settings.features ||= {};
   state.previousCodexHooks ??= settings.features.hooks ?? null;
   settings.features.hooks = true;
   settings.mcp_servers ||= {};
-  if (settings.mcp_servers.dip && !settings.mcp_servers.dip.args?.includes(CLI))
-    throw new Error("An unrelated MCP server named dip already exists");
   settings.mcp_servers.dip = {
     command: process.execPath,
     args: ["--disable-warning=ExperimentalWarning", CLI, "mcp"],
@@ -162,14 +171,7 @@ function installAgents(state) {
   backup(codex);
   atomic(codex, stringify(settings));
   state.codexConfig = codex;
-  const claude = path.join(user, ".claude.json"),
-    claudeSettings = json(claude, {});
   claudeSettings.mcpServers ||= {};
-  if (
-    claudeSettings.mcpServers.dip &&
-    !claudeSettings.mcpServers.dip.args?.includes(CLI)
-  )
-    throw new Error("An unrelated Claude MCP server named dip already exists");
   claudeSettings.mcpServers.dip = {
     type: "stdio",
     command: process.execPath,
@@ -767,6 +769,7 @@ export async function runDaemon() {
     attach();
   };
   let scheduled = null;
+  const discoveryCandidates = new Set();
   for (const root of state.roots)
     try {
       rootWatchers.push(
@@ -780,10 +783,33 @@ export async function runDaemon() {
             path.resolve(root, value).startsWith(home() + path.sep)
           )
             return;
-          if (value.includes(".git") || event === "rename") {
-            clearTimeout(scheduled);
-            scheduled = setTimeout(discover, 1000);
+          const segments = value.split("/"),
+            gitIndex = segments.indexOf(".git");
+          let candidate;
+          if (gitIndex >= 0) {
+            candidate = path.resolve(root, ...segments.slice(0, gitIndex));
+            if (watchers.has(candidate)) return;
+          } else if (event === "rename") {
+            const changed = path.resolve(root, value);
+            if (
+              [...watchers.keys()].some(
+                (p) => changed === p || changed.startsWith(p + path.sep),
+              )
+            )
+              return;
+            try {
+              if (fs.statSync(changed).isDirectory()) candidate = changed;
+            } catch {}
           }
+          if (!candidate) return;
+          discoveryCandidates.add(candidate);
+          clearTimeout(scheduled);
+          scheduled = setTimeout(() => {
+            const result = scan([...discoveryCandidates]);
+            discoveryCandidates.clear();
+            for (const e of result.errors) console.error(JSON.stringify(e));
+            attach();
+          }, 1000);
         }),
       );
     } catch (e) {
@@ -810,7 +836,7 @@ export async function runDaemon() {
         rt.enqueue(repo, "filesystem", {
           at: new Date().toISOString(),
           kind: "files.changed",
-          files: [...files].slice(0, 1000),
+          files: [...files],
           agent: "filesystem",
           branch: repo.branch,
         });

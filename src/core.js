@@ -68,10 +68,28 @@ export class Runtime {
     if (this.db.prepare("PRAGMA journal_mode").get().journal_mode !== "wal")
       this.db.exec("PRAGMA journal_mode=WAL");
     this.db.exec(`
-      CREATE TABLE IF NOT EXISTS leases (repo TEXT, task TEXT, actor TEXT, token TEXT, expires INTEGER, scope TEXT DEFAULT '[]', PRIMARY KEY(repo,task));
+      CREATE TABLE IF NOT EXISTS leases (repo TEXT, task TEXT, actor TEXT, token TEXT, expires INTEGER, scope TEXT DEFAULT '[]', descriptor TEXT DEFAULT '{}', PRIMARY KEY(repo,task));
       CREATE TABLE IF NOT EXISTS sessions (repo TEXT, session TEXT, task TEXT, actor TEXT, prompt TEXT, last INTEGER, PRIMARY KEY(repo,session));
       CREATE TABLE IF NOT EXISTS queue (id TEXT PRIMARY KEY, root TEXT, session TEXT, data TEXT, at INTEGER);
       CREATE TABLE IF NOT EXISTS repositories (root TEXT PRIMARY KEY, family TEXT, last INTEGER);`);
+    const hasDescriptor = () =>
+      this.db
+        .prepare("PRAGMA table_info(leases)")
+        .all()
+        .some((c) => c.name === "descriptor");
+    if (!hasDescriptor()) {
+      this.db.exec("BEGIN IMMEDIATE");
+      try {
+        if (!hasDescriptor())
+          this.db.exec(
+            "ALTER TABLE leases ADD COLUMN descriptor TEXT DEFAULT '{}'",
+          );
+        this.db.exec("COMMIT");
+      } catch (e) {
+        this.db.exec("ROLLBACK");
+        throw e;
+      }
+    }
   }
   close() {
     this.db.close();
@@ -95,6 +113,12 @@ export class Runtime {
       .run(repo.key, session, task, actor, redact(prompt), Date.now());
   }
   claim(repo, task, actor, ttl = 120000, scope = []) {
+    updateValidation({ scope });
+    const descriptor = {
+      root: repo.root,
+      branch: repo.branch,
+      title: taskRead(repo, task).title,
+    };
     this.db.exec("BEGIN IMMEDIATE");
     try {
       const now = Date.now(),
@@ -112,9 +136,7 @@ export class Runtime {
         .all(repo.key, task, now)) {
         if (
           scope.some((s) =>
-            JSON.parse(other.scope).some(
-              (o) => s === o || s.startsWith(o + "/") || o.startsWith(s + "/"),
-            ),
+            JSON.parse(other.scope).some((o) => scopesOverlap(s, o)),
           )
         )
           throw new Error(`Scope owned by ${other.task}`);
@@ -124,8 +146,18 @@ export class Runtime {
           ? current.token
           : id();
       this.db
-        .prepare("INSERT OR REPLACE INTO leases VALUES (?,?,?,?,?,?)")
-        .run(repo.key, task, actor, token, now + ttl, JSON.stringify(scope));
+        .prepare(
+          "INSERT OR REPLACE INTO leases (repo,task,actor,token,expires,scope,descriptor) VALUES (?,?,?,?,?,?,?)",
+        )
+        .run(
+          repo.key,
+          task,
+          actor,
+          token,
+          now + ttl,
+          JSON.stringify(scope),
+          JSON.stringify(descriptor),
+        );
       this.db.exec("COMMIT");
       return { task, actor, token, expires: now + ttl };
     } catch (e) {
@@ -157,11 +189,14 @@ export class Runtime {
   }
   leases(repo) {
     return this.db
-      .prepare("SELECT task, actor, expires, scope FROM leases WHERE repo=?")
+      .prepare(
+        "SELECT task, actor, expires, scope, descriptor FROM leases WHERE repo=?",
+      )
       .all(repo.key)
       .map((l) => ({
         ...l,
         scope: JSON.parse(l.scope),
+        descriptor: JSON.parse(l.descriptor),
         active: l.expires > Date.now(),
       }));
   }
@@ -213,6 +248,20 @@ export class Runtime {
     }
     return rows.length;
   }
+}
+
+function scopesOverlap(a, b) {
+  const normalize = (value) => {
+    const normalized = value
+      .replaceAll("\\", "/")
+      .replace(/^\.\//, "")
+      .replace(/\/+$/, "");
+    if (normalized === ".") return "";
+    return process.platform === "win32" ? normalized.toLowerCase() : normalized;
+  };
+  a = normalize(a);
+  b = normalize(b);
+  return !a || !b || a === b || a.startsWith(b + "/") || b.startsWith(a + "/");
 }
 
 function validateId(value) {
@@ -313,7 +362,8 @@ export function project(repo, runtime = null, taskOnly = null) {
     if (!byTask.has(e.taskId)) byTask.set(e.taskId, []);
     byTask.get(e.taskId).push(e);
   }
-  const tasks = [];
+  const tasks = [],
+    leases = runtime?.leases(repo) || [];
   for (const [taskId, list] of byTask) {
     const map = new Map(list.map((e) => [e.eventId, e])),
       ancestors = new Map(),
@@ -411,7 +461,7 @@ export function project(repo, runtime = null, taskOnly = null) {
           })),
         });
     if (state.conflicts.length) state.status = "conflict";
-    const lease = runtime?.leases(repo).find((l) => l.task === taskId);
+    const lease = leases.find((l) => l.task === taskId);
     state.lease = lease || null;
     state.active = lease?.active || false;
     state.interrupted = state.status === "in_progress" && !state.active;
@@ -439,6 +489,16 @@ export function project(repo, runtime = null, taskOnly = null) {
       family: repo.key,
     },
     tasks,
+    activeWorkers: leases
+      .filter((l) => l.active)
+      .map((l) => ({
+        task: l.task,
+        actor: l.actor,
+        scope: l.scope,
+        expires: l.expires,
+        ...l.descriptor,
+        visibleInBranch: taskMap.has(l.task),
+      })),
     activity: activity.sort((a, b) => String(b.at).localeCompare(String(a.at))),
     errors,
   };
@@ -531,6 +591,8 @@ export function compactContext(repo, runtime) {
   return {
     branch: repo.branch,
     errors: state.errors,
+    workers: state.activeWorkers.slice(0, 20),
+    workerCount: state.activeWorkers.length,
     active: state.tasks.filter((t) => t.active).map(brief),
     resume: state.tasks
       .filter((t) => t.interrupted)

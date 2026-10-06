@@ -35,6 +35,7 @@ const options = {
   status: { type: "string" },
   description: { type: "string" },
   scope: { type: "string", multiple: true },
+  waitMs: { type: "string" },
   port: { type: "string" },
   agent: { type: "string" },
   "dip-hook": { type: "boolean" },

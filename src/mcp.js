@@ -26,6 +26,8 @@ export async function runMcp() {
               offset = args.offset || 0;
             result = {
               repo: result.repo,
+              workers: result.activeWorkers.slice(0, 20),
+              workerCount: result.activeWorkers.length,
               total: all.length,
               nextOffset: all.length > offset + limit ? offset + limit : null,
               tasks: all.slice(offset, offset + limit).map((t) => ({
@@ -148,11 +150,12 @@ export async function runMcp() {
   );
   add(
     "task_claim",
-    "Atomically claim meaningful work. Pass the hook session_id and same actor agent:session_id to associate automatic activity.",
+    "Atomically claim meaningful work. Pass the hook session_id and same actor agent:session_id to associate automatic activity. waitMs waits locally for conflicting ownership to release without repeated model calls.",
     {
       id: z.string(),
       actor: z.string(),
       session: z.string().optional(),
+      waitMs: z.number().int().min(0).max(30000).optional(),
       scope: z.array(z.string()).optional(),
     },
     "claim",
