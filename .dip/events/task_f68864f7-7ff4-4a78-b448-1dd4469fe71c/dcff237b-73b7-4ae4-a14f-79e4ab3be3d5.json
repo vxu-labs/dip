@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "dcff237b-73b7-4ae4-a14f-79e4ab3be3d5",
+  "taskId": "task_f68864f7-7ff4-4a78-b448-1dd4469fe71c",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "DIP v0.3.0 was published at https://github.com/vxu-labs/dip/releases/tag/v0.3.0. Native discovery is enabled and running on this machine. Actual raw-git.exe status bootstrap passed without a shell profile. All three platform CI jobs and the 51-case suite passed; clean package and browser checks passed. Compatible native Git worktree commands now adopt unmonitored repositories asynchronously.",
+    "next": "Use normal Git commands; independent Git libraries or overriding execution environments require their own integration.",
+    "head": "40c4b8979a53ef8010f035fc4819dfb367c7c58c"
+  },
+  "actor": "codex:git-discovery",
+  "createdAt": "2026-10-06T09:01:15.247Z",
+  "parents": [
+    "4d8297d2-2e3b-434d-8804-7b0242ccfaca"
+  ],
+  "branch": "main"
+}
