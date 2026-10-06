@@ -22,7 +22,9 @@ assert.equal(data.pairs.length, 6);
 assert.deepEqual(data.protocol.pairs, protocol.pairs);
 assert.deepEqual(data.protocol.sources, protocol.sources);
 const hash = (file) =>
-  createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+  createHash("sha256")
+    .update(fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n"))
+    .digest("hex");
 assert.equal(
   hash(path.join(workspace, "scripts/model-benchmark-fixtures.mjs")),
   protocol.sources.fixtures,
