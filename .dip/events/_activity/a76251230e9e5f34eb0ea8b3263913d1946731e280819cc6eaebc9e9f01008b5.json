@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a76251230e9e5f34eb0ea8b3263913d1946731e280819cc6eaebc9e9f01008b5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T07:39:18.296Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/live-machine-smoke.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "a7f2576a-96fc-4b34-867e-0c99d5008f62"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T07:39:18.302Z",
+  "parents": [],
+  "branch": "main"
+}

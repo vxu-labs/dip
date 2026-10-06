@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5b3f0fd7-2f5d-436d-8cf1-f5b2e7293bfb",
+  "taskId": "task_ffbc8bab-2730-4469-8a22-8cbbb39fe2f2",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Hardened release validation completed: 46-case suite (44 passed and two POSIX-only skips on Windows), cross-platform CI and Chromium, clean package install, real Windows installation adopting 17 accessible repositories with no repeated-install errors, immediate integrated git-init bootstrap, native installed hook commands, filesystem activity and handoffs. Configured verification is current and integrated. Actual model-backed host reload/trust and multi-day running are explicitly outside this QA claim.",
+    "next": "Publish v0.2.0 and restart/trust the installed integrations in the coding hosts.",
+    "head": "3efb797c9933574202d5731643063a2858aa2fc3"
+  },
+  "actor": "codex:hardening",
+  "createdAt": "2026-10-06T07:42:23.560Z",
+  "parents": [
+    "69d849c9-a6cd-4386-ae43-503f706ab8ea"
+  ],
+  "branch": "main"
+}
