@@ -33,6 +33,14 @@ try {
       windowsHide: true,
       timeout: 60000,
       maxBuffer: 1024 * 1024,
+      // macOS aliases /var to /private/var. Keep the copied evaluator's
+      // generated paths and its realpath containment guard in the same namespace.
+      env: {
+        ...process.env,
+        TMPDIR: fs.realpathSync(os.tmpdir()),
+        TMP: fs.realpathSync(os.tmpdir()),
+        TEMP: fs.realpathSync(os.tmpdir()),
+      },
     },
   );
   const actual = JSON.parse(
