@@ -29,6 +29,7 @@ const timeoutMs = 240000;
 const sha = (text) => createHash("sha256").update(text).digest("hex");
 const protocol = {
   schemaVersion: 1,
+  protocolVersion: 2,
   createdAt: new Date().toISOString(),
   model,
   effort,
@@ -45,6 +46,8 @@ const protocol = {
     "six exact contract/deferred/completion recovery checks, seed partial-work checks, wall time, reported token usage and tool counts",
   policy:
     "all scheduled trials retained; no scored-run retries, adaptive prompt edits or omitted failures; preflight excluded and reported separately",
+  priorAttempt:
+    "Attempt 1 aborted after missing MCP approvals were observed. Its raw outcomes remain separate. Version 2 changes infrastructure only: explicitly authorize reviewed fixture-local MCP tools, configure the same visible node --test command, and strengthen preflight with actual intent persistence. All scored arms restart from fresh repositories; scoring and prompts are unchanged.",
   trust:
     "only generated, source-reviewed DIP command hooks in an isolated config; --dangerously-bypass-hook-trust authorizes this vetted automation, not normal installation",
   sources: {
@@ -74,7 +77,7 @@ const output = path.resolve(
   values.output ||
     (values.preflight
       ? ".dip-local/model-preflight.json"
-      : "docs/benchmarks/2026-10-06-model-controlled.json"),
+      : "docs/benchmarks/2026-10-06-model-controlled-v2.json"),
 );
 fs.mkdirSync(path.dirname(output), { recursive: true });
 if (values.protocol) {
@@ -149,7 +152,12 @@ function prepare(index, arm) {
   fs.writeFileSync(
     path.join(root, "package.json"),
     JSON.stringify(
-      { name: "controlled-module-fixture", private: true, type: "module" },
+      {
+        name: "controlled-module-fixture",
+        private: true,
+        type: "module",
+        scripts: { test: "node --test" },
+      },
       null,
       2,
     ),
@@ -170,12 +178,34 @@ function prepare(index, arm) {
       ],
       { env, stdio: "pipe", windowsHide: true },
     );
+  if (arm === "with") {
+    const configFile = path.join(root, ".dip", "config.json");
+    const dipConfig = JSON.parse(fs.readFileSync(configFile, "utf8"));
+    dipConfig.verification = {
+      unit: { command: ["node", "--test"], timeoutMs: 30000 },
+    };
+    fs.writeFileSync(configFile, JSON.stringify(dipConfig, null, 2) + "\n");
+  }
   const configPath = path.join(codexHome, "config.toml");
   const existing = fs.existsSync(configPath)
     ? fs.readFileSync(configPath, "utf8")
     : "";
   const config = `model = "${model}"\nmodel_reasoning_effort = "${effort}"\napproval_policy = "never"\nallow_login_shell = false\nweb_search = "disabled"\nsuppress_unstable_features_warning = true\n[shell_environment_policy]\nexperimental_use_profile = false\ninherit = "all"\n[agents]\nenabled = false\n[windows]\nsandbox = "elevated"\n`;
-  fs.writeFileSync(configPath, config + existing);
+  const approvedTools =
+    arm === "with"
+      ? [
+          ...fs
+            .readFileSync(path.join(workspace, "src/mcp.js"), "utf8")
+            .matchAll(/\badd\(\s*"([a-z_]+)"/g),
+        ].map((m) => m[1])
+      : [];
+  const approvals = approvedTools
+    .map(
+      (name) =>
+        `\n[mcp_servers.dip.tools.${name}]\napproval_mode = "approve"\n`,
+    )
+    .join("");
+  fs.writeFileSync(configPath, config + existing + approvals);
   const auth = path.join(codexHome, "auth.json");
   fs.copyFileSync(authSource, auth);
   credentials.push(auth);
@@ -192,6 +222,7 @@ function prepare(index, arm) {
       mcp: existing.includes("mcp_servers.dip"),
       profilesDisabled: true,
       traceDisabled: true,
+      reviewedMcpToolsApproved: approvedTools,
     },
   };
 }
@@ -288,6 +319,16 @@ async function run(trial, phase, prompt) {
     itemCounts: counts,
     answers,
     errors,
+    mcpErrors: items
+      .filter(
+        (x) =>
+          (x.type === "error" &&
+            !x.message?.startsWith(
+              "`--dangerously-bypass-hook-trust` is enabled.",
+            )) ||
+          (x.type === "mcp_tool_call" && (x.status === "failed" || x.is_error)),
+      )
+      .map((x) => normalize(JSON.stringify(x), trial)),
     stderr: normalize(stderr, trial).slice(-4000),
   };
   console.log(
@@ -334,7 +375,8 @@ function capture(trial) {
       status: t.status,
       source: t.source,
       planPresent: !!t.plan,
-      checkpointPresent: !!t.checkpoint,
+      planTool: t.plan?.tool || null,
+      checkpointPresent: t.checkpoints.length > 0,
     })),
   };
 }
@@ -347,7 +389,9 @@ try {
       const runResult = await run(
         trial,
         "preflight",
-        "This is an infrastructure preflight. Return the number 4. Do not change any files or call tools.",
+        arm === "with"
+          ? "Infrastructure preflight only. Use DIP MCP project_context, save a prose-only plan containing 'PREFLIGHT-MCP-OK' on this captured task using task_plan, then read the task back with task_get. Use the supplied task ID and actor. Do not implement code or change settings. Return 4 after the saved plan is read back."
+          : "This is an infrastructure preflight. Return the number 4. Do not change any files or call tools.",
       );
       result.pairs.push({
         arm,
@@ -357,6 +401,17 @@ try {
       });
       save();
     }
+    result.preflightPassed = result.pairs.every(
+      (x) =>
+        x.run.completed &&
+        x.run.exitCode === 0 &&
+        (x.arm === "with"
+          ? x.capture.tasks.some((t) => t.planPresent) &&
+            (x.run.itemCounts.mcp_tool_call || 0) >= 2 &&
+            x.run.mcpErrors.length === 0
+          : !x.capture.present && !x.setup.hooks && !x.setup.mcp),
+    );
+    if (!result.preflightPassed) process.exitCode = 1;
   } else {
     for (const pair of protocol.pairs) {
       const row = {

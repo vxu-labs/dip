@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6ae2e62d-f449-47f9-aaf4-f15c8d05f578",
+  "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "text": "1. Freeze and publish identical prompts, external eight-case scoring and six counterbalanced matched pairs before scored runs. 2. Execute same gpt-6.1-sol/high configuration in isolated fresh Codex sessions: seed partial code and durable intent, then recover and finish; baseline Markdown persistence is allowed. 3. Retain every run, timeout, failure, available token metric and artifacts; detect baseline contamination. 4. Analyze functional success, exact requirement/deferred recovery, time and tokens with small-sample/cold-start limitations. 5. Publish raw evidence and a balanced README summary; preserve unproven general-productivity and broader host coverage boundaries."
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T12:06:56.645Z",
+  "parents": [
+    "2f69decc-313d-489f-8160-9f4e6be866d9"
+  ],
+  "branch": "main"
+}
