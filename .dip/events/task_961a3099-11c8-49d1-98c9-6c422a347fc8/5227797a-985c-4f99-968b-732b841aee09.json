@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5227797a-985c-4f99-968b-732b841aee09",
+  "taskId": "task_961a3099-11c8-49d1-98c9-6c422a347fc8",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "public",
+      "scripts/browser-smoke.mjs",
+      "docs/images",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json"
+    ]
+  },
+  "actor": "codex:dashboard-design",
+  "createdAt": "2026-10-06T10:51:29.227Z",
+  "parents": [
+    "8f7cd436-702c-4a2a-9810-94e37e8ef920"
+  ],
+  "branch": "main"
+}

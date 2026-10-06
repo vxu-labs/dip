@@ -8,6 +8,14 @@
         "--test-concurrency=1"
       ],
       "timeoutMs": 120000
+    },
+    "browser": {
+      "command": [
+        "node",
+        "scripts/browser-smoke.mjs",
+        "--no-screenshots"
+      ],
+      "timeoutMs": 120000
     }
   },
   "mode": "coordinate"

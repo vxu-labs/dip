@@ -99,6 +99,11 @@ try {
     .getByRole("button", { name: "Add CSV export", exact: false })
     .waitFor();
   await page.getByRole("button", { name: "New task" }).click();
+  assert.ok(
+    await page
+      .locator('[name="title"]')
+      .evaluate((el) => el === document.activeElement),
+  );
   await page
     .getByPlaceholder("What should we build or remember?")
     .fill("Browser-created task");
@@ -147,6 +152,10 @@ try {
   );
   await page.locator("#detail-dialog .close").click();
   await page.getByRole("button", { name: "Work board" }).click();
+  assert.equal(
+    await page.locator('[data-view="board"]').getAttribute("aria-current"),
+    "page",
+  );
   await page.getByRole("heading", { name: "Work board" }).waitFor();
   await page.getByRole("button", { name: "Overview", exact: false }).click();
   const workerButton = page.locator("[data-worker-root]");
@@ -166,21 +175,48 @@ try {
   await page.waitForFunction(
     () => document.querySelector("#branch").textContent === "main",
   );
-  fs.mkdirSync("docs/images", { recursive: true });
-  await page.screenshot({
-    path: path.resolve("docs/images/dashboard.png"),
-    fullPage: true,
-  });
+  const screenshots = !process.argv.includes("--no-screenshots");
+  if (screenshots) fs.mkdirSync("docs/images", { recursive: true });
+  await page.evaluate(() => window.scrollTo(0, 0));
+  if (screenshots)
+    await page.screenshot({
+      path: path.resolve("docs/images/dashboard.png"),
+      fullPage: true,
+    });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.screenshot({
-    path: path.resolve("docs/images/dashboard-mobile.png"),
-    fullPage: true,
-  });
+  await page.evaluate(() => window.scrollTo(0, 0));
+  if (screenshots)
+    await page.screenshot({
+      path: path.resolve("docs/images/dashboard-mobile.png"),
+      fullPage: true,
+    });
   assert.equal(
     await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth,
     ),
     false,
+  );
+  assert.ok(
+    await page
+      .locator("#search")
+      .evaluate((el) => el.getBoundingClientRect().width > 300),
+  );
+  for (const width of [320, 820]) {
+    await page.setViewportSize({ width, height: 900 });
+    assert.equal(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth > innerWidth,
+      ),
+      false,
+    );
+  }
+  await page.emulateMedia({ reducedMotion: "reduce", forcedColors: "active" });
+  assert.equal(
+    await page
+      .locator(".card")
+      .first()
+      .evaluate((el) => getComputedStyle(el).transitionDuration),
+    "0s",
   );
   assert.deepEqual(errors, []);
   console.log(

@@ -89,6 +89,7 @@ async function refresh(force = false) {
         : `Recorder running · ${health.watcherAttached ? "Project watcher active" : "Hooks available"} · ${health.agentCapture?.status === "observed" ? "Agent prompt capture observed" : "Agent prompts not observed in this project; check host hooks and trust"}`;
     }
     $("#connection").textContent = "Local connection active";
+    $(".sidebar-bottom").dataset.connected = "true";
     $("#branch").textContent = state.repo?.branch || "No project yet";
     $("#updated").textContent = "Updated " + new Date().toLocaleTimeString();
     const next = JSON.stringify(data);
@@ -100,6 +101,7 @@ async function refresh(force = false) {
     }
   } catch (e) {
     $("#connection").textContent = "Connection unavailable";
+    $(".sidebar-bottom").dataset.connected = "false";
     notify(e.message);
   }
 }
@@ -107,7 +109,7 @@ function card(t) {
   return `<button class="card" data-task="${escape(t.id)}"><span class="badge ${label(t)}">${escape(label(t).replaceAll("_", " "))}</span><h3>${escape(t.title)}</h3><p>${escape(t.scope.join(" · ") || t.description.slice(0, 100) || "Scope not yet specified")}</p><div class="card-footer"><span>${escape(t.lease?.actor || "Unassigned")}</span><span>${t.due ? escape(t.due) : escape(t.id.slice(-8))}</span></div></button>`;
 }
 function column(title, tasks) {
-  return `<div><h2 class="column-title">${title}<span>${tasks.length}</span></h2>${tasks.length ? tasks.map(card).join("") : '<div class="empty">No tasks here. Activity is captured automatically.</div>'}</div>`;
+  return `<div><h2 class="column-title">${title}<span>${tasks.length}</span></h2>${tasks.length ? tasks.map(card).join("") : '<div class="empty"><strong>A little room for what’s next.</strong>Saved work will appear here.</div>'}</div>`;
 }
 function render() {
   const tasks = state.tasks || [],
@@ -240,7 +242,7 @@ function render() {
   if (elsewhere.length && view !== "activity") {
     $("#content").insertAdjacentHTML(
       "beforeend",
-      `<div class="worker-section"><h2>Workers in other worktrees</h2><div class="columns">${elsewhere.map((w) => `<button class="card" data-worker-root="${escape(w.root)}"><span class="badge running">running</span><h3>${escape(w.title || w.task)}</h3><p>${escape(w.actor)} · ${escape(w.branch)}</p><p>${escape(w.scope.join(" · "))}</p><small>${escape(w.root)}</small></button>`).join("")}</div></div>`,
+      `<div class="worker-section"><h2>Workers in other worktrees</h2><div class="columns">${elsewhere.map((w) => `<button class="card" data-worker-root="${escape(w.root)}"><span class="badge running">running</span><h3>${escape(w.title || w.task)}</h3><p>${escape(w.actor)} · ${escape(w.branch)}</p><p>${escape(w.scope.join(" · "))}</p><small title="${escape(w.root)}">${escape(short(w.root))}</small></button>`).join("")}</div></div>`,
     );
     document.querySelectorAll("[data-worker-root]").forEach(
       (b) =>
@@ -374,9 +376,11 @@ document.querySelectorAll(".nav").forEach(
   (b) =>
     (b.onclick = () => {
       view = b.dataset.view;
-      document
-        .querySelectorAll(".nav")
-        .forEach((n) => n.classList.toggle("active", n === b));
+      document.querySelectorAll(".nav").forEach((n) => {
+        n.classList.toggle("active", n === b);
+        if (n === b) n.setAttribute("aria-current", "page");
+        else n.removeAttribute("aria-current");
+      });
       render();
     }),
 );
@@ -437,5 +441,8 @@ $("#task-form").onsubmit = async (e) => {
 token = (await (await fetch("/api/session")).json()).token;
 const events = new EventSource("/api/events");
 events.onmessage = () => refresh();
-events.onerror = () => ($("#connection").textContent = "Reconnecting");
+events.onerror = () => {
+  $("#connection").textContent = "Reconnecting";
+  $(".sidebar-bottom").dataset.connected = "false";
+};
 await refresh(true);
