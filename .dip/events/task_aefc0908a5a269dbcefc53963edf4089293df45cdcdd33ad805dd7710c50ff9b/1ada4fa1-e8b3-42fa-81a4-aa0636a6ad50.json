@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1ada4fa1-e8b3-42fa-81a4-aa0636a6ad50",
+  "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Four features delivered in v0.3.9: validated automatic capture controls, structural recognized-secret redaction, bounded recorder supervision and truthful health/observation-gap reporting. Existing L09/L03 are verified. Full115-case local tests and all-platform CI37644999019 passed; browser and clean package checks passed; published GitHub release and installed global package with healthy supervisor. Existing history/raw Trace2 are not scrubbed; supervisor itself is not OS-supervised; no quality/token gain claimed.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:38:14.978Z",
+  "parents": [
+    "946f60aa-7a7c-4578-8962-69a99b613015"
+  ],
+  "branch": "main"
+}

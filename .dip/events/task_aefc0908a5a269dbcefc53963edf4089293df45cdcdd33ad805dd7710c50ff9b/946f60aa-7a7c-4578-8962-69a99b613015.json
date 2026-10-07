@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "946f60aa-7a7c-4578-8962-69a99b613015",
+  "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "v0.3.9 source78f4f8e published; CI37644999019 passed Windows/Linux/macOS and Linux browser. Clean Git archive package smoke passed; global0.3.9 installed, existing roots/config preserved and supervised recorder healthy. Unrelated local benchmark deletions remain unpublished.",
+    "next": "Record final configured completion evidence and push task metadata.",
+    "head": "78f4f8eb543bbe447c1577fbdedb116c3739b699"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:38:14.958Z",
+  "parents": [
+    "e5672ed8-5d14-47ca-b19e-aa58ff68e0d4"
+  ],
+  "branch": "main"
+}
