@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "985bf6c1-410e-4605-ad43-30f3d8662bd3",
+  "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Published v0.3.5 at https://github.com/vxu-labs/dip/releases/tag/v0.3.5, source 9101f612f53968083170a4cc581617527c409f18. CI 37605668471 passed Windows/Linux/macOS, benchmark evidence replay and Linux browser QA. Configured local unit check passed 83 cases (81 Windows, 2 POSIX skips), configured browser and fresh package/skill checks passed at stable snapshot b0c26e1d331be3984af8937b76f1992850df767ebd8826ce8f8ffbd196fdb57e. Installed runtime/dashboard/skill match source. Existing Codex hook auto-linked QA_REPORT.md; stale script-edited content correctly prevented verification until reviewed relink. Plan and QA references current, no copied plan body. New MCP tools need host reload; unsupported shell/wrapper writes need explicit links. No extra model used; semantic retrieval and token-saving evaluation remain future work.",
+    "next": "",
+    "head": "9101f612f53968083170a4cc581617527c409f18"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:14:50.021Z",
+  "parents": [
+    "db3c2a56-5192-4309-b890-ec3825996b90"
+  ],
+  "branch": "main"
+}
