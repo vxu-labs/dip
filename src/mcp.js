@@ -107,6 +107,70 @@ export async function runMcp() {
     {},
     "next",
   );
+  const navigationPage = {
+    limit: z.number().int().min(1).max(50).optional(),
+    offset: z.number().int().min(0).optional(),
+  };
+  const navigationStatus = {
+    statuses: z
+      .array(
+        z.enum([
+          "backlog",
+          "ready",
+          "in_progress",
+          "blocked",
+          "implemented",
+          "verified",
+          "cancelled",
+          "superseded",
+          "conflict",
+        ]),
+      )
+      .min(1)
+      .max(9)
+      .optional(),
+  };
+  add(
+    "task_requirements",
+    "Read bounded current requirements, source-document freshness, conflicts and actual prerequisite verification. Prose and plan progress never establish completion.",
+    {
+      id: z.string(),
+      ...navigationPage,
+      maxChars: z.number().int().min(500).max(16000).optional(),
+    },
+    "requirements",
+  );
+  add(
+    "component_owners",
+    "Inspect current local worktree owners overlapping a component. Expired leases are excluded; acquire an atomic task_claim before editing.",
+    { path: z.string(), ...navigationPage },
+    "owners",
+  );
+  add(
+    "task_changes",
+    "Explain scoped source and linked-document changes since the latest verification, plus requirement and configured-check invalidation. Older evidence may lack field-level intent hashes.",
+    { id: z.string(), ...navigationPage },
+    "changes",
+  );
+  add(
+    "project_search",
+    "Find task and decision candidates using a disposable incremental Unicode lexical index and optional task graph context. Rank is not semantic identity or completion evidence; cancelled/superseded tasks are excluded unless explicitly requested.",
+    {
+      query: z.string().min(1).max(1000),
+      id: z.string().optional(),
+      kind: z.enum(["task", "decision"]).optional(),
+      scope: z.array(z.string()).max(20).optional(),
+      ...navigationStatus,
+      ...navigationPage,
+    },
+    "search",
+  );
+  add(
+    "task_related",
+    "Follow explicit dependency, dependent, shared-document and scope-overlap links. No guessed semantic relationship or status mutation.",
+    { id: z.string(), ...navigationStatus, ...navigationPage },
+    "related",
+  );
   add(
     "task_plan",
     "Save a prose-only plan on the current captured task. update_plan/TodoWrite are already captured by hooks. Plans never establish verified completion.",

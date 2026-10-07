@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6db0ba67-05f2-418c-a4b5-a62bcc5dc00f",
+  "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "v0.3.6 installed: five read-only navigation MCP/CLI tools, derived incremental per-checkout SQLite FTS5 with query-centered excerpts, cache separate from ownership, compact context/task selection exclude activity. Configured unit verification passed 93 cases (91 Windows passes, 2 POSIX skips) at unchanged source/intent snapshot 7bf8d8294772f142e49078a4e5f0be92c6cc10a798fa5fc748530f2cfc5cbb9b. Browser, package and skill checks passed. Tests cover 1000-history refresh/rebuild, ownership under cache locks, actual transports and evidence/intent changes. Existing Laya alternatives task is still backlog and linked to docs/benchmarks/semantic-alternatives.md; neural experiments and semantic identity remain unfinished. No AI quality or token-saving improvement claimed.",
+    "next": "",
+    "head": "3c8ec9fa727cf1a61bc4d53b692495e997d81ddb"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:50:44.299Z",
+  "parents": [
+    "42e94a01-f120-4e80-aaa1-6bc57f22d929"
+  ],
+  "branch": "main"
+}

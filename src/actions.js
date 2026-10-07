@@ -20,6 +20,7 @@ import {
   readDocument,
   documentPath,
 } from "./documents.js";
+import { navigate } from "./navigation.js";
 
 const intentHash = (task, repo) =>
   digest(
@@ -47,6 +48,31 @@ const intentHash = (task, repo) =>
     ]),
   );
 
+const intentFields = (task, repo) =>
+  Object.fromEntries(
+    [
+      ["description", task.description || ""],
+      ["acceptance", task.acceptance || []],
+      ["scope", task.scope || []],
+      ["dependencies", task.dependencies || []],
+      ["plan", planIntent(task.plan)],
+      [
+        "documents",
+        (task.documents || []).map((d) => {
+          const state = documentState(repo, d);
+          return [
+            d.path,
+            d.role,
+            d.hash,
+            state.currentness,
+            state.currentHash || null,
+            d.alternatives || null,
+          ];
+        }),
+      ],
+    ].map(([key, value]) => [key, digest(JSON.stringify(value))]),
+  );
+
 export async function execute(action, args = {}, cwd = process.cwd()) {
   const repo = ensure(cwd, {
       instructions: ![
@@ -57,11 +83,26 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         "reconcile",
         "document-list",
         "document-read",
+        "requirements",
+        "owners",
+        "changes",
+        "search",
+        "related",
       ].includes(action),
     }),
     rt = new Runtime();
   try {
     rt.register(repo);
+    if (
+      ["requirements", "owners", "changes", "search", "related"].includes(
+        action,
+      )
+    )
+      return navigate(repo, rt, action, args, {
+        intentHash,
+        intentFields,
+        assessEvidence,
+      });
     const actor = args.actor || "agent";
     if (action === "context") return compactContext(repo, rt);
     if (action === "status") {
@@ -137,7 +178,7 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       return { saved: true, id: args.id };
     }
     if (action === "next") {
-      const state = reconcile(repo, rt);
+      const state = reconcile(repo, rt, { includeActivity: false });
       return state.tasks
         .filter(
           (t) =>
@@ -309,6 +350,7 @@ async function verify(repo, args, actor, assertOwnership) {
     );
   const before = captureSnapshot(repo);
   const beforeIntent = intentHash(task, repo);
+  const beforeFields = intentFields(task, repo);
   const result = await new Promise((resolve, reject) => {
     const child = spawn(check.command[0], check.command.slice(1), {
       cwd: repo.root,
@@ -357,6 +399,7 @@ async function verify(repo, args, actor, assertOwnership) {
       snapshot: after,
       changedDuringCheck: before.hash !== after.hash,
       intentHash: beforeIntent,
+      intentFields: beforeFields,
       changedIntentDuringCheck,
       codeHead: after.committed ? repo.head : null,
     },
@@ -372,45 +415,45 @@ async function verify(repo, args, actor, assertOwnership) {
     snapshot: after.hash,
   };
 }
-export function reconcile(repo, rt) {
-  const state = project(repo, rt),
+export function assessEvidence(repo, task, snapshot) {
+  const evidence = task.evidence.at(-1);
+  if (!evidence)
+    return {
+      verification: "missing",
+      integrated: false,
+      verifiedComplete: false,
+    };
+  snapshot ||= captureSnapshot(repo);
+  const names = new Set(
+    [
+      ...Object.keys(evidence.snapshot?.files || {}),
+      ...Object.keys(snapshot.files),
+    ].filter(
+      (p) => !task.scope.length || task.scope.some((s) => inScope(p, s)),
+    ),
+  );
+  const current =
+    evidence.result === "passed" &&
+    [...names].every(
+      (p) => evidence.snapshot?.files?.[p] === snapshot.files[p],
+    ) &&
+    JSON.stringify(repo.config.verification?.[evidence.check]?.command) ===
+      JSON.stringify(evidence.command) &&
+    evidence.intentHash === intentHash(task, repo);
+  return {
+    verification: current ? "current" : "stale",
+    integrated: snapshot.committed && current,
+    verifiedComplete: task.status === "verified" && current,
+  };
+}
+
+export function reconcile(repo, rt, options = {}) {
+  const state = project(repo, rt, null, options),
     snapshot = state.tasks.some((t) => t.evidence.length)
       ? captureSnapshot(repo)
       : null;
   for (const task of state.tasks) {
-    const evidence = task.evidence.at(-1);
-    if (!evidence) {
-      task.verification = "missing";
-      task.integrated = false;
-      continue;
-    }
-    task.verification =
-      evidence.result === "passed" && evidence.snapshot?.hash === snapshot.hash
-        ? "current"
-        : "stale";
-    if (task.scope.length && evidence.result === "passed") {
-      const names = new Set(
-        [
-          ...Object.keys(evidence.snapshot?.files || {}),
-          ...Object.keys(snapshot.files),
-        ].filter((p) => task.scope.some((s) => inScope(p, s))),
-      );
-      task.verification = [...names].every(
-        (p) => evidence.snapshot.files[p] === snapshot.files[p],
-      )
-        ? "current"
-        : "stale";
-    }
-    if (
-      JSON.stringify(repo.config.verification?.[evidence.check]?.command) !==
-      JSON.stringify(evidence.command)
-    )
-      task.verification = "stale";
-    if (evidence.intentHash !== intentHash(task, repo))
-      task.verification = "stale";
-    task.integrated = snapshot.committed && task.verification === "current";
-    task.verifiedComplete =
-      task.status === "verified" && task.verification === "current";
+    Object.assign(task, assessEvidence(repo, task, snapshot));
   }
   const taskMap = new Map(state.tasks.map((t) => [t.id, t]));
   for (const task of state.tasks)

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0dc6fbae-862c-485a-8e9d-def37310b5e3",
+  "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/navigation.md",
+    "role": "reference",
+    "hash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+    "bytes": 5525,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:44:36.817Z",
+  "parents": [
+    "e03906d8-d598-4da8-82ac-7585882de347"
+  ],
+  "branch": "main"
+}

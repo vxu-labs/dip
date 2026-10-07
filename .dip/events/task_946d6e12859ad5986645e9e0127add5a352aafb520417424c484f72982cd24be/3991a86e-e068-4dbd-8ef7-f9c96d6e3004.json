@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3991a86e-e068-4dbd-8ef7-f9c96d6e3004",
+  "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/navigation.md",
+    "role": "reference",
+    "hash": "e09d33dd71289335fc5b0b7adbbc8414c15576a23aa9958fbfeecd2995478c16",
+    "bytes": 5272,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:36:40.360Z",
+  "parents": [
+    "808d0b3f-1b3c-4b39-bca1-37a13c4d0df2"
+  ],
+  "branch": "main"
+}

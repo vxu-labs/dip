@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f0933799-3544-48a9-9a94-ccd319fc9927",
+  "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+  "type": "task.update",
+  "payload": {
+    "title": "Build bounded structured navigation and indexed task/decision search",
+    "description": "Add read-only tools for authoritative task requirements, live component ownership, changes since evidence and related task/decision retrieval. Use a derived incremental local search index and bounded results with explicit provenance and no automatic identity/completion decisions. Confirm model-comparison investigation remains open and link its published Markdown test design.",
+    "scope": [
+      "src",
+      "bin",
+      "test",
+      "docs",
+      "README.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "skills",
+      "package.json",
+      "package-lock.json",
+      "QA_REPORT.md"
+    ],
+    "acceptance": [
+      "Tools distinguish current requirements, document freshness, competing intent and verified prerequisites without asserting completion from plans.",
+      "Ownership includes live local worktree leases and overlapping scopes, never expired owners or implied cross-machine locks.",
+      "Changes identify added/modified/deleted scoped and linked source files, intent/check configuration changes and evidence freshness without full histories or secret content.",
+      "Indexed lexical and graph search supports Unicode, status/scope filters, paginated bounded hits and deterministic ordering; index rebuilds from Git-backed intent after loss or change.",
+      "Existing model alternatives task is open with its test-design document linked, without declaring candidates evaluated or trained."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:16:19.050Z",
+  "parents": [
+    "7bd158f8-fc41-4b3b-b89e-9302cefd3c18"
+  ],
+  "branch": "main"
+}

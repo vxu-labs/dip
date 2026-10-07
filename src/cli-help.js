@@ -3,6 +3,10 @@ export function cliHelp(command = "help", action = "") {
     create:
       'dip task create --title "..." [--description "..."] [--status backlog|ready] [--scope PATH] [--actor NAME]\n',
     get: "dip task get --id ID\n",
+    requirements:
+      "dip task requirements --id ID [--limit 10] [--offset 0] [--maxChars 6000]\n",
+    changes: "dip task changes --id ID [--limit 10] [--offset 0]\n",
+    related: "dip task related --id ID [--statuses backlog] [--limit 10]\n",
     update:
       'dip task update --id ID --patch \'{"title":"...","status":"backlog"}\' [--actor NAME] [--token TOKEN]\n',
     plan: 'dip task plan --id ID --text "..." [--actor NAME] [--token TOKEN]\n',
@@ -31,6 +35,11 @@ export function cliHelp(command = "help", action = "") {
     `dip status --full              Full task/activity history\n` +
     `dip task create --title X       Save a distinct task or future idea\n` +
     `dip task get --id ID            Read one requirement\n` +
+    `dip task requirements --id ID   Current requirements and source freshness\n` +
+    `dip task changes --id ID        Changes since latest verification\n` +
+    `dip task related --id ID        Explicit task relationships\n` +
+    `dip search --query WORDS        Indexed task and decision candidates\n` +
+    `dip owners --path src/module    Current local component ownership\n` +
     `dip task plan --id ID --text X  Save a plan when hooks are unavailable\n` +
     `dip task document-link --id ID --path FILE.md --role plan\n` +
     `dip task document-list --id ID  Inspect linked document versions\n` +

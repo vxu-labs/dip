@@ -51,6 +51,8 @@ const options = {
   token: { type: "string" },
   check: { type: "string" },
   status: { type: "string" },
+  statuses: { type: "string", multiple: true },
+  kind: { type: "string" },
   description: { type: "string" },
   scope: { type: "string", multiple: true },
   waitMs: { type: "string" },
@@ -181,6 +183,8 @@ try {
           )
         : result,
     );
+  } else if (command === "search" || command === "owners") {
+    print(await execute(command, { ...flags }, cwd));
   } else if (command === "task") {
     const action = positionals.shift();
     const args = { ...flags };

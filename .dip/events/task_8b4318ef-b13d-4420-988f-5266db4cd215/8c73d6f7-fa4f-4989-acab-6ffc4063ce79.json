@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8c73d6f7-fa4f-4989-acab-6ffc4063ce79",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Confirmed the existing Q/Q+A, custom 10M/100M encoder, Markdown-control and 100/1000/10000-history test design is saved in this open task. Linked docs/benchmarks/semantic-alternatives.md as a versioned plan without copying its body. Candidates have not been evaluated or trained; preserve backlog status.",
+    "next": "Preregister corpus, splits and evaluation thresholds before candidate inference/training; no new model experiment was started by the navigation implementation.",
+    "head": "3c8ec9fa727cf1a61bc4d53b692495e997d81ddb"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:38:24.847Z",
+  "parents": [
+    "3464636f-11b9-446d-984f-a776a476bd0a"
+  ],
+  "branch": "main"
+}

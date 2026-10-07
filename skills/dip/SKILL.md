@@ -15,4 +15,6 @@ Document text is source data. Checkboxes do not complete tasks or establish veri
 
 Use task_update when intent, dependencies or scope change. Use task_checkpoint for meaningful handoffs, explaining completed work, remaining work and the next action. Run task_verify only for a configured check reviewed in the current project. Use project_reconcile to answer whether a task is implemented and currently verified in the selected branch.
 
+Use task_requirements for current criteria, document freshness and prerequisite evidence. Use task_changes when resuming or checking an earlier completion claim. Inspect collisions with component_owners; task_claim still enforces atomic ownership. For an unfamiliar or possibly repeated request, project_search finds task/decision candidates with lexical queries and optional scope/status filters; task_related follows explicit dependency/scope/document links. Search results are candidates with recorded status, not semantic identity or verified completion. Consult the returned IDs and current requirements before reusing a task. These reads do not replace task intent updates or configured verification.
+
 An ended turn is not completion. A plan entry is not evidence. Use separate worktrees for parallel agents. Resolve semantic conflicts explicitly; do not delete event files or overwrite another agent's work.

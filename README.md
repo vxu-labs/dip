@@ -33,6 +33,8 @@ The installer merges global Codex and Claude Code hooks/MCP configuration, chain
 
 Ask naturally for a plan, a feature or a future idea. Trusted hooks save the request and structured plan updates automatically; the agent receives the captured task ID so it can refine the existing requirement. Future ideas stay in backlog during planning and known read tools. Write a long plan once in Markdown: supported file-write hooks attach a small versioned reference to its task, and DIP tools retrieve the relevant sections. Status, ownership and verification stay structured. The dashboard and `dip doctor` show whether prompt capture has actually been observed in the selected project. See [document references](docs/documents.md) and [workflow coverage](docs/automation.md#requests-plans-and-future-ideas).
 
+Ask DIP for current requirements, live component owners, changes since verification, or related tasks and decisions. Focused tools return bounded structured answers with source IDs; a local incremental search index keeps activity history out of the agent's context. Retrieval currently uses lexical search and explicit task relationships. [Agent navigation tools and limits](docs/navigation.md).
+
 ![DIP local project dashboard](docs/images/dashboard.png)
 
 Native Git discovery also adopts existing repositories outside watched roots when compatible Git opens them, including on `git status` or `git diff`, without a shell profile. The running recorder processes this native signal shortly after the command completes. See [native discovery and its boundaries](docs/git-discovery.md).

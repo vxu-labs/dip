@@ -1,5 +1,11 @@
 # DIP release validation
 
+## v0.3.6 focused navigation
+
+Five new MCP tools and CLI views expose current requirements, live component owners, changes since evidence, indexed task/decision search and direct graph relationships. Startup context and task selection omit activity batches. The derived incremental search database is separate from ownership/outbox storage and partitions text corpora by checkout. New evidence stores per-field intent hashes without copying prose; legacy field details remain explicitly unavailable.
+
+Ten navigation regression cases cover stale/conflicting requirements, unverified prerequisite status, another worktree's owners and expiry, source additions/deletions and check changes, legacy evidence, Unicode/negation/cancelled filters, explicit relationships, query-centered excerpts, actual MCP/CLI transport, a 1,000-item index with refresh/rebuild, and ownership acquisition while the search cache holds a write lock. This is correctness QA, not evidence of better AI quality or reduced token costs. Search remains lexical plus explicit graph links; no semantic encoder or training was added. The existing alternatives investigation remains backlog and now has its published experiment document linked as a plan.
+
 ## v0.3.5 Markdown source references
 
 Plans can stay in a single Markdown source. Successful supported Write/Edit/MultiEdit/apply_patch hooks persist task-bound path, role, SHA-256 and size metadata; full prose is not duplicated in task events. Persistent pre-tool bindings prevent late post events from attaching documents to a newer prompt's task. MCP and CLI expose linking, pagination, currentness and bounded heading/lexical section retrieval. The dashboard displays references and plain-text excerpts without executing embedded HTML.

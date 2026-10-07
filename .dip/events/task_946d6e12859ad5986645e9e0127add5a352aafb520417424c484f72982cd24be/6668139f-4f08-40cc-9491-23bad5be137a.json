@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6668139f-4f08-40cc-9491-23bad5be137a",
+  "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src",
+      "bin",
+      "test",
+      "docs",
+      "README.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "skills",
+      "package.json",
+      "package-lock.json",
+      "QA_REPORT.md",
+      "docs/plans/navigation-plan.md",
+      "src/core.js",
+      "src/actions.js",
+      "src/navigation.js",
+      "src/mcp.js",
+      "bin/dip.js",
+      "src/cli-help.js",
+      "src/workflow.js",
+      "test/navigation.test.js"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:31:14.755Z",
+  "parents": [
+    "1925e169-ce5d-467d-9d51-45dd63e70d0e"
+  ],
+  "branch": "main"
+}
