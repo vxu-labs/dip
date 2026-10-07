@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1300d7e9-32b1-4bbe-af70-668854784077",
+  "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "scripts",
+      "docs/benchmarks",
+      ".dip/config.json",
+      "scripts/laya-pilot-corpus.mjs",
+      "scripts/laya-pilot.py",
+      "scripts/laya-pilot-protocol.mjs",
+      "scripts/laya-pilot-analysis.mjs",
+      "scripts/laya-pilot-evidence.mjs",
+      "scripts/laya-pilot-publish.mjs"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T06:18:47.418Z",
+  "parents": [
+    "65c50509-6e4a-4143-be46-3343c3851138"
+  ],
+  "branch": "main"
+}

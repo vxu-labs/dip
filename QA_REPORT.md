@@ -1,5 +1,9 @@
 # DIP release validation
 
+## Laya task-matching feasibility pilot
+
+Laya 0.3.28 with its pinned multilingual checkpoint ran without additional training on 96 synthetic task pairs (32 families in English, Hebrew and cross-language). Four-way relationship: 33/96 correct. Binary exact identity: 43/96 correct, 23 true identities found, 52 false identities, precision 30.7%, recall 95.8%. Zero prediction errors or truncated inputs. Median CPU latency for two questions was 0.774 seconds and peak sampled process RSS was 2.14 GiB. Automatic task merging is not supported by these results. No model was added to routine DIP/Git capture. The alternatives and domain-training investigations remain open in DIP. [Full pilot and every outcome](docs/benchmarks/laya-pilot.md).
+
 ## Longitudinal controlled quality experiment
 
 Four matched pairs ran 72 scheduled fresh Codex turns with actual requirement changes, eight intentional process interruptions, concurrent worktree workers, real Git merges and final read-only audits. Primary final functional results were 120/120 without DIP and 120/120 with DIP; exact policy/future/cancellation recovery was 52/52 and 52/52. False release-ready claims against primary cases: 0 and 0. No primary quality advantage was observed against the Markdown-capable baseline.

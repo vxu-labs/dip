@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c4f65b26-3adf-4a02-8b82-9c849e93758f",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "The initial Laya baseline is now available for comparison: 96 task pairs; four-way accuracy 34.4%, exact-identity accuracy 44.8%, precision 30.7% and recall 95.8%; 52 false identity decisions out of 72 non-identical pairs. CPU median 0.774s for two questions; peak sampled RSS 2.14 GiB. Held-out pilot inputs/probabilities are preserved. Do not reuse this known pilot as both tuning and final-test data for an alternative; retain separate domain/project test sets.",
+    "next": "Identify licensed pretrained multilingual task-pair/reranking candidates, then compare task identity and overlap quality/resource costs honestly; generic relevance scores are not equivalence probabilities.",
+    "head": "786dc040f6fdab4d78c640a4bfd9b1adfc3ad626"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T06:20:53.225Z",
+  "parents": [
+    "e0bbc7fc-2d14-4d50-adb2-ce4f842aabf0"
+  ],
+  "branch": "main"
+}

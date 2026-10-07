@@ -2,40 +2,27 @@
   "schemaVersion": 1,
   "verification": {
     "unit": {
-      "command": [
-        "node",
-        "--test",
-        "--test-concurrency=1"
-      ],
+      "command": ["node", "--test", "--test-concurrency=1"],
       "timeoutMs": 120000
     },
     "browser": {
-      "command": [
-        "node",
-        "scripts/browser-smoke.mjs",
-        "--no-screenshots"
-      ],
+      "command": ["node", "scripts/browser-smoke.mjs", "--no-screenshots"],
       "timeoutMs": 120000
     },
     "benchmark": {
-      "command": [
-        "node",
-        "scripts/model-benchmark-evidence.mjs"
-      ],
+      "command": ["node", "scripts/model-benchmark-evidence.mjs"],
       "timeoutMs": 60000
     },
     "quality-benchmark": {
-      "command": [
-        "node",
-        "scripts/longitudinal-evidence.mjs"
-      ],
+      "command": ["node", "scripts/longitudinal-evidence.mjs"],
       "timeoutMs": 60000
     },
     "stress-benchmark": {
-      "command": [
-        "node",
-        "scripts/longitudinal-stress-evidence.mjs"
-      ],
+      "command": ["node", "scripts/longitudinal-stress-evidence.mjs"],
+      "timeoutMs": 60000
+    },
+    "laya-pilot": {
+      "command": ["node", "scripts/laya-pilot-evidence.mjs"],
       "timeoutMs": 60000
     }
   },

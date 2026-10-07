@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9dfe776c-c885-49ed-a4d8-38dc59429077",
+  "taskId": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Partial research completed under task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba: pinned Laya 0.3.28 multilingual/322M ran locally without training on 96 synthetic pairs (32 families, English/Hebrew/cross). Four-way relation 33/96; binary exact identity 43/96. It detected 23/24 true identities but made 52/72 false identities, precision 30.7%, recall 95.8%. No truncation/errors, median two-question CPU latency 0.774s, sampled peak RSS 2.14 GiB. This schema/checkpoint is not ready for autonomous duplicate merging. Corpus labels are author-defined and not independently adjudicated. Model alternatives/fine-tuning/real-scale retrieval remain unfinished.",
+    "next": "Compare pretrained alternatives under task_8b4318ef-b13d-4420-988f-5266db4cd215; independently review/expand labels and evaluate domain adaptation on separate train/validation/test projects before claiming efficacy.",
+    "head": "786dc040f6fdab4d78c640a4bfd9b1adfc3ad626"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T06:20:51.606Z",
+  "parents": [
+    "0d57b3b8-1604-41d0-89d2-fb92483195bf"
+  ],
+  "branch": "main"
+}

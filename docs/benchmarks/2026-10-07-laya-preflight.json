@@ -1,0 +1,1953 @@
+{
+  "protocol": {
+    "schemaVersion": 1,
+    "protocolVersion": 2,
+    "createdAt": "2026-10-07T05:57:33.058Z",
+    "design": "Zero-shot single-checkpoint CPU pilot: 32 author-labeled synthetic task families, each repeated in English, Hebrew and Hebrew-to-English (96 cases). Four-way relationship and independent binary exact identity asked together. No fine-tuning, post-hoc prompt edits, retries, calibration fitting or training.",
+    "modelRepo": "convaiinnovations/laya",
+    "subfolder": "multilingual",
+    "modelRevision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+    "packages": {
+      "laya": "0.3.28",
+      "torch": "2.8.0+cpu",
+      "transformers": "4.57.6",
+      "psutil": "7.2.2"
+    },
+    "device": "cpu",
+    "threads": 4,
+    "interopThreads": 1,
+    "seed": 41729,
+    "maxLen": 1024,
+    "headMaxLen": 256,
+    "labelPolicy": "same=equivalent full intended work and target, independent of status; overlap=subset/superset/changed constraint sharing work; related=same target but independent capability; different=unrelated/opposite actions/disjoint versions/components/tenants. Labels authored before inference, not independently adjudicated.",
+    "baselines": "four-way constant-label accuracy 25%; binary always-not-identical accuracy 75%. Language variants cluster by family; not 96 independent projects.",
+    "ordering": "Family order fixed, language order English/Hebrew/cross. Neutral option keys and balanced family rotations; binary positive position alternates by family.",
+    "safety": "Local model inference only, public weights and synthetic inputs. No DIP/Git lifecycle integration. Isolated venv/cache; no implicit HF token. Abort at >4 GiB process RSS or sustained <128 MiB host available RAM. Resource failures are infrastructure outcomes, not classification quality.",
+    "metrics": "Four-way confusion/accuracy by label and language; binary identity precision/recall/false links/misses; raw probability calibration diagnostics, predefined 0.8 answer-probability abstention slice; cold load, warm per-case CPU latency and peak RSS. No automatic task-state mutation or completion assertion.",
+    "sources": {
+      "corpus": "e660944b16e7a33c4134f9b663962d13d9a0320a98d6adfc1155ec6cd6fc3c16",
+      "runner": "a5fe8e5c335b4643361f90ba27d0a495f7773487cc095badab4d86655ed04174"
+    },
+    "relationQuestion": {
+      "type": "choice",
+      "instructions": "Compare the new request with the existing task. Judge intended behavior, constraints and target scope. Ignore whether the task is open or completed. Choose the relationship using the supplied definitions.",
+      "descriptions": {
+        "same": "Equivalent task: same intended behavior, scope and requirements, possibly paraphrased.",
+        "overlap": "Not equivalent: a subset, extension or changed constraint of the same work, with some shared requirements. Opposite actions are different.",
+        "related": "Same target component but a separate capability; related topic without shared actionable requirements.",
+        "different": "Unrelated work, opposite requested actions, or explicitly disjoint target components, API versions or tenants."
+      }
+    },
+    "identityQuestion": {
+      "type": "choice",
+      "instructions": "Is the new request equivalent to the existing task in behavior, constraints and target scope? Partial coverage, extensions, changed constraints, opposite actions and different targets are not equivalent. Ignore open/completed status.",
+      "descriptions": {
+        "yes": "Equivalent requirements and target; reuse this existing task as the same work.",
+        "no": "Not equivalent: do not merge these two requests as identical work."
+      }
+    },
+    "cases": [
+      {
+        "id": "pair-00-en",
+        "family": 0,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Add Google sign-in to the web app.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Let web users log in with their Google account.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-00-he",
+        "family": 0,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף כניסה באמצעות גוגל לאפליקציית הווב.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "אפשר למשתמשי הווב להתחבר עם חשבון גוגל.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-00-cross",
+        "family": 0,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף כניסה באמצעות גוגל לאפליקציית הווב.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Let web users log in with their Google account.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-01-en",
+        "family": 1,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Add cursor pagination to the public API.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Paginate the public API using cursors.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-01-he",
+        "family": 1,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף דפדוף מבוסס סמן ל־API הציבורי.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "חלק את תוצאות ה־API הציבורי לעמודים באמצעות cursor.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-01-cross",
+        "family": 1,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף דפדוף מבוסס סמן ל־API הציבורי.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Paginate the public API using cursors.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-02-en",
+        "family": 2,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Find existing DIP tasks when a request uses different wording.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Match a paraphrased request to an existing DIP task.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-02-he",
+        "family": 2,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "מצא משימות קיימות ב־DIP גם כשהבקשה מנוסחת אחרת.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "זהה איזו משימת DIP קיימת מתאימה לבקשה שנוסחה מחדש.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-02-cross",
+        "family": 2,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "מצא משימות קיימות ב־DIP גם כשהבקשה מנוסחת אחרת.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Match a paraphrased request to an existing DIP task.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-03-en",
+        "family": 3,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Back up the database every night.",
+            "scope": "backup",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Create a nightly database backup.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-03-he",
+        "family": 3,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "גבה את מסד הנתונים בכל לילה.",
+            "scope": "backup",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "צור גיבוי לילי של מסד הנתונים.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-03-cross",
+        "family": 3,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "גבה את מסד הנתונים בכל לילה.",
+            "scope": "backup",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Create a nightly database backup.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-04-en",
+        "family": 4,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Redact email addresses before exporting logs.",
+            "scope": "export",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Mask all email addresses in log exports.",
+            "scope": "export"
+          }
+        }
+      },
+      {
+        "id": "pair-04-he",
+        "family": 4,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "טשטש כתובות דואר אלקטרוני לפני ייצוא לוגים.",
+            "scope": "export",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "הסתר את כל כתובות האימייל בלוגים שמיוצאים.",
+            "scope": "export"
+          }
+        }
+      },
+      {
+        "id": "pair-04-cross",
+        "family": 4,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "טשטש כתובות דואר אלקטרוני לפני ייצוא לוגים.",
+            "scope": "export",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Mask all email addresses in log exports.",
+            "scope": "export"
+          }
+        }
+      },
+      {
+        "id": "pair-05-en",
+        "family": 5,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Prefer the current requirement revision over superseded revisions.",
+            "scope": "dip",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Use the latest valid requirements instead of replaced older requirements.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-05-he",
+        "family": 5,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "העדף את גרסת הדרישות התקפה על גרסאות שהוחלפו.",
+            "scope": "dip",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "פעל לפי הדרישות העדכניות במקום דרישות ישנות שבוטלו.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-05-cross",
+        "family": 5,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "העדף את גרסת הדרישות התקפה על גרסאות שהוחלפו.",
+            "scope": "dip",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Use the latest valid requirements instead of replaced older requirements.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-06-en",
+        "family": 6,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Email a user when they are mentioned in a comment.",
+            "scope": "notifications",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Send an email notification for comment mentions.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-06-he",
+        "family": 6,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "שלח אימייל למשתמש כשמזכירים אותו בתגובה.",
+            "scope": "notifications",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "הוסף התראת דואר אלקטרוני על אזכור בתגובות.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-06-cross",
+        "family": 6,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "שלח אימייל למשתמש כשמזכירים אותו בתגובה.",
+            "scope": "notifications",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Send an email notification for comment mentions.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-07-en",
+        "family": 7,
+        "language": "en",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Guest accounts can read files but cannot modify them.",
+            "scope": "files",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Make file access read-only for guest users.",
+            "scope": "files"
+          }
+        }
+      },
+      {
+        "id": "pair-07-he",
+        "family": 7,
+        "language": "he",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "אורחים יכולים לקרוא קבצים אך אינם יכולים לשנות אותם.",
+            "scope": "files",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "הגדר גישה לקריאה בלבד של קבצים למשתמשים אורחים.",
+            "scope": "files"
+          }
+        }
+      },
+      {
+        "id": "pair-07-cross",
+        "family": 7,
+        "language": "cross",
+        "expected": "same",
+        "identity": true,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "אורחים יכולים לקרוא קבצים אך אינם יכולים לשנות אותם.",
+            "scope": "files",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Make file access read-only for guest users.",
+            "scope": "files"
+          }
+        }
+      },
+      {
+        "id": "pair-08-en",
+        "family": 8,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Add Google sign-in.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Add sign-in with both Google and Apple.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-08-he",
+        "family": 8,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף כניסה באמצעות גוגל.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "הוסף כניסה באמצעות גוגל וגם אפל.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-08-cross",
+        "family": 8,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף כניסה באמצעות גוגל.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Add sign-in with both Google and Apple.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-09-en",
+        "family": 9,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Escape quotes in CSV exports.",
+            "scope": "csv",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Escape quotes and use CRLF line endings in CSV exports.",
+            "scope": "csv"
+          }
+        }
+      },
+      {
+        "id": "pair-09-he",
+        "family": 9,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "בצע escaping למרכאות בייצוא CSV.",
+            "scope": "csv",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "בייצוא CSV בצע escaping למרכאות והשתמש בסיומות שורה CRLF.",
+            "scope": "csv"
+          }
+        }
+      },
+      {
+        "id": "pair-09-cross",
+        "family": 9,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "בצע escaping למרכאות בייצוא CSV.",
+            "scope": "csv",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Escape quotes and use CRLF line endings in CSV exports.",
+            "scope": "csv"
+          }
+        }
+      },
+      {
+        "id": "pair-10-en",
+        "family": 10,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Back up the database and uploaded files every night.",
+            "scope": "backup",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Back up only the database every night.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-10-he",
+        "family": 10,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "גבה בכל לילה את מסד הנתונים ואת הקבצים שהועלו.",
+            "scope": "backup",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "גבה בכל לילה רק את מסד הנתונים.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-10-cross",
+        "family": 10,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "גבה בכל לילה את מסד הנתונים ואת הקבצים שהועלו.",
+            "scope": "backup",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Back up only the database every night.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-11-en",
+        "family": 11,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Redact email addresses in logs.",
+            "scope": "logs",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Redact email addresses and API tokens in logs.",
+            "scope": "logs"
+          }
+        }
+      },
+      {
+        "id": "pair-11-he",
+        "family": 11,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "טשטש כתובות אימייל בלוגים.",
+            "scope": "logs",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "טשטש בלוגים כתובות אימייל וגם טוקנים של API.",
+            "scope": "logs"
+          }
+        }
+      },
+      {
+        "id": "pair-11-cross",
+        "family": 11,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "טשטש כתובות אימייל בלוגים.",
+            "scope": "logs",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Redact email addresses and API tokens in logs.",
+            "scope": "logs"
+          }
+        }
+      },
+      {
+        "id": "pair-12-en",
+        "family": 12,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Search open tasks by meaning.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Search both open and completed tasks by meaning.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-12-he",
+        "family": 12,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "חפש לפי משמעות במשימות פתוחות.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "חפש לפי משמעות גם במשימות פתוחות וגם במשימות שהושלמו.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-12-cross",
+        "family": 12,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "חפש לפי משמעות במשימות פתוחות.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Search both open and completed tasks by meaning.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-13-en",
+        "family": 13,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Send email notifications for mentions.",
+            "scope": "notifications",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Send email and push notifications for mentions.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-13-he",
+        "family": 13,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "שלח התראות אימייל על אזכורים.",
+            "scope": "notifications",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "שלח על אזכורים התראות אימייל וגם push.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-13-cross",
+        "family": 13,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "שלח התראות אימייל על אזכורים.",
+            "scope": "notifications",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Send email and push notifications for mentions.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-14-en",
+        "family": 14,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Require passwords to contain at least 8 characters.",
+            "scope": "passwords",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Require passwords to contain at least 12 characters.",
+            "scope": "passwords"
+          }
+        }
+      },
+      {
+        "id": "pair-14-he",
+        "family": 14,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "דרוש סיסמאות באורך שמונה תווים לפחות.",
+            "scope": "passwords",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "דרוש סיסמאות באורך שנים עשר תווים לפחות.",
+            "scope": "passwords"
+          }
+        }
+      },
+      {
+        "id": "pair-14-cross",
+        "family": 14,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "דרוש סיסמאות באורך שמונה תווים לפחות.",
+            "scope": "passwords",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Require passwords to contain at least 12 characters.",
+            "scope": "passwords"
+          }
+        }
+      },
+      {
+        "id": "pair-15-en",
+        "family": 15,
+        "language": "en",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Cursor pagination must limit a page to 100 rows.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Cursor pagination must limit a page to 50 rows.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-15-he",
+        "family": 15,
+        "language": "he",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "בדפדוף מבוסס cursor הגבל כל עמוד למאה רשומות.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "בדפדוף מבוסס cursor הגבל כל עמוד לחמישים רשומות.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-15-cross",
+        "family": 15,
+        "language": "cross",
+        "expected": "overlap",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "בדפדוף מבוסס cursor הגבל כל עמוד למאה רשומות.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Cursor pagination must limit a page to 50 rows.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-16-en",
+        "family": 16,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Add Google sign-in.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Expire idle login sessions after 30 minutes.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-16-he",
+        "family": 16,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף כניסה באמצעות גוגל.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "סיים סשנים של משתמשים אחרי שלושים דקות ללא פעילות.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-16-cross",
+        "family": 16,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף כניסה באמצעות גוגל.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Expire idle login sessions after 30 minutes.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-17-en",
+        "family": 17,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Add coupon validation to checkout.",
+            "scope": "payments",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Generate a PDF invoice for paid orders.",
+            "scope": "payments"
+          }
+        }
+      },
+      {
+        "id": "pair-17-he",
+        "family": 17,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף בדיקת קופונים בתהליך התשלום.",
+            "scope": "payments",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "הפק חשבונית PDF להזמנות ששולמו.",
+            "scope": "payments"
+          }
+        }
+      },
+      {
+        "id": "pair-17-cross",
+        "family": 17,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף בדיקת קופונים בתהליך התשלום.",
+            "scope": "payments",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Generate a PDF invoice for paid orders.",
+            "scope": "payments"
+          }
+        }
+      },
+      {
+        "id": "pair-18-en",
+        "family": 18,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Export records to CSV.",
+            "scope": "csv",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Import records from CSV.",
+            "scope": "csv"
+          }
+        }
+      },
+      {
+        "id": "pair-18-he",
+        "family": 18,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "ייצא רשומות לקובץ CSV.",
+            "scope": "csv",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "ייבא רשומות מקובץ CSV.",
+            "scope": "csv"
+          }
+        }
+      },
+      {
+        "id": "pair-18-cross",
+        "family": 18,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "ייצא רשומות לקובץ CSV.",
+            "scope": "csv",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Import records from CSV.",
+            "scope": "csv"
+          }
+        }
+      },
+      {
+        "id": "pair-19-en",
+        "family": 19,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Encrypt stored database backups.",
+            "scope": "backup",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Record an audit event whenever a backup is restored.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-19-he",
+        "family": 19,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "הצפן גיבויים של מסד הנתונים.",
+            "scope": "backup",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "רשום אירוע ביקורת בכל שחזור של גיבוי.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-19-cross",
+        "family": 19,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "הצפן גיבויים של מסד הנתונים.",
+            "scope": "backup",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Record an audit event whenever a backup is restored.",
+            "scope": "backup"
+          }
+        }
+      },
+      {
+        "id": "pair-20-en",
+        "family": 20,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Add semantic search for existing tasks.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Add dark mode to the task dashboard.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-20-he",
+        "family": 20,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף חיפוש סמנטי של משימות קיימות.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "הוסף מצב כהה לדאשבורד המשימות.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-20-cross",
+        "family": 20,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הוסף חיפוש סמנטי של משימות קיימות.",
+            "scope": "dip",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Add dark mode to the task dashboard.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-21-en",
+        "family": 21,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Add cursor pagination to the API.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Rate-limit API requests per client.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-21-he",
+        "family": 21,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף דפדוף מבוסס cursor ל־API.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "הגבל את קצב בקשות ה־API לכל לקוח.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-21-cross",
+        "family": 21,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף דפדוף מבוסס cursor ל־API.",
+            "scope": "api",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Rate-limit API requests per client.",
+            "scope": "api"
+          }
+        }
+      },
+      {
+        "id": "pair-22-en",
+        "family": 22,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Cache resized images to speed up loading.",
+            "scope": "images",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Require accessibility alt text for uploaded images.",
+            "scope": "images"
+          }
+        }
+      },
+      {
+        "id": "pair-22-he",
+        "family": 22,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "שמור תמונות שהוקטנו במטמון כדי להאיץ טעינה.",
+            "scope": "images",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "דרוש טקסט חלופי נגיש לתמונות שהועלו.",
+            "scope": "images"
+          }
+        }
+      },
+      {
+        "id": "pair-22-cross",
+        "family": 22,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "שמור תמונות שהוקטנו במטמון כדי להאיץ טעינה.",
+            "scope": "images",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Require accessibility alt text for uploaded images.",
+            "scope": "images"
+          }
+        }
+      },
+      {
+        "id": "pair-23-en",
+        "family": 23,
+        "language": "en",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Remind users about overdue tasks.",
+            "scope": "dip",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Lock task ownership while an agent is working.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-23-he",
+        "family": 23,
+        "language": "he",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "שלח תזכורות על משימות באיחור.",
+            "scope": "dip",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "נעל בעלות על משימה בזמן שסוכן עובד עליה.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-23-cross",
+        "family": 23,
+        "language": "cross",
+        "expected": "related",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "שלח תזכורות על משימות באיחור.",
+            "scope": "dip",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Lock task ownership while an agent is working.",
+            "scope": "dip"
+          }
+        }
+      },
+      {
+        "id": "pair-24-en",
+        "family": 24,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Enable Google sign-in.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Disable Google sign-in.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-24-he",
+        "family": 24,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הפעל כניסה באמצעות גוגל.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "בטל כניסה באמצעות גוגל.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-24-cross",
+        "family": 24,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "הפעל כניסה באמצעות גוגל.",
+            "scope": "auth",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Disable Google sign-in.",
+            "scope": "auth"
+          }
+        }
+      },
+      {
+        "id": "pair-25-en",
+        "family": 25,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Send an email for every mention.",
+            "scope": "notifications",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Never send emails for mentions.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-25-he",
+        "family": 25,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "שלח אימייל על כל אזכור.",
+            "scope": "notifications",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "אל תשלח אימיילים על אזכורים.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-25-cross",
+        "family": 25,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "שלח אימייל על כל אזכור.",
+            "scope": "notifications",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Never send emails for mentions.",
+            "scope": "notifications"
+          }
+        }
+      },
+      {
+        "id": "pair-26-en",
+        "family": 26,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Add API token redaction to logs.",
+            "scope": "logs",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Remove API token redaction from logs.",
+            "scope": "logs"
+          }
+        }
+      },
+      {
+        "id": "pair-26-he",
+        "family": 26,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "הוסף טשטוש של טוקני API בלוגים.",
+            "scope": "logs",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "הסר את הטשטוש של טוקני API בלוגים.",
+            "scope": "logs"
+          }
+        }
+      },
+      {
+        "id": "pair-26-cross",
+        "family": 26,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "הוסף טשטוש של טוקני API בלוגים.",
+            "scope": "logs",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Remove API token redaction from logs.",
+            "scope": "logs"
+          }
+        }
+      },
+      {
+        "id": "pair-27-en",
+        "family": 27,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Export all audit logs.",
+            "scope": "audit",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Delete all audit logs.",
+            "scope": "audit"
+          }
+        }
+      },
+      {
+        "id": "pair-27-he",
+        "family": 27,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "ייצא את כל לוגי הביקורת.",
+            "scope": "audit",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "מחק את כל לוגי הביקורת.",
+            "scope": "audit"
+          }
+        }
+      },
+      {
+        "id": "pair-27-cross",
+        "family": 27,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "ייצא את כל לוגי הביקורת.",
+            "scope": "audit",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Delete all audit logs.",
+            "scope": "audit"
+          }
+        }
+      },
+      {
+        "id": "pair-28-en",
+        "family": 28,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "Validate checkout coupon codes.",
+            "scope": "checkout",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Let users update their profile avatar.",
+            "scope": "profile"
+          }
+        }
+      },
+      {
+        "id": "pair-28-he",
+        "family": 28,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "בדוק תקינות של קודי קופון בתשלום.",
+            "scope": "checkout",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "אפשר למשתמשים לשנות את תמונת הפרופיל שלהם.",
+            "scope": "profile"
+          }
+        }
+      },
+      {
+        "id": "pair-28-cross",
+        "family": 28,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 0,
+        "state": {
+          "existingTask": {
+            "title": "בדוק תקינות של קודי קופון בתשלום.",
+            "scope": "checkout",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Let users update their profile avatar.",
+            "scope": "profile"
+          }
+        }
+      },
+      {
+        "id": "pair-29-en",
+        "family": 29,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "Add cursor pagination to API version 1.",
+            "scope": "api/v1",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Add cursor pagination to API version 2.",
+            "scope": "api/v2"
+          }
+        }
+      },
+      {
+        "id": "pair-29-he",
+        "family": 29,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף דפדוף מבוסס cursor לגרסה 1 של ה־API.",
+            "scope": "api/v1",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "הוסף דפדוף מבוסס cursor לגרסה 2 של ה־API.",
+            "scope": "api/v2"
+          }
+        }
+      },
+      {
+        "id": "pair-29-cross",
+        "family": 29,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 1,
+        "state": {
+          "existingTask": {
+            "title": "הוסף דפדוף מבוסס cursor לגרסה 1 של ה־API.",
+            "scope": "api/v1",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Add cursor pagination to API version 2.",
+            "scope": "api/v2"
+          }
+        }
+      },
+      {
+        "id": "pair-30-en",
+        "family": 30,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "Parse YAML configuration in the mobile app.",
+            "scope": "mobile/config",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Parse YAML configuration in the server.",
+            "scope": "server/config"
+          }
+        }
+      },
+      {
+        "id": "pair-30-he",
+        "family": 30,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "פענח קובצי הגדרות YAML באפליקציית המובייל.",
+            "scope": "mobile/config",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "פענח קובצי הגדרות YAML בשרת.",
+            "scope": "server/config"
+          }
+        }
+      },
+      {
+        "id": "pair-30-cross",
+        "family": 30,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 2,
+        "state": {
+          "existingTask": {
+            "title": "פענח קובצי הגדרות YAML באפליקציית המובייל.",
+            "scope": "mobile/config",
+            "status": "backlog"
+          },
+          "newRequest": {
+            "text": "Parse YAML configuration in the server.",
+            "scope": "server/config"
+          }
+        }
+      },
+      {
+        "id": "pair-31-en",
+        "family": 31,
+        "language": "en",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "Enable login for the EU tenant.",
+            "scope": "tenant-eu",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Enable login for the US tenant.",
+            "scope": "tenant-us"
+          }
+        }
+      },
+      {
+        "id": "pair-31-he",
+        "family": 31,
+        "language": "he",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "אפשר התחברות לטננט האירופי.",
+            "scope": "tenant-eu",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "אפשר התחברות לטננט האמריקאי.",
+            "scope": "tenant-us"
+          }
+        }
+      },
+      {
+        "id": "pair-31-cross",
+        "family": 31,
+        "language": "cross",
+        "expected": "different",
+        "identity": false,
+        "optionRotation": 3,
+        "state": {
+          "existingTask": {
+            "title": "אפשר התחברות לטננט האירופי.",
+            "scope": "tenant-eu",
+            "status": "verified"
+          },
+          "newRequest": {
+            "text": "Enable login for the US tenant.",
+            "scope": "tenant-us"
+          }
+        }
+      }
+    ]
+  },
+  "preflight": true,
+  "startedAt": "2026-10-07T05:57:42Z",
+  "platform": "Windows",
+  "python": "3.12.14",
+  "packages": {
+    "laya": "0.3.28",
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.6",
+    "huggingface_hub": "0.36.2",
+    "numpy": "2.5.3",
+    "psutil": "7.2.2"
+  },
+  "threads": 4,
+  "interopThreads": 1,
+  "device": "cpu",
+  "availableRamAtStartBytes": 990887936,
+  "rows": [],
+  "loadSeconds": 11.976463999948464,
+  "loadedRevision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+  "modelConfig": {
+    "encoder": "jhu-clsp/mmBERT-base",
+    "head_layers": 2,
+    "max_len": 1024,
+    "head_max_len": 256,
+    "max_prefixes": 6,
+    "act_costs": {
+      "escalate": 0.5
+    },
+    "cost_wrong_act": 3,
+    "amp_dtype": "bf16",
+    "model_name": "rl-agent",
+    "temperature": [
+      1,
+      1,
+      1
+    ],
+    "temperature_by_options": {},
+    "training": {
+      "updates": 15987,
+      "epochs_completed": 4,
+      "hours": 4.97,
+      "world_size": 1,
+      "fine_tuned_from_checkpoint": false
+    }
+  },
+  "parameterCount": 321908995,
+  "dtype": "torch.float32",
+  "warmup": {
+    "model": "laya-rl-agent",
+    "answers": {
+      "color": {
+        "type": "choice",
+        "choice": "A",
+        "probabilities": {
+          "A": 0.9571,
+          "B": 0.0429
+        },
+        "confidence": 0.7446,
+        "answer_confidence": 0.9571,
+        "action": {
+          "act_probability": 1
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 30,
+      "output_tokens": 0,
+      "state_tokens": 10,
+      "state_tokens_dropped": 0,
+      "truncated": false,
+      "truncated_questions": []
+    }
+  },
+  "warmupSeconds": 0.31071960006374866,
+  "completedAt": "2026-10-07T05:57:54Z",
+  "peakRssBytes": 2153103360,
+  "publicRedaction": "Owner paths and signed URL query credentials redacted; original inputs/predictions/probabilities unchanged. No credentials or model weights published."
+}

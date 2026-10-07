@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b40550df-b33f-4d77-af03-d31117bdca15",
+  "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Roadmap/alternatives backlog pushed in 1b3bb44; zero-shot multilingual Laya protocol preregistered in d9a0215/786dc04 before task-pair inference. Pinned Laya 0.3.28 / model revision 7b928d828b7b0e022f929d9bd2e44165aa270148 completed 96 synthetic pairs without training. Four-way 33/96, binary identity 43/96; true identities 23/24, false identities 52/72, precision 30.7%, recall 95.8%. No errors/truncation. 0.8 probability slice retained six false identities. CPU median0.774s for two questions, peakRSS2.14GiB. Setup Windows symlink failure retained; sequential pinned downloads resolved it without elevation. Configured laya-pilot evidence check passed stable snapshot1128d123f3c34faa486798c7fa9f68a277d98718d8faeab3e7b43dcee279ec65. No model added to routine DIP capture.",
+    "next": "Publish raw predictions/report and verify cross-platform offline replay CI. Keep model adaptation and alternatives unfinished; this pilot does not prove training is necessary or sufficient.",
+    "head": "786dc040f6fdab4d78c640a4bfd9b1adfc3ad626"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T06:24:29.215Z",
+  "parents": [
+    "36c4d214-178b-41a7-8f98-cb733c2bdf14"
+  ],
+  "branch": "main"
+}
