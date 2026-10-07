@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c1177440-e559-497f-a741-699daffceeda",
+  "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Research request completed and published in 1ae38f2. Existing alternatives task remains backlog and now includes custom 10M/100M relation encoders, vocabulary budgets, user/assistant query ablations and fair large-Markdown/DIP/model baselines. Primary-source shortlist and pinned metadata cover 11 candidates; no alternative inference or training was performed. Checked metadata schema, parameter arithmetic, Markdown formatting and remote document blob. CI 37592579987 passed Windows, Linux and macOS. Research outcome remains implemented; unperformed model comparisons/training are not asserted complete.",
+    "next": "Actual comparison requires independent reviewed train/calibration/test histories and frozen ranking/link thresholds. Start with static Model2Vec and multilingual E5/MiniLM baselines, then measure custom training/distillation if justified.",
+    "head": "1ae38f2afbb60f97aa5c4ac41ca843dc81585b10"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T08:19:05.583Z",
+  "parents": [
+    "cc04b18e-1545-4b29-9bc9-4ab38e257191"
+  ],
+  "branch": "main"
+}
