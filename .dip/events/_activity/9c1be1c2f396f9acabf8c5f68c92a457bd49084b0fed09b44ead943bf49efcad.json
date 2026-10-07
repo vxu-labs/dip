@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9c1be1c2f396f9acabf8c5f68c92a457bd49084b0fed09b44ead943bf49efcad",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:26:58.240Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local/app-server-experimental/v2/TurnStartParams.json | Select-Object -Skip 270 -First 13; Get-Content .dip-local/app-server-experimental/v2/ThreadCompactStartParams.json; rg --files .dip-local/app-server-experimental/v2 | rg '(PlanUpdated|ItemCompleted|ContextCompacted|TurnCompleted)'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-dbb897c1-da59-4e9c-8d65-e1e7123a81b5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:26:58.608Z",
+  "parents": [],
+  "branch": "main"
+}

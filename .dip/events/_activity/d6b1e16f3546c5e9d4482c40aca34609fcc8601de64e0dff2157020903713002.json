@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d6b1e16f3546c5e9d4482c40aca34609fcc8601de64e0dff2157020903713002",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:14:06.347Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh release create v0.3.5 .dip-local/vxu-labs-dip-0.3.5.tgz --repo vxu-labs/dip --target 9101f612f53968083170a4cc581617527c409f18 --title 'DIP v0.3.5: write plans once' --notes-file .dip-local/release-0.3.5.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9daee1a7-14ad-4d0b-8cb5-2f295df53c9d"
+      },
+      {
+        "at": "2026-10-07T10:14:06.392Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport path from 'node:path';\nimport {createHash} from 'node:crypto';\nconst installed=path.join(process.env.APPDATA,'npm/node_modules/@vxu-labs/dip');\nfor(const folder of ['src','bin','public','skills/dip']) for(const name of fs.readdirSync(folder)) {\n const local=path.join(folder,name), remote=path.join(installed,folder,name);\n if(!fs.statSync(local).isFile()) continue;\n if(createHash('sha256').update(fs.readFileSync(local)).digest('hex')!==createHash('sha256').update(fs.readFileSync(remote)).digest('hex')) throw Error('Installed source differs: '+local);\n}\nconsole.log('Installed runtime, dashboard and skill match the published source.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0c0bedd2-29c9-42bd-b673-5ad92812ff82"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:14:06.625Z",
+  "parents": [],
+  "branch": "main"
+}

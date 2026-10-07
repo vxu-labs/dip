@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "10f62bfe0213c8cefdcb85909ec781c633642308e0e3c82edfa83b17c59dba8e",
+  "taskId": "task_461a420d81eb24caac9b240ce9f23b199d89c9c9a20babcf3dc03ce7f234800a",
+  "type": "task.create",
+  "payload": {
+    "title": "ואם הם בוחרים אני זה שצריך לאשר שינויים שהם תורמים נכון ?",
+    "description": "ואם הם בוחרים אני זה שצריך לאשר שינויים שהם תורמים נכון ? \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca",
+  "createdAt": "2026-10-06T12:42:25.423Z",
+  "parents": [],
+  "branch": "main"
+}

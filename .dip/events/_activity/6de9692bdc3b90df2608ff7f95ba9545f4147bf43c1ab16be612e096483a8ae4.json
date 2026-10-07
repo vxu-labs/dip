@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6de9692bdc3b90df2608ff7f95ba9545f4147bf43c1ab16be612e096483a8ae4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:48:17.093Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& node_modules/.bin/prettier.cmd --write scripts/codex-lifecycle-evidence.mjs\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning scripts/codex-lifecycle-evidence.mjs --capture\nnode --input-type=module -e 'import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\".dip-local/doctor-after-0.3.11.json\")).automation; console.log(JSON.stringify({deferred:r.deferredOutbox,issues:r.issues,advisories:r.advisories},null,2).slice(0,4200));'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-2779d205-f752-4003-84f9-989725c78328"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:48:17.244Z",
+  "parents": [],
+  "branch": "main"
+}

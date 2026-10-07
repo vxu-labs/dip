@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "213baf1cf0a04723d8226973700f780b9b4e0a6ea62121eac495b9b8051704c6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:14:56.925Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" task checkpoint --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --summary 'Published v0.3.5 at https://github.com/vxu-labs/dip/releases/tag/v0.3.5, source 9101f612f53968083170a4cc581617527c409f18. CI 37605668471 passed Windows/Linux/macOS, benchmark evidence replay and Linux browser QA. Configured local unit check passed 83 cases (81 Windows, 2 POSIX skips), configured browser and fresh package/skill checks passed at stable snapshot b0c26e1d331be3984af8937b76f1992850df767ebd8826ce8f8ffbd196fdb57e. Installed runtime/dashboard/skill match source. Existing Codex hook auto-linked QA_REPORT.md; stale script-edited content correctly prevented verification until reviewed relink. Plan and QA references current, no copied plan body. New MCP tools need host reload; unsupported shell/wrapper writes need explicit links. No extra model used; semantic retrieval and token-saving evaluation remain future work.'\ngit add -- .dip/events/task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7\ngit -c core.hooksPath=.dip-local/empty-hooks commit -m 'Record v0.3.5 release and cross-platform validation [skip ci]'\ngit push origin main\n@'\nimport {ensure,Runtime} from './src/core.js';\nimport {reconcile} from './src/actions.js';\nconst repo=ensure(process.cwd(),{instructions:false}), rt=new Runtime(), id='task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7';\ntry {\n const lease=rt.db.prepare('SELECT token FROM leases WHERE repo=? AND task=? AND actor=? AND expires>?').get(repo.key,id,'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',Date.now());\n if(lease) rt.release(repo,id,lease.token);\n const task=reconcile(repo,rt).tasks.find(t=>t.id===id);\n console.log(JSON.stringify({status:task.status,verification:task.verification,integrated:task.integrated,active:task.active,documents:task.documents.length}));\n} finally { rt.close(); }\n'@ | node --input-type=module\ngit st",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-efa960fe-d00c-4d8c-bbf3-2dcb68b97a33"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:14:57.875Z",
+  "parents": [],
+  "branch": "main"
+}

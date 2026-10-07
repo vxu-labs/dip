@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f035c8b3218403a3485fa017d76be9cb9f89a8d8827c1100493d96a83bfdffc1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:12:18.364Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/repository-integration.js | Select-Object -Skip 38 -First 25; Get-Content src/portable.js | Select-Object -Skip 25 -First 28; Get-Content test/low-friction.test.js | Select-Object -Skip 220 -First 90",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0d5b8571-7a75-4509-9bfb-2155eeb37ddc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:12:18.511Z",
+  "parents": [],
+  "branch": "main"
+}

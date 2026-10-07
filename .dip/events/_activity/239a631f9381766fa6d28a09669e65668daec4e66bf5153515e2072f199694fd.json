@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "239a631f9381766fa6d28a09669e65668daec4e66bf5153515e2072f199694fd",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:57:25.547Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git diff --check; git status --short --untracked-files=no; rg -n 'document|Write long' AGENTS.md CLAUDE.md; @'\nimport fs from 'node:fs';\nconst files=['README.md','QA_REPORT.md','docs/documents.md','docs/plans/markdown-references.md','docs/automation.md','docs/protocol.md','skills/dip/SKILL.md'];\nfor (const file of files) if (fs.readFileSync(file,'utf8').includes('\\u2014')) throw Error('Em dash in '+file);\nconsole.log('Changed Markdown: no em dashes.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-264c9620-825d-4d70-9d36-8b827fa361d1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:57:26.021Z",
+  "parents": [],
+  "branch": "main"
+}

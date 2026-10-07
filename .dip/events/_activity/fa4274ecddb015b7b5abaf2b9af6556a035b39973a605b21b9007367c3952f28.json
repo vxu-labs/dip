@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fa4274ecddb015b7b5abaf2b9af6556a035b39973a605b21b9007367c3952f28",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:40:13.656Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$fixtureSetup = @'\nimport fs from 'node:fs';import path from 'node:path';import {parse} from 'smol-toml';import {ensure} from './src/core.js';import {git} from './src/util.js';\nconst dir=fs.mkdtempSync(path.resolve('.dip-local/codex-live-qa-'));\ngit(dir,['init','-b','main']);ensure(dir);\nconst conf=path.join(process.env.USERPROFILE,'.codex','config.toml');\nconst config=fs.existsSync(conf)?parse(fs.readFileSync(conf,'utf8')):{};\nconst disabled=Object.keys(config.mcp_servers || {}).filter(name=>name!=='dip').map(name=>`mcp_servers.${name}.enabled=false`);\nfs.writeFileSync('.dip-local/current-host-qa.json',JSON.stringify({root:dir,disabled,model:config.model || null,startedAt:new Date().toISOString()},null,2));\nconsole.log(JSON.stringify({fixture:path.basename(dir),model:config.model || 'host default',unrelatedMcpDisabled:disabled.length}));\n'@\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n$fixtureSetup | node --disable-warning=ExperimentalWarning --input-type=module\n$qaFixture = Get-Content -LiteralPath '.dip-local/current-host-qa.json' -Raw | ConvertFrom-Json\n$qaArgs = @('-a','never','exec','--json','-s','workspace-write','--add-dir','C:/Users/offic/.dip','-C',$qaFixture.root,'-o',(Join-Path $qaFixture.root 'turn-1-final.txt'))\nforeach ($override in $qaFixture.disabled) { $qaArgs += @('-c', $override) }\n$qaPrompt = @'\nThis is a bounded live DIP workflow QA in this disposable Git project. Do not develop product code, install software, invoke other agents, or alter user/global settings.\nPlan a future CSV export feature in exactly three pending steps using the native update_plan tool if available. Do not mark any step complete. Follow this repository's DIP instructions and use the task identity provided by the current trusted hook if one was injected. Do not simulate hook calls or assume a plan was recorded. If native planning is unavailable, disclose this and explicitly save a concise plan using DIP.\nA",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-3ce594f5-3c5a-453c-996e-511e7206324d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:40:14.028Z",
+  "parents": [],
+  "branch": "main"
+}

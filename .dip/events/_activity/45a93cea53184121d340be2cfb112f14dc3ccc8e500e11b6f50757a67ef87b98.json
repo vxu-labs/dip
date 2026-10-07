@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "eventId": "45a93cea53184121d340be2cfb112f14dc3ccc8e500e11b6f50757a67ef87b98",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:49:51.154Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "docs/host-qa/lifecycle.md",
+          "docs/host-qa/README.md",
+          "QA_REPORT.md"
+        ],
+        "changeHash": "fac00e4326cd65a76a352e0f74a000a9a8b359e6522567ae9708de0ef381897d",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-bd302495-fff3-43da-99ba-0704aea546e7"
+      },
+      {
+        "at": "2026-10-07T18:49:51.882Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const c=JSON.parse(fs.readFileSync(\".dip/config.json\")); c.verification[\"codex-lifecycle-evidence\"]={command:[\"node\",\"scripts/codex-lifecycle-evidence.mjs\"],timeoutMs:60000}; c.verification[\"benchmark-v4\"]={command:[\"node\",\"scripts/model-benchmark-evidence.mjs\",\"docs/benchmarks/2026-10-07-model-controlled-v4.json\"],timeoutMs:60000}; fs.writeFileSync(\".dip/config.json\",JSON.stringify(c,null,2)+\"\\n\");'\nrg -n 'C:[\\\\\\\\]|offic|\"token\"' docs/host-qa/2026-10-07-lifecycle.json | Select-Object -First 10\nnode scripts/check.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-77f3eca9-1d99-45cb-8079-6374cc3e54e0"
+      },
+      {
+        "at": "2026-10-07T18:49:51.863Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "apply_patch",
+        "branch": "main",
+        "documents": [
+          {
+            "path": "docs/host-qa/lifecycle.md",
+            "role": "reference",
+            "hash": "91c01ca36994c031d93c0e3fe66a76a37dac134fcc630e75a8893e7efd82b2c4"
+          },
+          {
+            "path": "docs/host-qa/README.md",
+            "role": "reference",
+            "hash": "15dc26e7d49c9395a48d1b365cd608dff0869e145e8c850d6fdabdb87a864f6a"
+          },
+          {
+            "path": "QA_REPORT.md",
+            "role": "reference",
+            "hash": "9846cf5097dae86f5663f33d08662f0858edc772a0f1e5bdb4943e046ceb7734"
+          }
+        ],
+        "files": [
+          "docs/host-qa/lifecycle.md",
+          "docs/host-qa/README.md",
+          "QA_REPORT.md"
+        ],
+        "changeHash": "fac00e4326cd65a76a352e0f74a000a9a8b359e6522567ae9708de0ef381897d",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-bd302495-fff3-43da-99ba-0704aea546e7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:49:52.237Z",
+  "parents": [],
+  "branch": "main"
+}

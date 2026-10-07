@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "292f2902aa20108073aa50b07e64f052575cad0d1bc6db42a35bc78feb9b0b12",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:26:43.587Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run view 37636393773 --log-failed | Select-String -Pattern 'not ok|✖|AssertionError|error:|Expected|actual:|expected:' -Context 3,12",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-afd4f78f-4d67-409f-b02b-7171bfcf4cbf"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:26:44.403Z",
+  "parents": [],
+  "branch": "main"
+}

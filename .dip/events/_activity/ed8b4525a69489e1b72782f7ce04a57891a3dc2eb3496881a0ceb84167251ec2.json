@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ed8b4525a69489e1b72782f7ce04a57891a3dc2eb3496881a0ceb84167251ec2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T16:49:06.466Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-06-longitudinal-stress-protocol.json",
+          "scripts/longitudinal-stress.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "788b8f2c-a58a-407d-92f5-644b094ae428"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T16:49:06.470Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5f28d7f3f22bfee51ef143c26e525074277c56bec1bf205904c1b0e761b6c158",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:52:44.209Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'verified|verify|finish|blockedBy' test -g '*.js' | Select-Object -First 95; rg -n 'finish|verify' test/low-friction.test.js | Select-Object -First 38; Get-Content test/core.test.js | Select-Object -First 26",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1085b590-3146-4f3e-bdfc-d0f3b9b935bd"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:52:44.590Z",
+  "parents": [],
+  "branch": "main"
+}

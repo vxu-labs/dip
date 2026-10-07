@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f703593d1abad7f97d97523a89e966860313c7fe389201065f82800ba45a4d56",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:52:28.110Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';\nconst installed=path.join(process.env.APPDATA,'npm/node_modules/@vxu-labs/dip');\nfor(const folder of ['src','bin','public','skills/dip'])for(const name of fs.readdirSync(folder)){const file=path.join(folder,name);if(!fs.statSync(file).isFile())continue;const other=path.join(installed,folder,name);if(createHash('sha256').update(fs.readFileSync(file)).digest('hex')!==createHash('sha256').update(fs.readFileSync(other)).digest('hex'))throw Error('Installed mismatch '+file);}\nconsole.log('Installed runtime and skill match release source.');\n'@ | node --input-type=module\ngit status --short --untracked-files=no\ngit rev-list --left-right --count HEAD...origin/main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-73bf8890-3147-47aa-b3d6-4c7f75f71f42"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:52:29.500Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0ed65fee44badc6567289587cd77cb49df26742d81a234a8e52966045c1df930",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:53:48.290Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'export.*execute|action === \"release\"|action === \"prepare\"|sessionSelect|bindSession' src/actions.js; Get-Content .dip-local -ErrorAction SilentlyContinue | Select-Object -First 1; Get-Content scripts/codex-structured-evidence.mjs -TotalCount 85; Get-Content .github/workflows/ci.yml",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8cb9b4f8-e2a1-42c1-b32b-0b4b8afa96c7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:53:49.544Z",
+  "parents": [],
+  "branch": "main"
+}

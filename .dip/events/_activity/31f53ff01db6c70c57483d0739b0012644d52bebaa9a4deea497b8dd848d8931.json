@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "31f53ff01db6c70c57483d0739b0012644d52bebaa9a4deea497b8dd848d8931",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T15:19:43.572Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-06-longitudinal-preflight.json"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "c1ab45f0-4ac2-48d3-bdeb-5b1e5183afcc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:19:43.578Z",
+  "parents": [],
+  "branch": "main"
+}

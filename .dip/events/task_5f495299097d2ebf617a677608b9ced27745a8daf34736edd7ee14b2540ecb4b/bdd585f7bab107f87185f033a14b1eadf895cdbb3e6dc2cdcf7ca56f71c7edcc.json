@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bdd585f7bab107f87185f033a14b1eadf895cdbb3e6dc2cdcf7ca56f71c7edcc",
+  "taskId": "task_5f495299097d2ebf617a677608b9ced27745a8daf34736edd7ee14b2540ecb4b",
+  "type": "task.create",
+  "payload": {
+    "title": "מה נותר ?",
+    "description": "מה נותר ? \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:56:11.548Z",
+  "parents": [],
+  "branch": "main"
+}

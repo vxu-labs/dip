@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "10397f57565aaa9ca1761971cbf0ba283db27ffd0578949f616f9c4433b973e6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:59:50.974Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath 'src/core.js' -TotalCount 85\nGet-Content -LiteralPath 'src/core.js' | Select-Object -Skip 255 -First 100\nGet-Content -LiteralPath 'src/core.js' | Select-Object -Skip 345 -First 60\nrg --files test\nGet-Content -LiteralPath 'test/low-friction.test.js' -TotalCount 120\nGet-Content -LiteralPath 'src/automation.js' -TotalCount 58\nGet-Content -LiteralPath 'src/schema.js' -TotalCount 150\nGet-Content -LiteralPath 'docs/operations.md' -TotalCount 180",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-df974572-3a0c-407f-9ebf-86be6fdb8d24"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:59:51.895Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bdb6f7703a305f79ca2f69dde39a27ba553a109bc9a81951cbe08360aa29f54a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:39:45.163Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\".dip-local/codex-lifecycle-result.json\")); console.log(JSON.stringify(r.hooks.data.map(d=>({cwd:d.cwd,errors:d.errors,hooks:d.hooks.map(h=>({eventName:h.eventName,enabled:h.enabled,trustStatus:h.trustStatus,matcher:h.matcher}))})),null,2)); console.log(JSON.stringify(r.modes));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-264ac299-75a0-45e3-928d-a8187396209b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:39:45.411Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "43be502b067204b1ffc8c236bea6f1e3fc1da1253ad1cd93908339f812f4b655",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:24:33.634Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode bin/dip.js task finish --id task_33c6a780-4445-4fe9-b090-9fc20deb4ae6 --outcome implemented --check host-qa-evidence --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --summary 'Literal reads preserve future backlog; authorized fallback guidance and sanitized real Codex planning/resume/CLI recovery evidence shipped in v0.3.10. Three-platform CI, clean-Git-archive package smoke and configured Windows unit suite passed. Published scope excludes private ignored QA helper scripts and release notes. Current causal replay passed; L01 and missing temporary-root recovery remain open.'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d5fa7633-fd37-4a86-8e2e-060e5686b4b2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:24:34.170Z",
+  "parents": [],
+  "branch": "main"
+}

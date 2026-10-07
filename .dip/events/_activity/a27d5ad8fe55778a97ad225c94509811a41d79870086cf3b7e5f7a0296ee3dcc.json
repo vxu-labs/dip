@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a27d5ad8fe55778a97ad225c94509811a41d79870086cf3b7e5f7a0296ee3dcc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:01:37.637Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Test-Path docs/benchmarks/scale.md; Get-Content docs/benchmarks/README.md -TotalCount 4; git diff --stat README.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-dd38e713-8846-404c-b6a1-76dd653b2daf"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:01:38.255Z",
+  "parents": [],
+  "branch": "main"
+}

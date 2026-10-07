@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ccdb09f1e482b4908349265008a20543c44bd7d0c199d44dbff4449dad9ff714",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:15:58.482Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$dipBenchmarkProcess = Get-CimInstance Win32_Process -Filter \"ProcessId = 11796\"; if ($dipBenchmarkProcess.CommandLine -notmatch 'scripts[/\\\\]model-benchmark\\.mjs') { throw 'Benchmark process identity changed' }; taskkill /PID 11796 /T /F; @'\nimport fs from 'node:fs';import path from 'node:path';import os from 'node:os';\nconst source='docs/benchmarks/2026-10-06-model-controlled.json';const r=JSON.parse(fs.readFileSync(source,'utf8'));r.abortedAt=new Date().toISOString();r.abortReason='Infrastructure invalid: isolated noninteractive MCP tool approvals blocked DIP calls. Hooks worked. One matched pair completed, later active invocation terminated; its usage is unavailable. This attempt is retained and not treated as the valid comparison.';fs.writeFileSync('docs/benchmarks/2026-10-06-model-attempt1.json',JSON.stringify(r,null,2)+'\\n');fs.copyFileSync(source,'.dip-local/model-attempt1-original.json');\nconst sandbox=path.resolve(os.tmpdir(),'dip-model-controlled-xn6mAE');if(!sandbox.startsWith(path.resolve(os.tmpdir())+path.sep))throw Error('Invalid fixture root');let count=0;for(let i=-1;i<6;i++)for(const arm of ['with','without']){const auth=path.join(sandbox,`pair-${i}`,arm,'user','.codex','auth.json');if(fs.existsSync(auth)){fs.unlinkSync(auth);count++;}}console.log(JSON.stringify({retainedPairs:r.pairs.length,credentialCopiesRemoved:count}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d33110ed-63f8-4b9d-bd2f-670b9b33fd38"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:15:58.536Z",
+  "parents": [],
+  "branch": "main"
+}

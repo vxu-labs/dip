@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0766adabd2f8dce2cc5d7870ba837bfcf185cd9aaf19e862b1a321409ee8b81e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:53:24.484Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content AGENTS.md; Get-Content docs/benchmarks/README.md; Get-Content scripts/benchmark-comparison.mjs -TotalCount 100; Get-Command codex -ErrorAction SilentlyContinue | Select-Object Name,Source; git status --short | Select-Object -First 18",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a99ffe43-f57e-4e0a-b292-ab98cb8d1366"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:53:25.202Z",
+  "parents": [],
+  "branch": "main"
+}

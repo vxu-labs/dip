@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fa3a3d734573d0da10599f03221efa5a158d7b1a067954b869ad7b170f95fac5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:30:04.124Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/core.js | Select-Object -First 38; Get-Content src/core.js | Select-Object -Skip 175 -First 70; Get-Content src/util.js | Select-Object -First 175; Get-Content src/server.js; Get-Content src/cli-help.js | Select-Object -First 215; rg --files test; Get-Content .dip/config.json; Get-Content scripts/check.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b35f907a-b564-4057-9f0f-932e8958b851"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:30:04.313Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3229ccbd75037f33199380e6e89569daa178b1969820468c9a33bd0c239763b2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:56:43.896Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' status --short",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-0f61cd60-c579-4bdd-8416-eadac97c69a2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:56:44.249Z",
+  "parents": [],
+  "branch": "main"
+}

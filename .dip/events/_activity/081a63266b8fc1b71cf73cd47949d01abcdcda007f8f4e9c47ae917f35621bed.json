@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "081a63266b8fc1b71cf73cd47949d01abcdcda007f8f4e9c47ae917f35621bed",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:20:12.625Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git status --short --untracked-files=no; Get-Item -LiteralPath docs/benchmarks/2026-10-06-longitudinal.json | Select-Object Length,LastWriteTime; Get-Content .dip/config.json; rg -n '2026-10-06-longitudinal.json|writeFileSync\\(|unlinkSync\\(' scripts/longitudinal-evidence.mjs scripts/scale-evidence.mjs test/low-friction.test.js | Select-Object -First 20",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-7c29f65e-ea61-4ffc-bcb9-c96aae56d649"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:20:13.110Z",
+  "parents": [],
+  "branch": "main"
+}

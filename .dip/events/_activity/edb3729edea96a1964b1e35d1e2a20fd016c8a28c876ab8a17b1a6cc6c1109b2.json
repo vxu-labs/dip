@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "edb3729edea96a1964b1e35d1e2a20fd016c8a28c876ab8a17b1a6cc6c1109b2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:39:46.318Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\".dip-local/codex-lifecycle-result.json\")); console.log(JSON.stringify(r.hooks.data.map(d=>({cwd:d.cwd,errors:d.errors,hooks:d.hooks.map(h=>({eventName:h.eventName,enabled:h.enabled,trustStatus:h.trustStatus,matcher:h.matcher}))})),null,2)); console.log(JSON.stringify(r.modes));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-264ac299-75a0-45e3-928d-a8187396209b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:39:46.607Z",
+  "parents": [],
+  "branch": "main"
+}

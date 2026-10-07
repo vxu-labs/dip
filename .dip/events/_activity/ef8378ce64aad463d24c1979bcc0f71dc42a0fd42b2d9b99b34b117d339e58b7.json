@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ef8378ce64aad463d24c1979bcc0f71dc42a0fd42b2d9b99b34b117d339e58b7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T10:28:46.769Z",
+        "kind": "files.changed",
+        "files": [
+          "src/navigation.js",
+          "src/mcp.js",
+          "bin/dip.js",
+          "src/cli-help.js",
+          "src/workflow.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "90f1e3fe-d95c-46c4-a646-b3d5100b4343"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:28:46.779Z",
+  "parents": [],
+  "branch": "main"
+}

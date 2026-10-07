@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "30eada37153dff3335bfd40bba036edbdc6e3eff5413122bebfdc037dcb8e79d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:05:21.936Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport {execFileSync} from 'node:child_process';\nconst files=execFileSync('git',['ls-files','*.md'],{encoding:'utf8'}).trim().split(/\\r?\\n/);\nconst hits=files.filter(file=>fs.readFileSync(file,'utf8').includes(String.fromCharCode(0x2014)));\nconsole.log(JSON.stringify({trackedMarkdownFiles:files.length,emDashFiles:hits}));\nif(hits.length)process.exitCode=1;\n'@ | node --input-type=module\ngit diff --check\ngit add .dip/config.json .github/workflows/ci.yml README.md QA_REPORT.md docs/benchmarks/README.md docs/benchmarks/longitudinal.md docs/benchmarks/2026-10-06-longitudinal.json docs/benchmarks/2026-10-06-longitudinal-stress.json scripts/longitudinal-report.mjs scripts/longitudinal-readme.mjs .dip/events/task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0 .dip/events/task_e688572e-bac2-4207-833a-0d6f970b5bde .dip/events/task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5 .dip/events/task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90\ngit diff --cached --stat\ngit -c core.hooksPath=.dip-local/empty-hooks commit -m \"Publish longitudinal quality results with every outcome and reproducible stress checks\"\ngit push origin main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9209d826-ef58-4cff-9c02-de1c6ca966af"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:05:22.830Z",
+  "parents": [],
+  "branch": "main"
+}

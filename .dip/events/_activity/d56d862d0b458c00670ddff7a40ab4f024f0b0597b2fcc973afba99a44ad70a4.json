@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d56d862d0b458c00670ddff7a40ab4f024f0b0597b2fcc973afba99a44ad70a4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:10:07.599Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/longitudinal-benchmark.mjs -TotalCount 135; Get-Content scripts/longitudinal-runtime.mjs | Select-Object -Skip 175 -First 95; rg -n \"function inScope|function scopeOverlap\" src/util.js src/core.js; git diff --stat -- . ':!.dip/events'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a4bfba74-5b5a-41d6-ace3-f20b89906cf7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:10:07.839Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "499d79500a4c3be039e9624cdb557e85b175319c1aa2ab25c3d57be5cc9a8de7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:02:04.391Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";let p=\".dip/config.json\";let c=JSON.parse(fs.readFileSync(p));c.verification[\"host-qa\"]={command:[\"node\",\"--test\",\"test/host-qa.test.js\"],timeoutMs:60000};fs.writeFileSync(p,JSON.stringify(c,null,2)+\"\\n\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5f89714f-cec4-4bc8-834c-6e88763a7af7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:02:05.567Z",
+  "parents": [],
+  "branch": "main"
+}

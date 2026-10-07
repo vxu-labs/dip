@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ab33b87e45b9f10e0414a6508123ed03c88861cdb790de21203e28da8d377e10",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T14:57:39.634Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/images/dashboard-mobile.png",
+          "docs/images/dashboard.png"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "a986cd9a-3703-46c1-8575-95bf33768f0d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:57:39.638Z",
+  "parents": [],
+  "branch": "main"
+}

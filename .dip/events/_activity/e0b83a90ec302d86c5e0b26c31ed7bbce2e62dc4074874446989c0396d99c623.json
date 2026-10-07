@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e0b83a90ec302d86c5e0b26c31ed7bbce2e62dc4074874446989c0396d99c623",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T11:59:39.841Z",
+        "kind": "files.changed",
+        "files": [
+          "test/cli.test.js",
+          "test/hardening.test.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "5ee0cb99-05bb-45e4-9b8d-c9930a2f0084"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:59:39.846Z",
+  "parents": [],
+  "branch": "main"
+}

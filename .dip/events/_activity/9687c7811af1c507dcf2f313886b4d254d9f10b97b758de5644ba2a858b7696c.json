@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9687c7811af1c507dcf2f313886b4d254d9f10b97b758de5644ba2a858b7696c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T06:28:01.606Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run view 37581338247 --json status,conclusion,jobs --jq '{status,conclusion,jobs:[.jobs[]|{name,status,conclusion}]}'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c92c6ad1-dc42-43e4-ac03-eacd14d3aa32"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T06:28:02.001Z",
+  "parents": [],
+  "branch": "main"
+}

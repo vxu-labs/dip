@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0ac6179d5288214bd0e1121984ae49fca65671af8b00255090fbdd6c0124535c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T15:43:19.585Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/longitudinal-stress-oracle.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "d5e167e6-2c70-4398-be60-499ef09c3dc1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:43:19.596Z",
+  "parents": [],
+  "branch": "main"
+}

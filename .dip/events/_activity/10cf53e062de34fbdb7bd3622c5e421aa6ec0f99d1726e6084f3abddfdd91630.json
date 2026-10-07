@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "10cf53e062de34fbdb7bd3622c5e421aa6ec0f99d1726e6084f3abddfdd91630",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:04:51.739Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nlet c=fs.readFileSync('CONTRIBUTING.md','utf8');\nfor(const code of ['L02','L04','L06','L08']){c=c.split('\\n').map(line=>line.includes('[DIP-'+code+']')?line.replace(/\\|[^|]+\\|\\s*$/,'| Delivered in v0.3.8 |'):line).join('\\n');}\nc=c.replace('L01, L04, L08 and the semantic roadmap have partial progress; their remaining criteria stay open.','L02, L04, L06 and the bounded L08 profiling work were delivered in v0.3.8. L01 and the semantic roadmap retain unfinished criteria; semantic routing, universal agent compliance and platform-wide latency guarantees are not implied.');fs.writeFileSync('CONTRIBUTING.md',c);\nconst config=JSON.parse(fs.readFileSync('.dip/config.json'));Object.assign(config.verification,{\n 'intent-transitions':{command:['node','--test','--test-name-pattern','follow-up|adoption|CLI kind','test/low-friction.test.js'],timeoutMs:60000},\n 'portable-intent':{command:['node','--test','--test-name-pattern','portable|repository integration','test/low-friction.test.js'],timeoutMs:60000},\n 'client-discovery':{command:['node','--test','--test-name-pattern','isomorphic-git','test/low-friction.test.js'],timeoutMs:60000},\n 'scale-evidence':{command:['node','scripts/scale-evidence.mjs'],timeoutMs:60000}\n});fs.writeFileSync('.dip/config.json',JSON.stringify(config,null,2)+'\\n');\n'@ | node --input-type=module\nnpx prettier --write src/portable.js src/health.js test/low-friction.test.js scripts/scale-evidence.mjs docs/benchmarks/scale.md docs/benchmarks/README.md README.md CONTRIBUTING.md .dip/config.json\nnode --disable-warning=ExperimentalWarning --test test/low-friction.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-80d1c775-6d6e-41b6-a090-f0c40741001c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:04:52.590Z",
+  "parents": [],
+  "branch": "main"
+}

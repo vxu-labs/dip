@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7d902f97b2eca24897046550038937b20e19663a8b9d48cfa9d6371f9283cf4c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:20:43.935Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; import {parse} from \"smol-toml\"; const c=parse(fs.readFileSync(process.env.USERPROFILE+\"/.codex/config.toml\",\"utf8\")); console.log(JSON.stringify({servers:Object.keys(c.mcp_servers||{}),dip:c.mcp_servers?.dip,features:c.features},null,2)); const b=JSON.parse(fs.readFileSync(\"docs/benchmarks/2026-10-06-model-controlled-v3.json\")); console.log(Object.keys(b.pairs[0])); console.log(Object.keys(b.pairs[0].with||{}));' \nGet-Content scripts/model-benchmark.mjs | Select-Object -Skip 318 -First 195",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0b6ab53d-e6a8-4cbd-bab6-e7a927ee10d1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:20:43.953Z",
+  "parents": [],
+  "branch": "main"
+}

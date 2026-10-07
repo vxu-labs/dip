@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e70d865bb66b8f9167cc364c1d0d6178624c61f9241888459173173666160dcb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:19:50.692Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('.dip-local/model-preflight-v2.json','utf8'));const x=r.pairs.find(x=>x.arm==='with');console.log(JSON.stringify({passed:r.preflightPassed,answers:x.run.answers,errors:x.run.mcpErrors,capture:x.capture,approved:x.setup.reviewedMcpToolsApproved},null,2));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-3ad18cb2-d835-47ca-b788-552e48b76a81"
+      },
+      {
+        "at": "2026-10-06T12:19:50.744Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "webrun",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-da6a6b64-fc29-4cf4-a355-f065675e8a36"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:19:51.088Z",
+  "parents": [],
+  "branch": "main"
+}

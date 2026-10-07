@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4c04bed5c86bdcc846a77ccf2d151ff313cea0a69e4bd4fe834ed0989e978ab4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:10:45.597Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const s=fs.readFileSync(\"docs/host-qa/2026-10-07-codex.json\",\"utf8\");if(/offic|—|ANTHROPIC_API_KEY|Bearer /i.test(s))throw Error(\"Private or forbidden published text\");console.log(\"Published evidence contains no personal user name, em dash or known credential string.\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5ae89e39-2242-4816-8605-bd5aa38cf400"
+      },
+      {
+        "at": "2026-10-07T17:10:46.809Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const s=fs.readFileSync(\"docs/host-qa/2026-10-07-codex.json\",\"utf8\");if(/offic|—|ANTHROPIC_API_KEY|Bearer /i.test(s))throw Error(\"Private or forbidden published text\");console.log(\"Published evidence contains no personal user name, em dash or known credential string.\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5ae89e39-2242-4816-8605-bd5aa38cf400"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:10:46.825Z",
+  "parents": [],
+  "branch": "main"
+}

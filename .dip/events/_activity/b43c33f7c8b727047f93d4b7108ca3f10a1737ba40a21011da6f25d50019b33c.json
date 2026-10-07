@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b43c33f7c8b727047f93d4b7108ca3f10a1737ba40a21011da6f25d50019b33c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:26:36.144Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));console.log(JSON.stringify(d.pairs.map(p=>({pair:p.index+1,arms:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,Object.keys(r.stages)]))}))));\"; node --input-type=module -e \"import fs from 'node:fs';import {createHash} from 'node:crypto';const p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal-protocol.json'));for(const[n,h]of Object.entries(p.sources)){const a=createHash('sha256').update(fs.readFileSync('scripts/longitudinal-'+n+'.mjs','utf8').replaceAll('\\r\\n','\\n')).digest('hex');if(a!==h)throw Error(n+' changed');}console.log('Registered sources unchanged.');\"",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-ad6b76a0-1704-46be-9a06-f4925a4e0ed8"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:26:37.143Z",
+  "parents": [],
+  "branch": "main"
+}

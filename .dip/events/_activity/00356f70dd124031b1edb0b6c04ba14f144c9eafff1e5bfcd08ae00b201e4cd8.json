@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "00356f70dd124031b1edb0b6c04ba14f144c9eafff1e5bfcd08ae00b201e4cd8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:02:45.330Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local/codex-live-fixed-cMUV5X/turn-1-events.jsonl -Tail 4",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5be429bc-e116-41a5-ad33-5c930156a28a"
+      },
+      {
+        "at": "2026-10-07T17:02:45.348Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "mcp__codex_app__load_workspace_dependencies",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a287c431-85c6-4d9c-836c-0a4fce22f90f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:02:45.793Z",
+  "parents": [],
+  "branch": "main"
+}

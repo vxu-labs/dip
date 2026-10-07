@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a64987fd5e09d1f584ccc54c88264b12266626bca82dd6c85f89a1d2f2d9590d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:40:56.494Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'export function captureSnapshot' src/util.js; Get-Content src/util.js | Select-Object -Skip 110 -First 85",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1e8bfced-07be-4473-8458-5d1a339d9a0c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:40:57.504Z",
+  "parents": [],
+  "branch": "main"
+}

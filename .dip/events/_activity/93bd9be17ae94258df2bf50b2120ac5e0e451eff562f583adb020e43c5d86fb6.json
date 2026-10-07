@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "93bd9be17ae94258df2bf50b2120ac5e0e451eff562f583adb020e43c5d86fb6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:01:56.827Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'data.success|const median|completedTurns|seedScore|primary|result =' scripts/model-benchmark.mjs; rg -n 'return \\{|memoryTotal' scripts/model-benchmark-fixtures.mjs | Select-Object -Last 8",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5649bb17-5cbf-45d8-a2de-47ddc537e269"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:01:57.344Z",
+  "parents": [],
+  "branch": "main"
+}

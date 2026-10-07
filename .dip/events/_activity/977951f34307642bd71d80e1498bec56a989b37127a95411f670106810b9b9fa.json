@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "977951f34307642bd71d80e1498bec56a989b37127a95411f670106810b9b9fa",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T15:44:27.459Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/plans/finish-audit-plan.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "8d7b58f2-3731-46b2-ae1f-4acb6f5a48a3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:44:27.468Z",
+  "parents": [],
+  "branch": "main"
+}

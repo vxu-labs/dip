@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b616f635366386d39287e37f2a4648a76ae2eb23285fd8afee88b2a134428e37",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:15:19.164Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/actions.js | Select-Object -Skip 620 -First 150\nrg -n 'snapshot\\.files|taskSnapshot|verification =|verifiedComplete' src/actions.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-facefdd2-1549-4304-bcd8-84db5738541b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:15:19.419Z",
+  "parents": [],
+  "branch": "main"
+}

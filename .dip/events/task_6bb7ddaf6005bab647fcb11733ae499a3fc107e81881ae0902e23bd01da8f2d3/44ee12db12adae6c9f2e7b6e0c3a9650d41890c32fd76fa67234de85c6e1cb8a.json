@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "44ee12db12adae6c9f2e7b6e0c3a9650d41890c32fd76fa67234de85c6e1cb8a",
+  "taskId": "task_6bb7ddaf6005bab647fcb11733ae499a3fc107e81881ae0902e23bd01da8f2d3",
+  "type": "task.create",
+  "payload": {
+    "title": "מה הדברים הבאים ?",
+    "description": "מה הדברים הבאים ? \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:49:51.790Z",
+  "parents": [],
+  "branch": "main"
+}

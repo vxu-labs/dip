@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d9e03d1809f9403e4812956579ef0a4c54069a375e49538425e8aac86720dd88",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:52:59.615Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/model-benchmark-profile.mjs --input C:/Users/offic/AppData/Local/Temp/dip-model-controlled-mJJYsG --output docs/benchmarks/2026-10-07-management-v5.json\n@'\nimport fs from 'node:fs';\nconst p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-07-management-v5.json'));\nconsole.log(JSON.stringify({payloads:p.toolPayloads}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f963f32a-5316-41d0-bb1b-ada6835f8642"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:52:59.861Z",
+  "parents": [],
+  "branch": "main"
+}

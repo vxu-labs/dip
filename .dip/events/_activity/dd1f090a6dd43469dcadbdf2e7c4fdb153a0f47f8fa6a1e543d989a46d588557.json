@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "dd1f090a6dd43469dcadbdf2e7c4fdb153a0f47f8fa6a1e543d989a46d588557",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:15:02.264Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-CimInstance Win32_Process -Filter \"Name = 'node.exe'\" | Where-Object { $_.CommandLine -match 'scripts[/\\\\]model-benchmark\\.mjs' } | Select-Object ProcessId,CommandLine",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-fba9f7f9-616b-4947-9adf-2633b759978b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:15:02.687Z",
+  "parents": [],
+  "branch": "main"
+}

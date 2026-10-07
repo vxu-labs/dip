@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ea890e41e8444eab66b7927d71b3e8fba4bee189fa2cf246d6a500da9a1869a2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:04:55.075Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module --disable-warning=ExperimentalWarning -e 'import {execute} from \"./src/actions.js\"; import {ensure,taskRead} from \"./src/core.js\"; const id=\"task_0fc443ee-b79b-4f6d-977f-e14c34a9df57\",actor=\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\"; const t=taskRead(ensure(process.cwd()),id); await execute(\"update\",{id,actor,patch:{scope:[...new Set([...t.scope,\"bin/dip.js\",\"scripts/codex-live-lifecycle.mjs\",\"scripts/codex-structured-evidence.mjs\",\"test/structured-plan.test.js\",\"docs/host-qa/structured-plan.md\",\"docs/host-qa/2026-10-07-structured-plan.json\"])],acceptance:[...t.acceptance,\"Explicit bounded structured task_plan fallback works through CLI/MCP and actual authenticated Codex without claiming future work; it is distinguished from unavailable native update_plan.\"]}}); console.log(\"Added explicit structured fallback acceptance and scope.\");'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-00c49504-92bb-4b3e-8637-fc6be8992aa3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:04:55.283Z",
+  "parents": [],
+  "branch": "main"
+}

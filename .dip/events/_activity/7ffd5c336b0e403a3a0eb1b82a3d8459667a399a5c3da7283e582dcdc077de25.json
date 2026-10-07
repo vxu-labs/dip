@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7ffd5c336b0e403a3a0eb1b82a3d8459667a399a5c3da7283e582dcdc077de25",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:19:08.445Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));console.log(JSON.stringify(d.pairs.map(p=>({pair:p.index+1,arms:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,Object.fromEntries(Object.entries(r.stages).map(([n,s])=>[n,{passed:s.score.passed,seconds:Math.round(s.run.wallMs/1000),completed:s.run.completed,timeout:s.run.timedOut}]))]))}))));\"; npx prettier --write scripts/longitudinal-redact.mjs scripts/longitudinal-report.mjs; node --check scripts/longitudinal-report.mjs; node --check scripts/longitudinal-evidence.mjs; node scripts/model-benchmark-evidence.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c7b7fc80-0481-4be5-94cb-12d2ace644f6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:19:08.626Z",
+  "parents": [],
+  "branch": "main"
+}

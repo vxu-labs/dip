@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "317cf0c4386938b1f0e0d6c3ac6d7873c1cf2071c374d5d9cd3ac63c87b2a6d0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:00:49.319Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst data=JSON.parse(fs.readFileSync('.dip-local/model-controlled-v4.json'));\nfor(const pair of data.pairs) {\n const arm=pair.arms.with;\n for(const phase of ['seed','recovery']) {\n  const t=arm[phase];\n  console.log(JSON.stringify({pair:pair.index,phase,completed:t.completed,timeout:t.timedOut,errors:t.mcpErrors,items:t.itemCounts,final:t.final?.slice(0,1500)}));\n }\n}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-bf4292c1-f44f-4dbb-a773-e69c5ebd9741"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:00:49.519Z",
+  "parents": [],
+  "branch": "main"
+}

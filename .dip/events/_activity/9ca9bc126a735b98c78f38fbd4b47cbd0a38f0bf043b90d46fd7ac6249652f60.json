@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9ca9bc126a735b98c78f38fbd4b47cbd0a38f0bf043b90d46fd7ac6249652f60",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T15:11:19.458Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/longitudinal-fixtures.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "59b0c86d-30a5-44f4-8dac-8a6227c5a9aa"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:11:19.483Z",
+  "parents": [],
+  "branch": "main"
+}

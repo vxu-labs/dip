@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2e85924756f6dfde7891785730977b4e4351ed222a2d000d09d340a23036aea4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a1156a-90f0-7051-a900-905776661dbc",
+    "records": [
+      {
+        "at": "2026-10-07T08:11:52.600Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a1156a-90f0-7051-a900-905776661dbc",
+        "taskId": "task_4ed506bde8a9589a99b328c9d1d615dfe1e714abda2f365e6a86ab9f59a15fc8",
+        "tool": "mcp__codex_apps__github__fetch_commit",
+        "branch": "main",
+        "recordId": "codex:01a1156a-90f0-7051-a900-905776661dbc:PreToolUse:exec-24bd4ecb-1c98-4ac4-9e50-b4403e628a5c"
+      },
+      {
+        "at": "2026-10-07T08:11:52.602Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a1156a-90f0-7051-a900-905776661dbc",
+        "taskId": "task_4ed506bde8a9589a99b328c9d1d615dfe1e714abda2f365e6a86ab9f59a15fc8",
+        "tool": "mcp__codex_apps__github__search_issues",
+        "branch": "main",
+        "recordId": "codex:01a1156a-90f0-7051-a900-905776661dbc:PreToolUse:exec-33bd57c7-4345-4ec5-94fc-ff019be01317"
+      },
+      {
+        "at": "2026-10-07T08:11:52.614Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a1156a-90f0-7051-a900-905776661dbc",
+        "taskId": "task_4ed506bde8a9589a99b328c9d1d615dfe1e714abda2f365e6a86ab9f59a15fc8",
+        "tool": "mcp__codex_apps__github__fetch_commit",
+        "branch": "main",
+        "recordId": "codex:01a1156a-90f0-7051-a900-905776661dbc:PreToolUse:exec-1b550eda-5d2e-46b1-b2e2-a84f364067c6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T08:11:52.853Z",
+  "parents": [],
+  "branch": "main"
+}

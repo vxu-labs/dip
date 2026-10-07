@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "edc0a2fa9c6f19b8545620b39fac84036b44b1fa7ebe9242d8e55857638d43c8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:58:00.598Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath src/core.js -TotalCount 105\nrg -n 'queue_errors|CREATE TABLE' src\nGet-Content -LiteralPath test/privacy-recovery.test.js -TotalCount 95\nrg -n 'flush|queue_errors|broken project' test/hardening.test.js test/core.test.js\nGet-Content -LiteralPath scripts/model-benchmark.mjs | Select-Object -Skip 420 -First 120",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-70245283-56f0-4bbc-9b9b-8ac76f15b1b8"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:58:01.264Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f7e84101d682ecb2186538ae0e5f561093732afe89874098a7fc7aebace03e4c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:51:28.559Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git log -3 --oneline; git rev-list --left-right --count HEAD...origin/main; node scripts/longitudinal-stress-oracle.mjs; node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));console.log(JSON.stringify(d.pairs.map(p=>({pair:p.index+1,stages:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,Object.keys(r.stages)]))}))));\"",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-dac01ec3-8b8c-46e9-9997-2bff3d942779"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:51:29.126Z",
+  "parents": [],
+  "branch": "main"
+}

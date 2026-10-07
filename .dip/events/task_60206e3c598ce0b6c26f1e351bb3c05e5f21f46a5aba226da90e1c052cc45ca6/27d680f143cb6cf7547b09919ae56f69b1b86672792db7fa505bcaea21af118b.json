@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "27d680f143cb6cf7547b09919ae56f69b1b86672792db7fa505bcaea21af118b",
+  "taskId": "task_60206e3c598ce0b6c26f1e351bb3c05e5f21f46a5aba226da90e1c052cc45ca6",
+  "type": "task.create",
+  "payload": {
+    "title": "אז מה הרשימת משימות הפתוחות עכשיו אחרי שבדקנו ואימתנו ?",
+    "description": "אז מה הרשימת משימות הפתוחות עכשיו אחרי שבדקנו ואימתנו ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:11:34.502Z",
+  "parents": [],
+  "branch": "main"
+}

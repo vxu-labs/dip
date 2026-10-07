@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "be697edb87f80211797cb12b3f41f7383724a7b260689a8fe8ada4165aa89a28",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:58:25.508Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/host-qa-evidence.mjs -ErrorAction SilentlyContinue; Get-Content docs/desktop-qa.md -TotalCount 65",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-e2cc40cf-5441-48da-9ab6-64ab542b8efa"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:58:25.835Z",
+  "parents": [],
+  "branch": "main"
+}

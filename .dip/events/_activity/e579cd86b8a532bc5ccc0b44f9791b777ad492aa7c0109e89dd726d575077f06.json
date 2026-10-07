@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e579cd86b8a532bc5ccc0b44f9791b777ad492aa7c0109e89dd726d575077f06",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:03:50.764Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport assert from 'node:assert/strict';import {fixture} from './scripts/model-benchmark-fixtures.mjs';\nfor(let index=0;index<6;index++){\n const f=fixture(index);let m;\n if(f.kind==='queue'){const normalizeJobs=jobs=>jobs.filter(j=>j&&typeof j.id==='string'&&j.id.length&&Number.isInteger(j.duration)&&j.duration>0).map(({id,duration})=>({id,duration}));m={normalizeJobs,scheduleJobs(jobs){const slots=Array(f.contract.capacity).fill(0);return normalizeJobs(jobs).map(j=>{const start=Math.min(...slots),slot=slots.indexOf(start);slots[slot]=start+j.duration;return {id:j.id,start,end:slots[slot],slot};});}};}\n if(f.kind==='csv'){const d=f.contract.separator;const encodeCell=v=>{const s=v==null?'':String(v);return s.includes(d)||/[\"\\r\\n]/.test(s)?'\"'+s.replaceAll('\"','\"\"')+'\"':s;};m={encodeCell,encodeTable:rows=>rows.map(row=>row.map(encodeCell).join(d)).join('\\r\\n')};}\n if(f.kind==='search'){const normalizeQuery=q=>typeof q==='string'?q.trim().toLowerCase():'';m={normalizeQuery,findMatches(items,q){const n=normalizeQuery(q);return n?items.filter(x=>typeof x?.label==='string'&&x.label.toLowerCase().includes(n)).slice(0,f.contract.limit):[];}};}\n const checks=f.tests(m);assert.equal(checks.length,8);for(const [name,check]of checks)check();const broken={...m,[f.later]:()=>[]};assert.ok(f.tests(broken).some(([name,check])=>{try{check();return false;}catch{return true;}}));\n}\nconsole.log('Evaluator calibration passed: all six reference variants pass; broken pending-function implementations fail.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1ef5be66-0bb6-483d-8faf-8342230b1032"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:03:51.976Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "63d09b83dec13aab8e840320b0106846a4d67207af718dd35d317e82aa44163a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:13:31.558Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$configScript = @'\nimport fs from 'node:fs';\nconst f='.dip/config.json',c=JSON.parse(fs.readFileSync(f));\nc.verification['privacy-recovery']={command:['node','--test','test/privacy-recovery.test.js'],timeoutMs:90000};\nc.verification.unit.timeoutMs=180000;\nfs.writeFileSync(f,JSON.stringify(c,null,2)+'\\n');\n'@\n$configScript | node --input-type=module\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n$verifyScript = @'\nimport {execute} from './src/actions.js';\nconst result=await execute('verify',{id:'task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b',actor:'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',check:'unit'});\nconsole.log(JSON.stringify(result));\nif(result.passed===false || result.evidence?.result?.exitCode) process.exitCode=1;\n'@\n$verifyScript | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9c3ed70b-5de1-460a-9579-7e70c7dbcb40"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:13:31.646Z",
+  "parents": [],
+  "branch": "main"
+}

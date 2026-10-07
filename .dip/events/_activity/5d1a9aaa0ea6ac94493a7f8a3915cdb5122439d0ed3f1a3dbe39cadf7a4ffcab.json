@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5d1a9aaa0ea6ac94493a7f8a3915cdb5122439d0ed3f1a3dbe39cadf7a4ffcab",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:15:52.421Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --disable-warning=ExperimentalWarning bin/dip.js task verify --id task_15793da9-9d59-4fa4-acbf-65e08b24907b --check outbox-recovery --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b2a8f6cf-f50f-414c-b5e2-1dcea7be6371"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:15:52.730Z",
+  "parents": [],
+  "branch": "main"
+}

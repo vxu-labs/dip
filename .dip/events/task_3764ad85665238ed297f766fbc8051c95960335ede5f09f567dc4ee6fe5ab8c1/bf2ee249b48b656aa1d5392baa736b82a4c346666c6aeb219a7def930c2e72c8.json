@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bf2ee249b48b656aa1d5392baa736b82a4c346666c6aeb219a7def930c2e72c8",
+  "taskId": "task_3764ad85665238ed297f766fbc8051c95960335ede5f09f567dc4ee6fe5ab8c1",
+  "type": "task.create",
+  "payload": {
+    "title": "מה נשאר פתוח ?",
+    "description": "מה נשאר פתוח ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T21:30:08.498Z",
+  "parents": [],
+  "branch": "main"
+}

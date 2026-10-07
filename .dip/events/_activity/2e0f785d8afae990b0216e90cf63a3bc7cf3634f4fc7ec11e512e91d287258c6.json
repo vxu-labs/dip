@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2e0f785d8afae990b0216e90cf63a3bc7cf3634f4fc7ec11e512e91d287258c6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:03:14.337Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'token:[REDACTED] src/verify.js src/server.js src/actions.js src/portable.js src/git-discovery.js\nGet-Content -LiteralPath 'src/portable.js' -TotalCount 57\nGet-Content -LiteralPath 'src/git-discovery.js' | Select-Object -Skip 110 -First 70\nrg -n 'daemon|start|lastError' test/hardening.test.js test/integration.test.js test/cli.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9dcdd4a7-0e05-4607-8eae-e5d843be3c31"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:03:15.079Z",
+  "parents": [],
+  "branch": "main"
+}

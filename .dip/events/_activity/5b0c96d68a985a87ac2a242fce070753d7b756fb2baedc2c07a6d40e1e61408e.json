@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5b0c96d68a985a87ac2a242fce070753d7b756fb2baedc2c07a6d40e1e61408e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:32:17.772Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run list --limit 2 --json databaseId,headSha,status,conclusion,url",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-bc9c2458-851f-44e8-8eac-b9bc441cf0c0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:32:17.794Z",
+  "parents": [],
+  "branch": "main"
+}

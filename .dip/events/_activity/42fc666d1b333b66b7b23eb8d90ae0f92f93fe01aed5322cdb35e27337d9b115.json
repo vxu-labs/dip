@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "42fc666d1b333b66b7b23eb8d90ae0f92f93fe01aed5322cdb35e27337d9b115",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T05:43:38.314Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local\\laya-torch-install.log -Tail 9; Get-CimInstance Win32_VideoController | Select-Object Name,AdapterRAM",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5292ea99-32c8-48ce-a257-5d03a36818e5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T05:43:39.572Z",
+  "parents": [],
+  "branch": "main"
+}

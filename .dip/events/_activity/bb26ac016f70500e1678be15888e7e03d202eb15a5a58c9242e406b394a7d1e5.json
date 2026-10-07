@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bb26ac016f70500e1678be15888e7e03d202eb15a5a58c9242e406b394a7d1e5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:45:18.965Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/model-benchmark-evidence.mjs"
+        ],
+        "changeHash": "b8990060d653f08a341a04a3898e4b045df2da58c035c48619f33c75d073b70e",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-fc239cea-96ae-4470-86f2-b6a133aae6bf"
+      },
+      {
+        "at": "2026-10-07T19:45:19.007Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& node_modules/.bin/prettier.cmd --write scripts/model-benchmark-evidence.mjs\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode scripts/model-benchmark-evidence.mjs docs/benchmarks/2026-10-07-model-controlled-v4.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c9ee8353-356e-4de7-ab57-b401c4ac0a4e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:45:19.707Z",
+  "parents": [],
+  "branch": "main"
+}

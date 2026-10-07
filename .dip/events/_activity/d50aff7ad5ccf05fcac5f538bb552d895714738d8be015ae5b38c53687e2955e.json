@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d50aff7ad5ccf05fcac5f538bb552d895714738d8be015ae5b38c53687e2955e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:01:09.443Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npm install --global .dip-local/vxu-labs-dip-0.3.10.tgz --ignore-scripts --no-audit --no-fund",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b75bdf3b-69ef-4c83-9ab2-25ab21df9026"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:01:10.228Z",
+  "parents": [],
+  "branch": "main"
+}

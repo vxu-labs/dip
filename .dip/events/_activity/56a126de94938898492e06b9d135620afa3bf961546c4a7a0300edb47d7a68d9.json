@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "56a126de94938898492e06b9d135620afa3bf961546c4a7a0300edb47d7a68d9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:09:06.537Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";const p=\"docs/host-qa/2026-10-07-codex.json\";const clean=v=>typeof v===\"string\"?v.replace(/C:(?:\\\\+|\\/)Users(?:\\\\+|\\/)offic/gi,\"<user-home>\"):Array.isArray(v)?v.map(clean):v&&typeof v===\"object\"?Object.fromEntries(Object.entries(v).map(([k,x])=>[k,clean(x)])):v;fs.writeFileSync(p,JSON.stringify(clean(JSON.parse(fs.readFileSync(p))),null,2)+\"\\n\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1bfbec8b-2704-44b1-a75b-ace8c48478f6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:09:07.185Z",
+  "parents": [],
+  "branch": "main"
+}

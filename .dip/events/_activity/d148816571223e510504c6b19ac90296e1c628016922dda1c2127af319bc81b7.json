@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d148816571223e510504c6b19ac90296e1c628016922dda1c2127af319bc81b7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:23:09.568Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n \"semantic|embedding|vector|search|project_context|task_next|relevance|briefPlan\" src docs/automation.md docs/protocol.md README.md; rg --files | Select-Object -First 35",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-69f669fc-6c5e-4614-95c6-7eb4187179b3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:23:10.756Z",
+  "parents": [],
+  "branch": "main"
+}

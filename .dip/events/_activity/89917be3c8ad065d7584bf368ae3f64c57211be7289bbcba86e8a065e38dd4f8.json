@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "89917be3c8ad065d7584bf368ae3f64c57211be7289bbcba86e8a065e38dd4f8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:00:55.342Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n@'\nimport { ensure,taskRead } from './src/core.js';\nimport { captureSnapshot } from './src/util.js';\nconst repo=ensure(process.cwd(),{instructions:false}),task=taskRead(repo,'task_0fc443ee-b79b-4f6d-977f-e14c34a9df57'),saved=task.evidence.at(-1).snapshot.files,current=captureSnapshot(repo).files;\nconsole.log(JSON.stringify({changedSinceFailedReceipt:Object.keys({...saved,...current}).filter(p=>saved[p]!==current[p])}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\nnode --disable-warning=ExperimentalWarning bin/dip.js doctor --json > .dip-local/doctor-after-0.3.12.json\n@'\nimport fs from 'node:fs';\nconst d=JSON.parse(fs.readFileSync('.dip-local/doctor-after-0.3.12.json','utf8').replace(/^\\uFEFF/,''));\nconsole.log(JSON.stringify({version:d.version,daemon:d.automation.daemon?.running,lastError:d.automation.daemon?.lastError,issues:d.automation.issues,deferred:d.automation.deferredOutbox?.records}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-80b3e596-360a-450e-a929-28137c12407a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:00:56.836Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fb535a63b07a0e4e5d9c21ae9b9e225194beddbc742d5758ddf2f5308bc53111",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:55:26.287Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content C:/Users/offic/.codex/config.toml | Select-Object -Skip 102 -First 22; rg -n 'shell_environment_policy|shell_tool|powershell|shell.*login' C:/Users/offic/.codex/skills/.system/openai-docs/references/codex-self-knowledge.md | Select-Object -First 10; Get-Content .dip/config.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d560afa3-8e7b-47fd-b306-b589e630db9b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:55:27.132Z",
+  "parents": [],
+  "branch": "main"
+}

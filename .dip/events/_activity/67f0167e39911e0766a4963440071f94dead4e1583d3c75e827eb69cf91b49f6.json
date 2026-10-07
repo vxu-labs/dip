@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "67f0167e39911e0766a4963440071f94dead4e1583d3c75e827eb69cf91b49f6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:31:39.479Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\ngit add src/actions.js src/core.js src/health.js src/mcp.js src/workflow.js src/cli-help.js src/automation.js src/repository-integration.js bin/dip.js scripts/package-smoke.mjs scripts/model-benchmark.mjs scripts/model-benchmark-profile.mjs scripts/model-benchmark-evidence.mjs scripts/fixtures/model-benchmark-v3.txt test/outbox-recovery.test.js test/task-prepare.test.js skills/dip/SKILL.md docs/operations.md docs/automation.md docs/benchmarks/2026-10-07-management-before.json package.json package-lock.json .dip/config.json .dip/events/task_15793da9-9d59-4fa4-acbf-65e08b24907b .dip/events/task_e688572e-bac2-4207-833a-0d6f970b5bde .dip/events/task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30\nif ($LASTEXITCODE -ne 0) { throw 'Selective staging failed' }\ngit diff --cached --stat | Select-Object -Last 5\ngit -c core.hooksPath=.dip-local/empty-hooks commit -s -m 'Preserve deferred outbox records and prepare development intent in one call'\nif ($LASTEXITCODE -ne 0) { throw 'Source commit failed' }\ngit archive HEAD -o .dip-local/release-0.3.11-source.zip\nif ($LASTEXITCODE -ne 0) { throw 'Archive failed' }\nExpand-Archive -LiteralPath .dip-local/release-0.3.11-source.zip -DestinationPath .dip-local/release-0.3.11-source -Force\nnpm pack ./.dip-local/release-0.3.11-source --pack-destination .dip-local --silent\nif ($LASTEXITCODE -ne 0) { throw 'Pack failed' }\nnpm install -g ./.dip-local/vxu-labs-dip-0.3.11.tgz --ignore-scripts",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e63cece3-c03f-4f9c-87b5-2ab73c744cbf"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:31:39.939Z",
+  "parents": [],
+  "branch": "main"
+}

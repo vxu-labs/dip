@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "eef80024d7957c8b49b8e4d714658b24a09bd7641ef42442749f5a7d32e3ee17",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T13:53:11.015Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/laya-pilot-corpus.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "d6b9b7b4-2337-4983-81ae-c860fb7548c6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:53:11.038Z",
+  "parents": [],
+  "branch": "main"
+}

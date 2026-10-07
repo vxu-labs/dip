@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "339eb46e1cd6d3a26429ed92c45d8138c6caefbb8051067518fa5dd4f0226070",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:10:38.812Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" task checkpoint --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --summary 'Final v0.3.5: configured unit check passed 83 cases (81 Windows passes, 2 POSIX skips); configured browser passed, both stable snapshot b0c26e1d331be3984af8937b76f1992850df767ebd8826ce8f8ffbd196fdb57e. Fresh package/skill/installed adapter checks passed. Checkout aliases and Windows directory junctions tested; document reads load selected task history. Actual trusted Codex apply_patch auto-linked QA_REPORT.md via PostToolUse record codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-fa8edae7-29af-4ab7-bc3e-60686a6ba379. Subsequent script edit was stale and verification refused until reviewed relink. Existing MCP connections require reload; unsupported shell/wrapper writes use explicit links. Publishing under vxu-labs/dip.'\ngit add -- AGENTS.md CLAUDE.md QA_REPORT.md README.md bin/dip.js docs/automation.md docs/protocol.md docs/documents.md docs/plans/markdown-references.md package.json package-lock.json public/app.js public/style.css scripts/browser-smoke.mjs scripts/package-smoke.mjs scripts/document-hook-smoke.mjs skills/dip/SKILL.md src/actions.js src/automation.js src/cli-help.js src/core.js src/documents.js src/mcp.js src/server.js src/workflow.js test/documents.test.js .dip/events/task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 .dip/events/task_09ec4edda9882b9f4bf2343daaa8f10fc02ac14f0ebc0db497663032ad178ec8\ngit diff --cached --stat\ngit -c core.hooksPath=.dip-local/empty-hooks commit -m 'Link Markdown sources to DIP tasks and retrieve versioned sections'\ngit push origin main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9f984ac2-c7f4-4f3b-abaf-fbb393508ef5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:10:39.026Z",
+  "parents": [],
+  "branch": "main"
+}

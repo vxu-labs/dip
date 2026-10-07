@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "34b0c71a92a24bb678707580c72eda39cb1072fb7b7a1f0a846f97e674b1a359",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:58:21.702Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content test/low-friction.test.js | Select-Object -Skip 115 -First 55",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a941d1c1-e2bc-4c9d-b1e8-4f2c2341eda5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:58:22.348Z",
+  "parents": [],
+  "branch": "main"
+}

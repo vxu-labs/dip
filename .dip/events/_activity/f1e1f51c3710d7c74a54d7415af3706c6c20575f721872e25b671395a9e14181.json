@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f1e1f51c3710d7c74a54d7415af3706c6c20575f721872e25b671395a9e14181",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T16:06:40.476Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));console.log(JSON.stringify(d.pairs.map(p=>({pair:p.index+1,completed:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,Object.keys(r.stages).length])),final:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,r.stages.audit?{functional:r.stages.audit.score.passed,memory:r.stages.audit.score.memoryPassed}:null]))}))));\"",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1d50f8f5-83e8-4a19-9c20-3183b083482a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T16:06:40.973Z",
+  "parents": [],
+  "branch": "main"
+}

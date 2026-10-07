@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ecc8948d2817b4b0def79576b42b226c5efe1be0ab3d11a148a1379482e0125c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:09:11.549Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execute} from './src/actions.js';\nconst id='task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd';\nconsole.log(JSON.stringify(await execute('document-list',{id}),null,2));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-88d66486-f347-454b-ae9c-c391934d81b7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:09:11.823Z",
+  "parents": [],
+  "branch": "main"
+}

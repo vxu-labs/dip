@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "68486522b829bca74a41f325193f9ce8cf871422bcad9e98800608dbc793a90f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:06:23.410Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";let p=\".dip/config.json\",c=JSON.parse(fs.readFileSync(p));c.verification[\"outbox-recovery\"]={command:[\"node\",\"--test\",\"test/outbox-recovery.test.js\"],timeoutMs:60000};fs.writeFileSync(p,JSON.stringify(c,null,2)+\"\\n\");import {execute} from \"./src/actions.js\";await execute(\"checkpoint\",{id:\"task_15793da9-9d59-4fa4-acbf-65e08b24907b\",actor:\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\",summary:\"Implemented durable missing-root deferred state with 30s to 5min retry backoff, immediate directory-return recovery, explicit CLI retry and separate health advisories. Regression verifies 510 preserved records across runtime restart, healthy-project progress, no duplicate recovery and malformed live-project failure; focused tests passed. Package smoke now isolates inherited native Git trace. Full configured verification and release remain pending.\"});' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-caa7dc4f-f1a4-473b-a3c8-dbd99b9ba830"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:06:24.726Z",
+  "parents": [],
+  "branch": "main"
+}

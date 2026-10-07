@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e9329038-05c9-4aaf-b18f-4f0263b82db3",
+  "taskId": "task_3764ad85665238ed297f766fbc8051c95960335ede5f09f567dc4ee6fe5ab8c1",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Reviewed current open work ledger: eight substantive product/research items remain, separate from two automatic suggestion jobs. Available delivered0.3.12 fixes stay verified; native/Claude, semantic research, management receipts, worktree/clone coordination and naturalistic evaluation remain open.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T21:30:50.231Z",
+  "parents": [
+    "85d8b037-8256-42d7-a77f-9b4684e68520"
+  ],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "50d60c6074c1d525fce2bd692e20e2ab4415bb9cc75ddafeb13fce232df22e0b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:21:02.405Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {project,ensure,taskRead} from './src/core.js';\nconst repo=ensure(process.cwd(),{instructions:false});\nconst t=taskRead(repo,'task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd');console.log(JSON.stringify(t.evidence.map(e=>({check:e.check,at:e.at,contains:e.snapshot?.files?.['docs/benchmarks/2026-10-06-longitudinal.json']}))));\nconst matches=project(repo).activity.filter(r=>JSON.stringify(r).includes('2026-10-06-longitudinal.json')).slice(0,8);console.log(JSON.stringify(matches));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\nGet-Item \"$env:APPDATA/npm/node_modules/@vxu-labs/dip/docs/benchmarks/2026-10-06-longitudinal.json\" | Select-Object Length",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-954267ae-aa71-4776-b9ca-364d91bff2ec"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:21:02.695Z",
+  "parents": [],
+  "branch": "main"
+}

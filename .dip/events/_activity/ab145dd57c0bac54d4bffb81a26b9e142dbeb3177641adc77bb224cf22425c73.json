@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ab145dd57c0bac54d4bffb81a26b9e142dbeb3177641adc77bb224cf22425c73",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:30:07.446Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));const r=d.pairs[0].arms.with;const s=r.stages.workerB;console.log(JSON.stringify({kinds:s.capture.kinds,denials:s.capture.denialIds?.length,claims:s.run.mcpCalls.filter(c=>c.tool==='task_claim').map(c=>({args:c.arguments,result:c.result.slice(0,650)})),merge:r.merge}));\"",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9efca3c8-0f1b-4f68-8e58-9f55c80a4e2b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:30:08.328Z",
+  "parents": [],
+  "branch": "main"
+}

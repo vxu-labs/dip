@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3fe0282ba4921269af4145316d875f80c88717d16ec810eb05e2971af39f1c2c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:04:06.898Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nfor(const [version,dir] of [[3,'C:/Users/offic/AppData/Local/Temp/dip-model-controlled-LMAuHi'],[4,'C:/Users/offic/AppData/Local/Temp/dip-model-controlled-MY0DGz']]) {\n const stats={};\n for(let p=0;p<6;p++) for(const phase of ['seed','recovery']) {\n  const f=`${dir}/pair-${p}/with/${phase}.jsonl`;\n  for(const e of fs.readFileSync(f,'utf8').split(/\\r?\\n/).filter(Boolean).map(JSON.parse)) if(e.type==='item.completed'&&e.item.type==='mcp_tool_call') {\n   const c=e.item, bytes=Buffer.byteLength(JSON.stringify(c.result??null));\n   const s=stats[c.tool]??={calls:0,bytes:0,maxBytes:0}; s.calls++;s.bytes+=bytes;s.maxBytes=Math.max(s.maxBytes,bytes);\n  }\n }\n console.log(JSON.stringify({version,tools:Object.fromEntries(Object.entries(stats).sort((a,b)=>b[1].bytes-a[1].bytes))}));\n}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e14fd266-2655-4a8d-80ed-4e9bb08c9027"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:04:07.527Z",
+  "parents": [],
+  "branch": "main"
+}

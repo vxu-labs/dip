@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1362e6709bfc72e0b0b7cc0a5b65e76769a8c592f39ec1bccff116187dff79d3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:22:50.502Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js init --help; rg -n 'if \\(command === \"init\"|case \"init\"|command === \"task\"|DIP_HOME|runtime' bin/dip.js | Select-Object -First 32; Get-Content .dip-local/app-server-schema/v2/TurnStartParams.json | Select-Object -Skip 416 -First 45; rg -n '\"Settings\"|\"collaborationMode\"|\"ModeKind\"' .dip-local/app-server-schema/v2/TurnStartParams.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7287b587-926c-4dac-ad14-64acfd2e29d7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:22:51.238Z",
+  "parents": [],
+  "branch": "main"
+}

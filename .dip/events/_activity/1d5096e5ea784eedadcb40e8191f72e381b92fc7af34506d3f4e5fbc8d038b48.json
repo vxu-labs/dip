@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1d5096e5ea784eedadcb40e8191f72e381b92fc7af34506d3f4e5fbc8d038b48",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T16:55:26.697Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nfor(const file of ['scripts/longitudinal-report.mjs','scripts/longitudinal-readme.mjs']) {\n let text=fs.readFileSync(file,'utf8');\n if(file.includes('readme')) text=text.replace('The baseline could keep ordinary Markdown plans and handoffs.', 'Both arms were instructed to preserve repository intent and handoffs; the baseline used ordinary Markdown.');\n else text=text.replace('No evaluator feedback or result-dependent retries were provided.', 'Both arms were instructed to preserve repository intent and handoffs; ordinary Markdown was available to the baseline. This measures DIP against an instructed durable-memory baseline, not an unassisted default chat. No evaluator feedback or result-dependent retries were provided.');\n fs.writeFileSync(file,text);\n}\n'@ | node --input-type=module\nnpx prettier --write scripts/longitudinal-report.mjs scripts/longitudinal-readme.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b47226c2-5b3f-461c-8b74-36651adbcd57"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T16:55:27.921Z",
+  "parents": [],
+  "branch": "main"
+}

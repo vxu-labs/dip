@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "63eadd950e4c6d12aaad245504a504655f9b7e3cc83cd8ffa59ec9cec9cb4eef",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:42:29.987Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'C:/Users/offic/AppData/LocalOpenAI/Codex/bin/8aaf1547b825b104/codex.exe' features list",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f2a7aa2e-b02d-4b10-b805-f0c7acc91cbc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:42:31.188Z",
+  "parents": [],
+  "branch": "main"
+}

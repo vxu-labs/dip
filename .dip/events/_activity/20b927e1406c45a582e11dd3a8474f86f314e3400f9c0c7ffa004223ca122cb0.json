@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "20b927e1406c45a582e11dd3a8474f86f314e3400f9c0c7ffa004223ca122cb0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:53:09.976Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --disable-warning=ExperimentalWarning scripts/codex-structured-evidence.mjs --capture",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-a89df59e-36e3-493e-a62e-30f935267f52"
+      },
+      {
+        "at": "2026-10-07T19:53:10.009Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/model-benchmark.mjs | Select-Object -Last 200",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-de1cc02d-972c-4893-9897-373edceffe58"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:53:10.629Z",
+  "parents": [],
+  "branch": "main"
+}

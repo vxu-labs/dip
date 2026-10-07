@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1756f14caffd0d92b4ff35c5fd4dba54a3b102fbfdf8a7164acdeb3daf4d419e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:08:29.906Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport { ensure, taskRead } from './src/core.js';\nconst repo=ensure();\nfor(const id of ['task_0fc443ee-b79b-4f6d-977f-e14c34a9df57','task_15793da9-9d59-4fa4-acbf-65e08b24907b','task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30']) {\n const t=taskRead(repo,id); console.log(JSON.stringify({id,status:t.status,resolution:t.resolution,scope:t.scope.filter(s=>s.startsWith('.dip-local')||s.endsWith('.ps1')),acceptance:t.acceptance,documents:t.documents.map(d=>({path:d.path,role:d.role}))}));\n}\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-01aa42f3-8afc-470a-8b6d-01c19a95ed24"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:08:30.712Z",
+  "parents": [],
+  "branch": "main"
+}

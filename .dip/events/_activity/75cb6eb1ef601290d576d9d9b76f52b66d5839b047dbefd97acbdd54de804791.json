@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "75cb6eb1ef601290d576d9d9b76f52b66d5839b047dbefd97acbdd54de804791",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:54:02.749Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "mcp__dip__task_update",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-924976ec-2870-4c1e-8af7-e3017ddfef86"
+      },
+      {
+        "at": "2026-10-07T09:54:02.807Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nconst root=process.cwd(), suffix='?root='+encodeURIComponent(root);\nconst state=await (await fetch('http://127.0.0.1:4317/api/state'+suffix)).json();\nconst task=state.tasks.find(t=>t.id==='task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7');\nif (!task?.documents?.length) throw Error('Reference missing from live dashboard');\nconst {token}=await (await fetch('http://127.0.0.1:4317/api/session')).json();\nconst response=await fetch('http://127.0.0.1:4317/api/action'+suffix,{method:'POST',headers:{'Content-Type':'application/json','x-dip-token':token},body:JSON.stringify({action:'document-read',args:{id:task.id,path:'docs/plans/markdown-references.md',role:'plan',heading:'Validation'}})});\nconst read=await response.json();\nif(!response.ok || read.sections[0]?.heading!=='Validation') throw Error(JSON.stringify(read));\nconsole.log(JSON.stringify({liveDashboard:true,role:read.role,currentness:read.currentness,heading:read.sections[0].heading,excerptChars:read.sections[0].text.length,proseStoredInTask:task.plan!==null}));\n'@ | node --input-type=module\nnpx.cmd prettier --write QA_REPORT.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e92e4140-53a6-438c-b46a-4f06846d5295"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:54:04.000Z",
+  "parents": [],
+  "branch": "main"
+}

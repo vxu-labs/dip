@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "29b345ddd882cdeff93c86e3b46c83b97d8b09409c0d45a51c9f606236cecbdb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:18:28.739Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst f='scripts/longitudinal-stress.mjs';\nlet t=fs.readFileSync(f,'utf8');\nt=t.replace('Supplementary exploratory contract stress test, specified after the primary run began and after pair 1 primary outcomes, before inspecting participant implementation source or evaluating stress outcomes. Not the original preregistered primary endpoint.', 'Supplementary exploratory contract stress originally specified after the primary run began and pair 1 primary outcomes, before inspecting participant implementation source or evaluating any stress outcome. Version 3 is an infrastructure replay repair after the original version 2 outcomes; input generation, oracle and scoring are unchanged. Not the original preregistered primary endpoint.');\nfs.writeFileSync(f,t);\nconst r='scripts/longitudinal-report.mjs';\nt=fs.readFileSync(r,'utf8');\nt=t.replace('Version 2 added separate Node.js subprocesses before participant stress evaluation, preventing global/prototype state contamination between projects; the original version 1 protocol is retained.', 'Version 2 added separate Node.js subprocesses before participant stress evaluation, preventing global/prototype state contamination between projects. After macOS CI replay exposed temporary-path aliasing and incomplete large stdout output, version 3 canonicalized paths and awaited output completion. Original version 1/2 protocols and all version 2 results are retained. Input-generation, oracle and scoring functions retain the same source hash, and all 18,432 version 3 pass/fail flags match version 2. This was an infrastructure replay repair after results, not a new model trial or changed endpoint.');\nt=t.replace('the copied, unchanged evaluator.', 'the copied evaluator. A second macOS replay failure exposed incomplete large stdout JSON; version 3 awaits write completion and canonicalizes worker paths, with original version 2 outputs retained and identical scoring-function hashes.');\nt=t.replace('the initial faile",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e8138315-74d2-40d6-9e94-e57a6c3c4f53"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:18:29.962Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ff6ec992ee6d0e235c39bab1273634c6352c22840edc0110502f8f71888bfb90",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:55:44.821Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const note=\"A passing task_verify records check evidence without finishing open work or releasing ownership. Use task_finish implemented with a configured check only after all requirements are fulfilled; outstanding structured plan steps must be completed or explicitly revised. \"; for(const file of [\"src/core.js\",\"src/repository-integration.js\"]){let t=fs.readFileSync(file,\"utf8\"); const needle=file.endsWith(\"core.js\") ? \"Checkpoint unfinished work before handing off.\" : \"Finish explicitly; an ended turn or checked plan never proves completion.\"; if(!t.includes(needle))throw Error(file); fs.writeFileSync(file,t.replace(needle,note+needle));} for(const file of [\"package.json\",\"package-lock.json\"]){const p=JSON.parse(fs.readFileSync(file)); p.version=\"0.3.12\"; if(p.packages?.[\"\"])p.packages[\"\"].version=\"0.3.12\"; fs.writeFileSync(file,JSON.stringify(p,null,2)+\"\\n\");} const c=JSON.parse(fs.readFileSync(\".dip/config.json\")); c.verification[\"completion\"]={command:[\"node\",\"--test\",\"test/completion.test.js\"],timeoutMs:60000}; fs.writeFileSync(\".dip/config.json\",JSON.stringify(c,null,2)+\"\\n\");'\n& node_modules/.bin/prettier.cmd --write src/actions.js src/core.js src/repository-integration.js src/cli-help.js test/completion.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-00bc0023-3637-4864-a0a0-62d77cd0ddbe"
+      },
+      {
+        "at": "2026-10-07T18:55:44.802Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "apply_patch",
+        "branch": "main",
+        "documents": [
+          {
+            "path": "skills/dip/SKILL.md",
+            "role": "reference",
+            "hash": "2b5f7db7c3a7c16daa39f16aab19da441b5a069217e2749dac84617b7d6fbe78"
+          },
+          {
+            "path": "docs/protocol.md",
+            "role": "reference",
+            "hash": "6a7753a016ed031531ba8ad5eb95951318aa45a4a00ceace39468cdfb4d7f71d"
+          }
+        ],
+        "files": [
+          "test/completion.test.js",
+          "skills/dip/SKILL.md",
+          "src/cli-help.js",
+          "docs/protocol.md"
+        ],
+        "changeHash": "095927ee776486c287db3ccb7e7becda21ef0aa3cddf291a55c081783f749855",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ba65d2c1-e8c1-4bc8-9b99-2cbaa4c6a867"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:55:46.093Z",
+  "parents": [],
+  "branch": "main"
+}

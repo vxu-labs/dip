@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "eventId": "088584b23f61e77aaad397d1b795c29944829b195752156a295fe68b4fd1f11e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:06:57.615Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/check.mjs; git diff --check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8b7ba11c-7664-4afb-af2a-feddba5d1212"
+      },
+      {
+        "at": "2026-10-07T10:06:57.633Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst file='QA_REPORT.md';\nlet text=fs.readFileSync(file,'utf8').replace('Fourteen document regression cases','Fifteen document regression cases').replace('Windows could not create a symlink in the corresponding test; symlink rejection is exercised on platforms permitting its creation.','Windows could not create a file symlink in the corresponding test; directory-junction rejection and checkout-root aliases were exercised successfully. File-symlink rejection is exercised on platforms permitting its creation.');\nfs.writeFileSync(file,text);\n'@ | node --input-type=module\nnpm.cmd pack --pack-destination .dip-local --json | Out-Null\nnpm.cmd install --global ./.dip-local/vxu-labs-dip-0.3.5.tgz --omit=dev --no-audit --no-fund\n& \"$env:APPDATA/npm/dip.cmd\" stop\n& \"$env:APPDATA/npm/dip.cmd\" start\n& \"$env:APPDATA/npm/dip.cmd\" task update --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --status in_progress --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd | Out-Null",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1b4fa256-8256-4a65-9abb-c0184e11cf3d"
+      },
+      {
+        "at": "2026-10-07T10:06:57.644Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" task verify --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --check unit --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1ad97fe3-b03b-491b-bcbd-2be6ace60f0f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:06:59.425Z",
+  "parents": [],
+  "branch": "main"
+}

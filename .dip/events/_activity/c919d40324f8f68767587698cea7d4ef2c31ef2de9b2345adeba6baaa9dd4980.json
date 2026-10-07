@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c919d40324f8f68767587698cea7d4ef2c31ef2de9b2345adeba6baaa9dd4980",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:19:48.827Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('.dip-local/model-preflight-v2.json','utf8'));const x=r.pairs.find(x=>x.arm==='with');console.log(JSON.stringify({passed:r.preflightPassed,answers:x.run.answers,errors:x.run.mcpErrors,capture:x.capture,approved:x.setup.reviewedMcpToolsApproved},null,2));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-3ad18cb2-d835-47ca-b788-552e48b76a81"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:19:50.052Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cac98cb55c724df801d0dc0f7096fa94a71fa90c75c3ed3a80056bdd9c43d028",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:04:23.783Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$dipInstalledCheck = @'\nimport fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto';\nconst installed='C:/Users/offic/AppData/Roaming/npm/node_modules/@vxu-labs/dip';\nlet checked=0;const errors=[];const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');\nfunction visit(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,entry.name);if(entry.isDirectory())visit(p);else{checked++;if(hash(p)!==hash(path.join(installed,p)))errors.push(p);}}}\nfor(const dir of ['src','bin','public','docs','skills'])visit(dir);\nconsole.log(JSON.stringify({checked,errors,installedVersion:JSON.parse(fs.readFileSync(path.join(installed,'package.json'))).version}));if(errors.length)process.exit(1);\n'@; $dipInstalledCheck | node --input-type=module; gh run list --repo vxu-labs/dip --branch main --limit 1 --json databaseId,headSha,status,conclusion,url; git status --short --untracked-files=no",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b42987b6-3598-43d7-b321-a6a87f1c9dcd"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:04:25.700Z",
+  "parents": [],
+  "branch": "main"
+}

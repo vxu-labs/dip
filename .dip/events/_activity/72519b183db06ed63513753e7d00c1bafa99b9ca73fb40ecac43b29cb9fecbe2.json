@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "72519b183db06ed63513753e7d00c1bafa99b9ca73fb40ecac43b29cb9fecbe2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:33:46.262Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "mcp__dip__task_get",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b3a8ea10-3812-4c5a-b1c1-3d5eac850efc"
+      },
+      {
+        "at": "2026-10-06T13:33:46.282Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {execFileSync} from 'node:child_process';const files=[...execFileSync('git',['ls-files','*.md'],{encoding:'utf8'}).trim().split(/\\r?\\n/),'docs/benchmarks/model-controlled.md'];const bad=[...new Set(files)].filter(f=>fs.readFileSync(f,'utf8').includes('\\u2014'));const data=fs.readFileSync('docs/benchmarks/2026-10-06-model-controlled-v3.json','utf8');const dirs=fs.readdirSync(os.tmpdir()).filter(x=>x.startsWith('dip-model-controlled-'));let remainingAuth=0;for(const d of dirs)for(let i=-1;i<6;i++)for(const arm of ['with','without'])if(fs.existsSync(path.join(os.tmpdir(),d,`pair-${i}`,arm,'user','.codex','auth.json')))remainingAuth++;console.log(JSON.stringify({markdownEmDashes:bad,remainingExperimentAuthCopies:remainingAuth,rawContainsPersonalUserPath:/offic/i.test(data),rawBytes:Buffer.byteLength(data)}));if(bad.length||remainingAuth||/offic/i.test(data))process.exitCode=1;\n'@ | node --input-type=module\ngit diff --check\nnpm run check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7790771e-70ee-41b9-a388-bdbd9b232d94"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:33:46.846Z",
+  "parents": [],
+  "branch": "main"
+}

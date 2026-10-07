@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c80a704061a253188ca86010488c93cacf807c7a7d9cffc494e001b376e0d0f6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:42:10.221Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh release view v0.3.4 --json url,tagName,isDraft,assets --jq '{url,tagName,isDraft,assets: [.assets[].name]}'; git diff --name-only; git rev-list --left-right --count HEAD...origin/main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-25ac3455-2fff-4cf9-a79b-30aa5b2fb399"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:42:10.448Z",
+  "parents": [],
+  "branch": "main"
+}

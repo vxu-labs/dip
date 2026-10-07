@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0437b326d479b6aa448e7dc335ca620633fcabbf141ad676f54ad997f315d5d9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:22:37.673Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {execFileSync} from 'node:child_process';\nconst run=args=>execFileSync('git',args,{encoding:'utf8',windowsHide:true,env:{...process.env,GIT_TRACE2_EVENT:'0'}}).trim();\nconst changed=run(['diff','--name-only','--diff-filter=ACMRT']).split('\\n').filter(Boolean);\nconst created=run(['ls-files','--others','--exclude-standard','src','bin','scripts','docs','test','.agents','.claude']).split('\\n').filter(Boolean);\nconst selected=['task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd','task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7','task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426','task_1e029eabacf002f8b89aed6807e3d75e9bf33c718a8080f1c0d0456647888aee','task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d'];\nrun(['add','--',...changed,...created,'.dip/integration.json','.dip/intent-guide.md','.dip/tools/portable.mjs',...selected.map(id=>'.dip/events/'+id)]);\nconsole.log(run(['diff','--cached','--stat']));\nfs.writeFileSync('.dip-local/release-0.3.8.md',`DIP now supports reviewed follow-up adoption, repository-contained agent skills, portable causal intent without global installation, and explicit Git-library client discovery.\\n\\nL04/L02/L06 and bounded L08 profiling are completed with configured evidence in .dip. The current agent selects existing requirements explicitly; automatic semantic identity and universal host compliance are not claimed. Generated assets preserve foreign/edited files, support upgrade/removal/opt-out, and do not execute cloned code automatically. Portable intent provides no live leases or verified-code assertions.\\n\\nLocal unit development:107 cases,105 Windows passes,2 POSIX skips; configured unit/browser and final focused preservation checks passed. Clean package tested actual portable helper and discovery probe. Cross-platform CI is required before release publication.\\n\\nSynthetic scale at10,000 tasks: observed warm-context p95 10.11s b",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-8f84137b-5f68-4376-844d-477e97eacc84"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:22:37.771Z",
+  "parents": [],
+  "branch": "main"
+}

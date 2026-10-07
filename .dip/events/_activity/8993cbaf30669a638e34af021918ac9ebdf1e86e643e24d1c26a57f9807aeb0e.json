@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8993cbaf30669a638e34af021918ac9ebdf1e86e643e24d1c26a57f9807aeb0e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:58:24.460Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Copy-Item -LiteralPath scripts/model-benchmark.mjs -Destination scripts/fixtures/model-benchmark-v5.txt\nnode --disable-warning=ExperimentalWarning scripts/codex-structured-evidence.mjs\nnode scripts/check.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-4444ae42-a63d-4a49-9909-35d78aa21951"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:58:25.805Z",
+  "parents": [],
+  "branch": "main"
+}

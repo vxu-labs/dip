@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "dc8ce888bf5daec1b70e0b37201c05cdfed1d74220aa872f33b1a5aed84af33b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T19:08:21.832Z",
+        "kind": "files.changed",
+        "files": [
+          "test/structured-plan.test.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "da5339a7-05cd-447a-a892-7fc0cec26938"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:08:21.837Z",
+  "parents": [],
+  "branch": "main"
+}

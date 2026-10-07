@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "761a6c8cc3a9041ad1f1015ac10a7a4da6d8006086d37ab48234f18c231b69a9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:54:13.681Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run view 37610095858 --repo vxu-labs/dip --json conclusion,jobs --jq '{conclusion, jobs: [.jobs[] | {name,conclusion}]}'\ngh release create v0.3.6 .dip-local/vxu-labs-dip-0.3.6.tgz --repo vxu-labs/dip --target 434e456d504e882378bdd527061e451aa0627de4 --title 'DIP v0.3.6: focused project navigation' --notes-file .dip-local/release-0.3.6.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0f9fb773-9801-4cc5-96e0-962fa1576a23"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:54:14.056Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9e9cc184f74bd7a6b10f63e26d245feeb400fb09ac66a95d2f379a61c270731c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:11:48.414Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_60206e3c598ce0b6c26f1e351bb3c05e5f21f46a5aba226da90e1c052cc45ca6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA\\npm\\dip.cmd\" task update --id task_60206e3c598ce0b6c26f1e351bb3c05e5f21f46a5aba226da90e1c052cc45ca6 --actor 'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd' --kind discussion; & \"$env:APPDATA\\npm\\dip.cmd\" reconcile --kind work --open --limit 100 | ConvertFrom-Json | ForEach-Object { $_.tasks | Select-Object id,title,status,checkpoint } | ConvertTo-Json -Depth 4",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-3cad0225-8bf7-446d-b999-bdb26d0ed881"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:11:50.214Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6c930fbbb058c1a61f133d488fb2fe665097d137d6098b2d764233e0a2a3f6a0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:44:40.391Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --disable-warning=ExperimentalWarning bin/dip.js doctor --root . | Select-Object -First 60",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-ca67b851-905b-49e8-90e5-280c4c50324b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:44:41.220Z",
+  "parents": [],
+  "branch": "main"
+}

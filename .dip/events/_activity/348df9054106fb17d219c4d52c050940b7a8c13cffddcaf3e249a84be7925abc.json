@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "348df9054106fb17d219c4d52c050940b7a8c13cffddcaf3e249a84be7925abc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:04:29.638Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";import {ensure,project} from \"./src/core.js\";let {root}=JSON.parse(fs.readFileSync(\".dip-local/fixed-host-qa.json\"));console.log(JSON.stringify(project(ensure(root,{instructions:false})).tasks.map(t=>({id:t.id,status:t.status,title:t.title})),null,2));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-4b1602fc-7940-4c50-aa75-f9d1e9a3c8a8"
+      },
+      {
+        "at": "2026-10-07T17:04:29.651Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local/codex-live-fixed-cMUV5X/turn-2-events.jsonl -Tail 3",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9dbcd05e-b8fa-4b3c-881b-17a2148a7eb0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:04:30.650Z",
+  "parents": [],
+  "branch": "main"
+}

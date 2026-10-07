@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ea8014932932a5241aca36c5281e122a63cf240444c6fc3748261ba730dde33a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:53:47.999Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "codex --version; codex exec --help; Get-ChildItem C:/Users/offic/.codex -File -Name; Get-Content scripts/check.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-50d5456c-2483-4761-aa9a-208233ed1e38"
+      },
+      {
+        "at": "2026-10-06T11:53:48.001Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "webrun",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a3a6ac11-f0ee-4bc2-8d15-61c6b3b035a1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:53:48.454Z",
+  "parents": [],
+  "branch": "main"
+}

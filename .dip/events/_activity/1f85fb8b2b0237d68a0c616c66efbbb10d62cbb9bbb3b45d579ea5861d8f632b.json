@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1f85fb8b2b0237d68a0c616c66efbbb10d62cbb9bbb3b45d579ea5861d8f632b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:36:05.511Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8f7255b9decbeda0ee382505be7e1ccdff1892f11cea641bd3fb4663a88a39e2",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' restore --source=HEAD --worktree -- docs/benchmarks/2026-10-06-longitudinal.json docs/benchmarks/2026-10-06-longitudinal-stress.json docs/benchmarks/2026-10-06-longitudinal-stress-v2.json\nif ($LASTEXITCODE -ne 0) { throw 'Benchmark evidence restoration failed' }\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning scripts/longitudinal-evidence.mjs\nif ($LASTEXITCODE -ne 0) { throw 'Restored primary evidence replay failed' }\nnode --disable-warning=ExperimentalWarning scripts/longitudinal-stress-evidence.mjs\nif ($LASTEXITCODE -ne 0) { throw 'Restored stress evidence replay failed' }\n@'\nimport {execute} from './src/actions.js';\nawait execute('checkpoint',{id:'task_8f7255b9decbeda0ee382505be7e1ccdff1892f11cea641bd3fb4663a88a39e2',actor:'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',summary:'Reviewed3015 pending DIP JSON records totalingabout3.35MB; valid JSON and no matches for known GitHub/OpenAI/private-key credential patterns. User explicitly requested restoration of three missing benchmark artifacts; restored exact HEAD versions and original/stress evidence replays passed. All existing code/release changes were already remote. Preparing all remaining durable DIP records for commit/push to VXU Labs.'});\nconsole.log('Publication intent checkpoint saved.');\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9992aa5b-f5a1-4863-b34a-96b103e9b629"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:36:05.756Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "06aab0ea8141d77d0e6c08b5521de474446ce566e5e9cc4fe3419ba503bb3361",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:22:29.523Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" task document-link --id task_8b4318ef-b13d-4420-988f-5266db4cd215 --path docs/benchmarks/semantic-alternatives.md --role plan --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\nGet-Content src/core.js | Select-Object -Skip 244 -First 28; Get-Content src/core.js | Select-Object -Skip 638 -First 17; Get-Content test/documents.test.js | Select-Object -First 58; Get-Content bin/dip.js | Select-Object -Skip 32 -First 43",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7fac855c-fbf0-4c7c-96f8-46ddbc0dc560"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:22:31.208Z",
+  "parents": [],
+  "branch": "main"
+}

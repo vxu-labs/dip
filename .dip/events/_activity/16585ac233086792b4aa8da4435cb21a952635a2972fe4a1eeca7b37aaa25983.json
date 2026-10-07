@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "eventId": "16585ac233086792b4aa8da4435cb21a952635a2972fe4a1eeca7b37aaa25983",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T16:33:00.907Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/longitudinal-redact.mjs"
+        ],
+        "changeHash": "b6807ee45346d6b8fcc45201704f9371866dd7133f5c564d01129d08a74360c7",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-15df6faf-02d9-4ac8-b78d-fda603b9c482"
+      },
+      {
+        "at": "2026-10-06T16:33:01.657Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/longitudinal-redact.mjs"
+        ],
+        "changeHash": "b6807ee45346d6b8fcc45201704f9371866dd7133f5c564d01129d08a74360c7",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-15df6faf-02d9-4ac8-b78d-fda603b9c482"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T16:33:02.207Z",
+  "parents": [],
+  "branch": "main"
+}

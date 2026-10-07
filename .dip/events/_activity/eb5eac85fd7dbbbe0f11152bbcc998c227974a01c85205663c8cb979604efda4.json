@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "eb5eac85fd7dbbbe0f11152bbcc998c227974a01c85205663c8cb979604efda4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T15:12:31.981Z",
+        "kind": "files.changed",
+        "files": [
+          "test/privacy-recovery.test.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "2b854e25-034f-4b05-9ea3-c5347fda9f48"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:12:31.991Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ac4b99605e85aee8c39682e43a33a3cb51e7c000c989b5295e2a869aa5b3ae63",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:18:40.613Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' add -- test/outbox-recovery.test.js QA_REPORT.md\nif ($LASTEXITCODE -ne 0) { throw 'Cannot stage platform fixture correction' }\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' -c core.hooksPath=.dip-local/empty-hooks commit -s -m 'Use canonical temporary paths in outbox recovery platform tests'\nif ($LASTEXITCODE -ne 0) { throw 'Cannot commit platform fixture correction' }\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' push origin main\nif ($LASTEXITCODE -ne 0) { throw 'Cannot publish platform fixture correction' }\n@'\nimport { execute } from './src/actions.js';\nimport { ensure,Runtime,taskRead } from './src/core.js';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session='01a10fa9-6164-7550-bdf9-5c21b772eafd';\nconst ids=['task_0fc443ee-b79b-4f6d-977f-e14c34a9df57','task_15793da9-9d59-4fa4-acbf-65e08b24907b','task_e688572e-bac2-4207-833a-0d6f970b5bde','task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30'];\nfunction releaseOurs(){const repo=ensure(),rt=new Runtime();for(const l of rt.db.prepare('SELECT task,token FROM leases WHERE repo=? AND actor=? AND expires>?').all(repo.key,actor,Date.now()))if(ids.includes(l.task))rt.release(repo,l.task,l.token);rt.close();}\nfor(const id of ids.slice(0,3)){\n releaseOurs();\n const repo=ensure();for(const d of taskRead(repo,id).documents)await execute('document-link',{id,actor,path:d.path,role:d.role});\n await execute('claim',{id,actor,session});\n const check=id===ids[1]?'outbox-recovery':'delivery-evidence';\n const r=await execute('finish',{id,actor,outcome:'implemented',summary:taskRead(ensure(),id).resolution.summary,check});\n console.log(JSON.stringify({id,status:r.status,passed:r.check?.passed}));if(!r.check?.passed)throw new Error('Stable final delivery verification failed');\n}\nreleaseOurs();await execu",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ef18d6d9-6b89-4f06-895a-32be8d69c4a7"
+      },
+      {
+        "at": "2026-10-07T21:18:40.655Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'E:/Program Files/GitHub CLI/gh.exe' run view 37688218072 --repo vxu-labs/dip --json status,conclusion,jobs --jq '{status,conclusion,jobs:[.jobs[]|{name,status,conclusion}]}'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-693b7576-af94-4bd6-80ca-32825d3cbbb0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:18:41.937Z",
+  "parents": [],
+  "branch": "main"
+}

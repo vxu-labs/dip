@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7bfe31732bfd3d003a897262fde11434bf50d6750001e2881ac0f877c507c0a9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:20:45.180Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'checkpoint|source:' src/core.js | Select-Object -First 18; git status --short | Select-Object -First 12; @'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('.dip-local/model-preflight-v2.json','utf8'));const x=r.pairs.find(x=>x.arm==='with');console.log(JSON.stringify({calls:x.run.itemCounts,planSaved:x.capture.tasks.some(t=>t.planPresent)}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-51e61e54-6677-4033-9795-4d311f1ea182"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:20:45.846Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d990bff3974c61bdf3c708f8c520bfeedd3b0cebc3f022a74cd73cdfec3d8a61",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T19:09:48.339Z",
+        "kind": "files.changed",
+        "files": [
+          "README.md",
+          "docs/compatibility.md",
+          "docs/desktop-qa.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "a8fb0f7d-2d93-4b99-a9b4-04532bbcd007"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:09:48.344Z",
+  "parents": [],
+  "branch": "main"
+}

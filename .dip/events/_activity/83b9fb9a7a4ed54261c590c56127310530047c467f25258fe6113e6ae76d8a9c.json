@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "83b9fb9a7a4ed54261c590c56127310530047c467f25258fe6113e6ae76d8a9c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T16:58:15.749Z",
+        "kind": "files.changed",
+        "files": [
+          "src/workflow.js",
+          "src/automation.js",
+          "skills/dip/SKILL.md",
+          "src/repository-integration.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "fa89f496-c20c-424d-99fd-7cc890a08aaa"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:58:15.861Z",
+  "parents": [],
+  "branch": "main"
+}

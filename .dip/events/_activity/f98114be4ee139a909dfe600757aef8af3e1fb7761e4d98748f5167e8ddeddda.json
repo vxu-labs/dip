@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f98114be4ee139a909dfe600757aef8af3e1fb7761e4d98748f5167e8ddeddda",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:48:25.054Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/longitudinal-stress.mjs -TotalCount 42; rg -n -A65 'const data =|const m =|finally' scripts/longitudinal-stress.mjs | Select-Object -Last 100",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9b30c695-c00c-4e3f-8f8c-45e17476a437"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:48:25.584Z",
+  "parents": [],
+  "branch": "main"
+}

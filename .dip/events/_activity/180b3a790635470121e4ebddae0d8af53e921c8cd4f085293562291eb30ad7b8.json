@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "180b3a790635470121e4ebddae0d8af53e921c8cd4f085293562291eb30ad7b8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:15:50.479Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport {createHash} from 'node:crypto';\nconst src=fs.readFileSync('scripts/longitudinal-stress.mjs','utf8').replaceAll('\\r\\n','\\n');\nconst core=src.slice(src.indexOf('function random('),src.indexOf('if (process.argv.includes(\"--calibrate\"))'));\nconst sha=createHash('sha256').update(core).digest('hex');\nconst p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal-stress-protocol.json'));\nconsole.log(JSON.stringify({scoringHash:sha,originalSourceHash:p.sourceHash,coreBytes:core.length}));\nfs.copyFileSync('docs/benchmarks/2026-10-06-longitudinal-stress-protocol.json','docs/benchmarks/2026-10-06-longitudinal-stress-protocol-v2.json');\nfs.copyFileSync('docs/benchmarks/2026-10-06-longitudinal-stress.json','docs/benchmarks/2026-10-06-longitudinal-stress-v2.json');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-150e50dd-941d-48fc-b1a8-1692b54e3e5c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:15:50.854Z",
+  "parents": [],
+  "branch": "main"
+}

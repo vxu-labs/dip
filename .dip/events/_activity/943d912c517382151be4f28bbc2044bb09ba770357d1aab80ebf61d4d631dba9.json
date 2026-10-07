@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "943d912c517382151be4f28bbc2044bb09ba770357d1aab80ebf61d4d631dba9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:39:06.812Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "mcp__dip__task_update",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8427f983-52fe-41b3-88da-9e2ce81c3596"
+      },
+      {
+        "at": "2026-10-07T09:39:06.859Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js task document-link --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --path docs/plans/markdown-references.md --role plan --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b3dd4213-313d-45e9-ba68-412d19ca64a3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:39:08.189Z",
+  "parents": [],
+  "branch": "main"
+}

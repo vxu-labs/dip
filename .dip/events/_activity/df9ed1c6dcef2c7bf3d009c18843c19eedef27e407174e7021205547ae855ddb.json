@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "df9ed1c6dcef2c7bf3d009c18843c19eedef27e407174e7021205547ae855ddb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:32:48.445Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js task document-link --id task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be --path docs/plans/navigation-plan.md --role plan --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9e34a554-1d45-4783-853e-23a0e2100468"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:32:48.951Z",
+  "parents": [],
+  "branch": "main"
+}

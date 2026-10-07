@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "79c6853737310ec93085916793ea13ab4f9aafcbfacc479846ec182b523a5822",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:13:44.529Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/actions.js | Select-Object -Skip 500 -First 26; Get-Content src/actions.js | Select-Object -Skip 448 -First 27; Get-Content src/core.js | Select-Object -Skip 820 -First 33; git status --short --untracked-files=no",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c32e1876-b659-431c-bf6b-5f7918b93e92"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:13:44.633Z",
+  "parents": [],
+  "branch": "main"
+}

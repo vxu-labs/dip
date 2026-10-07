@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2f83236c7a35ee17f2f905de0be493f8a3f5f42cf07e5481dbfa412a5fa71cb7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:21:31.250Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const file='.dip/config.json';const c=JSON.parse(fs.readFileSync(file,'utf8'));c.verification.benchmark={command:['node','scripts/model-benchmark-evidence.mjs'],timeoutMs:60000};fs.writeFileSync(file,JSON.stringify(c,null,2)+'\\n');console.log('Configured independent benchmark artifact replay. No model calls in this check.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-36a7df96-07b9-46fa-b2fd-15fb41e222cd"
+      },
+      {
+        "at": "2026-10-06T13:21:31.260Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "mcp__dip__task_checkpoint",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4b7bff7c-4420-4abe-88ca-82d681787c34"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:21:31.818Z",
+  "parents": [],
+  "branch": "main"
+}

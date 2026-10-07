@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "48573f22ffd2df455e039092772caa2d772a7c8c5d71efff4a7a0c42c22a93fc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:55:46.839Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const note=\"A passing task_verify records check evidence without finishing open work or releasing ownership. Use task_finish implemented with a configured check only after all requirements are fulfilled; outstanding structured plan steps must be completed or explicitly revised. \"; for(const file of [\"src/core.js\",\"src/repository-integration.js\"]){let t=fs.readFileSync(file,\"utf8\"); const needle=file.endsWith(\"core.js\") ? \"Checkpoint unfinished work before handing off.\" : \"Finish explicitly; an ended turn or checked plan never proves completion.\"; if(!t.includes(needle))throw Error(file); fs.writeFileSync(file,t.replace(needle,note+needle));} for(const file of [\"package.json\",\"package-lock.json\"]){const p=JSON.parse(fs.readFileSync(file)); p.version=\"0.3.12\"; if(p.packages?.[\"\"])p.packages[\"\"].version=\"0.3.12\"; fs.writeFileSync(file,JSON.stringify(p,null,2)+\"\\n\");} const c=JSON.parse(fs.readFileSync(\".dip/config.json\")); c.verification[\"completion\"]={command:[\"node\",\"--test\",\"test/completion.test.js\"],timeoutMs:60000}; fs.writeFileSync(\".dip/config.json\",JSON.stringify(c,null,2)+\"\\n\");'\n& node_modules/.bin/prettier.cmd --write src/actions.js src/core.js src/repository-integration.js src/cli-help.js test/completion.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-00bc0023-3637-4864-a0a0-62d77cd0ddbe"
+      },
+      {
+        "at": "2026-10-07T18:55:46.850Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& node_modules/.bin/prettier.cmd --write src/actions.js src/mcp.js test/core.test.js test/completion.test.js\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --test test/completion.test.js test/core.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d2976292-fc1b-4352-90b9-a9e059bbefd3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:55:47.857Z",
+  "parents": [],
+  "branch": "main"
+}

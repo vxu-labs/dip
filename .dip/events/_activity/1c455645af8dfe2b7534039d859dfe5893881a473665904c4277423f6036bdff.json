@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1c455645af8dfe2b7534039d859dfe5893881a473665904c4277423f6036bdff",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:10:00.066Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh release create v0.3.7 .dip-local/vxu-labs-dip-0.3.7.tgz --repo vxu-labs/dip --target b3a9453252483dd27457294bcd4182f6cc830beb --title 'DIP v0.3.7' --notes-file .dip-local/release-0.3.7.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-cece1b96-8320-4632-ae3a-94752a37fa6d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:10:00.985Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2f94da15adb40465bf0d41a41a5ee4f9a2fc6dc4b5772e1025e54a4fe68f708a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T19:53:10.620Z",
+        "kind": "files.changed",
+        "files": [
+          "AGENTS.md.9e4af37f-0bea-4920-bee8-97ac2fd577b6.tmp",
+          "AGENTS.md",
+          "CLAUDE.md.50e4eee6-a2b3-4f1b-9f7d-98640df178bd.tmp",
+          "CLAUDE.md",
+          "scripts/laya-pilot-corpus.mjs",
+          "docs/host-qa/2026-10-07-structured-plan.json"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "c28801cb-8f32-492c-a05c-70b54859fbd4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:53:10.649Z",
+  "parents": [],
+  "branch": "main"
+}

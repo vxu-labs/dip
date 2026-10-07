@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fd9eced3094315ba416c66855a1276a47ec6570371198a61d09098e9d8a094af",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:55:56.013Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "webrun",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5ceef10f-1f36-4562-83fd-c3d01791c607"
+      },
+      {
+        "at": "2026-10-07T17:55:56.041Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath src/core.js | Select-Object -Skip 200 -First 160\nGet-Content -LiteralPath src/health.js -TotalCount 160\nGet-Content -LiteralPath scripts/package-smoke.mjs -TotalCount 60",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-317dfa19-1c5c-4356-bcbe-0ee5f68508f8"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:55:56.371Z",
+  "parents": [],
+  "branch": "main"
+}

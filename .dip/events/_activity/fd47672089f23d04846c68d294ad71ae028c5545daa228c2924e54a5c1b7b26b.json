@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fd47672089f23d04846c68d294ad71ae028c5545daa228c2924e54a5c1b7b26b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T19:54:03.464Z",
+        "kind": "files.changed",
+        "files": [
+          ".github/workflows/ci.yml"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "e80c6b39-fdb4-4e8b-b0fd-d99eb5adb891"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T19:54:03.468Z",
+  "parents": [],
+  "branch": "main"
+}

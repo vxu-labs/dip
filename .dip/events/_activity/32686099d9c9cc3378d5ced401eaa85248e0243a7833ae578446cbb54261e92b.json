@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "32686099d9c9cc3378d5ced401eaa85248e0243a7833ae578446cbb54261e92b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:08:18.589Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-model-controlled.json','utf8'));const x=r.pairs[0]?.arms.without;console.log(JSON.stringify({baseline:x?{seedSeconds:x.seed.wallMs/1000,recoverySeconds:x.recovery?.wallMs/1000,seedItems:x.seed.itemCounts,recoveryItems:x.recovery?.itemCounts,checks:x.score?.checks.map(c=>({name:c.name,passed:c.passed}))}:null}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-82ba8071-12a2-4708-a068-dab941828fe9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:08:18.634Z",
+  "parents": [],
+  "branch": "main"
+}

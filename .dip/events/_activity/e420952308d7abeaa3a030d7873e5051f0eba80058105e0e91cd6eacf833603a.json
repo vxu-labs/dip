@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e420952308d7abeaa3a030d7873e5051f0eba80058105e0e91cd6eacf833603a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:16:18.421Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module --disable-warning=ExperimentalWarning -e 'import {execute} from \"./src/actions.js\"; import {ensure,Runtime} from \"./src/core.js\"; const repo=ensure(process.cwd()); const rt=new Runtime(); const id=\"task_15793da9-9d59-4fa4-acbf-65e08b24907b\"; const lease=rt.guard(repo,id,\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\"); if(lease) rt.release(repo,id,lease.token); rt.close(); console.log(\"Recovery ownership released after configured verification.\");'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d3b131e9-4111-4c1d-bd3e-6e534ab35c56"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:16:19.312Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8792f4719f6c8a778105bad265ed166cdc87ca6f24a4b2ee4102eb5fafbd925b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:53:43.398Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module --disable-warning=ExperimentalWarning -e 'import {execute} from \"./src/actions.js\"; import {ensure,Runtime} from \"./src/core.js\"; const repo=ensure(process.cwd()), actor=\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\",session=\"01a10fa9-6164-7550-bdf9-5c21b772eafd\"; const rt=new Runtime(); const prior=\"task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344\"; const l=rt.guard(repo,prior,actor); if(l)rt.release(repo,prior,l.token); rt.close(); await execute(\"update\",{id:prior,actor,patch:{status:\"backlog\"}}); const created=await execute(\"create\",{title:\"Keep partial check success separate from explicit task completion\",description:\"The frozen 0.3.11 model experiment observed a passing normalization-only check marking the whole jobs requirement verified while scheduling remained unfinished. Record current check evidence without closing work; require explicit implemented finish and prevent finish while structured plan steps remain outstanding. Legacy statuses are not silently migrated.\",scope:[\"src/actions.js\",\"src/mcp.js\",\"src/core.js\",\"src/repository-integration.js\",\"src/cli-help.js\",\"skills/dip/SKILL.md\",\"test/core.test.js\",\"test/completion.test.js\",\"docs/protocol.md\",\"QA_REPORT.md\",\"package.json\",\"package-lock.json\",\".dip/config.json\"],acceptance:[\"A passing stage check leaves backlog/in-progress intent open with current evidence and retained ownership.\",\"Explicit task_finish implemented runs configured checks, records verified completion and releases ownership only after success.\",\"Outstanding structured plan steps reject an implemented finish before semantic mutation; progress completion alone does not finish work.\",\"Meaningful CLI/MCP and dependency regression checks pass; historical benchmark remains frozen on 0.3.11.\"] ,actor}); const claimed=await execute(\"claim\",{id:created.id,actor,session}); console.log(JSON.stringify({id:created.id,claimed:true}));'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-79891a48-24ac-4b8a-b127-d8f00ae06795"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:53:43.508Z",
+  "parents": [],
+  "branch": "main"
+}

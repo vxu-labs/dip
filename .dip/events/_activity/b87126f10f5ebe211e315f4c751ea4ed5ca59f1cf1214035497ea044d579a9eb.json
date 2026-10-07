@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b87126f10f5ebe211e315f4c751ea4ed5ca59f1cf1214035497ea044d579a9eb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:17:33.317Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/model-benchmark.mjs -TotalCount 84; Get-Content scripts/model-benchmark.mjs | Select-Object -Skip 134 -First 89; Get-Content scripts/model-benchmark.mjs | Select-Object -Skip 284 -First 60; Get-Content scripts/model-benchmark.mjs | Select-Object -Skip 342 -First 38",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-50831228-cd3d-4213-9eee-beaea1c58b72"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:17:33.806Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b08d22a57c4f72f42f9aa6637f1f706fc875075bf2d0a04173fdf39f66a6a2ae",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T10:18:58.807Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/laya-pilot.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "9f78e485-3687-4604-8328-fb5ee65c73ca"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:18:58.812Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5c3e5be2c42d988f5a9b5adfc3979aa19091c961483af5c4d333de185105cd14",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T08:07:49.763Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+        "tool": "webrun",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9122696d-b710-4c0b-ab1c-b175f55cc083"
+      },
+      {
+        "at": "2026-10-07T08:07:49.771Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport urllib.request,json\nmodels=['minishlab/potion-base-8M','minishlab/potion-retrieval-32M','minishlab/potion-multilingual-128M','sentence-transformers/static-similarity-mrl-multilingual-v1','sentence-transformers/all-MiniLM-L6-v2']\nrows=[]\nfor model in models:\n d=json.load(urllib.request.urlopen('https://huggingface.co/api/models/'+model))\n card=d.get('cardData') or {}\n langs=card.get('language') or []\n rows.append({'id':model,'revision':d['sha'],'license':card.get('license'),'parameters':d.get('safetensors',{}).get('total'),'languageTags':langs,'source':'https://huggingface.co/'+model})\nprint(json.dumps(rows,indent=2))\nopen('.dip-local/static-alternatives-metadata.json','w',encoding='utf-8').write(json.dumps(rows,indent=2)+'\\n')\n'@ | & '.\\.dip-local\\laya-env\\Scripts\\python.exe'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1d15a20b-5071-461d-9373-eecce811b2ec"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T08:07:50.958Z",
+  "parents": [],
+  "branch": "main"
+}

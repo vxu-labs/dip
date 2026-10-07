@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0594fb5361a2caa2eeb1a055ab12eb3eeb94fed17fb1dc68940fff429ffdc328",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:42:46.505Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/model-benchmark-summary.mjs --input .dip-local/model-controlled-v4.json --output .dip-local/model-summary-v4.json\nGet-Content scripts/model-benchmark-fixtures.mjs | Select-Object -Last 37\nCopy-Item -LiteralPath .dip-local/model-controlled-v4.json -Destination docs/benchmarks/2026-10-07-model-controlled-v4.json\nnode --input-type=module -e 'import fs from \"node:fs\"; const raw=JSON.parse(fs.readFileSync(\"docs/benchmarks/2026-10-07-model-controlled-v4.json\")); console.log(JSON.stringify({completedAt:raw.completedAt,source:raw.protocol.sources}));' \nnpm install -g ./.dip-local/vxu-labs-dip-0.3.12.tgz --ignore-scripts",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f85054c0-7389-4472-990a-b524cd05fd48"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:42:47.393Z",
+  "parents": [],
+  "branch": "main"
+}

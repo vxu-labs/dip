@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "195258237f30a7be5076dd88e612e2d5c52dda68736956e9f6e75f1c0b08b3f0",
+  "taskId": "task_af5da63ef02ffded1f532650358be0ac02612792f9c91b02c332806ae9300236",
+  "type": "task.create",
+  "payload": {
+    "title": "Brendan Forster <notifications@github.com> \n3:37 PM (2 minutes ago) \nto State, up-for-grabs/up-for-grabs.net, me \n \n#6217 was added to the merge queue. \n— \nRepl",
+    "description": " \nBrendan Forster <notifications@github.com> \n3:37 PM (2 minutes ago) \nto State, up-for-grabs/up-for-grabs.net, me \n \n#6217 was added to the merge queue. \n— \nReply to this email directly, view it on GitHub, or unsubscribe. \nYou are receiving this because you modified the open/close state. \n \n \nBrendan Forster <notifications@github.com> \n3:38 PM (0 minutes ago) \nto up-for-grabs/up-for-grabs.net, me, State \n \nMerged #6217 into gh-pages. \n— \nReply to this email directly, view it on GitHub, or unsubscribe. \nYou are receiving this because you modified the open/close state. \n \n \ngithub-merge-queue[bot] <notifications@github.com> \n3:38 PM (0 minutes ago) \nto up-for-grabs/up-for-grabs.net, me, State \n \nMerged #6217 into gh-pages. \n— \nReply to this email directly, view it on GitHub, or unsubscribe. \nYou are receiving this because you modified the open/close state. \n \n \nהאם זה קשור לפרוייקט שלנו ? מה זה אומר ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca",
+  "createdAt": "2026-10-06T12:40:32.177Z",
+  "parents": [],
+  "branch": "main"
+}

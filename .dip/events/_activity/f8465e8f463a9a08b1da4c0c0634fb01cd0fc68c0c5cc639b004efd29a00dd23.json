@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f8465e8f463a9a08b1da4c0c0634fb01cd0fc68c0c5cc639b004efd29a00dd23",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:07:53.264Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst file='QA_REPORT.md';\nlet text=fs.readFileSync(file,'utf8');\nconst marker='No model was invoked. The local installation and recorder were upgraded;';\nconst replacement='No model was invoked. In the existing trusted Codex session, a real apply_patch operation automatically attached QA_REPORT.md to the active task. A later Node-script edit made that reference stale, and configured verification refused to run until the reviewed version was relinked. The local installation and recorder were upgraded;';\nif(!text.includes(marker)) throw Error('QA anchor missing');\nfs.writeFileSync(file,text.replace(marker,replacement));\n'@ | node --input-type=module\n& \"$env:APPDATA/npm/dip.cmd\" task document-link --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --path QA_REPORT.md --role reference --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\n& \"$env:APPDATA/npm/dip.cmd\" task verify --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --check unit --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5b7ed4e8-df61-443a-9c37-b8100b1c2900"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:07:55.839Z",
+  "parents": [],
+  "branch": "main"
+}

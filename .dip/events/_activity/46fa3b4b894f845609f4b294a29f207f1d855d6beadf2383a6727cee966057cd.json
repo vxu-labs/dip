@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "46fa3b4b894f845609f4b294a29f207f1d855d6beadf2383a6727cee966057cd",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:07:55.111Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run view 37500818709 --json jobs --jq '.jobs[] | {name,conclusion}' ; Get-Content scripts/longitudinal-stress-evidence.mjs -TotalCount 52",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-86df9213-a54e-4ae6-9f67-1205c7cd7e9b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:07:56.296Z",
+  "parents": [],
+  "branch": "main"
+}

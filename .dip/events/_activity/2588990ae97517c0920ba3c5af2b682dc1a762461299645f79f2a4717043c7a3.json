@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2588990ae97517c0920ba3c5af2b682dc1a762461299645f79f2a4717043c7a3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:08:56.895Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA\\npm\\dip.cmd\" task verify --id task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d --check unit --actor 'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5be4693d-12df-4182-8e3e-fb34d67f7b42"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:08:57.255Z",
+  "parents": [],
+  "branch": "main"
+}

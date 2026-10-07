@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cc1717dbd84d0cf6a95ae7a915c4a76acab04fb3c18f522b1c4a26ff4d498984",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:15:18.832Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));console.log(JSON.stringify(d.pairs.map(p=>({index:p.index,arms:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,Object.keys(r.stages)]))}))));\"; Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'codex.exe' -and $_.CommandLine -like '*dip-longitudinal*' } | Select-Object ProcessId,CreationDate,CommandLine",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b1a41494-ee60-49d2-a341-6b0818911ac9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:15:19.503Z",
+  "parents": [],
+  "branch": "main"
+}

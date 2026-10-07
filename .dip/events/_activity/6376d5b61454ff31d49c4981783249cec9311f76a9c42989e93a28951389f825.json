@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6376d5b61454ff31d49c4981783249cec9311f76a9c42989e93a28951389f825",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:20:58.442Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh release create v0.3.10 .dip-local/vxu-labs-dip-0.3.10.tgz --repo vxu-labs/dip --target 21088874b44ebf7abb0d6881de0aba294eb692ae --title 'DIP v0.3.10: live Codex planning and recovery' --notes-file .dip-local/release-0.3.10.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7797273b-49bb-4b88-976f-12e3952765f2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:20:59.340Z",
+  "parents": [],
+  "branch": "main"
+}

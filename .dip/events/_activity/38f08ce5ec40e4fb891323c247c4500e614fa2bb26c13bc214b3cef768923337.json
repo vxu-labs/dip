@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "38f08ce5ec40e4fb891323c247c4500e614fa2bb26c13bc214b3cef768923337",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:15:55.691Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import {execute} from \"./src/actions.js\";const result=await execute(\"create\",{actor:\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\",title:\"Handle queued activity for vanished temporary repositories without permanent global health noise\",description:\"Observed during 7 October live-host QA: recorder and supervisor remain running, but doctor repeatedly reports ENOENT for temporary npm/package QA Git roots after they were removed. Restart did not clear the warnings. Root cause and outbox ownership need inspection; do not discard captured data. Package smoke environment also needs auditing for inherited machine Git trace capture.\",status:\"backlog\",priority:2,scope:[\"src/core.js\",\"src/automation.js\",\"src/health.js\",\"scripts/package-smoke.mjs\",\"test/privacy-recovery.test.js\"],acceptance:[\"Preserve durable pending activity for missing roots with explicit recoverable state and bounded retry.\",\"A missing temporary root does not indefinitely imply failure of otherwise healthy project capture.\",\"Isolated QA subprocesses do not leak native Git trace capture into the real machine recorder.\",\"Configured tests cover disappearance, return of a repository, restart and continued healthy-project capture.\"]});console.log(JSON.stringify(result));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e1b9f7e5-9fb9-4785-9402-70b66afd8df6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:15:56.886Z",
+  "parents": [],
+  "branch": "main"
+}

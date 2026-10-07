@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "91eecbf6e921731558a1774c58ff55c6eefaa1ab444aed400c9fc7020536cfc1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:06:24.322Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-model-controlled.json','utf8'));console.log(JSON.stringify({rows:r.pairs.map(p=>({index:p.index,arms:Object.entries(p.arms).map(([arm,x])=>({arm,seed:x.seedScore?`${x.seedScore.passed}/${x.seedScore.total}`:null,notes:Object.keys(x.seedArtifacts||{}).filter(n=>n.endsWith('.md')),recovery:x.score?`${x.score.passed}/${x.score.total}`:null}))}))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7858e4de-a592-40fe-b6d7-33c7ff371e7c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:06:24.383Z",
+  "parents": [],
+  "branch": "main"
+}

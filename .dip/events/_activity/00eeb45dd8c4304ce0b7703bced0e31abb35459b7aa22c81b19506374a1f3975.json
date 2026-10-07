@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "00eeb45dd8c4304ce0b7703bced0e31abb35459b7aa22c81b19506374a1f3975",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:50:08.712Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6bb7ddaf6005bab647fcb11733ae499a3fc107e81881ae0902e23bd01da8f2d3",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js reconcile --kind work --open --limit 30",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8ff7325e-5e3b-4b82-8468-a91273713dd9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:50:09.072Z",
+  "parents": [],
+  "branch": "main"
+}

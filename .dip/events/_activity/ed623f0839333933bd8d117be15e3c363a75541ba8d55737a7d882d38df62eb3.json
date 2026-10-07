@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ed623f0839333933bd8d117be15e3c363a75541ba8d55737a7d882d38df62eb3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T13:58:16.020Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/browser-smoke.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "1393faaa-2b2d-4e3a-aee4-a7e2fbdd8f22"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:58:16.024Z",
+  "parents": [],
+  "branch": "main"
+}

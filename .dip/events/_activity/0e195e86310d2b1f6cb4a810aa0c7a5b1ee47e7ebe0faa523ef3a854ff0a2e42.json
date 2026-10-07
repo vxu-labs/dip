@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0e195e86310d2b1f6cb4a810aa0c7a5b1ee47e7ebe0faa523ef3a854ff0a2e42",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:05:11.500Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";let p=\".dip-local/continue-live.mjs\",s=fs.readFileSync(p,\"utf8\");s=s.replace(\"path.join(c.root,\\u0027turn-1-events.jsonl\\u0027)\",\"path.resolve(\\u0027.dip-local/live-host-output/turn-1-events.jsonl\\u0027)\");s=s.replace(\"Recover the existing CSV export plan\", \"Do not read QA transcripts, prompt files, or snapshot files; use durable DIP requirements and checkpoints only. Recover the existing CSV export plan\");fs.writeFileSync(p,s);' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-649dda7e-3b4f-4579-b525-f308e7be3671"
+      },
+      {
+        "at": "2026-10-07T17:05:11.520Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode .dip-local/continue-live.mjs 3",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f7bc8482-125c-4a32-beee-ac254f8d38a5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:05:14.091Z",
+  "parents": [],
+  "branch": "main"
+}

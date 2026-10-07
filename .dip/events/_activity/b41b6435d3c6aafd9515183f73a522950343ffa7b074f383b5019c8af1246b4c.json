@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b41b6435d3c6aafd9515183f73a522950343ffa7b074f383b5019c8af1246b4c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:13:31.834Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content README.md | Select-Object -First 46; gh run view 37605668471 --repo vxu-labs/dip --json jobs --jq '.jobs[] | {name,conclusion}'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4fad5f0b-5a27-4ac1-bba6-1c58bad3569d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:13:33.293Z",
+  "parents": [],
+  "branch": "main"
+}

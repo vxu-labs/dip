@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6da10fd451d38691f461bd1a20a7a1e0180dbc265b98d98463e9a213d55be880",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:18:34.011Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/browser-smoke.mjs | Select-Object -Skip 173 -First 17; git status --short --untracked-files=no; node --disable-warning=ExperimentalWarning scripts/codex-lifecycle-evidence.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c871770a-e2c6-4441-becf-f0e6c8e04784"
+      },
+      {
+        "at": "2026-10-07T19:18:34.011Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& node_modules/.bin/prettier.cmd --write scripts/codex-structured-evidence.mjs\nnode --input-type=module -e 'import fs from \"node:fs\"; const c=JSON.parse(fs.readFileSync(\".dip/config.json\")); c.verification[\"codex-structured-evidence\"]={command:[\"node\",\"scripts/codex-structured-evidence.mjs\"],timeoutMs:60000}; fs.writeFileSync(\".dip/config.json\",JSON.stringify(c,null,2)+\"\\n\");'\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n$env:GIT_TRACE2_EVENT = '0'\nnpm test > .dip-local/unit-0.3.12-final.log 2>&1\n$taskTestExit = $LASTEXITCODE\nGet-Content .dip-local/unit-0.3.12-final.log | Select-Object -Last 15\nexit $taskTestExit",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-06648c0c-c3de-4293-9dfc-24f0b7435eeb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:18:34.933Z",
+  "parents": [],
+  "branch": "main"
+}

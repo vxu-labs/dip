@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "286848981d3c8ffdb77f88c5fa6e1167679cde464290502dc4a44664e75f9f56",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:20:34.035Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));for(const p of d.pairs)for(const [a,r]of Object.entries(p.arms))console.log(JSON.stringify({pair:p.index+1,arm:a,stages:Object.keys(r.stages),merge:r.merge,parallel:r.parallel}));\"; Get-Content scripts/longitudinal-redact.mjs -TotalCount 65",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-6159a6da-c6b9-4c00-bdef-6d3f488a3a34"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:20:34.076Z",
+  "parents": [],
+  "branch": "main"
+}

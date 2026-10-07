@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b038d4ac49e9ac67a5056a819a4bb41c5d79d3dbe7ce671a81d5e094871dd64b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:46:26.002Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst d=JSON.parse(fs.readFileSync('.dip-local/model-controlled-v5.json'));\nconsole.log(JSON.stringify(d.pairs.filter(p=>p.arms.with?.capture).map(p=>({pair:p.index,seedWorkStatus:p.arms.with.seedCapture.tasks.filter(t=>t.source?.kind==='UserPromptSubmit').map(t=>t.status),finalTasks:p.arms.with.capture.tasks.map(t=>({title:t.title.slice(0,70),status:t.status}))}))));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-dd7c1cf4-d213-4463-91e8-828b535211b4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:46:26.712Z",
+  "parents": [],
+  "branch": "main"
+}

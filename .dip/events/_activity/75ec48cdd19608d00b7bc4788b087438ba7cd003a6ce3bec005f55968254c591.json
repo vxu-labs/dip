@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "75ec48cdd19608d00b7bc4788b087438ba7cd003a6ce3bec005f55968254c591",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:21:35.634Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js task get --id task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-afeab169-a048-4190-a328-73dd56c48c9a"
+      },
+      {
+        "at": "2026-10-07T17:21:35.732Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git status --short --untracked-files=no",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d102dbb4-37d1-4d4e-9d16-77f8fdc08d45"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:21:36.841Z",
+  "parents": [],
+  "branch": "main"
+}

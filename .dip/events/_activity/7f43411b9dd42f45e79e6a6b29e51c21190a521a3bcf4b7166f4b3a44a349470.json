@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7f43411b9dd42f45e79e6a6b29e51c21190a521a3bcf4b7166f4b3a44a349470",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:16:23.512Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "mcp__dip__task_checkpoint",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-a5eb74bd-64aa-41fe-b03f-97e7568065ef"
+      },
+      {
+        "at": "2026-10-06T15:16:23.549Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));const r=d.pairs[0].arms.with.stages.seed;console.log(JSON.stringify({wall:r.run.wallMs,completed:r.run.completed,timeout:r.run.timedOut,checks:r.score.passed,tools:r.run.itemCounts,errors:r.run.mcpErrors.slice(0,3),answers:r.run.answers.slice(-1)}));\"; rg -n 'offic|CUSTOM GIT|AppData|\\\\u2014' docs/benchmarks/2026-10-06-longitudinal.json | Select-Object -First 3",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-dcfa2e36-6e0c-432e-86b9-4ed4872e06ad"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:16:24.557Z",
+  "parents": [],
+  "branch": "main"
+}

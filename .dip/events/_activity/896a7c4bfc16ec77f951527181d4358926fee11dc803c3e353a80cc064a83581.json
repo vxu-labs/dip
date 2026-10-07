@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "896a7c4bfc16ec77f951527181d4358926fee11dc803c3e353a80cc064a83581",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:22:01.624Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport os from 'node:os';\nconst h=os.homedir();\nfs.writeFileSync('.dip-local/redaction-fixture.json',JSON.stringify({completedAt:'test',preflight:true,protocol:{instructions:'official requirements'},pairs:[],paths:[h,h.replaceAll('\\\\','/'),h.replaceAll('\\\\','\\\\\\\\'),h.replaceAll('\\\\','\\\\\\\\\\\\\\\\')],url:'https://example.invalid/file?se=123&sig=PRIVATE-SAMPLE&sp=r'}));\n'@ | node --input-type=module\nnode scripts/longitudinal-redact.mjs .dip-local/redaction-fixture.json\n@'\nimport fs from 'node:fs';\nimport assert from 'node:assert/strict';\nconst d=JSON.parse(fs.readFileSync('.dip-local/redaction-fixture.json'));\nassert.equal(d.protocol.instructions,'official requirements');\nassert.ok(d.paths.every(x=>x==='<home>'));\nassert.ok(d.url.includes('sig=[REDACTED]'));\nassert.ok(!d.url.includes('PRIVATE-SAMPLE'));\nconsole.log('Redaction preserves registered text and covers all path forms.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-22b77e45-4354-4b22-9a26-cd3ea5d68518"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:22:01.719Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "68cce2db7ba3412b9ec6d2a80f5143f3c433b00630a08e7c139618d44371313a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T06:12:16.409Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-07-laya.json.tmp",
+          "docs/benchmarks",
+          "docs/benchmarks/2026-10-07-laya.json"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "be4fa898-7206-44a5-9bc0-6b3f86656e8d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T06:12:16.415Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0c168ad42a8a9baec8c5208965cccafd58a60f2cccf27d4303a172e63067f9e5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:50:05.314Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6bb7ddaf6005bab647fcb11733ae499a3fc107e81881ae0902e23bd01da8f2d3",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath .agents/skills/dip/SKILL.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-cbfcc894-2b8e-46a1-9a6b-bfc71e245536"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:50:05.695Z",
+  "parents": [],
+  "branch": "main"
+}

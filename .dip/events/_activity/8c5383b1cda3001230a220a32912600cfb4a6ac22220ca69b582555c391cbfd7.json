@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8c5383b1cda3001230a220a32912600cfb4a6ac22220ca69b582555c391cbfd7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:35:17.588Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n$releaseRoot039 = (Get-Content -LiteralPath '.dip-local/release-0.3.9-source-path.txt' -Raw).Trim()\nif (-not $releaseRoot039.StartsWith((Join-Path (Get-Location) '.dip-local/release-0.3.9-source-'), [StringComparison]::OrdinalIgnoreCase)) { throw 'Unexpected release workspace' }\nPush-Location -LiteralPath $releaseRoot039\ntry {\n  npm run test:package\n  if ($LASTEXITCODE -ne 0) { throw 'Package smoke failed' }\n} finally { Pop-Location }\nCopy-Item -LiteralPath (Join-Path $releaseRoot039 'vxu-labs-dip-0.3.9.tgz') -Destination '.dip-local/vxu-labs-dip-0.3.9.tgz'\nWrite-Output 'Clean committed package smoke passed.'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-acebcd14-8f34-4685-984f-328ff68ce9fc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:35:18.147Z",
+  "parents": [],
+  "branch": "main"
+}

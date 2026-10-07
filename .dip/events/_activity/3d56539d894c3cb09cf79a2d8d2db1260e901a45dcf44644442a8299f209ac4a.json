@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3d56539d894c3cb09cf79a2d8d2db1260e901a45dcf44644442a8299f209ac4a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:06:21.767Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst file='QA_REPORT.md';\nlet text=fs.readFileSync(file,'utf8').replace('Fourteen document regression cases','Fifteen document regression cases').replace('Windows could not create a symlink in the corresponding test; symlink rejection is exercised on platforms permitting its creation.','Windows could not create a file symlink in the corresponding test; directory-junction rejection and checkout-root aliases were exercised successfully. File-symlink rejection is exercised on platforms permitting its creation.');\nfs.writeFileSync(file,text);\n'@ | node --input-type=module\nnpm.cmd pack --pack-destination .dip-local --json | Out-Null\nnpm.cmd install --global ./.dip-local/vxu-labs-dip-0.3.5.tgz --omit=dev --no-audit --no-fund\n& \"$env:APPDATA/npm/dip.cmd\" stop\n& \"$env:APPDATA/npm/dip.cmd\" start\n& \"$env:APPDATA/npm/dip.cmd\" task update --id task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 --status in_progress --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd | Out-Null",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1b4fa256-8256-4a65-9abb-c0184e11cf3d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:06:22.343Z",
+  "parents": [],
+  "branch": "main"
+}

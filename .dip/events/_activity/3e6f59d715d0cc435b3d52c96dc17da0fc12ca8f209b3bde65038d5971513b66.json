@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3e6f59d715d0cc435b3d52c96dc17da0fc12ca8f209b3bde65038d5971513b66",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:48:07.463Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npm install --save-dev --save-exact isomorphic-git@1.43.1 --ignore-scripts --no-audit --no-fund",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1d75dabc-9d25-4315-b6ff-979c2ca06981"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:48:10.308Z",
+  "parents": [],
+  "branch": "main"
+}

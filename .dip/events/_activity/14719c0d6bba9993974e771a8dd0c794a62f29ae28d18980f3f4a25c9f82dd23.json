@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "14719c0d6bba9993974e771a8dd0c794a62f29ae28d18980f3f4a25c9f82dd23",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+    "records": [
+      {
+        "at": "2026-10-06T15:25:23.335Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+        "taskId": "task_f573eef2129bfc533f1b5b43319d07e6d8fc43647d5338717792e10172d33ddc",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n \"auto.?stage|staging|git add|pre-commit|post-commit|\\.dip|push\" README.md docs/automation.md docs/protocol.md src/git*.js src/automation.js",
+        "recordId": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca:PreToolUse:exec-df8e8820-8602-432e-867e-e9eb1491aa8a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:25:23.973Z",
+  "parents": [],
+  "branch": "main"
+}

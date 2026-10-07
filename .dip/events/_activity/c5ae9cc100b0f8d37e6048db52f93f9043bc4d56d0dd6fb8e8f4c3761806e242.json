@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c5ae9cc100b0f8d37e6048db52f93f9043bc4d56d0dd6fb8e8f4c3761806e242",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T05:56:30.414Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n -A60 'def are_symlinks_supported' .dip-local/laya-env/Lib/site-packages/huggingface_hub/file_download.py; Get-Content .dip-local/laya-env/Lib/site-packages/huggingface_hub/file_download.py | Select-Object -Skip 650 -First 90; Get-Content .dip-local/laya-preflight.log -TotalCount 8",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-56629a26-75aa-4a10-bfe4-64b0ee005810"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T05:56:30.434Z",
+  "parents": [],
+  "branch": "main"
+}

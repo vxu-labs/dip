@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4c8718b9ac353d10f2dec9e4e58959643b12209ccf679fe3c04c30e94846eb54",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:03:02.834Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "if (Test-Path -LiteralPath \"$env:USERPROFILE/.codex/models_cache.json\") { node --input-type=module -e 'import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(process.env.USERPROFILE+\"/.codex/models_cache.json\")); console.log(Object.keys(r)); for(const m of r.models||[]) if(/gpt-(6.1|5.6)-sol/.test(m.slug||m.id||\"\")) console.log(JSON.stringify(Object.fromEntries(Object.entries(m).filter(([key])=>/slug|id|tool|plan|mode/.test(key)))));' }",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5c48c21c-2bcd-499d-be57-1cf6b4f73f58"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:03:03.574Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1e240910b3683b9c2e69da87b12f3c2407cb0c7718dd86ecb2867e8c91734067",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:41:48.656Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\".dip-local/codex-lifecycle-result.json\")); console.log(JSON.stringify({root:r.root,threadId:r.threadId,trust:r.trustConfirmed,phases:r.phases.map(p=>({label:p.label,status:p.completed?.params?.turn?.status,nativePlans:p.events.filter(e=>e.method===\"turn/plan/updated\").map(e=>e.params.plan),tasks:p.state.tasks.map(t=>({id:t.id,title:t.title.slice(0,80),status:t.status,plan:t.plan,criteria:t.acceptance})),hookKinds:[...new Set(p.state.activity.map(a=>a.kind))]}))},null,2));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-45e7ed4c-4d64-4153-a4e2-6a70b3d8a244"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:41:50.845Z",
+  "parents": [],
+  "branch": "main"
+}

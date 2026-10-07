@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "11541b98e49aad882f228a7bf1327f232677bf0d8bb5a024d7829b7716da1be6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:30:34.046Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$dipBenchmarkProcess = Get-CimInstance Win32_Process -Filter \"ProcessId = 18344\"; if ($dipBenchmarkProcess.CommandLine -notmatch 'scripts[/\\\\]model-benchmark\\.mjs') { throw 'Benchmark process identity changed' }; taskkill /PID 18344 /T /F; @'\nimport fs from 'node:fs';import path from 'node:path';import os from 'node:os';const source='docs/benchmarks/2026-10-06-model-controlled-v2.json';const r=JSON.parse(fs.readFileSync(source,'utf8'));r.abortedAt=new Date().toISOString();r.abortReason='Infrastructure invalid: fresh Windows elevated-sandbox initialization failed with ShellExecuteExW helper cancellation 1223. Baseline could not execute shell tools. All partial outcomes retained; active phase terminated and usage unavailable.';fs.writeFileSync('docs/benchmarks/2026-10-06-model-attempt2.json',JSON.stringify(r,null,2)+'\\n');fs.copyFileSync(source,'.dip-local/model-attempt2-original.json');const dirs=fs.readdirSync(os.tmpdir()).filter(x=>x.startsWith('dip-model-controlled-')).map(name=>({name,mtime:fs.statSync(path.join(os.tmpdir(),name)).mtimeMs})).sort((a,b)=>b.mtime-a.mtime);const sandbox=path.resolve(os.tmpdir(),dirs[0].name);if(!sandbox.startsWith(path.resolve(os.tmpdir())+path.sep))throw Error('Invalid fixture root');let count=0;for(let i=-1;i<6;i++)for(const arm of ['with','without']){const auth=path.join(sandbox,`pair-${i}`,arm,'user','.codex','auth.json');if(fs.existsSync(auth)){fs.unlinkSync(auth);count++;}}console.log(JSON.stringify({retainedRows:r.pairs.length,credentialCopiesRemoved:count}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-ff173801-64d2-4122-9126-a3b785522ff6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:30:35.341Z",
+  "parents": [],
+  "branch": "main"
+}

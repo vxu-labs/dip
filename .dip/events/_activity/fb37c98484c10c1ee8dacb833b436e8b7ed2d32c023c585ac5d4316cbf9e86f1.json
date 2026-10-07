@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fb37c98484c10c1ee8dacb833b436e8b7ed2d32c023c585ac5d4316cbf9e86f1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:15:21.288Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'tempRoot|const sandbox|Both matched' test/outbox-recovery.test.js QA_REPORT.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c6a9107a-946b-4e2e-93c8-f4d1839245f4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:15:22.162Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "09d97ec879e12aac7d7f2933bd3489cdc83cefe37ecebcc83b179899499b6b7b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:24:22.643Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport path from 'node:path';\nimport assert from 'node:assert/strict';\nimport {createHash} from 'node:crypto';\nconst root=path.join(process.env.APPDATA,'npm/node_modules/@vxu-labs/dip');\nconst sha=s=>createHash('sha256').update(s).digest('hex');\nconst files=['package.json'];\nif(fs.existsSync(path.join(root,'package-lock.json')))files.push('package-lock.json');\nfor(const dir of ['bin','src','skills'])for(const file of fs.readdirSync(path.join(root,dir),{recursive:true}))if(fs.statSync(path.join(root,dir,file)).isFile())files.push(`${dir}/${file.replaceAll('\\\\','/')}`);\nconst fingerprint=sha(JSON.stringify(files.sort().map(f=>[f,sha(fs.readFileSync(path.join(root,f)))])));\nconst protocol=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-07-model-protocol-v5.json'));\nassert.equal(fingerprint,protocol.installedProduct.fingerprint);\nconsole.log(JSON.stringify({installedVersion:JSON.parse(fs.readFileSync(path.join(root,'package.json'))).version,measuredProductionFingerprintMatches:true,fingerprint}));\nconst owned=['README.md','QA_REPORT.md','docs/benchmarks/model-controlled-repeat.md','docs/host-qa/lifecycle.md','docs/host-qa/structured-plan.md'];\nassert.ok(owned.every(f=>!fs.readFileSync(f,'utf8').includes('\\u2014')));\nconsole.log('Authored Markdown contains no em dashes.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-67bd4699-0080-46ea-a711-0b54ad5657e4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:24:23.911Z",
+  "parents": [],
+  "branch": "main"
+}

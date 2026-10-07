@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "04f439264abeafe035722adfb96f507785c724cd407ef3710056a30946e8f0b3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:53:00.492Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content test/core.test.js | Select-Object -Skip 306 -First 45; Get-Content test/core.test.js | Select-Object -Skip 490 -First 77; Get-Content test/hardening.test.js | Select-Object -Skip 45 -First 46; Get-Content test/workflow.test.js | Select-Object -First 98; Get-Content test/completion.test.js | Select-Object -First 53",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e22f6aef-bdca-4b05-bd0c-216aab4d3c44"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:53:01.431Z",
+  "parents": [],
+  "branch": "main"
+}

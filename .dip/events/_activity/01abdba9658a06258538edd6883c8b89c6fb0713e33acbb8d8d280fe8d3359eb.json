@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "01abdba9658a06258538edd6883c8b89c6fb0713e33acbb8d8d280fe8d3359eb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:05:16.833Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run view 37625579085 --repo vxu-labs/dip --job 112806358051 --log-failed | Select-String -Pattern 'not ok|✖|AssertionError|Error:|Expected|actual|expected|test at|completion' -Context 2,10",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-db3dd1ca-eed7-4804-b8c3-03834c296d2b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:05:18.654Z",
+  "parents": [],
+  "branch": "main"
+}

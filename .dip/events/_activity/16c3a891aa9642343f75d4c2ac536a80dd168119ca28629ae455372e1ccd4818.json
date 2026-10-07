@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "16c3a891aa9642343f75d4c2ac536a80dd168119ca28629ae455372e1ccd4818",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:14:02.179Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh release create v0.3.5 .dip-local/vxu-labs-dip-0.3.5.tgz --repo vxu-labs/dip --target 9101f612f53968083170a4cc581617527c409f18 --title 'DIP v0.3.5: write plans once' --notes-file .dip-local/release-0.3.5.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9daee1a7-14ad-4d0b-8cb5-2f295df53c9d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:14:03.732Z",
+  "parents": [],
+  "branch": "main"
+}

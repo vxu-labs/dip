@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0f902f6e9753564a1c578a29d56fe583bf4fda9d8d86365b57693d89c7b015c4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:28:02.290Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --disable-warning=ExperimentalWarning bin/dip.js task changes --id task_e688572e-bac2-4207-833a-0d6f970b5bde; git diff --stat -- src bin scripts test package.json package-lock.json .dip/config.json; rg -n 'task_prepare' src/core.js src/repository-integration.js skills/dip/SKILL.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-086aefb9-2d35-4c04-b0e9-4d4c5d81f06b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:28:02.406Z",
+  "parents": [],
+  "branch": "main"
+}

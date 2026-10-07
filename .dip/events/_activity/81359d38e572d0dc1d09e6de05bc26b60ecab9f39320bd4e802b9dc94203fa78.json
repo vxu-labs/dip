@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "81359d38e572d0dc1d09e6de05bc26b60ecab9f39320bd4e802b9dc94203fa78",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:03:57.234Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'const capture|return true|capture.files' src/core.js src/automation.js\nGet-Content -LiteralPath 'src/core.js' | Select-Object -Skip 260 -First 32\nGet-Content -LiteralPath 'src/automation.js' | Select-Object -Skip 535 -First 26",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-7afd988d-a4b6-45fa-94f0-b0c0269c5adb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:03:58.183Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ba455b1b99fbadd02838d773b640ac8e1de060c49f28fa2d09c33fa9180b09a9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:17:28.336Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/longitudinal-redact.mjs"
+        ],
+        "changeHash": "52e83482d7e68950af7935675431117810f4ae4b664b2daed221097e686beb6b",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9f765c6b-90a8-42d3-afc8-81e456ed4fcf"
+      },
+      {
+        "at": "2026-10-06T15:17:29.149Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/longitudinal-redact.mjs"
+        ],
+        "changeHash": "52e83482d7e68950af7935675431117810f4ae4b664b2daed221097e686beb6b",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9f765c6b-90a8-42d3-afc8-81e456ed4fcf"
+      },
+      {
+        "at": "2026-10-06T15:17:29.167Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --check scripts/longitudinal-redact.mjs; node scripts/longitudinal-redact.mjs docs/benchmarks/2026-10-06-longitudinal-preflight.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9095ad87-518e-40af-9690-ed2f6b0b21de"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:17:29.316Z",
+  "parents": [],
+  "branch": "main"
+}

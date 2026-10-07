@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "79368565facc49184b84cbe0f944088c431b55dbda97a8324a93856d48ec554f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:51:52.006Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/model-benchmark-publish.mjs --input .dip-local/model-controlled-v5.json --output docs/benchmarks/2026-10-07-model-controlled-v5.json\nnode --disable-warning=ExperimentalWarning scripts/model-benchmark-evidence.mjs docs/benchmarks/2026-10-07-model-controlled-v5.json\nnode scripts/model-benchmark-summary.mjs --input docs/benchmarks/2026-10-07-model-controlled-v5.json --output docs/benchmarks/2026-10-07-model-summary-v5.json\nGet-ChildItem -LiteralPath $env:TEMP -Directory -Filter 'dip-model-controlled-*' | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-918d8201-41f1-43b0-96f6-1c1d089078a0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:51:53.068Z",
+  "parents": [],
+  "branch": "main"
+}

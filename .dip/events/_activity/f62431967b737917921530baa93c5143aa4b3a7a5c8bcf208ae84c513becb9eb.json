@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f62431967b737917921530baa93c5143aa4b3a7a5c8bcf208ae84c513becb9eb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:08:10.996Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n -i 'offic|@|token|api.key|password|—' docs/host-qa/2026-10-07-codex.json | Select-Object -First 10",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-fb632b58-5182-42be-80fb-e1e152e56d05"
+      },
+      {
+        "at": "2026-10-07T17:08:11.028Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git status --short --untracked-files=normal",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9b97cc28-56dd-4d9a-89f8-547e7e3c6bb4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:08:12.121Z",
+  "parents": [],
+  "branch": "main"
+}

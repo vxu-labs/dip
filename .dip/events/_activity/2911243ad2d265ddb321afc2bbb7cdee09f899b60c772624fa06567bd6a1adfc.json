@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2911243ad2d265ddb321afc2bbb7cdee09f899b60c772624fa06567bd6a1adfc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T19:09:57.779Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/longitudinal-analysis.mjs",
+          "scripts/longitudinal-calibrate.mjs",
+          "scripts/longitudinal-runtime.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "db1794f4-04e3-4908-a671-d6ac2294973b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T19:09:57.783Z",
+  "parents": [],
+  "branch": "main"
+}

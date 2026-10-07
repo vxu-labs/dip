@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2f47ad5c2bd202b46974ecf86c4a0be71b3a6fdf3849cfa49613c398f3447a90",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:11:14.034Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run list --repo vxu-labs/dip --commit 9101f61 --limit 1 --json databaseId,status,conclusion,url,headSha\nnode scripts/document-hook-smoke.mjs \"$env:APPDATA/npm/node_modules/@vxu-labs/dip/bin/dip.js\"",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f27398ad-63e8-446a-af03-75cdc3f73c93"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:11:14.874Z",
+  "parents": [],
+  "branch": "main"
+}

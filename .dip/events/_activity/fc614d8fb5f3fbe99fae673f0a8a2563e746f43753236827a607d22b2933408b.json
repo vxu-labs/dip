@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fc614d8fb5f3fbe99fae673f0a8a2563e746f43753236827a607d22b2933408b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:00:48.849Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npx prettier --write scripts/model-benchmark.mjs scripts/model-benchmark-fixtures.mjs; node --check scripts/model-benchmark.mjs; node scripts/model-benchmark.mjs --preflight",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-0c406053-6108-4740-a5a3-9fb3f4a71edd"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:00:48.966Z",
+  "parents": [],
+  "branch": "main"
+}

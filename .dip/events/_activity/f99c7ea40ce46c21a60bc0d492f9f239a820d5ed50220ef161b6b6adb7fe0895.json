@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f99c7ea40ce46c21a60bc0d492f9f239a820d5ed50220ef161b6b6adb7fe0895",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:58:59.610Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/check.mjs; git diff --check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d8e8b4d4-15ce-49ed-977e-d617d4082423"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:59:00.445Z",
+  "parents": [],
+  "branch": "main"
+}

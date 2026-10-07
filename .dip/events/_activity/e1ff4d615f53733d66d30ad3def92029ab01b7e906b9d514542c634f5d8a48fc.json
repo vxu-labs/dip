@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e1ff4d615f53733d66d30ad3def92029ab01b7e906b9d514542c634f5d8a48fc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T16:56:59.956Z",
+        "kind": "files.changed",
+        "files": [
+          "src/client-discovery.js",
+          "src/event-cache.js",
+          "src/actions.js",
+          "src/mcp.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "53f970d2-f13f-4755-8772-4f3e3138a6ff"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:56:59.961Z",
+  "parents": [],
+  "branch": "main"
+}

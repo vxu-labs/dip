@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f59327bfd183e02848411c31957d88445582b75f4c03cd539274f55d2e697796",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:40:01.107Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\".dip-local/model-controlled-v4.json\")); console.log(JSON.stringify(r.pairs.map(p=>({index:p.index,arms:Object.entries(p.arms).map(([arm,a])=>({arm,seedDone:!!a.seed,recoveryDone:!!a.recovery,success:a.success,score:a.score?.passed}))})),null,2));'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-edb6f001-72d5-4d30-bb3a-e83a8dc08a24"
+      },
+      {
+        "at": "2026-10-07T19:40:02.662Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\".dip-local/model-controlled-v4.json\")); console.log(JSON.stringify(r.pairs.map(p=>({index:p.index,arms:Object.entries(p.arms).map(([arm,a])=>({arm,seedDone:!!a.seed,recoveryDone:!!a.recovery,success:a.success,score:a.score?.passed}))})),null,2));'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-edb6f001-72d5-4d30-bb3a-e83a8dc08a24"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:40:02.775Z",
+  "parents": [],
+  "branch": "main"
+}

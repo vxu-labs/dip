@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d56c2cbbbd54bb00081dc1e5c8fcd7ed409b734c8c48a3e9822efc5f3138461f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:09:39.283Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execute} from './src/actions.js';\nconst id='task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd',actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd';\nfor(const path of ['docs/benchmarks/scale.md','docs/client-discovery.md']) await execute('document-link',{id,actor,path,role:'reference'});\nawait execute('document-unlink',{id,actor,path:'docs/plans/low-friction-integration.md',role:'reference'});\nfor(const check of ['unit','browser']) {console.log('CONFIGURED '+check); const result=await execute('verify',{id,actor,check});console.log(JSON.stringify(result));if(!result.passed) process.exit(1);}\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-ccb8a62f-2ba0-4e8a-a4df-3ad8ef4cac44"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:09:40.183Z",
+  "parents": [],
+  "branch": "main"
+}

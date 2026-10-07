@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5d4f7ada6ef0d1ebb4c7b77a386701e18a1d1e459b200cf8b3fff0efdac7c00d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T08:06:18.522Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+        "tool": "mcp__dip__task_update",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c44dc99d-0c8b-4221-9458-05dfdaf517d6"
+      },
+      {
+        "at": "2026-10-07T08:06:18.539Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport urllib.request,json\nmodels=['intfloat/multilingual-e5-small','sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2','BAAI/bge-small-en-v1.5','BAAI/bge-reranker-v2-m3','Alibaba-NLP/gte-multilingual-base','Qwen/Qwen3-Embedding-0.6B']\nrows=[]\nfor model in models:\n d=json.load(urllib.request.urlopen('https://huggingface.co/api/models/'+model))\n cfg=json.load(urllib.request.urlopen('https://huggingface.co/'+model+'/resolve/'+d['sha']+'/config.json'))\n card=d.get('cardData') or {}\n langs=card.get('language') or []\n rows.append({'id':model,'revision':d['sha'],'license':card.get('license'),'parameters':d.get('safetensors',{}).get('total'),'modelType':cfg.get('model_type'),'hiddenSize':cfg.get('hidden_size',cfg.get('d_model')),'vocabulary':cfg.get('vocab_size'),'contextPositions':cfg.get('max_position_embeddings'),'languagesClaimed':len(langs) if isinstance(langs,list) else langs,'hebrewListed':('he' in langs or 'iw' in langs) if isinstance(langs,list) else False,'source':'https://huggingface.co/'+model})\nprint(json.dumps(rows,indent=2))\nopen('.dip-local/semantic-alternatives-metadata.json','w',encoding='utf-8').write(json.dumps(rows,indent=2)+'\\n')\n'@ | & '.\\.dip-local\\laya-env\\Scripts\\python.exe'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-664211f1-9fbd-47a4-8fbd-fcf3cca92b01"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T08:06:18.564Z",
+  "parents": [],
+  "branch": "main"
+}

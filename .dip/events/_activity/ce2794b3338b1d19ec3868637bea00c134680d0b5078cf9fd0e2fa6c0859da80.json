@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ce2794b3338b1d19ec3868637bea00c134680d0b5078cf9fd0e2fa6c0859da80",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T12:30:08.117Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_fe66e5c93da2182212e8fa8897609dbab413395006a0869787bec17dbff337af",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA\\npm\\dip.cmd\" status --limit 100",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-635d0a29-67bb-4414-8a25-cc039df22c61"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T12:30:09.225Z",
+  "parents": [],
+  "branch": "main"
+}

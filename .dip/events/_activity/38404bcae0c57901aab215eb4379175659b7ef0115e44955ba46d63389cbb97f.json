@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "eventId": "38404bcae0c57901aab215eb4379175659b7ef0115e44955ba46d63389cbb97f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "git",
+    "records": [
+      {
+        "at": "2026-10-07T05:57:36.828Z",
+        "kind": "git.pre-push",
+        "head": "786dc040f6fdab4d78c640a4bfd9b1adfc3ad626",
+        "branch": "main",
+        "agent": "git",
+        "recordId": "820b3905-c45f-4f78-944b-71463e2d96c5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T05:57:36.835Z",
+  "parents": [],
+  "branch": "main"
+}

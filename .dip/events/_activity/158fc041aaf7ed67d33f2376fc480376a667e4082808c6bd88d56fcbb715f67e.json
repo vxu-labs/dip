@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "158fc041aaf7ed67d33f2376fc480376a667e4082808c6bd88d56fcbb715f67e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T08:24:18.347Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_09ec4edda9882b9f4bf2343daaa8f10fc02ac14f0ebc0db497663032ad178ec8",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/automation.js | Select-Object -Skip 650 -First 90; Get-Content src/automation.js | Select-Object -Skip 1180 -First 66; rg -n -A62 'enqueue\\(|flush\\(' src/core.js | Select-Object -First 130; Get-Content public/app.js | Select-Object -Skip 130 -First 75; Get-Content src/core.js | Select-Object -Skip 500 -First 76",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7d595294-b0be-4b0c-b4cc-4b4d6b4c87db"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T08:24:18.586Z",
+  "parents": [],
+  "branch": "main"
+}

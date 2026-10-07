@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "491c6ed73c13959ff23a7b4516d67f0848de40e53a28753513d8b4d41990ba7a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:00:24.468Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";import {ensure,project} from \"./src/core.js\";const r=JSON.parse(fs.readFileSync(\".dip-local/current-host-qa.json\"));const p=project(ensure(r.root,{instructions:false}));console.log(JSON.stringify({keys:Object.keys(p),activity:p.activity?.slice(-3)},null,2));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b2fcb1c5-127b-4d41-b16d-ad1fbc990336"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:00:25.979Z",
+  "parents": [],
+  "branch": "main"
+}

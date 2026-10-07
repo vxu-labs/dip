@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "23d83386afa27bf5dc49a4806a26d61d1e183446680674a27b898c1f7f66d58d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T08:15:24.055Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+        "tool": "mcp__dip__task_update",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0274a38a-571c-443f-babf-68c77b1bf045"
+      },
+      {
+        "at": "2026-10-07T08:15:24.062Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport assert from 'node:assert/strict';\nconst paths=['docs/benchmarks/2026-10-07-semantic-alternatives-contextual.json','docs/benchmarks/2026-10-07-semantic-alternatives-static.json'];\nfor(const file of paths){const rows=JSON.parse(fs.readFileSync(file,'utf8'));for(const row of rows){assert.ok(/^[a-f0-9]{40}$/.test(row.revision));assert.ok(['mit','apache-2.0'].includes(row.license));assert.ok(row.source.startsWith('https://huggingface.co/'));if(row.parameters!==null)assert.ok(Number.isInteger(row.parameters)&&row.parameters>0);}console.log(JSON.stringify({file,candidates:rows.length}));}\nassert.equal(200000*256,51200000);assert.equal(200000*64,12800000);\nfor(const file of ['docs/benchmarks/semantic-alternatives.md','docs/benchmarks/README.md'])assert.ok(!fs.readFileSync(file,'utf8').includes(String.fromCharCode(0x2014)));\nconsole.log('Metadata structure, budget arithmetic and Markdown checks passed; no model evaluation performed.');\n'@ | node --input-type=module\ngit diff --check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-e1af826c-7cba-40b9-82b8-283cff63edcb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T08:15:25.896Z",
+  "parents": [],
+  "branch": "main"
+}

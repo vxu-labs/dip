@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7cdb92d5c41d9431b7f016c7fc8820e0112588c1340b1de2075c1d2a51122d06",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:10:51.129Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/longitudinal-fixtures.mjs",
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/longitudinal-benchmark.mjs",
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/docs/benchmarks/longitudinal.md"
+        ],
+        "changeHash": "12958bd6377c1d0f7db575195216c519face8223280ae22dce78996a0bcbbcc3",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c2dcb241-0bd7-4148-9800-e8fe25f57370"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:10:51.235Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1785bc0566a4b42edb382da9346eb19f54b5081c1b8dfe429273eea821593140",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:18:42.884Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'daemon.json' test scripts/package-smoke.mjs src/install-transaction.js\nGet-Content -LiteralPath 'src/recorder-supervisor.js' -TotalCount 260\nGet-Content -LiteralPath 'src/install-transaction.js' | Select-Object -Skip 145 -First 47",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-cb9cc604-a643-4aeb-b719-36a0aff36803"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:18:43.996Z",
+  "parents": [],
+  "branch": "main"
+}

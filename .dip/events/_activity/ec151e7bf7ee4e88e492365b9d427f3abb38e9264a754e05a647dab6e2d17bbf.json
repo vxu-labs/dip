@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ec151e7bf7ee4e88e492365b9d427f3abb38e9264a754e05a647dab6e2d17bbf",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:10:12.512Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-model-controlled-v3.json','utf8'));console.log(JSON.stringify(r.pairs.map(p=>({index:p.index,scenario:p.scenario,arms:Object.entries(p.arms).map(([arm,d])=>({arm,seedSeconds:d.seed.wallMs/1000,done:!!d.score,passed:d.score?.passed,memory:d.score?.memoryPassed,seedMcp:d.seed.itemCounts.mcp_tool_call||0,recoveryMcp:d.recovery?.itemCounts.mcp_tool_call||0,capture:d.capture?.kinds}))})),null,2));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1dcddc65-8160-46fb-b472-c73e12555878"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:10:13.193Z",
+  "parents": [],
+  "branch": "main"
+}

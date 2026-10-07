@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d4212dccc2dffbf28a0ada94c2a64b602914d4813968fc84e2a0ae2badebec4d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:25:47.557Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --disable-warning=ExperimentalWarning bin/dip.js task checkpoint --id task_0fc443ee-b79b-4f6d-977f-e14c34a9df57 --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --summary 'Implemented evidence-only task_verify, explicit configured finish completion and outstanding structured-plan guard after frozen 0.3.11 trial exposed false whole-task completion from a partial check. Added bounded idempotent explicit task_plan steps through CLI/MCP and clear UI/instructions. Latest raw unit suite passed 129 cases: 127 Windows passes, 2 POSIX skips. Structured tests passed 3/3; clean package smoke passed before final structured-field addition and must repeat. Product source is 0.3.12; installed product deliberately remains 0.3.11 until the v4 scored model experiment completes. Actual structured fallback QA, final configured checks, v5 matched repeat and publication remain pending.' --next 'Retain all v4 outcomes, archive its immutable harness, install clean-source 0.3.12 after v4 ends, prove explicit structured fallback in a real host, then freeze v5 and repeat identical fixtures/scoring/model/high effort.'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-8c4c08ed-9ffa-418e-b109-42a68be31b8c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:25:48.785Z",
+  "parents": [],
+  "branch": "main"
+}

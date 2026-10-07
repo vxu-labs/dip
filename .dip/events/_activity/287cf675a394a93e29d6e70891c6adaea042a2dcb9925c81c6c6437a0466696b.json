@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "287cf675a394a93e29d6e70891c6adaea042a2dcb9925c81c6c6437a0466696b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T05:56:02.564Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local/laya-preflight.log -Tail 8; if (Test-Path .dip-local/laya-preflight.json) { & '.\\.dip-local\\laya-env\\Scripts\\python.exe' -c \"import json;d=json.load(open('.dip-local/laya-preflight.json',encoding='utf-8'));print({k:d.get(k) for k in ['loadSeconds','parameterCount','dtype','resourceAbort','infrastructureError','completedAt','peakRssBytes']})\" }",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-78bb825d-727c-4e60-8c2e-b82bb6703735"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T05:56:03.084Z",
+  "parents": [],
+  "branch": "main"
+}

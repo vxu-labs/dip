@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "db5e4eca3ade84d1627a34854ae6a42698d4624432ba2ed586e216e8e5e72f83",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:24:03.507Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));const s=d.pairs[0].arms.without.stages.integration;console.log(JSON.stringify({contract:s.score.report?.contract,deferred:s.score.report?.deferred,cancelled:s.score.report?.cancelled,completed:s.score.report?.completed,releaseReady:s.score.report?.releaseReady,unsupported:s.score.unsupportedClaims}));\"; git diff -- .dip/config.json .github/workflows/ci.yml; rg -n 'Controlled|Benchmark|benchmark|pilot' README.md QA_REPORT.md docs/benchmarks/README.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b7a1e0da-5da8-4773-a58e-fa98ff365c7e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:24:04.103Z",
+  "parents": [],
+  "branch": "main"
+}

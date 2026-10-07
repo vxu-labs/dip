@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c8457fd5a11a131e7c3669d71ae6574e7ffb4a1a76d9517a588a48fab6f3f2d9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:12:05.710Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npm.cmd install -g ./.dip-local/vxu-labs-dip-0.3.12.tgz --no-audit --no-fund\nif ($LASTEXITCODE -ne 0) { throw 'Final global install failed' }\n& 'E:/Program Files/GitHub CLI/gh.exe' run list --repo vxu-labs/dip --branch main --limit 3 --json databaseId,headSha,status,conclusion,url",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-57911994-61a1-4ca6-a2c5-0731d3363b44"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:12:06.347Z",
+  "parents": [],
+  "branch": "main"
+}

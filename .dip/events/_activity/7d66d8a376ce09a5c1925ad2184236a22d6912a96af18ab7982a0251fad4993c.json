@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7d66d8a376ce09a5c1925ad2184236a22d6912a96af18ab7982a0251fad4993c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:13:55.983Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'Latest captured|Completion requires|captured-plan|task_plan' scripts/browser-smoke.mjs; Get-Content .github/workflows/ci.yml | Select-Object -First 110; Get-Content scripts/model-benchmark-evidence.mjs | Select-Object -Last 52; git diff --stat -- .agents AGENTS.md CLAUDE.md .claude .dip/integration.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-91aad348-8e7f-4a26-8ab3-f849cf0b0985"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:13:56.536Z",
+  "parents": [],
+  "branch": "main"
+}

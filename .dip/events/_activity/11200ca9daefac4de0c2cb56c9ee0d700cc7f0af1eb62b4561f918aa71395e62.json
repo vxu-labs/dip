@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "11200ca9daefac4de0c2cb56c9ee0d700cc7f0af1eb62b4561f918aa71395e62",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:56:38.378Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'benchmark|Benchmark|0\\.3\\.|host|Host|PreCompact|structured' README.md QA_REPORT.md docs/host-qa/README.md docs/host-qa/lifecycle.md; Get-Content README.md | Select-Object -Skip 110 -First 210; Get-Content QA_REPORT.md | Select-Object -Last 75; Get-Content docs/host-qa/README.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-48c38964-9bb9-4219-a3dc-ba1a26d13c3a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:56:38.915Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "43ebb2f13dfae33fa5018c188eb3afebe29da9c864a12e9a55279acbdcba0dea",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:33:39.921Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run view 37637374044 --json status,conclusion,jobs --jq '{status, conclusion, jobs: [.jobs[] | {name,status,conclusion}]}'\n& \"$env:APPDATA/npm/dip.cmd\" reconcile --kind work --open --limit 30",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-13f2f407-6f32-4d95-93d8-082c6892c8a6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:33:40.444Z",
+  "parents": [],
+  "branch": "main"
+}

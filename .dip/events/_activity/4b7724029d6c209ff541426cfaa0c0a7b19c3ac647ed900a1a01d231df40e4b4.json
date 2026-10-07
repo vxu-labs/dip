@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4b7724029d6c209ff541426cfaa0c0a7b19c3ac647ed900a1a01d231df40e4b4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:11:33.087Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/longitudinal-benchmark.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-246d2208-62f9-4acc-b15f-4e0b4ac1b7de"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:11:34.138Z",
+  "parents": [],
+  "branch": "main"
+}

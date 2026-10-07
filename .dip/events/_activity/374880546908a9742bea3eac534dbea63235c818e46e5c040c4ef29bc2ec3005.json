@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "eventId": "374880546908a9742bea3eac534dbea63235c818e46e5c040c4ef29bc2ec3005",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:06:24.642Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "src/actions.js",
+          "src/mcp.js",
+          "bin/dip.js",
+          "src/cli-help.js"
+        ],
+        "changeHash": "e263af53395eb8b61ae2a57af011b88ce62c1a4eb47746ce6adf9a2035cc69f4",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-17162a83-db08-4891-adf0-ba9dfface605"
+      },
+      {
+        "at": "2026-10-07T19:06:25.395Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "src/actions.js",
+          "src/mcp.js",
+          "bin/dip.js",
+          "src/cli-help.js"
+        ],
+        "changeHash": "e263af53395eb8b61ae2a57af011b88ce62c1a4eb47746ce6adf9a2035cc69f4",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-17162a83-db08-4891-adf0-ba9dfface605"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:06:25.422Z",
+  "parents": [],
+  "branch": "main"
+}

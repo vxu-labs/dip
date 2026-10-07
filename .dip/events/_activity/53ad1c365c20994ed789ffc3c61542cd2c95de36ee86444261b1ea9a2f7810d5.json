@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "53ad1c365c20994ed789ffc3c61542cd2c95de36ee86444261b1ea9a2f7810d5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:33:28.865Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' status --short -- .dip/integration.json .dip/tools/portable.mjs .dip/intent-guide.md .agents/skills/dip/SKILL.md .claude/skills/dip/SKILL.md src bin/dip.js test/privacy-recovery.test.js scripts/browser-smoke.mjs README.md QA_REPORT.md CONTRIBUTING.md package.json package-lock.json .dip/config.json\n$mdPaths = @('README.md','QA_REPORT.md','CONTRIBUTING.md','docs/operations.md')\nforeach ($mdPath in $mdPaths) { if ((Get-Content -LiteralPath $mdPath -Raw).Contains([char]0x2014)) { Write-Error \"Em dash found: $mdPath\" } }\ngh repo view vxu-labs/dip --json nameWithOwner",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-14d62ed6-235f-45f8-b9c5-43d953728cac"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:33:29.513Z",
+  "parents": [],
+  "branch": "main"
+}

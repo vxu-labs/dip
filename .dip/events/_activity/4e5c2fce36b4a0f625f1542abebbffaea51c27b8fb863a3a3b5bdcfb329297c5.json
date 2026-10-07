@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4e5c2fce36b4a0f625f1542abebbffaea51c27b8fb863a3a3b5bdcfb329297c5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:11:10.766Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/documents.js -TotalCount 22",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-acd7a3d1-8192-4d06-9a4a-990d6df569a7"
+      },
+      {
+        "at": "2026-10-07T17:11:10.836Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";let s=fs.readFileSync(\"docs/host-qa/2026-10-07-codex.json\",\"utf8\");if(/offic|ANTHROPIC_API_KEY|Bearer /i.test(s))throw Error(\"Private published text\");for(let p of [\"README.md\",\"QA_REPORT.md\",\"docs/host-qa/README.md\",\"docs/compatibility.md\",\"docs/desktop-qa.md\",\"docs/operations.md\"]){if(fs.readFileSync(p,\"utf8\").includes(\"\\u2014\"))throw Error(p+\" has an em dash\");}console.log(\"Evidence privacy and public Markdown punctuation checks passed.\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-aaa6c107-c2e2-4db6-aa90-4c03043ba95e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:11:12.233Z",
+  "parents": [],
+  "branch": "main"
+}

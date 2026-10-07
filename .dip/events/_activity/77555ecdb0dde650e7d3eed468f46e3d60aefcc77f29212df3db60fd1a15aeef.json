@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "77555ecdb0dde650e7d3eed468f46e3d60aefcc77f29212df3db60fd1a15aeef",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:55:26.412Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport { execute } from './src/actions.js';\nimport { ensure, Runtime } from './src/core.js';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd', session='01a10fa9-6164-7550-bdf9-5c21b772eafd';\nawait execute('checkpoint',{id:'task_0fc443ee-b79b-4f6d-977f-e14c34a9df57',actor,summary:'0.3.12 completion boundary and explicit typed task_plan implemented. 129 unit cases:127 Windows passes,2 POSIX skips; clean archive package and browser passed. Installed 0.3.12. Actual authenticated Codex explicit structured planning saved exactly three pending steps and separate Hebrew UTF-8/order future backlog; replay passed. Real compaction/interruption positive on0.3.11; native update_plan unavailable, Claude absent. Repeat matched experiment on frozen0.3.12 and final configured completion/publication remain.'});\nconst repo=ensure(), rt=new Runtime();\nfor(const l of rt.db.prepare('SELECT task,token FROM leases WHERE repo=? AND actor=? AND expires>?').all(repo.key,actor,Date.now())) rt.release(repo,l.task,l.token);\nrt.close();\nconst ready=await execute('prepare',{id:'task_e688572e-bac2-4207-833a-0d6f970b5bde',actor,session});\nconsole.log(JSON.stringify({id:ready.task.id,status:ready.task.status}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-33300718-b773-41f2-b465-f2092c6b8573"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:55:27.131Z",
+  "parents": [],
+  "branch": "main"
+}

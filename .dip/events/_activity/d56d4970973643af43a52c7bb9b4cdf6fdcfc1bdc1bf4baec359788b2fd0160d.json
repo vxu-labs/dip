@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d56d4970973643af43a52c7bb9b4cdf6fdcfc1bdc1bf4baec359788b2fd0160d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:27:38.227Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; import {createHash} from \"node:crypto\"; const raw=fs.readFileSync(\"scripts/model-benchmark.mjs\"); const p=JSON.parse(fs.readFileSync(\"docs/benchmarks/2026-10-07-model-protocol-v4.json\")); const h=createHash(\"sha256\").update(raw).digest(\"hex\"); if(h!==p.sources.harness) throw Error(\"Frozen harness changed\"); fs.writeFileSync(\"scripts/fixtures/model-benchmark-v4.txt\",raw); console.log(\"Frozen v4 harness hash preserved: \"+h);' \n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnpm run test:package",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9f06264c-c4c1-410b-b695-e315b8b9bd87"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:27:39.028Z",
+  "parents": [],
+  "branch": "main"
+}

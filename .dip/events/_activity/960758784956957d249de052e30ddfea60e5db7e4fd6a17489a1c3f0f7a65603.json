@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "960758784956957d249de052e30ddfea60e5db7e4fd6a17489a1c3f0f7a65603",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:01:16.020Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n& \"$env:APPDATA/npm/dip.cmd\" install --roots C:/Users/offic",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-6360ced2-2a23-4f3c-bebb-86f4267241c8"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:01:16.973Z",
+  "parents": [],
+  "branch": "main"
+}

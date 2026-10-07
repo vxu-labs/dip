@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d2ce70bae74c4d9d918bb499eeaa4b1c3b6a29b1825809bf235a1cd99c20b4a7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:10:44.308Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js task document-link --help",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-937a0287-dd2b-4469-95ac-39771adfb1ac"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:10:44.421Z",
+  "parents": [],
+  "branch": "main"
+}

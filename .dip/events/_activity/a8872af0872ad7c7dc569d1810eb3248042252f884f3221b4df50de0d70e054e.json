@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a8872af0872ad7c7dc569d1810eb3248042252f884f3221b4df50de0d70e054e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:21:29.761Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "mcp__dip__task_claim",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-90fab1b7-fcb7-48f4-ad60-87f3ab96d3f9"
+      },
+      {
+        "at": "2026-10-06T13:21:29.801Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const file='.dip/config.json';const c=JSON.parse(fs.readFileSync(file,'utf8'));c.verification.benchmark={command:['node','scripts/model-benchmark-evidence.mjs'],timeoutMs:60000};fs.writeFileSync(file,JSON.stringify(c,null,2)+'\\n');console.log('Configured independent benchmark artifact replay. No model calls in this check.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-36a7df96-07b9-46fa-b2fd-15fb41e222cd"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:21:30.764Z",
+  "parents": [],
+  "branch": "main"
+}

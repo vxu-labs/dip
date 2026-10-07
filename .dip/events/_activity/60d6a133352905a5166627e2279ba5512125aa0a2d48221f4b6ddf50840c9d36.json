@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "60d6a133352905a5166627e2279ba5512125aa0a2d48221f4b6ddf50840c9d36",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:00:26.876Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/longitudinal-redact.mjs docs/benchmarks/2026-10-06-longitudinal.json; node scripts/longitudinal-evidence.mjs; node scripts/longitudinal-stress.mjs; node scripts/longitudinal-stress-evidence.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ea0b2235-2cdd-411b-b474-afe7c29c0230"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:00:27.348Z",
+  "parents": [],
+  "branch": "main"
+}

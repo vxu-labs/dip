@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0d3f8bb3a74cca01fc198e201e2cb430cb7358b0571b702948111241145f86b6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T18:01:37.987Z",
+        "kind": "files.changed",
+        "files": [
+          "src/core.js",
+          "src/health.js",
+          "scripts/package-smoke.mjs",
+          "bin/dip.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "87ee6c6b-86b8-484d-8f4a-a288d556b83a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:01:38.085Z",
+  "parents": [],
+  "branch": "main"
+}

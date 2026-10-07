@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bb901c6ac82dc2e511c4a83661116a49e4cf7373cc532bfc96a6bb5b5244d25f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:32:44.994Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$delivery = @'\nimport {execute} from './src/actions.js';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',parent='task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b',privacy='task_8a06cdf69d80979e779048e33e769c8b3c3ed213ce6756f3d67944e74c0ea2a5',recovery='task_c0bffa8c657be52733213fb619d4ab246777f7a978663dba448f57210da20e9f';\nconst lease=await execute('claim',{id:parent,actor});\nawait execute('checkpoint',{id:parent,actor,summary:'Four features implemented. Configured unit115 and focused8 passed; desktop/mobile browser passed through explicitly selected installed Chrome after missing Playwright binary. Transfer overlapping scope ownership sequentially to verify existing L09/L03 before publication.',next:'Complete existing requirement checks, publish v0.3.9 and install validated package.'});\nawait execute('release',{id:parent,actor,token:[REDACTED];\nfor(const [id,scope,check,summary] of [[privacy,['src/capture-policy.js','src/util.js','src/core.js','src/automation.js','src/portable.js','src/health.js','bin/dip.js','src/cli-help.js','test/privacy-recovery.test.js','docs/operations.md','README.md'],'privacy-controls','Validated project capture/minimization controls and recognized-secret fixtures delivered. Explicit intent remains available; disabled versus unobserved status is visible. Existing history/documents/raw Trace2 are not scrubbed; heuristic redaction is not a universal PII/secret guarantee.'],[recovery,['src/recorder-supervisor.js','src/automation.js','src/health.js','bin/dip.js','test/privacy-recovery.test.js','docs/operations.md'],'recorder-recovery','Bounded local supervision delivered: real recorder crash recovery, queue/fencing preservation, concurrent ownership, persistent stop/automatic startup, uninstall and 5-in-60s retry bound tested. Current and historical health/gaps separated. Live stale owners are preserved; supervisor itself is not OS-supervised; missing events are not reconstructed.']]) {\nawait execute('update',{id,a",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f4a02726-2216-47ae-b517-511fbd1872ef"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:32:45.982Z",
+  "parents": [],
+  "branch": "main"
+}

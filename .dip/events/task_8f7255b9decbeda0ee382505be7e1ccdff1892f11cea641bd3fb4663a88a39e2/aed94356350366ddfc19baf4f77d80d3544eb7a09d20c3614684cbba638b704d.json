@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "aed94356350366ddfc19baf4f77d80d3544eb7a09d20c3614684cbba638b704d",
+  "taskId": "task_8f7255b9decbeda0ee382505be7e1ccdff1892f11cea641bd3fb4663a88a39e2",
+  "type": "task.create",
+  "payload": {
+    "title": "תדחוף את כל השינויים עד עכשיו",
+    "description": "תדחוף את כל השינויים עד עכשיו\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T21:31:47.086Z",
+  "parents": [],
+  "branch": "main"
+}

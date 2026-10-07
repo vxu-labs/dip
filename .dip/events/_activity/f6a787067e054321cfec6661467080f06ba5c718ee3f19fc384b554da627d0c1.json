@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f6a787067e054321cfec6661467080f06ba5c718ee3f19fc384b554da627d0c1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:51:10.875Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" task verify --id task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be --check browser --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\n& \"$env:APPDATA/npm/dip.cmd\" task checkpoint --id task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --summary 'v0.3.6 installed: five read-only navigation MCP/CLI tools, derived incremental per-checkout SQLite FTS5 with query-centered excerpts, cache separate from ownership, compact context/task selection exclude activity. Configured unit verification passed 93 cases (91 Windows passes, 2 POSIX skips) at unchanged source/intent snapshot 7bf8d8294772f142e49078a4e5f0be92c6cc10a798fa5fc748530f2cfc5cbb9b. Browser, package and skill checks passed. Tests cover 1000-history refresh/rebuild, ownership under cache locks, actual transports and evidence/intent changes. Existing Laya alternatives task is still backlog and linked to docs/benchmarks/semantic-alternatives.md; neural experiments and semantic identity remain unfinished. No AI quality or token-saving improvement claimed.'\ngit add -- AGENTS.md CLAUDE.md README.md QA_REPORT.md package.json package-lock.json bin/dip.js skills/dip/SKILL.md src/actions.js src/core.js src/navigation.js src/mcp.js src/cli-help.js src/workflow.js test/navigation.test.js docs/navigation.md docs/plans/navigation-plan.md .dip/events/task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be .dip/events/task_8b4318ef-b13d-4420-988f-5266db4cd215 .dip/events/task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df\ngit diff --cached --stat\ngit -c core.hooksPath=.dip-local/empty-hooks commit -m 'Add focused project navigation and incremental intent search'\ngit push origin main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c2d833ec-3a6d-4bf3-825e-92cb03df211a"
+      },
+      {
+        "at": "2026-10-07T10:51:10.908Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git rev-parse HEAD; gh run list --repo vxu-labs/dip --limit 2 --json databaseId,status,conclusion,headSha,url",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e20ee793-5542-4cca-ab53-c03259065bda"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:51:11.816Z",
+  "parents": [],
+  "branch": "main"
+}

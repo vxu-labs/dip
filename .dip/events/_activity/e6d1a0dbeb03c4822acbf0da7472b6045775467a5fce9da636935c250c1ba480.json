@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e6d1a0dbeb03c4822acbf0da7472b6045775467a5fce9da636935c250c1ba480",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:21:11.173Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));const a=d.pairs[0].arms.with;console.log(JSON.stringify(Object.values(a.stages).map(s=>({stage:s.run.phase,calls:s.run.itemCounts.mcp_tool_call,taskCount:s.capture.taskCount,statuses:s.capture.tasks.reduce((out,t)=>(out[t.status]=(out[t.status]||0)+1,out),{})}))));\"; git diff --stat -- docs/benchmarks/2026-10-06-longitudinal-preflight.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-2d07c31d-9df0-4df0-a82c-76f232138904"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:21:12.048Z",
+  "parents": [],
+  "branch": "main"
+}

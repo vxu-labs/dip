@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "12878cb32f957814f69a7d80c42fabfff1621f59726be6eedf5aa27a1a54d90a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:37:26.024Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode bin/dip.js stop\nnpm install -g ./.dip-local/vxu-labs-dip-0.3.8.tgz --ignore-scripts --no-audit --no-fund\n& \"$env:APPDATA/npm/dip.cmd\" install\n@'\nimport fs from 'node:fs';let s=fs.readFileSync('.dip-local/release-0.3.8.md','utf8');s=s.replace('Cross-platform CI is required before release publication.','CI37637374044 passed Windows, Linux and macOS, including Linux browser QA, at source8b0d893ece48a60a77988ce3f24378312ec00416. The initial macOS failure in37636393773 is retained; canonical portable entrypoint detection fixed it. The fresh clean-Git archive package smoke also passed.');fs.writeFileSync('.dip-local/release-0.3.8.md',s);\n'@ | node --input-type=module\ngh release create v0.3.8 .dip-local/vxu-labs-dip-0.3.8.tgz --target 8b0d893ece48a60a77988ce3f24378312ec00416 --title 'DIP v0.3.8: portable project intent and follow-up adoption' --notes-file .dip-local/release-0.3.8.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-22a96543-084a-4675-ab97-178dab019e90"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:37:26.940Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "13d380169d9ccc5017947661ec41c8f4c65acad9dcf2fd0b4943b381a9a37161",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T20:58:18.842Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/host-qa/structured-plan.md",
+          "scripts/fixtures",
+          "scripts/fixtures/model-benchmark-v5.txt"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "05537ffa-d915-41b3-8fc6-e1ab2eb3b4b7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:58:18.847Z",
+  "parents": [],
+  "branch": "main"
+}

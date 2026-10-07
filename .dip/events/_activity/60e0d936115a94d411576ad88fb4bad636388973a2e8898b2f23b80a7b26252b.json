@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "60e0d936115a94d411576ad88fb4bad636388973a2e8898b2f23b80a7b26252b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:11:50.805Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_60206e3c598ce0b6c26f1e351bb3c05e5f21f46a5aba226da90e1c052cc45ca6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA\\npm\\dip.cmd\" task update --id task_60206e3c598ce0b6c26f1e351bb3c05e5f21f46a5aba226da90e1c052cc45ca6 --actor 'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd' --kind discussion; & \"$env:APPDATA\\npm\\dip.cmd\" reconcile --kind work --open --limit 100 | ConvertFrom-Json | ForEach-Object { $_.tasks | Select-Object id,title,status,checkpoint } | ConvertTo-Json -Depth 4",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-3cad0225-8bf7-446d-b999-bdb26d0ed881"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:11:51.948Z",
+  "parents": [],
+  "branch": "main"
+}

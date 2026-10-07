@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fd5c17f6f82e1e3e55fe74adfd2f6a9dc62bae08deb98c2ddb75e5fdee9109b7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T12:49:13.104Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node .dip-local/audit-completion.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d36decff-1bf9-4664-be9b-0bcf93a720b8"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T12:49:15.586Z",
+  "parents": [],
+  "branch": "main"
+}

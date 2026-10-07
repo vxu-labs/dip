@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2987294a9841efaa0e0e5ae84edb4156fd0319b00b4b520c68d512dd284554cf",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:34:29.233Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --disable-warning=ExperimentalWarning 'C:/Users/offic/AppData/Roaming/npm/node_modules/@vxu-labs/dip/bin/dip.js' stop\nif ($LASTEXITCODE -ne 0) { throw 'Recorder stop failed' }\nnode --disable-warning=ExperimentalWarning 'C:/Users/offic/AppData/Roaming/npm/node_modules/@vxu-labs/dip/bin/dip.js' start\nif ($LASTEXITCODE -ne 0) { throw 'Recorder start failed' }\n$env:DIP_BENCH_CODEX = 'C:/Users/offic/AppData/Local/OpenAI/Codex/bin/8aaf1547b825b104/codex.exe'\nnode --disable-warning=ExperimentalWarning scripts/model-benchmark.mjs --protocol --output docs/benchmarks/2026-10-07-model-protocol-v4.json\nif ($LASTEXITCODE -ne 0) { throw 'Protocol freeze failed' }\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning scripts/model-benchmark.mjs --preflight --output .dip-local/model-preflight-v4.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-0e227c0d-043b-4aae-b433-f3b2331478e3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:34:30.208Z",
+  "parents": [],
+  "branch": "main"
+}

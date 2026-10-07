@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1334a679f7aad8088f4b982b0bc59a7a56b774c8d062806838a0e56e1761d420",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:25:19.223Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\ngit add -- .dip/events/task_33c6a780-4445-4fe9-b090-9fc20deb4ae6\ngit -c core.hooksPath=.dip-local/empty-hooks commit -s -m 'docs: finalize verified public delivery scope'\ngit push origin main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-60e36742-98e6-49bf-9758-2e2fce59b3e3"
+      },
+      {
+        "at": "2026-10-07T17:25:19.243Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'integrated|function captureSnapshot|export function captureSnapshot' src/actions.js src/views.js src/util.js src/core.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-21289d8e-a956-44c3-8a26-36603b94dbe6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:25:19.519Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "af919b94d8923ab0851199fbb7ed71f61d98143a9867ab6ad099a382567960df",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:13:15.406Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-model-controlled.json','utf8'));console.log(JSON.stringify(r.pairs.map(p=>({index:p.index,arms:Object.entries(p.arms).map(([arm,d])=>({arm,seed:d.seedScore?`${d.seedScore.passed}/${d.seedScore.total}`:null,capture:d.seedCapture?.kinds,tasks:d.seedCapture?.tasks.map(t=>({status:t.status,plan:t.planPresent,checkpoint:t.checkpointPresent})),done:d.success}))}))));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-07e60b93-fd31-4831-8220-78ab1482baf5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:13:16.377Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "eventId": "33005bcc75e09de9189ac26e911c2285d61d4a4b2b502f1469c674143d61a4ec",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T09:41:26.364Z",
+        "kind": "files.changed",
+        "files": [
+          "src/documents.js",
+          "src/core.js",
+          "src/actions.js",
+          "src/automation.js",
+          "src/mcp.js",
+          "src/cli-help.js",
+          "public/app.js",
+          "public/style.css",
+          "test/documents.test.js",
+          "scripts/browser-smoke.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "658b3e74-968b-466f-a115-f8efb3ed4b30"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:41:26.369Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a751b79bddbe69b6765b93357d2d8bc56bcb1a560b5f09250d163980e7156aff",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T18:43:53.361Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/plans",
+          "docs/plans/low-friction-integration.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "039b294e-3bb2-478d-8b83-50d571e15499"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:43:53.372Z",
+  "parents": [],
+  "branch": "main"
+}

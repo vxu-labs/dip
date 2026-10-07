@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0e21acb2b65da1d755adcb130805955255b97b1cbbc3cf5cd0f8feb046c46850",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:17:30.793Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run list --repo vxu-labs/dip --limit 2 --json databaseId,headSha,status,conclusion",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d85f102e-f087-49a6-988a-c7dbe77f549a"
+      },
+      {
+        "at": "2026-10-07T17:17:31.050Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\ngit archive --format=zip --output=.dip-local/release-0.3.10-source.zip 2108887\nExpand-Archive -LiteralPath .dip-local/release-0.3.10-source.zip -DestinationPath .dip-local/release-0.3.10-source-2108887",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-47008aa4-ca43-4537-aebc-99610ea73ed5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:17:31.205Z",
+  "parents": [],
+  "branch": "main"
+}

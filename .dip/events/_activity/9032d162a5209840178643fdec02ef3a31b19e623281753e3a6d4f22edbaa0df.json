@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9032d162a5209840178643fdec02ef3a31b19e623281753e3a6d4f22edbaa0df",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:59:34.261Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath 'src/health.js'\nGet-Content -LiteralPath 'src/util.js' -TotalCount 145\nGet-Content -LiteralPath 'src/automation.js' | Select-Object -Skip 1035 -First 400\nGet-Content -LiteralPath 'src/automation.js' | Select-Object -Skip 535 -First 345",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0070afd7-3808-4f24-a0b7-e4050e30664a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:59:35.231Z",
+  "parents": [],
+  "branch": "main"
+}

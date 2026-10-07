@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1b07dba07ff52a252f27645e010d54587aa27ec3ecb7a7bb729d12b0505103fe",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:42:12.655Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh release view v0.3.4 --json url,tagName,isDraft,assets --jq '{url,tagName,isDraft,assets: [.assets[].name]}'; git diff --name-only; git rev-list --left-right --count HEAD...origin/main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-25ac3455-2fff-4cf9-a79b-30aa5b2fb399"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:42:13.585Z",
+  "parents": [],
+  "branch": "main"
+}

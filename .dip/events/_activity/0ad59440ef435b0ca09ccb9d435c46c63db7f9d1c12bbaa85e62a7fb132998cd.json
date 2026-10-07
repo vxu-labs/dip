@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0ad59440ef435b0ca09ccb9d435c46c63db7f9d1c12bbaa85e62a7fb132998cd",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:23:36.872Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Command git | Select-Object Source,CommandType; git --exec-path; where.exe git; Test-Path 'C:/Program Files/Git/mingw64/libexec/git-core/git-remote-https.exe'; Get-ChildItem Env:GIT* | Select-Object Name,Value; git remote -v; Get-ChildItem 'C:/Program Files/Git/mingw64/libexec/git-core/git-remote*' | Select-Object Name",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7415a963-8abb-4662-9d08-01710ba57ec3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:23:36.992Z",
+  "parents": [],
+  "branch": "main"
+}

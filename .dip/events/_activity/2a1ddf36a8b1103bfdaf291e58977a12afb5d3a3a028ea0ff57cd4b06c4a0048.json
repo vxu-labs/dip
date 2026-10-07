@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2a1ddf36a8b1103bfdaf291e58977a12afb5d3a3a028ea0ff57cd4b06c4a0048",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:26:02.340Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'token|approval|ready|status|hash|trust' .dip-local/app-server-experimental/v2/HooksListResponse.json | Select-Object -First 20; Get-Content docs/host-qa/README.md | Select-Object -First 48; Get-Content QA_REPORT.md | Select-Object -First 26",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-a86998dd-89bb-40ec-b8f5-132c6151e22e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:26:02.650Z",
+  "parents": [],
+  "branch": "main"
+}

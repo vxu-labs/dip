@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1f8b1674a965b616f10b051b7d0e9a6f97058724e57ba38ab061b8d67b54327b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:08:23.400Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'export.*portable|async.*until|captureSnapshot' src/portable.js test/low-friction.test.js\nGet-Content -LiteralPath 'src/portable.js' | Select-Object -Skip 300 -First 24\nGet-Content -LiteralPath 'src/actions.js' | Select-Object -Skip 90 -First 23\nGet-Content -LiteralPath 'src/util.js' | Select-Object -Skip 169 -First 48\nGet-Content -LiteralPath 'test/hardening.test.js' | Select-Object -Skip 307 -First 31",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b9b28e13-1ed8-4aa1-b1f2-93192820627a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:08:23.771Z",
+  "parents": [],
+  "branch": "main"
+}

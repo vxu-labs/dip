@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c873a77336bb996ff3b38807c0d09ac3dac1dc9e52904c19087f612c6363dcfa",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T19:25:11.925Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/model-benchmark-evidence.mjs",
+          "scripts/model-benchmark-profile.mjs",
+          "scripts/model-benchmark.mjs",
+          "src/health.js",
+          "test/outbox-recovery.test.js",
+          "test/task-prepare.test.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "ca355df6-f90f-456b-9773-faa7909b78ab"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:25:11.933Z",
+  "parents": [],
+  "branch": "main"
+}

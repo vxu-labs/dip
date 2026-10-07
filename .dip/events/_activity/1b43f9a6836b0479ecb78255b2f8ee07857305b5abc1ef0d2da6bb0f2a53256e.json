@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1b43f9a6836b0479ecb78255b2f8ee07857305b5abc1ef0d2da6bb0f2a53256e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:24:29.196Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import {execute} from \"./src/actions.js\";const id=\"task_33c6a780-4445-4fe9-b090-9fc20deb4ae6\",actor=\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\";const t=await execute(\"get\",{id});await execute(\"update\",{id,actor,patch:{scope:[...new Set(t.scope.filter(p=>!p.startsWith(\".dip-local/\")))]}});console.log(\"Reviewed published scope excludes ignored private QA helpers and release notes; their normalized evidence remains published.\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1959f397-3671-4ffc-9c3a-b037f3a344ce"
+      },
+      {
+        "at": "2026-10-07T17:24:29.253Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode bin/dip.js task finish --id task_33c6a780-4445-4fe9-b090-9fc20deb4ae6 --outcome implemented --check host-qa-evidence --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd --summary 'Literal reads preserve future backlog; authorized fallback guidance and sanitized real Codex planning/resume/CLI recovery evidence shipped in v0.3.10. Three-platform CI, clean-Git-archive package smoke and configured Windows unit suite passed. Published scope excludes private ignored QA helper scripts and release notes. Current causal replay passed; L01 and missing temporary-root recovery remain open.'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d5fa7633-fd37-4a86-8e2e-060e5686b4b2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:24:29.546Z",
+  "parents": [],
+  "branch": "main"
+}

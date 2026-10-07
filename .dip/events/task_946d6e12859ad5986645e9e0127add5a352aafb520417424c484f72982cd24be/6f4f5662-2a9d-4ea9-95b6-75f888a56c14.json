@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6f4f5662-2a9d-4ea9-95b6-75f888a56c14",
+  "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Automatic checkpoint: agent paused; see activity and working tree. Completion has not been asserted.",
+    "automatic": true,
+    "head": "e4eaea00aee0c1b841e14ba9b91ac4995c626d9a"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T11:12:31.947Z",
+  "parents": [
+    "d2fc3115-103d-4665-a31a-30389375580f"
+  ],
+  "branch": "main"
+}

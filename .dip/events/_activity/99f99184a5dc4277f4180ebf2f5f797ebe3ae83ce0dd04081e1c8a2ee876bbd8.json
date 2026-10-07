@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "99f99184a5dc4277f4180ebf2f5f797ebe3ae83ce0dd04081e1c8a2ee876bbd8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:04:21.476Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' diff --name-only -- . ':!.dip'\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' ls-files --others --exclude-standard -- . ':!.dip'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a2650a31-12a5-48b6-b599-bc1117c4b4f9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:04:21.625Z",
+  "parents": [],
+  "branch": "main"
+}

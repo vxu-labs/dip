@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1d7dd8287d7f8c12ebb18949094eddaee1855a2d33fe5ee3211d1fd808af19fa",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T18:55:46.087Z",
+        "kind": "files.changed",
+        "files": [
+          "test/completion.test.js",
+          "skills/dip/SKILL.md",
+          "src/cli-help.js",
+          "docs/protocol.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "12c2bd6b-d7f7-4285-9781-f3eac97ff270"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:55:46.112Z",
+  "parents": [],
+  "branch": "main"
+}

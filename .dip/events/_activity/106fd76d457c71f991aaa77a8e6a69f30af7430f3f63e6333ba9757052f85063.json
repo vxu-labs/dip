@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "eventId": "106fd76d457c71f991aaa77a8e6a69f30af7430f3f63e6333ba9757052f85063",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:15:31.644Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/test/outbox-recovery.test.js"
+        ],
+        "changeHash": "725bcb4ab1407811208d8a3c07e7f6ef0b842dc24f2c0f6f439d08c91db4bbf8",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0e758705-2c5c-4454-96da-8e4d0e2ae19f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:15:32.236Z",
+  "parents": [],
+  "branch": "main"
+}

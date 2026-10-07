@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d8027b871cffb57880ac1621623ab055622f90336232d04177e2f0334ef149c7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T12:58:20.799Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'goto|networkidle|connection' scripts/browser-smoke.mjs; npx.cmd prettier --write public/index.html src/server.js public/app.js scripts/browser-smoke.mjs; node scripts/browser-smoke.mjs; npm.cmd pack --pack-destination .dip-local",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-bbef4e54-3501-4975-be49-e2c43d41f824"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T12:58:21.345Z",
+  "parents": [],
+  "branch": "main"
+}

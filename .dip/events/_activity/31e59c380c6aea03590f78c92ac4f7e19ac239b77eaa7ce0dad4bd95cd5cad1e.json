@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "31e59c380c6aea03590f78c92ac4f7e19ac239b77eaa7ce0dad4bd95cd5cad1e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:25:25.016Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import os from 'node:os';import path from 'node:path';const roots=[[process.cwd(),'<dip-source>'],[os.tmpdir(),'<temp>'],[os.homedir(),'<home>']];const replacements=[];for(const [root,label] of roots){for(let variant of [root,root.replaceAll('\\\\','/'),encodeURIComponent(root),encodeURI(root.replaceAll('\\\\','/'))]){for(let i=0;i<3;i++){replacements.push([variant,label]);variant=JSON.stringify(variant).slice(1,-1);}}}const escape=s=>s.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&');function redactString(s){for(const [prefix,label]of replacements)s=s.replace(new RegExp(escape(prefix),'gi'),label);return s;}function walk(x){if(typeof x==='string')return redactString(x);if(Array.isArray(x))return x.map(walk);if(x&&typeof x==='object')return Object.fromEntries(Object.entries(x).map(([k,v])=>[k,walk(v)]));return x;}for(const file of ['docs/benchmarks/2026-10-06-model-attempt1.json','docs/benchmarks/2026-10-06-model-attempt2.json']){const result=walk(JSON.parse(fs.readFileSync(file,'utf8')));result.publicationRedaction='Personal path prefixes replaced. Original local copies retained; numerical metrics and score flags unchanged.';const text=JSON.stringify(result,null,2)+'\\n';if(/\\bsk-[a-zA-Z0-9_-]{16,}|\"(?:access_token|refresh_token|id_token)\"\\s*:|-----BEGIN.*PRIVATE KEY-----/.test(text))throw Error('Sensitive pattern detected; publication stopped');fs.writeFileSync(file,text);}const preflight=walk(JSON.parse(fs.readFileSync('.dip-local/model-preflight-v3.json','utf8')));fs.writeFileSync('docs/benchmarks/2026-10-06-model-preflight.json',JSON.stringify(preflight,null,2)+'\\n');console.log('Retained infrastructure attempts and successful preflight prepared with personal paths redacted.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-21abdae9-a60f-48e5-977c-62bac9596343"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:25:25.787Z",
+  "parents": [],
+  "branch": "main"
+}

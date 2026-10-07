@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2c392fd8cdb860af19927fd1078416a246315cfd842478526bc2ba152948e582",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:04:57.393Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode .dip-local/continue-live.mjs 2",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5756bf4c-44bd-428f-95b6-b5c8240f13bb"
+      },
+      {
+        "at": "2026-10-07T17:04:57.429Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";import path from \"node:path\";import {ensure,project} from \"./src/core.js\";let c=JSON.parse(fs.readFileSync(\".dip-local/fixed-host-qa.json\"));let d=path.resolve(\".dip-local/live-host-output\");fs.mkdirSync(d,{recursive:true});fs.writeFileSync(path.join(d,\"snapshot-2.json\"),JSON.stringify(project(ensure(c.root,{instructions:false})),null,2));for(const n of [\"prompt-1.txt\",\"prompt-2.txt\",\"turn-1-events.jsonl\",\"turn-1-final.txt\",\"turn-1-stderr.txt\",\"turn-2-events.jsonl\",\"turn-2-final.txt\",\"turn-2-stderr.txt\",\"snapshot-1.json\"]){let a=path.join(c.root,n),b=path.join(d,n);if(!fs.statSync(a).isFile()||fs.existsSync(b))throw Error(\"Unexpected QA path\");fs.renameSync(a,b);}console.log(\"Private earlier transcripts moved outside the QA project.\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f8fe94e2-350f-4ce2-a222-68bbed02b01c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:04:58.727Z",
+  "parents": [],
+  "branch": "main"
+}

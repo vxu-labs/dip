@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ec2b16d428470e5a19ad6cb88b8a6ebc6d9855475297e33f6ccee8496cd08eee",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T16:02:35.941Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));console.log(JSON.stringify(d.pairs.map(p=>({pair:p.index+1,conflicts:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,r.merge?.conflictPaths])),stages:Object.fromEntries(Object.entries(p.arms).map(([a,r])=>[a,Object.keys(r.stages)]))}))));\"; gh run list --limit 2 --json databaseId,headSha,status,conclusion",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0cff9dd9-8c15-4294-a149-583fdcbea6a8"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T16:02:37.227Z",
+  "parents": [],
+  "branch": "main"
+}

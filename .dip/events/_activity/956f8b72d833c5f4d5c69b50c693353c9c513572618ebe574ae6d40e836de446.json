@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "956f8b72d833c5f4d5c69b50c693353c9c513572618ebe574ae6d40e836de446",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:58:24.250Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js task verify --help",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b3d14e44-a723-46d9-b268-19f2de983981"
+      },
+      {
+        "at": "2026-10-07T16:58:24.295Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/host-qa-evidence.mjs -ErrorAction SilentlyContinue; Get-Content docs/desktop-qa.md -TotalCount 65",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e2cc40cf-5441-48da-9ab6-64ab542b8efa"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:58:24.645Z",
+  "parents": [],
+  "branch": "main"
+}

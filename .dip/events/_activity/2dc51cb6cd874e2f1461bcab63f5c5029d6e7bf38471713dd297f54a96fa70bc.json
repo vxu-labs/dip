@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2dc51cb6cd874e2f1461bcab63f5c5029d6e7bf38471713dd297f54a96fa70bc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:04:55.473Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath scripts/model-benchmark.mjs -Tail 28\nnode --input-type=module -e 'import fs from \"node:fs\";import os from \"node:os\";import path from \"node:path\";console.log(JSON.stringify(fs.readdirSync(os.tmpdir()).filter(n=>n.startsWith(\"dip-model-controlled-\")).map(n=>({name:n,files:fs.readdirSync(path.join(os.tmpdir(),n)).slice(0,5)}))));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-58bfc6d7-f291-488d-b012-7b50bb6d4c51"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:04:55.512Z",
+  "parents": [],
+  "branch": "main"
+}

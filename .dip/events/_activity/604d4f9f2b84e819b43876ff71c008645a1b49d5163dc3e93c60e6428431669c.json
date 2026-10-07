@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "604d4f9f2b84e819b43876ff71c008645a1b49d5163dc3e93c60e6428431669c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T14:04:10.731Z",
+        "kind": "files.changed",
+        "files": [
+          "src/portable.js",
+          "test/low-friction.test.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "72b6b606-9371-494d-8b30-642be567f54d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:04:10.738Z",
+  "parents": [],
+  "branch": "main"
+}

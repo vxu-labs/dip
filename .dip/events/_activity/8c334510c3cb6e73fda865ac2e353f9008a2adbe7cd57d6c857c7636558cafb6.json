@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8c334510c3cb6e73fda865ac2e353f9008a2adbe7cd57d6c857c7636558cafb6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:19:19.531Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .gitignore\nGet-Content scripts/package-smoke.mjs -TotalCount 50",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-f24280cd-fde3-4553-a5d7-d148c4c201c1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:19:20.235Z",
+  "parents": [],
+  "branch": "main"
+}

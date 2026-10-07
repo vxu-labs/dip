@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c51135c96e6e296607a50cbcdbb5fb75a389f589bfe0c8d32fbc4e279751429a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:41:39.978Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$inspectQa = @'\nimport fs from 'node:fs';import path from 'node:path';import {ensure,project} from './src/core.js';\nconst q=JSON.parse(fs.readFileSync('.dip-local/current-host-qa.json'));const es=fs.readFileSync(path.join(q.root,'turn-1-events.jsonl'),'utf8').trim().split('\\n').flatMap(l=>{try{return[JSON.parse(l)]}catch{return[]}});\nconst s=project(ensure(q.root,{instructions:false}));\nconsole.log(JSON.stringify({stream:es.map(e=>({type:e.type,item:e.item?.type,tool:e.item?.tool,name:e.item?.name,error:e.item?.error,thread:e.thread_id})),tasks:s.tasks.map(t=>({id:t.id,title:t.title,status:t.status,source:t.history[0]?.payload.source,planTool:t.plan?.tool,acceptance:t.acceptance})),activity:s.activity.map(a=>({kind:a.kind,tool:a.tool,session:a.session,task:a.taskId})),errors:s.errors},null,2));\n'@\n$inspectQa | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-8648329c-90e6-4bf9-9b2c-c4f92f92a9f3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:41:41.126Z",
+  "parents": [],
+  "branch": "main"
+}

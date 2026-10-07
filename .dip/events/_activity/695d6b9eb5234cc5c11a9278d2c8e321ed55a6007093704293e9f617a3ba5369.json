@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "695d6b9eb5234cc5c11a9278d2c8e321ed55a6007093704293e9f617a3ba5369",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:35:06.466Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n$releaseRoot039 = Join-Path (Get-Location) ('.dip-local/release-0.3.9-source-' + [guid]::NewGuid().ToString('N').Substring(0,8))\nNew-Item -ItemType Directory -Path $releaseRoot039 | Out-Null\n$archive039 = $releaseRoot039 + '.tar'\ngit archive --format=tar --output=$archive039 78f4f8eb543bbe447c1577fbdedb116c3739b699\nif ($LASTEXITCODE -ne 0) { throw 'Git archive failed' }\ntar -xf $archive039 -C $releaseRoot039\nif ($LASTEXITCODE -ne 0) { throw 'Extraction failed' }\nSet-Content -LiteralPath '.dip-local/release-0.3.9-source-path.txt' -Value $releaseRoot039\nPush-Location -LiteralPath $releaseRoot039\ntry {\n  npm pack --json\n  if ($LASTEXITCODE -ne 0) { throw 'Package build failed' }\n  node scripts/package-smoke.mjs\n  if ($LASTEXITCODE -ne 0) { throw 'Package smoke failed' }\n} finally { Pop-Location }\nCopy-Item -LiteralPath (Join-Path $releaseRoot039 'vxu-labs-dip-0.3.9.tgz') -Destination '.dip-local/vxu-labs-dip-0.3.9.tgz'\nWrite-Output 'Clean committed package built and smoke-tested.'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-3ce958c6-a364-4df5-9d8d-574e28f0bc6c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:35:06.958Z",
+  "parents": [],
+  "branch": "main"
+}

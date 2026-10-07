@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "84e1f946c2db9a3f7d3270c9d6aecbee5bc3082d588f91d262d8a943fd117c78",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:26:59.554Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local/app-server-experimental/v2/TurnStartParams.json | Select-Object -Skip 270 -First 13; Get-Content .dip-local/app-server-experimental/v2/ThreadCompactStartParams.json; rg --files .dip-local/app-server-experimental/v2 | rg '(PlanUpdated|ItemCompleted|ContextCompacted|TurnCompleted)'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-dbb897c1-da59-4e9c-8d65-e1e7123a81b5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:26:59.847Z",
+  "parents": [],
+  "branch": "main"
+}

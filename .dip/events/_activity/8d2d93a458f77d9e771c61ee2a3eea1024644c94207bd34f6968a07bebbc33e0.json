@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8d2d93a458f77d9e771c61ee2a3eea1024644c94207bd34f6968a07bebbc33e0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:42:28.775Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e2784ee8057273b924b79cd2ec415a8b8be328ee5a809e2543b3db3b706373a8",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'Restart|trust|approve|review|installAgents|hooks.json|settings.json' README.md docs/automation.md docs/compatibility.md src/automation.js | Select-Object -First 40",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-702077bf-1437-440c-b3be-a2e54db11b7f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:42:29.764Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5e413227120b33aca6ddf9083c069e0261a09398cef50d1237d5b5a72cb86138",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:10:45.517Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js task document-link --help",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-937a0287-dd2b-4469-95ac-39771adfb1ac"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:10:45.602Z",
+  "parents": [],
+  "branch": "main"
+}

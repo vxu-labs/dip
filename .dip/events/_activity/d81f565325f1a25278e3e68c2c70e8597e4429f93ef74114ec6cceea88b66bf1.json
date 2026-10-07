@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d81f565325f1a25278e3e68c2c70e8597e4429f93ef74114ec6cceea88b66bf1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:28:24.071Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e \"import fs from 'node:fs';const d=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-longitudinal.json'));const s=d.pairs[0].arms.with.stages.workerA;console.log(JSON.stringify({kinds:s.capture.kinds,denials:s.capture.denialIds?.length,toolErrors:s.run.mcpErrors,answers:s.run.answers.slice(-1)}));\"",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-db31fb6d-b853-46cf-a7d1-f4ecd5d71265"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:28:24.927Z",
+  "parents": [],
+  "branch": "main"
+}

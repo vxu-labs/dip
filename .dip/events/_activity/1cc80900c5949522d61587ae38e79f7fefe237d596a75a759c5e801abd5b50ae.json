@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1cc80900c5949522d61587ae38e79f7fefe237d596a75a759c5e801abd5b50ae",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:38:51.963Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Add-Content -LiteralPath '.dip-local/release-0.3.9.md' -Value \"`nRelease source 78f4f8eb543bbe447c1577fbdedb116c3739b699 passed Windows, Linux and macOS CI, including Linux browser smoke: https://github.com/vxu-labs/dip/actions/runs/37644999019\" -Encoding utf8\ngh release create v0.3.9 '.dip-local/vxu-labs-dip-0.3.9.tgz' --repo vxu-labs/dip --target 78f4f8eb543bbe447c1577fbdedb116c3739b699 --title 'DIP v0.3.9: Privacy controls and recorder recovery' --notes-file '.dip-local/release-0.3.9.md'\nif ($LASTEXITCODE -ne 0) { throw 'Release creation failed' }\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n$publication = @'\nimport {execute} from './src/actions.js';import {automationHealth} from './src/health.js';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',id='task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b';\nconst h=automationHealth(process.cwd());console.log(JSON.stringify({installed:h.installed,recorder:h.daemon.running,supervision:h.daemon.supervision.status,capture:h.agentCapture.status}));\nif(!h.daemon.running || !h.daemon.supervision.running)throw new Error('Installed recorder/supervisor is not healthy');\nawait execute('checkpoint',{id,actor,summary:'v0.3.9 source78f4f8e published; CI37644999019 passed Windows/Linux/macOS and Linux browser. Clean Git archive package smoke passed; global0.3.9 installed, existing roots/config preserved and supervised recorder healthy. Unrelated local benchmark deletions remain unpublished.',next:'Record final configured completion evidence and push task metadata.'});\nconst r=await execute('finish',{id,actor,outcome:'implemented',check:'privacy-recovery',summary:'Four features delivered in v0.3.9: validated automatic capture controls, structural recognized-secret redaction, bounded recorder supervision and truthful health/observation-gap reporting. Existing L09/L03 are verified. Full115-case local tests and all-platform CI37644999019 pass",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-54baa040-6ec2-4a1b-a76a-9f8f0086d69e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:38:52.225Z",
+  "parents": [],
+  "branch": "main"
+}

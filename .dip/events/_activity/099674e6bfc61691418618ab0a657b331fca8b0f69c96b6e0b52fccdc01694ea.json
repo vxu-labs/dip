@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "099674e6bfc61691418618ab0a657b331fca8b0f69c96b6e0b52fccdc01694ea",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T12:31:29.845Z",
+        "kind": "Stop",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_fe66e5c93da2182212e8fa8897609dbab413395006a0869787bec17dbff337af",
+        "tool": "",
+        "branch": "main",
+        "recordId": "4687ace1-0fd7-4f70-a1a4-7a2bf69bcc2c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T12:31:29.864Z",
+  "parents": [],
+  "branch": "main"
+}

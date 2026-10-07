@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "53ea5c1b8b9ac22dd8e78d52cb57a1c982972a12bc4ed0d1bad9baf6a18edd4d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:09:37.045Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run list --limit 2 --json databaseId,headSha,status,conclusion; git status --short --untracked-files=no",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7793bb35-f4fb-49cd-b8af-f0d885c735b2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:09:37.862Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8819eb1ce2f565193a0cf2bc8ae566f7e9aff8597e5535753eea1141767335bd",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:23:36.194Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import {taskRead,ensure} from \"./src/core.js\";const t=taskRead(ensure(process.cwd(),{instructions:false}),\"task_33c6a780-4445-4fe9-b090-9fc20deb4ae6\");console.log(JSON.stringify({scope:t.scope,updates:t.history.filter(e=>e.payload?.scope).slice(-4).map(e=>({at:e.createdAt,type:e.type,scope:e.payload.scope}))},null,2));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d15b3c65-67b2-447d-a03a-233201ea32bd"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:23:36.536Z",
+  "parents": [],
+  "branch": "main"
+}

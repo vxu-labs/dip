@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3f3f4439014abe431ac883e0ae7cbaf4880a8c867d6927572e1370d2fdc68222",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:00:07.015Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA\\npm\\dip.cmd\" reconcile --kind work --open --limit 30; & \"$env:APPDATA\\npm\\dip.cmd\" task get --id task_59e94427-da93-4657-9c3a-8fe9f99521f8; git diff --check; gh auth status",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c853eaac-81b2-4570-a582-4c2a21f99f09"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:00:07.490Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bf82764acf84e23464fc1ca5a315c386bd83bde081748a87ac29526a16585550",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T11:30:52.355Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/plans/markdown-references.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "25782d7e-e6cb-4f53-a182-1b199808db05"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T11:30:52.370Z",
+  "parents": [],
+  "branch": "main"
+}

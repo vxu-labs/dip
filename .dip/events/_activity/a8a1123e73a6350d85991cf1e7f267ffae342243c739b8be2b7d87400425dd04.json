@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a8a1123e73a6350d85991cf1e7f267ffae342243c739b8be2b7d87400425dd04",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:32:22.082Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import os from 'node:os';const file='docs/benchmarks/2026-10-06-model-controlled-v3.json';fs.copyFileSync(file,'.dip-local/model-controlled-v3-original.json');const roots=[[process.cwd(),'<dip-source>'],[os.tmpdir(),'<temp>'],[os.homedir(),'<home>']];const replacements=[];for(const [root,label]of roots)for(let variant of [root,root.replaceAll('\\\\','/'),encodeURIComponent(root),encodeURI(root.replaceAll('\\\\','/'))])for(let i=0;i<3;i++){replacements.push([variant,label]);variant=JSON.stringify(variant).slice(1,-1);}const escape=s=>s.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\\\$&');const walk=x=>typeof x==='string'?replacements.reduce((s,[p,l])=>s.replace(new RegExp(escape(p),'gi'),l),x):Array.isArray(x)?x.map(walk):x&&typeof x==='object'?Object.fromEntries(Object.entries(x).map(([k,v])=>[k,walk(v)])):x;const result=walk(JSON.parse(fs.readFileSync(file,'utf8')));result.publicationRedaction='Personal path prefixes replaced; numerical metrics, source hashes and score flags unchanged. Original local data retained.';const text=JSON.stringify(result,null,2)+'\\n';if(/\\bsk-[a-zA-Z0-9_-]{16,}|\"(?:access_token|refresh_token|id_token)\"\\s*:|-----BEGIN.*PRIVATE KEY-----/.test(text))throw Error('Sensitive pattern detected');fs.writeFileSync(file,text);console.log(JSON.stringify({scoreSummary:result.summary,validTurns:24,sourceUnchanged:true}));\n'@ | node --input-type=module\nnode scripts/model-benchmark-evidence.mjs\nnode scripts/model-benchmark-report.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-cbdbd7d5-b34a-4f53-a902-64377906fdd1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:32:22.374Z",
+  "parents": [],
+  "branch": "main"
+}

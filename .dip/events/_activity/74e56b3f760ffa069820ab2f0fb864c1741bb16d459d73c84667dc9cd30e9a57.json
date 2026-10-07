@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "74e56b3f760ffa069820ab2f0fb864c1741bb16d459d73c84667dc9cd30e9a57",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:10:24.514Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nlet count=0,found=[];for(const folder of ['docs','skills','.agents','.claude']){if(!fs.existsSync(folder))continue;const walk=d=>{for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=d+'/'+e.name;if(e.isDirectory())walk(p);else if(e.name.endsWith('.md')){count++;if(fs.readFileSync(p,'utf8').includes('\\u2014'))found.push(p);}}};walk(folder);}for(const p of ['README.md','CONTRIBUTING.md','QA_REPORT.md','AGENTS.md','CLAUDE.md']){count++;if(fs.readFileSync(p,'utf8').includes('\\u2014'))found.push(p);}console.log(JSON.stringify({count,emDashes:found}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-7aa52dce-c2de-483c-b85d-2bc28336fcae"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:10:24.756Z",
+  "parents": [],
+  "branch": "main"
+}

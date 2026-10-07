@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "392e60365c117e924113f642a5cc5a2f539cdaaebe1c61a2eea8fc3a4e955a66",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:58:31.089Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npx prettier --write scripts/longitudinal-report.mjs scripts/longitudinal-redact.mjs scripts/longitudinal-evidence.mjs scripts/longitudinal-stress-evidence.mjs; node --check scripts/longitudinal-report.mjs; node --check scripts/longitudinal-redact.mjs; node --check scripts/longitudinal-evidence.mjs; node --check scripts/longitudinal-stress-evidence.mjs; git status --short --untracked-files=no",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-3cafd2db-aa94-4e24-8408-095d9546dc7d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:58:31.594Z",
+  "parents": [],
+  "branch": "main"
+}

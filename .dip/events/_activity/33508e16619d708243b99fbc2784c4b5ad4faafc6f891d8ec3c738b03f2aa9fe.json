@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "33508e16619d708243b99fbc2784c4b5ad4faafc6f891d8ec3c738b03f2aa9fe",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:13:49.162Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git diff --check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-bd476a16-de2f-484e-8583-21f33ff49498"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:13:49.344Z",
+  "parents": [],
+  "branch": "main"
+}

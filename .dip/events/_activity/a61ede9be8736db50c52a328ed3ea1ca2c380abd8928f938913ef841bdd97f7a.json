@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a61ede9be8736db50c52a328ed3ea1ca2c380abd8928f938913ef841bdd97f7a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:24:27.790Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import {execute} from \"./src/actions.js\";const id=\"task_33c6a780-4445-4fe9-b090-9fc20deb4ae6\",actor=\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\";const t=await execute(\"get\",{id});await execute(\"update\",{id,actor,patch:{scope:[...new Set(t.scope.filter(p=>!p.startsWith(\".dip-local/\")))]}});console.log(\"Reviewed published scope excludes ignored private QA helpers and release notes; their normalized evidence remains published.\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1959f397-3671-4ffc-9c3a-b037f3a344ce"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:24:28.384Z",
+  "parents": [],
+  "branch": "main"
+}

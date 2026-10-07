@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ca83cabaaaaa4b001dfd3c8a4f93aab4582169f668cfa82532d53a377067fcac",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:39:50.066Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npm run check; @'\nimport fs from 'node:fs';import {execFileSync} from 'node:child_process';const files=[...execFileSync('git',['ls-files','*.md'],{encoding:'utf8'}).trim().split(/\\r?\\n/),'docs/benchmarks/model-controlled.md'];const bad=files.filter(f=>fs.readFileSync(f,'utf8').includes('\\u2014'));console.log(JSON.stringify({emDashFiles:bad}));if(bad.length)process.exitCode=1;\n'@ | node --input-type=module\ngit diff --check\ngit add -- README.md QA_REPORT.md .dip/config.json docs/benchmarks/README.md docs/benchmarks/model-controlled.md docs/benchmarks/2026-10-06-model-attempt1.json docs/benchmarks/2026-10-06-model-attempt2.json docs/benchmarks/2026-10-06-model-preflight.json docs/benchmarks/2026-10-06-model-controlled-v3.json scripts/model-benchmark-evidence.mjs scripts/model-benchmark-report.mjs .dip/events/task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a .dip/events/task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5 .dip/events/task_e688572e-bac2-4207-833a-0d6f970b5bde; git diff --cached --stat | Select-Object -Last 19; git -c core.hooksPath=.dip-local/empty-hooks commit --quiet -m 'Publish controlled Codex pilot with full outcomes and measured costs'; git fetch origin; git rev-list --left-right --count HEAD...origin/main; git push origin main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d17416e9-2988-41ee-ad22-e023f5f09649"
+      },
+      {
+        "at": "2026-10-06T13:39:50.076Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {createHash} from 'node:crypto';const sha=s=>createHash('sha256').update(s).digest('hex');for(const f of ['scripts/model-benchmark.mjs','scripts/model-benchmark-fixtures.mjs']){const text=fs.readFileSync(f,'utf8');console.log(JSON.stringify({file:f,lfHashMatchesRaw:sha(text)===sha(text.replaceAll('\\r\\n','\\n'))}));}\n'@ | node --input-type=module\ngh run list --branch main --limit 1 --json databaseId,headSha,status,conclusion",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9210f3b5-3eb3-459d-b014-dd38976f0526"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:39:50.519Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "716e8c668f3cbdd5eb1f6043047d1e7433263911e326c1675afd0fb0267e8811",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:29:36.720Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git status --short; rg -n 'taskPlan|taskGet|task\\.plan|task_plan|task detail|scope|PostToolUse' src/mcp.js src/core.js src/automation.js src/server.js bin/dip.js public/app.js; Get-Content src/mcp.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-bb494cea-133f-41b9-9dc4-87f081dcc83a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:29:37.102Z",
+  "parents": [],
+  "branch": "main"
+}

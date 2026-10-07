@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9dc4787fc23ec4c8468bd2620db1732c8bb1592fb90519c44b7af20b33f3228a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T07:57:34.971Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/laya-pilot-protocol.mjs",
+          "scripts/laya-pilot.py"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "9e955e0e-e256-483b-89eb-66edef736a4f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T07:57:34.975Z",
+  "parents": [],
+  "branch": "main"
+}

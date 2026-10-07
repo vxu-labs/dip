@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2e3272e524bddc62db0f950c680bdbc5543a918439f986fae88c80a61e233720",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:58:15.980Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; const p=\"src/core.js\";let s=fs.readFileSync(p,\"utf8\");s=s.replace(\"Use the dip MCP tools for intent only:\",\"If a DIP MCP call is unavailable or approval-blocked, do not retry other methods through that blocked route. Use the installed CLI for the same local intent only when shell execution is authorized. Do not change host approval settings or bypass hook trust. If no authorized route remains, report unsaved intent and checkpoint when possible. If native planning is unavailable, explicitly save a prose plan once with dip task plan.\\\\nUse the dip MCP tools for intent only:\");fs.writeFileSync(p,s);' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-86d4a3b3-8b5c-46ed-97af-576cfb0a86bb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:58:17.013Z",
+  "parents": [],
+  "branch": "main"
+}

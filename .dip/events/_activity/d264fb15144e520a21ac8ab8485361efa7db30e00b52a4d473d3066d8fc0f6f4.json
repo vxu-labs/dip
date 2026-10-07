@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d264fb15144e520a21ac8ab8485361efa7db30e00b52a4d473d3066d8fc0f6f4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:23:32.304Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst d=JSON.parse(fs.readFileSync('.dip-local/model-controlled-v5.json'));\nconsole.log(JSON.stringify({finishedPairs:d.pairs.filter(p=>p.arms.with?.score&&p.arms.without?.score).length,observedTurns:d.pairs.reduce((n,p)=>n+Object.values(p.arms).reduce((m,a)=>m+Number(!!a.seed)+Number(!!a.recovery),0),0),versions:d.protocol.installedProduct,errors:d.pairs.flatMap(p=>Object.entries(p.arms).flatMap(([arm,a])=>['seed','recovery'].flatMap(phase=>a[phase]?.errors?.length?[{pair:p.index,arm,phase,count:a[phase].errors.length}]:[])))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-4e5cb7ff-fb6c-412b-8718-6c9b7151338f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:23:32.515Z",
+  "parents": [],
+  "branch": "main"
+}

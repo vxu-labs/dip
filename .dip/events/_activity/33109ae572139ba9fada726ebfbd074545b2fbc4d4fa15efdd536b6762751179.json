@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "33109ae572139ba9fada726ebfbd074545b2fbc4d4fa15efdd536b6762751179",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:25:54.135Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';\nconst installed=path.join(process.env.APPDATA,'npm/node_modules/@vxu-labs/dip'),sha=b=>createHash('sha256').update(b).digest('hex'),git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe';\nconst files=execFileSync(git,['ls-files','src','bin','public','skills','docs','README.md','LICENSE','NOTICE'],{encoding:'utf8',windowsHide:true}).trim().split('\\n');let mismatches=[];\nfor(const p of files){const published=execFileSync(git,['show','HEAD:'+p],{maxBuffer:16*1024*1024,windowsHide:true});const target=path.join(installed,p);if(!fs.existsSync(target)||sha(fs.readFileSync(target))!==sha(published))mismatches.push(p);}\nconsole.log(JSON.stringify({installedVersion:JSON.parse(fs.readFileSync(path.join(installed,'package.json'))).version,files:files.length,mismatches,priorBenchmarkPresent:fs.existsSync(path.join(installed,'docs/benchmarks/2026-10-06-longitudinal.json'))}));\n'@ | node --input-type=module\ngh run list --limit 3 --json databaseId,headSha,status,conclusion,url",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c8ff2b51-31c2-4a73-aa97-8ec76f123ad9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:25:55.088Z",
+  "parents": [],
+  "branch": "main"
+}

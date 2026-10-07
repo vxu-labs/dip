@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ede1e8e06fa04f6ec57f62430bd41e4cb9006af668524d7f618b264ce82087a6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T18:48:14.535Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/codex-lifecycle-evidence.mjs",
+          "scripts"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "94e1b1e5-799e-465c-b24f-56e55a05d6af"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:48:14.556Z",
+  "parents": [],
+  "branch": "main"
+}

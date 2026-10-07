@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0583cc22c3e7b5564fcd63674a6733fc656ed04fdba126dc41b8be1da20b81a4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:02:17.946Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/model-benchmark-publish.mjs --input .dip-local/model-controlled-v4.json --output docs/benchmarks/2026-10-07-model-controlled-v4.json\nnode --disable-warning=ExperimentalWarning scripts/model-benchmark-evidence.mjs docs/benchmarks/2026-10-07-model-controlled-v4.json\nnode scripts/model-benchmark-summary.mjs --input docs/benchmarks/2026-10-07-model-controlled-v4.json --output docs/benchmarks/2026-10-07-model-summary-v4.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8c1d4741-0341-476e-98c8-328c41a94330"
+      },
+      {
+        "at": "2026-10-07T20:02:17.961Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -l 'offic|AppData' docs/host-qa/2026-10-07-structured-plan.json docs/benchmarks/2026-10-07-model-controlled-v4.json\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' diff --stat -- . ':!.dip' ':!docs/benchmarks/2026-10-06-longitudinal*'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-17e52181-e2d8-442b-96d6-8885adc275ad"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:02:19.167Z",
+  "parents": [],
+  "branch": "main"
+}

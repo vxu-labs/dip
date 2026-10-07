@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f5dd2bf97f7a1db61107eda3c8f9c06ed44c997fd7b16f13412c275c003543b2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:00:26.123Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/package-smoke.mjs -TotalCount 45; Get-Content .github/workflows/ci.yml -TotalCount 80",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-be24cc3c-4f48-4c37-bd96-e42da91852fe"
+      },
+      {
+        "at": "2026-10-07T17:00:26.196Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";import {ensure,project} from \"./src/core.js\";const r=JSON.parse(fs.readFileSync(\".dip-local/current-host-qa.json\"));const p=project(ensure(r.root,{instructions:false}));console.log(JSON.stringify({keys:Object.keys(p),activity:p.activity?.slice(-3)},null,2));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b2fcb1c5-127b-4d41-b16d-ad1fbc990336"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:00:27.404Z",
+  "parents": [],
+  "branch": "main"
+}

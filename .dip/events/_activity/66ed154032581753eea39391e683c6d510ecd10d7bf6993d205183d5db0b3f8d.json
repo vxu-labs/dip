@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "eventId": "66ed154032581753eea39391e683c6d510ecd10d7bf6993d205183d5db0b3f8d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:08:01.180Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/host-qa-evidence.mjs"
+        ],
+        "changeHash": "d9a50a6e03679f39f19dcff918e84570f5da3c21a94b85fa026763bb0e3324fc",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-3b935a2c-65bc-4916-9080-6934e8678cd1"
+      },
+      {
+        "at": "2026-10-07T17:08:01.991Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/scripts/host-qa-evidence.mjs"
+        ],
+        "changeHash": "d9a50a6e03679f39f19dcff918e84570f5da3c21a94b85fa026763bb0e3324fc",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-3b935a2c-65bc-4916-9080-6934e8678cd1"
+      },
+      {
+        "at": "2026-10-07T17:08:02.005Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode scripts/host-qa-evidence.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-bf1e485e-fd1c-4874-a126-e9e544da59c2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:08:02.174Z",
+  "parents": [],
+  "branch": "main"
+}

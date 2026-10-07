@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "40dfd9cf7504d41ac031aa6649a8d7f663f3b710698152919b630445e39177b3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:28:33.539Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npx prettier --write scripts/model-benchmark-report.mjs; @'\nimport fs from 'node:fs';import {execFileSync} from 'node:child_process';for(const file of ['docs/benchmarks/2026-10-06-model-controlled.json','docs/benchmarks/2026-10-06-model-controlled-v2.json']){if(execFileSync('git',['ls-files','--',file],{encoding:'utf8'}).trim())throw Error('Historical output unexpectedly tracked');if(fs.existsSync(file)){fs.copyFileSync(file,'.dip-local/'+file.split('/').at(-1));fs.unlinkSync(file);}}console.log('Duplicate partial outputs archived locally; annotated attempt records retained for publication.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ad870c3f-6e9b-45c5-928b-9bfb19f65480"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:28:34.247Z",
+  "parents": [],
+  "branch": "main"
+}

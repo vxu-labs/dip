@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3d24b33a52638a59793a78dd1d1f6cb1e9ead454b5d279e49db4a2c83a6b3bd2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T15:04:55.021Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/scale.md",
+          "scripts/scale-evidence.mjs",
+          "src/health.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "286e28db-719a-47fc-ac6d-6df46bdd4115"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:04:55.029Z",
+  "parents": [],
+  "branch": "main"
+}

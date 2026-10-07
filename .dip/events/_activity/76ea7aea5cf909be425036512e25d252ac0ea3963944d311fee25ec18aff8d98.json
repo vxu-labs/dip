@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "76ea7aea5cf909be425036512e25d252ac0ea3963944d311fee25ec18aff8d98",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:36:33.178Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$releaseNotes039 = @'\nDIP v0.3.9 adds four focused privacy and recorder-reliability improvements:\n\n- Validated per-project automatic-capture controls for prompt text, plans, commands and file metadata. Explicit intent tools remain available.\n- Structural recognized-secret redaction across new automatic/explicit/portable event payloads, with nested/escaped JSON fixtures.\n- Bounded local recorder supervision, persistent deliberate-stop behavior, owned single-instance recovery and preserved queue/fencing.\n- Doctor distinguishes current and historical failures and reports approximate observation gaps without reconstructing missing events.\n\nValidation: local configured unit suite passed 115 cases (113 Windows passes, two POSIX skips). Focused subprocess and privacy checks passed. Desktop/mobile browser smoke passed using explicitly selected installed Chrome after the local Playwright binary was found absent. The release package is built from committed Git source, preserving earlier published benchmark data.\n\nLimits: the supervisor itself is not OS-supervised; live stale owners are preserved; five recorder launches in 60 seconds bound retries. Redaction is heuristic. Existing history, Markdown and raw Git Trace2 files are not scrubbed. No agent-quality or token-saving improvement is claimed.\n\nExperimental software. Use at your own responsibility. Review agent actions, hooks, backups and captured data before publishing.\n'@\nSet-Content -LiteralPath '.dip-local/release-0.3.9.md' -Value $releaseNotes039 -Encoding utf8",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-8d702450-543c-46f7-980f-f7b4af01cd0c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:36:33.890Z",
+  "parents": [],
+  "branch": "main"
+}

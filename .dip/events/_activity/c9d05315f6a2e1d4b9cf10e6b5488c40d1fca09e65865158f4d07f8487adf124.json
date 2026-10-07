@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c9d05315f6a2e1d4b9cf10e6b5488c40d1fca09e65865158f4d07f8487adf124",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T18:49:52.222Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/host-qa/lifecycle.md",
+          "docs/host-qa",
+          "docs/host-qa/README.md",
+          "QA_REPORT.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "4ef77872-0d35-4ff1-9300-3b9680e56843"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:49:52.247Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "71d38cb1165ca41455b0ea4a46512e49741b9f0e5b9e1ac8a765c7e5fa5602e8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+    "records": [
+      {
+        "at": "2026-10-06T12:42:25.429Z",
+        "kind": "UserPromptSubmit",
+        "agent": "codex",
+        "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+        "taskId": "task_461a420d81eb24caac9b240ce9f23b199d89c9c9a20babcf3dc03ce7f234800a",
+        "tool": "",
+        "branch": "main",
+        "recordId": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca:prompt:01a1113c-90f4-7e63-a8d1-f1b312b7c015"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:42:26.067Z",
+  "parents": [],
+  "branch": "main"
+}

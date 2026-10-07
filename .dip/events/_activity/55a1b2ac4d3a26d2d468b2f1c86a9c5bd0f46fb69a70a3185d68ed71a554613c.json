@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "55a1b2ac4d3a26d2d468b2f1c86a9c5bd0f46fb69a70a3185d68ed71a554613c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:39:53.613Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "webrun",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-ef943de5-39e9-4c68-9908-ffd841c55217"
+      },
+      {
+        "at": "2026-10-06T11:39:53.620Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run list --branch main --limit 2 --json databaseId,headSha,status,conclusion; @'\nimport fs from 'node:fs';import {ensure,Runtime,project} from './src/core.js';\nconst r=new Runtime();const repo=ensure(process.cwd(),{instructions:false});r.flush(repo.root);const p=project(repo,r);const kinds={};for(const x of p.activity.filter(x=>x.session==='01a10fa9-6164-7550-bdf9-5c21b772eafd'))kinds[x.kind]=(kinds[x.kind]||0)+1;const error=r.db.prepare('SELECT root,error FROM queue_errors WHERE root=?').all(repo.root);const installed=JSON.parse(fs.readFileSync('C:/Users/offic/AppData/Roaming/npm/node_modules/@vxu-labs/dip/package.json','utf8')).version;const daemon=JSON.parse(fs.readFileSync('C:/Users/offic/.dip/daemon.json','utf8'));console.log(JSON.stringify({installed,kinds,queueErrors:error,daemon:{pid:daemon.pid,port:daemon.port,updated:daemon.updated}},null,2));r.close();\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a277a068-d472-4581-89fc-e7bf96382ad4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:39:53.645Z",
+  "parents": [],
+  "branch": "main"
+}

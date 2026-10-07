@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0cb48c9e42fe04e32b013a8eb0a379b7638f4c9c3683be7bb663921494a3347f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:52:06.446Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/core.js | Select-Object -Skip 350 -First 38; Get-Content src/core.js | Select-Object -Skip 600 -First 56; rg -n 'performance|FTS|projection|cache' test/navigation.test.js | Select-Object -First 15; Get-Content docs/compatibility.md -TotalCount 85; Get-Content docs/automation.md -TotalCount 65; Get-Content CONTRIBUTING.md | Select-Object -Skip 20 -First 70",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-26f13030-dbd5-4cc3-a02b-d3dd2e1d05dc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:52:07.837Z",
+  "parents": [],
+  "branch": "main"
+}

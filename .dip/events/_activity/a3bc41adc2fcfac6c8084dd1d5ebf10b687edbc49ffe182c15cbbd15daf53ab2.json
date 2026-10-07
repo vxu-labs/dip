@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a3bc41adc2fcfac6c8084dd1d5ebf10b687edbc49ffe182c15cbbd15daf53ab2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+    "records": [
+      {
+        "at": "2026-10-06T15:25:31.814Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+        "taskId": "task_f573eef2129bfc533f1b5b43319d07e6d8fc43647d5338717792e10172d33ddc",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content src/automation.js | Select-Object -Skip 773 -First 72\n git config --show-origin --get core.hooksPath\n git ls-files .dip | Select-Object -First 5",
+        "recordId": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca:PreToolUse:exec-35aaf065-33a7-4e3c-b9fd-6b17c88da2a9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:25:32.749Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0536fbf6b79f80e3078512523fda66c8a1c1e7fe8bc4a04eff4b9cdc35566ed0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:14:43.119Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import {doctor} from \"./src/health.js\";let d=doctor(process.cwd());console.log(JSON.stringify({version:d.version,daemon:d.automation?.daemon,issues:d.automation?.issues},null,2));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-ebe2be4c-fd91-4a17-8f61-77dd97cf6b36"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:14:43.237Z",
+  "parents": [],
+  "branch": "main"
+}

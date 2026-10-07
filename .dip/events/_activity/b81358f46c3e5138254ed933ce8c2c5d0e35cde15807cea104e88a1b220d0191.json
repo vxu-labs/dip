@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b81358f46c3e5138254ed933ce8c2c5d0e35cde15807cea104e88a1b220d0191",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:18:30.463Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/browser-smoke.mjs | Select-Object -Skip 173 -First 17; git status --short --untracked-files=no; node --disable-warning=ExperimentalWarning scripts/codex-lifecycle-evidence.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c871770a-e2c6-4441-becf-f0e6c8e04784"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:18:30.543Z",
+  "parents": [],
+  "branch": "main"
+}

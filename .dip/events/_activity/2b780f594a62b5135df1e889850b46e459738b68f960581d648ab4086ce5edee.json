@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2b780f594a62b5135df1e889850b46e459738b68f960581d648ab4086ce5edee",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:22:30.598Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import {execute} from \"./src/actions.js\";const id=\"task_33c6a780-4445-4fe9-b090-9fc20deb4ae6\",actor=\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\";await execute(\"checkpoint\",{id,actor,summary:\"Published and installed clean-Git-archive DIP v0.3.10: https://github.com/vxu-labs/dip/releases/tag/v0.3.10. Source 21088874b44ebf7abb0d6881de0aba294eb692ae; CI 37657849274 passed Windows/Linux/macOS and Linux browser smoke. Configured unit passed 115 Windows cases plus 2 POSIX skips with stable source/intent; regression and causal host-evidence replay passed. Clean-archive package smoke passed. L01 remains open for native planning, compaction/Interrupt, live Claude and multi-day coverage. Missing temporary-root recorder health noise remains backlog task_15793da9-9d59-4fa4-acbf-65e08b24907b; no queued data discarded.\",next:\"Continue L01 when required host capabilities are available and address missing-root activity recovery separately.\"});const r=await execute(\"reconcile\",{id,limit:1});console.log(JSON.stringify(r.tasks?.map(({id,status,verification,integrated})=>({id,status,verification,integrated}))));' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8bb178e1-7b08-4286-9748-f34171ff1789"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:22:31.185Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "be9e5c0d4ef3141626b5bde0cef36c88855f4d1f4efd530bbd9f25739ff17cb1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T06:23:38.575Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst files=['docs/benchmarks/2026-10-07-laya.json','docs/benchmarks/2026-10-07-laya-preflight.json','docs/benchmarks/2026-10-07-laya-setup-attempt1.json'];\nfor(const file of files){const t=fs.readFileSync(file,'utf8');const hits={ownerPath:/C:(?:\\\\+|\\/)Users(?:\\\\+|\\/)offic/i.test(t),bearer:/Bearer\\s+[A-Za-z0-9._-]{20,}/.test(t),jwt:/eyJ[A-Za-z0-9_-]{20,}\\.[A-Za-z0-9_-]{20,}/.test(t)};console.log(JSON.stringify({file,bytes:Buffer.byteLength(t),hits}));if(Object.values(hits).some(Boolean))process.exitCode=1;}\nfor(const file of ['docs/benchmarks/laya-pilot.md','docs/benchmarks/README.md','QA_REPORT.md'])if(fs.readFileSync(file,'utf8').includes(String.fromCharCode(0x2014)))throw Error('Em dash in '+file);\n'@ | node --input-type=module\ngit diff --check\ngit status --short --untracked-files=normal -- scripts docs/benchmarks .dip/config.json .github/workflows/ci.yml QA_REPORT.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-49e7c0d8-df42-4d8a-97c4-79ecd538c669"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T06:23:39.746Z",
+  "parents": [],
+  "branch": "main"
+}

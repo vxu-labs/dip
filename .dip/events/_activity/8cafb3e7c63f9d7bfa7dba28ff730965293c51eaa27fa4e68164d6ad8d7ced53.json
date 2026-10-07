@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8cafb3e7c63f9d7bfa7dba28ff730965293c51eaa27fa4e68164d6ad8d7ced53",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:11:43.484Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning --test --test-name-pattern known-secret test/privacy-recovery.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-4b92d00a-559e-4178-9897-a727680f7cf1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:11:43.589Z",
+  "parents": [],
+  "branch": "main"
+}

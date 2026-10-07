@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "259e8e6be3650d81d85ad5538cb1f9b95e34f535f0e690b1504bd797c2b6a93f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:06:26.383Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-06-model-controlled.json','utf8'));console.log(JSON.stringify({rows:r.pairs.map(p=>({index:p.index,arms:Object.entries(p.arms).map(([arm,x])=>({arm,seed:x.seedScore?`${x.seedScore.passed}/${x.seedScore.total}`:null,notes:Object.keys(x.seedArtifacts||{}).filter(n=>n.endsWith('.md')),recovery:x.score?`${x.score.passed}/${x.score.total}`:null}))}))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-7858e4de-a592-40fe-b6d7-33c7ff371e7c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:06:27.075Z",
+  "parents": [],
+  "branch": "main"
+}

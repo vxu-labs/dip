@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d8e6799a73d19e164070700064b36244c04aedb236f7e32df889c0bce3d1572c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T16:53:36.928Z",
+        "kind": "files.changed",
+        "files": [
+          "docs",
+          "docs/intent-transitions.md",
+          "docs/portable.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "c6385fc3-51b6-4854-b91c-cf292476e32c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:53:36.932Z",
+  "parents": [],
+  "branch": "main"
+}

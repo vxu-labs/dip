@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "eventId": "311b9588b8d7d9e730bf922fbbb272a96a4e3d7e57f8f7a13e34399e4fa9a09b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T10:18:57.119Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-07-laya-preflight.json",
+          "docs/benchmarks/2026-10-07-laya-requirements.txt",
+          "docs/benchmarks/2026-10-07-laya-setup-attempt1.json",
+          "docs/benchmarks/2026-10-07-laya.json",
+          "scripts/laya-pilot-publish.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "71c7b9a0-7441-4891-9b9d-e911feade32e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:18:57.124Z",
+  "parents": [],
+  "branch": "main"
+}

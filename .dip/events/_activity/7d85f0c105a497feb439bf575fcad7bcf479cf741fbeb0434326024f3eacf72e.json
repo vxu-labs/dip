@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7d85f0c105a497feb439bf575fcad7bcf479cf741fbeb0434326024f3eacf72e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:11:42.018Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning --test --test-name-pattern known-secret test/privacy-recovery.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4b92d00a-559e-4178-9897-a727680f7cf1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:11:42.578Z",
+  "parents": [],
+  "branch": "main"
+}

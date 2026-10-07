@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "433a6dffd4ca8bcd0ad4a2cf7f190c5fe478d25fec282aa004844f82b75d8f59",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:40:49.140Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {createHash} from 'node:crypto';\nconst installed='C:/Users/offic/AppData/Roaming/npm/node_modules/@vxu-labs/dip/';const paths=['src/automation.js','src/workflow.js','bin/dip.js','README.md','docs/desktop-qa.md'];const hash=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');const mismatches=paths.filter(p=>hash(p)!==hash(installed+p));console.log(JSON.stringify({installedSourceMatches:mismatches.length===0,mismatches}));if(mismatches.length)process.exitCode=1;\n'@ | node --input-type=module\ngit diff --check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-f3668e62-4c82-41c1-b97c-b53e60736484"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:40:49.712Z",
+  "parents": [],
+  "branch": "main"
+}

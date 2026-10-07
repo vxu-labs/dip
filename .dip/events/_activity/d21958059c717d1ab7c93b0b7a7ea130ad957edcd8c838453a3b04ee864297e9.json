@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d21958059c717d1ab7c93b0b7a7ea130ad957edcd8c838453a3b04ee864297e9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:15:13.972Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run view 37501336241 --log-failed | Set-Content -LiteralPath .dip-local/mac-replay-failure.log\n@'\nimport fs from 'node:fs';\nconst lines=fs.readFileSync('.dip-local/mac-replay-failure.log','utf8').split(/\\r?\\n/);\nconsole.log(lines.map(l=>l.length>350?'[long line tail] '+l.slice(-220):l).join('\\n'));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-762d5f58-d826-4e19-a489-646a6b6e50f1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:15:15.317Z",
+  "parents": [],
+  "branch": "main"
+}

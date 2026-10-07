@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "eventId": "af5da23dace024fab293e791f9287ac1dbc87ea2e73dac47effed6af3326d91e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:55:44.077Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "test/completion.test.js",
+          "skills/dip/SKILL.md",
+          "src/cli-help.js",
+          "docs/protocol.md"
+        ],
+        "changeHash": "095927ee776486c287db3ccb7e7becda21ef0aa3cddf291a55c081783f749855",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-ba65d2c1-e8c1-4bc8-9b99-2cbaa4c6a867"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:55:44.698Z",
+  "parents": [],
+  "branch": "main"
+}

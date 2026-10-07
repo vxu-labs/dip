@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "decfcfa8f3bec827ebc34fc38c69e79290df19a3a61ef49a0537fa9e2ded04bb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a110e6-87ab-7803-82f5-8a9ca0d5d6a4",
+    "records": [
+      {
+        "at": "2026-10-06T11:08:40.891Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a110e6-87ab-7803-82f5-8a9ca0d5d6a4",
+        "taskId": "task_3c88129b8b4420938541ae2c301b683f194fd27dfe19d8a99aff0734da29d874",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git status --short --branch; git log -6 --oneline --decorate; git remote -v",
+        "recordId": "codex:01a110e6-87ab-7803-82f5-8a9ca0d5d6a4:PreToolUse:exec-9950b3de-e1ba-4411-ae16-fe10e80bbca5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:08:40.900Z",
+  "parents": [],
+  "branch": "main"
+}

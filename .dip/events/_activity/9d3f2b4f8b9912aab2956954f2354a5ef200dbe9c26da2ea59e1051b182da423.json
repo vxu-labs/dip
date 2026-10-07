@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9d3f2b4f8b9912aab2956954f2354a5ef200dbe9c26da2ea59e1051b182da423",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T17:03:44.319Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst files=['docs/benchmarks/2026-10-06-longitudinal.json','docs/benchmarks/2026-10-06-longitudinal-stress.json','docs/benchmarks/2026-10-06-longitudinal-preflight.json'];\nfor(const file of files){\n const text=fs.readFileSync(file,'utf8');\n const hits={ownerPath:/C:(?:\\\\+|\\/)Users(?:\\\\+|\\/)offic/i.test(text),bearerCredential:/Bearer\\s+[A-Za-z0-9._-]{20,}/.test(text),jwt:/eyJ[A-Za-z0-9_-]{20,}\\.[A-Za-z0-9_-]{20,}/.test(text),unredactedQueryCredential:/[?&](?:sig|access_token|token)=((?!\\[REDACTED\\])[^&\\s\\\\\"]{8,})/i.test(text)};\n console.log(JSON.stringify({file,bytes:Buffer.byteLength(text),hits}));\n if(Object.values(hits).some(Boolean))process.exitCode=1;\n}\n'@ | node --input-type=module\nrg -n 'proto|9216|No advantage' docs/benchmarks/longitudinal.md README.md\ngit diff --stat\ngit status --short --untracked-files=normal -- scripts docs/benchmarks .dip/config.json .github/workflows/ci.yml README.md QA_REPORT.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1699f51e-5ad7-4573-a368-df0e9a075095"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T17:03:44.872Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "653db99df757c56884fdcb4b89817b0f9c1fc7f2f9d7cec4197e143628b8537b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:30:14.914Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_3764ad85665238ed297f766fbc8051c95960335ede5f09f567dc4ee6fe5ab8c1",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .agents/skills/dip/SKILL.md\nnode --disable-warning=ExperimentalWarning bin/dip.js reconcile --kind work --open --limit 100",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-77d668ba-7094-47ce-985f-d978beef1bfb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:30:16.133Z",
+  "parents": [],
+  "branch": "main"
+}

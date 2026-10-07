@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b3c11dae9064ea721a21cc6a8cc9a40735fb98b3cbd86d738c640c556adf1953",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:33:27.463Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module --disable-warning=ExperimentalWarning -e 'import {ensure,Runtime} from \"./src/core.js\"; const repo=ensure(process.cwd()); const rt=new Runtime(); const id=\"task_e688572e-bac2-4207-833a-0d6f970b5bde\"; const l=rt.guard(repo,id,\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\"); if(l)rt.release(repo,id,l.token); rt.close(); console.log(\"Ownership released for live-host QA.\");'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-2da57156-c982-40b7-b517-3dac3b80ec48"
+      },
+      {
+        "at": "2026-10-07T18:33:27.467Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "mcp__dip__task_claim",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9479fa17-9bf9-498c-986a-288dc5937798"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:33:28.598Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d6ad7d29455caf2dbf6a39cf874d0d520490200baae97c2f1f8f84253f2dfc67",
+  "taskId": "task_c1493cac7fbfa9bb91e1b89859cbc0bec9b2eca12d8ac0c6804fc8c17fd028b6",
+  "type": "task.create",
+  "payload": {
+    "title": "מה הכי קלות לפיתרון ?",
+    "description": "מה הכי קלות לפיתרון ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:24:03.059Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b7a561d1b807717b3f5ffe7c7dafbe029bcca9588adfd79759ac3ca0ac9a822d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:59:46.249Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst file='.dip/config.json', config=JSON.parse(fs.readFileSync(file));\nconfig.verification['benchmark-v5']={command:['node','scripts/model-benchmark-evidence.mjs','docs/benchmarks/2026-10-07-model-controlled-v5.json'],timeoutMs:60000};\nconfig.verification['delivery-evidence']={command:['node','scripts/delivery-evidence.mjs'],timeoutMs:180000};\nfs.writeFileSync(file,JSON.stringify(config,null,2)+'\\n');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5d0099cb-5fd1-4464-8f18-eb41ec691f70"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:59:47.379Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "50e43a7fd13973e400c434c2d58bfa9ed3a62bc858158a805625a46de34565b6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:15:32.218Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git diff --name-only --diff-filter=DM",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-42919a4e-e665-4d9a-b8e4-324a99fb5474"
+      },
+      {
+        "at": "2026-10-07T17:15:33.728Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git diff --name-only --diff-filter=DM",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-42919a4e-e665-4d9a-b8e4-324a99fb5474"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:15:33.795Z",
+  "parents": [],
+  "branch": "main"
+}

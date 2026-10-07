@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "22151830db19e85bdcbf95c2efb6c63f8ff052bf0eb9988505e705ecc092429f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:29:15.414Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport {createHash} from 'node:crypto';\nimport {ensure,taskRead} from './src/core.js';\nimport {assessEvidence} from './src/actions.js';\nconst digest=createHash('sha256').update(fs.readFileSync('.dip-local/vxu-labs-dip-0.3.12.tgz')).digest('hex');\nif(digest!=='61b635f9fe5571d562dfa9cef4ddb1e956d375ed62803faba44d33d3a74e6c9d')throw new Error('Uploaded archive checksum mismatch');\nconst repo=ensure(process.cwd(),{instructions:false});\nconst ids=['task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30','task_15793da9-9d59-4fa4-acbf-65e08b24907b','task_0fc443ee-b79b-4f6d-977f-e14c34a9df57','task_e688572e-bac2-4207-833a-0d6f970b5bde'];\nconsole.log(JSON.stringify({assetMatches:true,completed:ids.map(id=>{const t=taskRead(repo,id);return{id,status:t.status,current:assessEvidence(repo,t).verifiedComplete};}),remaining:['task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344','task_2362d29e-7f1b-4f76-8d38-43fbaf961335'].map(id=>({id,status:taskRead(repo,id).status}))}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' status --short --untracked-files=no -- . ':!.dip'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b6b09616-becd-48a3-acc6-8230a24780ae"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:29:15.693Z",
+  "parents": [],
+  "branch": "main"
+}

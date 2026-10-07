@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "35d379a07be232616233d9d8a976b515ce27066427c607e4e225c24cf0f7056e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:59:33.463Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local/codex-live-qa-2LZ81u/turn-1-events.jsonl -TotalCount 5; rg -n 'install|runtime|inactive' src/cli-help.js bin/dip.js | Select-Object -First 20; Get-Content src/version.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-cd8bc821-cbb0-44aa-86ae-58e1358d757e"
+      },
+      {
+        "at": "2026-10-07T16:59:33.485Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/check.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8390b22d-9c80-43ef-a50f-bda68735835a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:59:33.508Z",
+  "parents": [],
+  "branch": "main"
+}

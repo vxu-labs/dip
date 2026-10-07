@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ac5569b59a4409e08eadfd7a09690ca59573df06cb3117bccfe489797199a256",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:54:59.454Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content scripts/longitudinal-report.mjs -TotalCount 42; Get-Content scripts/longitudinal-report.mjs | Select-Object -Last 25",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-20386d6f-82a2-4e70-be27-efd4952564c1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:54:59.707Z",
+  "parents": [],
+  "branch": "main"
+}

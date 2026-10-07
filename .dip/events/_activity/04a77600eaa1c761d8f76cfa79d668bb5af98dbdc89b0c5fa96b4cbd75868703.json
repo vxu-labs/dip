@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "04a77600eaa1c761d8f76cfa79d668bb5af98dbdc89b0c5fa96b4cbd75868703",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:11:45.797Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\";import {execute} from \"./src/actions.js\";let p=\".dip/config.json\",c=JSON.parse(fs.readFileSync(p));c.verification.unit.timeoutMs=240000;fs.writeFileSync(p,JSON.stringify(c,null,2)+\"\\n\");await execute(\"document-link\",{id:\"task_33c6a780-4445-4fe9-b090-9fc20deb4ae6\",path:\"docs/host-qa/README.md\",role:\"reference\",actor:\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\"});console.log(\"QA evidence reference saved in DIP.\");' ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7006cbf7-9529-486f-8fa0-5899b0dfa902"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:11:47.568Z",
+  "parents": [],
+  "branch": "main"
+}

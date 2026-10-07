@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "27336f927e2a530551fdfad81043ca673ecc7505f5d69da27fbc32c4ff1f18bb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:27:41.136Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-CimInstance Win32_Process -Filter \"Name='node.exe'\" | Where-Object { $_.CommandLine -like '*test-concurrency=1*' -or $_.CommandLine -like '*task verify*' } | Select-Object ProcessId,CreationDate,CommandLine | ConvertTo-Json -Compress",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-0c050aa3-ed33-4258-9d08-607b392be797"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:27:42.534Z",
+  "parents": [],
+  "branch": "main"
+}

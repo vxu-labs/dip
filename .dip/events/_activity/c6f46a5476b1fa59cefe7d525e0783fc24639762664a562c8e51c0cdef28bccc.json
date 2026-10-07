@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c6f46a5476b1fa59cefe7d525e0783fc24639762664a562c8e51c0cdef28bccc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T12:54:41.908Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content QA_REPORT.md -TotalCount 5; rg -n 'const expected|verifiedComplete: task.kind|outcome receipts' src/core.js src/actions.js README.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0e6ccf9c-084c-4d82-85ad-0f896cb57927"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T12:54:42.803Z",
+  "parents": [],
+  "branch": "main"
+}

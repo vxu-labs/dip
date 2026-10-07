@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c265e2cc2305bae7aaddb68fc24a700cce0ffd766c8201b2d712137979d43579",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:15:40.952Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst file='QA_REPORT.md',s=fs.readFileSync(file,'utf8');\nconst from='Both matched repeats completed all 24 scheduled turns';\nif(!s.includes(from))throw new Error('Expected report sentence missing');\nfs.writeFileSync(file,s.replace(from,'Both matched repeats collected all 24 scheduled attempts')+'\\nThe first platform CI run passed Linux, including browser checks, but macOS rejected the outbox test fixture\\'s `/var` versus `/private/var` alias. Canonicalizing its existing temporary-directory anchor preserves strict move/cleanup guards. Subsequent shared-runtime failures followed the aborted first fixture. This is a test-harness correction; measured production source and all benchmark outcomes remain unchanged. The original CI failure is retained.\\n');\n'@ | node --input-type=module\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning --test test/outbox-recovery.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-cab106e1-e284-4ef2-8743-979fae26213c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:15:42.198Z",
+  "parents": [],
+  "branch": "main"
+}

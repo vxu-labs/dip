@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1878e9a40cd9be1cfb14d8adf9b179db3983b3029d8a7dabd368f8eb592c93f3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:28:33.503Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'E:/Program Files/GitHub CLI/gh.exe' release create v0.3.12 .dip-local/vxu-labs-dip-0.3.12.tgz --repo vxu-labs/dip --target 0672ce37de01094fa0c8aa52b88fb9bfe084ccd8 --title 'DIP 0.3.12: recoverable outbox and explicit completion' --notes-file .dip-local/release-0.3.12-notes.md\nif ($LASTEXITCODE -ne 0) { throw 'Release creation failed; inspect before retry' }\n& 'E:/Program Files/GitHub CLI/gh.exe' release view v0.3.12 --repo vxu-labs/dip --json tagName,url,isDraft,isPrerelease,assets",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-7ac3dbc5-c6e5-4a55-8d63-5724aff8d55d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:28:34.140Z",
+  "parents": [],
+  "branch": "main"
+}

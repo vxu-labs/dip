@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "eventId": "95aa3432e24c7b1c3c04956fba384b14b499cc1a125688d56b73beab6ab24527",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:40:11.836Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Copy-Item -LiteralPath .dip-local/codex-lifecycle-result.json -Destination .dip-local/codex-lifecycle-inventory-case-error.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8238abf6-d90d-4769-8afc-accb56ed524c"
+      },
+      {
+        "at": "2026-10-07T18:40:11.878Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/codex-live-lifecycle.mjs"
+        ],
+        "changeHash": "b0201f46e0b92a9ccb1de87e0aebc0b123aeda742c7efc2e20a66d2bef9c1cc4",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1a039366-44a0-4086-b08c-fec64a2989fb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:40:12.102Z",
+  "parents": [],
+  "branch": "main"
+}

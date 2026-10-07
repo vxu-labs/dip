@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d9ea71f110f283580e2981fcfc20729e7cf8ee144a34fa570307be62f4297393",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T13:33:27.971Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/model-controlled.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "1e1ffe9d-3753-4b1d-b5ff-466b2c3d5210"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:33:27.975Z",
+  "parents": [],
+  "branch": "main"
+}

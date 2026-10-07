@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fe74d153b711f500181af81c52b60b48ab8977f3a5f2a9c0913dc098432016ae",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:56:55.395Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst p=JSON.parse(fs.readFileSync('package.json'));p.version='0.3.8';fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\\n');\nconst lock=JSON.parse(fs.readFileSync('package-lock.json'));lock.version=p.version;lock.packages[''].version=p.version;fs.writeFileSync('package-lock.json',JSON.stringify(lock,null,2)+'\\n');\n'@ | node --input-type=module\nnpx prettier --write src/portable.js src/repository-integration.js src/client-discovery.js src/event-cache.js src/actions.js src/mcp.js src/workflow.js src/cli-help.js bin/dip.js skills/dip/SKILL.md test/low-friction.test.js docs/intent-transitions.md docs/portable.md docs/client-discovery.md docs/plans/low-friction-integration.md docs/automation.md docs/compatibility.md docs/protocol.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0179fedd-c9e3-40ea-a917-6463cafbd0b0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:56:56.039Z",
+  "parents": [],
+  "branch": "main"
+}

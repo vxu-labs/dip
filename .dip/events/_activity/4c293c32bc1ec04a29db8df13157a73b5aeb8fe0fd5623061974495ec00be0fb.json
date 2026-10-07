@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4c293c32bc1ec04a29db8df13157a73b5aeb8fe0fd5623061974495ec00be0fb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:34:19.538Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning bin/dip.js task verify --id task_33c6a780-4445-4fe9-b090-9fc20deb4ae6 --check host-qa-evidence --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9440e95b-823b-4705-9c3e-9e669c73b03a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:34:19.938Z",
+  "parents": [],
+  "branch": "main"
+}

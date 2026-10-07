@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f7dd41f028b02964cd8629eb267f1fbb5253e44f70e96ce6dac405c058b5813a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:20:31.724Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\ngit remote -v\nGet-Command gh | Select-Object -ExpandProperty Source\nnode scripts/check.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-76e47348-3cbf-4079-8335-31b6ad6e2aee"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:20:32.852Z",
+  "parents": [],
+  "branch": "main"
+}

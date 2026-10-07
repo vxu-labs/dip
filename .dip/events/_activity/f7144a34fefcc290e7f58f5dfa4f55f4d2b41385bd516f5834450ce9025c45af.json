@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f7144a34fefcc290e7f58f5dfa4f55f4d2b41385bd516f5834450ce9025c45af",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:24:57.023Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath 'scripts/browser-smoke.mjs' | Select-Object -Skip 94 -First 23\nrg -n 'BROWSER|executable|channel' scripts/browser-smoke.mjs\nTest-Path -LiteralPath 'C:/Program Files/Google/Chrome/Application/chrome.exe'\nTest-Path -LiteralPath 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'\nrg --files 'C:/Users/offic/.cache/codex-runtimes' -g chrome.exe -g chrome-headless-shell.exe -g msedge.exe",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4336921a-48e2-452b-8b9c-d62c730bdac5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:24:57.275Z",
+  "parents": [],
+  "branch": "main"
+}

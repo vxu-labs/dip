@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "84bb0826a2797fd1a3a982fa611e7f98aa9769eba0e6440bc71acbb2dd41fb54",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+    "records": [
+      {
+        "at": "2026-10-06T15:25:41.045Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a1113a-8d30-7342-a79d-95b1d5087fca",
+        "taskId": "task_f573eef2129bfc533f1b5b43319d07e6d8fc43647d5338717792e10172d33ddc",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath 'C:\\Users\\offic\\.dip\\git-hooks\\pre-commit'",
+        "recordId": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca:PreToolUse:exec-a8515949-6ec7-4c52-a5cb-e083c5442014"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:25:41.687Z",
+  "parents": [],
+  "branch": "main"
+}

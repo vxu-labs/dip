@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "914e90186f356491abe8c2aca306705b92bffe80951758f6e5f27bb653bd823d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T16:42:36.793Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$inspectQa = @'\nimport fs from 'node:fs';import path from 'node:path';import {redact} from './src/util.js';\nconst q=JSON.parse(fs.readFileSync('.dip-local/current-host-qa.json'));\nconst es=fs.readFileSync(path.join(q.root,'turn-1-events.jsonl'),'utf8').trim().split('\\n').flatMap(l=>{try{return[JSON.parse(l)]}catch{return[]}});\nfor(const e of es.filter(e=>e.type==='item.completed' && ['command_execution','agent_message'].includes(e.item?.type)))console.log(redact(JSON.stringify(e.item)).slice(0,2400));\n'@\n$inspectQa | node --disable-warning=ExperimentalWarning --input-type=module\nGet-Content -LiteralPath 'src/workflow.js' -TotalCount 180",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4aba367b-d5cc-455f-b0ab-d90a891fd009"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T16:42:37.915Z",
+  "parents": [],
+  "branch": "main"
+}

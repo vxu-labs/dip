@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e86b8523b82fbe4c811a20763aec9514838e25be55de4165bdb8b520397f1ccf",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T11:42:03.784Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "git add -- .dip/events/task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183; git -c core.hooksPath=.dip-local/empty-hooks commit --quiet -m 'Record trusted capture release validation [skip ci]'; git push origin main; gh release create v0.3.4 .\\vxu-labs-dip-0.3.4.tgz --target main --title 'DIP v0.3.4: trusted tool capture and plan adapters' --notes-file .dip-local/release-0.3.4.md",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ac0fea6b-d5fb-40ac-baf2-f91b3a566f7c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T11:42:04.445Z",
+  "parents": [],
+  "branch": "main"
+}

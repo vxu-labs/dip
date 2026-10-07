@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9c2341a08b2ea983380557675e6eb8661211cbac4d6c25704bdaf0d8e9049ab4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T15:53:39.230Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/longitudinal-stress-evidence.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "af383ba4-bf20-41cc-b217-2153781e1fa6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:53:39.239Z",
+  "parents": [],
+  "branch": "main"
+}

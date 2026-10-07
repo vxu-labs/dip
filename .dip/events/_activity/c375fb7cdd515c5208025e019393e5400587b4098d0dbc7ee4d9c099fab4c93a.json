@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c375fb7cdd515c5208025e019393e5400587b4098d0dbc7ee4d9c099fab4c93a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:51:40.668Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --test --test-concurrency=1 test/documents.test.js test/core.test.js test/workflow.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-da36712d-4239-420e-83c6-9109133cdb7e"
+      },
+      {
+        "at": "2026-10-07T09:51:40.690Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npx.cmd prettier --write scripts/document-hook-smoke.mjs; npm.cmd pack --pack-destination .dip-local --json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-30202dcc-0e5b-4d8c-9d89-6ee955f662fb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:51:40.906Z",
+  "parents": [],
+  "branch": "main"
+}

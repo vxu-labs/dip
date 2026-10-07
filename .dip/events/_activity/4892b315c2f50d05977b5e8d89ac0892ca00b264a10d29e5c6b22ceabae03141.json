@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4892b315c2f50d05977b5e8d89ac0892ca00b264a10d29e5c6b22ceabae03141",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T20:48:17.837Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst d=JSON.parse(fs.readFileSync('.dip-local/model-controlled-v5.json'));\nconsole.log(JSON.stringify({completedAt:d.completedAt||null,finishedPairs:d.pairs.filter(p=>p.arms.with?.score&&p.arms.without?.score).length,observedTurns:d.pairs.reduce((n,p)=>n+Object.values(p.arms).reduce((m,a)=>m+Number(!!a.seed)+Number(!!a.recovery),0),0)}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-f3aa1928-e921-4c5b-b05e-35a576983b9a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T20:48:19.027Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "10a79499a342cc449504f9115b8b169b1679008eb6943b07a90cae8813626545",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:46:24.549Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nfs.writeFileSync('.dip-local/release-0.3.6.md', '# Focused project navigation\\n\\nDIP now exposes task_requirements, component_owners, task_changes, project_search and task_related through MCP, with matching CLI commands.\\n\\n- Inspect current criteria, source freshness and actual prerequisite evidence.\\n- See live overlapping local worktree owners while excluding expired leases.\\n- Explain scoped source additions, modifications and deletions, intent changes and configured-check changes since evidence.\\n- Search task/decision candidates with Unicode BM25 and query-centered excerpts, plus explicit dependency/scope/document links.\\n- Keep a disposable incremental search database separate from task ownership and partitioned by checkout. Agent context and task selection omit activity batches.\\n- New verification records contain intent-field hashes without duplicating prose; older field details remain unavailable.\\n\\nThe model-comparison experiment remains an open backlog task with docs/benchmarks/semantic-alternatives.md linked as a plan. No alternative was trained or evaluated in this release. Search is lexical and graph based; it does not establish semantic identity or improve AI quality by itself.\\n\\nTen new regression cases include 1,000-item index refresh/rebuild, isolated ownership under cache locks, query-centered excerpts, worktree owners, source/evidence freshness, filters and actual MCP/CLI transport. See docs/navigation.md for coverage, limits and upgrade instructions.\\n\\nReload existing MCP connections to discover the new tools. CLI commands are immediately available. Use at your own risk and verify actual code before relying on completion.\\n');\n'@ | node --input-type=module\nnode scripts/check.mjs\ngit diff --check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1643d0e9-a72e-418e-8516-a7118b8abd00"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:46:26.906Z",
+  "parents": [],
+  "branch": "main"
+}

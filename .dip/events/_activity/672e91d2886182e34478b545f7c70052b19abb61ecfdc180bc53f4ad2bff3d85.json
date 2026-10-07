@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "672e91d2886182e34478b545f7c70052b19abb61ecfdc180bc53f4ad2bff3d85",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:16:30.852Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const s=fs.readFileSync('src/mcp.js','utf8');console.log([...s.matchAll(/\\badd\\(\\s*\"([a-z_]+)\"/g)].map(m=>m[1]).join('\\n'));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-017e70e5-a0d9-4acc-8c5f-a68f8d4f2671"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:16:31.193Z",
+  "parents": [],
+  "branch": "main"
+}

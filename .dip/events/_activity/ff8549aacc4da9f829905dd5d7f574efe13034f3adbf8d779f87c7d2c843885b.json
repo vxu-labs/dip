@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ff8549aacc4da9f829905dd5d7f574efe13034f3adbf8d779f87c7d2c843885b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T08:07:52.090Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport urllib.request,json\nmodels=['minishlab/potion-base-8M','minishlab/potion-retrieval-32M','minishlab/potion-multilingual-128M','sentence-transformers/static-similarity-mrl-multilingual-v1','sentence-transformers/all-MiniLM-L6-v2']\nrows=[]\nfor model in models:\n d=json.load(urllib.request.urlopen('https://huggingface.co/api/models/'+model))\n card=d.get('cardData') or {}\n langs=card.get('language') or []\n rows.append({'id':model,'revision':d['sha'],'license':card.get('license'),'parameters':d.get('safetensors',{}).get('total'),'languageTags':langs,'source':'https://huggingface.co/'+model})\nprint(json.dumps(rows,indent=2))\nopen('.dip-local/static-alternatives-metadata.json','w',encoding='utf-8').write(json.dumps(rows,indent=2)+'\\n')\n'@ | & '.\\.dip-local\\laya-env\\Scripts\\python.exe'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1d15a20b-5071-461d-9373-eecce811b2ec"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T08:07:52.406Z",
+  "parents": [],
+  "branch": "main"
+}

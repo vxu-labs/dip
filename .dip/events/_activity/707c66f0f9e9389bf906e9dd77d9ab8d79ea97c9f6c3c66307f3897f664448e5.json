@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "707c66f0f9e9389bf906e9dd77d9ab8d79ea97c9f6c3c66307f3897f664448e5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T19:25:54.373Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content .dip-local/unit-0.3.12-final.log | Select-Object -Last 9",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-55ac2d7f-107a-4b02-a0ba-d8282cc1423d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T19:25:54.597Z",
+  "parents": [],
+  "branch": "main"
+}

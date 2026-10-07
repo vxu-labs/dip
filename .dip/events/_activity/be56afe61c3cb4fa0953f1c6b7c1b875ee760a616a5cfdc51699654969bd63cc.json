@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "be56afe61c3cb4fa0953f1c6b7c1b875ee760a616a5cfdc51699654969bd63cc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:41:14.566Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\n$env:DIP_BENCH_CODEX = 'C:/Users/offic/AppData/Local/OpenAI/Codex/bin/8aaf1547b825b104/codex.exe'\nnode --disable-warning=ExperimentalWarning scripts/model-benchmark.mjs --output .dip-local/model-controlled-v4.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e953eca0-8bd2-4d29-a409-fe92dceffafb"
+      },
+      {
+        "at": "2026-10-07T18:41:14.580Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning bin/dip.js task verify --id task_15793da9-9d59-4fa4-acbf-65e08b24907b --check unit --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5a2ec07b-5e3f-420d-92b7-26b3fb1dbcb6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:41:15.598Z",
+  "parents": [],
+  "branch": "main"
+}

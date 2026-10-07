@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6492a20f7c7c880fcd0a2ad78af8a76233a86c74476c97d672e42da329afd16e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:06:42.952Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "gh run list --repo vxu-labs/dip --branch main --limit 2 --json databaseId,headSha,status,conclusion,url",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-014ef231-9408-42b6-8c1f-507ff63743f6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:06:46.056Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "eventId": "daa817fea1d87ad55c52d2cf9ca685b62c8a2fcfef5313b90b1cc68f8f580a7d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T15:11:23.011Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/src/capture-policy.js",
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/src/util.js",
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/src/portable.js",
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/test/privacy-recovery.test.js"
+        ],
+        "changeHash": "f7286ebb6deddb75baf5742a6bd1412aa8db739ba61c1fc7a990eff21ee34d88",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-67ff9f1c-c605-4617-9405-0327340b6456"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T15:11:23.701Z",
+  "parents": [],
+  "branch": "main"
+}

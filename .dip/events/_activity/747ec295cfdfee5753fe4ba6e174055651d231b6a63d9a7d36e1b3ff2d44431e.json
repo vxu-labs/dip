@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "747ec295cfdfee5753fe4ba6e174055651d231b6a63d9a7d36e1b3ff2d44431e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:50:45.220Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:DIP_BROWSER_EXECUTABLE = 'C:/Program Files/Google/Chrome/Application/chrome.exe'\n$env:PATH = 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;' + $env:PATH\nnode --disable-warning=ExperimentalWarning bin/dip.js task verify --id task_15793da9-9d59-4fa4-acbf-65e08b24907b --check browser --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-95f470d6-c2f3-4545-a6b6-a29983efe9d1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:50:46.388Z",
+  "parents": [],
+  "branch": "main"
+}

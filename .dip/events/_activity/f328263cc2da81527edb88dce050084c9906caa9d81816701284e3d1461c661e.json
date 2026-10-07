@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f328263cc2da81527edb88dce050084c9906caa9d81816701284e3d1461c661e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:22:53.283Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module -e 'import fs from \"node:fs\"; import {execFileSync} from \"node:child_process\"; fs.mkdirSync(\"scripts/fixtures\",{recursive:true}); fs.writeFileSync(\"scripts/fixtures/model-benchmark-v3.txt\",execFileSync(\"git\",[\"show\",\"HEAD:scripts/model-benchmark.mjs\"])); let c=JSON.parse(fs.readFileSync(\".dip/config.json\")); c.verification[\"task-prepare\"]={command:[\"node\",\"--test\",\"test/task-prepare.test.js\"],timeoutMs:60000}; fs.writeFileSync(\".dip/config.json\",JSON.stringify(c,null,2)+\"\\n\");'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1a5452d7-3c12-416a-9f1c-3623fe5b5c2d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:22:53.604Z",
+  "parents": [],
+  "branch": "main"
+}

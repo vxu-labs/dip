@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7ed399e0e2e7e98f758c969b168e4fb5a5429292fe553435c2244f6551b7693a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a116b7-6257-7131-b5de-2fe8600dac3e",
+    "records": [
+      {
+        "at": "2026-10-07T14:15:05.394Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a116b7-6257-7131-b5de-2fe8600dac3e",
+        "taskId": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+        "tool": "mcp__codex_apps__github__search_prs",
+        "branch": "main",
+        "recordId": "codex:01a116b7-6257-7131-b5de-2fe8600dac3e:PostToolUse:exec-8f85f35a-e9db-4225-bfb0-bd4e537acd8b"
+      },
+      {
+        "at": "2026-10-07T14:15:05.675Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a116b7-6257-7131-b5de-2fe8600dac3e",
+        "taskId": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+        "tool": "mcp__codex_apps__github__get_repo",
+        "branch": "main",
+        "recordId": "codex:01a116b7-6257-7131-b5de-2fe8600dac3e:PostToolUse:exec-9322d0ef-0b7b-4fca-808d-5f77fdf94513"
+      },
+      {
+        "at": "2026-10-07T14:15:06.003Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a116b7-6257-7131-b5de-2fe8600dac3e",
+        "taskId": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+        "tool": "mcp__codex_apps__github__get_users_recent_prs_in_repo",
+        "branch": "main",
+        "recordId": "codex:01a116b7-6257-7131-b5de-2fe8600dac3e:PostToolUse:exec-9d77cf7e-4785-4315-bd5c-b1b7eaf463f7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:15:06.682Z",
+  "parents": [],
+  "branch": "main"
+}

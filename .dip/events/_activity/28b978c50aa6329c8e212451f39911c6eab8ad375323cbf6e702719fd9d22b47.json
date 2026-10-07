@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "28b978c50aa6329c8e212451f39911c6eab8ad375323cbf6e702719fd9d22b47",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T13:05:05.366Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$dipReleaseNotes = @'\nDIP now records explicit task outcomes and separates informational discussions from development work. task_finish can verify implemented work with a configured check, retain ownership on failure, and record replacement IDs without claiming that replacements are complete.\n\nCLI task get and reconcile return compact summaries by default. MCP uses the same views; full CLI history requires --full. The dashboard exposes discussion filters and answered/replaced records. Stop preserves explicit outcomes, while partial work remains open.\n\nThe project audit finished nine conversational deliverables, linked two fulfilled older intents to execution tasks, and retained unfinished semantic, portability, reliability, coordination and privacy work. In one local state, compact summaries used 34,835 UTF-8 JSON bytes versus 2,198,352 bytes with raw history. This is a representation measurement, not proof of lower model-token cost, latency or better quality.\n\nValidation: 99 Windows cases, 97 passes and two POSIX skips; configured stable unit/browser checks, clean package installation/removal, skill validation, original benchmark evidence replay and GitHub CI on Windows/Linux/macOS.\n\nUse at your own risk. Review captured project data before publishing. Host trust and MCP connection reload remain required; instructions do not guarantee every agent's compliance.\n'@; Set-Content -LiteralPath '.dip-local/release-0.3.7.md' -Value $dipReleaseNotes -Encoding utf8; & \"$env:APPDATA\\npm\\dip.cmd\" reconcile --id task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d --limit 1 | ConvertFrom-Json | Select-Object -ExpandProperty tasks | Select-Object status,verification,integrated,kind | ConvertTo-Json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-99a90c8d-2ee7-4b6f-9edb-00a641bfdd64"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T13:05:06.669Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1aa1a7f7865fe64b21f93bbb9bb52dbd6776dd7ecd4eb0b5541c04ebaa809d56",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:27:26.881Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content test/privacy-recovery.test.js | Select-Object -Last 80; Get-Content .dip-local/app-server-experimental/v2/ThreadStartParams.json | Select-Object -Skip 425 -First 45; Get-Content .dip-local/app-server-experimental/v2/TurnPlanUpdatedNotification.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e6389252-4eb0-4451-bff9-2c9112b66d62"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:27:27.956Z",
+  "parents": [],
+  "branch": "main"
+}

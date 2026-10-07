@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "67c0e685df921821fd25348aa44aeafc2360bf300be204083cd92a11f5b6e975",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T17:10:55.079Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n -i 'offic|—|ANTHROPIC_API_KEY|Bearer ' docs/host-qa/2026-10-07-codex.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-523258e1-6cf9-49d8-87d2-9641107128f2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T17:10:55.772Z",
+  "parents": [],
+  "branch": "main"
+}

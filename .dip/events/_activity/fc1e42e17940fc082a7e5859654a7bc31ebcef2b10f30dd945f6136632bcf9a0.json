@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fc1e42e17940fc082a7e5859654a7bc31ebcef2b10f30dd945f6136632bcf9a0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T12:05:22.673Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import os from 'node:os';import path from 'node:path';const dirs=fs.readdirSync(os.tmpdir()).filter(x=>x.startsWith('dip-model-controlled-')).map(name=>({name,mtime:fs.statSync(path.join(os.tmpdir(),name)).mtimeMs})).sort((a,b)=>b.mtime-a.mtime);const newest=path.join(os.tmpdir(),dirs[0].name);const root=path.join(newest,'pair-0','without','project');console.log(JSON.stringify({fixture:dirs[0].name,files:fs.readdirSync(root),sandboxState:fs.existsSync(path.join(newest,'pair-0','without','user','.codex','.sandbox'))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c17a81f2-c64f-4398-8356-3403f9e6392d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:05:24.267Z",
+  "parents": [],
+  "branch": "main"
+}

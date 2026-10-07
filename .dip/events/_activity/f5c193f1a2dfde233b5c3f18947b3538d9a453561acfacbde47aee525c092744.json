@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f5c193f1a2dfde233b5c3f18947b3538d9a453561acfacbde47aee525c092744",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:16:19.658Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+        "tool": "mcp__dip__task_update",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-8da1b1d9-3cfa-4064-a828-c1b8febb04c3"
+      },
+      {
+        "at": "2026-10-07T18:16:19.682Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --input-type=module --disable-warning=ExperimentalWarning -e 'import {execute} from \"./src/actions.js\"; import {ensure,Runtime} from \"./src/core.js\"; const repo=ensure(process.cwd()); const rt=new Runtime(); const id=\"task_15793da9-9d59-4fa4-acbf-65e08b24907b\"; const lease=rt.guard(repo,id,\"codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\"); if(lease) rt.release(repo,id,lease.token); rt.close(); console.log(\"Recovery ownership released after configured verification.\");'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-d3b131e9-4111-4c1d-bd3e-6e534ab35c56"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:16:20.499Z",
+  "parents": [],
+  "branch": "main"
+}

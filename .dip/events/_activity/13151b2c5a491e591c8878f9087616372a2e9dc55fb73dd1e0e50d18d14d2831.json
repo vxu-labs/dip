@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "13151b2c5a491e591c8878f9087616372a2e9dc55fb73dd1e0e50d18d14d2831",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T18:58:35.501Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'appendFileSync|schedule = input|check: \"full\"|check: \"stage\"' test/completion.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-54ba06bc-97c6-4554-8522-9c9d133553f4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T18:58:35.671Z",
+  "parents": [],
+  "branch": "main"
+}

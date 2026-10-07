@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "01092ca38e0686b357f6626563fa11462c752aead2ef97920cbb64635c068cb2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T12:51:45.727Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/document-hook-smoke.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "c9824c02-abcc-4caf-b0ee-c424a5252dba"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T12:51:45.733Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7436d121d96d715b6a4316c4fb1915cdab362ce8e05f578a5b44d3d8d3aac3d4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:39:18.302Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {ensure,project} from './src/core.js';const s=project(ensure(process.cwd(),{instructions:false}),null,null,{includeActivity:false});console.log(JSON.stringify(s.tasks.filter(t=>t.kind==='work'&&['backlog','ready','in_progress','blocked','conflict'].includes(t.status)).map(t=>({id:t.id,title:t.title,status:t.status,source:t.history[0]?.payload.source})),null,2));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-98e1ab90-18bb-4747-9871-099645d6c11f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:39:19.466Z",
+  "parents": [],
+  "branch": "main"
+}

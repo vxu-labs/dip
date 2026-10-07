@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "392ae3630afb5984e8386674182056dd0435c6e21581515e1872d3b01e6b4884",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-06T12:37:12.071Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/desktop-qa.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "b69b43a6-8607-43cd-ac1b-12004dc65503"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T12:37:12.076Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cf4cca25770b6798cd69836f1791e3c0425b68ef66d47605377f1299e695d642",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:52:59.460Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" --version\nnode scripts/document-hook-smoke.mjs \"$env:APPDATA/npm/node_modules/@vxu-labs/dip/bin/dip.js\"\n& \"$env:APPDATA/npm/dip.cmd\" stop\n& \"$env:APPDATA/npm/dip.cmd\" install --roots \"$env:USERPROFILE\" --port 4317\n& \"$env:APPDATA/npm/dip.cmd\" init",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1ab1c00f-4292-4e2a-a4a0-c1fdffe61af3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:53:00.104Z",
+  "parents": [],
+  "branch": "main"
+}

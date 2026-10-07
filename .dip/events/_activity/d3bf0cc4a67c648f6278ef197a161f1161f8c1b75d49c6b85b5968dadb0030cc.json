@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d3bf0cc4a67c648f6278ef197a161f1161f8c1b75d49c6b85b5968dadb0030cc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T21:14:29.225Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content test/outbox-recovery.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-62827aed-12f7-4d19-a815-8d885ffd5d72"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:14:30.009Z",
+  "parents": [],
+  "branch": "main"
+}

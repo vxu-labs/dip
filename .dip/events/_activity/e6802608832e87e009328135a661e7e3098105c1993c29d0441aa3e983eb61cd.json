@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e6802608832e87e009328135a661e7e3098105c1993c29d0441aa3e983eb61cd",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T13:39:52.656Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {createHash} from 'node:crypto';const sha=s=>createHash('sha256').update(s).digest('hex');for(const f of ['scripts/model-benchmark.mjs','scripts/model-benchmark-fixtures.mjs']){const text=fs.readFileSync(f,'utf8');console.log(JSON.stringify({file:f,lfHashMatchesRaw:sha(text)===sha(text.replaceAll('\\r\\n','\\n'))}));}\n'@ | node --input-type=module\ngh run list --branch main --limit 1 --json databaseId,headSha,status,conclusion",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9210f3b5-3eb3-459d-b014-dd38976f0526"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T13:39:52.862Z",
+  "parents": [],
+  "branch": "main"
+}

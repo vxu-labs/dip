@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "90117af825cdd1e5a51ed186f0a175bfc2c82f14d7343a8c8acdeefabdb5d05f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-06T15:53:37.820Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport path from 'node:path';\nimport os from 'node:os';\nimport assert from 'node:assert/strict';\nimport {execFileSync} from 'node:child_process';\nconst root=fs.mkdtempSync(path.join(os.tmpdir(),'dip-longitudinal-stress-preflight-'));\nfor(const file of ['cart.mjs','summary.mjs','receipt.mjs','inventory.mjs','returns.mjs','pipeline.mjs'])fs.writeFileSync(path.join(root,file),'// deliberately empty module\\n');\nconst text=execFileSync(process.execPath,['scripts/longitudinal-stress.mjs','--project-worker',root,'0'],{encoding:'utf8',windowsHide:true,maxBuffer:1048576});\nconst result=JSON.parse(text.split(/\\r?\\n/).findLast(l=>l.startsWith('STRESS_RESULT:')).slice(14));\nassert.equal(result.total,2304);assert.equal(result.passed,0);assert.equal(result.loadErrors.length,0);\nconsole.log('Isolated stress-worker preflight detected all 2304 absent-export checks.');\nconst resolved=fs.realpathSync(root),tmp=fs.realpathSync(os.tmpdir());\nassert.ok(resolved.startsWith(tmp+path.sep)&&path.basename(resolved).startsWith('dip-longitudinal-stress-preflight-'));\nfs.rmSync(resolved,{recursive:true,force:true});\n'@ | node --input-type=module\nnpx prettier --write scripts/longitudinal-stress-evidence.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-131c2b5d-fa99-48a7-9f34-98d2b00bd7bf"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-06T15:53:39.234Z",
+  "parents": [],
+  "branch": "main"
+}

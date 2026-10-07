@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5c15e7ba5bddd8d531b6ce5afaf29218bd0b8ed31e61e00b3e30f19c74a56b07",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:44:35.202Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$dipCli = \"$env:APPDATA/npm/dip.cmd\"\n$documentState = & $dipCli task document-list --id task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be | ConvertFrom-Json\nforeach ($documentReference in $documentState.documents) { if ($documentReference.currentness -eq 'stale') { & $dipCli task document-link --id task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be --path $documentReference.path --role $documentReference.role --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd } }\n& $dipCli task verify --id task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be --check unit --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-6bd61a64-7d22-44eb-8cc7-2766ee587f16"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:44:36.852Z",
+  "parents": [],
+  "branch": "main"
+}

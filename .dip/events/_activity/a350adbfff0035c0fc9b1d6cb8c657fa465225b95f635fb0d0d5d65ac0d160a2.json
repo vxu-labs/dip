@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a350adbfff0035c0fc9b1d6cb8c657fa465225b95f635fb0d0d5d65ac0d160a2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T14:31:46.207Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import path from 'node:path';import {execFileSync} from 'node:child_process';\nconst parent=path.resolve('.dip-local'),root=fs.mkdtempSync(path.join(parent,'release-0.3.8-source-'));if(path.dirname(root)!==parent)throw new Error('Unexpected release workspace');\nconst git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe';const archive=root+'.tar';fs.writeFileSync(archive,execFileSync(git,['archive','--format=tar','HEAD'],{maxBuffer:32*1024*1024,windowsHide:true}));execFileSync('tar',['-xf',archive,'-C',root],{windowsHide:true});console.log(root);\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1aa9e0c7-0118-41c0-9bc8-9f626c815afc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T14:31:47.082Z",
+  "parents": [],
+  "branch": "main"
+}

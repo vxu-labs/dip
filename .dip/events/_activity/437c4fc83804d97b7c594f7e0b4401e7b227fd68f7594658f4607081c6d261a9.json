@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "437c4fc83804d97b7c594f7e0b4401e7b227fd68f7594658f4607081c6d261a9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T09:53:07.122Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" --version\nnode scripts/document-hook-smoke.mjs \"$env:APPDATA/npm/node_modules/@vxu-labs/dip/bin/dip.js\"\n& \"$env:APPDATA/npm/dip.cmd\" stop\n& \"$env:APPDATA/npm/dip.cmd\" install --roots \"$env:USERPROFILE\" --port 4317\n& \"$env:APPDATA/npm/dip.cmd\" init",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1ab1c00f-4292-4e2a-a4a0-c1fdffe61af3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T09:53:08.399Z",
+  "parents": [],
+  "branch": "main"
+}

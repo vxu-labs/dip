@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ff526e509970575d61dfeffd9097ad55f7a8e8157302a2e3e9e964c996cd6ae9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-07T10:14:07.618Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport path from 'node:path';\nimport {createHash} from 'node:crypto';\nconst installed=path.join(process.env.APPDATA,'npm/node_modules/@vxu-labs/dip');\nfor(const folder of ['src','bin','public','skills/dip']) for(const name of fs.readdirSync(folder)) {\n const local=path.join(folder,name), remote=path.join(installed,folder,name);\n if(!fs.statSync(local).isFile()) continue;\n if(createHash('sha256').update(fs.readFileSync(local)).digest('hex')!==createHash('sha256').update(fs.readFileSync(remote)).digest('hex')) throw Error('Installed source differs: '+local);\n}\nconsole.log('Installed runtime, dashboard and skill match the published source.');\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-0c0bedd2-29c9-42bd-b673-5ad92812ff82"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T10:14:08.204Z",
+  "parents": [],
+  "branch": "main"
+}
