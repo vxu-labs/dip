@@ -1,5 +1,7 @@
 # Codex desktop workflow QA
 
+Additional [7 October CLI-host QA](host-qa/README.md) tests trusted prompt/lifecycle delivery, saved future intent, refinement and independent CLI-only recovery. It preserves the original provisioning/approval failure and remaining gaps. These CLI trials are distinct from the desktop UI trials below.
+
 Test date: 6 October 2026. The visible Codex selector was GPT-6.1 Sol with High reasoning. Two existing local projects were used with tightly limited prompts: a duplicate-file application and a teleprompter. Product code and user settings were outside the permitted scope. Public evidence below omits personal paths, unrelated chat content and screenshots of the user's sidebar.
 
 ## Method and observations

@@ -7,7 +7,7 @@
         "--test",
         "--test-concurrency=1"
       ],
-      "timeoutMs": 180000
+      "timeoutMs": 240000
     },
     "browser": {
       "command": [
@@ -117,6 +117,21 @@
         "test/privacy-recovery.test.js"
       ],
       "timeoutMs": 90000
+    },
+    "host-qa": {
+      "command": [
+        "node",
+        "--test",
+        "test/host-qa.test.js"
+      ],
+      "timeoutMs": 60000
+    },
+    "host-qa-evidence": {
+      "command": [
+        "node",
+        "scripts/host-qa-evidence.mjs"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate"

@@ -1,5 +1,7 @@
 # Operating DIP
 
+If a DIP MCP call is unavailable or approval-blocked, avoid repeating other methods through the same blocked route. Use installed local CLI only when the host permits shell execution. Report unsaved intent if no authorized route remains; do not change approval policies or bypass hook trust. Native planning tools are host-dependent: save a prose-only plan explicitly when unavailable. [Live-host failure and recovery evidence](host-qa/README.md).
+
 Use Node.js 24 or newer. Install globally and run `dip install`; restart your terminal and coding tools, and enable/trust the installed agent hooks. `dip doctor` reports actual configuration, recorder heartbeat, watcher attachment, observed recording sources and outbox failures. Configuration does not prove that an already-running agent loaded or trusted it.
 
 ## Updates and recovery

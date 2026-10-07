@@ -1,5 +1,6 @@
 <!-- dip:start -->
 DIP automatically records prompts, tool activity, file batches and Git lifecycle events. Do not log each edit manually or call an extra model.
+If a DIP MCP call is unavailable or approval-blocked, do not retry other methods through that blocked route. Use the installed CLI for the same local intent only when shell execution is authorized. Do not change host approval settings or bypass hook trust. If no authorized route remains, report unsaved intent and checkpoint when possible. If native planning is unavailable, explicitly save a prose plan once with dip task plan.
 Use the dip MCP tools for intent only: creating/refining tasks, dependencies, decisions, meaningful checkpoints and verification.
 At session start, read the compact context supplied by the hook. Use project_context only when more detail is needed.
 If no current hook supplied task_id, automatic prompt/plan capture is unconfirmed. Use MCP or CLI to create/refine intent and explicitly save plans; never assume a plan tool was recorded. Use dip task create --help or dip task plan --help instead of reading implementation source. On Windows, if dip is absent from PATH, the standard npm shim may be at $env:APPDATA/npm/dip.cmd.

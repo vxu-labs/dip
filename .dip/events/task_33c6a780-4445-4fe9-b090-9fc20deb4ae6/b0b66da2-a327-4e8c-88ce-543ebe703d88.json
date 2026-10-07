@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b0b66da2-a327-4e8c-88ce-543ebe703d88",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.create",
+  "payload": {
+    "title": "Harden live-host intent fallback and preserve planning status for read commands",
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "description": "Defects observed during real L01 Codex trial: MCP approval-blocked calls retried across six methods; a standalone skill read marked the future-planning request in_progress even though its shell never executed. Add bounded authorized fallback guidance and conservative pure-read recognition; publish sanitized actual host evidence without asserting unsupported native-plan, compaction or Claude coverage.",
+    "scope": [
+      "src/workflow.js",
+      "src/automation.js",
+      "src/core.js",
+      "src/repository-integration.js",
+      "skills/dip/SKILL.md",
+      "test/host-qa.test.js",
+      "scripts/host-qa-evidence.mjs",
+      "docs/host-qa",
+      "docs/desktop-qa.md",
+      "docs/compatibility.md",
+      "docs/operations.md",
+      "QA_REPORT.md",
+      "README.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json"
+    ],
+    "acceptance": [
+      "Standalone supported pure file reads preserve future backlog; compounds, redirection and executable expressions still take the coordinated work path.",
+      "Generated/packaged instructions use only authorized CLI fallback after unavailable MCP, avoid repeated approval-blocked retries and preserve host trust/policy.",
+      "Sanitized real Codex failure and successful planning/future/resume/handoff evidence are independently replayable against durable task state.",
+      "Unsupported native-plan/compaction delivery and unavailable Claude remain unconfirmed; assertions and fixtures are never labeled live coverage."
+    ],
+    "status": "backlog"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T16:53:56.158Z",
+  "parents": [],
+  "branch": "main"
+}

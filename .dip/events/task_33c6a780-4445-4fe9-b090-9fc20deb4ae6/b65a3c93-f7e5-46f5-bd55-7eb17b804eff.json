@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b65a3c93-f7e5-46f5-bd55-7eb17b804eff",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/workflow.js",
+      "src/automation.js",
+      "src/core.js",
+      "src/repository-integration.js",
+      "skills/dip/SKILL.md",
+      "test/host-qa.test.js",
+      "scripts/host-qa-evidence.mjs",
+      "docs/host-qa",
+      "docs/desktop-qa.md",
+      "docs/compatibility.md",
+      "docs/operations.md",
+      "QA_REPORT.md",
+      "README.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json",
+      ".dip-local/run-live.mjs"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:01:42.760Z",
+  "parents": [
+    "bd23b401-c861-4e11-9499-733e142f8fb5"
+  ],
+  "branch": "main"
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "51dc0aa6-2b85-441f-8dfb-3968ae1828bd",
+  "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Real Codex CLI 0.160.0/GPT-6.1 Sol recorded trusted prompt identity and positive SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd. A three-pending-step prose plan and Hebrew-header backlog persisted; resumed refinement adopted the captured duplicate; new-session CLI-only recovery retained IDs, updated criteria and handoff with no duplicate feature requirements. Original workspace-write provisioning failure and six MCP approval denials are preserved. Positive sandbox differed, native update_plan unavailable; resume consulted QA snapshot; separate fresh recovery excluded transcripts. User confirmed Claude is absent/unauthed. Original L01 remains open.",
+    "next": "Test native structured planning, forced compaction/Interrupt and live trusted Claude when available; run multi-day reliability. Do not treat this bounded QA as a quality/speed benchmark.",
+    "head": "4404f1e73a9ab5943d7139262a01b1f66a86af03"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:13:00.448Z",
+  "parents": [
+    "b8a2e86e-7f54-47c1-88c1-14c0ed0abeee"
+  ],
+  "branch": "main"
+}

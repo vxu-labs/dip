@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "24aee3c3-9bc3-48c3-b63a-5703fc078238",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/operations.md",
+    "role": "reference",
+    "hash": "fcbbb11d52b84e3c7d74263470787d67aea2e5f0eab48b9e9d4203f2883e5e9d",
+    "bytes": 8490,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:10:31.561Z",
+  "parents": [
+    "4ff2bd6b-2168-4fd7-8037-eb76cb8cb2b2"
+  ],
+  "branch": "main"
+}

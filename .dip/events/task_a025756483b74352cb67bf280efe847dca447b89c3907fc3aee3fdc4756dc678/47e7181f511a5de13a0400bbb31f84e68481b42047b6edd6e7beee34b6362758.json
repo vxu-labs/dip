@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "47e7181f511a5de13a0400bbb31f84e68481b42047b6edd6e7beee34b6362758",
+  "taskId": "task_a025756483b74352cb67bf280efe847dca447b89c3907fc3aee3fdc4756dc678",
+  "type": "task.create",
+  "payload": {
+    "title": "תמשיך",
+    "description": "תמשיך \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T16:36:20.286Z",
+  "parents": [],
+  "branch": "main"
+}

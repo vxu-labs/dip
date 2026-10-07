@@ -21,6 +21,17 @@ export function planInput(tool, input) {
 export const readingTool = (name) =>
   /(?:^|[.:])(?:Read|Glob|Grep|read_file|list_files)$/i.test(name);
 
+// Status classification only: unknown shell syntax still takes the coordination path.
+export function readingCommand(input) {
+  const command = String(input.command || input.cmd || "").trim();
+  if (/[;&|\n\r`<>$(){}]/.test(command)) return false;
+  const literal = String.raw`(?:"[^"\r\n]+"|'[^'\r\n]+'|[^\s"'\-]+)`;
+  return new RegExp(
+    String.raw`^(?:Get-Content|cat)\s+(?:(?:-LiteralPath|-Path)\s+)?${literal}(?:\s+(?:-Raw|-(?:TotalCount|Tail)\s+\d+))?$`,
+    "i",
+  ).test(command);
+}
+
 export function intentCommand(input) {
   const command = String(input.command || input.cmd || "")
     .trim()
@@ -31,7 +42,7 @@ export function intentCommand(input) {
     /^(?:dip(?:\.cmd|\.ps1)?|["'][^"']*[/\\]dip(?:\.cmd|\.ps1)["'])\s+/i;
   const args = command.replace(launcher, "");
   if (args === command) return false;
-  return /^(?:context|status|reconcile|doctor|init|search|owners|repository|discover-project|task\s+(?:create|get|next|update|adopt|finish|plan|checkpoint|decision|claim|release|heartbeat|verify|requirements|changes|related|document-(?:link|unlink|list|read)))(?:\s|$)/.test(
+  return /^(?:context|status|reconcile|doctor|init|capture|search|owners|repository|discover-project|task\s+(?:create|get|next|update|adopt|finish|plan|checkpoint|decision|claim|release|heartbeat|verify|requirements|changes|related|document-(?:link|unlink|list|read)))(?:\s|$)/.test(
     args,
   );
 }

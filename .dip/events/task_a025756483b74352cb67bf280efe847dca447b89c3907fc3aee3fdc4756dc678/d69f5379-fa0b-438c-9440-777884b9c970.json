@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d69f5379-fa0b-438c-9440-777884b9c970",
+  "taskId": "task_a025756483b74352cb67bf280efe847dca447b89c3907fc3aee3fdc4756dc678",
+  "type": "task.update",
+  "payload": {
+    "status": "superseded",
+    "resolution": {
+      "outcome": "superseded",
+      "summary": "User asked to continue the recommended L01 live-host QA; preserve original criteria and record bounded Codex evidence and actual Claude availability.",
+      "replacedBy": [
+        "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344"
+      ]
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T16:39:00.538Z",
+  "parents": [
+    "b2556e38-6e19-4b2b-80df-98ba2b408c6c"
+  ],
+  "branch": "main"
+}

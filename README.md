@@ -28,6 +28,8 @@ Explicit [outcome receipts](docs/completion.md) distinguish answered questions, 
 
 **Control what gets recorded.** Per-project `dip capture` settings can omit request text, automatic plans, commands or file metadata. Explicit intent tools stay available. A bounded local supervisor restarts a crashed recorder, respects deliberate stops and reports observation gaps through `dip doctor`. [Privacy controls, retention and recovery limits](docs/operations.md).
 
+**Tested with a real agent.** [Live Codex QA](docs/host-qa/README.md) saved a future plan, refined an existing idea on resume, and recovered both through CLI in a new session without MCP. The original failed trial is preserved. Native planning, compaction and live Claude remain open; this is integration evidence, not a quality or speedup claim.
+
 ## Install once
 
 ```sh

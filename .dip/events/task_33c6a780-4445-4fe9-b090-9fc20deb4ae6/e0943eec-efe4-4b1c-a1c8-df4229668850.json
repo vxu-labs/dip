@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e0943eec-efe4-4b1c-a1c8-df4229668850",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/desktop-qa.md",
+    "role": "reference",
+    "hash": "ded7d46c7118b87a100d5c554d0ce74da8343980d80615c6e98eee70b8c112d3",
+    "bytes": 7277,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:09:47.535Z",
+  "parents": [
+    "daf5ccbc-06a8-42c7-ac67-5dc37abf5cce"
+  ],
+  "branch": "main"
+}

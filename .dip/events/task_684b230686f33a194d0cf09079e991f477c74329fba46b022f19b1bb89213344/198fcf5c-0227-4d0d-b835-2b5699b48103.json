@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "198fcf5c-0227-4d0d-b835-2b5699b48103",
+  "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "text": "Validate installed host/auth availability and existing trusted hook configuration. Run tightly bounded real Codex planning, future intent, resume and handoff trials in a disposable Git fixture. Compare native events and saved intent to disk with reproducible sanitized evidence. Exercise visible disabled/untrusted boundaries, identify Claude availability without inferring delivery, improve defects found and preserve untested criteria open."
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T16:39:01.209Z",
+  "parents": [
+    "dfeed1b9-5608-4e41-9729-83fb3cafeaed"
+  ],
+  "branch": "main"
+}

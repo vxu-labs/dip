@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cef7a27f-f8b2-4250-a89a-9176c546a715",
+  "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+  "type": "task.create",
+  "payload": {
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "title": "Handle queued activity for vanished temporary repositories without permanent global health noise",
+    "description": "Observed during 7 October live-host QA: recorder and supervisor remain running, but doctor repeatedly reports ENOENT for temporary npm/package QA Git roots after they were removed. Restart did not clear the warnings. Root cause and outbox ownership need inspection; do not discard captured data. Package smoke environment also needs auditing for inherited machine Git trace capture.",
+    "status": "backlog",
+    "priority": 2,
+    "scope": [
+      "src/core.js",
+      "src/automation.js",
+      "src/health.js",
+      "scripts/package-smoke.mjs",
+      "test/privacy-recovery.test.js"
+    ],
+    "acceptance": [
+      "Preserve durable pending activity for missing roots with explicit recoverable state and bounded retry.",
+      "A missing temporary root does not indefinitely imply failure of otherwise healthy project capture.",
+      "Isolated QA subprocesses do not leak native Git trace capture into the real machine recorder.",
+      "Configured tests cover disappearance, return of a repository, restart and continued healthy-project capture."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:15:56.331Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "81312a66-aa12-4a5a-a0b7-0ed26a471b68",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.document",
+  "payload": {
+    "path": "README.md",
+    "role": "reference",
+    "hash": "45ab6f5b14ba175c048d8fe6a27db61331a9fea85b26209226ac923d826fafc8",
+    "bytes": 17332,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:09:47.510Z",
+  "parents": [
+    "7687f194-c789-409f-b64a-217fa7e80444"
+  ],
+  "branch": "main"
+}

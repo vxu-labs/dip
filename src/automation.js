@@ -38,6 +38,7 @@ import { installTransaction } from "./install-transaction.js";
 import {
   planningTool,
   readingTool,
+  readingCommand,
   intentCommand,
   promptRequest,
   planInput,
@@ -607,7 +608,8 @@ export function handleHook(
       !(
         /(?:^|[.:])(?:Bash|PowerShell|exec_command|shell_command)$/i.test(
           tool,
-        ) && intentCommand(toolInput)
+        ) &&
+        (intentCommand(toolInput) || readingCommand(toolInput))
       )
     ) {
       if (!active?.task) {

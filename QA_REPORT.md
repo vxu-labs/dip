@@ -1,5 +1,11 @@
 # DIP release validation
 
+## v0.3.10 live-host planning and recovery
+
+Real Codex CLI 0.160.0 / GPT-6.1 Sol on Windows saved a three-step pending prose plan and a distinct Hebrew-header idea, refined existing criteria on resume, and recovered both in a new CLI-only session with MCP disabled per invocation. Both feature requirements stayed backlog without verification evidence. Positive sessions delivered SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd. The original sandbox provisioning error and six MCP approval denials remain in [sanitized evidence](docs/host-qa/README.md). Positive trials used the authorized danger-full-access environment: this is not a controlled comparison or proof that the original sandbox works. Resume inspected a QA snapshot as well as DIP; new-session recovery excluded earlier transcripts and snapshots.
+
+Standalone supported literal reads preserve planning status; composition, expressions and redirection remain coordinated. Instructions bound unavailable-MCP retries and preserve host trust when selecting an authorized CLI route. Initial local suite: 117 cases, 115 Windows passes and 2 POSIX skips. Clean package smoke passed. Configured regression and causal evidence replay must pass before publication. Native structured planning, forced compaction, Interrupt and live Claude remain open; the user confirmed Claude is not installed or authenticated.
+
 ## v0.3.9 privacy and recorder recovery
 
 Four focused improvements add validated per-project automatic-capture controls, structural secret redaction, bounded local recorder supervision, and current-versus-historical health with observation-gap reporting. Explicit task intent remains available when automatic capture is deliberately disabled. Minimization is tested both before enqueue and after a policy change before flush. Known secret fixtures cover nested JSON, escaped quotes, prompt/plan/explicit/portable intent and queued activity. PII and novel secrets are not guaranteed to be removed; existing history, linked Markdown and raw native trace files are not rewritten.
