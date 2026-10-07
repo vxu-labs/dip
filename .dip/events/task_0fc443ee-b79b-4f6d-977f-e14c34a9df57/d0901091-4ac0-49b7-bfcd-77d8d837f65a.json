@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d0901091-4ac0-49b7-bfcd-77d8d837f65a",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/actions.js",
+      "src/mcp.js",
+      "src/core.js",
+      "src/repository-integration.js",
+      "src/cli-help.js",
+      "skills/dip/SKILL.md",
+      "test/core.test.js",
+      "test/completion.test.js",
+      "docs/protocol.md",
+      "QA_REPORT.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json",
+      "bin/dip.js",
+      "scripts/codex-live-lifecycle.mjs",
+      "scripts/codex-structured-evidence.mjs",
+      "test/structured-plan.test.js",
+      "docs/host-qa/structured-plan.md",
+      "docs/host-qa/2026-10-07-structured-plan.json"
+    ],
+    "acceptance": [
+      "A passing stage check leaves backlog/in-progress intent open with current evidence and retained ownership.",
+      "Explicit task_finish implemented runs configured checks, records verified completion and releases ownership only after success.",
+      "Outstanding structured plan steps reject an implemented finish before semantic mutation; progress completion alone does not finish work.",
+      "Meaningful CLI/MCP and dependency regression checks pass; historical benchmark remains frozen on 0.3.11.",
+      "Explicit bounded structured task_plan fallback works through CLI/MCP and actual authenticated Codex without claiming future work; it is distinguished from unavailable native update_plan."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T19:04:54.406Z",
+  "parents": [
+    "df32f3a3-8825-4a8c-92b4-ad00a2ec4f32"
+  ],
+  "branch": "main"
+}

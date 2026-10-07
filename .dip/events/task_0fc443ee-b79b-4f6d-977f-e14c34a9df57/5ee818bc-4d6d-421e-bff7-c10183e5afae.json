@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5ee818bc-4d6d-421e-bff7-c10183e5afae",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/actions.js",
+      "src/mcp.js",
+      "src/core.js",
+      "src/repository-integration.js",
+      "src/cli-help.js",
+      "skills/dip/SKILL.md",
+      "test/core.test.js",
+      "test/completion.test.js",
+      "docs/protocol.md",
+      "QA_REPORT.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json",
+      "bin/dip.js",
+      "scripts/codex-live-lifecycle.mjs",
+      "scripts/codex-structured-evidence.mjs",
+      "test/structured-plan.test.js",
+      "docs/host-qa/structured-plan.md",
+      "docs/host-qa/2026-10-07-structured-plan.json",
+      "public/app.js",
+      "README.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T19:12:08.141Z",
+  "parents": [
+    "d0901091-4ac0-49b7-bfcd-77d8d837f65a"
+  ],
+  "branch": "main"
+}

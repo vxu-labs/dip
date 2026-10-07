@@ -366,7 +366,7 @@ function renderDetail(taskId) {
         : input.text || JSON.stringify(input, null, 2);
     $("#detail").insertAdjacentHTML(
       "afterbegin",
-      `<div class="detail-section" id="captured-plan"><h3>Latest captured plan</h3><small>${escape(t.plan.tool)} · ${escape(date(t.plan.at))}</small><p>Agent-reported progress. Completion requires verification.</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${escape(content)}</pre></div>`,
+      `<div class="detail-section" id="captured-plan"><h3>Latest plan</h3><small>${escape(t.plan.tool)} · ${escape(date(t.plan.at))}</small><p>Plan progress and passing checks do not finish open work. Completion requires an explicit finish and a current configured check.</p><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${escape(content)}</pre></div>`,
     );
   }
   $("#detail").insertAdjacentHTML(

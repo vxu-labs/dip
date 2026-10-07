@@ -148,6 +148,44 @@
         "test/task-prepare.test.js"
       ],
       "timeoutMs": 60000
+    },
+    "codex-lifecycle-evidence": {
+      "command": [
+        "node",
+        "scripts/codex-lifecycle-evidence.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    "benchmark-v4": {
+      "command": [
+        "node",
+        "scripts/model-benchmark-evidence.mjs",
+        "docs/benchmarks/2026-10-07-model-controlled-v4.json"
+      ],
+      "timeoutMs": 60000
+    },
+    "completion": {
+      "command": [
+        "node",
+        "--test",
+        "test/completion.test.js"
+      ],
+      "timeoutMs": 60000
+    },
+    "structured-plan": {
+      "command": [
+        "node",
+        "--test",
+        "test/structured-plan.test.js"
+      ],
+      "timeoutMs": 60000
+    },
+    "codex-structured-evidence": {
+      "command": [
+        "node",
+        "scripts/codex-structured-evidence.mjs"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate"

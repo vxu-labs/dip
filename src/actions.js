@@ -23,7 +23,7 @@ import {
 } from "./util.js";
 import { repositoryIntegration } from "./repository-integration.js";
 import path from "node:path";
-import { planIntent } from "./workflow.js";
+import { planIntent, planSteps } from "./workflow.js";
 import {
   documentState,
   documentKey,
@@ -278,6 +278,13 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       if (args.outcome === "implemented" && task.kind === "discussion")
         throw new Error("Reclassify discussion as work before implementation");
       if (
+        args.outcome === "implemented" &&
+        planSteps(task.plan?.input).some((step) => step.status !== "completed")
+      )
+        throw new Error(
+          "Complete or explicitly revise outstanding structured plan steps before finishing work",
+        );
+      if (
         args.check &&
         !Array.isArray(repo.config.verification?.[args.check]?.command)
       )
@@ -382,17 +389,56 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       return readDocument(repo, reference, args);
     }
     if (action === "plan") {
-      taskGet(repo, args.id);
+      const task = taskRead(repo, args.id);
       rt.guard(repo, args.id, actor, args.token);
-      if (typeof args.text !== "string" || !args.text.trim())
-        throw new Error("Plan text is required");
+      if ((args.text !== undefined) === (args.steps !== undefined))
+        throw new Error("Choose exactly one of plan text or structured steps");
+      let input;
+      if (args.steps !== undefined) {
+        if (
+          !Array.isArray(args.steps) ||
+          args.steps.length < 1 ||
+          args.steps.length > 100 ||
+          args.steps.some(
+            (step) =>
+              !step ||
+              typeof step !== "object" ||
+              Array.isArray(step) ||
+              Object.keys(step).some(
+                (key) => !["step", "status"].includes(key),
+              ) ||
+              typeof step.step !== "string" ||
+              !step.step.trim() ||
+              step.step.length > 1000 ||
+              !["pending", "in_progress", "completed"].includes(step.status),
+          )
+        )
+          throw new Error(
+            "Use 1..100 structured steps with 1..1000-character step text and pending, in_progress or completed status",
+          );
+        input = {
+          plan: args.steps.map((step) => ({
+            step: redact(step.step),
+            status: step.status,
+          })),
+        };
+      } else {
+        if (typeof args.text !== "string" || !args.text.trim())
+          throw new Error("Plan text is required");
+        input = { text: redact(args.text) };
+      }
+      if (
+        task.plan?.tool === "task_plan" &&
+        JSON.stringify(task.plan.input) === JSON.stringify(input)
+      )
+        return { saved: true, id: args.id, unchanged: true };
       append(
         repo,
         args.id,
         "task.plan",
         {
           tool: "task_plan",
-          input: { text: redact(args.text) },
+          input,
         },
         { actor },
       );
@@ -681,7 +727,13 @@ async function verify(repo, args, actor, assertOwnership) {
     },
     { actor },
   );
-  if (passed)
+  // A successful stage check is evidence, not a completion declaration.
+  // finish first records explicit implemented intent, then invokes this check.
+  if (
+    passed &&
+    task.status === "implemented" &&
+    task.resolution?.outcome === "implemented"
+  )
     append(repo, args.id, "task.update", { status: "verified" }, { actor });
   return {
     passed,
@@ -689,6 +741,9 @@ async function verify(repo, args, actor, assertOwnership) {
     changedDuringCheck: before.hash !== after.hash,
     changedIntentDuringCheck,
     snapshot: after.hash,
+    taskStatus: taskRead(repo, args.id).status,
+    instruction:
+      "Check evidence does not finish open work. Use task_finish implemented after all requirements are fulfilled; outstanding structured plan steps must be completed or revised.",
   };
 }
 export function assessEvidence(repo, task, snapshot) {

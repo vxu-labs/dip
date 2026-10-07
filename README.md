@@ -141,7 +141,9 @@ Configure named checks in `.dip/config.json`. Command arrays are executed direct
 
 For npm scripts on Windows, use a direct Node script or `node` with the absolute path to `npm-cli.js`; `.cmd` files are not direct executables. Review project-defined commands before running verification in an unfamiliar repository.
 
-Evidence records the command, exit result, sanitized output and code snapshot. Code changing during a check prevents successful verification. Subsequent changes within declared scope make evidence stale. The UI separates task state, current verification and presence in the selected Git history. A passing check proves that check's outcome, not every possible product requirement.
+Evidence records the command, exit result, sanitized output and code snapshot. Code changing during a check prevents successful verification. Subsequent changes within declared scope make evidence stale. From 0.3.12, a passing `task_verify` leaves open work open and retains ownership. Use `task_finish implemented` with a configured check after reviewing all requirements; outstanding structured plan steps prevent premature completion. The UI separates task state, current check evidence and presence in Git history. A passing check proves that check's outcome, not every possible product requirement.
+
+When starting reviewed development, `task_prepare` refines the captured requirement, claims scope and returns compact criteria in one call. Avoid rereading unchanged context already supplied by the hook or receipt. If native planning is unavailable, `task_plan` accepts short structured steps or prose text explicitly. Write long prose once in linked Markdown; this fallback is distinct from native host capture.
 
 ## Git and parallel work
 
@@ -159,9 +161,10 @@ Active workers appear across local worktrees even when their tasks exist only in
 dip context
 dip task create --title "Add CSV export later"
 dip task next
-dip task claim --id TASK_ID --actor codex:SESSION_ID --session SESSION_ID
-dip task checkpoint --id TASK_ID --summary "Parser complete; UI remains"
-dip task verify --id TASK_ID --check unit
+dip task prepare --id TASK_ID --actor codex:SESSION_ID --session SESSION_ID
+dip task checkpoint --id TASK_ID --actor codex:SESSION_ID --summary "Parser complete; UI remains"
+dip task verify --id TASK_ID --actor codex:SESSION_ID --check unit
+dip task finish --id TASK_ID --actor codex:SESSION_ID --outcome implemented --summary "All requirements fulfilled" --check unit
 dip reconcile
 dip doctor
 dip discover

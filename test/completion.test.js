@@ -25,6 +25,7 @@ process.env.DIP_HOME = path.join(sandbox, "runtime");
 process.env.DIP_USER_HOME = path.join(sandbox, "user");
 process.env.DIP_GIT_CONFIG = path.join(sandbox, "gitconfig");
 process.env.GIT_CONFIG_GLOBAL = process.env.DIP_GIT_CONFIG;
+process.env.GIT_TRACE2_EVENT = "0";
 const cli = fileURLToPath(new URL("../bin/dip.js", import.meta.url));
 let serial = 0;
 function fixture(payload = {}) {
@@ -48,6 +49,120 @@ test.after(() => {
   assert.equal(path.dirname(sandbox), path.resolve(os.tmpdir()));
   assert.ok(path.basename(sandbox).startsWith("dip-completion-"));
   fs.rmSync(sandbox, { recursive: true, force: true });
+});
+
+test("successful partial checks preserve open work and leases; only explicit finish closes verified work", async () => {
+  const f = fixture({
+    acceptance: ["Normalize now", "Schedule later"],
+    scope: ["lib.mjs"],
+  });
+  fs.writeFileSync(
+    path.join(f.root, "lib.mjs"),
+    "export const normalize = input => Array.isArray(input) ? [...input] : [];\n",
+  );
+  f.repo.config.verification.stage = {
+    command: [
+      process.execPath,
+      "--input-type=module",
+      "-e",
+      'import assert from "node:assert/strict"; import {normalize} from "./lib.mjs"; assert.deepEqual(normalize([1,2]),[1,2]); assert.deepEqual(normalize(null),[]);',
+    ],
+  };
+  f.repo.config.verification.full = {
+    command: [
+      process.execPath,
+      "--input-type=module",
+      "-e",
+      'import assert from "node:assert/strict"; import {schedule} from "./lib.mjs"; assert.deepEqual(schedule([2,1]),[1,2]);',
+    ],
+  };
+  atomic(path.join(f.repo.dir, "config.json"), f.repo.config);
+  const lease = await f.run("claim", { session: "partial" });
+  const partial = await f.run("verify", { check: "stage", token: lease.token });
+  assert.equal(partial.passed, true);
+  assert.equal(partial.taskStatus, "in_progress");
+  const state = await f.run("reconcile");
+  assert.equal(state.tasks[0].verification, "current");
+  assert.equal(state.tasks[0].verifiedComplete, false);
+  assert.ok(state.activeWorkers.some((worker) => worker.task === f.id));
+  assert.equal(taskRead(f.repo, f.id).resolution, null);
+  const cliEvidence = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        cli,
+        "task",
+        "verify",
+        "--id",
+        f.id,
+        "--check",
+        "stage",
+        "--actor",
+        "qa",
+        "--token",
+        lease.token,
+      ],
+      { cwd: f.root, env: process.env, encoding: "utf8", windowsHide: true },
+    ),
+  );
+  assert.equal(cliEvidence.passed, true);
+  assert.equal(cliEvidence.taskStatus, "in_progress");
+  fs.appendFileSync(
+    path.join(f.root, "lib.mjs"),
+    "export const schedule = input => [...input].sort((a,b)=>a-b);\n",
+  );
+  const finished = await f.run("finish", {
+    outcome: "implemented",
+    summary: "Both requirements are fulfilled",
+    check: "full",
+    token: lease.token,
+  });
+  assert.equal(finished.verifiedComplete, true);
+  assert.equal(finished.released, true);
+});
+
+test("outstanding structured plan rejects finish before mutation; completed progress still requires explicit finish", async () => {
+  const f = fixture();
+  append(f.repo, f.id, "task.plan", {
+    tool: "update_plan",
+    input: {
+      plan: [
+        { step: "Normalize", status: "completed" },
+        { step: "Schedule", status: "pending" },
+      ],
+    },
+  });
+  const history = taskRead(f.repo, f.id).history.length;
+  await assert.rejects(
+    f.run("finish", {
+      outcome: "implemented",
+      summary: "Premature",
+      check: "pass",
+    }),
+    /outstanding structured plan/,
+  );
+  assert.equal(taskRead(f.repo, f.id).history.length, history);
+  assert.equal(taskRead(f.repo, f.id).status, "backlog");
+  append(f.repo, f.id, "task.plan", {
+    tool: "update_plan",
+    input: {
+      plan: [
+        { step: "Normalize", status: "completed" },
+        { step: "Schedule", status: "completed" },
+      ],
+    },
+  });
+  assert.equal(taskRead(f.repo, f.id).status, "backlog");
+  assert.equal(
+    (await f.run("verify", { check: "pass" })).taskStatus,
+    "backlog",
+  );
+  const done = await f.run("finish", {
+    outcome: "implemented",
+    summary: "All planned work implemented",
+    check: "pass",
+  });
+  assert.equal(done.verifiedComplete, true);
 });
 
 test("answered requests leave development queues without pretending to verify code; unfinished work survives Stop", async () => {
@@ -332,6 +447,61 @@ test("actual MCP finish is discoverable and compact reads use the same filters",
     const data = JSON.parse(get.content[0].text);
     assert.equal(data.resolution.outcome, "answered");
     assert.equal(data.history, undefined);
+  } finally {
+    await client.close();
+  }
+});
+
+test("real MCP stage verification keeps work open and explicit configured finish closes it", async () => {
+  const f = fixture({ acceptance: ["First stage", "Second stage"] });
+  const client = new Client({ name: "stage-qa", version: "1" });
+  try {
+    await client.connect(
+      new StdioClientTransport({
+        command: process.execPath,
+        args: ["--disable-warning=ExperimentalWarning", cli, "mcp"],
+        cwd: f.root,
+        env: process.env,
+        stderr: "pipe",
+      }),
+    );
+    const claim = await client.callTool({
+      name: "task_prepare",
+      arguments: {
+        root: f.root,
+        id: f.id,
+        actor: "qa:stage",
+        session: "stage",
+      },
+    });
+    const { lease } = JSON.parse(claim.content[0].text);
+    const result = await client.callTool({
+      name: "task_verify",
+      arguments: {
+        root: f.root,
+        id: f.id,
+        check: "pass",
+        actor: "qa:stage",
+        token: lease.token,
+      },
+    });
+    const evidence = JSON.parse(result.content[0].text);
+    assert.equal(evidence.passed, true);
+    assert.equal(evidence.taskStatus, "in_progress");
+    const finish = await client.callTool({
+      name: "task_finish",
+      arguments: {
+        root: f.root,
+        id: f.id,
+        outcome: "implemented",
+        summary: "Both requirements fulfilled",
+        check: "pass",
+        actor: "qa:stage",
+        token: lease.token,
+      },
+    });
+    assert.equal(finish.isError, undefined);
+    assert.equal(JSON.parse(finish.content[0].text).verifiedComplete, true);
   } finally {
     await client.close();
   }

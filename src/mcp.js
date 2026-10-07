@@ -123,10 +123,22 @@ export async function runMcp() {
   );
   add(
     "task_plan",
-    "Save a prose-only plan on the current captured task. update_plan/TodoWrite are already captured by hooks. Plans never establish verified completion.",
+    "Save exactly one of short structured steps or prose text on the captured task when native planning is unavailable. Native update_plan/TodoWrite are already captured by hooks. Write long prose once in linked Markdown; do not mirror it here. Explicit plans stay distinct from native host capture, and progress never establishes completion.",
     {
       id: z.string(),
-      text: z.string(),
+      text: z.string().optional(),
+      steps: z
+        .array(
+          z
+            .object({
+              step: z.string().min(1).max(1000),
+              status: z.enum(["pending", "in_progress", "completed"]),
+            })
+            .strict(),
+        )
+        .min(1)
+        .max(100)
+        .optional(),
       actor: z.string().optional(),
       token: z.string().optional(),
     },
@@ -342,7 +354,7 @@ export async function runMcp() {
   );
   add(
     "task_verify",
-    "Run a project-configured check and record evidence against the actual code snapshot. A model assertion is insufficient.",
+    "Run a configured check and record current code evidence. A passing stage check leaves open work open and retains ownership. Use task_finish implemented with a configured check only when all requirements are fulfilled. A model assertion or plan progress alone is insufficient.",
     {
       id: z.string(),
       check: z.string(),

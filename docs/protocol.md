@@ -43,3 +43,9 @@ The [portable helper](portable.md) writes the same causal schema for intent with
 SQLite stores claims, session-to-task association, repository registration and the durable recording outbox. Atomic claim transactions check both task identity and overlapping declared scopes. A refreshed claim for the same actor keeps its fencing token; reassignment after expiry produces a new token. Tokens must be supplied for token-protected updates and strict-mode operations.
 
 Agent integration uses the session identity injected by the startup hook. A task claim with that identity selects the task used by automatic activity capture. The task identity is stable across context compaction.
+# Check evidence and completion
+
+From 0.3.12, a passing `task_verify` on open work records current check evidence and retains its existing status and ownership. It does not assert that every requirement has been implemented. A normalization-only test can pass while scheduling remains unfinished. `verification: current` and `verifiedComplete: true` are distinct outcomes.
+
+Use `task_finish` with outcome `implemented`, a summary and a configured check after reviewing all requirements. Successful checks then establish verified completion and release ownership; failures remain unverified and retain ownership. Outstanding structured plan steps reject an implemented finish before mutation. Completing plan progress alone still does not finish a task. Linked/prose plans and the semantic adequacy of tests require agent/user review; DIP cannot prove that a check covers every requirement. Existing historical statuses are preserved rather than silently reinterpreted.
+

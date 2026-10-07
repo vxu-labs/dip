@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9c58e780-53b0-49ef-b184-41d3bdb19277",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Implemented evidence-only task_verify, explicit configured finish completion and outstanding structured-plan guard after frozen 0.3.11 trial exposed false whole-task completion from a partial check. Added bounded idempotent explicit task_plan steps through CLI/MCP and clear UI/instructions. Latest raw unit suite passed 129 cases: 127 Windows passes, 2 POSIX skips. Structured tests passed 3/3; clean package smoke passed before final structured-field addition and must repeat. Product source is 0.3.12; installed product deliberately remains 0.3.11 until the v4 scored model experiment completes. Actual structured fallback QA, final configured checks, v5 matched repeat and publication remain pending.",
+    "next": "Retain all v4 outcomes, archive its immutable harness, install clean-source 0.3.12 after v4 ends, prove explicit structured fallback in a real host, then freeze v5 and repeat identical fixtures/scoring/model/high effort.",
+    "head": "4abf0a8f90ff2623ce234d70a1b73bba762b5ff0"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T19:25:48.755Z",
+  "parents": [
+    "7d444274-cd11-4ec2-9751-481f9edd13d6"
+  ],
+  "branch": "main"
+}

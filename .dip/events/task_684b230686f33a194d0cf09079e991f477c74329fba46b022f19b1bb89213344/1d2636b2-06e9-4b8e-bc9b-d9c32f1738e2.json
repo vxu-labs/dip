@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1d2636b2-06e9-4b8e-bc9b-d9c32f1738e2",
+  "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Completed bounded real Codex app-server compaction and interruption QA on installed 0.3.11 with existing trusted hooks, no trust bypass. Actual PreCompact, contextCompaction, subsequent SessionStart and Interrupt persisted; partial probe remained open with automatic checkpoint and no lease/evidence. Native update_plan was unavailable, so no native plan was recorded. Published sanitized causal evidence and replay passed. Initial inventory-only client casing mismatch preserved. Claude absent/unauthed; broader L01 remains open.",
+    "next": "Native structured-plan delivery when a supported host tool set is available, live Claude when installed/authenticated and multi-day reliability.",
+    "head": "4abf0a8f90ff2623ce234d70a1b73bba762b5ff0"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:52:11.501Z",
+  "parents": [
+    "e6e01911-9bec-43ba-adb5-7d16130431f5"
+  ],
+  "branch": "main"
+}

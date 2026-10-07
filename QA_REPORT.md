@@ -125,3 +125,19 @@ Native hook command tests use explicit synthetic payloads. They do not prove tha
 Independent machines and clones do not share live leases. Distributed coordination, capacity/resource planning and GitHub Issues synchronization remain separate product extensions. Missing hooks and events outside monitored coverage cannot establish complete observation of every process.
 
 Reproduce automated validation with `npm ci`, `npm test`, `npm run check`, `npm run test:browser`, `npm pack`, and `npm run test:package`. `scripts/live-machine-smoke.mjs` deliberately targets an already installed real Windows machine; it is not part of unattended CI and does not modify a contributor's setup automatically.
+# v0.3.11 outbox recovery and management preparation
+
+Missing repositories retain durable queued records with retry backoff from 30 seconds to five minutes. Directory return recovers immediately on the next flush; explicit `dip flush` retries without deleting data. Regression cases preserve 510 records across a runtime restart, continue healthy-project delivery, cap retries and distinguish malformed existing projects from absent ones. On this machine, 12 existing queued records for 12 vanished temporary repositories became deferred advisories; active health issues were empty and recorder `lastError` was null. No queued data was discarded. Package smoke now isolates inherited native Git trace.
+
+`task_prepare` combines reviewed requirement refinement, scope ownership and compact criteria. Actual MCP tests cover rejection before mutation, session selection and retry without duplicate intent events. Profiling the retained six-pair pilot found 134 MCP calls and 91,967 serialized result bytes; no identical adjacent task reads were found. The repeated matched experiment retains its original tasks/scoring/model/high effort and reports the changed trusted-hook/resident-runtime infrastructure separately. Its outcomes are recorded in the benchmark report, without presuming an improvement.
+
+Configured unit verification passed with stable source/intent: 123 cases, 121 Windows passes and two POSIX skips. An earlier run passed the same cases but its verification receipt detected file changes and was retained as unsuccessful evidence. Clean package smoke passed.
+
+The real [Codex lifecycle trial](docs/host-qa/lifecycle.md) proved `PreCompact`, recovery after compaction and `Interrupt` delivery with an unfinished partial file, durable checkpoint and released ownership. Native `update_plan` was unavailable; no native structured plan is claimed. Claude remains absent and untested. Use at your own responsibility.
+
+# v0.3.12 completion boundary found during the repeated model experiment
+
+The frozen 0.3.11 treatment exposed a passing normalization-only check marking a whole task verified while its scheduling requirement remained unfinished. The 0.3.12 fix separates current check evidence from completion: `task_verify` preserves open status and ownership; explicit `task_finish implemented` with a configured check establishes completion. Outstanding structured plan steps reject that finish before intent mutation. A meaningful two-stage code fixture, real CLI/MCP calls, ownership, failed-check retention and dependency freshness cover the boundary. Prose/linked plans and test coverage still require review; historical statuses are not silently migrated.
+
+The model experiment continues on unchanged installed 0.3.11. Its outcomes do not evaluate this later completion fix. Local validation passed 129 cases: 127 Windows passes and two POSIX skips. Clean package and browser smoke passed. Actual structured fallback delivery, final configured verification and platform CI are recorded separately; no native planning claim is implied.
+

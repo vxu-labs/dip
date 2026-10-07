@@ -84,6 +84,7 @@ const options = {
   limit: { type: "string" },
   offset: { type: "string" },
   patch: { type: "string" },
+  steps: { type: "string" },
 };
 let flags, positionals;
 try {
@@ -227,6 +228,7 @@ try {
   } else if (command === "task") {
     const action = positionals.shift();
     const args = { ...flags };
+    if (flags.steps) args.steps = JSON.parse(flags.steps);
     if (flags.patch) args.patch = JSON.parse(flags.patch);
     else if (action === "update")
       args.patch = {

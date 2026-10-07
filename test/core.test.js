@@ -499,7 +499,16 @@ test("uncommitted verified code is not presented as integrated; commit establish
   atomic(path.join(repo.dir, "config.json"), repo.config);
   fs.writeFileSync(path.join(repo.root, "code.js"), "42");
   const id = createTask(repo, { title: "Code", scope: ["code.js"] });
-  await execute("verify", { id, check: "pass" }, repo.root);
+  await execute(
+    "finish",
+    {
+      id,
+      outcome: "implemented",
+      summary: "All requirements fulfilled",
+      check: "pass",
+    },
+    repo.root,
+  );
   assert.equal(
     (await execute("reconcile", {}, repo.root)).tasks[0].integrated,
     false,
@@ -522,7 +531,16 @@ test("stale verified prerequisite continues to block dependent work", async () =
     title: "Prerequisite",
     scope: ["dependency.js"],
   });
-  await execute("verify", { id: prerequisite, check: "pass" }, repo.root);
+  await execute(
+    "finish",
+    {
+      id: prerequisite,
+      outcome: "implemented",
+      summary: "Prerequisite fulfilled",
+      check: "pass",
+    },
+    repo.root,
+  );
   const dependent = createTask(repo, {
     title: "Dependent",
     dependencies: [prerequisite],

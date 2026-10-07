@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7bb29101-032c-4446-981c-ee897dc3a3db",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/operations.md",
+    "role": "reference",
+    "hash": "9a2889ef8cc5444d0be91b1431205582fc2519268b5fe19f97de9c7103a9e875",
+    "bytes": 9238,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:35:12.873Z",
+  "parents": [
+    "5c430587-494a-496d-b49b-cb8d68d59258"
+  ],
+  "branch": "main"
+}

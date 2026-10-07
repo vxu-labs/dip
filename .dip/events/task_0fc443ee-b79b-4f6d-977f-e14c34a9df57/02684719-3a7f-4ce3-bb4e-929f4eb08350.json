@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "02684719-3a7f-4ce3-bb4e-929f4eb08350",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/protocol.md",
+    "role": "reference",
+    "hash": "6a7753a016ed031531ba8ad5eb95951318aa45a4a00ceace39468cdfb4d7f71d",
+    "bytes": 5658,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:55:44.821Z",
+  "parents": [
+    "10e58fe2-9002-4883-b43d-d62b9794c273"
+  ],
+  "branch": "main"
+}

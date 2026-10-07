@@ -15,7 +15,7 @@ export function cliHelp(command = "help", action = "") {
     related: "dip task related --id ID [--statuses backlog] [--limit 10]\n",
     update:
       'dip task update --id ID --patch \'{"title":"...","status":"backlog"}\' [--actor NAME] [--token TOKEN]\n',
-    plan: 'dip task plan --id ID --text "..." [--actor NAME] [--token TOKEN]\n',
+    plan: 'dip task plan --id ID (--text "..." | --steps JSON) [--actor NAME] [--token TOKEN]\nStructured steps contain step and pending|in_progress|completed status. Long prose belongs in linked Markdown.\n',
     "document-link":
       "dip task document-link --id ID --path plans/feature.md --role plan [--actor NAME] [--token TOKEN]\n",
     "document-unlink":
@@ -28,7 +28,8 @@ export function cliHelp(command = "help", action = "") {
       'dip task checkpoint --id ID --summary "..." [--next "..."] [--actor NAME]\n',
     claim:
       "dip task claim --id ID --actor NAME [--session SESSION] [--scope PATH] [--waitMs 30000]\n",
-    verify: "dip task verify --id ID --check NAME [--actor NAME]\n",
+    verify:
+      "dip task verify --id ID --check NAME [--actor NAME]\nRecords check evidence; open work remains open. Use task finish implemented for completion.\n",
   };
   const header =
     command === "task" && specific[action] ? specific[action] + "\n" : "";

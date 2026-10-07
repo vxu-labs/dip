@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ba9e63ee-3c06-4d6d-8d32-ce2eca520d76",
+  "taskId": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/host-qa/lifecycle.md",
+    "role": "reference",
+    "hash": "91c01ca36994c031d93c0e3fe66a76a37dac134fcc630e75a8893e7efd82b2c4",
+    "bytes": 2788,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:49:51.881Z",
+  "parents": [
+    "a3d4ca0e-01d9-419e-a69f-a16687ba9d2a"
+  ],
+  "branch": "main"
+}
