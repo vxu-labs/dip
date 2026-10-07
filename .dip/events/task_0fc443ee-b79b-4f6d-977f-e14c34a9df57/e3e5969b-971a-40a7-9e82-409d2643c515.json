@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e3e5969b-971a-40a7-9e82-409d2643c515",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Partial check evidence stays separate from explicit completion; pending structured-step finish guards and bounded structured plan CLI/MCP fallback implemented and validated in actual Codex. Six partial seed requirements stayed open. Native/Claude coverage gaps and lack of benchmark superiority remain explicit.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T21:16:28.267Z",
+  "parents": [
+    "a2a8be78-97db-4832-8563-485fcea6a01c"
+  ],
+  "branch": "main"
+}
