@@ -8,7 +8,8 @@ import { ensure, Runtime, project } from "../src/core.js";
 import { automationHealth } from "../src/health.js";
 import { git } from "../src/util.js";
 
-const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "dip-outbox-recovery-"));
+const tempRoot = fs.realpathSync.native(os.tmpdir());
+const sandbox = fs.mkdtempSync(path.join(tempRoot, "dip-outbox-recovery-"));
 const runtimes = [];
 function runtime() {
   const rt = new Runtime();
@@ -28,7 +29,7 @@ test.after(() => {
       rt.close();
     } catch {}
   }
-  assert.equal(path.dirname(sandbox), path.resolve(os.tmpdir()));
+  assert.equal(path.dirname(sandbox), tempRoot);
   assert.ok(path.basename(sandbox).startsWith("dip-outbox-recovery-"));
   fs.rmSync(sandbox, { recursive: true, force: true });
 });
