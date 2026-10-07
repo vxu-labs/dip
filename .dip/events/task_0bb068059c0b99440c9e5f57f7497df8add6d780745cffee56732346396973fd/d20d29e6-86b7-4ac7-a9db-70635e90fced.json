@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d20d29e6-86b7-4ac7-a9db-70635e90fced",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Published v0.3.8 at https://github.com/vxu-labs/dip/releases/tag/v0.3.8, source8b0d893ece48a60a77988ce3f24378312ec00416. CI37637374044 passed Windows/Linux/macOS and Linux browser QA; original macOS failure37636393773 retained. Clean committed-Git archive package smoke passed with actual portable helper and discovery probe. Updated global0.3.8 installation,17 repositories and recorder preserved. Unrelated local deletion of previous benchmark remains excluded from commits and release artifact; MCP connection reload exposes task_adopt.",
+    "next": "",
+    "head": "8b0d893ece48a60a77988ce3f24378312ec00416"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:38:22.010Z",
+  "parents": [
+    "4316fb64-c7be-4811-8aa7-5b15ca9bcae5"
+  ],
+  "branch": "main"
+}

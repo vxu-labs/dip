@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e716371b-81e8-4d33-91d9-ffb4b8362f1d",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Aggregate scope refined to the exact changed code/document paths in cdd9c2b..8b0d893, preserving all four requirements and configured checks. Unrelated pre-existing benchmark files and their unexplained local deletions are outside this delivery; publication retains them in Git and the clean archive. All three CI jobs and Linux browser passed; release0.3.8 and global install complete.",
+    "next": "",
+    "head": "8b0d893ece48a60a77988ce3f24378312ec00416"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:42:59.039Z",
+  "parents": [
+    "7159df31-34fb-4442-be24-0967f63b60de"
+  ],
+  "branch": "main"
+}
