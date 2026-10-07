@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "087fe2fa-0b69-425f-87eb-51246418e54a",
+  "taskId": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Published https://github.com/vxu-labs/dip/releases/tag/v0.3.6 at source 434e456d504e882378bdd527061e451aa0627de4. CI 37610095858 passed Windows/Linux/macOS, preserved benchmark evidence and Linux browser QA. Configured unit passed 93 cases (91 Windows passes, 2 POSIX skips), configured browser passed at stable snapshot 7bf8d8294772f142e49078a4e5f0be92c6cc10a798fa5fc748530f2cfc5cbb9b. Installed runtime and skill match source. Alternatives task remains backlog with seven criteria and current versioned plan reference. Five navigation tools deliver bounded read-only lexical/graph views; learned semantic matching, candidate training and AI-quality superiority are not established. Existing MCP connection reload required to discover tools.",
+    "next": "",
+    "head": "434e456d504e882378bdd527061e451aa0627de4"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:55:33.567Z",
+  "parents": [
+    "6db0ba67-05f2-418c-a4b5-a62bcc5dc00f"
+  ],
+  "branch": "main"
+}
