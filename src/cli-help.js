@@ -58,6 +58,7 @@ export function cliHelp(command = "help", action = "") {
     `dip reconcile [--kind work] [--open] [--statuses backlog] [--limit 30] [--offset 0]\n` +
     `dip reconcile --full            Explicit raw task/activity diagnostics\n` +
     `dip doctor                     Inspect actual capture coverage\n` +
+    `dip capture [--patch JSON]      Inspect/change project automatic-capture settings\n` +
     `dip init | serve | start | stop | uninstall\n\n` +
     `Use --root PATH for another project. Task commands accept --help.\n` +
     `Requires Node.js 24+. No additional model calls for capture.\n`

@@ -2,13 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import { parse } from "smol-toml";
-import { home, json, git } from "./util.js";
+import { home, json, git, redactValue } from "./util.js";
 import { ensure, Runtime, project } from "./core.js";
 import { daemonAlive } from "./automation.js";
+import { capturePolicy } from "./capture-policy.js";
+import { processAlive } from "./recorder-supervisor.js";
 
 export function automationHealth(root) {
   const installation = json(path.join(home(), "install.json"), null);
   const daemon = json(path.join(home(), "daemon.json"), null);
+  const supervisor = json(path.join(home(), "supervisor.json"), null);
+  const control = json(path.join(home(), "recorder-control.json"), null);
   const user = path.resolve(process.env.DIP_USER_HOME || os.homedir());
   const issues = [],
     advisories = [],
@@ -91,7 +95,9 @@ export function automationHealth(root) {
     runtime.close();
   }
   const running = daemonAlive();
-  if (repo && installation?.active && !captured.promptCount)
+  const capture = capturePolicy(repo?.config);
+  const intentionallyStopped = control?.enabled === false;
+  if (repo && capture.enabled && installation?.active && !captured.promptCount)
     advisories.push(
       "Agent prompt capture has not been observed in this project. Review/load the host hooks; use explicit intent tools until the current hook supplies a task ID.",
     );
@@ -143,9 +149,20 @@ export function automationHealth(root) {
   }
   if (!installation?.active)
     issues.push("Machine automation is not installed. Run dip install.");
-  else if (!running) issues.push("Recorder is not running. Run dip start.");
+  else if (!running && !intentionallyStopped)
+    issues.push("Recorder is not running. Run dip start.");
+  if (intentionallyStopped)
+    advisories.push(
+      "Recorder was deliberately stopped. Automatic startup preserves this choice; dip start resumes explicitly.",
+    );
+  if (supervisor?.currentError && !intentionallyStopped)
+    issues.push(supervisor.currentError);
+  if (daemon?.lastError && running)
+    issues.push(`Recorder currently reports: ${daemon.lastError}`);
   if (
     installation?.active &&
+    !intentionallyStopped &&
+    capture.enabled &&
     repo &&
     !(daemon?.watchedRepositories || []).includes(repo.root)
   )
@@ -164,7 +181,7 @@ export function automationHealth(root) {
     issues.push(
       "An interrupted installation journal exists. Run dip install to recover it.",
     );
-  return {
+  return redactValue({
     installed: !!installation?.active,
     gitDiscovery: nativeGit,
     clientDiscovery: {
@@ -182,6 +199,26 @@ export function automationHealth(root) {
       heartbeat: daemon?.heartbeat || null,
       dashboard: daemon?.dashboard || null,
       lastError: daemon?.lastError || null,
+      lastFailure: daemon?.lastFailure || null,
+      intentionallyStopped,
+      supervision: {
+        running:
+          processAlive(supervisor?.pid) &&
+          Date.now() - supervisor.heartbeat < 15000,
+        status: intentionallyStopped
+          ? "intentionally_stopped"
+          : supervisor?.status || "unavailable",
+        restartCount: supervisor?.restartCount || 0,
+        currentError: intentionallyStopped
+          ? null
+          : supervisor?.currentError || null,
+        lastFailure: supervisor?.lastFailure || null,
+        openGap: supervisor?.openGap || null,
+        observationGaps: (supervisor?.observationGaps || []).slice(-20),
+        missingEventsReconstructed: false,
+        limit:
+          "Local supervisor retries at most 5 recorder launches in 60 seconds; supervisor itself is not OS-supervised. A live stale owner is never killed automatically.",
+      },
     },
     adapters,
     projectDashboard:
@@ -190,7 +227,13 @@ export function automationHealth(root) {
         : null,
     agentCapture: {
       ...captured,
-      status: captured.promptCount ? "observed" : "unobserved",
+      status: !capture.enabled
+        ? "intentionally_disabled"
+        : captured.promptCount
+          ? "observed"
+          : "unobserved",
+      policy: capture,
+      explicitIntent: "available",
       meaning:
         "Observed hook records in this project; configuration alone does not prove host delivery or trust.",
     },
@@ -205,5 +248,5 @@ export function automationHealth(root) {
     dataErrors,
     issues,
     advisories,
-  };
+  });
 }

@@ -1,5 +1,17 @@
 # DIP release validation
 
+## v0.3.9 privacy and recorder recovery
+
+Four focused improvements add validated per-project automatic-capture controls, structural secret redaction, bounded local recorder supervision, and current-versus-historical health with observation-gap reporting. Explicit task intent remains available when automatic capture is deliberately disabled. Minimization is tested both before enqueue and after a policy change before flush. Known secret fixtures cover nested JSON, escaped quotes, prompt/plan/explicit/portable intent and queued activity. PII and novel secrets are not guaranteed to be removed; existing history, linked Markdown and raw native trace files are not rewritten.
+
+The recovery tests kill a real recorder, observe a different healthy PID, persist queued activity, preserve its existing fencing token and confirm an expired lease stays expired. Concurrent starts keep one supervisor owner. Deliberate stop prevents automatic restart and manual start resumes. A live stale owner and an unconfirmed PID are preserved. A separate subprocess proves five launch attempts are bounded and inactive installation stops supervision. The local supervisor itself is not OS-supervised; observation gaps are approximate and missing events are never reconstructed.
+
+Configured local unit validation passed 115 cases: 113 Windows passes, two POSIX skips and no failures. The check recorded stable source and intent. Final release checks and platform CI are recorded in the task evidence and release metadata. Prior benchmark results retain their original version/method boundaries; these changes establish no agent-quality or token-saving advantage.
+
+The initial local browser check could not launch because the expected Playwright Chromium binary was absent. `DIP_BROWSER_EXECUTABLE` allows an explicitly selected installed browser for local smoke testing; CI continues to install and use Playwright Chromium. The failed attempt remains in task evidence.
+
+Use at your own responsibility. Review captured data, cloned scripts, permissions and agent actions before execution or publication.
+
 ## v0.3.8 bounded low-friction integration
 
 L04 now has an explicit `task_adopt` transition: the current agent reviews a captured follow-up, updates the existing requirement, records supersession and selects the target for subsequent native planning/hooks. Idempotent retry, ownership/session validation and rejection of developed sources are covered by actual CLI/MCP/hook tests. Informational requests and distinct future ideas retain their existing separate transitions. There is no automatic semantic identity classifier or guarantee that every agent complies.

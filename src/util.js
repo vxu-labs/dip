@@ -88,7 +88,19 @@ export function json(file, fallback = null) {
   }
 }
 export function redact(value) {
-  return String(value ?? "")
+  const text = String(value ?? "");
+  if (/^\s*[\[{]/.test(text)) {
+    try {
+      return JSON.stringify(redactValue(JSON.parse(text)));
+    } catch {
+      /* Non-JSON prose follows normal string redaction. */
+    }
+  }
+  return text
+    .replace(
+      /-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----[\s\S]*?-----END (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/g,
+      "[REDACTED PRIVATE KEY]",
+    )
     .replace(
       /\b(?:gh[pousr]_[A-Za-z0-9_]+|github_pat_[A-Za-z0-9_]+|sk-[A-Za-z0-9_-]{12,})\b/g,
       "[REDACTED]",
@@ -99,6 +111,22 @@ export function redact(value) {
     )
     .replace(/(Bearer\s+)[A-Za-z0-9._-]+/gi, "$1[REDACTED]")
     .replace(/(https?:\/\/)[^/@\s]+:[^/@\s]+@/gi, "$1[REDACTED]@");
+}
+export function redactValue(value) {
+  if (typeof value === "string") return redact(value);
+  if (Array.isArray(value)) return value.map(redactValue);
+  if (value && typeof value === "object")
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        key,
+        /^(?:api[_-]?key|access[_-]?token|refresh[_-]?token|token|password|secret|authorization|private[_-]?key)$/i.test(
+          key,
+        )
+          ? "[REDACTED]"
+          : redactValue(item),
+      ]),
+    );
+  return value;
 }
 export function safePath(root, relative) {
   const target = path.resolve(root, relative);

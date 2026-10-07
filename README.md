@@ -26,6 +26,8 @@ Explicit [outcome receipts](docs/completion.md) distinguish answered questions, 
 
 **Experimental software. Use at your own risk.** You are responsible for reviewing agent actions, hook permissions, backups and captured `.dip` data before committing or publishing it. Redaction does not guarantee that every secret or private detail is removed. See the [Apache-2.0 license](LICENSE) for warranty and liability terms.
 
+**Control what gets recorded.** Per-project `dip capture` settings can omit request text, automatic plans, commands or file metadata. Explicit intent tools stay available. A bounded local supervisor restarts a crashed recorder, respects deliberate stops and reports observation gaps through `dip doctor`. [Privacy controls, retention and recovery limits](docs/operations.md).
+
 ## Install once
 
 ```sh

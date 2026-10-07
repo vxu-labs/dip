@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0a2f2880-bdef-4eff-adef-f2d2a13007ee",
+  "taskId": "task_8a06cdf69d80979e779048e33e769c8b3c3ed213ce6756f3d67944e74c0ea2a5",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/capture-policy.js",
+      "src/util.js",
+      "src/core.js",
+      "src/automation.js",
+      "src/portable.js",
+      "src/health.js",
+      "bin/dip.js",
+      "src/cli-help.js",
+      "test/privacy-recovery.test.js",
+      "docs/operations.md",
+      "README.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:32:46.295Z",
+  "parents": [
+    "cb876f48-9cd6-4673-8d57-c27c9b678a2f"
+  ],
+  "branch": "main"
+}

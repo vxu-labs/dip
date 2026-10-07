@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e6f9940e-6b37-49f0-95e7-15633f2f2345",
+  "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+  "type": "task.update",
+  "payload": {
+    "title": "Implement four focused privacy and recorder-reliability improvements",
+    "scope": [
+      "src",
+      "bin/dip.js",
+      "test/privacy-recovery.test.js",
+      "docs/operations.md",
+      "README.md",
+      "QA_REPORT.md",
+      ".dip/config.json",
+      "package.json",
+      "package-lock.json"
+    ],
+    "acceptance": [
+      "Validated per-project automatic-capture/minimization controls preserve explicit intent and expose deliberate disablement.",
+      "Structural redaction and deterministic fixtures protect recognized secrets across automatic/explicit intent and diagnostic storage without claiming universal PII detection.",
+      "Bounded local recorder supervision restarts crashed children, preserves queue and fencing, and respects stop/uninstall with single-instance tests.",
+      "Doctor separates present health from historical failures and reports bounded observation gaps without reconstructing missing events."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:01:08.114Z",
+  "parents": [
+    "6997b880-dc3d-44c0-8eae-9ff5a98f2b7a"
+  ],
+  "branch": "main"
+}

@@ -14,6 +14,7 @@ import {
   startDaemon,
   stopDaemon,
   runDaemon,
+  runSupervisor,
   daemonAlive,
 } from "../src/automation.js";
 import { home, json } from "../src/util.js";
@@ -21,6 +22,7 @@ import { VERSION } from "../src/version.js";
 import { cliHelp, compactStatus } from "../src/cli-help.js";
 import { reconcileView, taskView } from "../src/views.js";
 import { discoverClientProject } from "../src/client-discovery.js";
+import { capturePolicy, configureCapture } from "../src/capture-policy.js";
 
 const argv = process.argv.slice(2);
 const command = argv.shift() || "help";
@@ -78,6 +80,7 @@ const options = {
   client: { type: "string" },
   probe: { type: "boolean" },
   disabled: { type: "boolean" },
+  automatic: { type: "boolean" },
   limit: { type: "string" },
   offset: { type: "string" },
   patch: { type: "string" },
@@ -145,7 +148,15 @@ try {
         gitDiscovery: false,
       }),
     );
-  else if (command === "start") print(startDaemon());
+  else if (command === "capture") {
+    const repo = ensure(cwd, { instructions: false });
+    print(
+      flags.patch
+        ? configureCapture(repo, JSON.parse(flags.patch))
+        : { ...capturePolicy(repo.config), explicitIntent: "available" },
+    );
+  } else if (command === "start")
+    print(startDaemon({ automatic: !!flags.automatic }));
   else if (command === "stop") print(stopDaemon());
   else if (command === "flush") {
     const rt = new Runtime();
@@ -155,6 +166,7 @@ try {
       rt.close();
     }
   } else if (command === "daemon") await runDaemon();
+  else if (command === "supervisor") await runSupervisor();
   else if (command === "discover")
     print(
       scan(

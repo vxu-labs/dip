@@ -26,6 +26,7 @@ import {
   home,
   git,
   redact,
+  redactValue,
   managed,
   id,
   sensitive,
@@ -47,6 +48,14 @@ import {
   probeGitTrace,
 } from "./git-discovery.js";
 export { writeGitHooks } from "./git-hooks.js";
+import { capturePolicy } from "./capture-policy.js";
+import {
+  acquireRecorderLock,
+  requestRecorderStart,
+  requestRecorderStop,
+  runRecorderSupervisor,
+  processAlive,
+} from "./recorder-supervisor.js";
 
 export const CLI = fileURLToPath(new URL("../bin/dip.js", import.meta.url));
 const shellQuote = (s) => `'${String(s).replaceAll("'", "'\\''")}'`;
@@ -362,7 +371,7 @@ function backup(file) {
 }
 function installStartup(state) {
   const user = USER_HOME(),
-    command = `${quote(process.execPath)} --disable-warning=ExperimentalWarning ${quote(CLI)} start`;
+    command = `${quote(process.execPath)} --disable-warning=ExperimentalWarning ${quote(CLI)} start --automatic`;
   if (process.platform === "win32") {
     const file = path.join(
       user,
@@ -385,7 +394,7 @@ function installStartup(state) {
     const xml = (s) => s.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
     atomic(
       file,
-      `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>Label</key><string>dev.dip</string><key>ProgramArguments</key><array><string>${xml(process.execPath)}</string><string>${xml(CLI)}</string><string>start</string></array><key>RunAtLoad</key><true/></dict></plist>`,
+      `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>Label</key><string>dev.dip</string><key>ProgramArguments</key><array><string>${xml(process.execPath)}</string><string>${xml(CLI)}</string><string>start</string><string>--automatic</string></array><key>RunAtLoad</key><true/></dict></plist>`,
     );
     state.startupFile = file;
   } else {
@@ -425,6 +434,7 @@ function installStartup(state) {
         ? `if (Test-Path -LiteralPath '${escapedCli}') {\n  & '${escapedNode}' '${escapedCli}' start | Out-Null\n  if (-not (Get-Command git -CommandType Function -ErrorAction SilentlyContinue)) {\n    function global:git {\n      $alGitArgs = @($args)\n      & (Get-Command git -CommandType Application | Select-Object -First 1).Source @alGitArgs\n      $alGitExit = $LASTEXITCODE\n      if ($alGitExit -eq 0 -and ($alGitArgs -contains 'init' -or $alGitArgs -contains 'clone')) {\n        & '${escapedNode}' '${escapedCli}' after-git -- @alGitArgs | Out-Null\n      }\n      $global:LASTEXITCODE = $alGitExit\n    }\n  }\n}`
         : `[ ! -f ${shellQuote(CLI)} ] || ${shellQuote(process.execPath)} ${shellQuote(CLI)} start >/dev/null 2>&1\nif ! typeset -f git >/dev/null 2>&1; then\n  git() {\n    command git "$@"\n    al_git_exit=$?\n    if [ "$al_git_exit" -eq 0 ]; then\n      case " $* " in *" init "*|*" clone "*) ${shellQuote(process.execPath)} ${shellQuote(CLI)} after-git -- "$@" >/dev/null ;; esac\n    fi\n    return "$al_git_exit"\n  }\nfi`;
     const quietBody = body
+      .replaceAll(" start ", " start --automatic ")
       .replaceAll(
         `'${escapedNode}' '${escapedCli}'`,
         `'${escapedNode}' --disable-warning=ExperimentalWarning '${escapedCli}'`,
@@ -539,6 +549,17 @@ export function handleHook(
   const rt = new Runtime();
   try {
     rt.register(repo);
+    const capture = capturePolicy(repo.config);
+    if (!capture.enabled)
+      return input.hook_event_name === "UserPromptSubmit"
+        ? {
+            hookSpecificOutput: {
+              hookEventName: "UserPromptSubmit",
+              additionalContext:
+                "DIP automatic capture and hook coordination are intentionally disabled for this project. Persist intent explicitly through DIP tools; no captured task ID was supplied.",
+            },
+          }
+        : {};
     const worker = input.agent_id || input.subagent_id || input.thread_id;
     const session =
         String(input.session_id || "unknown") +
@@ -559,13 +580,13 @@ export function handleHook(
         if (lease?.actor === actor && lease.expires > Date.now())
           rt.release(repo, active.task, lease.token);
       }
-      const prompt = redact(
-        promptRequest(input.prompt || input.user_prompt || ""),
-      );
+      const prompt = capture.promptText
+        ? redact(promptRequest(input.prompt || input.user_prompt || ""))
+        : "";
       const task = createTask(
         repo,
         {
-          title: prompt.trim().slice(0, 160) || "Agent request",
+          title: prompt.trim().slice(0, 160) || "Agent request (text omitted)",
           description: prompt,
           status: "backlog",
           source: "prompt",
@@ -610,7 +631,7 @@ export function handleHook(
       const task = taskRead(repo, active.task);
       try {
         let scope = task.scope;
-        if (/apply_patch|Write|Edit/.test(tool)) {
+        if (/apply_patch|Write|Edit/.test(tool) && capture.files) {
           const candidates = documentMutations(tool, toolInput)
             .flatMap((m) => [m.path, m.oldPath])
             .filter(Boolean);
@@ -634,7 +655,7 @@ export function handleHook(
           scope = [...new Set([...scope, ...inferred])];
         }
         const lease = rt.claim(repo, active.task, actor, 120000, scope);
-        if (input.tool_use_id) {
+        if (input.tool_use_id && capture.files) {
           const mutations = documentMutations(tool, toolInput)
             .slice(0, 20)
             .flatMap((m) => {
@@ -754,6 +775,7 @@ export function handleHook(
           (response?.exit_code !== undefined && response.exit_code !== 0);
         if (
           event === "PostToolUse" &&
+          capture.files &&
           !failed &&
           binding.expires > Date.now() &&
           binding.actor === actor &&
@@ -820,6 +842,7 @@ export function handleHook(
     if (
       event === "PostToolUse" &&
       planningTool(tool) &&
+      capture.planText &&
       !input.tool_response?.isError &&
       !input.tool_response?.is_error
     ) {
@@ -835,7 +858,7 @@ export function handleHook(
         "task.plan",
         {
           tool,
-          input: JSON.parse(redact(JSON.stringify(planInput(tool, toolInput)))),
+          input: redactValue(planInput(tool, toolInput)),
         },
         {
           actor,
@@ -1105,15 +1128,6 @@ export function daemonAlive() {
     return false;
   }
 }
-function processAlive(pid) {
-  if (!Number.isInteger(pid) || pid < 1) return false;
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch {
-    return false;
-  }
-}
 export function recordablePath(root, name) {
   const file = String(name || "").replaceAll("\\", "/");
   const parts = file.split("/");
@@ -1144,7 +1158,13 @@ export function recordablePath(root, name) {
       path.isAbsolute(relativeRuntime))
   );
 }
-export function startDaemon() {
+export function startDaemon(options = {}) {
+  return requestRecorderStart(CLI, options);
+}
+export async function runSupervisor() {
+  return runRecorderSupervisor(startRecorder);
+}
+export function startRecorder() {
   if (daemonAlive()) return { running: true, alreadyRunning: true };
   const owner = json(path.join(home(), "daemon.lock", "owner.json"), null);
   if (owner?.pid && processAlive(owner.pid))
@@ -1170,17 +1190,29 @@ export function startDaemon() {
   );
   child.unref();
   fs.closeSync(log);
-  atomic(path.join(home(), "daemon.json"), {
-    pid: child.pid,
-    heartbeat: Date.now(),
-    starting: true,
-  });
+  child.on("error", (error) =>
+    atomic(path.join(home(), "recorder-start-error.json"), {
+      at: Date.now(),
+      error: redact(error.message),
+    }),
+  );
   return { started: true, pid: child.pid };
 }
 export function stopDaemon() {
+  requestRecorderStop();
   const file = path.join(home(), "daemon.json"),
     state = json(file, null);
   if (!state?.pid || !processAlive(state.pid)) return { stopped: true };
+  const owner = json(path.join(home(), "daemon.lock", "owner.json"), null);
+  if (
+    owner?.pid !== state.pid ||
+    (state.instance && owner.instance !== state.instance)
+  )
+    return {
+      stopped: false,
+      ownerUnconfirmed: true,
+      message: "Recorder ownership is unconfirmed; no process was terminated.",
+    };
   atomic(path.join(home(), "stop-request.json"), {
     pid: state.pid,
     instance: state.instance,
@@ -1203,24 +1235,10 @@ export function stopDaemon() {
   return { stopped: true, graceful: true };
 }
 export async function runDaemon() {
-  const lock = path.join(home(), "daemon.lock");
-  fs.mkdirSync(home(), { recursive: true });
-  try {
-    fs.mkdirSync(lock);
-  } catch (e) {
-    const owner = json(path.join(lock, "owner.json"), null);
-    if (owner?.pid && processAlive(owner.pid)) return;
-    try {
-      if (fs.existsSync(path.join(lock, "owner.json")))
-        fs.unlinkSync(path.join(lock, "owner.json"));
-      fs.rmdirSync(lock);
-      fs.mkdirSync(lock);
-    } catch {
-      return;
-    }
-  }
+  const previousDaemon = json(path.join(home(), "daemon.json"), null);
   const instance = id();
-  atomic(path.join(lock, "owner.json"), { pid: process.pid, instance });
+  const releaseLock = acquireRecorderLock("daemon.lock", instance);
+  if (!releaseLock) return;
   const rt = new Runtime(),
     watchers = new Map(),
     pending = new Map(),
@@ -1252,13 +1270,14 @@ export async function runDaemon() {
           }),
         );
       } catch (e) {
-        console.error(`Watcher ${registered.root}: ${e.message}`);
+        console.error(redact(`Watcher ${registered.root}: ${e.message}`));
       }
     }
   };
   const discover = () => {
     const result = scan(state.roots);
-    for (const e of result.errors) console.error(JSON.stringify(e));
+    for (const e of result.errors)
+      console.error(JSON.stringify(redactValue(e)));
     attach();
   };
   let scheduled = null;
@@ -1305,14 +1324,17 @@ export async function runDaemon() {
           scheduled = setTimeout(() => {
             const result = scan([...discoveryCandidates]);
             discoveryCandidates.clear();
-            for (const e of result.errors) console.error(JSON.stringify(e));
+            for (const e of result.errors)
+              console.error(JSON.stringify(redactValue(e)));
             attach();
           }, 1000);
         }),
       );
     } catch (e) {
       console.error(
-        `Root watcher unavailable for ${root}: ${e.message}; periodic discovery remains enabled`,
+        redact(
+          `Root watcher unavailable for ${root}: ${e.message}; periodic discovery remains enabled`,
+        ),
       );
     }
   atomic(path.join(home(), "daemon.json"), {
@@ -1327,17 +1349,20 @@ export async function runDaemon() {
     port: state.port ?? 4317,
   });
   let dashboardUrl = null,
-    lastError = null;
+    lastError = null,
+    lastFailure = previousDaemon?.lastFailure || null;
   dashboard.on("error", (e) => {
     lastError = `Dashboard: ${e.message}`;
+    lastFailure = { at: Date.now(), error: redact(lastError) };
     if (e.code === "EADDRINUSE") dashboard.listen(0, "127.0.0.1");
-    else console.error(lastError);
+    else console.error(redact(lastError));
   });
   dashboard.on("listening", () => {
     dashboardUrl = `http://127.0.0.1:${dashboard.address().port}`;
   });
   const flushPending = () => {
     try {
+      lastError = null;
       if (nativeGit) {
         const discovery = nativeGit.drain();
         if (discovery.errors.length)
@@ -1366,6 +1391,21 @@ export async function runDaemon() {
       if (rt.lastFlushErrors.length)
         lastError = rt.lastFlushErrors.map((e) => e.error).join("; ");
       attach();
+      if (lastError) lastFailure = { at: Date.now(), error: redact(lastError) };
+      atomic(path.join(home(), "daemon.json"), {
+        pid: process.pid,
+        instance,
+        heartbeat: Date.now(),
+        dashboard: dashboardUrl,
+        watchedRepositories: [...watchers.keys()],
+        watchedRoots: state.roots,
+        lastError: lastError ? redact(lastError) : null,
+        lastFailure,
+      });
+    } catch (e) {
+      console.error(redact(e.stack));
+      lastError = redact(e.message);
+      lastFailure = { at: Date.now(), error: lastError };
       atomic(path.join(home(), "daemon.json"), {
         pid: process.pid,
         instance,
@@ -1374,10 +1414,8 @@ export async function runDaemon() {
         watchedRepositories: [...watchers.keys()],
         watchedRoots: state.roots,
         lastError,
+        lastFailure,
       });
-    } catch (e) {
-      console.error(e.stack);
-      lastError = redact(e.message);
     }
   };
   const timer = setInterval(() => {
@@ -1402,8 +1440,7 @@ export async function runDaemon() {
     } catch {}
     rt.close();
     try {
-      fs.unlinkSync(path.join(lock, "owner.json"));
-      fs.rmdirSync(lock);
+      releaseLock();
     } catch {}
     const request = path.join(home(), "stop-request.json");
     if (json(request, null)?.pid === process.pid) fs.unlinkSync(request);

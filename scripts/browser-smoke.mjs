@@ -107,7 +107,12 @@ runtime.claim(workerRepo, workerTask, "claude:unicode", 120000, [
 runtime.close();
 const server = createServer({ root, port: 0 });
 await new Promise((resolve) => server.on("listening", resolve));
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.DIP_BROWSER_EXECUTABLE
+    ? { executablePath: process.env.DIP_BROWSER_EXECUTABLE }
+    : {}),
+});
 try {
   const page = await browser.newPage({
     viewport: { width: 1440, height: 1000 },

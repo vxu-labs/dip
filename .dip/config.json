@@ -7,7 +7,7 @@
         "--test",
         "--test-concurrency=1"
       ],
-      "timeoutMs": 120000
+      "timeoutMs": 180000
     },
     "browser": {
       "command": [
@@ -89,6 +89,34 @@
         "test/low-friction.test.js"
       ],
       "timeoutMs": 60000
+    },
+    "privacy-recovery": {
+      "command": [
+        "node",
+        "--test",
+        "test/privacy-recovery.test.js"
+      ],
+      "timeoutMs": 90000
+    },
+    "privacy-controls": {
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "capture settings|minimized|capture policy|known-secret|CLI capture",
+        "test/privacy-recovery.test.js"
+      ],
+      "timeoutMs": 60000
+    },
+    "recorder-recovery": {
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "real supervisor|live stale|restart attempts",
+        "test/privacy-recovery.test.js"
+      ],
+      "timeoutMs": 90000
     }
   },
   "mode": "coordinate"

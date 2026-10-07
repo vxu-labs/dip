@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cd1e3725-5877-434b-bf0e-80f12615156e",
+  "taskId": "task_c0bffa8c657be52733213fb619d4ab246777f7a978663dba448f57210da20e9f",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/recorder-supervisor.js",
+      "src/automation.js",
+      "src/health.js",
+      "bin/dip.js",
+      "test/privacy-recovery.test.js",
+      "docs/operations.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:32:49.243Z",
+  "parents": [
+    "6f58334e6ac49fa97bc0076fc0b9c3a56fb4b6ab03c8d01af4be1eb7f1073676"
+  ],
+  "branch": "main"
+}

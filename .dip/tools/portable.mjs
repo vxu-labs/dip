@@ -23,8 +23,18 @@ const fields = [
   "due",
   "resolution",
 ];
-const redacted = (value) =>
-  String(value ?? "")
+const redacted = (value) => {
+  const text = String(value ?? "");
+  if (/^\s*[\[{]/.test(text)) {
+    try {
+      return JSON.stringify(sanitize(JSON.parse(text)));
+    } catch {}
+  }
+  return text
+    .replace(
+      /-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----[\s\S]*?-----END (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/g,
+      "[REDACTED PRIVATE KEY]",
+    )
     .replace(
       /\b(?:gh[pousr]_[A-Za-z0-9_]+|github_pat_[A-Za-z0-9_]+|sk-[A-Za-z0-9_-]{12,})\b/g,
       "[REDACTED]",
@@ -35,6 +45,24 @@ const redacted = (value) =>
     )
     .replace(/(Bearer\s+)[A-Za-z0-9._-]+/gi, "$1[REDACTED]")
     .replace(/(https?:\/\/)[^/@\s]+:[^/@\s]+@/gi, "$1[REDACTED]@");
+};
+const sanitize = (value) =>
+  typeof value === "string"
+    ? redacted(value)
+    : Array.isArray(value)
+      ? value.map(sanitize)
+      : value && typeof value === "object"
+        ? Object.fromEntries(
+            Object.entries(value).map(([key, item]) => [
+              key,
+              /^(?:api[_-]?key|access[_-]?token|refresh[_-]?token|token|password|secret|authorization|private[_-]?key)$/i.test(
+                key,
+              )
+                ? "[REDACTED]"
+                : sanitize(item),
+            ]),
+          )
+        : value;
 function safe(root, relative, create = false) {
   const file = path.resolve(root, relative);
   if (!file.startsWith(root + path.sep))
@@ -258,6 +286,7 @@ function history(root, id) {
   return { state, heads };
 }
 function write(root, id, type, payload, actor, parents) {
+  payload = sanitize(payload);
   const eventId = randomUUID(),
     event = {
       schemaVersion: 1,

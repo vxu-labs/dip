@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "799f3361-a911-4aed-a420-b17f55c9d9b7",
+  "taskId": "task_8a06cdf69d80979e779048e33e769c8b3c3ed213ce6756f3d67944e74c0ea2a5",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Validated project capture/minimization controls and recognized-secret fixtures delivered. Explicit intent remains available; disabled versus unobserved status is visible. Existing history/documents/raw Trace2 are not scrubbed; heuristic redaction is not a universal PII/secret guarantee.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:32:46.686Z",
+  "parents": [
+    "de838c94-8326-4760-8a09-8d59d210313c"
+  ],
+  "branch": "main"
+}

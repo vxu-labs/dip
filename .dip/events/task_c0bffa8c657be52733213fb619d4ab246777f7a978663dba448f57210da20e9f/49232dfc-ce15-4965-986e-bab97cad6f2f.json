@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "49232dfc-ce15-4965-986e-bab97cad6f2f",
+  "taskId": "task_c0bffa8c657be52733213fb619d4ab246777f7a978663dba448f57210da20e9f",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Bounded local supervision delivered: real recorder crash recovery, queue/fencing preservation, concurrent ownership, persistent stop/automatic startup, uninstall and 5-in-60s retry bound tested. Current and historical health/gaps separated. Live stale owners are preserved; supervisor itself is not OS-supervised; missing events are not reconstructed.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:32:49.619Z",
+  "parents": [
+    "a1fdc1f4-69c0-4aa8-bd8a-945f53cc0604"
+  ],
+  "branch": "main"
+}

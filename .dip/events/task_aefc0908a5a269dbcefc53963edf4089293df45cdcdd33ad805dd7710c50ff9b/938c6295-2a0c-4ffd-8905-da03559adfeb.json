@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "eventId": "938c6295-2a0c-4ffd-8905-da03559adfeb",
+  "taskId": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src",
+      "bin/dip.js",
+      "test/privacy-recovery.test.js",
+      "docs/operations.md",
+      "README.md",
+      "QA_REPORT.md",
+      ".dip/config.json",
+      "package.json",
+      "package-lock.json",
+      "src/capture-policy.js",
+      "src/util.js",
+      "src/core.js",
+      "src/automation.js",
+      "src/portable.js",
+      "src/recorder-supervisor.js",
+      "src/cli-help.js",
+      "src/health.js",
+      "scripts/browser-smoke.mjs"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T15:25:36.347Z",
+  "parents": [
+    "9c78efd5-a894-4749-9ddc-a5200968fd41"
+  ],
+  "branch": "main"
+}
