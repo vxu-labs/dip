@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e26bda4f-0b21-43a0-845e-3cf1e964bed8",
+  "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Implemented durable missing-root deferred state with 30s to 5min retry backoff, immediate directory-return recovery, explicit CLI retry and separate health advisories. Regression verifies 510 preserved records across runtime restart, healthy-project progress, no duplicate recovery and malformed live-project failure; focused tests passed. Package smoke now isolates inherited native Git trace. Full configured verification and release remain pending.",
+    "next": "",
+    "head": "5eb46c3f79944ecc96cddd3fc4c9909e8fba0f9a"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:06:24.540Z",
+  "parents": [
+    "cb75dad4-ee85-4616-b800-658b307151b8"
+  ],
+  "branch": "main"
+}

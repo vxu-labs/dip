@@ -444,11 +444,41 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         },
       );
     }
-    if (action === "claim") {
+    if (action === "claim" || action === "prepare") {
+      const preparing = action === "prepare";
+      const patch = args.patch || {};
+      if (preparing) {
+        if (!args.actor || !args.session)
+          throw new Error(
+            "Preparation requires the current hook actor and session",
+          );
+        if (
+          typeof patch !== "object" ||
+          Array.isArray(patch) ||
+          Object.keys(patch).some(
+            (key) =>
+              !["title", "description", "acceptance", "scope"].includes(key),
+          )
+        )
+          throw new Error(
+            "Preparation patch supports title, description, acceptance and scope only",
+          );
+        updateValidation(patch);
+      }
       const task = reconcile(repo, rt, { includeActivity: false }).tasks.find(
         (t) => t.id === args.id,
       );
       if (!task) throw new Error("Task not found");
+      if (
+        preparing &&
+        (task.kind !== "work" ||
+          ["implemented", "verified", "cancelled", "superseded"].includes(
+            task.status,
+          ))
+      )
+        throw new Error(
+          "Prepare only outstanding development work; refine or reopen other intent explicitly",
+        );
       if (
         task.conflicts.length ||
         task.dependencyCycle ||
@@ -467,7 +497,7 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
             args.id,
             actor,
             args.ttl || 120000,
-            args.scope || task.scope,
+            (preparing ? patch.scope : args.scope) || task.scope,
           );
           break;
         } catch (e) {
@@ -489,19 +519,35 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
             current.blockedBy.length
           )
             throw new Error("Task changed while waiting; refresh its context");
-          if (!args.scope) task.scope = current.scope;
+          if (!(preparing ? patch.scope : args.scope))
+            task.scope = current.scope;
         }
       }
-      if (args.scope) updateTask(repo, args.id, { scope: args.scope }, actor);
-      append(
-        repo,
-        args.id,
-        "task.update",
-        { status: "in_progress" },
-        { actor },
-      );
+      if (preparing) {
+        // Ownership precedes intent writes. A persistence failure retains the
+        // lease for a retry; this is not a transaction across Git and SQLite.
+        const changed = Object.fromEntries(
+          Object.entries({ ...patch, status: "in_progress" }).filter(
+            ([key, value]) =>
+              JSON.stringify(task[key]) !== JSON.stringify(value),
+          ),
+        );
+        if (Object.keys(changed).length)
+          updateTask(repo, args.id, changed, actor);
+      } else {
+        if (args.scope) updateTask(repo, args.id, { scope: args.scope }, actor);
+        append(
+          repo,
+          args.id,
+          "task.update",
+          { status: "in_progress" },
+          { actor },
+        );
+      }
       if (args.session) rt.setSession(repo, args.session, args.id, actor);
-      return lease;
+      return preparing
+        ? { lease, task: taskView(taskRead(repo, args.id)) }
+        : lease;
     }
     if (action === "heartbeat") {
       rt.heartbeat(repo, args.id, args.token);

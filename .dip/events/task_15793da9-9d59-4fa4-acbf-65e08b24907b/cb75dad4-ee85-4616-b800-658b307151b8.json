@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cb75dad4-ee85-4616-b800-658b307151b8",
+  "taskId": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/core.js",
+      "src/automation.js",
+      "src/health.js",
+      "scripts/package-smoke.mjs",
+      "test/privacy-recovery.test.js",
+      "bin/dip.js",
+      "test/outbox-recovery.test.js",
+      "docs/operations.md",
+      "QA_REPORT.md",
+      ".dip/config.json"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:01:37.219Z",
+  "parents": [
+    "ef6091b7-cdbd-4aec-958b-3e39f13356d0"
+  ],
+  "branch": "main"
+}

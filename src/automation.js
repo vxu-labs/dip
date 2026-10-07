@@ -936,7 +936,7 @@ export function handleHook(
             actor,
             session_id: session,
             instructions:
-              "This request is already saved in DIP. Refine this task with task_update instead of creating a duplicate. For a reviewed follow-up, use task_adopt to select an existing requirement before development; claim it separately. Classify informational requests as kind discussion. Before finishing, use task_finish: answered for an answered question, implemented with a configured check for development, superseded with replacement IDs for duplicate requests. Leave unfinished work open with a checkpoint. Keep future ideas in backlog. Claim only development with this actor/session. Do not call another model for tracking.",
+              "This request is already saved in DIP. For reviewed development, task_prepare refines this task, claims scope and returns compact criteria in one call using the supplied actor/session. Avoid rereading unchanged context. Planning and future ideas use task_update without claiming. For a reviewed follow-up, task_adopt selects an existing requirement before development. Classify informational requests as discussion. Finish fulfilled work with task_finish: answered for questions, implemented with a configured check for code, superseded with replacement IDs for duplicate requests. Checkpoint unfinished work. Do not call another model for tracking.",
           }),
         },
       };

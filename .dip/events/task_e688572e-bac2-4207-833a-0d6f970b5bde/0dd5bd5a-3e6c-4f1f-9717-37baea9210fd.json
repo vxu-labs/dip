@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0dd5bd5a-3e6c-4f1f-9717-37baea9210fd",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/actions.js",
+      "src/core.js",
+      "src/mcp.js",
+      "src/workflow.js",
+      "src/cli-help.js",
+      "bin/dip.js",
+      "src/automation.js",
+      "src/repository-integration.js",
+      "skills/dip/SKILL.md",
+      "test/task-prepare.test.js",
+      "scripts/model-benchmark.mjs",
+      "scripts/model-benchmark-profile.mjs",
+      "scripts/model-benchmark-evidence.mjs",
+      "scripts/fixtures/model-benchmark-v3.txt",
+      "docs/benchmarks",
+      "docs/automation.md",
+      "README.md",
+      "QA_REPORT.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:28:06.381Z",
+  "parents": [
+    "21180253-1afb-4614-a96b-19d44a9b5891"
+  ],
+  "branch": "main"
+}

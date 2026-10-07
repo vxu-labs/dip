@@ -132,6 +132,22 @@
         "scripts/host-qa-evidence.mjs"
       ],
       "timeoutMs": 60000
+    },
+    "outbox-recovery": {
+      "command": [
+        "node",
+        "--test",
+        "test/outbox-recovery.test.js"
+      ],
+      "timeoutMs": 60000
+    },
+    "task-prepare": {
+      "command": [
+        "node",
+        "--test",
+        "test/task-prepare.test.js"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate"

@@ -1,6 +1,6 @@
 {
   "name": "@vxu-labs/dip",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "Automatic local-first development activity and task coordination for coding agents",
   "type": "module",
   "license": "Apache-2.0",

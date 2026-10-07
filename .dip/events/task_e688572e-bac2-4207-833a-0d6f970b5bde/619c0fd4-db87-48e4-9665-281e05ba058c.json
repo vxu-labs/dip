@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "619c0fd4-db87-48e4-9665-281e05ba058c",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.document",
+  "payload": {
+    "path": "skills/dip/SKILL.md",
+    "role": "reference",
+    "hash": "f32c4bec954d6dffa958aea8c1edbad32ee97cfe6b81a9eccb9a41d85e004b30",
+    "bytes": 6012,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:18:30.191Z",
+  "parents": [
+    "7598548f-24cc-45ad-89ea-b509cbbaa728"
+  ],
+  "branch": "main"
+}

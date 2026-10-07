@@ -56,9 +56,21 @@ export function automationHealth(root) {
     sources = [],
     pending = 0,
     failures = [],
+    deferredOutbox = { repositories: 0, records: 0, entries: [] },
     dataErrors = [],
     captured = { promptCount: 0, planCount: 0, lastPromptAt: null };
   try {
+    const deferred = runtime.db
+      .prepare(
+        "SELECT d.*, count(q.id) AS records FROM queue_deferred d JOIN queue q ON q.root=d.root GROUP BY d.root ORDER BY d.first_at",
+      )
+      .all();
+    deferredOutbox = {
+      repositories: deferred.length,
+      records: deferred.reduce((n, d) => n + d.records, 0),
+      entries: deferred.slice(0, 20),
+      truncated: deferred.length > 20,
+    };
     if (root) {
       try {
         repo = ensure(root, { instructions: false });
@@ -74,7 +86,9 @@ export function automationHealth(root) {
           .prepare("SELECT source,kind,last FROM recorder_sources WHERE root=?")
           .all(repo.root);
         failures = runtime.db
-          .prepare("SELECT root,error,at FROM queue_errors WHERE root=?")
+          .prepare(
+            "SELECT e.root,e.error,e.at FROM queue_errors e LEFT JOIN queue_deferred d ON e.root=d.root WHERE e.root=? AND d.root IS NULL",
+          )
           .all(repo.root);
         const state = project(repo);
         dataErrors = state.errors;
@@ -89,12 +103,18 @@ export function automationHealth(root) {
       }
     } else
       failures = runtime.db
-        .prepare("SELECT root,error,at FROM queue_errors")
+        .prepare(
+          "SELECT e.root,e.error,e.at FROM queue_errors e LEFT JOIN queue_deferred d ON e.root=d.root WHERE d.root IS NULL",
+        )
         .all();
   } finally {
     runtime.close();
   }
   const running = daemonAlive();
+  if (deferredOutbox.repositories)
+    advisories.push(
+      `${deferredOutbox.records} queued records for ${deferredOutbox.repositories} absent repositories are retained with bounded retry. Restore the original repository to resume; dip flush explicitly retries without discarding data.`,
+    );
   const capture = capturePolicy(repo?.config);
   const intentionallyStopped = control?.enabled === false;
   if (repo && capture.enabled && installation?.active && !captured.promptCount)
@@ -244,6 +264,7 @@ export function automationHealth(root) {
       (daemon?.watchedRepositories || []).includes(repo.root),
     sources,
     pending,
+    deferredOutbox,
     failures,
     dataErrors,
     issues,

@@ -5,6 +5,8 @@ export function cliHelp(command = "help", action = "") {
     create:
       'dip task create --title "..." [--description "..."] [--status backlog|ready] [--scope PATH] [--actor NAME]\n',
     get: "dip task get --id ID [--full]\n",
+    prepare:
+      "dip task prepare --id ID --actor NAME --session SESSION [--patch JSON]\nRefines outstanding development, claims scope and returns compact criteria. Planning and future ideas use task update instead.\n",
     finish:
       'dip task finish --id ID --outcome answered|implemented|superseded|cancelled --summary "..." [--check NAME] [--replacedBy ID] [--actor NAME] [--token TOKEN]\n',
     requirements:

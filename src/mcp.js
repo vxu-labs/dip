@@ -274,6 +274,25 @@ export async function runMcp() {
     "update",
   );
   add(
+    "task_prepare",
+    "Start reviewed development in one call: refine the captured requirement, claim its scope and return compact criteria and handoff. Requires hook actor/session. Do not use for future ideas, discussion or completed work; use task_update/task_adopt for those. Ownership conflicts leave intent unchanged. Repeating the same request renews ownership without duplicate intent events.",
+    {
+      id: z.string(),
+      actor: z.string(),
+      session: z.string(),
+      patch: z
+        .object({
+          title: z.string().optional(),
+          description: z.string().optional(),
+          acceptance: z.array(z.string()).optional(),
+          scope: z.array(z.string()).optional(),
+        })
+        .strict()
+        .optional(),
+    },
+    "prepare",
+  );
+  add(
     "task_claim",
     "Atomically claim meaningful work. Pass the hook session_id and same actor agent:session_id to associate automatic activity. waitMs waits locally for conflicting ownership to release without repeated model calls.",
     {

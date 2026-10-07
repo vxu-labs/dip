@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c7e72e49-8475-4fa0-bcfa-87f34e8fa5fa",
+  "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "text": "1. Claim existing recovery requirement and reproduce vanished-root outbox failures; add recoverable deferred state, bounded retry/return recovery, project-specific health and QA trace isolation. 2. Profile retained benchmark tool sequences, implement measured compact workflow improvements and rerun the original matched Markdown/DIP scenarios with preserved protocol and all outcomes. 3. Exercise actual Codex native planning, compaction and interrupt through supported host transport and independently compare durable intent to disk; preserve Claude/unsupported gaps. 4. Run configured checks, record honest outcomes and publish validated release."
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:56:56.186Z",
+  "parents": [
+    "862589b2-3aa9-4921-8965-129206809e66"
+  ],
+  "branch": "main"
+}

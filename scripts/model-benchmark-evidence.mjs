@@ -12,11 +12,16 @@ const input =
 const data = JSON.parse(fs.readFileSync(input, "utf8"));
 const protocol = JSON.parse(
   fs.readFileSync(
-    path.join(workspace, "docs/benchmarks/2026-10-06-model-protocol-v3.json"),
+    path.join(
+      workspace,
+      data.protocol.protocolVersion === 4
+        ? "docs/benchmarks/2026-10-07-model-protocol-v4.json"
+        : "docs/benchmarks/2026-10-06-model-protocol-v3.json",
+    ),
     "utf8",
   ),
 );
-assert.equal(data.protocol.protocolVersion, 3);
+assert.ok([3, 4].includes(data.protocol.protocolVersion));
 assert.ok(data.completedAt, "Data collection must have completed");
 assert.equal(data.pairs.length, 6);
 assert.deepEqual(data.protocol.pairs, protocol.pairs);
@@ -30,7 +35,14 @@ assert.equal(
   protocol.sources.fixtures,
 );
 assert.equal(
-  hash(path.join(workspace, "scripts/model-benchmark.mjs")),
+  hash(
+    path.join(
+      workspace,
+      data.protocol.protocolVersion === 3
+        ? "scripts/fixtures/model-benchmark-v3.txt"
+        : "scripts/model-benchmark.mjs",
+    ),
+  ),
   protocol.sources.harness,
 );
 const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), "dip-score-replay-"));

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "862589b2-3aa9-4921-8965-129206809e66",
+  "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+  "type": "task.update",
+  "payload": {
+    "title": "Deliver missing-root recovery, lower management overhead and expanded live Codex QA",
+    "description": "User requests all three existing workstreams. Preserve missing-root queued data with bounded recovery; profile management and repeat matched Markdown comparison; test live native planning, compaction and interruption in Codex. Claude remains deferred until installed/authenticated. Do not infer unsupported coverage.",
+    "dependencies": [
+      "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+      "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+      "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:56:55.917Z",
+  "parents": [
+    "566fc79c-0d01-4453-909f-26fed062233f"
+  ],
+  "branch": "main"
+}

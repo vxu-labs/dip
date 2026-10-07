@@ -161,7 +161,11 @@ try {
   else if (command === "flush") {
     const rt = new Runtime();
     try {
-      print({ flushed: rt.flush(), errors: rt.lastFlushErrors });
+      print({
+        flushed: rt.flush(null, { force: true }),
+        errors: rt.lastFlushErrors,
+        deferred: rt.db.prepare("SELECT * FROM queue_deferred").all(),
+      });
     } finally {
       rt.close();
     }

@@ -62,3 +62,9 @@ Command metadata and short prompt descriptions can contain project information. 
 ## Sources for adapter behavior
 
 [Codex hooks](https://learn.chatgpt.com/docs/hooks), [Codex plugin packaging and trust](https://developers.openai.com/plugins/build/plugins), [Claude Code hooks](https://code.claude.com/docs/en/hooks), [Git core.hooksPath](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath).
+# Starting development with fewer intent calls
+
+With current hook identity, `task_prepare` combines a small requirement patch, a scope claim and a compact task receipt. It supports title, description, acceptance criteria and project-relative scope. An ownership conflict or invalid patch leaves intent unchanged. Repeating the same request renews the existing claim without duplicate intent events. Git intent and local leases are separate stores; a persistence failure after acquisition retains ownership for retry.
+
+Use `task_update` for planning and future ideas, and `task_adopt` for a reviewed follow-up to a different existing requirement. Preparation deliberately rejects discussion and completed work. Do not repeat an unchanged task read when the hook or preparation receipt already supplied the information. Use bounded requirements or document sections when more detail is needed. Completion still requires configured checks.
+

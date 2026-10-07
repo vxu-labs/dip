@@ -61,3 +61,9 @@ This is heuristic protection. Ordinary email addresses and other PII can remain,
 Commit `.dip` with the work. Runtime files, dependencies, nested ledgers and sensitive paths are excluded from file capture. The dashboard uses bounded activity/history previews; the immutable ledger retains complete stored requests and plans. CLI status and Git provide the full durable records.
 
 Live coordination applies to one local Git worktree family. Independent clones/machines require a future shared coordinator. Hooks are workflow controls, not a sandbox. Cloud or remote hosts need their own installation. The compatibility table distinguishes adapter fixtures and native command tests from actual model-backed host sessions.
+# Repositories that disappear
+
+Activity for a missing repository stays in the local durable outbox. DIP defers expensive persistence retries for 30 seconds, doubling to a maximum of five minutes. Other repositories continue flushing. The health report lists retained records as an advisory rather than a permanent active error.
+
+Restoring the original repository at its original path resumes delivery on the next flush, without waiting for the retry deadline. `dip flush` explicitly retries every pending repository and reports deferred entries; it does not discard records. Do not substitute an unrelated repository at that path. Permission failures and malformed configuration in an existing repository remain active errors that require repair.
+

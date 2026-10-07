@@ -13,6 +13,7 @@ const env = {
   DIP_USER_HOME: path.join(root, "user"),
   DIP_GIT_CONFIG: path.join(root, "gitconfig"),
   GIT_CONFIG_GLOBAL: path.join(root, "gitconfig"),
+  GIT_TRACE2_EVENT: "0",
 };
 const source = fileURLToPath(new URL("../", import.meta.url));
 const version = JSON.parse(
