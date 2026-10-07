@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8c820a69-c2f3-4065-8efb-23cea2a5ad80",
+  "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Completed and published requested roadmap, alternatives backlog and initial no-training Laya pilot. Remote results commit 727ab9d; CI 37581338247 passed Windows, Linux and macOS including offline validation of every prediction. All 96 rows, probabilities, two protocols and excluded Windows setup failure retained. Configured laya-pilot check passed stable source/intent snapshot 1128d123f3c34faa486798c7fa9f68a277d98718d8faeab3e7b43dcee279ec65. Multilingual checkpoint exact-identity precision 30.7% (23 true / 75 suggested), recall 95.8%, 52 false identities; not ready for automatic merging under tested schema. No fine-tuning or production semantic/Git integration performed. Model study and alternatives task remain open for broader comparison/adaptation.",
+    "next": "Publish final ledger validation only. Further model comparison/training should retain this pilot unchanged and use independent project/time test splits.",
+    "head": "727ab9d448ab9ca5bb15277d6164d305c9fc7e87"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T06:28:46.235Z",
+  "parents": [
+    "b40550df-b33f-4d77-af03-d31117bdca15"
+  ],
+  "branch": "main"
+}
