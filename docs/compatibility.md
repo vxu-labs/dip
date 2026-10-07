@@ -2,6 +2,8 @@
 
 Node.js 24+ is required. The implementation uses built-in SQLite, which Node currently labels experimental. Runtime data is disposable for task projection but includes the durable local outbox and active leases; stop and flush the recorder before deleting it.
 
+The repository-contained portable intent helper requires Node 20+ and no package dependencies. It has no automatic capture or live ownership. [Generated project skills and upgrade/removal](portable.md) and [explicit Git-library client discovery](client-discovery.md) describe the new bounded integration paths. isomorphic-git is a pinned development-only verification dependency, not required by installed DIP.
+
 | Integration        | Implementation                                                                     | Verification                                                                               |
 | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | MCP stdio          | Standard SDK server with concise intent/context tools and paginated reconciliation | Real client-to-server process tests                                                        |

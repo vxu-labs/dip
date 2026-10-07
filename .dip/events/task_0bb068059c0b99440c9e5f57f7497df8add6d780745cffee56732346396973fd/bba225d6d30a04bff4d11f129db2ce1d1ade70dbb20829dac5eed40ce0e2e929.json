@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bba225d6d30a04bff4d11f129db2ce1d1ade70dbb20829dac5eed40ce0e2e929",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.create",
+  "payload": {
+    "title": "תשלים אותם",
+    "description": "תשלים אותם \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:41:15.091Z",
+  "parents": [],
+  "branch": "main"
+}

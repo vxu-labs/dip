@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3123b550-f765-45e5-aa69-1ad8060c2498",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/automation.md",
+    "role": "reference",
+    "hash": "9a62f150e46ebb00f29813ab5b20601015277e1a0781bdb8da77fe4f7f9122e5",
+    "bytes": 11253,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:56:06.725Z",
+  "parents": [
+    "a9128ba8-d223-448a-8970-4ec6b6819f03"
+  ],
+  "branch": "main"
+}

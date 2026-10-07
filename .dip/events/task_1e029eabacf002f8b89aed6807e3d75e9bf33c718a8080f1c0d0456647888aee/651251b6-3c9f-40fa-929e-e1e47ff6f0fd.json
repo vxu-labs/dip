@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "651251b6-3c9f-40fa-929e-e1e47ff6f0fd",
+  "taskId": "task_1e029eabacf002f8b89aed6807e3d75e9bf33c718a8080f1c0d0456647888aee",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/client-discovery.js",
+      "src/health.js",
+      "bin/dip.js",
+      "test/low-friction.test.js",
+      "package.json",
+      "package-lock.json",
+      "docs/client-discovery.md",
+      "docs/compatibility.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:07:55.486Z",
+  "parents": [
+    "a6af4d446cc51701541d88456160163f918cc6aee6f3b6fcdff969f7b9846972"
+  ],
+  "branch": "main"
+}

@@ -20,6 +20,7 @@ import { home, json } from "../src/util.js";
 import { VERSION } from "../src/version.js";
 import { cliHelp, compactStatus } from "../src/cli-help.js";
 import { reconcileView, taskView } from "../src/views.js";
+import { discoverClientProject } from "../src/client-discovery.js";
 
 const argv = process.argv.slice(2);
 const command = argv.shift() || "help";
@@ -34,6 +35,8 @@ if (
 const options = {
   title: { type: "string" },
   id: { type: "string" },
+  targetId: { type: "string" },
+  targetToken: { type: "string" },
   summary: { type: "string" },
   text: { type: "string" },
   path: { type: "string" },
@@ -71,6 +74,10 @@ const options = {
   "no-git-discovery": { type: "boolean" },
   json: { type: "boolean" },
   full: { type: "boolean" },
+  remove: { type: "boolean" },
+  client: { type: "string" },
+  probe: { type: "boolean" },
+  disabled: { type: "boolean" },
   limit: { type: "string" },
   offset: { type: "string" },
   patch: { type: "string" },
@@ -116,6 +123,16 @@ try {
       }),
     );
   else if (command === "uninstall") print(uninstall());
+  else if (command === "repository")
+    print(await execute("repository", flags, cwd));
+  else if (command === "discover-project")
+    print(
+      discoverClientProject(cwd, {
+        client: flags.client,
+        probe: !!flags.probe,
+        enabled: !flags.disabled,
+      }),
+    );
   else if (command === "connect")
     print(
       install({
@@ -198,6 +215,7 @@ try {
     else if (action === "update")
       args.patch = {
         ...(flags.status ? { status: flags.status } : {}),
+        ...(flags.kind ? { kind: flags.kind } : {}),
         ...(flags.scope ? { scope: flags.scope } : {}),
         ...(flags.title ? { title: flags.title } : {}),
       };

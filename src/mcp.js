@@ -133,6 +133,32 @@ export async function runMcp() {
     "plan",
   );
   add(
+    "task_adopt",
+    "Explicitly select an existing requirement for a captured follow-up before development. Refine target intent, supersede the captured duplicate and rebind the hook session. Review requirements first; this tool does not infer identity or claim ownership.",
+    {
+      id: z.string(),
+      targetId: z.string(),
+      session: z.string(),
+      actor: z.string(),
+      summary: z.string().min(1).max(2000),
+      patch: z
+        .object({
+          title: z.string().optional(),
+          description: z.string().optional(),
+          acceptance: z.array(z.string()).optional(),
+          dependencies: z.array(z.string()).optional(),
+          scope: z.array(z.string()).optional(),
+          kind: z.enum(["work", "discussion"]).optional(),
+          priority: z.number().int().min(1).max(5).optional(),
+          due: z.string().optional(),
+        })
+        .optional(),
+      token: z.string().optional(),
+      targetToken: z.string().optional(),
+    },
+    "adopt",
+  );
+  add(
     "task_finish",
     "Record an explicit answered, implemented, superseded or cancelled outcome. Answered closes informational requests, never verifies code. Use a configured check for implemented work; failed checks keep ownership. Stop alone does not close work.",
     {

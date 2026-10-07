@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3d1b2249-f74a-4bc9-92b6-4237cea9cd99",
+  "taskId": "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Bounded 100/1000/10000-task profiling completed with raw cold/warm/capture/memory/event data. Measured warm p95 improved 10.11s to 1.58s; cold remained about 10s, slightly above context investigation target. Fresh-hook added blocking median177ms remains explicit; no quality/token or platform-SLA claim.",
+    "next": "",
+    "head": "cdd9c2befa89ab5a8f572cafaa5e121a3b853f99"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:07:55.640Z",
+  "parents": [
+    "8cff938e-d8af-40d2-b98d-47409de8f517"
+  ],
+  "branch": "main"
+}

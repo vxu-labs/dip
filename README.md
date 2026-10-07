@@ -14,6 +14,8 @@ Your coding agent supplies the intent. DIP's automatic capture makes **no model 
 
 Explicit [outcome receipts](docs/completion.md) distinguish answered questions, implemented work and verified code. Development views keep discussions separate; compact task reads expose the current handoff without dumping event history. [Our completion audit](docs/completion-audit.md) shows what was already delivered and what remains unfinished.
 
+**Keep useful intent even on a machine without global DIP.** Projects now carry discoverable agent skills and a reviewed, dependency-free [portable intent helper](docs/portable.md). [Follow-up adoption](docs/intent-transitions.md) lets the existing agent select an earlier requirement, update its intent and retire the captured duplicate in one operation. Independent Git-library clients can use an [explicit discovery callback](docs/client-discovery.md).
+
 - **A useful next session.** Pick up unfinished work with saved requirements, decisions and a handoff that explains the next step.
 - **A backlog that survives the chat.** Keep "add CSV export later" beside the project and find it when you are ready to build it.
 - **Clear ownership for parallel agents.** See who owns a task and its declared scope across local worktrees, and wait for conflicting work to be released.
@@ -69,12 +71,16 @@ Use the MCP tools for meaningful transitions only:
 4. `task_checkpoint` for a handoff that explains what remains.
 5. `task_verify` to execute a named, project-configured check.
 6. `project_reconcile` when answering whether something actually exists now.
+7. `task_adopt` to attach a reviewed follow-up to an existing requirement before development.
+8. `task_finish` to record an explicit outcome, with configured verification for code.
 
 No manual logging per edit, no repeated plan upload, no separate model account. `project_context` is available for a compact refresh; it is not needed after every tool call. The durable format is documented in [the protocol](docs/protocol.md).
 
 When the current hook has not supplied a task ID, the agent must explicitly save intent and plans through MCP or CLI. `dip doctor` and the dashboard report unobserved prompt capture; installed configuration alone is insufficient. `dip --help` and task-specific help work outside Git. `dip status` returns a compact summary, with `--full` available for raw history.
 
 ## Measured quality, cost and real workflow QA
+
+In a separate synthetic scale measurement, warm context p95 at 10,000 tasks changed from **10.11 seconds to 1.58 seconds** after local event caching; output stayed around 1.3 KB. Fresh-process projection remained around **10 seconds**. This is local persistence/navigation performance on one machine, not improved agent quality or productivity. [All scale/capture samples, memory and limitations](docs/benchmarks/scale.md).
 
 A longer controlled quality experiment used **four matched project pairs and 72 scheduled fresh Codex turns**, including actual requirement revisions, abrupt process interruption, two concurrent Git worktree workers, real merges and final audits. Both arms were instructed to preserve repository intent and handoffs; the baseline used ordinary Markdown.
 

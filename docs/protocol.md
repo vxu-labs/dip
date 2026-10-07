@@ -38,6 +38,8 @@ Verification snapshots hash source paths and contents while excluding the ledger
 
 ## Local coordination
 
+The [portable helper](portable.md) writes the same causal schema for intent without a global runtime. It cannot emit verification evidence or acquire leases. [Task adoption](intent-transitions.md) links a captured duplicate to an existing requirement through a superseded receipt and rebinds the local session; target refinement and receipt are independently durable steps.
+
 SQLite stores claims, session-to-task association, repository registration and the durable recording outbox. Atomic claim transactions check both task identity and overlapping declared scopes. A refreshed claim for the same actor keeps its fencing token; reassignment after expiry produces a new token. Tokens must be supplied for token-protected updates and strict-mode operations.
 
 Agent integration uses the session identity injected by the startup hook. A task claim with that identity selects the task used by automatic activity capture. The task identity is stable across context compaction.

@@ -167,6 +167,14 @@ export function automationHealth(root) {
   return {
     installed: !!installation?.active,
     gitDiscovery: nativeGit,
+    clientDiscovery: {
+      available: true,
+      mode: "explicit_local_client_callback",
+      automaticLibraryInterception: false,
+      probe: "dip discover-project --client NAME --root WORKTREE --probe",
+      limits:
+        "Independent libraries require an integrated callback; remote hosts require host-local integration; bare/no-worktree paths are unsupported",
+    },
     roots: installation?.roots || [],
     daemon: {
       running,

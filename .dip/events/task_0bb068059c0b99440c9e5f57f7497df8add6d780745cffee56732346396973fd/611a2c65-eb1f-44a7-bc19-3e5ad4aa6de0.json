@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "eventId": "611a2c65-eb1f-44a7-bc19-3e5ad4aa6de0",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src",
+      "bin",
+      "skills",
+      "test",
+      "scripts",
+      "docs",
+      "README.md",
+      "QA_REPORT.md",
+      "CONTRIBUTING.md",
+      "package.json",
+      "package-lock.json",
+      "AGENTS.md",
+      "CLAUDE.md",
+      ".dip/config.json",
+      "docs/plans/low-friction-integration.md",
+      "src/actions.js",
+      "bin/dip.js",
+      "src/mcp.js",
+      "src/workflow.js",
+      "src/cli-help.js",
+      "src/portable.js",
+      "src/repository-integration.js",
+      "src/core.js",
+      "src/client-discovery.js"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:48:15.668Z",
+  "parents": [
+    "3166d875-d085-44d5-930f-2b44b5adb55e"
+  ],
+  "branch": "main"
+}

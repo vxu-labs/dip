@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "87ef0691-1f2f-469d-9596-daa748924389",
+  "taskId": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Repository-contained skills and dependency-free causal intent fallback implemented. Fresh clone without global executable/runtime persists future idea, plan and handoff; real Git merge detects/resolves divergent intent; owned upgrade/removal, user edits and strict-mode boundaries tested.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:18:51.124Z",
+  "parents": [
+    "1909049d-9b8a-46c7-9b30-5035a0a0b9e4"
+  ],
+  "branch": "main"
+}

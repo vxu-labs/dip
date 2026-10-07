@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f706c9a7-1ca2-4a94-975e-080d226484c6",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Completed the four existing L04/L02/L08/L06 requirements with explicit agent intent adoption, portable causal persistence and repository skills, measured large-ledger optimization and actual independent-Git-client integration. Configured unit/browser checks passed during development; final focused check, clean package and raw evidence replay passed after the preservation fix. Publish v0.3.8 and retain semantic/host/recovery/privacy/distributed research separately.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:19:04.075Z",
+  "parents": [
+    "075219da-c0bb-4970-a7f0-233c7603917f"
+  ],
+  "branch": "main"
+}

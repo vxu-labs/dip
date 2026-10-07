@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b844a2a0-9614-4230-b1ce-064eabfff89f",
+  "taskId": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/plans/low-friction-integration.md",
+    "role": "plan",
+    "hash": "7029baf0c1b8adc1d3f10b5e1efc246e629cbe8c3cf1fb14ce47ad935d6862b3",
+    "bytes": 2596,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:07:55.470Z",
+  "parents": [
+    "1425157e-7609-4d04-9fc8-6f233602ea52"
+  ],
+  "branch": "main"
+}

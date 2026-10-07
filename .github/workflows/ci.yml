@@ -25,6 +25,7 @@ jobs:
       - run: node scripts/longitudinal-stress-oracle.mjs
       - run: node scripts/longitudinal-stress-evidence.mjs
       - run: node scripts/laya-pilot-evidence.mjs
+      - run: node scripts/scale-evidence.mjs
       - run: npm test
       - run: npm pack --dry-run
       - if: runner.os == 'Linux'

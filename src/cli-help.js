@@ -1,5 +1,7 @@
 export function cliHelp(command = "help", action = "") {
   const specific = {
+    adopt:
+      'dip task adopt --id CAPTURED_ID --targetId EXISTING_ID --session SESSION --actor NAME --summary "Reviewed relationship" [--patch JSON] [--token TOKEN] [--targetToken TOKEN]\n',
     create:
       'dip task create --title "..." [--description "..."] [--status backlog|ready] [--scope PATH] [--actor NAME]\n',
     get: "dip task get --id ID [--full]\n",
@@ -32,6 +34,8 @@ export function cliHelp(command = "help", action = "") {
     header +
     `DIP: persistent project intent and automatic activity\n\n` +
     `dip install [--roots PATH]     One-time machine integration\n` +
+    `dip repository [--remove]      Upgrade/remove owned repository skills and portable helper\n` +
+    `dip discover-project --client NAME [--probe] [--disabled]  Explicit local Git-client callback\n` +
     `dip context                    Compact handoff; no activity dump\n` +
     `dip status [--limit 30]         Compact tasks and capture counts\n` +
     `dip status --full              Full task/activity history\n` +

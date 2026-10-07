@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d13f3902-6b7b-4d46-9ed9-55298ead79cc",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/scale.md",
+    "role": "reference",
+    "hash": "905ffe4d4a60e2ae49de9f7620c9b2748941396aca9ab21d38866cc8e7907eb6",
+    "bytes": 4247,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:09:39.964Z",
+  "parents": [
+    "f8b8b249-1165-4638-ad06-dfa43a7e03df"
+  ],
+  "branch": "main"
+}

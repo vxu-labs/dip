@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8f4bc344-e17d-43fa-aafa-d3187721c201",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/portable.md",
+    "role": "reference",
+    "hash": "e39227d8166894ca08b41c253758689c24363a175eb999a7601f4445adc771b1",
+    "bytes": 3147,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:53:36.434Z",
+  "parents": [
+    "cbf46324-d806-40a4-ab62-8274839fe22a"
+  ],
+  "branch": "main"
+}

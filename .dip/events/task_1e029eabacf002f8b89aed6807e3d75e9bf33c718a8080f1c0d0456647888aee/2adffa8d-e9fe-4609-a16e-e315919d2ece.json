@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2adffa8d-e9fe-4609-a16e-e315919d2ece",
+  "taskId": "task_1e029eabacf002f8b89aed6807e3d75e9bf33c718a8080f1c0d0456647888aee",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Explicit local Git-library callback adapter implemented and exercised with actual isomorphic-git init/status, nested and linked worktrees, native Trace2 disabled. Disabled/probe/bare cases are truthful. No universal automatic interception or remote-host coverage asserted.",
+    "next": "",
+    "head": "cdd9c2befa89ab5a8f572cafaa5e121a3b853f99"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:07:55.545Z",
+  "parents": [
+    "651251b6-3c9f-40fa-929e-e1e47ff6f0fd"
+  ],
+  "branch": "main"
+}

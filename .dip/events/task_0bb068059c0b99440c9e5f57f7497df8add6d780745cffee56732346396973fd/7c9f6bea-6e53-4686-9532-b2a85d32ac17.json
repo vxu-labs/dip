@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7c9f6bea-6e53-4686-9532-b2a85d32ac17",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/client-discovery.md",
+    "role": "reference",
+    "hash": "87420c8d74f224de20901741049938dd94bbf91057bc4ff546a8e6e7e7758924",
+    "bytes": 2624,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:53:36.473Z",
+  "parents": [
+    "8f4bc344-e17d-43fa-aafa-d3187721c201"
+  ],
+  "branch": "main"
+}

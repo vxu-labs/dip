@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1425157e-7609-4d04-9fc8-6f233602ea52",
+  "taskId": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Repository skill entry points, owned upgrade/removal/opt-out and standalone causal intent helper implemented. Real fresh-clone and divergent Git-branch tests pass; portable reads/writes use no global runtime and never establish code proof or live ownership.",
+    "next": "",
+    "head": "cdd9c2befa89ab5a8f572cafaa5e121a3b853f99"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:07:55.449Z",
+  "parents": [
+    "3765a07a-ee25-432b-935f-94b77814d004"
+  ],
+  "branch": "main"
+}

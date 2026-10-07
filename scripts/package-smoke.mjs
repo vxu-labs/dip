@@ -117,6 +117,45 @@ try {
     project,
   ]);
   assert.equal(sections.sections[0].heading, "Validation");
+  const portable = path.join(project, ".dip", "tools", "portable.mjs");
+  assert.ok(
+    fs.existsSync(path.join(project, ".agents", "skills", "dip", "SKILL.md")),
+  );
+  assert.ok(
+    fs.existsSync(path.join(project, ".claude", "skills", "dip", "SKILL.md")),
+  );
+  const portableCreated = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [portable, "create", "--title", "Portable package idea"],
+      {
+        cwd: project,
+        env: {
+          ...env,
+          PATH: "",
+          DIP_HOME: path.join(root, "no-portable-runtime"),
+        },
+        encoding: "utf8",
+        windowsHide: true,
+      },
+    ),
+  );
+  assert.equal(
+    run(["task", "get", "--id", portableCreated.id, "--root", project]).status,
+    "backlog",
+  );
+  assert.ok(!fs.existsSync(path.join(root, "no-portable-runtime")));
+  assert.equal(
+    run([
+      "discover-project",
+      "--client",
+      "package-qa",
+      "--root",
+      project,
+      "--probe",
+    ]).supported,
+    true,
+  );
   run(["uninstall"]);
   assert.ok(fs.existsSync(path.join(project, ".dip", "config.json")));
   console.log(

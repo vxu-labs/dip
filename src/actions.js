@@ -11,8 +11,18 @@ import {
   append,
   linkDocument,
   unlinkDocument,
+  updateValidation,
 } from "./core.js";
-import { captureSnapshot, redact, git, digest, inScope } from "./util.js";
+import {
+  captureSnapshot,
+  redact,
+  git,
+  digest,
+  inScope,
+  atomic,
+} from "./util.js";
+import { repositoryIntegration } from "./repository-integration.js";
+import path from "node:path";
 import { planIntent } from "./workflow.js";
 import {
   documentState,
@@ -89,11 +99,20 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         "changes",
         "search",
         "related",
+        "repository",
       ].includes(action),
     }),
     rt = new Runtime();
   try {
     rt.register(repo);
+    if (action === "repository") {
+      const result = repositoryIntegration(repo, { remove: !!args.remove });
+      atomic(path.join(repo.dir, "config.json"), {
+        ...repo.config,
+        repositoryIntegration: !args.remove,
+      });
+      return result;
+    }
     if (
       ["requirements", "owners", "changes", "search", "related"].includes(
         action,
@@ -114,6 +133,116 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
     if (action === "get") {
       const task = args.full ? taskGet(repo, args.id) : taskRead(repo, args.id);
       return args.full ? task : taskView(task);
+    }
+    if (action === "adopt") {
+      if (!args.session || typeof args.session !== "string")
+        throw new Error("Adoption requires the current hook session");
+      if (args.id === args.targetId) throw new Error("Adopt a different task");
+      if (
+        typeof args.summary !== "string" ||
+        !args.summary.trim() ||
+        args.summary.length > 2000
+      )
+        throw new Error(
+          "Explain the reviewed relationship in 1..2000 characters",
+        );
+      const source = taskRead(repo, args.id),
+        target = taskRead(repo, args.targetId);
+      const resolution = {
+        outcome: "superseded",
+        summary: redact(args.summary),
+        replacedBy: [args.targetId],
+      };
+      const repeated =
+        source.status === "superseded" &&
+        JSON.stringify(source.resolution) === JSON.stringify(resolution);
+      if (
+        !repeated &&
+        (source.history[0]?.payload.source !== "prompt" ||
+          source.scope.length ||
+          source.acceptance.length ||
+          source.evidence.length ||
+          source.documents.length)
+      )
+        throw new Error(
+          "Adopt only a captured request before development; preserve developed work separately",
+        );
+      if (
+        source.conflicts.length ||
+        target.conflicts.length ||
+        ["cancelled", "superseded"].includes(target.status)
+      )
+        throw new Error(
+          "Resolve conflicts or select an actionable target first",
+        );
+      const patch = args.patch || {};
+      if (
+        Object.keys(patch).some(
+          (k) =>
+            ![
+              "title",
+              "description",
+              "acceptance",
+              "dependencies",
+              "scope",
+              "kind",
+              "priority",
+              "due",
+            ].includes(k),
+        )
+      )
+        throw new Error(
+          "Adoption refines intent only; use explicit status and finish operations",
+        );
+      updateValidation(patch);
+      rt.guard(repo, args.id, actor, args.token);
+      rt.guard(repo, args.targetId, actor, args.targetToken);
+      const session = rt.session(repo, args.session);
+      if (
+        session &&
+        (session.actor !== actor ||
+          ![args.id, args.targetId].includes(session.task))
+      )
+        throw new Error("Session belongs to another actor or request");
+      // Validate everything first. Causal files are individually durable; retrying
+      // after interruption completes a missing receipt/session bind without a duplicate.
+      if (
+        Object.entries(patch).some(
+          ([k, v]) => JSON.stringify(target[k]) !== JSON.stringify(v),
+        )
+      )
+        await execute(
+          "update",
+          { id: args.targetId, actor, token: args.targetToken, patch },
+          cwd,
+        );
+      await execute(
+        "finish",
+        {
+          id: args.id,
+          actor,
+          token: args.token,
+          outcome: "superseded",
+          summary: args.summary,
+          replacedBy: [args.targetId],
+        },
+        cwd,
+      );
+      rt.setSession(
+        repo,
+        args.session,
+        args.targetId,
+        actor,
+        session?.prompt || source.description,
+      );
+      return {
+        id: args.targetId,
+        adoptedFrom: args.id,
+        session: args.session,
+        task: taskView(taskRead(repo, args.targetId)),
+        instruction:
+          "Intent selected by the existing agent, not an automatic identity classifier. Claim development separately; use configured checks for completion.",
+      };
     }
     if (action === "finish") {
       const lease = rt.guard(repo, args.id, actor, args.token);

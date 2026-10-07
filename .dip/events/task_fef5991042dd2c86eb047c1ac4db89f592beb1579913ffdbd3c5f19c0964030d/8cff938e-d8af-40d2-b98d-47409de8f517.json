@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8cff938e-d8af-40d2-b98d-47409de8f517",
+  "taskId": "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/core.js",
+      "src/event-cache.js",
+      "test/low-friction.test.js",
+      "scripts/scale-benchmark.mjs",
+      "scripts/scale-evidence.mjs",
+      "scripts/benchmark-comparison.mjs",
+      "docs/benchmarks/scale.md",
+      "docs/benchmarks/2026-10-07-scale-before.json",
+      "docs/benchmarks/2026-10-07-scale-after.json",
+      "docs/benchmarks/2026-10-07-windows-0.3.8.json"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:07:55.582Z",
+  "parents": [
+    "3a803b315dfc19b0e825db1a76404e7a8e8462521d9b69adf371c93a4b5c76f0"
+  ],
+  "branch": "main"
+}

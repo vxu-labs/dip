@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "49c0b6bb-852d-4f2c-9928-def2a4b1bd83",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/scale.md",
+    "role": "reference",
+    "hash": "f3644e7a22a8a4cb85bc671ea99ba14c3812feb45655ef25a2ff5902e7fa7088",
+    "bytes": 4015,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:02:31.599Z",
+  "parents": [
+    "ba72719b-398f-413d-ac3c-386388d8d00d"
+  ],
+  "branch": "main"
+}

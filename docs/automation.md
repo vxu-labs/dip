@@ -53,6 +53,8 @@ Coordinate mode is the default. It records activity, creates task associations a
 
 ## Preservation and privacy
 
+Repository setup also generates owned [project skills and a portable intent helper](portable.md). [Reviewed follow-up adoption](intent-transitions.md) selects an existing task without a duplicate actionable prompt. Independent Git-library clients can integrate the [explicit local discovery callback](client-discovery.md); clients without the callback remain unobserved.
+
 Agent configuration is merged, not replaced. Installation records its previous Git hooksPath and chains original hooks with their arguments. Backups end in `.dip-backup`. Uninstall removes managed settings while retaining unrelated values and all project data.
 
 Command metadata and short prompt descriptions can contain project information. Common credential formats are redacted; this is not a guarantee of detecting every possible secret. Full transcripts, patch contents, sensitive-file contents and model responses are not intended as durable logs. Review ledger data before publishing a private project. The product has no telemetry or external network client for activity recording.

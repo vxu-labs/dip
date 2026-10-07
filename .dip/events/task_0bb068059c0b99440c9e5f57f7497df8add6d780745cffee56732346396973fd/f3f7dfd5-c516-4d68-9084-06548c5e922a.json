@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f3f7dfd5-c516-4d68-9084-06548c5e922a",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.document",
+  "payload": {
+    "path": "QA_REPORT.md",
+    "role": "reference",
+    "hash": "631bdbad3fafab66a02a10aaf590a9ac23be5e0fd36c169049958a0162fbf802",
+    "bytes": 22169,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:06:52.242Z",
+  "parents": [
+    "2418f78c-75ee-478d-858c-2f0881ea3f38"
+  ],
+  "branch": "main"
+}

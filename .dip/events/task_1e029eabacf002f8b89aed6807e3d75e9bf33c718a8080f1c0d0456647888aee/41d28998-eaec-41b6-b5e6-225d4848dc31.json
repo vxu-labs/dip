@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "41d28998-eaec-41b6-b5e6-225d4848dc31",
+  "taskId": "task_1e029eabacf002f8b89aed6807e3d75e9bf33c718a8080f1c0d0456647888aee",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Explicit Git-library callback implemented and verified against actual isomorphic-git init/status, nested/linked worktrees and unsupported/disabled/probe cases, with tracing disabled. Callback coverage is explicit, not universal Git interception.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:18:58.147Z",
+  "parents": [
+    "8f8348ea-569a-4e98-9102-921bc2e18d32"
+  ],
+  "branch": "main"
+}

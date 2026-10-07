@@ -1,5 +1,9 @@
 # DIP benchmarks
 
+## Ledger scale and durable recording
+
+The 100/1,000/10,000-task fixture observed warm context p95 at 10,000 tasks changing from 10.11 s to 1.58 s; fresh-process p95 remained about 10 s. Raw event counts, bytes, capture timings, memory, budgets and limitations are in the [scale report](scale.md). This is synthetic local persistence performance, not a model-quality comparison.
+
 ## Semantic retrieval candidates and proposed comparison
 
 The [source-linked alternatives shortlist and experiment design](semantic-alternatives.md) includes compact static/contextual models, a custom 10M/100M relation-encoder arm, vocabulary-budget analysis and user-request/assistant-response query ablations against capable large-Markdown and DIP baselines. This is research/planning, with no model quality ranking or training outcome yet.
@@ -19,6 +23,8 @@ Six matched pairs used GPT-6.1 Sol with High reasoning, identical task prompts, 
 [Full controlled report](model-controlled.md) includes all valid outcomes, source artifacts, reported usage, preregistered protocols, two retained infrastructure attempts, replay validation and limitations. This is a small pilot against an explicitly instructed note-taking baseline; it does not measure parallel coordination or implicit reminders.
 
 ## Synthetic tracking overhead
+
+The v0.3.8 rerun on 7 October retained 30 paired samples: median blocking 90.23 ms without DIP versus 267.35 ms with DIP; median paired added cost 177.00 ms, p95 203.14 ms. Including sequential post capture, median was 439.26 ms. This newer fallback run does not show reduced hook startup overhead relative to the historical v0.3.2 run; machine/runtime differences and different development points prevent a paired release-to-release causal comparison. [Every v0.3.8 pair](2026-10-07-windows-0.3.8.json). Low-level batched/immediate timing in the [scale report](scale.md) excludes process startup and is a separate workload.
 
 Measured on 6 October 2026 with Node.js 24.14.0, Windows x64 and an Intel Core i7-8750H. Each run uses 30 paired samples after three warm-up pairs, alternating the execution order. Both conditions launch the same Node file-write subprocess with identical content.
 

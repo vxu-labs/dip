@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "eventId": "952b6642-7b7b-4c63-843e-e373563d6dbf",
+  "taskId": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+  "type": "task.update",
+  "payload": {
+    "title": "Complete intent transitions, portable repository integration, scale profiling and one discovery adapter",
+    "kind": "work",
+    "scope": [
+      "src",
+      "bin",
+      "skills",
+      "test",
+      "scripts",
+      "docs",
+      "README.md",
+      "QA_REPORT.md",
+      "CONTRIBUTING.md",
+      "package.json",
+      "package-lock.json",
+      "AGENTS.md",
+      "CLAUDE.md",
+      ".dip/config.json"
+    ],
+    "acceptance": [
+      "Complete L04 through explicit existing-agent intent transitions with trustworthy outcomes and tests.",
+      "Complete L02 with versioned repository skills and portable causal intent persistence without global DIP.",
+      "Complete L08 with predeclared budgets, reproducible scale/capture measurements and measured optimization.",
+      "Complete L06 with a real additional client adapter and truthful capability diagnostics."
+    ],
+    "dependencies": []
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:42:08.569Z",
+  "parents": [
+    "54ad3176-3f50-4a13-beaa-d87269f49a35"
+  ],
+  "branch": "main"
+}
