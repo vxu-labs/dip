@@ -14,14 +14,14 @@ const protocol = JSON.parse(
   fs.readFileSync(
     path.join(
       workspace,
-      data.protocol.protocolVersion === 4
-        ? "docs/benchmarks/2026-10-07-model-protocol-v4.json"
-        : "docs/benchmarks/2026-10-06-model-protocol-v3.json",
+      data.protocol.protocolVersion === 3
+        ? "docs/benchmarks/2026-10-06-model-protocol-v3.json"
+        : `docs/benchmarks/2026-10-07-model-protocol-v${data.protocol.protocolVersion}.json`,
     ),
     "utf8",
   ),
 );
-assert.ok([3, 4].includes(data.protocol.protocolVersion));
+assert.ok([3, 4, 5].includes(data.protocol.protocolVersion));
 assert.ok(data.completedAt, "Data collection must have completed");
 assert.equal(data.pairs.length, 6);
 assert.deepEqual(data.protocol.pairs, protocol.pairs);
@@ -38,9 +38,7 @@ assert.equal(
   hash(
     path.join(
       workspace,
-      data.protocol.protocolVersion === 3
-        ? "scripts/fixtures/model-benchmark-v3.txt"
-        : "scripts/model-benchmark.mjs",
+      `scripts/fixtures/model-benchmark-v${data.protocol.protocolVersion}.txt`,
     ),
   ),
   protocol.sources.harness,

@@ -1,0 +1,54 @@
+{
+  "protocolVersion": 5,
+  "dipVersion": "0.3.12",
+  "arms": {
+    "without": {
+      "functional": 48,
+      "functionalTotal": 48,
+      "memory": 36,
+      "memoryTotal": 36,
+      "successfulPairs": 5,
+      "completedTurns": 11,
+      "timeouts": 1,
+      "medianObservedWallSeconds": 193.98,
+      "mcpCalls": 0,
+      "mcpResultBytes": 0,
+      "usageReportedTurns": 11,
+      "knownInputTokens": 934879,
+      "knownOutputTokens": 26428,
+      "tools": {}
+    },
+    "with": {
+      "functional": 48,
+      "functionalTotal": 48,
+      "memory": 35,
+      "memoryTotal": 36,
+      "successfulPairs": 4,
+      "completedTurns": 10,
+      "timeouts": 3,
+      "medianObservedWallSeconds": 274.04,
+      "mcpCalls": 98,
+      "mcpResultBytes": 125640,
+      "usageReportedTurns": 10,
+      "knownInputTokens": 2095044,
+      "knownOutputTokens": 45327,
+      "tools": {
+        "task_requirements": 7,
+        "task_get": 5,
+        "task_adopt": 6,
+        "task_prepare": 12,
+        "task_plan": 15,
+        "task_create": 5,
+        "task_update": 3,
+        "task_verify": 9,
+        "task_document_link": 12,
+        "task_checkpoint": 5,
+        "project_reconcile": 8,
+        "task_finish": 5,
+        "task_decision": 1,
+        "task_release": 4,
+        "task_document_read": 1
+      }
+    }
+  }
+}

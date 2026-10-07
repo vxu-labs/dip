@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0c28cc6c-87cc-4c84-9945-5c00d798553f",
+  "taskId": "task_2362d29e-7f1b-4f76-8d38-43fbaf961335",
+  "type": "task.create",
+  "payload": {
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "status": "backlog",
+    "title": "DIP-B03: Bound mutation receipts and profile host tool-schema cost",
+    "description": "Follow-up to the completed preparation prototype and retained matched repeats. In protocolv4,13 prepare and6 adopt calls returned68495bytes out of131577 MCP result bytes. Combining management steps reduced one path to one call, but complete-workflow efficiency against Markdown remains unproven. Investigate minimal mutation receipts with explicit lazy retrieval, tool-schema/context contribution and preservation of meaningful handoff signals. Do not shrink authoritative requirements silently or add a model call for capture.",
+    "scope": [
+      "src/views.js",
+      "src/actions.js",
+      "src/mcp.js",
+      "src/core.js",
+      "docs/navigation.md",
+      "scripts/model-benchmark.mjs"
+    ],
+    "acceptance": [
+      "Attribute receipt, required intent and host/schema bytes separately; serialized bytes are not tokens or causal latency.",
+      "Prototype bounded prepare/adopt receipts with explicit truncation and retrieval pointers while preserving current criteria, ownership fencing, durable intent and partial-work completion rules.",
+      "Preregister and retain a matched capable-Markdown repeat with quality, memory, completed-work timing, missing usage and all regressions; no efficiency claim from incomplete trials."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:51:12.165Z",
+  "parents": [],
+  "branch": "main"
+}

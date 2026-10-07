@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "089bddd2-6348-479c-a0d9-b96e77596464",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/compatibility.md",
+    "role": "reference",
+    "hash": "5fd06b6488bd18ab501895b4f8fb04516276c682db18640be2e7f4d092b7ee69",
+    "bytes": 5154,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:09:52.838Z",
+  "parents": [
+    "6a8853be-8d20-40d3-9b5b-75ec583a4896"
+  ],
+  "branch": "main"
+}

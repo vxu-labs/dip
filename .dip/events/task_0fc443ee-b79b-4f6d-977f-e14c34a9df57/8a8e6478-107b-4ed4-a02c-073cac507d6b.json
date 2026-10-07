@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8a8e6478-107b-4ed4-a02c-073cac507d6b",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "0.3.12 completion boundary and explicit typed task_plan implemented. 129 unit cases:127 Windows passes,2 POSIX skips; clean archive package and browser passed. Installed 0.3.12. Actual authenticated Codex explicit structured planning saved exactly three pending steps and separate Hebrew UTF-8/order future backlog; replay passed. Real compaction/interruption positive on0.3.11; native update_plan unavailable, Claude absent. Repeat matched experiment on frozen0.3.12 and final configured completion/publication remain.",
+    "next": "",
+    "head": "65e8991a52e0cadce3cf97cd0fcafb5d582c5ea7"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T19:55:27.659Z",
+  "parents": [
+    "cc575e8d-62aa-4a67-b39e-96e720c9e04d"
+  ],
+  "branch": "main"
+}

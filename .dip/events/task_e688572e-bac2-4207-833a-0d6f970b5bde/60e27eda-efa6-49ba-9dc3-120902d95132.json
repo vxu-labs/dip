@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "eventId": "60e27eda-efa6-49ba-9dc3-120902d95132",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/actions.js",
+      "src/core.js",
+      "src/mcp.js",
+      "src/workflow.js",
+      "src/cli-help.js",
+      "bin/dip.js",
+      "src/automation.js",
+      "src/repository-integration.js",
+      "skills/dip/SKILL.md",
+      "test/task-prepare.test.js",
+      "scripts/model-benchmark.mjs",
+      "scripts/model-benchmark-profile.mjs",
+      "scripts/model-benchmark-evidence.mjs",
+      "scripts/fixtures/model-benchmark-v3.txt",
+      "docs/benchmarks",
+      "docs/automation.md",
+      "README.md",
+      "QA_REPORT.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json",
+      "docs/host-qa/structured-plan.md",
+      "docs/host-qa/README.md",
+      "scripts/delivery-evidence.mjs",
+      ".github/workflows/ci.yml"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T19:59:43.909Z",
+  "parents": [
+    "0143d2d3-f541-4110-bdd4-8764b9edbfd4"
+  ],
+  "branch": "main"
+}

@@ -28,7 +28,7 @@ Explicit [outcome receipts](docs/completion.md) distinguish answered questions, 
 
 **Control what gets recorded.** Per-project `dip capture` settings can omit request text, automatic plans, commands or file metadata. Explicit intent tools stay available. A bounded local supervisor restarts a crashed recorder, respects deliberate stops and reports observation gaps through `dip doctor`. [Privacy controls, retention and recovery limits](docs/operations.md).
 
-**Tested with a real agent.** [Live Codex QA](docs/host-qa/README.md) saved a future plan, refined an existing idea on resume, and recovered both through CLI in a new session without MCP. The original failed trial is preserved. Native planning, compaction and live Claude remain open; this is integration evidence, not a quality or speedup claim.
+**Tested with a real agent.** [Live Codex QA](docs/host-qa/README.md) saved future plans, recovered intent through CLI in a new session, and verified actual compaction and interruption hooks. DIP's explicit structured planning tool retained three pending steps and a distinct future idea in backlog. Original failed trials are preserved. Automatic native planning and live Claude remain open; this is integration evidence, not a quality or speedup claim.
 
 ## Install once
 
@@ -39,7 +39,7 @@ dip install
 
 The installer merges global Codex and Claude Code hooks/MCP configuration, chains existing Git hooks, initializes existing repositories under your home directory, and starts a local discovery/activity service. It adds startup entries and terminal-profile integration. Restart your coding tools and terminal and approve the hook definitions when your agent asks. It never bypasses the agent's trust settings.
 
-Ask naturally for a plan, a feature or a future idea. Trusted hooks save the request and structured plan updates automatically; the agent receives the captured task ID so it can refine the existing requirement. Future ideas stay in backlog during planning and known read tools. Write a long plan once in Markdown: supported file-write hooks attach a small versioned reference to its task, and DIP tools retrieve the relevant sections. Status, ownership and verification stay structured. The dashboard and `dip doctor` show whether prompt capture has actually been observed in the selected project. See [document references](docs/documents.md) and [workflow coverage](docs/automation.md#requests-plans-and-future-ideas).
+Ask naturally for a plan, a feature or a future idea. Trusted hooks save the request and delivered native plan updates; the agent receives the captured task ID so it can refine the existing requirement. If its host exposes no native planning tool, it saves steps explicitly through DIP `task_plan`. Future ideas stay in backlog during planning and known read tools. Write a long plan once in Markdown: supported file-write hooks attach a small versioned reference to its task, and DIP tools retrieve the relevant sections. Status, ownership and verification stay structured. The dashboard and `dip doctor` show whether prompt capture has actually been observed in the selected project. See [document references](docs/documents.md) and [workflow coverage](docs/automation.md#requests-plans-and-future-ideas).
 
 Ask DIP for current requirements, live component owners, changes since verification, or related tasks and decisions. Focused tools return bounded structured answers with source IDs; a local incremental search index keeps activity history out of the agent's context. Retrieval currently uses lexical search and explicit task relationships. [Agent navigation tools and limits](docs/navigation.md).
 
@@ -110,6 +110,17 @@ A controlled Codex pilot used **six matched pairs and 24 fresh model-backed turn
 | Reported output tokens              |      32,170 |    67,732 |
 
 **No productivity or recovery advantage was observed in this small solo-task pilot.** DIP's median workflow time was **2.20 times** the note-taking baseline. Each arm had one strict completion-report mismatch. The study covers explicit durable handoffs, isolated CLI configuration and no resident recorder; parallel coordination and long-running development were not measured. The full report retains infrastructure failures, every valid outcome and reproducible scoring. [Controlled pilot, method and raw evidence](docs/benchmarks/model-controlled.md).
+
+A subsequent repeat used the same six pairs, prompts, scoring and time limits with existing trusted hooks. With DIP 0.3.12, both arms passed **48/48 code cases** and recovered **30/30 contract fields and deferred identifiers**. The separate strict completion-report field passed 6/6 for Markdown and 5/6 for DIP.
+
+| Repeat on 0.3.12                                       |  Markdown |          DIP |
+| ------------------------------------------------------ | --------: | -----------: |
+| Median observed pair time                              |  193.98 s |     274.04 s |
+| Timed-out turns                                        |      1/12 |         3/12 |
+| Both turns finish within the limit and code cases pass | 5/6 pairs |    4/6 pairs |
+| Observed DIP MCP calls and result bytes                |         0 | 98 / 125,640 |
+
+**This repeat did not prove an efficiency or quality advantage.** Times include censored runs and token totals are incomplete. All six partial DIP seed tasks stayed open after passing checks. The preceding 0.3.11 repeat retained a code failure, a false completion state and five timeouts; it remains public. [Both repeats, every outcome, overhead profile and limitations](docs/benchmarks/model-controlled-repeat.md).
 
 DIP adds measurable tracking overhead. A Windows/Node.js 24 benchmark used 30 alternating pairs of identical file writes after three warm-up pairs:
 

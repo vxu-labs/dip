@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3328d14d-15aa-47c9-8952-be4f631e7d57",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Profiled all 134 retained pilot MCP calls: 91,967 serialized result bytes, 33 task_get, 27 update, 12 plan; no identical adjacent task_get arguments. Added task_prepare with ownership-before-write guards, bounded receipt and idempotent retry; actual MCP regressions passed. 121 unit cases passed, 2 Windows skips, but verification receipt detected generated-file changes during run; clean package passed. Installed archive-built 0.3.11 locally. Protocol v4 preserves matched tasks/scoring/model/high effort and transparently changes to existing trusted hooks/resident runtime; preflight and scored repeat pending.",
+    "next": "",
+    "head": "4abf0a8f90ff2623ce234d70a1b73bba762b5ff0"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T18:33:25.288Z",
+  "parents": [
+    "610d1f0c-e2f0-4408-85eb-fb9cd66d15b5"
+  ],
+  "branch": "main"
+}

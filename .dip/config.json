@@ -186,7 +186,23 @@
         "scripts/codex-structured-evidence.mjs"
       ],
       "timeoutMs": 60000
+    },
+    "benchmark-v5": {
+      "command": [
+        "node",
+        "scripts/model-benchmark-evidence.mjs",
+        "docs/benchmarks/2026-10-07-model-controlled-v5.json"
+      ],
+      "timeoutMs": 60000
+    },
+    "delivery-evidence": {
+      "command": [
+        "node",
+        "scripts/delivery-evidence.mjs"
+      ],
+      "timeoutMs": 180000
     }
   },
-  "mode": "coordinate"
+  "mode": "coordinate",
+  "repositoryIntegration": true
 }

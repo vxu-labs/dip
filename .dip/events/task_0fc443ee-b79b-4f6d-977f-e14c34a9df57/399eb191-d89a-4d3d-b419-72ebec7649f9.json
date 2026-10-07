@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "399eb191-d89a-4d3d-b419-72ebec7649f9",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/host-qa/structured-plan.md",
+    "role": "reference",
+    "hash": "45478c4fe1b004a98f848a4e69c2deaf9332a96a0eaa7d05edbec1635af73b58",
+    "bytes": 1934,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:54:22.127Z",
+  "parents": [
+    "1a613760-2dc6-4bba-a6a1-8e7d99c50dbf"
+  ],
+  "branch": "main"
+}

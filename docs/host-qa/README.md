@@ -1,6 +1,6 @@
 # Live Codex intent workflow, 7 October 2026
 
-The subsequent [app-server lifecycle trial](lifecycle.md) verified real `PreCompact`, post-compaction recovery and `Interrupt` against durable state with DIP 0.3.11. Native `update_plan` remained unavailable and Claude remained absent. The earlier observations below retain their original version and scope.
+The subsequent [app-server lifecycle trial](lifecycle.md) verified real `PreCompact`, post-compaction recovery and `Interrupt` against durable state with DIP 0.3.11. A separate [structured fallback trial](structured-plan.md) verified actual `task_plan` steps and future backlog with DIP 0.3.12. Native `update_plan` remained unavailable and Claude remained absent. The earlier observations below retain their original version and scope.
 
 This is bounded integration QA with Codex CLI 0.160.0 and GPT-6.1 Sol on Windows, not an agent-quality benchmark or performance comparison. Claude Code was not installed or authenticated; live Claude coverage remains open.
 
@@ -31,4 +31,4 @@ node scripts/host-qa-evidence.mjs
 node --test test/host-qa.test.js
 ```
 
-Replay does not rerun the model or prove delivery on another machine. Native structured planning, forced compaction, Interrupt, trusted Claude and multi-day reliability remain open under DIP-L01. Use DIP at your own responsibility and review permissions and captured data before publication.
+Replay does not rerun the model or prove delivery on another machine. The linked subsequent trials establish bounded compaction, interruption and explicit DIP structured fallback delivery. Automatic native planning, trusted Claude and multi-day reliability remain open under DIP-L01. Use DIP at your own responsibility and review permissions and captured data before publication.

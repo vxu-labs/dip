@@ -16,6 +16,7 @@ const result = {
   calls: 0,
   resultBytes: 0,
   tools: {},
+  toolPayloads: {},
   transitions: {},
   adjacentSameRead: 0,
   transcripts: [],
@@ -50,7 +51,16 @@ for (let pair = 0; pair < 6; pair++)
       const c = calls[i];
       result.calls++;
       result.tools[c.tool] = (result.tools[c.tool] || 0) + 1;
-      result.resultBytes += Buffer.byteLength(JSON.stringify(c.result ?? null));
+      const bytes = Buffer.byteLength(JSON.stringify(c.result ?? null));
+      result.resultBytes += bytes;
+      const payload = (result.toolPayloads[c.tool] ||= {
+        calls: 0,
+        bytes: 0,
+        maxBytes: 0,
+      });
+      payload.calls++;
+      payload.bytes += bytes;
+      payload.maxBytes = Math.max(payload.maxBytes, bytes);
       if (i) {
         const prev = calls[i - 1],
           transition = `${prev.tool} -> ${c.tool}`;

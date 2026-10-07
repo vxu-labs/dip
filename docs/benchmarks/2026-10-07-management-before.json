@@ -13,6 +13,53 @@
     "task_checkpoint": 13,
     "task_decision": 2
   },
+  "toolPayloads": {
+    "task_get": {
+      "calls": 33,
+      "bytes": 63660,
+      "maxBytes": 3938
+    },
+    "task_update": {
+      "calls": 27,
+      "bytes": 9205,
+      "maxBytes": 400
+    },
+    "task_plan": {
+      "calls": 12,
+      "bytes": 1944,
+      "maxBytes": 162
+    },
+    "task_create": {
+      "calls": 7,
+      "bytes": 833,
+      "maxBytes": 119
+    },
+    "task_claim": {
+      "calls": 15,
+      "bytes": 3893,
+      "maxBytes": 283
+    },
+    "task_release": {
+      "calls": 13,
+      "bytes": 1092,
+      "maxBytes": 84
+    },
+    "task_verify": {
+      "calls": 12,
+      "bytes": 10125,
+      "maxBytes": 1166
+    },
+    "task_checkpoint": {
+      "calls": 13,
+      "bytes": 1053,
+      "maxBytes": 81
+    },
+    "task_decision": {
+      "calls": 2,
+      "bytes": 162,
+      "maxBytes": 81
+    }
+  },
   "transitions": {
     "task_get -> task_update": 13,
     "task_update -> task_plan": 12,

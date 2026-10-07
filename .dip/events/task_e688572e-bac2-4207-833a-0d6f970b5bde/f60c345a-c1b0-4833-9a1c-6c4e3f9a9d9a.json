@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f60c345a-c1b0-4833-9a1c-6c4e3f9a9d9a",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/actions.js",
+      "src/core.js",
+      "src/mcp.js",
+      "src/workflow.js",
+      "src/cli-help.js",
+      "bin/dip.js",
+      "src/automation.js",
+      "src/repository-integration.js",
+      "skills/dip/SKILL.md",
+      "test/task-prepare.test.js",
+      "scripts/model-benchmark.mjs",
+      "scripts/model-benchmark-profile.mjs",
+      "scripts/model-benchmark-evidence.mjs",
+      "scripts/fixtures/model-benchmark-v3.txt",
+      "docs/benchmarks",
+      "docs/automation.md",
+      "README.md",
+      "QA_REPORT.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json",
+      "docs/host-qa/structured-plan.md",
+      "docs/host-qa/README.md",
+      "scripts/delivery-evidence.mjs",
+      ".github/workflows/ci.yml",
+      "scripts/model-benchmark-publish.mjs",
+      "docs/benchmarks/model-controlled-repeat.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:06:51.421Z",
+  "parents": [
+    "11e44671-3b66-4cb2-b3bc-deb5872229ed"
+  ],
+  "branch": "main"
+}

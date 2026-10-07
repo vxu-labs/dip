@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "07fa0e3f-7bdc-4321-b588-498377e013fa",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/model-controlled-repeat.md",
+    "role": "reference",
+    "hash": "52d60421c64802d8ae3d9c3a64f443f5cc17406e52030ac6058c4c2c34122992",
+    "bytes": 6621,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:06:52.107Z",
+  "parents": [
+    "f60c345a-c1b0-4833-9a1c-6c4e3f9a9d9a"
+  ],
+  "branch": "main"
+}

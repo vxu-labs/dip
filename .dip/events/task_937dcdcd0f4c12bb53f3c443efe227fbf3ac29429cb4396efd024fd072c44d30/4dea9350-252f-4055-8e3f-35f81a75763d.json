@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4dea9350-252f-4055-8e3f-35f81a75763d",
+  "taskId": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+  "type": "task.update",
+  "payload": {
+    "acceptance": [
+      "Missing repository outbox retains pending records, caps retries and resumes without blocking healthy roots.",
+      "Management overhead is profiled, reviewed preparation combines intent/claim/context, and original matched Markdown scenarios are repeated with all outcomes and limitations retained.",
+      "Available real Codex planning fallback, compaction and interruption are durably verified; unavailable native planning and absent Claude remain explicitly open rather than falsely verified."
+    ],
+    "dependencies": [
+      "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+      "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+      "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:09:53.624Z",
+  "parents": [
+    "c7e72e49-8475-4fa0-bcfa-87f34e8fa5fa"
+  ],
+  "branch": "main"
+}

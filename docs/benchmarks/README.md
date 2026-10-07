@@ -1,5 +1,7 @@
 # DIP benchmarks
 
+The subsequent [trusted-hook matched repeat](model-controlled-repeat.md) retains its negative 0.3.11 outcomes and the 0.3.12 completion-boundary iteration. All scheduled failures and timeouts remain part of the comparison; smaller call counts alone do not establish lower cost for completed work.
+
 ## Ledger scale and durable recording
 
 The 100/1,000/10,000-task fixture observed warm context p95 at 10,000 tasks changing from 10.11 s to 1.58 s; fresh-process p95 remained about 10 s. Raw event counts, bytes, capture timings, memory, budgets and limitations are in the [scale report](scale.md). This is synthetic local persistence performance, not a model-quality comparison.

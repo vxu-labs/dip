@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 1,
+  "calls": 99,
+  "resultBytes": 131577,
+  "tools": {
+    "task_prepare": 13,
+    "task_create": 6,
+    "task_plan": 12,
+    "task_document_link": 12,
+    "task_verify": 9,
+    "task_checkpoint": 6,
+    "task_release": 5,
+    "project_reconcile": 8,
+    "task_requirements": 6,
+    "task_get": 7,
+    "task_adopt": 6,
+    "task_update": 7,
+    "task_finish": 2
+  },
+  "toolPayloads": {
+    "task_prepare": {
+      "calls": 13,
+      "bytes": 40261,
+      "maxBytes": 5358
+    },
+    "task_create": {
+      "calls": 6,
+      "bytes": 714,
+      "maxBytes": 119
+    },
+    "task_plan": {
+      "calls": 12,
+      "bytes": 1944,
+      "maxBytes": 162
+    },
+    "task_document_link": {
+      "calls": 12,
+      "bytes": 2884,
+      "maxBytes": 260
+    },
+    "task_verify": {
+      "calls": 9,
+      "bytes": 7633,
+      "maxBytes": 1159
+    },
+    "task_checkpoint": {
+      "calls": 6,
+      "bytes": 486,
+      "maxBytes": 81
+    },
+    "task_release": {
+      "calls": 5,
+      "bytes": 420,
+      "maxBytes": 84
+    },
+    "project_reconcile": {
+      "calls": 8,
+      "bytes": 11881,
+      "maxBytes": 2221
+    },
+    "task_requirements": {
+      "calls": 6,
+      "bytes": 19606,
+      "maxBytes": 3982
+    },
+    "task_get": {
+      "calls": 7,
+      "bytes": 10566,
+      "maxBytes": 4308
+    },
+    "task_adopt": {
+      "calls": 6,
+      "bytes": 28234,
+      "maxBytes": 5518
+    },
+    "task_update": {
+      "calls": 7,
+      "bytes": 2474,
+      "maxBytes": 364
+    },
+    "task_finish": {
+      "calls": 2,
+      "bytes": 4474,
+      "maxBytes": 2290
+    }
+  },
+  "transitions": {
+    "task_prepare -> task_create": 3,
+    "task_create -> task_plan": 3,
+    "task_plan -> task_document_link": 5,
+    "task_document_link -> task_verify": 7,
+    "task_verify -> task_checkpoint": 3,
+    "task_checkpoint -> task_release": 4,
+    "task_release -> project_reconcile": 4,
+    "task_requirements -> task_get": 5,
+    "task_get -> task_adopt": 5,
+    "task_adopt -> task_prepare": 6,
+    "task_prepare -> task_plan": 9,
+    "task_plan -> task_update": 1,
+    "task_update -> task_prepare": 1,
+    "task_prepare -> task_document_link": 1,
+    "task_verify -> task_finish": 1,
+    "task_finish -> project_reconcile": 2,
+    "task_plan -> task_create": 3,
+    "task_create -> task_document_link": 1,
+    "task_verify -> task_update": 2,
+    "task_update -> task_checkpoint": 2,
+    "task_get -> task_get": 1,
+    "task_get -> task_requirements": 1,
+    "task_requirements -> task_adopt": 1,
+    "task_plan -> task_verify": 2,
+    "task_create -> task_update": 2,
+    "task_update -> task_document_link": 2,
+    "task_document_link -> task_document_link": 2,
+    "task_checkpoint -> project_reconcile": 1,
+    "project_reconcile -> task_update": 1,
+    "task_update -> project_reconcile": 1,
+    "task_checkpoint -> task_update": 1,
+    "task_update -> task_release": 1,
+    "task_document_link -> task_checkpoint": 1,
+    "task_verify -> task_document_link": 1,
+    "task_document_link -> task_finish": 1
+  },
+  "adjacentSameRead": 0,
+  "transcripts": [
+    {
+      "pair": 0,
+      "phase": "seed",
+      "sha256": "8b5c54171a54cd3347a8bf633dcff89d8787194e54fcf1a3c0eafe0f308a62d1",
+      "sequence": [
+        "task_prepare",
+        "task_create",
+        "task_plan",
+        "task_document_link",
+        "task_verify",
+        "task_checkpoint",
+        "task_release",
+        "project_reconcile"
+      ]
+    },
+    {
+      "pair": 0,
+      "phase": "recovery",
+      "sha256": "67f89042dd781c86af6a9daa24e0fec07259d276784d637228d10a115390b04a",
+      "sequence": [
+        "task_requirements",
+        "task_get",
+        "task_adopt",
+        "task_prepare",
+        "task_plan",
+        "task_update",
+        "task_prepare",
+        "task_document_link",
+        "task_verify",
+        "task_finish",
+        "project_reconcile"
+      ]
+    },
+    {
+      "pair": 1,
+      "phase": "seed",
+      "sha256": "a24a2d8ee7be594e94e1087f83cd36df81df9eaeef5025aeeb5be420c0008ae9",
+      "sequence": [
+        "task_prepare",
+        "task_plan",
+        "task_create",
+        "task_document_link",
+        "task_verify",
+        "task_update",
+        "task_checkpoint",
+        "task_release",
+        "project_reconcile"
+      ]
+    },
+    {
+      "pair": 1,
+      "phase": "recovery",
+      "sha256": "c4fd4edfa561d008fe0e43818c8c5a8d80240648461786e0761bb0fbf4298be8",
+      "sequence": [
+        "task_get",
+        "task_get",
+        "task_requirements",
+        "task_adopt",
+        "task_prepare",
+        "task_plan",
+        "task_verify"
+      ]
+    },
+    {
+      "pair": 2,
+      "phase": "seed",
+      "sha256": "8295b0a6b70fe05a424ec04d977f13c1c5243cea23659aa79de44bba300d57d8",
+      "sequence": [
+        "task_prepare",
+        "task_plan",
+        "task_create",
+        "task_update",
+        "task_document_link",
+        "task_verify",
+        "task_update",
+        "task_checkpoint",
+        "task_release"
+      ]
+    },
+    {
+      "pair": 2,
+      "phase": "recovery",
+      "sha256": "088c1059fdae54e663e10877e834509aba9c9f06fe060f70193b249551f2c035",
+      "sequence": [
+        "task_requirements",
+        "task_get",
+        "task_adopt",
+        "task_prepare",
+        "task_plan",
+        "task_document_link",
+        "task_document_link",
+        "task_verify"
+      ]
+    },
+    {
+      "pair": 3,
+      "phase": "seed",
+      "sha256": "be49c5e278bcfaad66798388c84c63e251c19c1d80facf76cb2b5e21c9c42e01",
+      "sequence": [
+        "task_prepare",
+        "task_create",
+        "task_plan",
+        "task_document_link",
+        "task_verify",
+        "task_checkpoint",
+        "project_reconcile",
+        "task_update",
+        "project_reconcile"
+      ]
+    },
+    {
+      "pair": 3,
+      "phase": "recovery",
+      "sha256": "d1b4580f90d4f6a39ea7f97191bd9b9d7132704b89169491d1c0b4a24dd142a9",
+      "sequence": [
+        "task_requirements",
+        "task_get",
+        "task_adopt",
+        "task_prepare",
+        "task_plan"
+      ]
+    },
+    {
+      "pair": 4,
+      "phase": "seed",
+      "sha256": "bce183de8d0dab9900c725d374ece96ec2d17f0b05d4050c2edda5b59883eafd",
+      "sequence": [
+        "task_prepare",
+        "task_create",
+        "task_plan",
+        "task_document_link",
+        "task_verify",
+        "task_checkpoint",
+        "task_update",
+        "task_release",
+        "project_reconcile"
+      ]
+    },
+    {
+      "pair": 4,
+      "phase": "recovery",
+      "sha256": "f410432ed1a3566127434f97835b8b9958d052f1d166667a289941f9ec700928",
+      "sequence": [
+        "task_requirements",
+        "task_get",
+        "task_adopt",
+        "task_prepare",
+        "task_plan",
+        "task_document_link",
+        "task_document_link"
+      ]
+    },
+    {
+      "pair": 5,
+      "phase": "seed",
+      "sha256": "372fe1b428ee6bb9c6c87f950df9f9e6c28ccce64ae29895c28e9e9abca01d67",
+      "sequence": [
+        "task_prepare",
+        "task_plan",
+        "task_create",
+        "task_update",
+        "task_document_link",
+        "task_checkpoint",
+        "task_release",
+        "project_reconcile"
+      ]
+    },
+    {
+      "pair": 5,
+      "phase": "recovery",
+      "sha256": "a9d0c7d2b3aad1e2fdcad186f33dec0f521aae15112d60d2192e9efa0a04ffa1",
+      "sequence": [
+        "task_requirements",
+        "task_get",
+        "task_adopt",
+        "task_prepare",
+        "task_plan",
+        "task_verify",
+        "task_document_link",
+        "task_finish",
+        "project_reconcile"
+      ]
+    }
+  ],
+  "notes": "Adjacent reads are a diagnostic, not proof of wasted work. Serialized result bytes include MCP envelope. Transcript hashes identify retained original evidence; arguments, lease tokens and machine paths are excluded."
+}

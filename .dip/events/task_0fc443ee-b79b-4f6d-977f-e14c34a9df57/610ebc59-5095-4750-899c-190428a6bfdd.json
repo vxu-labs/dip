@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "610ebc59-5095-4750-899c-190428a6bfdd",
+  "taskId": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Separated partial passing checks from completion; explicit checked finish and pending structured-step guards implemented. Bounded CLI/MCP structured plans verified in regressions and actual authenticated Codex. All six partial seed requirements in the frozen0.3.12 repeat stayed open. Native plan unavailability and absent Claude remain distinct open L01 coverage, with no efficiency/quality superiority claim.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:54:55.964Z",
+  "parents": [
+    "399eb191-d89a-4d3d-b419-72ebec7649f9"
+  ],
+  "branch": "main"
+}

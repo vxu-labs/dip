@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "64c41a0c-825a-48ed-abd2-3b1741cf8153",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Protocol v4 completed all24 scheduled turns: Markdown48/48 functional36/36 memory6/6 completed pairs; DIP43/48,30/36,1/6 with five timeouts. All code artifacts causal-replayed. Observed99 MCPcalls131577bytes versus prior134/91967 cannot prove equivalent-work savings. prepare+adopt responses alone68495bytes. Protocolv5 preregistered and running unchanged six matched pairs on fingerprint-frozen installed0.3.12. First pair both code/memory pass; DIP recovery timed out. No scored retries or selective omissions. Final complete v5 reporting and configured verification pending.",
+    "next": "",
+    "head": "65e8991a52e0cadce3cf97cd0fcafb5d582c5ea7"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T20:12:41.640Z",
+  "parents": [
+    "dc27a6b5-a24a-4404-adbb-7a44f4df996b"
+  ],
+  "branch": "main"
+}

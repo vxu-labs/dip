@@ -20,6 +20,8 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: node scripts/model-benchmark-evidence.mjs
+      - run: node scripts/model-benchmark-evidence.mjs docs/benchmarks/2026-10-07-model-controlled-v4.json
+      - run: node scripts/model-benchmark-evidence.mjs docs/benchmarks/2026-10-07-model-controlled-v5.json
       - run: node scripts/longitudinal-calibrate.mjs
       - run: node scripts/longitudinal-evidence.mjs
       - run: node scripts/longitudinal-stress-oracle.mjs
@@ -27,6 +29,8 @@ jobs:
       - run: node scripts/laya-pilot-evidence.mjs
       - run: node scripts/scale-evidence.mjs
       - run: node scripts/host-qa-evidence.mjs
+      - run: node scripts/codex-lifecycle-evidence.mjs
+      - run: node scripts/codex-structured-evidence.mjs
       - run: npm test
       - run: npm pack --dry-run
       - if: runner.os == 'Linux'
