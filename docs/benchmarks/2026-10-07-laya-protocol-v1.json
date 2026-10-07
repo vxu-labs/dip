@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "protocolVersion": 2,
-  "createdAt": "2026-10-07T05:57:33.058Z",
+  "protocolVersion": 1,
+  "createdAt": "2026-10-07T05:53:02.571Z",
   "design": "Zero-shot single-checkpoint CPU pilot: 32 author-labeled synthetic task families, each repeated in English, Hebrew and Hebrew-to-English (96 cases). Four-way relationship and independent binary exact identity asked together. No fine-tuning, post-hoc prompt edits, retries, calibration fitting or training.",
   "modelRepo": "convaiinnovations/laya",
   "subfolder": "multilingual",
@@ -25,7 +25,7 @@
   "metrics": "Four-way confusion/accuracy by label and language; binary identity precision/recall/false links/misses; raw probability calibration diagnostics, predefined 0.8 answer-probability abstention slice; cold load, warm per-case CPU latency and peak RSS. No automatic task-state mutation or completion assertion.",
   "sources": {
     "corpus": "e660944b16e7a33c4134f9b663962d13d9a0320a98d6adfc1155ec6cd6fc3c16",
-    "runner": "a5fe8e5c335b4643361f90ba27d0a495f7773487cc095badab4d86655ed04174"
+    "runner": "39cf2b566161830dec48c515a5bd3f10a19f05eb23f801f95c8a55a253b2d2ef"
   },
   "relationQuestion": {
     "type": "choice",

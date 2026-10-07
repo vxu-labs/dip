@@ -71,10 +71,17 @@ sampler.start()
 
 try:
     started = time.perf_counter()
-    agent = laya.load(protocol["modelRepo"], subfolder=protocol["subfolder"],
-                      revision=protocol["modelRevision"], device="cpu", backend="eager")
+    from huggingface_hub import snapshot_download
+    prefix = protocol["subfolder"] + "/"
+    snapshot = snapshot_download(protocol["modelRepo"], revision=protocol["modelRevision"],
+                                 allow_patterns=[prefix + name for name in
+                                                 ["rl_agent_config.json", "model.safetensors", "tokenizer/*", "encoder/*"]],
+                                 token=False, max_workers=1)
+    assert Path(snapshot).name == protocol["modelRevision"]
+    # Sequential download avoids the Hub 0.36.2 symlink-probe race on non-admin Windows.
+    agent = laya.load(snapshot, subfolder=protocol["subfolder"], device="cpu", backend="eager")
     out["loadSeconds"] = time.perf_counter() - started
-    out["loadedRevision"] = agent.revision
+    out["loadedRevision"] = agent.revision or Path(snapshot).name
     out["modelConfig"] = agent.cfg
     out["parameterCount"] = sum(p.numel() for p in agent.model.parameters())
     out["dtype"] = str(next(agent.model.parameters()).dtype)

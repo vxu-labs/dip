@@ -11,7 +11,7 @@ const sha = (file) =>
     .digest("hex");
 const protocol = {
   schemaVersion: 1,
-  protocolVersion: 1,
+  protocolVersion: 2,
   createdAt: new Date().toISOString(),
   design:
     "Zero-shot single-checkpoint CPU pilot: 32 author-labeled synthetic task families, each repeated in English, Hebrew and Hebrew-to-English (96 cases). Four-way relationship and independent binary exact identity asked together. No fine-tuning, post-hoc prompt edits, retries, calibration fitting or training.",
