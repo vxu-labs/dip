@@ -245,7 +245,7 @@ test("compact CLI get/reconcile exclude raw history and honor ID, kind, open and
         files: ["src/" + i],
         at: new Date().toISOString(),
       });
-    while (rt.flush(f.root)) {}
+    while (rt.flush(f.repo.root)) {}
   } finally {
     rt.close();
   }
