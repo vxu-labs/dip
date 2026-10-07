@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1c0e9078-f282-41cc-b3de-1685c6822386",
+  "taskId": "task_564310540b2ecf5f821e130e4512afdb52931937163ebb3de2e38c7c21d2c63f",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Current lexical candidates and explicit task links do not guarantee recognition of a paraphrased request a year later. Semantic identity is still unimplemented research; the existing agent must review candidate requirements and verification before linking or closing.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.535Z",
+  "parents": [
+    "61454bca-5009-41c6-94b6-76c94cf8e46b"
+  ],
+  "branch": "main"
+}

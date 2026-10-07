@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5a4d3686c9e56529d7c5b3eb527817d6239e847dd2bfd02c1d5a32ad894ef68c",
+  "taskId": "task_4baba93714dbf7adfd9974af18ac8c1fdecf3acda1e149bdf9e9c3dd91dbbf8a",
+  "type": "task.create",
+  "payload": {
+    "title": "כשאתה אומר שמרתי את הכיוון הזה בDip כמשימת פיתוח עתידית, זה אומר שבדאשבורד אני יכול לראות את זה כמשימה פתוחה שאינה הושלמה נכון?",
+    "description": "כשאתה אומר שמרתי את הכיוון הזה בDip כמשימת פיתוח עתידית, זה אומר שבדאשבורד אני יכול לראות את זה כמשימה פתוחה שאינה הושלמה נכון?",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T05:27:49.817Z",
+  "parents": [],
+  "branch": "main"
+}

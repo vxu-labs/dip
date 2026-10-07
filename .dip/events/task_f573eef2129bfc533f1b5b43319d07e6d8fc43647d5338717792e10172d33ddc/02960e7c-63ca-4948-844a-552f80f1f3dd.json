@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "02960e7c-63ca-4948-844a-552f80f1f3dd",
+  "taskId": "task_f573eef2129bfc533f1b5b43319d07e6d8fc43647d5338717792e10172d33ddc",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Explained tracked .dip events travel in committed Git snapshots; push sends commits, later activity requires another commit, and the machine runtime is installed separately. The original task description records read-only inspection of pre-commit staging and tracked .dip.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.609Z",
+  "parents": [
+    "67f1ca86-bfef-496f-96e5-9715b9829281"
+  ],
+  "branch": "main"
+}

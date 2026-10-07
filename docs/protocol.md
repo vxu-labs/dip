@@ -32,6 +32,8 @@ Activity batches use `_activity` as their record folder. Each record contains a 
 
 Task intent includes title, description, acceptance criteria, scope, dependencies, priority and optional due date. Status can be backlog, ready, in_progress, blocked, implemented, verified, cancelled or superseded. Runtime activity and lease expiry are separate from that status.
 
+`kind` distinguishes work (the default for legacy records) from discussion. Explicit finishing writes `resolution: {outcome, summary, replacedBy}` in a causal `task.update`. Outcomes are answered, implemented, superseded or cancelled. Answered records are implemented discussions, not verified code. Superseded receipts identify replacement requirements without declaring them complete. Reopening a task clears the receipt. Consumers predating these optional fields must upgrade to honor discussion filtering and finish metadata. See [explicit outcomes](completion.md).
+
 Verification snapshots hash source paths and contents while excluding the ledger and common sensitive-file names. Evidence records a named check, process result and snapshot. Linked document references and their actual readable content versions also contribute to the intent hash, including documents outside the declared code scope or ignored by Git. Verification requires current reviewed document versions. Reconciliation compares the current snapshot and the evidence's code commit with the selected Git history. A code-changing or document-changing check is unsuccessful for this purpose even when its process exits zero.
 
 ## Local coordination

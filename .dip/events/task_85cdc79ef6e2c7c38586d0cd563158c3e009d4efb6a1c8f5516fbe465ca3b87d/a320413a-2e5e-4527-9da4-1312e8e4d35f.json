@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a320413a-2e5e-4527-9da4-1312e8e4d35f",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.document",
+  "payload": {
+    "path": "CONTRIBUTING.md",
+    "role": "reference",
+    "hash": "c1a2e08fd1e6cfc2409148d5936b0ecbdf1116a2a9c051db213647df40bb90be",
+    "bytes": 6422,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:51:24.402Z",
+  "parents": [
+    "03ff89f5-6052-4d5a-8e0d-d311022b45f9"
+  ],
+  "branch": "main"
+}

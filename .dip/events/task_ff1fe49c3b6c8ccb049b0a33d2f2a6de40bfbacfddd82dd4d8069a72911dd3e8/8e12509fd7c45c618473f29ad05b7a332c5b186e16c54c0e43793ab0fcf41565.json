@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8e12509fd7c45c618473f29ad05b7a332c5b186e16c54c0e43793ab0fcf41565",
+  "taskId": "task_ff1fe49c3b6c8ccb049b0a33d2f2a6de40bfbacfddd82dd4d8069a72911dd3e8",
+  "type": "task.create",
+  "payload": {
+    "title": "בכללי אתה מסכים איתי שכשיש DIP זה הרבה יותר קל ליצור TOOL CALLS שתורמים מאוד להתמצאות המודל בתוך DIP מאורגן מאשר MARKDOWN גדול נכון ?",
+    "description": " בכללי אתה מסכים איתי שכשיש DIP זה הרבה יותר קל ליצור TOOL CALLS שתורמים מאוד להתמצאות המודל בתוך DIP מאורגן מאשר MARKDOWN גדול נכון ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T08:19:52.350Z",
+  "parents": [],
+  "branch": "main"
+}

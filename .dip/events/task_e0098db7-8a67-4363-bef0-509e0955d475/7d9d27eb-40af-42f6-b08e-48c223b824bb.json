@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7d9d27eb-40af-42f6-b08e-48c223b824bb",
+  "taskId": "task_e0098db7-8a67-4363-bef0-509e0955d475",
+  "type": "task.create",
+  "payload": {
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "title": "Evaluate DIP quality in naturalistic multi-domain and multi-day workflows",
+    "description": "Preserve the unfinished field-study direction from DIP-L07 after closing its executed matched pilot. Existing controlled studies showed equal measured quality and higher management cost. Do not treat the broader quality hypothesis as proven.",
+    "priority": 3,
+    "status": "backlog",
+    "scope": [
+      "scripts",
+      "docs/benchmarks"
+    ],
+    "acceptance": [
+      "Preregister multiple project domains, prolonged sessions and natural user follow-ups with matched model/settings and explicit handling of host trust.",
+      "Use independent reviewed intent, duplicate-effort and final-code scoring; preserve all failures and source artifacts.",
+      "Compare well-managed Markdown and optimized DIP fairly; report costs and uncertainty without extrapolating from synthetic pilots."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:10.028Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "97fb1971-d616-4dae-b25f-bf534b3208cb",
+  "taskId": "task_ff1fe49c3b6c8ccb049b0a33d2f2a6de40bfbacfddd82dd4d8069a72911dd3e8",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Structured IDs, requirements, ownership, evidence and bounded tools support targeted navigation. v0.3.6 implemented those tools; semantic retrieval and proof of model-quality improvement in large histories remain future work.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.662Z",
+  "parents": [
+    "56e270b9-33ce-4044-9ba6-4e3d5f408c5e"
+  ],
+  "branch": "main"
+}

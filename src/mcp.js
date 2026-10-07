@@ -3,7 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { execute } from "./actions.js";
 import { VERSION } from "./version.js";
-import { briefPlan } from "./workflow.js";
+import { reconcileView } from "./views.js";
 
 export async function runMcp() {
   const server = new McpServer({ name: "dip", version: VERSION });
@@ -20,57 +20,7 @@ export async function runMcp() {
       async ({ root: cwd, ...args }) => {
         try {
           let result = await execute(action, args, cwd || process.cwd());
-          if (action === "reconcile") {
-            const all = result.tasks.filter(
-                (t) => !args.id || t.id === args.id,
-              ),
-              limit = args.limit || 30,
-              offset = args.offset || 0;
-            result = {
-              repo: result.repo,
-              workers: result.activeWorkers.slice(0, 20),
-              workerCount: result.activeWorkers.length,
-              total: all.length,
-              nextOffset: all.length > offset + limit ? offset + limit : null,
-              tasks: all.slice(offset, offset + limit).map((t) => ({
-                id: t.id,
-                title: t.title,
-                status: t.status,
-                active: t.active,
-                interrupted: t.interrupted,
-                verification: t.verification,
-                integrated: t.integrated,
-                blockedBy: t.blockedBy,
-                conflicts: t.conflicts,
-                checkpoint: t.checkpoints.at(-1)?.summary,
-              })),
-              errors: result.errors,
-              activityRecords: result.activity.length,
-            };
-          }
-          if (action === "get")
-            result = {
-              id: result.id,
-              title: result.title,
-              description: result.description,
-              acceptance: result.acceptance,
-              scope: result.scope,
-              dependencies: result.dependencies,
-              status: result.status,
-              checkpoint: result.checkpoints.at(-1),
-              decision: result.decisions.at(-1),
-              evidence: result.evidence.at(-1)
-                ? {
-                    check: result.evidence.at(-1).check,
-                    result: result.evidence.at(-1).result,
-                    at: result.evidence.at(-1).at,
-                  }
-                : null,
-              conflicts: result.conflicts,
-              plan: briefPlan(result.plan),
-              documents: result.documents.slice(0, 30),
-              documentCount: result.documents.length,
-            };
+          if (action === "reconcile") result = reconcileView(result, args);
           if (action === "update")
             result = {
               id: result.id,
@@ -182,6 +132,20 @@ export async function runMcp() {
     },
     "plan",
   );
+  add(
+    "task_finish",
+    "Record an explicit answered, implemented, superseded or cancelled outcome. Answered closes informational requests, never verifies code. Use a configured check for implemented work; failed checks keep ownership. Stop alone does not close work.",
+    {
+      id: z.string(),
+      outcome: z.enum(["answered", "implemented", "superseded", "cancelled"]),
+      summary: z.string().min(1).max(2000),
+      replacedBy: z.array(z.string()).max(20).optional(),
+      check: z.string().optional(),
+      actor: z.string().optional(),
+      token: z.string().optional(),
+    },
+    "finish",
+  );
   const documentIdentity = {
     id: z.string(),
     path: z.string(),
@@ -240,6 +204,7 @@ export async function runMcp() {
     "Save a distinct future idea or requirement. The prompt hook already supplies task_id for the current request: refine that task instead of duplicating it. Use the current model; no separate AI request is made.",
     {
       title: z.string(),
+      kind: z.enum(["work", "discussion"]).optional(),
       description: z.string().optional(),
       acceptance: z.array(z.string()).optional(),
       dependencies: z.array(z.string()).optional(),
@@ -257,6 +222,7 @@ export async function runMcp() {
       id: z.string(),
       patch: z.object({
         title: z.string().optional(),
+        kind: z.enum(["work", "discussion"]).optional(),
         description: z.string().optional(),
         status: z
           .enum([
@@ -347,6 +313,9 @@ export async function runMcp() {
       id: z.string().optional(),
       limit: z.number().int().min(1).max(100).optional(),
       offset: z.number().int().min(0).optional(),
+      kind: z.enum(["work", "discussion"]).optional(),
+      open: z.boolean().optional(),
+      ...navigationStatus,
     },
     "reconcile",
   );

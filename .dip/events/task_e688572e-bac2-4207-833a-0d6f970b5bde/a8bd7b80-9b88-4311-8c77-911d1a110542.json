@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a8bd7b80-9b88-4311-8c77-911d1a110542",
+  "taskId": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Partial optimization: v0.3.5 removed duplicate plan bodies, v0.3.6 added focused navigation, and v0.3.7 compacts CLI get/reconcile and adds one-call finish/check/release. Repeat of the matched model comparison and causal cost profile remain undone, so keep backlog.",
+    "next": "",
+    "head": "e4eaea00aee0c1b841e14ba9b91ac4995c626d9a"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:10.085Z",
+  "parents": [
+    "be9f2343-86d2-48d2-9f91-99db21a4d498"
+  ],
+  "branch": "main"
+}

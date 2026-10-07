@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8fccf330-ae86-48db-aabd-c5cea833c222",
+  "taskId": "task_447cb0f2b1de7c628ce700b58a9d6d5948a7b8b8ab6aed4ad085be6ec3b4531e",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Explained MCP, the local configured DIP server, the distinction from automatic hooks, connection reload after upgrades, and explicit document linking for unobserved shell writes. Configuration and src/mcp.js were inspected in the preceding answer.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.493Z",
+  "parents": [
+    "cedb3dc5-6de3-4155-ad13-c557a91c709f"
+  ],
+  "branch": "main"
+}

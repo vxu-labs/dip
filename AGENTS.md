@@ -11,4 +11,5 @@ Checkpoint unfinished work before handing off. Never mark a task verified from y
 A completed agent turn does not mean completed work. Scope changes must update the task; future ideas belong in backlog.
 Fallback CLI: dip task create --title "..."; dip context; dip task checkpoint --id ID --summary "...".
 Run dip doctor to see automation coverage and health, including observed prompt capture. Data lives in .dip and follows Git; commit it with the work.
+Classify informational requests as kind discussion. Before ending a fulfilled request, use task_finish: answered for questions, implemented with a configured check for code, superseded with replacement IDs for duplicate requirements. Leave partial work open with a checkpoint. Use dip reconcile --kind work --open for the remaining backlog; --full is only for explicit raw-history diagnostics.
 <!-- dip:end -->

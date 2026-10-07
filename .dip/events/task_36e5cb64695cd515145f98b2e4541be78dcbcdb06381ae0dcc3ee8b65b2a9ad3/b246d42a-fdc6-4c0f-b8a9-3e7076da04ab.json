@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b246d42a-fdc6-4c0f-b8a9-3e7076da04ab",
+  "taskId": "task_36e5cb64695cd515145f98b2e4541be78dcbcdb06381ae0dcc3ee8b65b2a9ad3",
+  "type": "task.update",
+  "payload": {
+    "status": "superseded",
+    "resolution": {
+      "outcome": "superseded",
+      "summary": "Quality clarification was incorporated into the executed controlled and longitudinal studies, whose evidence is preserved.",
+      "replacedBy": [
+        "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0"
+      ]
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.731Z",
+  "parents": [
+    "a59855d5-8cc1-4aed-9997-da312507bf7a"
+  ],
+  "branch": "main"
+}

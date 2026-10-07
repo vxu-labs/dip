@@ -76,6 +76,8 @@ function taskSummary(t) {
     id: t.id,
     title: clip(t.title, 300),
     status: t.status,
+    taskKind: t.kind,
+    resolution: t.resolution,
     scope: t.scope.slice(0, 20),
     dependencyCount: t.dependencies.length,
     documentCount: t.documents.length,
@@ -229,6 +231,8 @@ function index(repo, rt) {
 
 function relations(seed, t) {
   const labels = [];
+  if (seed.resolution?.replacedBy?.includes(t.id)) labels.push("superseded_by");
+  if (t.resolution?.replacedBy?.includes(seed.id)) labels.push("supersedes");
   if (seed.dependencies.includes(t.id)) labels.push("dependency");
   if (t.dependencies.includes(seed.id)) labels.push("dependent");
   if (seed.scope.some((s) => t.scope.some((p) => overlap(s, p))))

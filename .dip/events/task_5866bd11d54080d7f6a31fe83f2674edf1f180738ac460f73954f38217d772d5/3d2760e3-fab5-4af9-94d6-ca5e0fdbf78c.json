@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3d2760e3-fab5-4af9-94d6-ca5e0fdbf78c",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Broader field-study work was preserved in task_e0098db7-8a67-4363-bef0-509e0955d475; the original bounded comparison is fulfilled under its execution tasks.",
+    "next": "",
+    "head": "e4eaea00aee0c1b841e14ba9b91ac4995c626d9a"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:10.047Z",
+  "parents": [
+    "f42aab88-ad62-4dc5-bcf0-9b6b6d339193"
+  ],
+  "branch": "main"
+}

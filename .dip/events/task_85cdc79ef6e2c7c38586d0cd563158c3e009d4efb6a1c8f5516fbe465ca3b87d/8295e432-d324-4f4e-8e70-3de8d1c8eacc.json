@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8295e432-d324-4f4e-8e70-3de8d1c8eacc",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.document",
+  "payload": {
+    "path": "CONTRIBUTING.md",
+    "role": "reference",
+    "hash": "04cabdf2fe709ce1a817ad7c4a95fac3866034761ee873812b268519dc76f0f8",
+    "bytes": 6559,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:58:55.569Z",
+  "parents": [
+    "45405ba3-f9a8-4a62-be7a-8e37082a1e07"
+  ],
+  "branch": "main"
+}

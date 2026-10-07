@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "15d9f6230f52f08fdb68389bb6d9d4fb1d0349182580c31e1aee315cb2df05fc",
+  "taskId": "task_e2784ee8057273b924b79cd2ec415a8b8be328ee5a809e2543b3db3b706373a8",
+  "type": "task.create",
+  "payload": {
+    "title": "אז כאשר אתקין את dip במכשירים אחרים זה גם אוטומטית יבקש PROMPTS לHOOKS ?",
+    "description": "אז כאשר אתקין את dip במכשירים אחרים זה גם אוטומטית יבקש PROMPTS לHOOKS ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T11:42:19.825Z",
+  "parents": [],
+  "branch": "main"
+}

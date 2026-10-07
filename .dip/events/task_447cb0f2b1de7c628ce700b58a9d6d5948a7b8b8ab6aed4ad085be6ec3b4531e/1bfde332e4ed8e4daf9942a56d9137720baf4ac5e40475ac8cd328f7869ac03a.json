@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1bfde332e4ed8e4daf9942a56d9137720baf4ac5e40475ac8cd328f7869ac03a",
+  "taskId": "task_447cb0f2b1de7c628ce700b58a9d6d5948a7b8b8ab6aed4ad085be6ec3b4531e",
+  "type": "task.create",
+  "payload": {
+    "title": "אתה אמרת ש:יש לטעון מחדש את חיבור ה־MCP כדי לראות את הכלים החדשים. כתיבה דרך Shell או כלי ללא נתיבי קבצים מזוהים דורשת קישור מפורש.\nמה הכוונה לMCP ? יש לנו MCP ",
+    "description": "אתה אמרת ש:יש לטעון מחדש את חיבור ה־MCP כדי לראות את הכלים החדשים. כתיבה דרך Shell או כלי ללא נתיבי קבצים מזוהים דורשת קישור מפורש.\nמה הכוונה לMCP ? יש לנו MCP בסיפור ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T11:16:45.279Z",
+  "parents": [],
+  "branch": "main"
+}

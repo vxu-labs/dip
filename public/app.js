@@ -32,7 +32,9 @@ const label = (t) =>
         ? "running"
         : t.verification === "stale" && t.status === "verified"
           ? "stale"
-          : t.status;
+          : t.kind === "discussion" && t.resolution?.outcome === "answered"
+            ? "answered"
+            : t.status;
 const short = (s) =>
   String(s || "")
     .split(/[/\\]/)
@@ -76,6 +78,7 @@ async function refresh(force = false) {
     const data = await (await fetch(url("/api/state"))).json();
     if (data.error) throw new Error(data.error);
     state = data;
+    $("#app-version").textContent = `v${data.version} · Apache-2.0`;
     if (selected !== healthRoot || Date.now() - healthAt > 10000) {
       const health = await (await fetch(url("/api/health"))).json();
       healthAt = Date.now();
@@ -112,7 +115,11 @@ function column(title, tasks) {
   return `<div><h2 class="column-title">${title}<span>${tasks.length}</span></h2>${tasks.length ? tasks.map(card).join("") : '<div class="empty"><strong>A little room for what’s next.</strong>Saved work will appear here.</div>'}</div>`;
 }
 function render() {
-  const tasks = state.tasks || [],
+  const tasks = (state.tasks || []).filter(
+      (t) =>
+        $("#task-kind").value === "all" ||
+        (t.kind || "work") === $("#task-kind").value,
+    ),
     query = $("#search").value.toLowerCase(),
     filtered = tasks.filter((t) =>
       JSON.stringify([t.title, t.description, t.scope, t.lease?.actor])
@@ -143,7 +150,10 @@ function render() {
     ],
     [
       "Implemented",
-      tasks.filter((t) => t.status === "implemented").length,
+      tasks.filter(
+        (t) =>
+          t.status === "implemented" && t.resolution?.outcome !== "answered",
+      ).length,
       "Awaiting verification",
     ],
     [
@@ -188,6 +198,7 @@ function render() {
         .filter(
           (t) =>
             !t.verifiedComplete &&
+            t.resolution?.outcome !== "answered" &&
             !["cancelled", "superseded"].includes(t.status),
         )
         .sort(
@@ -216,12 +227,18 @@ function render() {
       "Review & blockers",
       filtered.filter(
         (t) =>
-          ["implemented", "blocked", "conflict"].includes(t.status) ||
-          (t.status === "verified" && t.verification === "stale"),
+          t.resolution?.outcome !== "answered" &&
+          (["implemented", "blocked", "conflict"].includes(t.status) ||
+            (t.status === "verified" && t.verification === "stale")),
       ),
     )}${column(
-      "Verified",
-      filtered.filter((t) => t.verifiedComplete),
+      "Finished / replaced",
+      filtered.filter(
+        (t) =>
+          t.verifiedComplete ||
+          t.resolution?.outcome === "answered" ||
+          ["superseded", "cancelled"].includes(t.status),
+      ),
     )}</div>`;
   else
     $("#content").innerHTML = `<div class="columns">${column(
@@ -233,7 +250,14 @@ function render() {
     )}${column(
       "Review & recent completion",
       filtered.filter((t) =>
-        ["implemented", "verified", "blocked", "conflict"].includes(t.status),
+        [
+          "implemented",
+          "verified",
+          "blocked",
+          "conflict",
+          "superseded",
+          "cancelled",
+        ].includes(t.status),
       ),
     )}</div>`;
   const elsewhere = (state.activeWorkers || []).filter(
@@ -305,6 +329,30 @@ function renderDetail(taskId) {
     `<div class="detail-section" id="linked-documents"><h3>Linked documents</h3><p>Source documents are read on demand. Task status and verification stay in DIP.</p><label>Find sections <input id="document-query" placeholder="Heading or keywords" maxlength="1000"></label><div id="document-links"></div><div id="document-preview" aria-live="polite"></div></div>`,
   );
   renderDocuments(t).catch((e) => notify(e.message));
+  $("#detail").insertAdjacentHTML(
+    "afterbegin",
+    `<div class="detail-section" id="finish-section"><h3>Outcome</h3>${t.resolution ? `<p>${escape(t.resolution.outcome)}: ${escape(t.resolution.summary)}</p>${t.resolution.replacedBy.map((id) => `<button data-replacement="${escape(id)}">View replacement ${escape(id.slice(-8))}</button>`).join("")}` : "<p>Record an outcome explicitly. Implemented work still needs configured verification.</p>"}<label>Outcome<select id="finish-outcome">${(t.kind === "discussion" ? ["answered", "superseded", "cancelled"] : ["implemented", ...(!t.scope.length && !t.acceptance.length && !t.evidence.length ? ["answered"] : []), "superseded", "cancelled"]).map((o) => `<option>${o}</option>`).join("")}</select></label><label>Summary<textarea id="finish-summary" maxlength="2000" rows="2"></textarea></label><label>Replacement task IDs<input id="finish-replacements" placeholder="Required only for superseded"></label><button id="finish-task">Save outcome</button></div>`,
+  );
+  document.querySelectorAll("[data-replacement]").forEach(
+    (button) =>
+      (button.onclick = () => {
+        currentDetail = button.dataset.replacement;
+        renderDetail(currentDetail);
+      }),
+  );
+  bind("#finish-task", async () => {
+    const result = await action("finish", {
+      id: t.id,
+      outcome: $("#finish-outcome").value,
+      summary: $("#finish-summary").value,
+      replacedBy: $("#finish-replacements")
+        .value.split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+      token: leases.get(t.id)?.token,
+    });
+    if (result.released) leases.delete(t.id);
+  });
   if (t.plan) {
     const input = t.plan.input,
       steps = input.plan || input.todos || input.steps,
@@ -454,6 +502,7 @@ document.querySelectorAll(".nav").forEach(
     }),
 );
 $("#search").oninput = render;
+$("#task-kind").onchange = render;
 $("#projects").onchange = () => {
   selected = $("#projects").value;
   signature = "";

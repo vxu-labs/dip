@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d6a128a0eafe3628afd2143d2260a7af71089b975f074fee2631211c3a06069c",
+  "taskId": "task_fe66e5c93da2182212e8fa8897609dbab413395006a0869787bec17dbff337af",
+  "type": "task.create",
+  "payload": {
+    "title": "לפי הDIP בתוך פרוייקט DIP מה נותר לנו לעשות ?",
+    "description": "לפי הDIP בתוך פרוייקט DIP מה נותר לנו לעשות ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:29:53.841Z",
+  "parents": [],
+  "branch": "main"
+}

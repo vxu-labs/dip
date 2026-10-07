@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2ba8beed-80f6-4ead-98ac-98d43f5db74d",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.update",
+  "payload": {
+    "title": "Audit remaining intent and add explicit finish receipts with compact reads",
+    "description": "Review open requirements against current implementation and retained evidence. Close only fulfilled, answered or replaced requests. Add structured task finish, discussion/work distinction, compact reads and explicit full history; preserve partial backlog and configured verification authority.",
+    "scope": [
+      "src",
+      "bin",
+      "public",
+      "test",
+      "scripts",
+      "docs",
+      "skills",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "README.md",
+      "CONTRIBUTING.md",
+      "QA_REPORT.md",
+      "package.json",
+      "package-lock.json"
+    ],
+    "acceptance": [
+      "Audit open acceptance criteria and distinguish partial versus completed work without guessing from similarity or elapsed time.",
+      "Explicit finish records answered, implemented, superseded or cancelled outcomes and replacement IDs; configured checks alone establish verified code completion.",
+      "Agent and dashboard work views exclude explicitly classified discussions while preserving history and access.",
+      "Default CLI get/reconcile and MCP output are bounded and omit event/activity dumps; raw history requires explicit full.",
+      "Finish receipts survive hooks and causal merges; ownership, invalid requests and failed verification remain truthful."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:35:06.808Z",
+  "parents": [
+    "0ca8a3ac-8fee-4f62-ab4c-50d897e5fcbc"
+  ],
+  "branch": "main"
+}

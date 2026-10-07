@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "eventId": "dfe3b2c1-fe35-4993-91c4-0bfc226914a5",
+  "taskId": "task_f573eef2129bfc533f1b5b43319d07e6d8fc43647d5338717792e10172d33ddc",
+  "type": "task.update",
+  "payload": {
+    "description": "Explain whether DIP data travels with commit/push. Read-only inspection confirms handleGitHook flushes and stages .dip on pre-commit, core.hooksPath points to C:\\Users\\offic\\.dip\\git-hooks, and .dip is tracked. Clarify push sends committed snapshots only, subsequent activity needs a later commit, and the local DIP runtime is separately installed."
+  },
+  "actor": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca",
+  "createdAt": "2026-10-06T15:25:43.426Z",
+  "parents": [
+    "2c0fc855-f47c-44cd-a691-878979cf8f15"
+  ],
+  "branch": "main"
+}

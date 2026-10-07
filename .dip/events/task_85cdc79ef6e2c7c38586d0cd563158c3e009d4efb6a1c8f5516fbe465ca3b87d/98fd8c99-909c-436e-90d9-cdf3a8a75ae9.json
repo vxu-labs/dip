@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "98fd8c99-909c-436e-90d9-cdf3a8a75ae9",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/completion-audit.md",
+    "role": "reference",
+    "hash": "bb820c243fe0a86ccb0e5f547efadefac28e2d9b692dc0fe671d0059848ef9ca",
+    "bytes": 4338,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:51:24.514Z",
+  "parents": [
+    "622bbfd5-557e-49ab-b6a8-7f9993a33e9e"
+  ],
+  "branch": "main"
+}

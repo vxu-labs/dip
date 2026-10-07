@@ -869,7 +869,12 @@ export function handleHook(
         event,
       )
     ) {
-      if (active?.task)
+      if (
+        active?.task &&
+        !["implemented", "verified", "cancelled", "superseded"].includes(
+          taskRead(repo, active.task).status,
+        )
+      )
         append(
           repo,
           active.task,
@@ -906,7 +911,7 @@ export function handleHook(
             actor,
             session_id: session,
             instructions:
-              "This request is already saved in DIP. Refine this task with task_update instead of creating a duplicate. Keep future ideas in backlog. Structured update_plan/TodoWrite calls are captured automatically; save a prose-only plan with task_plan. Claim with this actor/session only when starting development. Split distinct requirements with task_create as needed; do not call another model for tracking.",
+              "This request is already saved in DIP. Refine this task with task_update instead of creating a duplicate. Classify informational requests as kind discussion. Before finishing, use task_finish: answered for an answered question, implemented with a configured check for development, superseded with replacement IDs for duplicate requests. Leave unfinished work open with a checkpoint. Keep future ideas in backlog. Claim only development with this actor/session. Do not call another model for tracking.",
           }),
         },
       };

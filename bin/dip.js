@@ -19,6 +19,7 @@ import {
 import { home, json } from "../src/util.js";
 import { VERSION } from "../src/version.js";
 import { cliHelp, compactStatus } from "../src/cli-help.js";
+import { reconcileView, taskView } from "../src/views.js";
 
 const argv = process.argv.slice(2);
 const command = argv.shift() || "help";
@@ -53,6 +54,9 @@ const options = {
   status: { type: "string" },
   statuses: { type: "string", multiple: true },
   kind: { type: "string" },
+  outcome: { type: "string" },
+  replacedBy: { type: "string", multiple: true },
+  open: { type: "boolean" },
   description: { type: "string" },
   scope: { type: "string", multiple: true },
   waitMs: { type: "string" },
@@ -173,7 +177,7 @@ try {
     command === "status" ||
     command === "reconcile"
   ) {
-    const result = await execute(command, {}, cwd);
+    const result = await execute(command, { ...flags }, cwd);
     print(
       command === "status" && !flags.full
         ? compactStatus(
@@ -181,7 +185,9 @@ try {
             Number(flags.limit || 30),
             Number(flags.offset || 0),
           )
-        : result,
+        : command === "reconcile" && !flags.full
+          ? reconcileView(result, flags)
+          : result,
     );
   } else if (command === "search" || command === "owners") {
     print(await execute(command, { ...flags }, cwd));
@@ -195,7 +201,8 @@ try {
         ...(flags.scope ? { scope: flags.scope } : {}),
         ...(flags.title ? { title: flags.title } : {}),
       };
-    print(await execute(action, args, cwd));
+    const result = await execute(action, args, cwd);
+    print(action === "update" && !flags.full ? taskView(result) : result);
   } else if (command === "doctor") {
     const { automationHealth } = await import("../src/health.js");
     print({

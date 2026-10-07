@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5c207145-f382-478a-a9c3-4687f07a577a",
+  "taskId": "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Audit confirms v0.3.6 completed bounded requirements, ownership, change inspection and incremental lexical/explicit-graph navigation under task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be. Semantic encoders, cross-language equivalence, neural routing and controlled large-history quality evaluation remain open.",
+    "next": "",
+    "head": "e4eaea00aee0c1b841e14ba9b91ac4995c626d9a"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:10.059Z",
+  "parents": [
+    "133b8aef-e3e4-4b17-9197-b4c0f54f30fb"
+  ],
+  "branch": "main"
+}

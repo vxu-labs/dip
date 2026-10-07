@@ -31,7 +31,7 @@ export function intentCommand(input) {
     /^(?:dip(?:\.cmd|\.ps1)?|["'][^"']*[/\\]dip(?:\.cmd|\.ps1)["'])\s+/i;
   const args = command.replace(launcher, "");
   if (args === command) return false;
-  return /^(?:context|status|doctor|init|search|owners|task\s+(?:create|get|next|update|plan|checkpoint|decision|claim|release|heartbeat|verify|requirements|changes|related|document-(?:link|unlink|list|read)))(?:\s|$)/.test(
+  return /^(?:context|status|reconcile|doctor|init|search|owners|task\s+(?:create|get|next|update|finish|plan|checkpoint|decision|claim|release|heartbeat|verify|requirements|changes|related|document-(?:link|unlink|list|read)))(?:\s|$)/.test(
     args,
   );
 }

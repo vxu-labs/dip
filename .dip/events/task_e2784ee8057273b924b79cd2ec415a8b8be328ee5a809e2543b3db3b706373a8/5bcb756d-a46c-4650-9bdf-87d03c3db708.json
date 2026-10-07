@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5bcb756d-a46c-4650-9bdf-87d03c3db708",
+  "taskId": "task_e2784ee8057273b924b79cd2ec415a8b8be328ee5a809e2543b3db3b706373a8",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Explained that dip install configures local agent hooks and host-specific trust/reload is still required on each host. Codex hook approval is per host definition; installation cannot bypass trust. See docs/compatibility.md and automation.md.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.564Z",
+  "parents": [
+    "87d0815d-1145-4e67-812d-9a3754582250"
+  ],
+  "branch": "main"
+}

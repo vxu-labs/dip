@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f42aab88-ad62-4dc5-bcf0-9b6b6d339193",
+  "taskId": "task_5866bd11d54080d7f6a31fe83f2674edf1f180738ac460f73954f38217d772d5",
+  "type": "task.update",
+  "payload": {
+    "status": "superseded",
+    "resolution": {
+      "outcome": "superseded",
+      "summary": "The bounded matched evaluation required by L07 was completed under the preserved controlled and longitudinal tasks. Broader naturalistic, multi-domain and multi-day evaluation remains a separate future requirement.",
+      "replacedBy": [
+        "task_7dbd9b6ede4c5f138d4fa1686201bd127dd257a19946cdeba4421ad02c394d8a",
+        "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0"
+      ]
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.823Z",
+  "parents": [
+    "fbf6969f-cd17-4aeb-b6d6-62473f6bb5b5"
+  ],
+  "branch": "main"
+}

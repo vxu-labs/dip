@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a88e9e6f-a5af-4c66-88c5-81d099c649a8",
+  "taskId": "task_1a92cff722f6da70581c25f9a2d38b8868dc4d64093f3d742c72475c5bca5382",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Benchmark question answered by the published controlled and longitudinal reports. Both measured arms passed quality endpoints; no quality superiority or productivity advantage is established. See docs/benchmarks/model-controlled.md and longitudinal.md.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:09.469Z",
+  "parents": [
+    "69f53b8d-1b57-43f9-b59c-28fe9c48d4b2"
+  ],
+  "branch": "main"
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2b43bea5-1032-43b7-bbcc-86b86188d786",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/completion.md",
+    "role": "reference",
+    "hash": "4806454024e1eca6d7555a95cd4b65a774324624c688694a391d63833826b2f4",
+    "bytes": 3250,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:44:26.188Z",
+  "parents": [
+    "5572f5f2-79e0-48a8-ac8f-36929c38c740"
+  ],
+  "branch": "main"
+}

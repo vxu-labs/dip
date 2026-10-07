@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "88a56d52ad74bca8a744bb3eca5d4ee19a6f4ed84af5ff3c615751e7f1d31238",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.create",
+  "payload": {
+    "title": "יכול להיות שחלק מהן עשינו כבר ? תבדוק את זה אם כן יש מה לשפר כאן בנושא כדי שיהיה עדכון של DONE וחיסכון קריאת דברים מיותרים",
+    "description": "יכול להיות שחלק מהן עשינו כבר ? תבדוק את זה אם כן יש מה לשפר כאן בנושא כדי שיהיה עדכון של DONE וחיסכון קריאת דברים מיותרים \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:32:03.278Z",
+  "parents": [],
+  "branch": "main"
+}

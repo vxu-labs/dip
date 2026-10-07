@@ -21,6 +21,7 @@ import {
   documentPath,
 } from "./documents.js";
 import { navigate } from "./navigation.js";
+import { taskView } from "./views.js";
 
 const intentHash = (task, repo) =>
   digest(
@@ -110,7 +111,98 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       return project(repo, rt);
     }
     if (action === "create") return { id: createTask(repo, args, actor) };
-    if (action === "get") return taskGet(repo, args.id);
+    if (action === "get") {
+      const task = args.full ? taskGet(repo, args.id) : taskRead(repo, args.id);
+      return args.full ? task : taskView(task);
+    }
+    if (action === "finish") {
+      const lease = rt.guard(repo, args.id, actor, args.token);
+      const task = taskRead(repo, args.id);
+      if (
+        !["answered", "implemented", "superseded", "cancelled"].includes(
+          args.outcome,
+        )
+      )
+        throw new Error(
+          "Choose answered, implemented, superseded or cancelled",
+        );
+      if (
+        typeof args.summary !== "string" ||
+        !args.summary.trim() ||
+        args.summary.length > 2000
+      )
+        throw new Error("Finish requires a summary of 1..2000 characters");
+      if (
+        args.outcome === "answered" &&
+        (task.scope.length || task.acceptance.length || task.evidence.length)
+      )
+        throw new Error(
+          "Answered is for informational requests without development scope, acceptance criteria or code evidence",
+        );
+      const replacedBy = args.replacedBy || [];
+      if (args.outcome === "superseded" && !replacedBy.length)
+        throw new Error("Superseded requires replacement task IDs");
+      if (args.outcome !== "superseded" && replacedBy.length)
+        throw new Error("Replacement IDs require superseded outcome");
+      if (args.check && args.outcome !== "implemented")
+        throw new Error("Configured checks apply to implemented work");
+      if (args.outcome === "implemented" && task.kind === "discussion")
+        throw new Error("Reclassify discussion as work before implementation");
+      if (
+        args.check &&
+        !Array.isArray(repo.config.verification?.[args.check]?.command)
+      )
+        throw new Error(
+          "Choose a configured verification check with a command array",
+        );
+      const resolution = {
+        outcome: args.outcome,
+        summary: redact(args.summary),
+        replacedBy,
+      };
+      const retainVerified =
+        args.outcome === "implemented" &&
+        task.status === "verified" &&
+        assessEvidence(repo, task).verifiedComplete;
+      if (
+        JSON.stringify(task.resolution) !== JSON.stringify(resolution) ||
+        !["implemented", "verified", "superseded", "cancelled"].includes(
+          task.status,
+        ) ||
+        args.check
+      )
+        updateTask(
+          repo,
+          args.id,
+          {
+            ...(!retainVerified
+              ? {
+                  status:
+                    args.outcome === "answered" ? "implemented" : args.outcome,
+                }
+              : {}),
+            ...(args.outcome === "answered" ? { kind: "discussion" } : {}),
+            resolution,
+          },
+          actor,
+        );
+      let result;
+      if (args.check) result = await execute("verify", { ...args }, cwd);
+      if (lease && (!result || result.passed))
+        rt.release(repo, args.id, lease.token);
+      const current = taskRead(repo, args.id);
+      return {
+        id: args.id,
+        kind: current.kind,
+        status: current.status,
+        resolution: current.resolution,
+        ...assessEvidence(repo, current),
+        ...(result ? { check: result } : {}),
+        released: !!lease && (!result || result.passed),
+        instruction:
+          "Answered is not code verification; implemented awaits current configured evidence. Supersession preserves unfinished work in replacement IDs.",
+      };
+    }
     if (
       [
         "document-link",
@@ -185,6 +277,7 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
             !t.active &&
             !t.blockedBy.length &&
             !t.dependencyCycle &&
+            t.kind === "work" &&
             !state.activeWorkers.some((w) =>
               t.scope.some((s) =>
                 w.scope.some((o) => inScope(s, o) || inScope(o, s)),
@@ -223,7 +316,9 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       );
     }
     if (action === "claim") {
-      const task = reconcile(repo, rt).tasks.find((t) => t.id === args.id);
+      const task = reconcile(repo, rt, { includeActivity: false }).tasks.find(
+        (t) => t.id === args.id,
+      );
       if (!task) throw new Error("Task not found");
       if (
         task.conflicts.length ||
@@ -255,9 +350,9 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
           await new Promise((resolve) =>
             setTimeout(resolve, Math.min(200, deadline - Date.now())),
           );
-          const current = reconcile(repo, rt).tasks.find(
-            (t) => t.id === args.id,
-          );
+          const current = reconcile(repo, rt, {
+            includeActivity: false,
+          }).tasks.find((t) => t.id === args.id);
           if (
             !current ||
             current.conflicts.length ||
@@ -320,7 +415,8 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         if (renewal) clearInterval(renewal);
       }
     }
-    if (action === "reconcile") return reconcile(repo, rt);
+    if (action === "reconcile")
+      return reconcile(repo, rt, { includeActivity: !!args.full });
     throw new Error(`Unknown action ${action}`);
   } finally {
     rt.close();
@@ -330,6 +426,11 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
 async function verify(repo, args, actor, assertOwnership) {
   const task = taskGet(repo, args.id),
     name = args.check;
+  if (
+    task.kind === "discussion" ||
+    ["cancelled", "superseded"].includes(task.status)
+  )
+    throw new Error("Only applicable development work can be verified");
   const check = repo.config.verification?.[name];
   if (
     !check ||
@@ -443,7 +544,8 @@ export function assessEvidence(repo, task, snapshot) {
   return {
     verification: current ? "current" : "stale",
     integrated: snapshot.committed && current,
-    verifiedComplete: task.status === "verified" && current,
+    verifiedComplete:
+      task.kind === "work" && task.status === "verified" && current,
   };
 }
 

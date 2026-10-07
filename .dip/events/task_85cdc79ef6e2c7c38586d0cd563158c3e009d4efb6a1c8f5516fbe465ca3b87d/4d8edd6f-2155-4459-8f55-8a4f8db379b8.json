@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4d8edd6f-2155-4459-8f55-8a4f8db379b8",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Audit and v0.3.7 implementation are complete. Nine conversational deliverables finished, two older intents point to executed comparison tasks, contributor onboarding declared implemented with external deployment boundary preserved, and partial backlog retained. Configured unit (99 cases, 97 Windows pass/2 POSIX skip), browser and original benchmark/quality/stress evidence replay all passed at stable snapshot f55a33519caa5f30032bc4706d490bd666b98eb0c2c2a71f55e44badd9622c8c. Clean package, syntax and skill checks passed; global 0.3.7 is installed.",
+    "next": "",
+    "head": "e4eaea00aee0c1b841e14ba9b91ac4995c626d9a"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:01:43.935Z",
+  "parents": [
+    "04ac3e30-ec1d-45d5-a80f-ffcf682396d9"
+  ],
+  "branch": "main"
+}

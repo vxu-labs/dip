@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b1213822beb0edae51e94008c54f4e961077f8007e16e14b8f7366c29660615d",
+  "taskId": "task_f573eef2129bfc533f1b5b43319d07e6d8fc43647d5338717792e10172d33ddc",
+  "type": "task.create",
+  "payload": {
+    "title": "עכשיו כשיש DIP בתוך פרוייקט ואני שולח COMMIT כPUSH לREMOTE הDIP אוטומטית חלק מזה נכון ?",
+    "description": "עכשיו כשיש DIP בתוך פרוייקט ואני שולח COMMIT כPUSH לREMOTE הDIP אוטומטית חלק מזה נכון ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a1113a-8d30-7342-a79d-95b1d5087fca",
+  "createdAt": "2026-10-06T15:25:16.559Z",
+  "parents": [],
+  "branch": "main"
+}

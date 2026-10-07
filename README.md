@@ -12,6 +12,8 @@ Your coding agent supplies the intent. DIP's automatic capture makes **no model 
 
 ## What you get
 
+Explicit [outcome receipts](docs/completion.md) distinguish answered questions, implemented work and verified code. Development views keep discussions separate; compact task reads expose the current handoff without dumping event history. [Our completion audit](docs/completion-audit.md) shows what was already delivered and what remains unfinished.
+
 - **A useful next session.** Pick up unfinished work with saved requirements, decisions and a handoff that explains the next step.
 - **A backlog that survives the chat.** Keep "add CSV export later" beside the project and find it when you are ready to build it.
 - **Clear ownership for parallel agents.** See who owns a task and its declared scope across local worktrees, and wait for conflicting work to be released.
@@ -164,7 +166,7 @@ Uninstall removes DIP's machine integrations while retaining project history and
 
 DIP is early. Help a developer return to a project and understand what happened, what remains and what has actually been checked.
 
-The [QA contributor backlog](CONTRIBUTING.md#project-backlog-from-qa) lists nine actionable limitations stored in this project's `.dip`, with priorities, evidence and acceptance criteria.
+The [QA contributor backlog](CONTRIBUTING.md#project-backlog-from-qa) indexes the original limitations and their later progress. The project's `.dip` contains current priorities, evidence and acceptance criteria; `dip reconcile --kind work --open` shows remaining development without captured discussions.
 
 - **Start with documentation:** [write a reproducible single-project walkthrough](https://github.com/vxu-labs/dip/issues/1).
 - **Bring your environment:** [report one real OS, shell and agent combination](https://github.com/vxu-labs/dip/issues/2).

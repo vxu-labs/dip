@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5572f5f2-79e0-48a8-ac8f-36929c38c740",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/plans/finish-audit-plan.md",
+    "role": "plan",
+    "hash": "fea807df840481063e70c6737e2435eaf411dd1c0e947e116b2e73107e3216fb",
+    "bytes": 1280,
+    "source": "hook"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:44:26.156Z",
+  "parents": [
+    "80787515-80bc-47dd-a558-0d6fc74add4b"
+  ],
+  "branch": "main"
+}

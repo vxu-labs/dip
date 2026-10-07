@@ -59,7 +59,7 @@
           <span id="connection">Connecting</span>
         </div>
         <p>Your project memory.<br />Right alongside your code.</p>
-        <small>v0.3.4 · Apache-2.0</small>
+        <small id="app-version">DIP · Apache-2.0</small>
       </div>
     </aside>
     <main>
@@ -94,6 +94,11 @@
           placeholder="Search tasks, agents, or scope"
           aria-label="Search tasks"
         />
+        <select id="task-kind" aria-label="Task category">
+          <option value="work">Development work</option>
+          <option value="discussion">Discussions</option>
+          <option value="all">All records</option>
+        </select>
       </div>
       <section id="content"></section>
       <footer>

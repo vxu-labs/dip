@@ -12,6 +12,8 @@ import {
 } from "../src/core.js";
 import { git } from "../src/util.js";
 import { createServer } from "../src/server.js";
+import { execute } from "../src/actions.js";
+import { VERSION } from "../src/version.js";
 
 const root = fs.mkdtempSync(path.join(os.tmpdir(), "dip-browser-"));
 process.env.DIP_HOME = path.join(root, ".runtime");
@@ -27,6 +29,20 @@ const parser = createTask(repo, {
     "Large exports stream without blocking",
   ],
 });
+const discussion = createTask(repo, {
+  title: "Explain the MCP connection",
+  kind: "discussion",
+});
+await execute(
+  "finish",
+  {
+    id: discussion,
+    actor: "qa",
+    outcome: "answered",
+    summary: "Explained <script>window.finishProbe=true</script>",
+  },
+  root,
+);
 append(repo, parser, "task.plan", {
   tool: "update_plan",
   input: { plan: [{ step: "Verify UTF-8 export", status: "pending" }] },
@@ -103,6 +119,10 @@ try {
   );
   await page.waitForFunction(
     () => document.querySelector("#branch").textContent === "agent-export",
+  );
+  assert.equal(
+    await page.locator("#app-version").textContent(),
+    `v${VERSION} · Apache-2.0`,
   );
   await page.locator("#projects").selectOption(repo.root);
   await page.getByRole("heading", { name: "Project overview" }).waitFor();
@@ -188,6 +208,23 @@ try {
     "page",
   );
   await page.getByRole("heading", { name: "Work board" }).waitFor();
+  assert.equal(await page.locator(`[data-task="${discussion}"]`).count(), 0);
+  await page.locator("#task-kind").selectOption("discussion");
+  await page.locator(`[data-task="${discussion}"]`).click();
+  assert.ok(
+    (await page.locator("#finish-section").innerText()).includes(
+      "Explained <script>",
+    ),
+  );
+  assert.equal(await page.evaluate(() => window.finishProbe), undefined);
+  assert.equal(
+    await page.locator("#detail .badge").first().textContent(),
+    "answered",
+  );
+  await page.locator("#detail-dialog .close").click();
+  await page.getByRole("button", { name: "Schedule", exact: false }).click();
+  assert.equal(await page.locator(`[data-task="${discussion}"]`).count(), 0);
+  await page.locator("#task-kind").selectOption("work");
   await page.getByRole("button", { name: "Overview", exact: false }).click();
   const workerButton = page.locator("[data-worker-root]");
   await workerButton.waitFor();

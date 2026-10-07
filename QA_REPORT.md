@@ -1,5 +1,15 @@
 # DIP release validation
 
+## v0.3.7 explicit outcomes and compact reads
+
+The completion audit found delivered requests still marked in_progress and an executed comparison still represented by an older umbrella record. Nine conversational deliverables are now answered discussions; a quality clarification and DIP-L07 point to their execution tasks. Contributor onboarding is implemented from its checkpoint and inspected repository entry points; the external Site deployment was not independently established by this audit. Partial semantic, portability, supervision, coordination, privacy and performance criteria remain open. Broader field-study work was preserved separately. See [the audit](docs/completion-audit.md).
+
+`task_finish` records a causal outcome and optional replacement IDs. Implemented work can run a configured check in the same call; failed checks retain ownership. Discussion outcomes never verify code. Stop preserves explicit outcomes, while unfinished work remains open. CLI get/reconcile and MCP use compact summaries; full history requires an explicit CLI flag. The dashboard separates development from discussions and shows answered/replaced records. Related-task traversal follows replacement links.
+
+Six new regression cases cover Stop, unanswered work, configured success/failure, ownership, invalid/self/missing replacements, causal competing outcomes, reopen invalidation, explicit full reads, corrupt relevant events and actual MCP transport. Browser QA checks discussion filtering, answered visibility, schedule exclusion, plain-text rendering and the running package version. Local Windows tests passed 99 cases: 97 passes, two POSIX skips and zero failures. Clean package installation/removal, syntax checks, skill validation and desktop/mobile browser smoke passed. The existing three-platform CI remains required before release.
+
+Same-state output measurement: 48 task summaries used 34,835 UTF-8 JSON bytes versus 2,198,352 bytes with raw event/activity history; the selected longitudinal task used 4,256 versus 154,726 bytes. These are representation sizes on one local state, not model-token, latency or quality improvements. Matching semantic intent and guaranteed agent compliance remain unfinished.
+
 ## v0.3.6 focused navigation
 
 Five new MCP tools and CLI views expose current requirements, live component owners, changes since evidence, indexed task/decision search and direct graph relationships. Startup context and task selection omit activity batches. The derived incremental search database is separate from ownership/outbox storage and partitions text corpora by checkout. New evidence stores per-field intent hashes without copying prose; legacy field details remain explicitly unavailable.

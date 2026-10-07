@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { execute } from "./actions.js";
 import { ensure, Runtime } from "./core.js";
 import { automationHealth } from "./health.js";
+import { VERSION } from "./version.js";
 
 const publicDir = fileURLToPath(new URL("../public/", import.meta.url));
 export function createServer({ root = process.cwd(), port = 4317 } = {}) {
@@ -67,7 +68,7 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
         res.setHeader("Content-Type", "application/json");
         const data = selected
           ? {
-              ...(await execute("reconcile", {}, selected)),
+              ...(await execute("reconcile", { full: true }, selected)),
               checks: Object.keys(
                 ensure(selected, { instructions: false }).config.verification ||
                   {},
@@ -75,6 +76,7 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
             }
           : { tasks: [], activity: [], errors: [], repo: null, checks: [] };
         data.activityTotal = data.activity.length;
+        data.version = VERSION;
         data.activity = data.activity.slice(0, 200).map((a) => ({
           ...a,
           ...(a.plan
@@ -136,6 +138,7 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
             "update",
             "resolve",
             "checkpoint",
+            "finish",
             "decision",
             "verify",
             "claim",

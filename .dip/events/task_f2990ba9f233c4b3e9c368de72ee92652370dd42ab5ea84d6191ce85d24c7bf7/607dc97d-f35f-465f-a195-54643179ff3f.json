@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "607dc97d-f35f-465f-a195-54643179ff3f",
+  "taskId": "task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Partial implementation audited: v0.3.5 links Markdown written once; v0.3.7 introduces explicit answered/superseded finish receipts and work/discussion filtering. Automatic semantic follow-up selection and guaranteed agent compliance remain unimplemented; retain backlog.",
+    "next": "",
+    "head": "e4eaea00aee0c1b841e14ba9b91ac4995c626d9a"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T12:49:10.072Z",
+  "parents": [
+    "c8a9cc9d06df9eac83401a78f9a153199569e8f7fa3f5d53c438924291c724a6"
+  ],
+  "branch": "main"
+}
