@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "58546436-b1f0-4b38-bd00-a3f342f8eae8",
+  "taskId": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "CI37636393773 passed Linux unit tests but found macOS portable CLI produced no output from an aliased temporary path. Fix realpath comparison for the CLI entrypoint; retain original failed run and rerun actual fresh-clone tests before release.",
+    "next": "",
+    "head": "d95535d463c6af4c94b7b8e9cd34fde4a619a1cb"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:28:39.369Z",
+  "parents": [
+    "0f6e4e4d-846b-4e82-841f-b1c3810c8ca4"
+  ],
+  "branch": "main"
+}

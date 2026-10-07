@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7db5fc3e-8d32-4c41-8ae2-08c12fc80082",
+  "taskId": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Portable causal intent and repository skill integration completed; canonical CLI entrypoint fixes macOS alias-path failure. Fresh-clone, merge/conflict, upgrade/removal and strict-mode checks pass using intact bundled Git. Original failed CI and local infrastructure failure remain recorded.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:30:21.874Z",
+  "parents": [
+    "31a32995-0198-4097-9474-2b7431fd5d3e"
+  ],
+  "branch": "main"
+}

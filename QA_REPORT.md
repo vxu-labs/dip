@@ -14,6 +14,8 @@ Local development validation passed 107 cases: 105 Windows passes, two POSIX-onl
 
 Use at your own responsibility; review cloned scripts, hooks, captured project data and agent actions before execution or publication.
 
+Initial CI 37636393773 exposed a real macOS portable-entrypoint bug: the executable argument used `/var` while the module URL used `/private/var`, causing the helper to return no CLI output. Canonical realpath comparison fixes entrypoint detection; the failed run is retained and fresh-clone coverage must pass before release. Local Git on this machine subsequently lost remote/upload helper executables; release validation uses the available bundled Git through a process-local PATH fallback, preserving user configuration. A separately observed local deletion of the earlier longitudinal raw artifact is excluded from publication; the committed results are retained when building the release archive from Git.
+
 ## v0.3.7 explicit outcomes and compact reads
 
 The completion audit found delivered requests still marked in_progress and an executed comparison still represented by an older umbrella record. Nine conversational deliverables are now answered discussions; a quality clarification and DIP-L07 point to their execution tasks. Contributor onboarding is implemented from its checkpoint and inspected repository entry points; the external Site deployment was not independently established by this audit. Partial semantic, portability, supervision, coordination, privacy and performance criteria remain open. Broader field-study work was preserved separately. See [the audit](docs/completion-audit.md).

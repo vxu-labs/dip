@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ff3c0406-a544-4cfc-82b0-7259a8576310",
+  "taskId": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Repository-contained skills and portable causal intent implemented; actual fresh clones and divergent Git branches tested. Canonical CLI entrypoint handles macOS temporary-root aliases, correcting failure identified by CI37636393773. Await cross-platform CI before release.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T14:28:39.405Z",
+  "parents": [
+    "58546436-b1f0-4b38-bd00-a3f342f8eae8"
+  ],
+  "branch": "main"
+}

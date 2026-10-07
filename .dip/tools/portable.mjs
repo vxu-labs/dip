@@ -461,7 +461,9 @@ export function portable(action, args = {}, cwd = process.cwd()) {
 }
 if (
   process.argv[1] &&
-  path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+  fs.existsSync(process.argv[1]) &&
+  fs.realpathSync.native(process.argv[1]) ===
+    fs.realpathSync.native(fileURLToPath(import.meta.url))
 ) {
   try {
     const { positionals, values } = parseArgs({
