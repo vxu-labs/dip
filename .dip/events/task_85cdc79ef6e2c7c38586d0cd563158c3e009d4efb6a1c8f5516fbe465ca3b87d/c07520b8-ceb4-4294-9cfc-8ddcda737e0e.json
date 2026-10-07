@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c07520b8-ceb4-4294-9cfc-8ddcda737e0e",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "DIP v0.3.7 published at https://github.com/vxu-labs/dip/releases/tag/v0.3.7; source b3a9453252483dd27457294bcd4182f6cc830beb. CI 37625911519 passed Windows/Linux/macOS and Linux browser. Earlier CI 37625579085 exposed the test fixture raw/canonical-root mismatch; retained and corrected in b3a9453. Final configured unit passed 99 cases (97 Windows pass, 2 POSIX skips), stable source/intent at 3f419cd3a0fbc12840aad703ad9173ece2169c66db963f569ac705cd76d7deb2. Browser, package, syntax, skill and original experiment replay passed. Global 0.3.7 package hashes matched 68 source assets. Nine fulfilled conversational requests, two replacement links and partial/future criteria are documented in docs/completion-audit.md. Unknown historical discussions remain open.",
+    "next": "",
+    "head": "b3a9453252483dd27457294bcd4182f6cc830beb"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:10:42.558Z",
+  "parents": [
+    "e6de2aa3-085b-4619-b2c1-5f0f51daac3f"
+  ],
+  "branch": "main"
+}

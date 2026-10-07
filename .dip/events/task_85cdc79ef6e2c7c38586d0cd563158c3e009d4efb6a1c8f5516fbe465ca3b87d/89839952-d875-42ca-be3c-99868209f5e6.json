@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "89839952-d875-42ca-be3c-99868209f5e6",
+  "taskId": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+  "type": "task.update",
+  "payload": {
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Released and installed DIP v0.3.7. Explicit outcome receipts, discussion filtering and compact reads are implemented; current configured verification and three-platform CI passed. Audit preserves partial work and future studies.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T13:10:42.891Z",
+  "parents": [
+    "c07520b8-ceb4-4294-9cfc-8ddcda737e0e"
+  ],
+  "branch": "main"
+}
