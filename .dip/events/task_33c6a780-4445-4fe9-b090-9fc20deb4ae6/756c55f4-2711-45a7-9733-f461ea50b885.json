@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "eventId": "756c55f4-2711-45a7-9733-f461ea50b885",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src/workflow.js",
+      "src/automation.js",
+      "src/core.js",
+      "src/repository-integration.js",
+      "skills/dip/SKILL.md",
+      "test/host-qa.test.js",
+      "scripts/host-qa-evidence.mjs",
+      "docs/host-qa",
+      "docs/desktop-qa.md",
+      "docs/compatibility.md",
+      "docs/operations.md",
+      "QA_REPORT.md",
+      "README.md",
+      "package.json",
+      "package-lock.json",
+      ".dip/config.json",
+      "docs/host-qa/README.md",
+      ".github/workflows/ci.yml",
+      ".agents/skills/dip/SKILL.md",
+      ".claude/skills/dip/SKILL.md",
+      ".dip/integration.json",
+      "AGENTS.md",
+      "CLAUDE.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:24:28.499Z",
+  "parents": [
+    "d5950091-5b8f-4e84-8c62-c6d0514e1f66"
+  ],
+  "branch": "main"
+}

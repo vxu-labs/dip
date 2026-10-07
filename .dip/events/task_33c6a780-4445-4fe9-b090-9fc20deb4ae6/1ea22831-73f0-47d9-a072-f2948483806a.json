@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1ea22831-73f0-47d9-a072-f2948483806a",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Literal reads preserve future backlog; authorized fallback guidance and sanitized real Codex planning/resume/CLI recovery evidence shipped in v0.3.10. Three-platform CI, clean-Git-archive package smoke and configured Windows unit suite passed. Published scope excludes private ignored QA helper scripts and release notes. Current causal replay passed; L01 and missing temporary-root recovery remain open.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:24:30.216Z",
+  "parents": [
+    "756c55f4-2711-45a7-9733-f461ea50b885"
+  ],
+  "branch": "main"
+}
