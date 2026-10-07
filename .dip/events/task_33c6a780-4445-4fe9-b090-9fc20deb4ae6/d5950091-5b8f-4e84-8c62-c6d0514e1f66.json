@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d5950091-5b8f-4e84-8c62-c6d0514e1f66",
+  "taskId": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Published and installed clean-Git-archive DIP v0.3.10: https://github.com/vxu-labs/dip/releases/tag/v0.3.10. Source 21088874b44ebf7abb0d6881de0aba294eb692ae; CI 37657849274 passed Windows/Linux/macOS and Linux browser smoke. Configured unit passed 115 Windows cases plus 2 POSIX skips with stable source/intent; regression and causal host-evidence replay passed. Clean-archive package smoke passed. L01 remains open for native planning, compaction/Interrupt, live Claude and multi-day coverage. Missing temporary-root recorder health noise remains backlog task_15793da9-9d59-4fa4-acbf-65e08b24907b; no queued data discarded.",
+    "next": "Continue L01 when required host capabilities are available and address missing-root activity recovery separately.",
+    "head": "21088874b44ebf7abb0d6881de0aba294eb692ae"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T17:22:29.089Z",
+  "parents": [
+    "65efacd1-f76f-450d-91ff-e42b98eb6ca3"
+  ],
+  "branch": "main"
+}
