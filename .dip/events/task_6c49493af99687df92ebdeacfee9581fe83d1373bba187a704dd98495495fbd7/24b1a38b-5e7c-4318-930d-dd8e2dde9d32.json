@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "24b1a38b-5e7c-4318-930d-dd8e2dde9d32",
+  "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/plans/markdown-references.md",
+    "role": "plan",
+    "hash": "0ed59dcb61b4c929acc9a4bc7e851ed74a706443dafb4c4c5014eef8c305560c",
+    "bytes": 1372,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T09:39:09.759Z",
+  "parents": [
+    "ab873951-2dc3-46f9-9c52-5fa7e32afdee"
+  ],
+  "branch": "main"
+}

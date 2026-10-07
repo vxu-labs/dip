@@ -31,7 +31,7 @@ dip install
 
 The installer merges global Codex and Claude Code hooks/MCP configuration, chains existing Git hooks, initializes existing repositories under your home directory, and starts a local discovery/activity service. It adds startup entries and terminal-profile integration. Restart your coding tools and terminal and approve the hook definitions when your agent asks. It never bypasses the agent's trust settings.
 
-Ask naturally for a plan, a feature or a future idea. Trusted hooks save the request and structured plan updates automatically; the agent receives the captured task ID so it can refine the existing requirement. Future ideas stay in backlog during planning and known read tools. Prose-only plans require the agent's `task_plan` tool. The dashboard and `dip doctor` show whether prompt capture has actually been observed in the selected project. See [workflow coverage](docs/automation.md#requests-plans-and-future-ideas).
+Ask naturally for a plan, a feature or a future idea. Trusted hooks save the request and structured plan updates automatically; the agent receives the captured task ID so it can refine the existing requirement. Future ideas stay in backlog during planning and known read tools. Write a long plan once in Markdown: supported file-write hooks attach a small versioned reference to its task, and DIP tools retrieve the relevant sections. Status, ownership and verification stay structured. The dashboard and `dip doctor` show whether prompt capture has actually been observed in the selected project. See [document references](docs/documents.md) and [workflow coverage](docs/automation.md#requests-plans-and-future-ideas).
 
 ![DIP local project dashboard](docs/images/dashboard.png)
 

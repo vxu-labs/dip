@@ -3,7 +3,13 @@ import path from "node:path";
 import os from "node:os";
 import assert from "node:assert/strict";
 import { chromium } from "@playwright/test";
-import { ensure, createTask, append, Runtime } from "../src/core.js";
+import {
+  ensure,
+  createTask,
+  append,
+  Runtime,
+  linkDocument,
+} from "../src/core.js";
 import { git } from "../src/util.js";
 import { createServer } from "../src/server.js";
 
@@ -25,6 +31,11 @@ append(repo, parser, "task.plan", {
   tool: "update_plan",
   input: { plan: [{ step: "Verify UTF-8 export", status: "pending" }] },
 });
+fs.writeFileSync(
+  path.join(root, "PLAN.md"),
+  "# Export plan\n## Validation\nCheck Unicode CSV.\n<script>window.documentProbe = true</script>",
+);
+linkDocument(repo, parser, { path: "PLAN.md", role: "plan" });
 append(
   repo,
   parser,
@@ -149,6 +160,26 @@ try {
     (await page.locator("#detail").innerText()).includes(
       "CSV writer is complete",
     ),
+  );
+  await page.getByRole("button", { name: "PLAN.md", exact: true }).waitFor();
+  await page.locator("#document-query").fill("Unicode");
+  await page.getByRole("button", { name: "PLAN.md", exact: true }).click();
+  await page.waitForFunction(() =>
+    document
+      .querySelector("#document-preview")
+      ?.textContent.includes("Check Unicode CSV."),
+  );
+  assert.equal(await page.evaluate(() => window.documentProbe), undefined);
+  assert.ok(
+    (await page.locator("#document-preview").innerText()).includes("<script>"),
+  );
+  fs.writeFileSync(
+    path.join(root, "PLAN.md"),
+    "# Export plan\n## Validation\nChanged Unicode requirement",
+  );
+  await page.getByRole("button", { name: "PLAN.md", exact: true }).click();
+  await page.waitForFunction(() =>
+    document.querySelector("#document-preview")?.textContent.includes("stale"),
   );
   await page.locator("#detail-dialog .close").click();
   await page.getByRole("button", { name: "Work board" }).click();

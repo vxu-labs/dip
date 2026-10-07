@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "eventId": "26d06e0c-a2ab-4d55-b896-929f7a81fada",
+  "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src",
+      "bin",
+      "public",
+      "test",
+      "scripts/browser-smoke.mjs",
+      "scripts/package-smoke.mjs",
+      "scripts/document-hook-smoke.mjs",
+      "docs",
+      "README.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "skills",
+      "package.json",
+      "package-lock.json",
+      "QA_REPORT.md"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T09:54:01.062Z",
+  "parents": [
+    "510a9e13-fdbe-4a32-af0a-6919b35c5c95"
+  ],
+  "branch": "main"
+}

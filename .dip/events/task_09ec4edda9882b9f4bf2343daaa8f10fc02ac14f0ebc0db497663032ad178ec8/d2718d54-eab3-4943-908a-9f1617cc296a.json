@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d2718d54-eab3-4943-908a-9f1617cc296a",
+  "taskId": "task_09ec4edda9882b9f4bf2343daaa8f10fc02ac14f0ebc0db497663032ad178ec8",
+  "type": "task.update",
+  "payload": {
+    "title": "Design automatic Markdown document references to avoid duplicate intent writing",
+    "description": "User asks for an opinion first, not implementation. Current source records file paths/scopes/activity with taskId where supported hook/session context exists; filesystem batches are project-level without reliable task attribution. Tasks have no dedicated document-reference relation/role registry or linked-document panel, and prose plans still require task_plan capture. Proposal: retain useful agent-authored Markdown as the full document source, store small typed task/document references in DIP, build derived incremental section indexes, and present bounded relevant snippets without making the agent rewrite the same plan into DIP. This relates to B01 management overhead and scalable retrieval; no linking feature implemented in this turn.",
+    "status": "backlog",
+    "scope": [
+      "src/automation.js",
+      "src/core.js",
+      "src/mcp.js",
+      "public/app.js",
+      "docs/automation.md",
+      "docs/protocol.md"
+    ],
+    "acceptance": [
+      "Capture reliable hook/session provenance for Markdown writes as candidate references; distinguish changed/read files from canonical plans, requirements, decisions or handoffs. Do not infer ownership from timing alone.",
+      "Store repo-relative document references, roles, many-to-many task links and content/version hashes, with rename/deletion/merge invalidation and explicit handling of ambiguous attribution.",
+      "Let an agent write a full Markdown plan once and use lightweight metadata/link updates where needed; preserve structured task status/claims/checks without a second full prose copy or an extra tracking model.",
+      "Expose linked documents and bounded section retrieval in dashboard/MCP; require source freshness and configured code verification instead of treating Markdown checkboxes as verified completion.",
+      "Keep existing automatic native plan capture compatible; evaluate actual tool/token overhead and portability against the current duplicate-writing workflow before claiming improvement."
+    ],
+    "priority": 1
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T08:26:59.371Z",
+  "parents": [
+    "97e17e1e-465d-4364-9925-64de22571bff"
+  ],
+  "branch": "main"
+}

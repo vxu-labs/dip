@@ -140,6 +140,8 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
             "verify",
             "claim",
             "release",
+            "document-list",
+            "document-read",
           ].includes(action)
         )
           throw new Error("Unsupported dashboard action");

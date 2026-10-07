@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "db3c2a56-5192-4309-b890-ec3825996b90",
+  "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Final v0.3.5: configured unit check passed 83 cases (81 Windows passes, 2 POSIX skips); configured browser passed, both stable snapshot b0c26e1d331be3984af8937b76f1992850df767ebd8826ce8f8ffbd196fdb57e. Fresh package/skill/installed adapter checks passed. Checkout aliases and Windows directory junctions tested; document reads load selected task history. Actual trusted Codex apply_patch auto-linked QA_REPORT.md via PostToolUse record codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-fa8edae7-29af-4ab7-bc3e-60686a6ba379. Subsequent script edit was stale and verification refused until reviewed relink. Existing MCP connections require reload; unsupported shell/wrapper writes use explicit links. Publishing under vxu-labs/dip.",
+    "next": "",
+    "head": "5c8272b25baface0b9f9d147893122c0b3232274"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:10:40.615Z",
+  "parents": [
+    "92833f9f-3160-4331-af93-0f2f30ee6356"
+  ],
+  "branch": "main"
+}

@@ -3,6 +3,7 @@ import path from "node:path";
 import os from "node:os";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 const root = fs.mkdtempSync(path.join(os.tmpdir(), "dip-package-"));
 const npm = process.env.npm_execpath;
 if (!npm) throw new Error("Run this script through npm run test:package");
@@ -13,8 +14,24 @@ const env = {
   DIP_GIT_CONFIG: path.join(root, "gitconfig"),
   GIT_CONFIG_GLOBAL: path.join(root, "gitconfig"),
 };
-const archive = path.resolve("vxu-labs-dip-0.3.4.tgz");
+const source = fileURLToPath(new URL("../", import.meta.url));
+const version = JSON.parse(
+  fs.readFileSync(path.join(source, "package.json"), "utf8"),
+).version;
 try {
+  const packed = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [npm, "pack", "--json", "--ignore-scripts", "--pack-destination", root],
+      { cwd: source, encoding: "utf8", windowsHide: true, env },
+    ),
+  )[0];
+  if (
+    packed.version !== version ||
+    path.basename(packed.filename) !== packed.filename
+  )
+    throw new Error("Unexpected package artifact");
+  const archive = path.join(root, packed.filename);
   execFileSync(
     process.execPath,
     [
@@ -43,7 +60,7 @@ try {
       env,
       windowsHide: true,
     }).trim(),
-    "0.3.4",
+    version,
   );
   const project = path.join(root, "project");
   fs.mkdirSync(project);
@@ -69,10 +86,41 @@ try {
   assert.ok(created.id);
   const context = run(["context", "--root", project]);
   assert.ok(context.ready.some((t) => t.id === created.id));
+  fs.writeFileSync(
+    path.join(project, "PLAN.md"),
+    "# Plan\n## Validation\nCheck Unicode",
+  );
+  run([
+    "task",
+    "document-link",
+    "--id",
+    created.id,
+    "--path",
+    "PLAN.md",
+    "--role",
+    "plan",
+    "--root",
+    project,
+  ]);
+  const sections = run([
+    "task",
+    "document-read",
+    "--id",
+    created.id,
+    "--path",
+    "PLAN.md",
+    "--role",
+    "plan",
+    "--heading",
+    "Validation",
+    "--root",
+    project,
+  ]);
+  assert.equal(sections.sections[0].heading, "Validation");
   run(["uninstall"]);
   assert.ok(fs.existsSync(path.join(project, ".dip", "config.json")));
   console.log(
-    "Clean package smoke passed: install, version, machine config, auto discovery, task/context and uninstall.",
+    `Clean package ${version} smoke passed: fresh archive, install, version, machine config, auto discovery, task/context, linked sections and uninstall.`,
   );
 } finally {
   assert.ok(root.startsWith(path.join(os.tmpdir(), "dip-package-")));

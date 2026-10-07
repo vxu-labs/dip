@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "eventId": "71e6bdfe-d988-4686-9141-b15f025768b8",
+  "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+  "type": "task.update",
+  "payload": {
+    "title": "Implement automatic versioned Markdown references and bounded document retrieval",
+    "description": "Write plans once as Markdown; task-bound write hooks save compact path/role/hash references; expose relevant bounded document sections through DIP tools and dashboard. Structured ownership/status/verification remain canonical DIP. Handle untrusted paths, changes, missing documents and ambiguous attribution without model calls.",
+    "scope": [
+      "src",
+      "public",
+      "test",
+      "docs",
+      "README.md",
+      "AGENTS.md",
+      "skills"
+    ],
+    "acceptance": [
+      "Supported successful agent Markdown writes with trusted task context create versioned references without copying prose.",
+      "MCP and CLI can link/list/read selected sections with limits and currentness evidence; unknown attribution does not guess task ownership.",
+      "References persist and merge in event ledger; dashboard shows linked documents; current content changes or deletion are explicit.",
+      "Tests cover successful/failing/ambiguous hooks, stale/renamed/missing/unsafe paths, bounded section retrieval and unchanged verification authority."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T09:29:28.818Z",
+  "parents": [
+    "cdba8d45-15ba-4b7c-ba6e-e7ca338ddd61"
+  ],
+  "branch": "main"
+}

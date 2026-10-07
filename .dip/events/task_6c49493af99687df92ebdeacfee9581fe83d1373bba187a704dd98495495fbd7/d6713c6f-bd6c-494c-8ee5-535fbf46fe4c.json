@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d6713c6f-bd6c-494c-8ee5-535fbf46fe4c",
+  "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src",
+      "public",
+      "test",
+      "docs",
+      "README.md",
+      "AGENTS.md",
+      "skills",
+      "docs/plans/markdown-references.md",
+      "src/documents.js",
+      "src/core.js",
+      "src/actions.js",
+      "src/automation.js",
+      "src/mcp.js",
+      "bin/dip.js",
+      "src/cli-help.js",
+      "src/server.js",
+      "public/app.js",
+      "public/style.css",
+      "test/documents.test.js"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T09:38:32.785Z",
+  "parents": [
+    "2da08be2-ba0a-4552-9879-5e0c936bcc00"
+  ],
+  "branch": "main"
+}

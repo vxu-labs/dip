@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d85fcbd0-007d-41e1-b2ed-ce38d75ffeb4",
+  "taskId": "task_09ec4edda9882b9f4bf2343daaa8f10fc02ac14f0ebc0db497663032ad178ec8",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Implemented as task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7 in v0.3.5. Versioned document links, bounded sections, supported write-hook attribution and dashboard are complete. See docs/documents.md for coverage and limits.",
+    "next": "",
+    "head": "5c8272b25baface0b9f9d147893122c0b3232274"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:00:20.308Z",
+  "parents": [
+    "2f1c8512-1c5d-48f7-8b21-6ac582d4a23a"
+  ],
+  "branch": "main"
+}

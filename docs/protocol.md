@@ -20,7 +20,9 @@ Each `.dip/events/<taskId>/<eventId>.json` file contains:
 }
 ```
 
-The supported event types are `task.create`, `task.update`, `task.resolve`, `task.checkpoint`, `task.decision`, `task.evidence` and `activity.batch`. Parent IDs encode causality; clock timestamps are only for display. Missing parents, malformed JSON and event cycles are visible data errors. Do not delete historical events to resolve a conflict.
+The supported event types are `task.create`, `task.update`, `task.resolve`, `task.plan`, `task.document`, `task.checkpoint`, `task.decision`, `task.evidence` and `activity.batch`. Parent IDs encode causality; clock timestamps are only for display. Missing parents, malformed JSON and event cycles are visible data errors. Do not delete historical events to resolve a conflict.
+
+`task.document` stores `{path, role, hash, bytes, source}` for a repository-relative Markdown file. `hash` is SHA-256 of raw file bytes. Removal stores `{path, role, removed: true}`; source files are never deleted by unlinking. References are keyed by normalized path and role within a task, so a file can serve several tasks or roles. Concurrent incompatible versions or removal appear as an explicit document conflict; a reviewed link/unlink event causally resolves current heads. Prose remains in the source document. Existing consumers that do not understand document events need upgrading before verifying document-backed intent. See [document retrieval](documents.md).
 
 Different fields can have concurrent writers. Incompatible concurrent values of the same field cause an explicit conflict. A resolution event refers to all current heads and sets the disputed values. The reducer rebuilds state without a database or external service.
 
@@ -30,7 +32,7 @@ Activity batches use `_activity` as their record folder. Each record contains a 
 
 Task intent includes title, description, acceptance criteria, scope, dependencies, priority and optional due date. Status can be backlog, ready, in_progress, blocked, implemented, verified, cancelled or superseded. Runtime activity and lease expiry are separate from that status.
 
-Verification snapshots hash source paths and contents while excluding the ledger and common sensitive-file names. Evidence records a named check, process result and snapshot. Reconciliation compares the current snapshot and the evidence's code commit with the selected Git history. A code-changing check is unsuccessful for this purpose even when its process exits zero.
+Verification snapshots hash source paths and contents while excluding the ledger and common sensitive-file names. Evidence records a named check, process result and snapshot. Linked document references and their actual readable content versions also contribute to the intent hash, including documents outside the declared code scope or ignored by Git. Verification requires current reviewed document versions. Reconciliation compares the current snapshot and the evidence's code commit with the selected Git history. A code-changing or document-changing check is unsuccessful for this purpose even when its process exits zero.
 
 ## Local coordination
 

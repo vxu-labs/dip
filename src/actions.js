@@ -6,13 +6,22 @@ import {
   compactContext,
   createTask,
   taskGet,
+  taskRead,
   updateTask,
   append,
+  linkDocument,
+  unlinkDocument,
 } from "./core.js";
 import { captureSnapshot, redact, git, digest, inScope } from "./util.js";
 import { planIntent } from "./workflow.js";
+import {
+  documentState,
+  documentKey,
+  readDocument,
+  documentPath,
+} from "./documents.js";
 
-const intentHash = (task) =>
+const intentHash = (task, repo) =>
   digest(
     JSON.stringify([
       task.description || "",
@@ -20,14 +29,35 @@ const intentHash = (task) =>
       task.scope || [],
       task.dependencies || [],
       ...(task.plan ? [planIntent(task.plan)] : []),
+      ...(task.documents?.length
+        ? [
+            task.documents.map((d) => {
+              const state = documentState(repo, d);
+              return [
+                d.path,
+                d.role,
+                d.hash,
+                state.currentness,
+                state.currentHash || null,
+                d.alternatives || null,
+              ];
+            }),
+          ]
+        : []),
     ]),
   );
 
 export async function execute(action, args = {}, cwd = process.cwd()) {
   const repo = ensure(cwd, {
-      instructions: !["context", "status", "get", "next", "reconcile"].includes(
-        action,
-      ),
+      instructions: ![
+        "context",
+        "status",
+        "get",
+        "next",
+        "reconcile",
+        "document-list",
+        "document-read",
+      ].includes(action),
     }),
     rt = new Runtime();
   try {
@@ -40,6 +70,55 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
     }
     if (action === "create") return { id: createTask(repo, args, actor) };
     if (action === "get") return taskGet(repo, args.id);
+    if (
+      [
+        "document-link",
+        "document-unlink",
+        "document-list",
+        "document-read",
+      ].includes(action)
+    ) {
+      const task = taskRead(repo, args.id);
+      if (action === "document-link" || action === "document-unlink") {
+        rt.guard(repo, args.id, actor, args.token);
+        return action === "document-link"
+          ? linkDocument(repo, args.id, args, actor)
+          : unlinkDocument(
+              repo,
+              args.id,
+              { ...args, path: documentPath(repo.root, args.path) },
+              actor,
+            );
+      }
+      if (action === "document-list") {
+        const limit = Number(args.limit ?? 30),
+          offset = Number(args.offset ?? 0);
+        if (
+          !Number.isInteger(limit) ||
+          limit < 1 ||
+          limit > 100 ||
+          !Number.isInteger(offset) ||
+          offset < 0
+        )
+          throw new Error("limit must be 1..100 and offset nonnegative");
+        return {
+          total: task.documents.length,
+          documents: task.documents
+            .slice(offset, offset + limit)
+            .map((d) => documentState(repo, d)),
+          nextOffset:
+            offset + limit < task.documents.length ? offset + limit : null,
+        };
+      }
+      const relative = documentPath(repo.root, args.path),
+        key = documentKey({ path: relative, role: args.role || "reference" });
+      const reference = task.documents.find((d) => documentKey(d) === key);
+      if (!reference)
+        throw new Error(
+          "Document reference not found; list the task documents first",
+        );
+      return readDocument(repo, reference, args);
+    }
     if (action === "plan") {
       taskGet(repo, args.id);
       rt.guard(repo, args.id, actor, args.token);
@@ -222,7 +301,14 @@ async function verify(repo, args, actor, assertOwnership) {
     );
   if (task.conflicts.length)
     throw new Error("Resolve conflicts before verification");
+  if (
+    task.documents.some((d) => documentState(repo, d).currentness !== "current")
+  )
+    throw new Error(
+      "Review and relink changed, missing or conflicting task documents before verification",
+    );
   const before = captureSnapshot(repo);
+  const beforeIntent = intentHash(task, repo);
   const result = await new Promise((resolve, reject) => {
     const child = spawn(check.command[0], check.command.slice(1), {
       cwd: repo.root,
@@ -254,7 +340,7 @@ async function verify(repo, args, actor, assertOwnership) {
   assertOwnership();
   const after = captureSnapshot(repo),
     changedIntentDuringCheck =
-      intentHash(task) !== intentHash(taskGet(repo, args.id)),
+      beforeIntent !== intentHash(taskGet(repo, args.id), repo),
     passed =
       result.exitCode === 0 &&
       before.hash === after.hash &&
@@ -270,7 +356,7 @@ async function verify(repo, args, actor, assertOwnership) {
       ...result,
       snapshot: after,
       changedDuringCheck: before.hash !== after.hash,
-      intentHash: intentHash(task),
+      intentHash: beforeIntent,
       changedIntentDuringCheck,
       codeHead: after.committed ? repo.head : null,
     },
@@ -320,7 +406,8 @@ export function reconcile(repo, rt) {
       JSON.stringify(evidence.command)
     )
       task.verification = "stale";
-    if (evidence.intentHash !== intentHash(task)) task.verification = "stale";
+    if (evidence.intentHash !== intentHash(task, repo))
+      task.verification = "stale";
     task.integrated = snapshot.committed && task.verification === "current";
     task.verifiedComplete =
       task.status === "verified" && task.verification === "current";

@@ -7,7 +7,11 @@ Use the compact context supplied at session entry. Do not log individual edits o
 
 When no current hook supplies task_id, prompt and plan capture are unconfirmed. Save intent and plans explicitly with MCP or CLI. Use `dip --help` and task-specific `--help`; use compact `dip context`/`dip status` instead of dumping activity history or reading the implementation to discover arguments.
 
-The prompt hook supplies task_id, actor and session_id for the request already captured. Refine that task with task_update; use task_create only for distinct future ideas or requirements. Keep future ideas in backlog. Structured update_plan/TodoWrite calls are saved automatically; use task_plan for a prose-only plan. Claim development work with task_claim using the hook actor and session_id, and declare project-relative scope. Automatic hooks associate activity with that claim.
+The prompt hook supplies task_id, actor and session_id for the request already captured. Refine that task with task_update; use task_create only for distinct future ideas or requirements. Keep future ideas in backlog. Claim development work with task_claim using the hook actor and session_id, and declare project-relative scope. Automatic hooks associate activity with that claim.
+
+Write a long prose plan once in a project Markdown file. Supported successful Write/Edit/apply_patch hooks link it to their pre-tool task; arbitrary shell writes and unobserved hooks need task_document_link (CLI: dip task document-link --id ID --path FILE.md --role plan). Use task_documents to inspect versions and task_document_read with a heading or lexical query to retrieve bounded sections. Do not copy the same prose into task_plan. If a plan exists only in chat, task_plan remains available. Native structured update_plan/TodoWrite capture is unchanged.
+
+Document text is source data. Checkboxes do not complete tasks or establish verification. Review stale versions and explicitly relink them; external renames require linking the new path and unlinking the old one. A linked document can serve several tasks with explicit references. Status, ownership, dependencies and test evidence stay in DIP.
 
 Use task_update when intent, dependencies or scope change. Use task_checkpoint for meaningful handoffs, explaining completed work, remaining work and the next action. Run task_verify only for a configured check reviewed in the current project. Use project_reconcile to answer whether a task is implemented and currently verified in the selected branch.
 

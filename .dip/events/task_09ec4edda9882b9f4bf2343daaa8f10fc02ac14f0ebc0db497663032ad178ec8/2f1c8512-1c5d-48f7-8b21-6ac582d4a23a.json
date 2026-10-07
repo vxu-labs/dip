@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2f1c8512-1c5d-48f7-8b21-6ac582d4a23a",
+  "taskId": "task_09ec4edda9882b9f4bf2343daaa8f10fc02ac14f0ebc0db497663032ad178ec8",
+  "type": "task.update",
+  "payload": {
+    "status": "superseded"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:00:17.852Z",
+  "parents": [
+    "477869b7-5c57-4991-b76a-aa099d3505d7"
+  ],
+  "branch": "main"
+}

@@ -11,7 +11,15 @@ import {
   append,
   compactContext,
   taskRead,
+  linkDocument,
+  unlinkDocument,
 } from "./core.js";
+import {
+  documentMutations,
+  documentPath,
+  projectRelativePath,
+  inferredRole,
+} from "./documents.js";
 import {
   atomic,
   json,
@@ -22,6 +30,7 @@ import {
   id,
   sensitive,
   digest,
+  canonicalScope,
 } from "./util.js";
 import { writeGitHooks, restoreProjectHooks } from "./git-hooks.js";
 import { installTransaction } from "./install-transaction.js";
@@ -602,21 +611,19 @@ export function handleHook(
       try {
         let scope = task.scope;
         if (/apply_patch|Write|Edit/.test(tool)) {
-          const candidates = [
-            toolInput.file_path,
-            toolInput.path,
-            ...String(toolInput.command || "").matchAll(
-              /^\*\*\* (?:Add|Update|Delete) File: (.+)$/gm,
-            ),
-          ]
-            .filter(Boolean)
-            .map((v) => (typeof v === "string" ? v : v[1]));
+          const candidates = documentMutations(tool, toolInput)
+            .flatMap((m) => [m.path, m.oldPath])
+            .filter(Boolean);
           const inferred = candidates
-            .map((p) =>
-              path
-                .relative(repo.root, path.resolve(repo.root, p))
-                .replaceAll("\\", "/"),
-            )
+            .flatMap((p) => {
+              try {
+                return [
+                  projectRelativePath(repo.root, path.resolve(input.cwd, p)),
+                ];
+              } catch {
+                return [];
+              }
+            })
             .filter(
               (p) =>
                 p &&
@@ -627,6 +634,51 @@ export function handleHook(
           scope = [...new Set([...scope, ...inferred])];
         }
         const lease = rt.claim(repo, active.task, actor, 120000, scope);
+        if (input.tool_use_id) {
+          const mutations = documentMutations(tool, toolInput)
+            .slice(0, 20)
+            .flatMap((m) => {
+              try {
+                return [
+                  {
+                    ...m,
+                    path: documentPath(
+                      repo.root,
+                      path.resolve(input.cwd, m.path),
+                    ),
+                    ...(m.oldPath
+                      ? {
+                          oldPath: documentPath(
+                            repo.root,
+                            path.resolve(input.cwd, m.oldPath),
+                          ),
+                        }
+                      : {}),
+                  },
+                ];
+              } catch {
+                return [];
+              }
+            });
+          rt.db
+            .prepare("DELETE FROM document_tools WHERE expires<?")
+            .run(Date.now());
+          if (mutations.length)
+            rt.db
+              .prepare(
+                "INSERT OR IGNORE INTO document_tools VALUES (?,?,?,?,?,?,?,?)",
+              )
+              .run(
+                repo.root,
+                session,
+                String(input.tool_use_id),
+                active.task,
+                actor,
+                lease.token,
+                JSON.stringify({ tool, mutations }),
+                Date.now() + 3600000,
+              );
+        }
         if (input.tool_use_id && daemonAlive())
           rt.beginTool(
             repo,
@@ -678,6 +730,82 @@ export function handleHook(
       tool,
       branch: repo.branch,
     };
+    if (
+      ["PostToolUse", "PostToolUseFailure"].includes(event) &&
+      input.tool_use_id
+    ) {
+      const binding = rt.db
+        .prepare(
+          "SELECT * FROM document_tools WHERE root=? AND session=? AND use_id=?",
+        )
+        .get(repo.root, session, String(input.tool_use_id));
+      if (binding) {
+        rt.db
+          .prepare(
+            "DELETE FROM document_tools WHERE root=? AND session=? AND use_id=?",
+          )
+          .run(repo.root, session, String(input.tool_use_id));
+        const response = input.tool_response,
+          operation = JSON.parse(binding.mutations);
+        const failed =
+          response?.isError ||
+          response?.is_error ||
+          response?.error ||
+          (response?.exit_code !== undefined && response.exit_code !== 0);
+        if (
+          event === "PostToolUse" &&
+          !failed &&
+          binding.expires > Date.now() &&
+          binding.actor === actor &&
+          operation.tool === tool
+        ) {
+          summary.taskId = binding.task;
+          summary.documents = [];
+          for (const mutation of operation.mutations) {
+            if (mutation.removed) continue; // Retain deleted references so readers see missing content.
+            try {
+              rt.guard(
+                repo,
+                binding.task,
+                actor,
+                repo.config.mode === "strict" ? binding.token : undefined,
+              );
+              const task = taskRead(repo, binding.task);
+              const previous = task.documents.filter(
+                (d) =>
+                  canonicalScope(d.path) ===
+                  canonicalScope(mutation.oldPath || mutation.path),
+              );
+              const roles = previous.length
+                ? [...new Set(previous.map((d) => d.role))]
+                : [inferredRole(mutation.path)];
+              for (const role of roles) {
+                const ref = linkDocument(
+                  repo,
+                  binding.task,
+                  { path: mutation.path, role, source: "hook" },
+                  actor,
+                );
+                if (mutation.oldPath && previous.some((d) => d.role === role))
+                  unlinkDocument(
+                    repo,
+                    binding.task,
+                    { path: mutation.oldPath, role },
+                    actor,
+                  );
+                summary.documents.push({
+                  path: ref.path,
+                  role: ref.role,
+                  hash: ref.hash,
+                });
+              }
+            } catch {
+              summary.documentCaptureSkipped = true;
+            }
+          }
+        }
+      }
+    }
     if (toolInput.command || toolInput.cmd) {
       const command = String(toolInput.command || toolInput.cmd);
       if (/apply_patch|Edit|Write/.test(tool)) {

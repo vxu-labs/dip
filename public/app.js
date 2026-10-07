@@ -300,6 +300,11 @@ function renderDetail(taskId) {
         }
       };
   };
+  $("#detail").insertAdjacentHTML(
+    "afterbegin",
+    `<div class="detail-section" id="linked-documents"><h3>Linked documents</h3><p>Source documents are read on demand. Task status and verification stay in DIP.</p><label>Find sections <input id="document-query" placeholder="Heading or keywords" maxlength="1000"></label><div id="document-links"></div><div id="document-preview" aria-live="polite"></div></div>`,
+  );
+  renderDocuments(t).catch((e) => notify(e.message));
   if (t.plan) {
     const input = t.plan.input,
       steps = input.plan || input.todos || input.steps,
@@ -371,6 +376,70 @@ function renderDetail(taskId) {
       token: leases.get(t.id)?.token,
     }),
   );
+}
+
+async function documentAction(action, args) {
+  const res = await fetch(url("/api/action"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-dip-token": token },
+    body: JSON.stringify({ action, args }),
+  });
+  const result = await res.json();
+  if (!res.ok) throw new Error(result.error || "Document unavailable");
+  return result;
+}
+
+async function renderDocuments(task) {
+  const container = $("#document-links"),
+    projectRoot = selected;
+  if (!task.documents?.length) {
+    container.textContent = "No linked documents yet.";
+    return;
+  }
+  const data = await documentAction("document-list", { id: task.id });
+  if (
+    currentDetail !== task.id ||
+    selected !== projectRoot ||
+    !container.isConnected
+  )
+    return;
+  container.innerHTML =
+    data.documents
+      .map(
+        (d, i) =>
+          `<div class="document-row"><button data-document="${i}">${escape(d.path)}</button><small>${escape(d.role)} · ${escape(d.currentness)} · ${escape(d.hash?.slice(0, 12) || "competing versions")}</small></div>`,
+      )
+      .join("") +
+    (data.nextOffset
+      ? "<p>More documents are available through DIP tools.</p>"
+      : "");
+  container.querySelectorAll("[data-document]").forEach((button) => {
+    button.onclick = async () => {
+      button.disabled = true;
+      try {
+        const d = data.documents[Number(button.dataset.document)],
+          result = await documentAction("document-read", {
+            id: task.id,
+            path: d.path,
+            role: d.role,
+            query: $("#document-query").value,
+            maxChars: 12000,
+          });
+        if (
+          currentDetail !== task.id ||
+          selected !== projectRoot ||
+          !container.isConnected
+        )
+          return;
+        $("#document-preview").innerHTML =
+          `<p>${escape(result.path)} · ${escape(result.currentness)} · ${escape(result.currentHash.slice(0, 12))}</p><p>Source text; checkboxes do not establish completion.</p>${result.sections.map((s) => `<h4>${escape(s.heading)}</h4><small>Lines ${s.startLine} to ${s.endLine}${s.truncated ? " · excerpt truncated" : ""}</small><pre class="document-excerpt">${escape(s.text)}</pre>`).join("") || "<p>No matching sections.</p>"}`;
+      } catch (e) {
+        notify(e.message);
+      } finally {
+        button.disabled = false;
+      }
+    };
+  });
 }
 document.querySelectorAll(".nav").forEach(
   (b) =>

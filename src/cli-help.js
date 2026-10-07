@@ -6,6 +6,14 @@ export function cliHelp(command = "help", action = "") {
     update:
       'dip task update --id ID --patch \'{"title":"...","status":"backlog"}\' [--actor NAME] [--token TOKEN]\n',
     plan: 'dip task plan --id ID --text "..." [--actor NAME] [--token TOKEN]\n',
+    "document-link":
+      "dip task document-link --id ID --path plans/feature.md --role plan [--actor NAME] [--token TOKEN]\n",
+    "document-unlink":
+      "dip task document-unlink --id ID --path plans/feature.md --role plan [--actor NAME] [--token TOKEN]\n",
+    "document-list":
+      "dip task document-list --id ID [--limit 30] [--offset 0]\n",
+    "document-read":
+      'dip task document-read --id ID --path plans/feature.md --role plan [--heading "Validation"] [--query "Unicode"] [--maxChars 12000] [--expectedHash SHA256]\n',
     checkpoint:
       'dip task checkpoint --id ID --summary "..." [--next "..."] [--actor NAME]\n',
     claim:
@@ -24,6 +32,9 @@ export function cliHelp(command = "help", action = "") {
     `dip task create --title X       Save a distinct task or future idea\n` +
     `dip task get --id ID            Read one requirement\n` +
     `dip task plan --id ID --text X  Save a plan when hooks are unavailable\n` +
+    `dip task document-link --id ID --path FILE.md --role plan\n` +
+    `dip task document-list --id ID  Inspect linked document versions\n` +
+    `dip task document-read --id ID --path FILE.md --role plan\n` +
     `dip task update --id ID --patch JSON\n` +
     `dip task claim --id ID --actor NAME\n` +
     `dip task checkpoint --id ID --summary X\n` +

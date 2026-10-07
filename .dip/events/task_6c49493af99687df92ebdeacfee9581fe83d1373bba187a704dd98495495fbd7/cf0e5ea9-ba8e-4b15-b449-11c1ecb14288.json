@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cf0e5ea9-ba8e-4b15-b449-11c1ecb14288",
+  "taskId": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "v0.3.5 implemented and installed. Configured unit verification passed 82 cases: 80 Windows passes, 2 POSIX skips; unchanged source and intent. Configured browser check, fresh archive installation, skill validation and installed synthetic Codex/Claude document hooks passed. Live project dashboard retrieved Validation from docs/plans/markdown-references.md with metadata-only task storage. New MCP tools require host reload; shell/wrapper writes without file schemas need explicit links. No model or measured token-saving claim.",
+    "next": "",
+    "head": "5c8272b25baface0b9f9d147893122c0b3232274"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T10:00:21.587Z",
+  "parents": [
+    "6c2bd3e9-b9df-4793-bbfb-6e82d33f50f0"
+  ],
+  "branch": "main"
+}

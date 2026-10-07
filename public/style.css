@@ -1119,3 +1119,27 @@ label select {
     border: 1px solid CanvasText;
   }
 }
+
+.document-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+.document-row button {
+  max-width: 100%;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+.document-excerpt {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+  padding: 16px;
+  border: 1px solid var(--border, #dce1e6);
+  border-radius: 14px;
+}
+#document-query {
+  max-width: 100%;
+}
