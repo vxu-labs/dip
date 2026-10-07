@@ -1,5 +1,9 @@
 # DIP benchmarks
 
+## Semantic retrieval candidates and proposed comparison
+
+The [source-linked alternatives shortlist and experiment design](semantic-alternatives.md) includes compact static/contextual models, a custom 10M/100M relation-encoder arm, vocabulary-budget analysis and user-request/assistant-response query ablations against capable large-Markdown and DIP baselines. This is research/planning, with no model quality ranking or training outcome yet.
+
 ## Laya task-matching zero-shot pilot
 
 The pinned multilingual Laya checkpoint ran locally without additional training on 96 synthetic request/task pairs: 32 authored families rendered in English, Hebrew and across languages. Four-way relationship accuracy was 33/96 (34.4%). Exact-identity precision was 23/75 (30.7%): it found 23/24 true matches but called 52/72 non-identical pairs identical. The current checkpoint/schema is not ready for automatic task merging. This is a small clustered pilot, not a verdict on every Laya variant or proof that training will solve the problem. [Method, every probability, setup failure, resources and replay](laya-pilot.md).

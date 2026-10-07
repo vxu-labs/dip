@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "99d13afa-08e3-4bc1-8df2-e9da7f221bed",
+  "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "text": "Research-only turn: update the existing alternatives task; collect pinned primary model/code metadata and separate static, contextual-embedding, reranking and lexical roles; document vocabulary parameter budgets and Q/A query ablations; publish a source-linked shortlist with no unmeasured quality ranking. Model downloads, training and performance experiments are future work under the alternatives backlog."
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T08:09:10.425Z",
+  "parents": [
+    "6ede4819-a328-4657-930f-4aee18b637c9"
+  ],
+  "branch": "main"
+}

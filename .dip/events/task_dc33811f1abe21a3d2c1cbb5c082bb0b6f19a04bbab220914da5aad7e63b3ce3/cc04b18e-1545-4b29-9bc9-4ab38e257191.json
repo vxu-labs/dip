@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cc04b18e-1545-4b29-9bc9-4ab38e257191",
+  "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Completed research/recording request: existing alternatives backlog now includes custom 10M/100M dense/static training/distillation, tokenizer100k/200k ablations, Q-only/A-only/Q+A/fusion, and fair Markdown/DIP model-factor baselines at100/1000/10000items. Source-linked shortlist and pinned metadata captured for11 contextual/static candidates plus implementation routes. Closest custom-idea route Model2Vec/Potion:7.6M English,32.3M retrieval English,128.1M multilingual (Hebrew listed). E5-small and multilingualMiniLM~117.7M; smallBGE/MiniLM English controls and larger references recorded. Vocabulary V*d budgets documented. Metadata/schema/arithmetic/Markdown checks passed; no candidate trained, downloaded or performance-tested in this turn. Research marked implemented, not verified from an assertion; model-comparison/training backlog remains open.",
+    "next": "Publish shortlist and metadata with updated backlog. Next actual experiment requires a frozen independent corpus/labels and resource-aware candidate execution; do not reuse the known Laya pilot as tuning and final test.",
+    "head": "b866f832f705fc2b0ee03a17e2511567e6d13f2c"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T08:15:28.606Z",
+  "parents": [
+    "41cb971e-5b4b-4429-86f0-af8ea8a608bb"
+  ],
+  "branch": "main"
+}

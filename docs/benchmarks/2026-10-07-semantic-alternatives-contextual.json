@@ -1,0 +1,80 @@
+[
+  {
+    "id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "license": "mit",
+    "parameters": 117654272,
+    "modelType": "bert",
+    "hiddenSize": 384,
+    "vocabulary": 250037,
+    "contextPositions": 512,
+    "languagesClaimed": 94,
+    "hebrewListed": true,
+    "source": "https://huggingface.co/intfloat/multilingual-e5-small"
+  },
+  {
+    "id": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+    "license": "apache-2.0",
+    "parameters": 117654272,
+    "modelType": "bert",
+    "hiddenSize": 384,
+    "vocabulary": 250037,
+    "contextPositions": 512,
+    "languagesClaimed": 50,
+    "hebrewListed": true,
+    "source": "https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  },
+  {
+    "id": "BAAI/bge-small-en-v1.5",
+    "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+    "license": "mit",
+    "parameters": 33360512,
+    "modelType": "bert",
+    "hiddenSize": 384,
+    "vocabulary": 30522,
+    "contextPositions": 512,
+    "languagesClaimed": 1,
+    "hebrewListed": false,
+    "source": "https://huggingface.co/BAAI/bge-small-en-v1.5"
+  },
+  {
+    "id": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "license": "apache-2.0",
+    "parameters": 567755777,
+    "modelType": "xlm-roberta",
+    "hiddenSize": 1024,
+    "vocabulary": 250002,
+    "contextPositions": 8194,
+    "languagesClaimed": 1,
+    "hebrewListed": false,
+    "source": "https://huggingface.co/BAAI/bge-reranker-v2-m3"
+  },
+  {
+    "id": "Alibaba-NLP/gte-multilingual-base",
+    "revision": "9bbca17d9273fd0d03d5725c7a4b0f6b45142062",
+    "license": "apache-2.0",
+    "parameters": 305369089,
+    "modelType": "new",
+    "hiddenSize": 768,
+    "vocabulary": 250048,
+    "contextPositions": 8192,
+    "languagesClaimed": 75,
+    "hebrewListed": true,
+    "source": "https://huggingface.co/Alibaba-NLP/gte-multilingual-base"
+  },
+  {
+    "id": "Qwen/Qwen3-Embedding-0.6B",
+    "revision": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+    "license": "apache-2.0",
+    "parameters": 595776512,
+    "modelType": "qwen3",
+    "hiddenSize": 1024,
+    "vocabulary": 151669,
+    "contextPositions": 32768,
+    "languagesClaimed": 0,
+    "hebrewListed": false,
+    "source": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6ede4819-a328-4657-930f-4aee18b637c9",
+  "taskId": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+  "type": "task.update",
+  "payload": {
+    "title": "Add a small relation-retriever experiment and research open-source alternatives",
+    "description": "Extend existing alternatives task with user proposal: 10M/100M dense relation encoder, 100k/200k tokenizer variants, retrieval driven by user request and assistant reply, evaluated against large Markdown without DIP/model. Research primary-source pretrained/trainable open-source candidates and parameter/tokenizer tradeoffs. Produce a concrete shortlist and evaluation design; training/model comparisons remain future work.",
+    "scope": [
+      "docs/benchmarks"
+    ],
+    "acceptance": [
+      "Update the existing alternatives backlog with custom small-encoder training, tokenizer ablations and query-only versus query-plus-assistant tests.",
+      "Verify candidate roles, model size/config and code/weight license sources; distinguish multilingual/Hebrew candidates from English-only and larger references.",
+      "Document fair large-corpus Markdown/DIP/model baselines, leakage controls, current-task retrieval and false-link metrics without claiming unmeasured superiority."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T08:06:14.842Z",
+  "parents": [
+    "923173ea-a5c2-4c96-8664-a8150da6cc72"
+  ],
+  "branch": "main"
+}

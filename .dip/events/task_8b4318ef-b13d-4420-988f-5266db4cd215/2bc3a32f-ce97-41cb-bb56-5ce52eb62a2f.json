@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2bc3a32f-ce97-41cb-bb56-5ce52eb62a2f",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.update",
+  "payload": {
+    "description": "Compare open-source task-retrieval and relationship models against the preserved Laya pilot. Expanded at user's request: train/distill a specialized non-generative dense or static relation encoder with target budgets near 10M and 100M total parameters, and tokenizer-vocabulary ablations including 100k/200k tokens where feasible. Use user request Q and assistant response/plan A as separate evidence channels: test Q only, A only, Q+A concatenation and a predeclared fusion. Benchmark retrieval across large Markdown and structured DIP stores, not only classification of one supplied pair. Research shortlist includes Model2Vec/Potion (7.6M/32.3M English and128.1M multilingual), multilingual E5-small and MiniLM-L12 (~117.7M, Hebrew listed), small English BGE/MiniLM controls, and larger GTE/Qwen/BGE reranker references. No alternative has yet been run or proven superior. Licensed source/weight review and independent held-out evaluation required.",
+    "acceptance": [
+      "Verify code and weight licenses, pinned revisions, local CPU/platform runtime and actual total parameter/embedding-table budgets for every candidate; broader token vocabularies are not language knowledge and consume V*d parameters in an ordinary table.",
+      "Include custom 10M/100M dense/static retrieval training or distillation as explicit candidates; compare against pretrained baselines before claiming training from scratch is easy or necessary. Report data, compute, training and inference costs.",
+      "Evaluate Q-only, A-only, Q+A and predeclared fusion using the same historical tasks. Generate assistant text before retrieval; exclude leaked task IDs/answers, and include incorrect or scope-expanding replies. User intent remains authoritative.",
+      "Use fair factorial baselines: Markdown with rg/BM25 without DIP/neural model; Markdown with the same neural retriever; structured DIP lexical only; structured DIP with neural/hybrid retrieval. Scale to 100/1000/10000 historical items with superseded/cancelled/open/completed tasks and version/scope confounders.",
+      "Measure Recall@1/5/10, MRR, false exact merges, stale/cancelled-rule errors, no-match abstention, downstream correctness, tokens, cold/warm CPU latency, RAM and indexing updates. Similarity/reranking scores are not completion evidence.",
+      "Split reviewed training/calibration/test examples by project, time and task family; do not mix paraphrase variants or use the already-published Laya pilot as both tuning and final-test data.",
+      "Keep alternatives and custom training unfinished until actually evaluated; retain all outcomes and use real code evidence for task completion."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T08:09:07.774Z",
+  "parents": [
+    "c4f65b26-3adf-4a02-8b82-9c849e93758f"
+  ],
+  "branch": "main"
+}
