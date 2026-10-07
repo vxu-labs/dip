@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "153823c8-8f47-48f1-8c9d-fac4d26efef5",
+  "taskId": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+  "type": "task.update",
+  "payload": {
+    "title": "Publish semantic roadmap and run an out-of-box Laya task-matching pilot",
+    "description": "Publish the saved retrieval/model roadmap to VXU Labs remote, create a distinct open-source alternatives evaluation backlog item, and run a reproducible no-fine-tuning local Laya pilot on fixed Hebrew/English task-pair labels. Retain errors and resource measurements, distinguish feasibility from domain readiness and whether training is warranted. Related research requirement: task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40.",
+    "scope": [
+      "scripts",
+      "docs/benchmarks",
+      ".dip/config.json"
+    ],
+    "acceptance": [
+      "Push saved roadmap and new alternatives backlog to https://github.com/vxu-labs/dip without publishing unrelated captured discussion/activity.",
+      "Preregister held-out task-pair inputs, labels and model runtime/revision before any Laya outcome; keep zero-shot pilot separate from any future fine-tuning.",
+      "Run the model locally in an isolated dependency/cache environment if supported; preserve complete outputs, failures, resource/latency measurements and setup limitations.",
+      "Publish a qualified conclusion about out-of-box task identity/overlap classification, without treating semantic scores as actual completion evidence."
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T05:39:08.053Z",
+  "parents": [
+    "a099860a-d5ac-48a6-87cb-38f194ffc7dc"
+  ],
+  "branch": "main"
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "eventId": "65cbf43e-f432-4d86-9b35-0326588f9d19",
+  "taskId": "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+  "type": "task.update",
+  "payload": {
+    "title": "Design scalable context retrieval and semantic routing for DIP",
+    "description": "User proposes extending DIP beyond small-project Markdown comparisons to huge repositories with hundreds/thousands of documents. Current compactContext/task_next are bounded generic lists, not query-relevant retrieval. Proposed direction: canonical structured intent/events in .dip, derived local incremental lexical/vector indexes, graph/current-revision/status/scope filters, budgeted source-linked context packets per user intent, and semantic candidate triggers reviewed by the existing working agent. TurboVec is a candidate optional local vector backend (Rust/Python); it does not generate embeddings or determine authoritative project state. No engine installed and no semantic product feature implemented in this exploratory turn. Preserve zero model calls on routine capture; embedding work is explicit, asynchronous and optional rather than an extra chat model per tracking action.",
+    "status": "backlog",
+    "scope": [
+      "src/core.js",
+      "src/mcp.js",
+      "src/automation.js",
+      "docs/protocol.md",
+      "scripts"
+    ],
+    "acceptance": [
+      "Retrieve current relevant requirements, decisions, dependencies, ownership and evidence within a fixed context budget, with source IDs and freshness reasons; do not select cancelled/superseded intent as authoritative due to semantic similarity.",
+      "Keep tracked .dip events canonical and indexes rebuildable/local; index only changed content and apply explicit invalidation/deletion on revisions, merges and cancellations.",
+      "Use a provider interface so lexical fallback works without embeddings/extra runtimes; evaluate TurboVec integration/platform/setup costs before choosing a mandatory backend.",
+      "Benchmark instructed Markdown search, structured lexical DIP and hybrid semantic DIP across increasing corpora with obsolete/conflicting documents. Measure relevant-current recall, stale-rule mistakes, final task correctness, tokens, latency and index maintenance cost; do not presume vectors improve quality.",
+      "Use semantic matches as candidates for links/conflicts/duplicate intent; require explicit agent mutation and real configured verification for state changes or verified completion."
+    ],
+    "priority": 1
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:24:47.439Z",
+  "parents": [
+    "a9ee0975-145e-4f0d-80ad-57521fb1fa76"
+  ],
+  "branch": "main"
+}

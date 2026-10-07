@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e0bbc7fc-2d14-4d50-adb2-ce4f842aabf0",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.create",
+  "payload": {
+    "title": "Compare open-source alternatives to Laya for DIP task matching",
+    "description": "User explicitly requests checking whether other open-source models already outperform Laya on existing-task identity/partial overlap classification. Keep this distinct from the initial Laya zero-shot feasibility pilot. Evaluate compact multilingual pair encoders/rerankers and typed-decision models on the same held-out DIP domain data; no presumed quality ranking from generic leaderboards.",
+    "acceptance": [
+      "Verify code/weight licenses and supported local CPU/Windows/Linux/macOS runtimes for each candidate.",
+      "Use identical bilingual inputs, candidate sets, labels and test splits to compare Laya and alternatives; report exact identity precision, false merges, missed matches, overlap classification and confidence/abstention.",
+      "Measure cold load, warm CPU latency, memory/model download size and Node integration cost alongside quality.",
+      "Include existing pretrained baselines before proposing fine-tuning; label model-specific tuning separately and retain all candidate outcomes."
+    ],
+    "scope": [
+      "scripts",
+      "docs/benchmarks"
+    ],
+    "priority": 2,
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "status": "backlog"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T05:39:11.066Z",
+  "parents": [],
+  "branch": "main"
+}

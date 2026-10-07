@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7784ac5c35d3fc7e305d04ea84573a51385523fb37db601bdea1e50ebd91cabe",
+  "taskId": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+  "type": "task.create",
+  "payload": {
+    "title": "האם מודל Laya יכול להתאים למשימה כזו? או שלדעתך אפשר לאמן Micro dense model שיהיה אמון על מיציאת משימות זהות שנעשו כבר או פתוחות?",
+    "description": "האם מודל Laya יכול להתאים למשימה כזו? או שלדעתך אפשר לאמן Micro dense model שיהיה אמון על מיציאת משימות זהות שנעשו כבר או פתוחות?",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T05:33:19.823Z",
+  "parents": [],
+  "branch": "main"
+}

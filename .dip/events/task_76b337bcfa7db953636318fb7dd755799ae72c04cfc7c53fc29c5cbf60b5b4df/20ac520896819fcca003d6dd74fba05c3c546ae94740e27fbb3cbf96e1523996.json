@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "20ac520896819fcca003d6dd74fba05c3c546ae94740e27fbb3cbf96e1523996",
+  "taskId": "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+  "type": "task.create",
+  "payload": {
+    "title": "כן אני מבין שגם MARKDOWN מנוהל היטב רציני יכול להספיק אבל העניין הוא שככל שפרוייקט מתקדם יכולים להיות MARKDOWN עצומים ואפילו מאות או אלפי MD ככה שסוכן לא באמת י",
+    "description": "כן אני מבין שגם MARKDOWN מנוהל היטב רציני יכול להספיק אבל העניין הוא שככל שפרוייקט מתקדם יכולים להיות MARKDOWN עצומים ואפילו מאות או אלפי MD ככה שסוכן לא באמת יכול להתמודד עם הכל... אולי אנחנו צריכים להכניס גם TURBOVEC + טריגרים סמנטיים וכלים של AI שיעזרו לסוכן להתנהל מול DIP ? \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-06T17:23:00.394Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ee745e1d-5ca3-422f-810d-a196f417104f",
+  "taskId": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+  "type": "task.update",
+  "payload": {
+    "title": "Evaluate Laya and compact multilingual pair classifiers for existing-task matching",
+    "description": "User asks whether Laya or a specialized micro dense model can detect existing open/completed tasks despite paraphrasing. Proposed experiment related to scalable retrieval task task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df: retrieve candidate tasks using lexical/vector/metadata search, then compare a request/task pair using Laya multilingual and a compact pretrained multilingual encoder with a trained classification head. Laya is a candidate decision model, not yet validated on DIP; primary model card warns about zero-shot/domain calibration and overconfidence, and multilingual checkpoint has 322M parameters. Prefer baseline evaluation and fine-tuning/distillation of pretrained encoders over training language capabilities from scratch. Models propose same/partial/related/different links; open/completed status and verification remain authoritative structured state/current code evidence. No model installed, trained or called in this exploratory turn.",
+    "status": "backlog",
+    "scope": [
+      "scripts",
+      "docs/benchmarks"
+    ],
+    "acceptance": [
+      "Build independently reviewed positive, partial-overlap, related-only and hard-negative request/task pairs, including Hebrew-English paraphrases, negation, changed scope/version and different components; split held-out evaluation by project and time to avoid paraphrase leakage.",
+      "Compare lexical/embedding candidate retrieval, compact cross-encoder pair classification and Laya on the same inputs. Measure candidate recall, false duplicate links, missed duplicates, partial completion coverage, confidence calibration/abstention, CPU latency, RAM and installation overhead.",
+      "Fine-tune or distill only after labeled evaluation shows where existing candidates fail; do not assert that a particular micro-model size or training-set size guarantees quality.",
+      "Keep routine Git capture model-free; semantic inference runs at meaningful user-intent or completion milestones. Require agent review of uncertain links, and configured real-code checks for verified completion."
+    ],
+    "priority": 2
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-07T05:35:26.431Z",
+  "parents": [
+    "153c2ae8-6a42-4947-ac26-9600861bcb04"
+  ],
+  "branch": "main"
+}
