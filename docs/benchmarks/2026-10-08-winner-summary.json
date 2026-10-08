@@ -1,0 +1,4547 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-08T09:58:25.394Z",
+  "protocolHash": "484f66b6e39456c2c5368a2892bc003faca96abd70445f64d5c78b6b88203810",
+  "limitations": "One real project, author-designated labels not independently adjudicated or exhaustive relevance; real16-task pool is small. Long placement is synthetic. Known synthetic16 families are reused explicitly, not hidden new test/training/calibration. No downstream agent implementations, full custom training, learned pairwise relation gate or proof of semantic identity.",
+  "attempts": [
+    {
+      "file": "docs/benchmarks/2026-10-08-winner-lexical.json.gz",
+      "resultHash": "07639ca2ab078692eb4f8082e9d6f3fbb3288e7d2bb1bbf89c01446c40f2712e",
+      "summary": {
+        "model": "lexical",
+        "complete": true,
+        "scores": [
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 17,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6136656746031746
+            },
+            "eligible": {
+              "r1": 17,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6136656746031746
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.09299995144829154
+          },
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9375
+            },
+            "eligible": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9375
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.23689999943599105
+          },
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.05490001058205962
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 18,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6292906746031746
+            },
+            "eligible": {
+              "r1": 18,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6292906746031746
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.1654500374570489
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.31919992761686444
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.09400001727044582
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 17,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6084573412698412
+            },
+            "eligible": {
+              "r1": 17,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6084573412698412
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.08135003736242652
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9270833333333334
+            },
+            "eligible": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9270833333333334
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.22909999825060368
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.05059997783973813
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 19,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6449156746031746
+            },
+            "eligible": {
+              "r1": 19,
+              "r5": 23,
+              "r10": 26,
+              "mrr10": 0.6449156746031746
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 1.3521500513888896
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 16,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 1
+            },
+            "eligible": {
+              "r1": 16,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 1
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 2.048750000540167
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2898313492063492
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.8773999870754778
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 2,
+              "r5": 7,
+              "r10": 8,
+              "mrr10": 0.3271825396825397
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 7,
+              "r10": 8,
+              "mrr10": 0.3271825396825397
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.18099998123943806
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.5972222222222222
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.5972222222222222
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.34265004796907306
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 0,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.05714285714285714
+            },
+            "eligible": {
+              "r1": 0,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.05714285714285714
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.05745008820667863
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 5,
+              "r10": 8,
+              "mrr10": 0.32103174603174606
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 5,
+              "r10": 8,
+              "mrr10": 0.32103174603174606
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.5922499694861472
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 4,
+              "r10": 6,
+              "mrr10": 0.584920634920635
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 4,
+              "r10": 6,
+              "mrr10": 0.584920634920635
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.9473999962210655
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 0,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.05714285714285714
+            },
+            "eligible": {
+              "r1": 0,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.05714285714285714
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.3532999544404447
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 7,
+              "r5": 19,
+              "r10": 24,
+              "mrr10": 0.2694113756613757
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 21,
+              "r10": 25,
+              "mrr10": 0.2759755291005291
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 2.62185005703941
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 2,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.32152777777777786
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 9,
+              "r10": 11,
+              "mrr10": 0.32872023809523815
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 2.6477499632164836
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 10,
+              "r10": 11,
+              "mrr10": 0.4172619047619047
+            },
+            "eligible": {
+              "r1": 4,
+              "r5": 11,
+              "r10": 12,
+              "mrr10": 0.4277777777777778
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 3.30625002970919
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 1,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.06944444444444445
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.07142857142857142
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 2.1165500511415303
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 7,
+              "r5": 19,
+              "r10": 24,
+              "mrr10": 0.2694113756613757
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 21,
+              "r10": 25,
+              "mrr10": 0.2759755291005291
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 2.744850004091859
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 2,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.32152777777777786
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 9,
+              "r10": 11,
+              "mrr10": 0.32872023809523815
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 2.862549968995154
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 10,
+              "r10": 11,
+              "mrr10": 0.4172619047619047
+            },
+            "eligible": {
+              "r1": 4,
+              "r5": 11,
+              "r10": 12,
+              "mrr10": 0.4277777777777778
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 2.687549975235015
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 1,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.06944444444444445
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 1,
+              "r10": 2,
+              "mrr10": 0.07142857142857142
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 2.6891500456258655
+          }
+        ],
+        "indexes": [
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "whole",
+            "sources": 16,
+            "entries": 16,
+            "lexicalBuildSeconds": 0.007311200024560094
+          },
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "sections",
+            "sources": 16,
+            "entries": 197,
+            "lexicalBuildSeconds": 0.005504500004462898
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "whole",
+            "sources": 16,
+            "entries": 16,
+            "lexicalBuildSeconds": 0.03859020001254976
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "sections",
+            "sources": 16,
+            "entries": 2997,
+            "lexicalBuildSeconds": 0.09248489991296083
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "whole",
+            "sources": 18,
+            "entries": 18,
+            "lexicalBuildSeconds": 0.02620219998061657
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "sections",
+            "sources": 18,
+            "entries": 1162,
+            "lexicalBuildSeconds": 0.035115999984554946
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "whole",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.020374399959109724
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "sections",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.023832300095818937
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "whole",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.02828860003501177
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "sections",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.029483100050128996
+          }
+        ],
+        "cacheChecks": [],
+        "resources": {
+          "platform": "Windows",
+          "python": "3.12.14",
+          "device": "cpu",
+          "threads": 4,
+          "packages": {
+            "torch": "2.8.0+cpu",
+            "transformers": "4.57.6",
+            "sentence-transformers": "5.1.2",
+            "model2vec": "0.9.0"
+          },
+          "tokenCounts": {},
+          "availableRamAtStartBytes": 2269569024,
+          "peakRssBytes": 61501440
+        },
+        "readOnly": true
+      }
+    },
+    {
+      "file": "docs/benchmarks/2026-10-08-winner-intfloat--multilingual-e5-small.json.gz",
+      "resultHash": "18cf5c041acc89a76705e0134c26d93d0dbc351a04c6696863e11e673c3b96cf",
+      "summary": {
+        "model": "intfloat/multilingual-e5-small",
+        "complete": true,
+        "scores": [
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 24,
+              "r5": 28,
+              "r10": 30,
+              "mrr10": 0.8072916666666665
+            },
+            "eligible": {
+              "r1": 24,
+              "r5": 28,
+              "r10": 30,
+              "mrr10": 0.8072916666666665
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.14205003390088677
+          },
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.27784996200352907
+          },
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 9,
+              "r5": 12,
+              "r10": 14,
+              "mrr10": 0.6458333333333333
+            },
+            "eligible": {
+              "r1": 9,
+              "r5": 12,
+              "r10": 14,
+              "mrr10": 0.6458333333333333
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.08509994950145483
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 18,
+              "r5": 30,
+              "r10": 31,
+              "mrr10": 0.694047619047619
+            },
+            "eligible": {
+              "r1": 18,
+              "r5": 30,
+              "r10": 31,
+              "mrr10": 0.694047619047619
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.49765000585466623
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 12,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.8458333333333332
+            },
+            "eligible": {
+              "r1": 12,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.8458333333333332
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.8697999874129891
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 6,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5422619047619048
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5422619047619048
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.4116000491194427
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 19,
+              "r5": 24,
+              "r10": 32,
+              "mrr10": 0.6821428571428572
+            },
+            "eligible": {
+              "r1": 19,
+              "r5": 24,
+              "r10": 32,
+              "mrr10": 0.6821428571428572
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.16424997011199594
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.3009000211022794
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 4,
+              "r5": 8,
+              "r10": 16,
+              "mrr10": 0.3955357142857143
+            },
+            "eligible": {
+              "r1": 4,
+              "r5": 8,
+              "r10": 16,
+              "mrr10": 0.3955357142857143
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.10659999679774046
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 20,
+              "r5": 25,
+              "r10": 31,
+              "mrr10": 0.7095858134920635
+            },
+            "eligible": {
+              "r1": 20,
+              "r5": 25,
+              "r10": 31,
+              "mrr10": 0.7095858134920635
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.5338000482879579
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.907299981918186
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 5,
+              "r5": 9,
+              "r10": 15,
+              "mrr10": 0.450421626984127
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 9,
+              "r10": 15,
+              "mrr10": 0.450421626984127
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.4480000934563577
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 2,
+              "r5": 10,
+              "r10": 20,
+              "mrr10": 0.18306051587301586
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 10,
+              "r10": 20,
+              "mrr10": 0.18306051587301586
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.27650000993162394
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.5258999881334603
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.16315001994371414
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 18,
+              "r5": 30,
+              "r10": 31,
+              "mrr10": 0.694047619047619
+            },
+            "eligible": {
+              "r1": 18,
+              "r5": 30,
+              "r10": 31,
+              "mrr10": 0.694047619047619
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 2.725150028709322
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 12,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.8458333333333332
+            },
+            "eligible": {
+              "r1": 12,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.8458333333333332
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 3.7216999917291105
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 6,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5422619047619048
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5422619047619048
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 2.4234000593423843
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 6,
+              "r5": 19,
+              "r10": 26,
+              "mrr10": 0.3532490079365079
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 19,
+              "r10": 26,
+              "mrr10": 0.3532490079365079
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.3307999577373266
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 16,
+              "mrr10": 0.4947916666666667
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 16,
+              "mrr10": 0.4947916666666667
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.5621000309474766
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 1,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2117063492063492
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2117063492063492
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.21154998103156686
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 20,
+              "r5": 25,
+              "r10": 31,
+              "mrr10": 0.7095858134920635
+            },
+            "eligible": {
+              "r1": 20,
+              "r5": 25,
+              "r10": 31,
+              "mrr10": 0.7095858134920635
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 2.7547500212676823
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 3.7498000310733914
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 5,
+              "r5": 9,
+              "r10": 15,
+              "mrr10": 0.450421626984127
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 9,
+              "r10": 15,
+              "mrr10": 0.450421626984127
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 2.456400019582361
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 4,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.4918981481481482
+            },
+            "eligible": {
+              "r1": 4,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.4918981481481482
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.1798500306904316
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 1,
+              "r5": 4,
+              "r10": 5,
+              "mrr10": 0.39351851851851855
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 4,
+              "r10": 5,
+              "mrr10": 0.39351851851851855
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.33929996425285935
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 4,
+              "r10": 6,
+              "mrr10": 0.5902777777777778
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 4,
+              "r10": 6,
+              "mrr10": 0.5902777777777778
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.08615001570433378
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 11,
+              "r10": 11,
+              "mrr10": 0.49861111111111117
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 11,
+              "r10": 11,
+              "mrr10": 0.49861111111111117
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.9839999838732183
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.7000000000000001
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.7000000000000001
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 1.3582500396296382
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 0,
+              "r5": 5,
+              "r10": 5,
+              "mrr10": 0.2972222222222222
+            },
+            "eligible": {
+              "r1": 0,
+              "r5": 5,
+              "r10": 5,
+              "mrr10": 0.2972222222222222
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.7625500438734889
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 4,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.4925595238095238
+            },
+            "eligible": {
+              "r1": 4,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.4925595238095238
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.2013499615713954
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 5,
+              "r10": 6,
+              "mrr10": 0.6488095238095238
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 5,
+              "r10": 6,
+              "mrr10": 0.6488095238095238
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.36085001192986965
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 1,
+              "r5": 3,
+              "r10": 5,
+              "mrr10": 0.3363095238095238
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 3,
+              "r10": 5,
+              "mrr10": 0.3363095238095238
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.10750000365078449
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 11,
+              "mrr10": 0.44246031746031744
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 7,
+              "r10": 11,
+              "mrr10": 0.44246031746031744
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 1.0057000326924026
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.6111111111111112
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.6111111111111112
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 1.3793500256724656
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 1,
+              "r5": 1,
+              "r10": 5,
+              "mrr10": 0.2738095238095238
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 1,
+              "r10": 5,
+              "mrr10": 0.2738095238095238
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.7831000257283449
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 13,
+              "r5": 41,
+              "r10": 44,
+              "mrr10": 0.5245039682539682
+            },
+            "eligible": {
+              "r1": 21,
+              "r5": 45,
+              "r10": 47,
+              "mrr10": 0.6630787037037037
+            },
+            "heading1": null,
+            "staleTop1": 40,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 6.661399966105819
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 5,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5333333333333332
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.6354166666666666
+            },
+            "heading1": null,
+            "staleTop1": 3,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.227100035175681
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5453869047619048
+            },
+            "eligible": {
+              "r1": 8,
+              "r5": 15,
+              "r10": 15,
+              "mrr10": 0.7
+            },
+            "heading1": null,
+            "staleTop1": 17,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 7.316300005186349
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 13,
+              "r10": 14,
+              "mrr10": 0.4947916666666667
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 16,
+              "mrr10": 0.6538194444444445
+            },
+            "heading1": null,
+            "staleTop1": 20,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.659750011749566
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 13,
+              "r5": 41,
+              "r10": 44,
+              "mrr10": 0.5245039682539682
+            },
+            "eligible": {
+              "r1": 21,
+              "r5": 45,
+              "r10": 47,
+              "mrr10": 0.6630787037037037
+            },
+            "heading1": null,
+            "staleTop1": 40,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 6.11514993943274
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 5,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5333333333333332
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.6354166666666666
+            },
+            "heading1": null,
+            "staleTop1": 3,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.2184499693103135
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5453869047619048
+            },
+            "eligible": {
+              "r1": 8,
+              "r5": 15,
+              "r10": 15,
+              "mrr10": 0.7
+            },
+            "heading1": null,
+            "staleTop1": 17,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.048749957699329
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 13,
+              "r10": 14,
+              "mrr10": 0.4947916666666667
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 16,
+              "mrr10": 0.6538194444444445
+            },
+            "heading1": null,
+            "staleTop1": 20,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 5.9760999865829945
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 12,
+              "r5": 33,
+              "r10": 34,
+              "mrr10": 0.4100694444444444
+            },
+            "eligible": {
+              "r1": 16,
+              "r5": 35,
+              "r10": 36,
+              "mrr10": 0.49739583333333326
+            },
+            "heading1": null,
+            "staleTop1": 30,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 7.278500008396804
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 3,
+              "r5": 13,
+              "r10": 13,
+              "mrr10": 0.4239583333333333
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.5520833333333334
+            },
+            "heading1": null,
+            "staleTop1": 3,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.776300026103854
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5874999999999999
+            },
+            "eligible": {
+              "r1": 8,
+              "r5": 15,
+              "r10": 15,
+              "mrr10": 0.6614583333333334
+            },
+            "heading1": null,
+            "staleTop1": 11,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 7.979099988006055
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.21875
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 6,
+              "r10": 7,
+              "mrr10": 0.2786458333333333
+            },
+            "heading1": null,
+            "staleTop1": 16,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 7.1636500069871545
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 12,
+              "r5": 33,
+              "r10": 34,
+              "mrr10": 0.4100694444444444
+            },
+            "eligible": {
+              "r1": 16,
+              "r5": 35,
+              "r10": 36,
+              "mrr10": 0.49739583333333326
+            },
+            "heading1": null,
+            "staleTop1": 30,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 6.645049958024174
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 3,
+              "r5": 13,
+              "r10": 13,
+              "mrr10": 0.4239583333333333
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.5520833333333334
+            },
+            "heading1": null,
+            "staleTop1": 3,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.703949940856546
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5874999999999999
+            },
+            "eligible": {
+              "r1": 8,
+              "r5": 15,
+              "r10": 15,
+              "mrr10": 0.6614583333333334
+            },
+            "heading1": null,
+            "staleTop1": 11,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.741599936503917
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.21875
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 6,
+              "r10": 7,
+              "mrr10": 0.2786458333333333
+            },
+            "heading1": null,
+            "staleTop1": 16,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.445699953474104
+          }
+        ],
+        "indexes": [
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "whole",
+            "sources": 16,
+            "entries": 16,
+            "lexicalBuildSeconds": 0.005872999900020659,
+            "cache": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 16,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00013070006389170885,
+              "updateSeconds": 3.8269042000174522,
+              "cacheBytes": 23866,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "sections",
+            "sources": 16,
+            "entries": 197,
+            "lexicalBuildSeconds": 0.009583099978044629,
+            "cache": {
+              "entries": 197,
+              "uniqueEntries": 191,
+              "encoded": 191,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00014109991025179625,
+              "updateSeconds": 5.628549600020051,
+              "cacheBytes": 279073,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "whole",
+            "sources": 16,
+            "entries": 16,
+            "lexicalBuildSeconds": 0.04980100004468113,
+            "cache": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 16,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00010299996938556433,
+              "updateSeconds": 3.8752829999430105,
+              "cacheBytes": 2957,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "sections",
+            "sources": 16,
+            "entries": 2997,
+            "lexicalBuildSeconds": 0.10687439993489534,
+            "cache": {
+              "entries": 2997,
+              "uniqueEntries": 354,
+              "encoded": 354,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00011739996261894703,
+              "updateSeconds": 8.656244600075297,
+              "cacheBytes": 516744,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "whole",
+            "sources": 18,
+            "entries": 18,
+            "lexicalBuildSeconds": 0.02404499996919185,
+            "cache": {
+              "entries": 18,
+              "uniqueEntries": 18,
+              "encoded": 18,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00009390001650899649,
+              "updateSeconds": 4.288226600037888,
+              "cacheBytes": 26773,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "sections",
+            "sources": 18,
+            "entries": 1162,
+            "lexicalBuildSeconds": 0.04033410002011806,
+            "cache": {
+              "entries": 1162,
+              "uniqueEntries": 1162,
+              "encoded": 1162,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00010840001050382853,
+              "updateSeconds": 34.026486499933526,
+              "cacheBytes": 1694064,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "whole",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.026035399991087615,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00008020002860575914,
+              "updateSeconds": 14.544648500042967,
+              "cacheBytes": 1459288,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "sections",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.03000509995035827,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00008919998072087765,
+              "updateSeconds": 14.513760200003162,
+              "cacheBytes": 1459288,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "whole",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.02688359993044287,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00007990002632141113,
+              "updateSeconds": 14.928329100017436,
+              "cacheBytes": 1460106,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "sections",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.030646000057458878,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00015929993242025375,
+              "updateSeconds": 15.021754099987447,
+              "cacheBytes": 1460106,
+              "rebuildReason": "FileNotFoundError"
+            }
+          }
+        ],
+        "cacheChecks": [
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 16,
+              "vectorHash": "e7afd677ef42e54da4eec55bd21cc99c395cd319c0fbeee64900fcb63b87b723"
+            },
+            "changed": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 1,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.015613000025041401,
+              "updateSeconds": 0.1496614000061527,
+              "cacheBytes": 23873,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 15,
+              "uniqueEntries": 15,
+              "encoded": 0,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.024690100108273327,
+              "updateSeconds": 0.005528599955141544,
+              "cacheBytes": 22425,
+              "rebuildReason": null
+            },
+            "corruptRecovery": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 16,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.008663399959914386,
+              "updateSeconds": 4.140662899939343,
+              "cacheBytes": 23866,
+              "rebuildReason": "ValueError"
+            }
+          },
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 191,
+              "vectorHash": "6b47a369e8a6c6d447f2f287be92a1bac9e751c6c2a751ad0bc06c1dba031fda"
+            },
+            "changed": {
+              "entries": 197,
+              "uniqueEntries": 191,
+              "encoded": 1,
+              "reused": 190,
+              "pruned": 1,
+              "loadSeconds": 0.018760999897494912,
+              "updateSeconds": 0.10379239998292178,
+              "cacheBytes": 279093,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 184,
+              "uniqueEntries": 178,
+              "encoded": 0,
+              "reused": 178,
+              "pruned": 13,
+              "loadSeconds": 0.03718250000383705,
+              "updateSeconds": 0.03774049994535744,
+              "cacheBytes": 260151,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 16,
+              "vectorHash": "5a4239f352d33304f49d80df29f5168e9fbbe4458ff15989078c41ab72e5ad35"
+            },
+            "changed": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 1,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.003894799971021712,
+              "updateSeconds": 0.2748041999293491,
+              "cacheBytes": 4359,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 15,
+              "uniqueEntries": 15,
+              "encoded": 0,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.030197600019164383,
+              "updateSeconds": 0.005881200078874826,
+              "cacheBytes": 4292,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 354,
+              "vectorHash": "64b249d2da8341d44673bccb24c3fb6e8dc53f36fe67b70477b7779b04682f1b"
+            },
+            "changed": {
+              "entries": 2997,
+              "uniqueEntries": 355,
+              "encoded": 1,
+              "reused": 354,
+              "pruned": 0,
+              "loadSeconds": 0.019972599926404655,
+              "updateSeconds": 0.12705130001995713,
+              "cacheBytes": 518218,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 2809,
+              "uniqueEntries": 342,
+              "encoded": 0,
+              "reused": 342,
+              "pruned": 13,
+              "loadSeconds": 0.04055769997648895,
+              "updateSeconds": 0.0922052999958396,
+              "cacheBytes": 499238,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 18,
+              "vectorHash": "283d2d10c8486bf3543a95ee9e108c65703d5e5532a60a7c9c05f4ebd4373356"
+            },
+            "changed": {
+              "entries": 18,
+              "uniqueEntries": 18,
+              "encoded": 1,
+              "reused": 17,
+              "pruned": 1,
+              "loadSeconds": 0.013481499976478517,
+              "updateSeconds": 0.2275073000928387,
+              "cacheBytes": 26766,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "skills/dip/SKILL.md",
+              "entries": 17,
+              "uniqueEntries": 17,
+              "encoded": 0,
+              "reused": 17,
+              "pruned": 1,
+              "loadSeconds": 0.020049900049343705,
+              "updateSeconds": 0.0060576999094337225,
+              "cacheBytes": 25315,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1162,
+              "vectorHash": "25a712512c4e5509bf1f027dce149962f3a36875b7d873f3159496c8bd20bded"
+            },
+            "changed": {
+              "entries": 1162,
+              "uniqueEntries": 1162,
+              "encoded": 1,
+              "reused": 1161,
+              "pruned": 1,
+              "loadSeconds": 0.03643450001254678,
+              "updateSeconds": 0.23840869998093694,
+              "cacheBytes": 1694059,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "skills/dip/SKILL.md",
+              "entries": 1109,
+              "uniqueEntries": 1109,
+              "encoded": 0,
+              "reused": 1109,
+              "pruned": 53,
+              "loadSeconds": 0.04486130003351718,
+              "updateSeconds": 0.16473830002360046,
+              "cacheBytes": 1616766,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "5a9e6c78e0fcd196f8e816f5796e030874932df4eabf5a36f18180a230f93303"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.041377500048838556,
+              "updateSeconds": 0.2067687000380829,
+              "cacheBytes": 1459285,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.042150799999944866,
+              "updateSeconds": 0.15024139999877661,
+              "cacheBytes": 1457765,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "5a9e6c78e0fcd196f8e816f5796e030874932df4eabf5a36f18180a230f93303"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.037799500045366585,
+              "updateSeconds": 0.2151634000474587,
+              "cacheBytes": 1459285,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.03323549998458475,
+              "updateSeconds": 0.17104329995345324,
+              "cacheBytes": 1457765,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "221e5c877c4cc05e90d23235b674eda42590ca3c4227f787a92f8393f378b476"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.0369211999932304,
+              "updateSeconds": 0.23071919998619705,
+              "cacheBytes": 1460110,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.04351340001448989,
+              "updateSeconds": 0.2577312000794336,
+              "cacheBytes": 1458606,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "221e5c877c4cc05e90d23235b674eda42590ca3c4227f787a92f8393f378b476"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.03169450000859797,
+              "updateSeconds": 0.22184340003877878,
+              "cacheBytes": 1460110,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.0371675998903811,
+              "updateSeconds": 0.1671096000354737,
+              "cacheBytes": 1458606,
+              "rebuildReason": null
+            }
+          }
+        ],
+        "resources": {
+          "platform": "Windows",
+          "python": "3.12.14",
+          "device": "cpu",
+          "threads": 4,
+          "packages": {
+            "torch": "2.8.0+cpu",
+            "transformers": "4.57.6",
+            "sentence-transformers": "5.1.2",
+            "model2vec": "0.9.0"
+          },
+          "tokenCounts": {
+            "queries": {
+              "inputs": 188,
+              "tokens": 4099,
+              "truncated": 0,
+              "max": 31
+            },
+            "index-real-None-whole": {
+              "inputs": 16,
+              "tokens": 5501,
+              "truncated": 2,
+              "max": 876
+            },
+            "cache-change": {
+              "inputs": 10,
+              "tokens": 7428,
+              "truncated": 2,
+              "max": 4955
+            },
+            "cache-corruption-rebuild": {
+              "inputs": 16,
+              "tokens": 5501,
+              "truncated": 2,
+              "max": 876
+            },
+            "index-real-None-sections": {
+              "inputs": 191,
+              "tokens": 7838,
+              "truncated": 0,
+              "max": 72
+            },
+            "index-late-None-whole": {
+              "inputs": 16,
+              "tokens": 80317,
+              "truncated": 16,
+              "max": 5552
+            },
+            "index-late-None-sections": {
+              "inputs": 354,
+              "tokens": 14473,
+              "truncated": 0,
+              "max": 72
+            },
+            "index-documents-None-whole": {
+              "inputs": 18,
+              "tokens": 35257,
+              "truncated": 14,
+              "max": 7732
+            },
+            "index-documents-None-sections": {
+              "inputs": 1162,
+              "tokens": 52044,
+              "truncated": 0,
+              "max": 107
+            },
+            "index-known-synthetic-en-whole": {
+              "inputs": 1000,
+              "tokens": 32774,
+              "truncated": 0,
+              "max": 38
+            },
+            "index-known-synthetic-en-sections": {
+              "inputs": 1000,
+              "tokens": 32774,
+              "truncated": 0,
+              "max": 38
+            },
+            "index-known-synthetic-he-whole": {
+              "inputs": 1000,
+              "tokens": 33805,
+              "truncated": 0,
+              "max": 43
+            },
+            "index-known-synthetic-he-sections": {
+              "inputs": 1000,
+              "tokens": 33805,
+              "truncated": 0,
+              "max": 43
+            }
+          },
+          "availableRamAtStartBytes": 2255994880,
+          "loadSeconds": 1.7497805999591947,
+          "loadedRevision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+          "parameterCount": 117653760,
+          "license": "mit",
+          "queryEncodeSeconds": 2.455588600016199,
+          "peakRssBytes": 1057628160
+        },
+        "readOnly": true
+      }
+    },
+    {
+      "file": "docs/benchmarks/2026-10-08-winner-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json.gz",
+      "resultHash": "2c882986a6b397bfb115f11246402eb72c2bb09f82cf368281af3eef72bc217c",
+      "summary": {
+        "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+        "complete": true,
+        "scores": [
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 19,
+              "r5": 30,
+              "r10": 31,
+              "mrr10": 0.724826388888889
+            },
+            "eligible": {
+              "r1": 19,
+              "r5": 30,
+              "r10": 31,
+              "mrr10": 0.724826388888889
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.24309998843818903
+          },
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 12,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.8489583333333333
+            },
+            "eligible": {
+              "r1": 12,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.8489583333333333
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.31730002956464887
+          },
+          {
+            "suite": "real",
+            "strategy": "whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.6006944444444444
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.6006944444444444
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.11144997552037239
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 15,
+              "r5": 27,
+              "r10": 31,
+              "mrr10": 0.638888888888889
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 27,
+              "r10": 31,
+              "mrr10": 0.638888888888889
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.46544993529096246
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 10,
+              "r5": 15,
+              "r10": 16,
+              "mrr10": 0.7604166666666666
+            },
+            "eligible": {
+              "r1": 10,
+              "r5": 15,
+              "r10": 16,
+              "mrr10": 0.7604166666666666
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.5253500421531498
+          },
+          {
+            "suite": "real",
+            "strategy": "sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 15,
+              "mrr10": 0.5173611111111112
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 15,
+              "mrr10": 0.5173611111111112
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.2404499682597816
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 18,
+              "r5": 27,
+              "r10": 32,
+              "mrr10": 0.6906622023809523
+            },
+            "eligible": {
+              "r1": 18,
+              "r5": 27,
+              "r10": 32,
+              "mrr10": 0.6906622023809523
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.28594996547326446
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.96875
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.34950004192069173
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 3,
+              "r5": 11,
+              "r10": 16,
+              "mrr10": 0.4125744047619047
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 11,
+              "r10": 16,
+              "mrr10": 0.4125744047619047
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.14004996046423912
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 17,
+              "r5": 25,
+              "r10": 31,
+              "mrr10": 0.6353670634920635
+            },
+            "eligible": {
+              "r1": 17,
+              "r5": 25,
+              "r10": 31,
+              "mrr10": 0.6353670634920635
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.4924500244669616
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9270833333333333
+            },
+            "eligible": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9270833333333333
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.557050050701946
+          },
+          {
+            "suite": "real",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 3,
+              "r5": 9,
+              "r10": 15,
+              "mrr10": 0.3436507936507937
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 9,
+              "r10": 15,
+              "mrr10": 0.3436507936507937
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.2635499695315957
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 2,
+              "r5": 10,
+              "r10": 20,
+              "mrr10": 0.18306051587301586
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 10,
+              "r10": 20,
+              "mrr10": 0.18306051587301586
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.21334999473765492
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.34819997381418943
+          },
+          {
+            "suite": "late",
+            "strategy": "whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 10,
+              "mrr10": 0.18306051587301586
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.11659995652735233
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 15,
+              "r5": 28,
+              "r10": 31,
+              "mrr10": 0.642795138888889
+            },
+            "eligible": {
+              "r1": 15,
+              "r5": 28,
+              "r10": 31,
+              "mrr10": 0.642795138888889
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 2.8846999630331993
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 10,
+              "r5": 15,
+              "r10": 16,
+              "mrr10": 0.7604166666666666
+            },
+            "eligible": {
+              "r1": 10,
+              "r5": 15,
+              "r10": 16,
+              "mrr10": 0.7604166666666666
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 3.3970000222325325
+          },
+          {
+            "suite": "late",
+            "strategy": "sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 5,
+              "r5": 13,
+              "r10": 15,
+              "mrr10": 0.5251736111111112
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 13,
+              "r10": 15,
+              "mrr10": 0.5251736111111112
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 2.500050002709031
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 6,
+              "r5": 19,
+              "r10": 26,
+              "mrr10": 0.3532490079365079
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 19,
+              "r10": 26,
+              "mrr10": 0.3532490079365079
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 0.29129994800314307
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 16,
+              "mrr10": 0.4947916666666667
+            },
+            "eligible": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 16,
+              "mrr10": 0.4947916666666667
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.37349999183788896
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 1,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2117063492063492
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 7,
+              "r10": 10,
+              "mrr10": 0.2117063492063492
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 0.1495999749749899
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 40,
+            "matching": 32,
+            "unmatched": 8,
+            "raw": {
+              "r1": 17,
+              "r5": 25,
+              "r10": 32,
+              "mrr10": 0.6437003968253968
+            },
+            "eligible": {
+              "r1": 17,
+              "r5": 25,
+              "r10": 32,
+              "mrr10": 0.6437003968253968
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 8,
+            "medianSearchMs": 2.9215999529697
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9270833333333333
+            },
+            "eligible": {
+              "r1": 14,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.9270833333333333
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 3.4259000094607472
+          },
+          {
+            "suite": "late",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 20,
+            "matching": 16,
+            "unmatched": 4,
+            "raw": {
+              "r1": 3,
+              "r5": 9,
+              "r10": 16,
+              "mrr10": 0.36031746031746037
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 9,
+              "r10": 16,
+              "mrr10": 0.36031746031746037
+            },
+            "heading1": null,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 4,
+            "medianSearchMs": 2.5271999766118824
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 8,
+              "r10": 10,
+              "mrr10": 0.4308862433862433
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 8,
+              "r10": 10,
+              "mrr10": 0.4308862433862433
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.34645001869648695
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 2,
+              "r5": 4,
+              "r10": 5,
+              "mrr10": 0.49074074074074076
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 4,
+              "r10": 5,
+              "mrr10": 0.49074074074074076
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.5035999929532409
+          },
+          {
+            "suite": "documents",
+            "strategy": "whole",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 1,
+              "r5": 4,
+              "r10": 5,
+              "mrr10": 0.37103174603174605
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 4,
+              "r10": 5,
+              "mrr10": 0.37103174603174605
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.18440006533637643
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 2,
+              "r5": 10,
+              "r10": 11,
+              "mrr10": 0.37857142857142856
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 10,
+              "r10": 11,
+              "mrr10": 0.37857142857142856
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 1.2434999807737768
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 6,
+              "mrr10": 0.4043650793650794
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 6,
+              "mrr10": 0.4043650793650794
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 1.5644499217160046
+          },
+          {
+            "suite": "documents",
+            "strategy": "sections",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 5,
+              "mrr10": 0.3527777777777778
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 5,
+              "mrr10": 0.3527777777777778
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.8852999890223145
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 2,
+              "r5": 9,
+              "r10": 11,
+              "mrr10": 0.4085648148148147
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 9,
+              "r10": 11,
+              "mrr10": 0.4085648148148147
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.39445003494620323
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.5833333333333334
+            },
+            "eligible": {
+              "r1": 2,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.5833333333333334
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.5408999277278781
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 0,
+              "r5": 3,
+              "r10": 5,
+              "mrr10": 0.23379629629629628
+            },
+            "eligible": {
+              "r1": 0,
+              "r5": 3,
+              "r10": 5,
+              "mrr10": 0.23379629629629628
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.2348999842070043
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 12,
+            "matching": 12,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.4154761904761905
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 8,
+              "r10": 11,
+              "mrr10": 0.4154761904761905
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 1.2656999751925468
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 3,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.6305555555555555
+            },
+            "eligible": {
+              "r1": 3,
+              "r5": 6,
+              "r10": 6,
+              "mrr10": 0.6305555555555555
+            },
+            "heading1": 2,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 1.5917500131763518
+          },
+          {
+            "suite": "documents",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 6,
+            "matching": 6,
+            "unmatched": 0,
+            "raw": {
+              "r1": 0,
+              "r5": 2,
+              "r10": 5,
+              "mrr10": 0.20039682539682538
+            },
+            "eligible": {
+              "r1": 0,
+              "r5": 2,
+              "r10": 5,
+              "mrr10": 0.20039682539682538
+            },
+            "heading1": 0,
+            "staleTop1": 0,
+            "unmatchedWithCandidates": 0,
+            "medianSearchMs": 0.9066500351764262
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 11,
+              "r5": 42,
+              "r10": 44,
+              "mrr10": 0.503174603174603
+            },
+            "eligible": {
+              "r1": 22,
+              "r5": 44,
+              "r10": 44,
+              "mrr10": 0.6534722222222221
+            },
+            "heading1": null,
+            "staleTop1": 41,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 5.654099979437888
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 15,
+              "r10": 16,
+              "mrr10": 0.5558035714285714
+            },
+            "eligible": {
+              "r1": 8,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.734375
+            },
+            "heading1": null,
+            "staleTop1": 17,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 5.6432499550282955
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 3,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.47916666666666663
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.6250000000000001
+            },
+            "heading1": null,
+            "staleTop1": 15,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 5.738500040024519
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "whole",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 13,
+              "r10": 14,
+              "mrr10": 0.47455357142857146
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.6010416666666666
+            },
+            "heading1": null,
+            "staleTop1": 9,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 5.518950056284666
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 11,
+              "r5": 42,
+              "r10": 44,
+              "mrr10": 0.503174603174603
+            },
+            "eligible": {
+              "r1": 22,
+              "r5": 44,
+              "r10": 44,
+              "mrr10": 0.6534722222222221
+            },
+            "heading1": null,
+            "staleTop1": 41,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 10.367400012910366
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 15,
+              "r10": 16,
+              "mrr10": 0.5558035714285714
+            },
+            "eligible": {
+              "r1": 8,
+              "r5": 16,
+              "r10": 16,
+              "mrr10": 0.734375
+            },
+            "heading1": null,
+            "staleTop1": 17,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 10.510349995456636
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 3,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.47916666666666663
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.6250000000000001
+            },
+            "heading1": null,
+            "staleTop1": 15,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 9.399449976626784
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "sections",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 4,
+              "r5": 13,
+              "r10": 14,
+              "mrr10": 0.47455357142857146
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.6010416666666666
+            },
+            "heading1": null,
+            "staleTop1": 9,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 11.488149990327656
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 11,
+              "r5": 29,
+              "r10": 33,
+              "mrr10": 0.38878968253968244
+            },
+            "eligible": {
+              "r1": 14,
+              "r5": 34,
+              "r10": 36,
+              "mrr10": 0.45613425925925927
+            },
+            "heading1": null,
+            "staleTop1": 25,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 6.092249939683825
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 13,
+              "mrr10": 0.4933035714285714
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.6114583333333333
+            },
+            "heading1": null,
+            "staleTop1": 8,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.151099980343133
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 14,
+              "mrr10": 0.5110119047619047
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5812499999999999
+            },
+            "heading1": null,
+            "staleTop1": 8,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 6.227100035175681
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-whole",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 6,
+              "mrr10": 0.1620535714285714
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 6,
+              "r10": 7,
+              "mrr10": 0.17569444444444443
+            },
+            "heading1": null,
+            "staleTop1": 9,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 5.9641500120051205
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "all",
+            "items": 96,
+            "matching": 48,
+            "unmatched": 48,
+            "raw": {
+              "r1": 11,
+              "r5": 29,
+              "r10": 33,
+              "mrr10": 0.38878968253968244
+            },
+            "eligible": {
+              "r1": 14,
+              "r5": 34,
+              "r10": 36,
+              "mrr10": 0.45613425925925927
+            },
+            "heading1": null,
+            "staleTop1": 25,
+            "unmatchedWithCandidates": 48,
+            "medianSearchMs": 11.22845005011186
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "en",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 13,
+              "mrr10": 0.4933035714285714
+            },
+            "eligible": {
+              "r1": 7,
+              "r5": 14,
+              "r10": 14,
+              "mrr10": 0.6114583333333333
+            },
+            "heading1": null,
+            "staleTop1": 8,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 11.625049985013902
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "he",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 5,
+              "r5": 12,
+              "r10": 14,
+              "mrr10": 0.5110119047619047
+            },
+            "eligible": {
+              "r1": 6,
+              "r5": 14,
+              "r10": 15,
+              "mrr10": 0.5812499999999999
+            },
+            "heading1": null,
+            "staleTop1": 8,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 10.08734997594729
+          },
+          {
+            "suite": "known-synthetic",
+            "strategy": "hybrid-sections",
+            "language": "cross",
+            "items": 32,
+            "matching": 16,
+            "unmatched": 16,
+            "raw": {
+              "r1": 1,
+              "r5": 5,
+              "r10": 6,
+              "mrr10": 0.1620535714285714
+            },
+            "eligible": {
+              "r1": 1,
+              "r5": 6,
+              "r10": 7,
+              "mrr10": 0.17569444444444443
+            },
+            "heading1": null,
+            "staleTop1": 9,
+            "unmatchedWithCandidates": 16,
+            "medianSearchMs": 12.752050010021776
+          }
+        ],
+        "indexes": [
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "whole",
+            "sources": 16,
+            "entries": 16,
+            "lexicalBuildSeconds": 0.004821700043976307,
+            "cache": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 16,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00009670003782957792,
+              "updateSeconds": 0.9447793000144884,
+              "cacheBytes": 24116,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "sections",
+            "sources": 16,
+            "entries": 197,
+            "lexicalBuildSeconds": 0.005503799999132752,
+            "cache": {
+              "entries": 197,
+              "uniqueEntries": 191,
+              "encoded": 191,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00010059995111078024,
+              "updateSeconds": 4.982658999972045,
+              "cacheBytes": 281616,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "whole",
+            "sources": 16,
+            "entries": 16,
+            "lexicalBuildSeconds": 0.0532546000322327,
+            "cache": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 16,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00009890005458146334,
+              "updateSeconds": 1.4032142999349162,
+              "cacheBytes": 2974,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "sections",
+            "sources": 16,
+            "entries": 2997,
+            "lexicalBuildSeconds": 0.09678989998064935,
+            "cache": {
+              "entries": 2997,
+              "uniqueEntries": 354,
+              "encoded": 354,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00010579999070614576,
+              "updateSeconds": 7.836969900061376,
+              "cacheBytes": 521518,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "whole",
+            "sources": 18,
+            "entries": 18,
+            "lexicalBuildSeconds": 0.024059099960140884,
+            "cache": {
+              "entries": 18,
+              "uniqueEntries": 18,
+              "encoded": 18,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.000103199970908463,
+              "updateSeconds": 1.2369537999620661,
+              "cacheBytes": 27020,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "sections",
+            "sources": 18,
+            "entries": 1162,
+            "lexicalBuildSeconds": 0.042119899997487664,
+            "cache": {
+              "entries": 1162,
+              "uniqueEntries": 1162,
+              "encoded": 1162,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.000152299995534122,
+              "updateSeconds": 33.76533870003186,
+              "cacheBytes": 1709689,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "whole",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.02254089992493391,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00008639995940029621,
+              "updateSeconds": 12.417374100070447,
+              "cacheBytes": 1471986,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "sections",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.02658419997896999,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00015480001457035542,
+              "updateSeconds": 13.003306800033897,
+              "cacheBytes": 1471986,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "whole",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.02729440003167838,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00007890001870691776,
+              "updateSeconds": 14.577152900048532,
+              "cacheBytes": 1472330,
+              "rebuildReason": "FileNotFoundError"
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "sections",
+            "sources": 1000,
+            "entries": 1000,
+            "lexicalBuildSeconds": 0.028592399903573096,
+            "cache": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1000,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.00010229996405541897,
+              "updateSeconds": 14.329001600039192,
+              "cacheBytes": 1472330,
+              "rebuildReason": "FileNotFoundError"
+            }
+          }
+        ],
+        "cacheChecks": [
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 16,
+              "vectorHash": "86e5767bf0fc9f0c7efcb820912b26f3441c1d44c91b10feb8c4c41350d905a9"
+            },
+            "changed": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 1,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.016014300053939223,
+              "updateSeconds": 0.07763750001322478,
+              "cacheBytes": 24111,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 15,
+              "uniqueEntries": 15,
+              "encoded": 0,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.021569899981841445,
+              "updateSeconds": 0.005137800006195903,
+              "cacheBytes": 22645,
+              "rebuildReason": null
+            },
+            "corruptRecovery": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 16,
+              "reused": 0,
+              "pruned": 0,
+              "loadSeconds": 0.0036285000387579203,
+              "updateSeconds": 0.9501597000053152,
+              "cacheBytes": 24116,
+              "rebuildReason": "ValueError"
+            }
+          },
+          {
+            "suite": "real",
+            "store": null,
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 191,
+              "vectorHash": "c42278498848a4bc8d02de1e3c0698b00763c6906aacd75a7d46dd01c35f0a39"
+            },
+            "changed": {
+              "entries": 197,
+              "uniqueEntries": 191,
+              "encoded": 1,
+              "reused": 190,
+              "pruned": 1,
+              "loadSeconds": 0.021089599933475256,
+              "updateSeconds": 0.08112950006034225,
+              "cacheBytes": 281623,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 184,
+              "uniqueEntries": 178,
+              "encoded": 0,
+              "reused": 178,
+              "pruned": 13,
+              "loadSeconds": 0.03642820008099079,
+              "updateSeconds": 0.041398399975150824,
+              "cacheBytes": 262503,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 16,
+              "vectorHash": "f4dbd37b8f1b8839a63d0b16e17072b89fe920ddfd6e082b51ad95e21582e893"
+            },
+            "changed": {
+              "entries": 16,
+              "uniqueEntries": 16,
+              "encoded": 1,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.0035641000140458345,
+              "updateSeconds": 0.11980490002315491,
+              "cacheBytes": 4394,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 15,
+              "uniqueEntries": 15,
+              "encoded": 0,
+              "reused": 15,
+              "pruned": 1,
+              "loadSeconds": 0.0223944999743253,
+              "updateSeconds": 0.005658100009895861,
+              "cacheBytes": 4327,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "late",
+            "store": null,
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 354,
+              "vectorHash": "34d2f29c09f2bdfd1428abcad0d418b0ef8e2bcb78d646eb937589edd9e982cc"
+            },
+            "changed": {
+              "entries": 2997,
+              "uniqueEntries": 355,
+              "encoded": 1,
+              "reused": 354,
+              "pruned": 0,
+              "loadSeconds": 0.022243899991735816,
+              "updateSeconds": 0.12190889997873455,
+              "cacheBytes": 523027,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "entries": 2809,
+              "uniqueEntries": 342,
+              "encoded": 0,
+              "reused": 342,
+              "pruned": 13,
+              "loadSeconds": 0.029527300037443638,
+              "updateSeconds": 0.10327830002643168,
+              "cacheBytes": 503822,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 18,
+              "vectorHash": "1d4a99ed26d0c568e8780872cb3406a0772d39e5e848bc8330abca0d3f5e2a78"
+            },
+            "changed": {
+              "entries": 18,
+              "uniqueEntries": 18,
+              "encoded": 1,
+              "reused": 17,
+              "pruned": 1,
+              "loadSeconds": 0.011717200046405196,
+              "updateSeconds": 0.09852200001478195,
+              "cacheBytes": 27031,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "skills/dip/SKILL.md",
+              "entries": 17,
+              "uniqueEntries": 17,
+              "encoded": 0,
+              "reused": 17,
+              "pruned": 1,
+              "loadSeconds": 0.022643100004643202,
+              "updateSeconds": 0.007334799971431494,
+              "cacheBytes": 25558,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "documents",
+            "store": null,
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1162,
+              "vectorHash": "7d2f1ab181260b8bb0534b0dd913c8d46fe93749038c09112339769b19b6fbb6"
+            },
+            "changed": {
+              "entries": 1162,
+              "uniqueEntries": 1162,
+              "encoded": 1,
+              "reused": 1161,
+              "pruned": 1,
+              "loadSeconds": 0.04066529998090118,
+              "updateSeconds": 0.25584080000407994,
+              "cacheBytes": 1709697,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "skills/dip/SKILL.md",
+              "entries": 1109,
+              "uniqueEntries": 1109,
+              "encoded": 0,
+              "reused": 1109,
+              "pruned": 53,
+              "loadSeconds": 0.046706900000572205,
+              "updateSeconds": 0.15961410000454634,
+              "cacheBytes": 1631697,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "38d6e48f34aa8bb965c8620a55baaecb26201c3cb6ffd0620ed63efe0e976d32"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.039903199998661876,
+              "updateSeconds": 0.244954299996607,
+              "cacheBytes": 1471990,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.04798199993092567,
+              "updateSeconds": 0.15227939991746098,
+              "cacheBytes": 1470522,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "en",
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "38d6e48f34aa8bb965c8620a55baaecb26201c3cb6ffd0620ed63efe0e976d32"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.03242589998990297,
+              "updateSeconds": 0.2337345000123605,
+              "cacheBytes": 1471990,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.044715699972584844,
+              "updateSeconds": 0.16753109998535365,
+              "cacheBytes": 1470522,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "whole",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "9a05690cae69e2567961d60d7919c4392979f601f40ae4e43eb3aa64b1ad9f9f"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.035150200012139976,
+              "updateSeconds": 0.20742260001134127,
+              "cacheBytes": 1472331,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.049805000075139105,
+              "updateSeconds": 0.18889109999872744,
+              "cacheBytes": 1470869,
+              "rebuildReason": null
+            }
+          },
+          {
+            "suite": "known-synthetic",
+            "store": "he",
+            "strategy": "sections",
+            "restart": {
+              "restartVerified": true,
+              "encoded": 0,
+              "reused": 1000,
+              "vectorHash": "9a05690cae69e2567961d60d7919c4392979f601f40ae4e43eb3aa64b1ad9f9f"
+            },
+            "changed": {
+              "entries": 1000,
+              "uniqueEntries": 1000,
+              "encoded": 1,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.06740649999119341,
+              "updateSeconds": 0.2860690000234172,
+              "cacheBytes": 1472331,
+              "rebuildReason": null
+            },
+            "deleted": {
+              "source": "distractor-986",
+              "entries": 999,
+              "uniqueEntries": 999,
+              "encoded": 0,
+              "reused": 999,
+              "pruned": 1,
+              "loadSeconds": 0.039848299929872155,
+              "updateSeconds": 0.17259289999492466,
+              "cacheBytes": 1470869,
+              "rebuildReason": null
+            }
+          }
+        ],
+        "resources": {
+          "platform": "Windows",
+          "python": "3.12.14",
+          "device": "cpu",
+          "threads": 4,
+          "packages": {
+            "torch": "2.8.0+cpu",
+            "transformers": "4.57.6",
+            "sentence-transformers": "5.1.2",
+            "model2vec": "0.9.0"
+          },
+          "tokenCounts": {
+            "queries": {
+              "inputs": 188,
+              "tokens": 3535,
+              "truncated": 0,
+              "max": 28
+            },
+            "index-real-None-whole": {
+              "inputs": 16,
+              "tokens": 5462,
+              "truncated": 15,
+              "max": 874
+            },
+            "cache-change": {
+              "inputs": 10,
+              "tokens": 7404,
+              "truncated": 3,
+              "max": 4952
+            },
+            "cache-corruption-rebuild": {
+              "inputs": 16,
+              "tokens": 5462,
+              "truncated": 15,
+              "max": 874
+            },
+            "index-real-None-sections": {
+              "inputs": 191,
+              "tokens": 7399,
+              "truncated": 0,
+              "max": 70
+            },
+            "index-late-None-whole": {
+              "inputs": 16,
+              "tokens": 80278,
+              "truncated": 16,
+              "max": 5550
+            },
+            "index-late-None-sections": {
+              "inputs": 354,
+              "tokens": 13680,
+              "truncated": 0,
+              "max": 70
+            },
+            "index-documents-None-whole": {
+              "inputs": 18,
+              "tokens": 35203,
+              "truncated": 18,
+              "max": 7729
+            },
+            "index-documents-None-sections": {
+              "inputs": 1162,
+              "tokens": 49474,
+              "truncated": 0,
+              "max": 105
+            },
+            "index-known-synthetic-en-whole": {
+              "inputs": 1000,
+              "tokens": 30774,
+              "truncated": 0,
+              "max": 36
+            },
+            "index-known-synthetic-en-sections": {
+              "inputs": 1000,
+              "tokens": 30774,
+              "truncated": 0,
+              "max": 36
+            },
+            "index-known-synthetic-he-whole": {
+              "inputs": 1000,
+              "tokens": 31805,
+              "truncated": 0,
+              "max": 41
+            },
+            "index-known-synthetic-he-sections": {
+              "inputs": 1000,
+              "tokens": 31805,
+              "truncated": 0,
+              "max": 41
+            }
+          },
+          "availableRamAtStartBytes": 2430963712,
+          "loadSeconds": 1.393567300052382,
+          "loadedRevision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+          "parameterCount": 117653760,
+          "license": "apache-2.0",
+          "queryEncodeSeconds": 1.7667175000533462,
+          "peakRssBytes": 901865472
+        },
+        "readOnly": true
+      }
+    }
+  ]
+}

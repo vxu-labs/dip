@@ -26,7 +26,7 @@ Search uses Unicode SQLite FTS5/BM25 over bounded task titles, descriptions, acc
 
 `task_related` follows direct dependencies, dependents, overlapping scopes and shared document paths. Shared scope or text similarity does not establish identical intent. These tools never merge tasks, assign work or mark completion. Negative and opposing requirements remain in the retrieved source, for agent review.
 
-This release implements lexical and explicit graph retrieval. It does not contain a neural semantic encoder or infer cross-language equivalence. The open [model-comparison design](benchmarks/semantic-alternatives.md) remains a separate backlog investigation, including Q versus Q+A, custom small encoders, Markdown controls and histories of 100/1,000/10,000 items. No alternative has been evaluated or trained by this navigation work.
+This release implements lexical and explicit graph retrieval. It does not contain a production neural semantic encoder or infer cross-language equivalence. The [pretrained comparison](benchmarks/semantic-retrieval-pilot.md) and [E5/MiniLM follow-up](benchmarks/winner-retrieval.md) now provide separate research measurements, including frozen project sources, long-document sections and a persisted experimental vector cache. Those Python research tools do not change the production MCP search interface or automatically merge/complete tasks. The broader [model-comparison design](benchmarks/semantic-alternatives.md) remains open for custom training, independent labels and downstream quality.
 
 ## Derived index and limits
 

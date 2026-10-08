@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2f62d4d6-cb68-43fd-8222-41405bf7117f",
+  "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Preregistered follow-up completed all188 frozen query cases and1880 ranking rows for E5, MiniLM and BM25. Real-source E5 first recovery24/32 vs MiniLM19/32 and BM2517/32; late-document sections E5 top10 improved20/32 to31/32. Actual20 persisted indexes restarted in fresh processes with zero encodes, plus update/delete/corruption checks. Public raw results, replay and explicit heading/fusion/no-match limitations recorded. Production neural routing, independent downstream trials and custom training remain backlog.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T10:11:36.933Z",
+  "parents": [
+    "d713756d-cd76-48fe-9a04-9f931bde5d01"
+  ],
+  "branch": "main"
+}

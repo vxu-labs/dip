@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "077c8a4f-1858-441e-a7a3-26dea70ed1fb",
+  "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/winner-retrieval.md",
+    "role": "plan",
+    "hash": "a703897bfba3d28a1b6e2e922355cab744f9f82824487a25d37bac6e6cb9545c",
+    "bytes": 14915,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T10:04:07.566Z",
+  "parents": [
+    "0de5c4a8-2d38-4c04-9679-b58b3d92e85a"
+  ],
+  "branch": "main"
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5a160d31-b069-403d-a08e-968d5af0f031",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Winner follow-up completed188 frozen cases across real16-task/18doc snapshot, late-requirement stress and known synthetic1000-item diagnostics. E5 whole real first24/32 versusMiniLM19/32,BM2517/32; E5 late sections top10 31/32 versus whole20/32.20 fresh-process indexes reused unchanged vectors without encoder calls; changes/deletions/corrupt recovery passed. Headings only2/12 first for E5 sections, fixedhybrid harmed known synthetic retrieval. Candidate-only, no training, identity or downstream quality proof.",
+    "next": "Test separate compact E5-intent and token/heading-aware long-document channels; evaluate signal-aware fusion, exact source sections, independently reviewed multiple projects and relation reranking before production integration. Preserve semantic routing/custom training and real-agent code quality as open work.",
+    "head": "6e0ceae6a3d4339ee549f2160c5857fbb6a211d7"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T10:04:07.701Z",
+  "parents": [
+    "f9a8f373-52fa-450c-af6b-183704e37f44"
+  ],
+  "branch": "main"
+}

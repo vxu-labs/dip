@@ -208,6 +208,13 @@
         "scripts/semantic-check.mjs"
       ],
       "timeoutMs": 60000
+    },
+    "winner-evidence": {
+      "command": [
+        "node",
+        "scripts/winner-check.mjs"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate",

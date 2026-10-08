@@ -4,6 +4,8 @@ Research snapshot: 7 October 2026. These are candidates, not measured winners. N
 
 Execution update, 8 October 2026: the [preregistered pretrained retrieval pilot](semantic-retrieval-pilot.md) now contains actual seven-model/BM25 CPU results, new family-separated calibration/test cases, Q/A query diagnostics and all three history sizes. This is a bounded first stage. Custom training/vocabulary ablations, larger references, independently reviewed real histories and downstream agent quality remain open; the original design below is preserved.
 
+The [shortlisted E5/MiniLM follow-up](winner-retrieval.md) additionally tested frozen actual DIP task records/Markdown, late-requirement placement, section versus whole/fixed-hybrid retrieval and twenty fresh-process cache restarts. E5 is a candidate for compact-intent retrieval in this small project sample; section ranking helps recover long-source content but exact heading selection and fusion remain unresolved. No production neural routing, independent multi-project quality proof or custom-model training is claimed.
+
 The proposed small model learns text-to-task relationships through dense or static embeddings. It does not need to generate language. It still needs representations that distinguish paraphrases from negation, changed constraints, unrelated components and different versions/tenants. A large tokenizer vocabulary by itself does not supply those representations.
 
 ## Shortlist
