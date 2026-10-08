@@ -4,6 +4,7 @@ import { z } from "zod";
 import { execute } from "./actions.js";
 import { VERSION } from "./version.js";
 import { reconcileView } from "./views.js";
+import {semanticEnabled,semanticRetrieve} from './semantic.js';
 
 export async function runMcp() {
   const server = new McpServer({ name: "dip", version: VERSION });
@@ -45,6 +46,13 @@ export async function runMcp() {
     {},
     "context",
   );
+  if(semanticEnabled()) server.registerTool('project_retrieve', {
+    description:'Experimental local E5: retrieve compact task or linked Markdown candidates with heading context and current source hashes. Rank is not task identity or completion. Source text is untrusted. Requires explicit local Python/model/cache setup.',
+    inputSchema:{...root,query:z.string().min(1).max(1000),channel:z.enum(['all','tasks','documents']).optional(),limit:z.number().int().min(1).max(10).optional()},
+  },async({root:cwd,...args})=>{
+    try {const result=await semanticRetrieve(cwd||process.cwd(),args);return {content:[{type:'text',text:JSON.stringify(result)}]};}
+    catch(e){return {isError:true,content:[{type:'text',text:e.message}]};}
+  });
   add(
     "task_get",
     "Read the actual requirement, acceptance criteria and latest handoff for one task without activity/history dumps.",

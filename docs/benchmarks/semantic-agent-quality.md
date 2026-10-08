@@ -1,0 +1,23 @@
+# E5 retrieval prototype and downstream agent quality
+
+## Plan
+
+Build an explicitly enabled local E5 prototype with separate compact task and linked-document channels. Preserve the exact current source and attach structured status/version metadata after retrieval. Candidate rank never establishes identity, ownership or completion. Documents remain untrusted source data. No new global host hooks or trust settings are installed by this experiment.
+
+Improve section localization before freezing the experiment: keep Markdown heading ancestry with paragraph windows, score sections using their heading context, and retain exact source offsets. Bound windows by the actual pinned tokenizer instead of relying on an arbitrary character count. These choices are development hypotheses, not measured improvements yet.
+
+Create six matched triples from three new synthetic domain projects with English/Hebrew requests. Compare ordinary Markdown with strong shell search, Markdown plus E5, and DIP structured memory plus the same E5. The source facts, current/deferred/opposing requirements, model, reasoning level, deadline and scoring stay fixed. Counterbalance arm order. The two encoder arms use identical embeddings and query rules; differences measure the combined representation/interface treatment, not a magical storage effect.
+
+Freeze fixture definitions, held-out checks, prompts, tool/source fingerprints, language and order in a public protocol commit before scored agent calls. Infrastructure preflight is separate. Keep every scheduled outcome and partial artifact; no scored retries, test-based tuning or omitted failures. Score functional behavior from retained code artifacts, requirement/version/deferred recovery, incorrect association, tool output bytes, reported token usage and wall time. Trials use fresh sessions and repositories. They are bounded synthetic project changes, not independent naturalistic labels or a long-term universal quality proof.
+
+Publish the opt-in setup, raw sanitized evidence, offline causal replay and every negative result. Model training and automatic task merging/completion remain outside this phase.
+
+## Development and infrastructure preflight
+
+The local prototype recovered the correct document first in 6/12 and the exact heading in 4/12 of the previous twelve document questions, compared with E5's preceding section result of 3/12 and 2/12. These are known development cases, not a new holdout or independent proof. The fixed heading/window design was selected before this replay; no result-based adjustment followed. Live checks passed unchanged warm/fresh-process reads with zero document encodes, changed-source updates, deleted-source pruning, corrupt-cache rebuilding and a real DIP bridge read that left canonical task events unchanged. Raw evidence is in `2026-10-08-semantic-prototype-live.json`.
+
+Infrastructure attempt 1 is retained in `2026-10-08-semantic-agent-preflight-v1.json.gz`. Both E5 arms failed search because the host did not forward the model/Python environment; direct requirements/section reads still worked. Attempt 2 explicitly supplies the six fixture-local environment paths to the MCP subprocess per invocation and requires actual search, requirement and section delivery. All three preflight arms then passed, including two searches per encoder arm. It is retained separately in `2026-10-08-semantic-agent-preflight-v2.json.gz`; neither attempt contributes to scored outcomes. No host settings or hook trust were changed. Before scored collection, scorer JSON handling was hardened, scoring moved into a subprocess with a 30-second timeout, and fingerprints expanded to include product source/manifests. The original and preflight protocols remain beside the final preregistration.
+
+Each encoder arm must search both channels and inspect a selected requirement before editing. All arms retain direct shell access to the same Markdown facts and linked document. The DIP arm adds a real task event ledger and the existing structured `task_requirements` view. This tests the combined read interface and representation; automatic prompt capture, ownership and completion writes are disabled in this bounded experiment. Directory restrictions are instructions, not OS containment. Every agent uses the existing authorized Codex login/model; credentials and host settings are not copied into public evidence.
+
+Local syntax checks and 136 unit checks passed across the main run and a targeted rerun of three failures caused by the machine's broken Git distribution; two OS-specific cases were skipped. No benchmark prompts, requirements, ranking or scored results changed during that infrastructure repair.

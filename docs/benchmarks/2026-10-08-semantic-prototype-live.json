@@ -1,0 +1,1914 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-08T11:22:08.978Z",
+  "sourceHash": "563b169895675baf6ad0082686bce2510f3aa2a5f39799ec6d0661fe0e4d450d",
+  "workerHash": "556be3274a21e5fcf5478670d9fdca08d834ac9141a6deccea8839ad2062a8a9",
+  "knownQueries": true,
+  "rows": [
+    {
+      "query": "doc-0-en",
+      "gold": [
+        "docs/navigation.md"
+      ],
+      "goldHeading": "Search and explicit relationships",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Search and explicit relationships"
+          ],
+          "start": 3171,
+          "end": 4047,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "corded status is returned with `verification: not_checked`; inspect requirements/changes before relying on completion.\n\n`task_related` follows direct dependencies, dependents, overlapping scopes and shared document paths. Shared scope or text similarity does not establish identical intent. These tools never merge tasks, assign work or mark completion. Negative and opposing requirements remain in the retrieved source, for agent review.\n\nThis release implements lexical and explicit graph retrieval. It does not contain a neural semantic encoder or infer cross-language equivalence. The open [model-comparison design](benchmarks/semantic-alternatives.md) remains a separate backlog investigation, including Q versus Q+A, custom small encoders, Markdown controls and histories of 100/1,000/10,000 it",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8738328218460083
+        },
+        {
+          "id": "docs/benchmarks/semantic-alternatives.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-alternatives.md",
+          "contentHash": "ddb311c8675d7131559978c8dbdb5121af67dbb83f19efdb40c149cb32628bbd",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Task retrieval alternatives and proposed experiment",
+            "User request and assistant response"
+          ],
+          "start": 9573,
+          "end": 10096,
+          "offsetUnit": "Unicode code points",
+          "excerpt": " leak the correct task rather than measure semantic matching. Completion prose is not proof that code was implemented.\n\nTest mistaken responses and long responses that overwhelm a short request. Include new requests with no matching historical task, partial expansions, opposite actions, code/path renames, version changes and old tasks whose implementation or verification is now stale. Compare request+plan at work start separately from request+completion-summary at work end; they have different information available.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8562339544296265
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 4328,
+          "end": 5156,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "tructured plan steps first. Use project_reconcile to distinguish current check evidence from verified task completion.\n\nUse task_requirements for current criteria, document freshness and prerequisite evidence. Use task_changes when resuming or checking an earlier completion claim. Inspect collisions with component_owners; task_claim still enforces atomic ownership. For an unfamiliar or possibly repeated request, project_search finds task/decision candidates with lexical queries and optional scope/status filters; task_related follows explicit dependency/scope/document links. Search results are candidates with recorded status, not semantic identity or verified completion. Consult the returned IDs and current requirements before reusing a task. These reads do not replace task intent updates o",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8376040458679199
+        },
+        {
+          "id": "docs/completion.md",
+          "kind": "document",
+          "path": "docs/completion.md",
+          "contentHash": "07d4b766b15e7ad780532c11f69fc5961a1979cd33c3ed1b147510b99f1bbd06",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Explicit outcomes and compact reads"
+          ],
+          "start": 3227,
+          "end": 3626,
+          "offsetUnit": "Unicode code points",
+          "excerpt": " `dip task get --id ID --full` and `dip reconcile --full` explicitly request raw history. No new model calls are used.\n\nVerification freshness is separate from recorded implementation. Later scoped code, requirement or check changes can invalidate an older proof without implying that its feature was never implemented. Partial work belongs in a checkpoint and the remaining requirement stays open.\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8350586891174316
+        },
+        {
+          "id": "docs/protocol.md",
+          "kind": "document",
+          "path": "docs/protocol.md",
+          "contentHash": "6a7753a016ed031531ba8ad5eb95951318aa45a4a00ceace39468cdfb4d7f71d",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Project data protocol",
+            "Tasks and evidence"
+          ],
+          "start": 2189,
+          "end": 3064,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Tasks and evidence\n\nTask intent includes title, description, acceptance criteria, scope, dependencies, priority and optional due date. Status can be backlog, ready, in_progress, blocked, implemented, verified, cancelled or superseded. Runtime activity and lease expiry are separate from that status.\n\n`kind` distinguishes work (the default for legacy records) from discussion. Explicit finishing writes `resolution: {outcome, summary, replacedBy}` in a causal `task.update`. Outcomes are answered, implemented, superseded or cancelled. Answered records are implemented discussions, not verified code. Superseded receipts identify replacement requirements without declaring them complete. Reopening a task clears the receipt. Consumers predating these optional fields must upgrade to honor discussi",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8339598178863525
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 234,
+      "reused": 0,
+      "sections": 234,
+      "cacheRebuilt": true,
+      "elapsedMs": 35171.815900015645,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": true,
+      "headingHit": true
+    },
+    {
+      "query": "doc-0-he",
+      "gold": [
+        "docs/navigation.md"
+      ],
+      "goldHeading": "Search and explicit relationships",
+      "candidates": [
+        {
+          "id": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "contentHash": "69325bee5191e621df8a0d3e0aae9acc51f68753757a0813fd0d4bddec09d715",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Pretrained alternatives retrieval pilot",
+            "Results",
+            "Interpretation and remaining work"
+          ],
+          "start": 13124,
+          "end": 13846,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "on quality remain open. The measured pretrained stage is tracked separately from the broader alternatives task in DIP.\n\n[All calibrated scores, language/scenario/scale slices and resource summaries](2026-10-08-semantic-summary.json). Compressed raw per-candidate files are listed with SHA-256 hashes in that summary. Offline validation: node scripts/semantic-evidence.mjs; scorer leakage/cap checks: node --test test/semantic-analysis.test.js. The model runner is frozen at preregistration commit [44d6f4f](https://github.com/vxu-labs/dip/commit/44d6f4f252ae83e2721d410d1011290f67ec4829). Raw predictions can be re-scored without installing Python or a model. Re-running actual inference is a separate explicit operation.\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7946809530258179
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 4328,
+          "end": 5156,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "tructured plan steps first. Use project_reconcile to distinguish current check evidence from verified task completion.\n\nUse task_requirements for current criteria, document freshness and prerequisite evidence. Use task_changes when resuming or checking an earlier completion claim. Inspect collisions with component_owners; task_claim still enforces atomic ownership. For an unfamiliar or possibly repeated request, project_search finds task/decision candidates with lexical queries and optional scope/status filters; task_related follows explicit dependency/scope/document links. Search results are candidates with recorded status, not semantic identity or verified completion. Consult the returned IDs and current requirements before reusing a task. These reads do not replace task intent updates o",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7872143983840942
+        },
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Search and explicit relationships"
+          ],
+          "start": 3171,
+          "end": 4047,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "corded status is returned with `verification: not_checked`; inspect requirements/changes before relying on completion.\n\n`task_related` follows direct dependencies, dependents, overlapping scopes and shared document paths. Shared scope or text similarity does not establish identical intent. These tools never merge tasks, assign work or mark completion. Negative and opposing requirements remain in the retrieved source, for agent review.\n\nThis release implements lexical and explicit graph retrieval. It does not contain a neural semantic encoder or infer cross-language equivalence. The open [model-comparison design](benchmarks/semantic-alternatives.md) remains a separate backlog investigation, including Q versus Q+A, custom small encoders, Markdown controls and histories of 100/1,000/10,000 it",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7864660024642944
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "v0.3.12 completion boundary found during the repeated model experiment"
+          ],
+          "start": 31259,
+          "end": 31834,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "chemas still need reloading to expose new tool parameters; hook definitions and their existing trust remain unchanged.\n\nThe first platform CI run passed Linux, including browser checks, but macOS rejected the outbox test fixture's `/var` versus `/private/var` alias. Canonicalizing its existing temporary-directory anchor preserves strict move/cleanup guards. Subsequent shared-runtime failures followed the aborted first fixture. This is a test-harness correction; measured production source and all benchmark outcomes remain unchanged. The original CI failure is retained.\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7833484411239624
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Verification against real code"
+          ],
+          "start": 16323,
+          "end": 16857,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ence and presence in Git history. A passing check proves that check's outcome, not every possible product requirement.\n\nWhen starting reviewed development, `task_prepare` refines the captured requirement, claims scope and returns compact criteria in one call. Avoid rereading unchanged context already supplied by the hook or receipt. If native planning is unavailable, `task_plan` accepts short structured steps or prose text explicitly. Write long prose once in linked Markdown; this fallback is distinct from native host capture.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.77974534034729
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 305.1131999818608,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": false,
+      "headingHit": false
+    },
+    {
+      "query": "doc-1-en",
+      "gold": [
+        "docs/navigation.md"
+      ],
+      "goldHeading": "Ownership",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Ownership"
+          ],
+          "start": 2158,
+          "end": 2548,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Ownership\n\nOwnership comes from current runtime leases shared by a local Git worktree family. Overlapping parent/child scopes and another worktree's root/branch are visible; expired leases are excluded. This is an observation at the returned time. Use `task_claim` for atomic ownership before editing. Independent clones and machines do not acquire distributed locks through this view.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.862966775894165
+        },
+        {
+          "id": "docs/operations.md",
+          "kind": "document",
+          "path": "docs/operations.md",
+          "contentHash": "9a2889ef8cc5444d0be91b1431205582fc2519268b5fe19f97de9c7103a9e875",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Operating DIP",
+            "Work and verification"
+          ],
+          "start": 4122,
+          "end": 5051,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "n for semantic changes. `task_release`, `task_heartbeat` and `task_decision` are available through MCP as well as CLI.\n\nSupported tool IDs allow the running recorder to renew ownership while a tool is in flight. The default maximum is 30 minutes, or a declared tool timeout up to one hour. Post-tool, failure and session boundaries clear the tracking. Missing hooks cannot prove worker liveness; a crashed tool without a closing event is bounded by this deadline. Renewal never revives an expired or replaced token. Configured verification jobs renew their own ownership during execution and recheck it before writing evidence.\n\nEvidence is tied to both the code snapshot and the task's requirements, acceptance, scope and dependencies. Changing either makes earlier evidence stale. Evidence from rel",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8330138921737671
+        },
+        {
+          "id": "CONTRIBUTING.md",
+          "kind": "document",
+          "path": "CONTRIBUTING.md",
+          "contentHash": "1dc2592876761225f7c57191705f45fbd79cf9500625076a96fbce7f226d7c70",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Contributing to DIP",
+            "Project backlog from QA"
+          ],
+          "start": 3620,
+          "end": 4482,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "cit capture privacy controls and redaction audit fixtures                 | 2        | Controls/audit in v0.3.9      |\n\nUse `dip task next` to discover available development work and `dip task requirements --id TASK_ID` to read current criteria. L02, L04, L06 and the bounded L08 profiling work were delivered in v0.3.8. L01 and the semantic roadmap retain unfinished criteria; semantic routing, universal agent compliance and platform-wide latency guarantees are not implied. Before finishing, record an explicit outcome using [task_finish](docs/completion.md). This table is a publication index; event history is authoritative for subsequent state changes. Propose focused work through an issue/PR and include the task code and ID. Local claims coordinate a worktree family on one machine; they do ",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8206374645233154
+        },
+        {
+          "id": "docs/host-qa/lifecycle.md",
+          "kind": "document",
+          "path": "docs/host-qa/lifecycle.md",
+          "contentHash": "91c01ca36994c031d93c0e3fe66a76a37dac134fcc630e75a8893e7efd82b2c4",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Real Codex compaction and interruption"
+          ],
+          "start": 1232,
+          "end": 2134,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ounded timer command. `turn/interrupt` produced an interrupted turn and a completed `Interrupt` hook. The durable task remained `in_progress`, gained an automatic checkpoint, had no verification evidence and held no live lease. |\n\nThese are actual host observations, not manually invoked hooks. [Sanitized events and causal histories](2026-10-07-lifecycle.json) are replayed by `node scripts/codex-lifecycle-evidence.mjs`. An explicitly invoked live runner is available at `scripts/codex-live-lifecycle.mjs`; it requires an existing authenticated Codex host with already trusted DIP hooks and leaves its synthetic fixture and private transport log for audit.\n\nThe inventory-only initial client check incorrectly compared PascalCase names with the API's camelCase event names and stopped before a mode",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8198423981666565
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.7 explicit outcomes and compact reads"
+          ],
+          "start": 8070,
+          "end": 8696,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ce criteria remain open. Broader field-study work was preserved separately. See [the audit](docs/completion-audit.md).\n\n`task_finish` records a causal outcome and optional replacement IDs. Implemented work can run a configured check in the same call; failed checks retain ownership. Discussion outcomes never verify code. Stop preserves explicit outcomes, while unfinished work remains open. CLI get/reconcile and MCP use compact summaries; full history requires an explicit CLI flag. The dashboard separates development from discussions and shows answered/replaced records. Related-task traversal follows replacement links.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8184292316436768
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 298.261700081639,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": true,
+      "headingHit": true
+    },
+    {
+      "query": "doc-1-he",
+      "gold": [
+        "docs/navigation.md"
+      ],
+      "goldHeading": "Ownership",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Ownership"
+          ],
+          "start": 2158,
+          "end": 2548,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Ownership\n\nOwnership comes from current runtime leases shared by a local Git worktree family. Overlapping parent/child scopes and another worktree's root/branch are visible; expired leases are excluded. This is an observation at the returned time. Use `task_claim` for atomic ownership before editing. Independent clones and machines do not acquire distributed locks through this view.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7871426343917847
+        },
+        {
+          "id": "docs/operations.md",
+          "kind": "document",
+          "path": "docs/operations.md",
+          "contentHash": "9a2889ef8cc5444d0be91b1431205582fc2519268b5fe19f97de9c7103a9e875",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Operating DIP",
+            "Data and host boundaries",
+            "Project capture controls"
+          ],
+          "start": 5504,
+          "end": 6449,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "{\n    \"enabled\": true,\n    \"promptText\": true,\n    \"planText\": true,\n    \"commands\": true,\n    \"files\": true\n  }\n}\n```\n\n`promptText:false` creates a generic captured request without retaining its text in the new task/session. `planText:false` omits automatically captured plan bodies. `commands:false` omits automatic command text and change hashes. `files:false` omits file activity, automatic document linking and inferred file scopes. These are field controls, not content classification: a manually supplied plan or another enabled field can still mention a path or command.\n\n`enabled:false` disables automatic hook recording and hook coordination for this project. The prompt hook explicitly reports intentional disablement and supplies no captured task ID. Explicit task creation, plans, leases",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7653439044952393
+        },
+        {
+          "id": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "contentHash": "69325bee5191e621df8a0d3e0aae9acc51f68753757a0813fd0d4bddec09d715",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Pretrained alternatives retrieval pilot"
+          ],
+          "start": 3060,
+          "end": 3919,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ranking here does not establish autonomous duplicate detection, completion recognition or real implementation quality.\n\nReproduce explicitly with Python 3.12, CPU PyTorch 2.8.0 and the [locked research environment](2026-10-08-semantic-requirements.txt). Run scripts/semantic-alternatives.py with --protocol docs/benchmarks/2026-10-08-semantic-protocol.json --model the-pinned-model-id --output a-new-private-result.json --cache an-isolated-cache. Use --model lexical for the BM25 baseline. Never overwrite a published outcome. Use scripts/semantic-publish.mjs with all eight results to generate raw compressed evidence and summaries; scripts/semantic-evidence.mjs validates inputs, source hashes, retained outputs, calibrations and scores without model inference.\n\nExperimental use is at the user's r",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7640073299407959
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "v0.3.11 outbox recovery and management preparation"
+          ],
+          "start": 26950,
+          "end": 27941,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "nd recorder `lastError` was null. No queued data was discarded. Package smoke now isolates inherited native Git trace.\n\n`task_prepare` combines reviewed requirement refinement, scope ownership and compact criteria. Actual MCP tests cover rejection before mutation, session selection and retry without duplicate intent events. Profiling the retained six-pair pilot found 134 MCP calls and 91,967 serialized result bytes; no identical adjacent task reads were found. The repeated matched experiment retains its original tasks/scoring/model/high effort and reports the changed trusted-hook/resident-runtime infrastructure separately. Its outcomes are recorded in the benchmark report, without presuming an improvement.\n\nConfigured unit verification passed with stable source/intent: 123 cases, 121 Windo",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7636306285858154
+        },
+        {
+          "id": "docs/benchmarks/semantic-alternatives.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-alternatives.md",
+          "contentHash": "ddb311c8675d7131559978c8dbdb5121af67dbb83f19efdb40c149cb32628bbd",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Task retrieval alternatives and proposed experiment",
+            "Shortlist"
+          ],
+          "start": 6547,
+          "end": 7325,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "asset licenses are separate, and separate language vectors are not automatically aligned for cross-language retrieval.\n\nJina embeddings v3 was excluded from the permissive default shortlist: its [model card](https://huggingface.co/jinaai/jina-embeddings-v3) lists CC-BY-NC-4.0 for weights. Publicly downloadable weights are not sufficient to classify a model as a permissive open-source dependency for DIP.\n\nCandidate metadata with pinned revisions/config dimensions: [contextual/reference models](2026-10-07-semantic-alternatives-contextual.json), [static/small models](2026-10-07-semantic-alternatives-static.json). Language tags are publisher claims, not measured Hebrew performance. Missing explicit he/iw tags do not prove that a multilingual model cannot process Hebrew.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7632535099983215
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 218.11140002682805,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": true,
+      "headingHit": true
+    },
+    {
+      "query": "doc-2-en",
+      "gold": [
+        "docs/operations.md"
+      ],
+      "goldHeading": "Updates and recovery",
+      "candidates": [
+        {
+          "id": "docs/operations.md",
+          "kind": "document",
+          "path": "docs/operations.md",
+          "contentHash": "9a2889ef8cc5444d0be91b1431205582fc2519268b5fe19f97de9c7103a9e875",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Repositories that disappear"
+          ],
+          "start": 8490,
+          "end": 9238,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Repositories that disappear\n\nActivity for a missing repository stays in the local durable outbox. DIP defers expensive persistence retries for 30 seconds, doubling to a maximum of five minutes. Other repositories continue flushing. The health report lists retained records as an advisory rather than a permanent active error.\n\nRestoring the original repository at its original path resumes delivery on the next flush, without waiting for the retry deadline. `dip flush` explicitly retries every pending repository and reports deferred entries; it does not discard records. Do not substitute an unrelated repository at that path. Permission failures and malformed configuration in an existing repository remain active errors that require repair.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8712273240089417
+        },
+        {
+          "id": "docs/protocol.md",
+          "kind": "document",
+          "path": "docs/protocol.md",
+          "contentHash": "6a7753a016ed031531ba8ad5eb95951318aa45a4a00ceace39468cdfb4d7f71d",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Project data protocol",
+            "Events"
+          ],
+          "start": 1545,
+          "end": 2189,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "rstand document events need upgrading before verifying document-backed intent. See [document retrieval](documents.md).\n\nDifferent fields can have concurrent writers. Incompatible concurrent values of the same field cause an explicit conflict. A resolution event refers to all current heads and sets the disputed values. The reducer rebuilds state without a database or external service.\n\nActivity batches use `_activity` as their record folder. Each record contains a stable `recordId` for deduplication. Batches are atomic files; the local outbox is deleted only after the file has been persisted. It can safely replay a batch after a crash.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.861606776714325
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "v0.3.11 outbox recovery and management preparation"
+          ],
+          "start": 26367,
+          "end": 27070,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# v0.3.11 outbox recovery and management preparation\n\nMissing repositories retain durable queued records with retry backoff from 30 seconds to five minutes. Directory return recovers immediately on the next flush; explicit `dip flush` retries without deleting data. Regression cases preserve 510 records across a runtime restart, continue healthy-project delivery, cap retries and distinguish malformed existing projects from absent ones. On this machine, 12 existing queued records for 12 vanished temporary repositories became deferred advisories; active health issues were empty and recorder `lastError` was null. No queued data was discarded. Package smoke now isolates inherited native Git trace.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8539739847183228
+        },
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Derived index and limits"
+          ],
+          "start": 4047,
+          "end": 4741,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Derived index and limits\n\nThe index lives in `navigation.sqlite` under `DIP_HOME`, separately from the ownership/outbox database. Reindexing cannot hold its task-claim write lock. Each checkout has its own text corpus; worktrees and projects do not share corpus statistics or results. Immutable task event files drive cache refresh; changed file metadata, new events, branch changes and removal invalidate affected rows. Lost text tables or metadata are rebuilt from the ledger. Corrupt tasks are omitted with explicit errors, and activity batches are never indexed. Startup context and task selection also omit activity batches; the dashboard and doctor retain full activity/health views.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8442858457565308
+        },
+        {
+          "id": "CONTRIBUTING.md",
+          "kind": "document",
+          "path": "CONTRIBUTING.md",
+          "contentHash": "1dc2592876761225f7c57191705f45fbd79cf9500625076a96fbce7f226d7c70",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Contributing to DIP",
+            "Project backlog from QA"
+          ],
+          "start": 2022,
+          "end": 3022,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "1ff75426/) | Ship repository-contained skills and a portable intent fallback                    | 1        | Delivered in v0.3.8          |\n| [DIP-L03](.dip/events/task_c0bffa8c657be52733213fb619d4ab246777f7a978663dba448f57210da20e9f/) | Supervise the recorder and recover safely after failure                            | 1        | Bounded recovery in v0.3.9    |\n| [DIP-L04](.dip/events/task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7/) | Reconcile follow-up intent and prose plans without backlog noise                   | 2        | Delivered in v0.3.8          |\n| [DIP-L05](.dip/events/task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e/) | Design opt-in coordination across independent clones and machines                  | 3        | Scope boundary ",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8379882574081421
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 238.46649995539337,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": true,
+      "headingHit": false
+    },
+    {
+      "query": "doc-2-he",
+      "gold": [
+        "docs/operations.md"
+      ],
+      "goldHeading": "Updates and recovery",
+      "candidates": [
+        {
+          "id": "docs/protocol.md",
+          "kind": "document",
+          "path": "docs/protocol.md",
+          "contentHash": "6a7753a016ed031531ba8ad5eb95951318aa45a4a00ceace39468cdfb4d7f71d",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Project data protocol",
+            "Events"
+          ],
+          "start": 1545,
+          "end": 2189,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "rstand document events need upgrading before verifying document-backed intent. See [document retrieval](documents.md).\n\nDifferent fields can have concurrent writers. Incompatible concurrent values of the same field cause an explicit conflict. A resolution event refers to all current heads and sets the disputed values. The reducer rebuilds state without a database or external service.\n\nActivity batches use `_activity` as their record folder. Each record contains a stable `recordId` for deduplication. Batches are atomic files; the local outbox is deleted only after the file has been persisted. It can safely replay a batch after a crash.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7998775839805603
+        },
+        {
+          "id": "docs/host-qa/lifecycle.md",
+          "kind": "document",
+          "path": "docs/host-qa/lifecycle.md",
+          "contentHash": "91c01ca36994c031d93c0e3fe66a76a37dac134fcc630e75a8893e7efd82b2c4",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Real Codex compaction and interruption"
+          ],
+          "start": 1232,
+          "end": 2134,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ounded timer command. `turn/interrupt` produced an interrupted turn and a completed `Interrupt` hook. The durable task remained `in_progress`, gained an automatic checkpoint, had no verification evidence and held no live lease. |\n\nThese are actual host observations, not manually invoked hooks. [Sanitized events and causal histories](2026-10-07-lifecycle.json) are replayed by `node scripts/codex-lifecycle-evidence.mjs`. An explicitly invoked live runner is available at `scripts/codex-live-lifecycle.mjs`; it requires an existing authenticated Codex host with already trusted DIP hooks and leaves its synthetic fixture and private transport log for audit.\n\nThe inventory-only initial client check incorrectly compared PascalCase names with the API's camelCase event names and stopped before a mode",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.793013334274292
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.5 Markdown source references"
+          ],
+          "start": 12471,
+          "end": 13471,
+          "offsetUnit": "Unicode code points",
+          "excerpt": " v0.3.4 artifact; it now builds the current version itself before testing. The bundled DIP skill passed its validator.\n\nThe installed Windows v0.3.5 CLI passed synthetic lifecycle inputs for both Codex and Claude, including a prompt change between the write's pre/post events. These are adapter command tests, not new live Claude or Codex host sessions. No model was invoked. In the existing trusted Codex session, a real apply_patch operation automatically attached QA_REPORT.md to the active task. A later Node-script edit made that reference stale, and configured verification refused to run until the reviewed version was relinked. The local installation and recorder were upgraded; existing MCP connections need reloading to expose the new tools. Arbitrary shell writes, wrapper tools without ex",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7818385362625122
+        },
+        {
+          "id": "docs/host-qa/README.md",
+          "kind": "document",
+          "path": "docs/host-qa/README.md",
+          "contentHash": "227ccd2c3ce5738384e4f5fff15e22429825de800426ae27bd0a7eda656063e9",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Live Codex intent workflow, 7 October 2026",
+            "Improvements and evidence"
+          ],
+          "start": 3988,
+          "end": 4623,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "trust. CLI-only recovery was tested; a blocked-MCP-to-CLI transition was not separately proven in one successful turn.\n\n[Sanitized evidence](2026-10-07-codex.json) contains the original failure, CLI event projections, final responses, hook receipts, task snapshots and causal histories. Full private logs remain local; their hashes identify them. Public evidence omits ordinary command output and private paths. Replay reconstructs task state from these histories and checks plan/criteria/status, session identity, hook receipts, and MCP versus CLI paths:\n\n```sh\nnode scripts/host-qa-evidence.mjs\nnode --test test/host-qa.test.js\n```\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7804304361343384
+        },
+        {
+          "id": "docs/operations.md",
+          "kind": "document",
+          "path": "docs/operations.md",
+          "contentHash": "9a2889ef8cc5444d0be91b1431205582fc2519268b5fe19f97de9c7103a9e875",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Operating DIP",
+            "Updates and recovery"
+          ],
+          "start": 2238,
+          "end": 3179,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ocking healthy projects; restore/repair that project and retry. Do not delete the runtime while records remain queued.\n\nDoctor distinguishes current recorder errors (`daemon.lastError`) from the latest historical failure (`daemon.lastFailure`). `daemon.supervision` reports restart count, current state and the latest 20 recovered observation gaps. A gap starts at the last observed heartbeat and ends when a healthy recorder is observed, so its bounds are approximate. Queued records can be recovered; filesystem changes and exact tool invocations during downtime cannot be reconstructed. Expired or replaced ownership tokens are not revived.\n\nThe dashboard prefers port 4317 and selects an available port if it is occupied. The actual address is reported by `dip doctor`. You can choose a port with",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7796518206596375
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 250.5206000059843,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": false,
+      "headingHit": false
+    },
+    {
+      "query": "doc-3-en",
+      "gold": [
+        "docs/completion.md"
+      ],
+      "goldHeading": "Explicit outcomes and compact reads",
+      "candidates": [
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "What you get"
+          ],
+          "start": 2966,
+          "end": 3919,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "hat every secret or private detail is removed. See the [Apache-2.0 license](LICENSE) for warranty and liability terms.\n\n**Control what gets recorded.** Per-project `dip capture` settings can omit request text, automatic plans, commands or file metadata. Explicit intent tools stay available. A bounded local supervisor restarts a crashed recorder, respects deliberate stops and reports observation gaps through `dip doctor`. [Privacy controls, retention and recovery limits](docs/operations.md).\n\n**Tested with a real agent.** [Live Codex QA](docs/host-qa/README.md) saved future plans, recovered intent through CLI in a new session, and verified actual compaction and interruption hooks. DIP's explicit structured planning tool retained three pending steps and a distinct future idea in backlog. Ori",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.841779351234436
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.8 bounded low-friction integration"
+          ],
+          "start": 3956,
+          "end": 4766,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "sting separate transitions. There is no automatic semantic identity classifier or guarantee that every agent complies.\n\nL02 generates repository-contained `.agents`/`.claude` skills and a dependency-free portable Node helper with owned upgrade/removal and project opt-out. A real fresh Git clone with an empty PATH and absent global runtime creates a future idea, saves a plan and writes a handoff. Two real branches merge divergent portable intent into an explicit conflict, then resolve it through normal causal projection. Corrupt history blocks updates. Portable intent cannot claim leases or assert verified code; strict projects require installed ownership for writes. Foreign and user-edited files are preserved. The local tests use Node 24; the portable helper's built-in-only API minimum is ",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8384348750114441
+        },
+        {
+          "id": "docs/completion.md",
+          "kind": "document",
+          "path": "docs/completion.md",
+          "contentHash": "07d4b766b15e7ad780532c11f69fc5961a1979cd33c3ed1b147510b99f1bbd06",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Explicit outcomes and compact reads"
+          ],
+          "start": 3227,
+          "end": 3626,
+          "offsetUnit": "Unicode code points",
+          "excerpt": " `dip task get --id ID --full` and `dip reconcile --full` explicitly request raw history. No new model calls are used.\n\nVerification freshness is separate from recorded implementation. Later scoped code, requirement or check changes can invalidate an older proof without implying that its feature was never implemented. Partial work belongs in a checkpoint and the remaining requirement stays open.\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8368494510650635
+        },
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 1523,
+          "end": 2158,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\nChanges compare the latest verification snapshot against current scoped source paths. They distinguish added, modified and deleted files, linked-document freshness, requirement changes and configured check changes. New evidence contains hashes per intent field, without duplicating prose. Older evidence retains its aggregate intent hash; the tool reports field details as unavailable rather than inventing them. A latest failed attempt remains a failed baseline. Neither read operation writes status or evidence.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.834260106086731
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 5036,
+          "end": 5817,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "current requirements before reusing a task. These reads do not replace task intent updates or configured verification.\n\nBefore ending a fulfilled request, use task_finish (CLI: dip task finish). Use answered for an informational request with no development scope/criteria/evidence; this records kind discussion and does not verify code. Use implemented with a reviewed configured check for development. Use superseded with replacement task IDs when the actual requirement is tracked elsewhere; replacements can remain open. Cancelled requires an explicit reason. Leave partial work open with a meaningful checkpoint. Failed checks keep ownership and unverified status. Mark informational requests kind discussion early; explicitly reclassify as work when they become development.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8297849893569946
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 269.07959999516606,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": false,
+      "headingHit": false
+    },
+    {
+      "query": "doc-3-he",
+      "gold": [
+        "docs/completion.md"
+      ],
+      "goldHeading": "Explicit outcomes and compact reads",
+      "candidates": [
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 5036,
+          "end": 5817,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "current requirements before reusing a task. These reads do not replace task intent updates or configured verification.\n\nBefore ending a fulfilled request, use task_finish (CLI: dip task finish). Use answered for an informational request with no development scope/criteria/evidence; this records kind discussion and does not verify code. Use implemented with a reviewed configured check for development. Use superseded with replacement task IDs when the actual requirement is tracked elsewhere; replacements can remain open. Cancelled requires an explicit reason. Leave partial work open with a meaningful checkpoint. Failed checks keep ownership and unverified status. Mark informational requests kind discussion early; explicitly reclassify as work when they become development.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7983623743057251
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.9 privacy and recorder recovery"
+          ],
+          "start": 1981,
+          "end": 2686,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "rets are not guaranteed to be removed; existing history, linked Markdown and raw native trace files are not rewritten.\n\nThe recovery tests kill a real recorder, observe a different healthy PID, persist queued activity, preserve its existing fencing token and confirm an expired lease stays expired. Concurrent starts keep one supervisor owner. Deliberate stop prevents automatic restart and manual start resumes. A live stale owner and an unconfirmed PID are preserved. A separate subprocess proves five launch attempts are bounded and inactive installation stops supervision. The local supervisor itself is not OS-supervised; observation gaps are approximate and missing events are never reconstructed.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7949034571647644
+        },
+        {
+          "id": "docs/completion.md",
+          "kind": "document",
+          "path": "docs/completion.md",
+          "contentHash": "07d4b766b15e7ad780532c11f69fc5961a1979cd33c3ed1b147510b99f1bbd06",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Explicit outcomes and compact reads"
+          ],
+          "start": 1154,
+          "end": 1963,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "d                    | Explicitly abandoned intent, with a reason.                                                   |\n\nUse `kind: discussion` for informational requests. Existing records default to work until reviewed. Answered outcomes reject development scope, acceptance criteria or code evidence. Reopening work clears its receipt; explicitly change kind to work when a discussion becomes development.\n\n```sh\ndip task finish --id ID --outcome answered --summary \"Explained the local MCP connection\"\ndip task finish --id ID --outcome implemented --summary \"Implemented and tested\" --check unit\ndip task finish --id OLD_ID --outcome superseded --replacedBy CURRENT_ID --summary \"Implemented under the replacement\"\ndip reconcile --kind work --open --limit 20\ndip reconcile --id ID\ndip task get --id",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7894325256347656
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Measured quality, cost and real workflow QA"
+          ],
+          "start": 10594,
+          "end": 11378,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "imary cases |           0 |         0 |\n| Supplementary exploratory stress checks          |   9216/9216 | 9216/9216 |\n\n**No advantage was observed in the primary code-correctness or intent-recovery outcomes against this capable Markdown baseline.** DIP ownership checks produced observable claim refusals; Git integration still required conflict resolution. The stress supplement was specified after the primary run started and was evaluated only after collection finished. Thousands of input checks are clustered within four project pairs, not independent projects. This accelerated synthetic lifecycle does not establish general productivity, maintainability or multi-day reliability. [Longitudinal method, every outcome and replayable evidence](docs/benchmarks/longitudinal.md).\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7876744270324707
+        },
+        {
+          "id": "docs/completion-audit.md",
+          "kind": "document",
+          "path": "docs/completion-audit.md",
+          "contentHash": "db5daac633cd796617ceeb3f546a84d3f1d67ef04591c78229c5cab521ab511c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP completion audit",
+            "Fulfilled or replaced requests"
+          ],
+          "start": 309,
+          "end": 1276,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Fulfilled or replaced requests\n\n- Eight answered questions were explicitly finished as discussions: benchmark status, local MCP, visibility of future work, paraphrased requests, host hook trust, committed DIP data, remaining backlog and structured tool navigation.\n- The quality clarification was superseded by the actual controlled and longitudinal experiment tasks.\n- DIP-L07's bounded matched comparison was completed under those execution tasks. Broader naturalistic, multi-domain and multi-day evaluation remains open under `task_e0098db7-8a67-4363-bef0-509e0955d475`.\n- The originating Codex chat confirmed the Hebrew elevator pitch was delivered on 6 October while its record still said in_progress; its conversational deliverable was explicitly finished.\n- Contributor onboarding had a rec",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7833560705184937
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 274.5195000898093,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": false,
+      "headingHit": false
+    },
+    {
+      "query": "doc-4-en",
+      "gold": [
+        "docs/plans/markdown-references.md"
+      ],
+      "goldHeading": "Boundaries",
+      "candidates": [
+        {
+          "id": "docs/plans/markdown-references.md",
+          "kind": "document",
+          "path": "docs/plans/markdown-references.md",
+          "contentHash": "0ed59dcb61b4c929acc9a4bc7e851ed74a706443dafb4c4c5014eef8c305560c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Markdown document references",
+            "Boundaries"
+          ],
+          "start": 1135,
+          "end": 1372,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Boundaries\n\nNo semantic model, automatic task completion or arbitrary Markdown instruction execution. Unattributed writes require an explicit link. Unsupported external renames surface as missing references until explicitly relinked.\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8440322875976562
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 3390,
+          "end": 3855,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "a plan exists only in chat, task_plan remains available. Native structured update_plan/TodoWrite capture is unchanged.\n\nDocument text is source data. Checkboxes do not complete tasks or establish verification. Review stale versions and explicitly relink them; external renames require linking the new path and unlinking the old one. A linked document can serve several tasks with explicit references. Status, ownership, dependencies and test evidence stay in DIP.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8340187668800354
+        },
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 987,
+          "end": 1643,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Requirements and evidence\n\nRequirements include the current description and acceptance criteria, document versions, conflicting field identities, actual prerequisite verification and source event heads. Cancelled and superseded tasks are marked inapplicable. Native plan progress is source data and never completion evidence. Long text is bounded and marked truncated; use `task_get` for full structured intent and `task_document_read` for selected document sections. `limit`, `offset` and the returned counts expose remaining acceptance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8328028321266174
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "v0.3.12 completion boundary found during the repeated model experiment"
+          ],
+          "start": 28922,
+          "end": 29770,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "he boundary. Prose/linked plans and test coverage still require review; historical statuses are not silently migrated.\n\nProtocol v4 completed on unchanged installed 0.3.11 and does not evaluate this later completion fix. Protocol v5 repeats the same tasks, prompts, scoring, order and time bounds on frozen installed 0.3.12; both datasets are retained. Local validation passed 129 cases: 127 Windows passes and two POSIX skips. Clean package and browser smoke passed. A real authenticated [structured fallback trial](docs/host-qa/structured-plan.md) saved exactly three pending steps through MCP and preserved both future requirements in backlog without ownership or verification. Its causal replay passed. This is explicit DIP `task_plan`, not automatic native-plan capture. Final configured verific",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.826139509677887
+        },
+        {
+          "id": "CONTRIBUTING.md",
+          "kind": "document",
+          "path": "CONTRIBUTING.md",
+          "contentHash": "1dc2592876761225f7c57191705f45fbd79cf9500625076a96fbce7f226d7c70",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Contributing to DIP",
+            "Project backlog from QA"
+          ],
+          "start": 3620,
+          "end": 4482,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "cit capture privacy controls and redaction audit fixtures                 | 2        | Controls/audit in v0.3.9      |\n\nUse `dip task next` to discover available development work and `dip task requirements --id TASK_ID` to read current criteria. L02, L04, L06 and the bounded L08 profiling work were delivered in v0.3.8. L01 and the semantic roadmap retain unfinished criteria; semantic routing, universal agent compliance and platform-wide latency guarantees are not implied. Before finishing, record an explicit outcome using [task_finish](docs/completion.md). This table is a publication index; event history is authoritative for subsequent state changes. Propose focused work through an issue/PR and include the task code and ID. Local claims coordinate a worktree family on one machine; they do ",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8183149695396423
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 246.9205999514088,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": true,
+      "headingHit": true
+    },
+    {
+      "query": "doc-4-he",
+      "gold": [
+        "docs/plans/markdown-references.md"
+      ],
+      "goldHeading": "Boundaries",
+      "candidates": [
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.4 trusted hook capture"
+          ],
+          "start": 17363,
+          "end": 17884,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "e; a portable catch-all plus a Node-side plan filter fixes delivery while keeping plan writes synchronous and ordered.\n\nAutomatic browser transport text no longer becomes task intent. Ordinary request bytes and embedded text remain intact. Claude ExitPlanMode's injected prose is retained as a plan, alongside TodoWrite support. Three regression cases cover these changes. Local configured verification passed 68 cases: 66 Windows passes, two POSIX skips, zero failures, and no source or intent change during the check.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7968161702156067
+        },
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 987,
+          "end": 1643,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Requirements and evidence\n\nRequirements include the current description and acceptance criteria, document versions, conflicting field identities, actual prerequisite verification and source event heads. Cancelled and superseded tasks are marked inapplicable. Native plan progress is source data and never completion evidence. Long text is bounded and marked truncated; use `task_get` for full structured intent and `task_document_read` for selected document sections. `limit`, `offset` and the returned counts expose remaining acceptance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7933623790740967
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Verification against real code"
+          ],
+          "start": 16323,
+          "end": 16857,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ence and presence in Git history. A passing check proves that check's outcome, not every possible product requirement.\n\nWhen starting reviewed development, `task_prepare` refines the captured requirement, claims scope and returns compact criteria in one call. Avoid rereading unchanged context already supplied by the hook or receipt. If native planning is unavailable, `task_plan` accepts short structured steps or prose text explicitly. Write long prose once in linked Markdown; this fallback is distinct from native host capture.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.7930399775505066
+        },
+        {
+          "id": "docs/host-qa/README.md",
+          "kind": "document",
+          "path": "docs/host-qa/README.md",
+          "contentHash": "227ccd2c3ce5738384e4f5fff15e22429825de800426ae27bd0a7eda656063e9",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Live Codex intent workflow, 7 October 2026",
+            "Protocol and results"
+          ],
+          "start": 1492,
+          "end": 2492,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ox mode is a confound: improvements cannot be attributed to DIP alone, and the original sandbox is not proven working.\n\n| Trial                                    | Durable result                                                                                                                                             | Limit                                                                                                          |\n| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |\n| Initial planning                         | Captu",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7927401065826416
+        },
+        {
+          "id": "docs/operations.md",
+          "kind": "document",
+          "path": "docs/operations.md",
+          "contentHash": "9a2889ef8cc5444d0be91b1431205582fc2519268b5fe19f97de9c7103a9e875",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Operating DIP",
+            "Data and host boundaries",
+            "Project capture controls"
+          ],
+          "start": 5504,
+          "end": 6449,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "{\n    \"enabled\": true,\n    \"promptText\": true,\n    \"planText\": true,\n    \"commands\": true,\n    \"files\": true\n  }\n}\n```\n\n`promptText:false` creates a generic captured request without retaining its text in the new task/session. `planText:false` omits automatically captured plan bodies. `commands:false` omits automatic command text and change hashes. `files:false` omits file activity, automatic document linking and inferred file scopes. These are field controls, not content classification: a manually supplied plan or another enabled field can still mention a path or command.\n\n`enabled:false` disables automatic hook recording and hook coordination for this project. The prompt hook explicitly reports intentional disablement and supplies no captured task ID. Explicit task creation, plans, leases",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7901580929756165
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 281.0591999441385,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": false,
+      "headingHit": false
+    },
+    {
+      "query": "doc-5-en",
+      "gold": [
+        "docs/benchmarks/semantic-retrieval-pilot.md"
+      ],
+      "goldHeading": "Finding candidates",
+      "candidates": [
+        {
+          "id": "docs/benchmarks/semantic-alternatives.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-alternatives.md",
+          "contentHash": "ddb311c8675d7131559978c8dbdb5121af67dbb83f19efdb40c149cb32628bbd",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Task retrieval alternatives and proposed experiment",
+            "Shortlist"
+          ],
+          "start": 3125,
+          "end": 4125,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "erence uses lookup/pooling rather than a contextual transformer | MIT                   |\n| [multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small)                                              |           117.7M | Contextual query/passage retrieval                              | Hebrew listed; 512 encoder positions; use its documented query/passage prefixes                            | MIT                   |\n| [paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) |           117.7M | Paraphrase similarity / candidate retrieval                     | Hebrew listed; Sentence Transformers defaults to 128 input tokens despite 512 encoder positions            | Apache-2.0            |\n| [BGE-small-en-v1",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.852063775062561
+        },
+        {
+          "id": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "contentHash": "69325bee5191e621df8a0d3e0aae9acc51f68753757a0813fd0d4bddec09d715",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Pretrained alternatives retrieval pilot",
+            "Results",
+            "Finding candidates"
+          ],
+          "start": 5837,
+          "end": 6443,
+          "offsetUnit": "Unicode code points",
+          "excerpt": " the baseline parses/indexes those sections. These are not real handwritten plans or the production DIP search engine.\n\n| Retriever | English raw R@10 | Hebrew raw R@10 | Hebrew to English raw R@10 |\n| --- | ---: | ---: | ---: |\n| BM25 | 11/16 | 11/16 | 2/16 |\n| potion-base-8M | 16/16 | 5/16 | 1/16 |\n| potion-retrieval-32M | 15/16 | 5/16 | 0/16 |\n| potion-multilingual-128M | 15/16 | 11/16 | 11/16 |\n| multilingual-e5-small | 14/16 | 15/16 | 14/16 |\n| paraphrase-multilingual-MiniLM-L12-v2 | 16/16 | 14/16 | 14/16 |\n| bge-small-en-v1.5 | 16/16 | 2/16 | 1/16 |\n| all-MiniLM-L6-v2 | 16/16 | 8/16 | 1/16 |\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8447214365005493
+        },
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Search and explicit relationships"
+          ],
+          "start": 3171,
+          "end": 4047,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "corded status is returned with `verification: not_checked`; inspect requirements/changes before relying on completion.\n\n`task_related` follows direct dependencies, dependents, overlapping scopes and shared document paths. Shared scope or text similarity does not establish identical intent. These tools never merge tasks, assign work or mark completion. Negative and opposing requirements remain in the retrieved source, for agent review.\n\nThis release implements lexical and explicit graph retrieval. It does not contain a neural semantic encoder or infer cross-language equivalence. The open [model-comparison design](benchmarks/semantic-alternatives.md) remains a separate backlog investigation, including Q versus Q+A, custom small encoders, Markdown controls and histories of 100/1,000/10,000 it",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8205020427703857
+        },
+        {
+          "id": "docs/host-qa/README.md",
+          "kind": "document",
+          "path": "docs/host-qa/README.md",
+          "contentHash": "227ccd2c3ce5738384e4f5fff15e22429825de800426ae27bd0a7eda656063e9",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Live Codex intent workflow, 7 October 2026",
+            "Protocol and results"
+          ],
+          "start": 1492,
+          "end": 2492,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ox mode is a confound: improvements cannot be attributed to DIP alone, and the original sandbox is not proven working.\n\n| Trial                                    | Durable result                                                                                                                                             | Limit                                                                                                          |\n| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |\n| Initial planning                         | Captu",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8141618967056274
+        },
+        {
+          "id": "docs/completion-audit.md",
+          "kind": "document",
+          "path": "docs/completion-audit.md",
+          "contentHash": "db5daac633cd796617ceeb3f546a84d3f1d67ef04591c78229c5cab521ab511c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP completion audit",
+            "Fulfilled or replaced requests"
+          ],
+          "start": 309,
+          "end": 1276,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Fulfilled or replaced requests\n\n- Eight answered questions were explicitly finished as discussions: benchmark status, local MCP, visibility of future work, paraphrased requests, host hook trust, committed DIP data, remaining backlog and structured tool navigation.\n- The quality clarification was superseded by the actual controlled and longitudinal experiment tasks.\n- DIP-L07's bounded matched comparison was completed under those execution tasks. Broader naturalistic, multi-domain and multi-day evaluation remains open under `task_e0098db7-8a67-4363-bef0-509e0955d475`.\n- The originating Codex chat confirmed the Hebrew elevator pitch was delivered on 6 October while its record still said in_progress; its conversational deliverable was explicitly finished.\n- Contributor onboarding had a rec",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8117790222167969
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 237.6933000050485,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": false,
+      "headingHit": false
+    },
+    {
+      "query": "doc-5-he",
+      "gold": [
+        "docs/benchmarks/semantic-retrieval-pilot.md"
+      ],
+      "goldHeading": "Finding candidates",
+      "candidates": [
+        {
+          "id": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+          "contentHash": "69325bee5191e621df8a0d3e0aae9acc51f68753757a0813fd0d4bddec09d715",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Pretrained alternatives retrieval pilot"
+          ],
+          "start": 875,
+          "end": 1573,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "hub.com/MinishLab/model2vec) and [Sentence Transformers source](https://github.com/huggingface/sentence-transformers).\n\nThere are 24 newly authored families, split into eight calibration families and sixteen test families, with English, Hebrew and Hebrew-query/English-store variants. The 288 pair cases distinguish equivalent work, extensions, opposite work and disjoint API versions. The 216 retrieval cases include faithful assistant responses, deliberately opposite responses and new work with no matching task. Assistant responses are authored before retrieval; they are synthetic diagnostics, not naturally generated model outputs. No test or existing Laya label is used to fit a threshold.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.78762286901474
+        },
+        {
+          "id": "docs/benchmarks/semantic-alternatives.md",
+          "kind": "document",
+          "path": "docs/benchmarks/semantic-alternatives.md",
+          "contentHash": "ddb311c8675d7131559978c8dbdb5121af67dbb83f19efdb40c149cb32628bbd",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Task retrieval alternatives and proposed experiment",
+            "Shortlist"
+          ],
+          "start": 4005,
+          "end": 5005,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "                            |            33.4M | Small contextual retrieval baseline                             | English; no assumed Hebrew support; not an exact-identity classifier                                       | MIT                   |\n| [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)                                           |            22.7M | Small sentence-embedding baseline                               | English; a possible architecture/distillation starting point                                               | Apache-2.0            |\n| [GTE-multilingual-base](https://huggingface.co/Alibaba-NLP/gte-multilingual-base)                                           |           305.4M | Larger multilingual dense/sparse reference                 ",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7875299453735352
+        },
+        {
+          "id": "docs/host-qa/README.md",
+          "kind": "document",
+          "path": "docs/host-qa/README.md",
+          "contentHash": "227ccd2c3ce5738384e4f5fff15e22429825de800426ae27bd0a7eda656063e9",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Live Codex intent workflow, 7 October 2026",
+            "Protocol and results"
+          ],
+          "start": 2372,
+          "end": 3188,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "ebrew-header backlog with UTF-8 and order criteria                    | Native update_plan unavailable; MCP worked in this environment                                                 |\n| Same-session resume                      | Existing idea gained empty-export header-order criterion; captured follow-up superseded through reviewed adoption; both future requirements stayed backlog | Agent read a QA snapshot as well as DIP; not an independent memory test                                        |\n| New session, MCP disabled per invocation | Installed CLI recovered the same IDs, plan, updated criteria and handoff; no duplicate feature requirements; QA discussion answered                        | Earlier transcripts/snapshots moved outside the project; prompt forbade reading them; not a long-d",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7776134014129639
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "v0.3.12 completion boundary found during the repeated model experiment"
+          ],
+          "start": 28922,
+          "end": 29770,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "he boundary. Prose/linked plans and test coverage still require review; historical statuses are not silently migrated.\n\nProtocol v4 completed on unchanged installed 0.3.11 and does not evaluate this later completion fix. Protocol v5 repeats the same tasks, prompts, scoring, order and time bounds on frozen installed 0.3.12; both datasets are retained. Local validation passed 129 cases: 127 Windows passes and two POSIX skips. Clean package and browser smoke passed. A real authenticated [structured fallback trial](docs/host-qa/structured-plan.md) saved exactly three pending steps through MCP and preserved both future requirements in backlog without ownership or verification. Its causal replay passed. This is explicit DIP `task_plan`, not automatic native-plan capture. Final configured verific",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7684415578842163
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Measured quality, cost and real workflow QA"
+          ],
+          "start": 8400,
+          "end": 9222,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Measured quality, cost and real workflow QA\n\nSeven pretrained retrieval alternatives were evaluated with BM25 on new English/Hebrew task families and histories of 100/1,000/10,000 items. At 10,000 items, multilingual MiniLM recovered the correct current task in its raw top ten for **44/48** matching test queries, E5 **43/48**, Potion multilingual **37/48**, and BM25 **24/48**. These clustered synthetic results measure candidate retrieval, not autonomous identity or code completion. Conservative cosine identity gates missed nearly all true identities, and misleading assistant replies could hurt ranking. Indexed Markdown with the same information/model produced the same results as the structured adapter. [Frozen protocol, every alternative, costs and limitations](docs/benchmarks/semantic-",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.7680356502532959
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 248.99819993879646,
+      "identityEstablished": false,
+      "verification": "not_checked",
+      "sourceHit": true,
+      "headingHit": false
+    }
+  ],
+  "cache": [
+    {
+      "case": "unchanged-warm",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 987,
+          "end": 1643,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Requirements and evidence\n\nRequirements include the current description and acceptance criteria, document versions, conflicting field identities, actual prerequisite verification and source event heads. Cancelled and superseded tasks are marked inapplicable. Native plan progress is source data and never completion evidence. Long text is bounded and marked truncated; use `task_get` for full structured intent and `task_document_read` for selected document sections. `limit`, `offset` and the returned counts expose remaining acceptance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8774633407592773
+        },
+        {
+          "id": "docs/completion-audit.md",
+          "kind": "document",
+          "path": "docs/completion-audit.md",
+          "contentHash": "db5daac633cd796617ceeb3f546a84d3f1d67ef04591c78229c5cab521ab511c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP completion audit",
+            "Partial requirements kept open"
+          ],
+          "start": 3151,
+          "end": 3632,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "pact output        | Declared cold/warm CPU/RAM/volume budgets and representative platform measurements              |\n\nL02 portability, L03 recorder supervision, L05 independent-machine coordination, L06 additional discovery adapters, L09 privacy controls and B02 merge-aware coordination retain their unfinished criteria. Current source still requires runtime installation, lacks complete supervised crash recovery and coordinates live ownership only within a local Git family.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8664825558662415
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 5697,
+          "end": 6159,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "status. Mark informational requests kind discussion early; explicitly reclassify as work when they become development.\n\nUse `dip reconcile --kind work --open --limit 20` for remaining development work, then task_requirements for selected IDs. Default CLI task get/reconcile and MCP reads omit history. Full CLI history requires `--full`; do not dump activity to answer a task question. Discussion records remain accessible in the dashboard's category selector.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8369048833847046
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.8 bounded low-friction integration"
+          ],
+          "start": 3510,
+          "end": 4076,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## v0.3.8 bounded low-friction integration\n\nL04 now has an explicit `task_adopt` transition: the current agent reviews a captured follow-up, updates the existing requirement, records supersession and selects the target for subsequent native planning/hooks. Idempotent retry, ownership/session validation and rejection of developed sources are covered by actual CLI/MCP/hook tests. Informational requests and distinct future ideas retain their existing separate transitions. There is no automatic semantic identity classifier or guarantee that every agent complies.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8356901407241821
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Help build the next useful handoff"
+          ],
+          "start": 18705,
+          "end": 19550,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Help build the next useful handoff\n\nDIP is early. Help a developer return to a project and understand what happened, what remains and what has actually been checked.\n\nThe [QA contributor backlog](CONTRIBUTING.md#project-backlog-from-qa) indexes the original limitations and their later progress. The project's `.dip` contains current priorities, evidence and acceptance criteria; `dip reconcile --kind work --open` shows remaining development without captured discussions.\n\n- **Start with documentation:** [write a reproducible single-project walkthrough](https://github.com/vxu-labs/dip/issues/1).\n- **Bring your environment:** [report one real OS, shell and agent combination](https://github.com/vxu-labs/dip/issues/2).\n- **Make the dashboard easier to use:** [audit one keyboard-only task flow]",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8327889442443848
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 232.1595000103116,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "case": "fresh-process",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 987,
+          "end": 1643,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Requirements and evidence\n\nRequirements include the current description and acceptance criteria, document versions, conflicting field identities, actual prerequisite verification and source event heads. Cancelled and superseded tasks are marked inapplicable. Native plan progress is source data and never completion evidence. Long text is bounded and marked truncated; use `task_get` for full structured intent and `task_document_read` for selected document sections. `limit`, `offset` and the returned counts expose remaining acceptance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8774633407592773
+        },
+        {
+          "id": "docs/completion-audit.md",
+          "kind": "document",
+          "path": "docs/completion-audit.md",
+          "contentHash": "db5daac633cd796617ceeb3f546a84d3f1d67ef04591c78229c5cab521ab511c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP completion audit",
+            "Partial requirements kept open"
+          ],
+          "start": 3151,
+          "end": 3632,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "pact output        | Declared cold/warm CPU/RAM/volume budgets and representative platform measurements              |\n\nL02 portability, L03 recorder supervision, L05 independent-machine coordination, L06 additional discovery adapters, L09 privacy controls and B02 merge-aware coordination retain their unfinished criteria. Current source still requires runtime installation, lacks complete supervised crash recovery and coordinates live ownership only within a local Git family.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8664825558662415
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 5697,
+          "end": 6159,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "status. Mark informational requests kind discussion early; explicitly reclassify as work when they become development.\n\nUse `dip reconcile --kind work --open --limit 20` for remaining development work, then task_requirements for selected IDs. Default CLI task get/reconcile and MCP reads omit history. Full CLI history requires `--full`; do not dump activity to answer a task question. Discussion records remain accessible in the dashboard's category selector.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8369048833847046
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.8 bounded low-friction integration"
+          ],
+          "start": 3510,
+          "end": 4076,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## v0.3.8 bounded low-friction integration\n\nL04 now has an explicit `task_adopt` transition: the current agent reviews a captured follow-up, updates the existing requirement, records supersession and selects the target for subsequent native planning/hooks. Idempotent retry, ownership/session validation and rejection of developed sources are covered by actual CLI/MCP/hook tests. Informational requests and distinct future ideas retain their existing separate transitions. There is no automatic semantic identity classifier or guarantee that every agent complies.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8356901407241821
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Help build the next useful handoff"
+          ],
+          "start": 18705,
+          "end": 19550,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Help build the next useful handoff\n\nDIP is early. Help a developer return to a project and understand what happened, what remains and what has actually been checked.\n\nThe [QA contributor backlog](CONTRIBUTING.md#project-backlog-from-qa) indexes the original limitations and their later progress. The project's `.dip` contains current priorities, evidence and acceptance criteria; `dip reconcile --kind work --open` shows remaining development without captured discussions.\n\n- **Start with documentation:** [write a reproducible single-project walkthrough](https://github.com/vxu-labs/dip/issues/1).\n- **Bring your environment:** [report one real OS, shell and agent combination](https://github.com/vxu-labs/dip/issues/2).\n- **Make the dashboard easier to use:** [audit one keyboard-only task flow]",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8327889442443848
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 234,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 539.8501000599936,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "case": "changed-source",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 987,
+          "end": 1643,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Requirements and evidence\n\nRequirements include the current description and acceptance criteria, document versions, conflicting field identities, actual prerequisite verification and source event heads. Cancelled and superseded tasks are marked inapplicable. Native plan progress is source data and never completion evidence. Long text is bounded and marked truncated; use `task_get` for full structured intent and `task_document_read` for selected document sections. `limit`, `offset` and the returned counts expose remaining acceptance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8774633407592773
+        },
+        {
+          "id": "docs/completion-audit.md",
+          "kind": "document",
+          "path": "docs/completion-audit.md",
+          "contentHash": "db5daac633cd796617ceeb3f546a84d3f1d67ef04591c78229c5cab521ab511c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP completion audit",
+            "Partial requirements kept open"
+          ],
+          "start": 3151,
+          "end": 3632,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "pact output        | Declared cold/warm CPU/RAM/volume budgets and representative platform measurements              |\n\nL02 portability, L03 recorder supervision, L05 independent-machine coordination, L06 additional discovery adapters, L09 privacy controls and B02 merge-aware coordination retain their unfinished criteria. Current source still requires runtime installation, lacks complete supervised crash recovery and coordinates live ownership only within a local Git family.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8664825558662415
+        },
+        {
+          "id": "CONTRIBUTING.md",
+          "kind": "document",
+          "path": "CONTRIBUTING.md",
+          "contentHash": "7aa5cf12ebb6092dc14827a960c5b927a2b07c522d17ffeefe6dff86dd23e936",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Contributing to DIP",
+            "Added note"
+          ],
+          "start": 6696,
+          "end": 6727,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Added note\nNEW-LOCAL-CONTENT",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8571351766586304
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 5697,
+          "end": 6159,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "status. Mark informational requests kind discussion early; explicitly reclassify as work when they become development.\n\nUse `dip reconcile --kind work --open --limit 20` for remaining development work, then task_requirements for selected IDs. Default CLI task get/reconcile and MCP reads omit history. Full CLI history requires `--full`; do not dump activity to answer a task question. Discussion records remain accessible in the dashboard's category selector.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8369048833847046
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.8 bounded low-friction integration"
+          ],
+          "start": 3510,
+          "end": 4076,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## v0.3.8 bounded low-friction integration\n\nL04 now has an explicit `task_adopt` transition: the current agent reviews a captured follow-up, updates the existing requirement, records supersession and selects the target for subsequent native planning/hooks. Idempotent retry, ownership/session validation and rejection of developed sources are covered by actual CLI/MCP/hook tests. Informational requests and distinct future ideas retain their existing separate transitions. There is no automatic semantic identity classifier or guarantee that every agent complies.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8356901407241821
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 2,
+      "reused": 232,
+      "sections": 234,
+      "cacheRebuilt": false,
+      "elapsedMs": 344.84090004116297,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "case": "deleted-source",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 987,
+          "end": 1643,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Requirements and evidence\n\nRequirements include the current description and acceptance criteria, document versions, conflicting field identities, actual prerequisite verification and source event heads. Cancelled and superseded tasks are marked inapplicable. Native plan progress is source data and never completion evidence. Long text is bounded and marked truncated; use `task_get` for full structured intent and `task_document_read` for selected document sections. `limit`, `offset` and the returned counts expose remaining acceptance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8774633407592773
+        },
+        {
+          "id": "docs/completion-audit.md",
+          "kind": "document",
+          "path": "docs/completion-audit.md",
+          "contentHash": "db5daac633cd796617ceeb3f546a84d3f1d67ef04591c78229c5cab521ab511c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP completion audit",
+            "Partial requirements kept open"
+          ],
+          "start": 3151,
+          "end": 3632,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "pact output        | Declared cold/warm CPU/RAM/volume budgets and representative platform measurements              |\n\nL02 portability, L03 recorder supervision, L05 independent-machine coordination, L06 additional discovery adapters, L09 privacy controls and B02 merge-aware coordination retain their unfinished criteria. Current source still requires runtime installation, lacks complete supervised crash recovery and coordinates live ownership only within a local Git family.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8664825558662415
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 5697,
+          "end": 6159,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "status. Mark informational requests kind discussion early; explicitly reclassify as work when they become development.\n\nUse `dip reconcile --kind work --open --limit 20` for remaining development work, then task_requirements for selected IDs. Default CLI task get/reconcile and MCP reads omit history. Full CLI history requires `--full`; do not dump activity to answer a task question. Discussion records remain accessible in the dashboard's category selector.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8369048833847046
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.8 bounded low-friction integration"
+          ],
+          "start": 3510,
+          "end": 4076,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## v0.3.8 bounded low-friction integration\n\nL04 now has an explicit `task_adopt` transition: the current agent reviews a captured follow-up, updates the existing requirement, records supersession and selects the target for subsequent native planning/hooks. Idempotent retry, ownership/session validation and rejection of developed sources are covered by actual CLI/MCP/hook tests. Informational requests and distinct future ideas retain their existing separate transitions. There is no automatic semantic identity classifier or guarantee that every agent complies.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8356901407241821
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Help build the next useful handoff"
+          ],
+          "start": 18705,
+          "end": 19550,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Help build the next useful handoff\n\nDIP is early. Help a developer return to a project and understand what happened, what remains and what has actually been checked.\n\nThe [QA contributor backlog](CONTRIBUTING.md#project-backlog-from-qa) indexes the original limitations and their later progress. The project's `.dip` contains current priorities, evidence and acceptance criteria; `dip reconcile --kind work --open` shows remaining development without captured discussions.\n\n- **Start with documentation:** [write a reproducible single-project walkthrough](https://github.com/vxu-labs/dip/issues/1).\n- **Bring your environment:** [report one real OS, shell and agent combination](https://github.com/vxu-labs/dip/issues/2).\n- **Make the dashboard easier to use:** [audit one keyboard-only task flow]",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8327889442443848
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 222,
+      "sections": 222,
+      "cacheRebuilt": false,
+      "elapsedMs": 238.71469998266548,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "case": "corrupt-cache",
+      "candidates": [
+        {
+          "id": "docs/navigation.md",
+          "kind": "document",
+          "path": "docs/navigation.md",
+          "contentHash": "48528b6d51e31b887ec71dcea4a063eec5407ed7b8412cc089b8e07641560b64",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Ask for the part of project memory you need",
+            "Requirements and evidence"
+          ],
+          "start": 987,
+          "end": 1643,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Requirements and evidence\n\nRequirements include the current description and acceptance criteria, document versions, conflicting field identities, actual prerequisite verification and source event heads. Cancelled and superseded tasks are marked inapplicable. Native plan progress is source data and never completion evidence. Long text is bounded and marked truncated; use `task_get` for full structured intent and `task_document_read` for selected document sections. `limit`, `offset` and the returned counts expose remaining acceptance criteria; `maxChars` bounds requirement/plan excerpts. Truncated dependency/document sets require further review.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8774633407592773
+        },
+        {
+          "id": "docs/completion-audit.md",
+          "kind": "document",
+          "path": "docs/completion-audit.md",
+          "contentHash": "db5daac633cd796617ceeb3f546a84d3f1d67ef04591c78229c5cab521ab511c",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP completion audit",
+            "Partial requirements kept open"
+          ],
+          "start": 3151,
+          "end": 3632,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "pact output        | Declared cold/warm CPU/RAM/volume budgets and representative platform measurements              |\n\nL02 portability, L03 recorder supervision, L05 independent-machine coordination, L06 additional discovery adapters, L09 privacy controls and B02 merge-aware coordination retain their unfinished criteria. Current source still requires runtime installation, lacks complete supervised crash recovery and coordinates live ownership only within a local Git family.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8664825558662415
+        },
+        {
+          "id": "skills/dip/SKILL.md",
+          "kind": "document",
+          "path": "skills/dip/SKILL.md",
+          "contentHash": "ff91188fec16c476472cf48d09080f11221cc94ac6f8220c6afba51a766462b6",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 5697,
+          "end": 6159,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "status. Mark informational requests kind discussion early; explicitly reclassify as work when they become development.\n\nUse `dip reconcile --kind work --open --limit 20` for remaining development work, then task_requirements for selected IDs. Default CLI task get/reconcile and MCP reads omit history. Full CLI history requires `--full`; do not dump activity to answer a task question. Discussion records remain accessible in the dashboard's category selector.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8369048833847046
+        },
+        {
+          "id": "QA_REPORT.md",
+          "kind": "document",
+          "path": "QA_REPORT.md",
+          "contentHash": "ca073118e12be93fda75d80b404a9dc67387643d37f17584dcc2c53378df5a90",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "DIP release validation",
+            "v0.3.8 bounded low-friction integration"
+          ],
+          "start": 3510,
+          "end": 4076,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## v0.3.8 bounded low-friction integration\n\nL04 now has an explicit `task_adopt` transition: the current agent reviews a captured follow-up, updates the existing requirement, records supersession and selects the target for subsequent native planning/hooks. Idempotent retry, ownership/session validation and rejection of developed sources are covered by actual CLI/MCP/hook tests. Informational requests and distinct future ideas retain their existing separate transitions. There is no automatic semantic identity classifier or guarantee that every agent complies.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8356901407241821
+        },
+        {
+          "id": "README.md",
+          "kind": "document",
+          "path": "README.md",
+          "contentHash": "21373dc6a49a3dfc6236d40fb5352569dfbff3bdab8566a2b54bd1a8cc62a4e3",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Development Intelligence Platform",
+            "Help build the next useful handoff"
+          ],
+          "start": 18705,
+          "end": 19550,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Help build the next useful handoff\n\nDIP is early. Help a developer return to a project and understand what happened, what remains and what has actually been checked.\n\nThe [QA contributor backlog](CONTRIBUTING.md#project-backlog-from-qa) indexes the original limitations and their later progress. The project's `.dip` contains current priorities, evidence and acceptance criteria; `dip reconcile --kind work --open` shows remaining development without captured discussions.\n\n- **Start with documentation:** [write a reproducible single-project walkthrough](https://github.com/vxu-labs/dip/issues/1).\n- **Bring your environment:** [report one real OS, shell and agent combination](https://github.com/vxu-labs/dip/issues/2).\n- **Make the dashboard easier to use:** [audit one keyboard-only task flow]",
+          "excerptTruncated": true,
+          "links": [],
+          "score": 0.8327889442443848
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 222,
+      "reused": 0,
+      "sections": 222,
+      "cacheRebuilt": true,
+      "elapsedMs": 31097.1229999559,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    }
+  ],
+  "bridge": {
+    "readOnly": true,
+    "foundTask": true,
+    "candidates": [
+      {
+        "id": "task_1fbe3d6c-2025-4ca8-9c54-2ac18926ebb1",
+        "kind": "task",
+        "path": ".dip/events/task_1fbe3d6c-2025-4ca8-9c54-2ac18926ebb1",
+        "contentHash": "6a3acbdbab9617906eba3134b971debb921370f173fea0313dc9a86367421c3f",
+        "status": "backlog",
+        "sourceTruncated": false,
+        "heading": [],
+        "start": 0,
+        "end": 352,
+        "offsetUnit": "Unicode code points",
+        "excerpt": "# Keep Hebrew text intact in exported rows\n\n\n\n## Current criteria\n- Preserve Unicode and current request order\n\n## Metadata\n{\"id\":\"task_1fbe3d6c-2025-4ca8-9c54-2ac18926ebb1\",\"status\":\"backlog\",\"scope\":[\"lib.mjs\"],\"dependencies\":[],\"documents\":[{\"path\":\"plan.md\",\"role\":\"plan\",\"hash\":\"24b3024b165c1dca75f749c3bad018aa8ae36e05cabf9d9fa957acb4c892d38f\"}]}",
+        "excerptTruncated": false,
+        "score": 0.8969687223434448
+      }
+    ],
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "encoded": 1,
+    "reused": 0,
+    "sections": 1,
+    "cacheRebuilt": true,
+    "elapsedMs": 137.8885000012815,
+    "identityEstablished": false,
+    "verification": "not_checked",
+    "changedDuringRead": [],
+    "errors": [],
+    "sourceSetTruncated": false,
+    "sourceTextTrusted": false
+  },
+  "completedAt": "2026-10-08T11:24:05.786Z"
+}

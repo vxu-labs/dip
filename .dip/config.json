@@ -215,6 +215,13 @@
         "scripts/winner-check.mjs"
       ],
       "timeoutMs": 60000
+    },
+    "semantic-agent": {
+      "command": [
+        "node",
+        "scripts/semantic-prototype-check.mjs"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate",
