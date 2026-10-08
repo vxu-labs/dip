@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4c5f272f-6f69-4f56-a511-c8153295889d",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.update",
+  "payload": {
+    "status": "backlog"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:43:08.491Z",
+  "parents": [
+    "834b2196-cfa9-478c-a766-907de79a8c32"
+  ],
+  "branch": "main"
+}

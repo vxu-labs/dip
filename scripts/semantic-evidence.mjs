@@ -11,6 +11,7 @@ assert.deepEqual(protocol.corpus,semanticCorpus());
 for(const [file,hash] of Object.entries(protocol.sources)) assert.equal(sha(fs.readFileSync(file,'utf8').replaceAll('\r\n','\n')),hash);
 const summaryFile=process.argv[2]||'docs/benchmarks/2026-10-08-semantic-summary.json';
 const summary=JSON.parse(fs.readFileSync(summaryFile));
+const audits=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-semantic-tensors.json')).audits;
 assert.equal(summary.protocolHash,sha(protocolBytes));
 assert.equal(summary.attempts.length,8);
 const successful=new Set();
@@ -21,9 +22,12 @@ for(const attempt of summary.attempts) {
   assert.equal(sha(bytes),attempt.resultHash);
   const data=JSON.parse(bytes);
   assert.equal(data.protocolHash,sha(protocolBytes));
-  assert.deepEqual(attempt.summary,scoreResult(data,protocol));
+  // JSON omits unavailable lexical-only neural resource fields; do not turn them into zeroes.
+  assert.deepEqual(attempt.summary,JSON.parse(JSON.stringify(scoreResult(data,protocol))));
   if(!data.completedAt||data.error||data.resourceAbort) continue;
   assert.ok(!successful.has(data.model)); successful.add(data.model);
+  assert.equal(data.device,'cpu'); assert.equal(data.threads,4);
+  for(const [name,version] of Object.entries(protocol.packages)) assert.equal(data.packages[name],version);
   assert.equal(data.rows.length,protocol.corpus.queries.length*protocol.sizes.length*protocol.modes.length);
   const seen=new Set();
   const queries=new Map(protocol.corpus.queries.map(q=>[q.id,q]));
@@ -51,12 +55,22 @@ for(const attempt of summary.attempts) {
   if(data.model!=='lexical') {
     const spec=protocol.models.find(x=>x.id===data.model); assert.ok(spec);
     assert.equal(data.loadedRevision,spec.revision); assert.equal(data.license,spec.license);
-    assert.equal(data.parameterCount,spec.parameters);
+    const audit=audits.find(x=>x.model===data.model); assert.ok(audit);
+    assert.equal(audit.revision,spec.revision);
+    const tensors=audit.files.flatMap(x=>x.tensors);
+    assert.equal(audit.totalTensorElements,tensors.reduce((n,x)=>n+x.elements,0));
+    assert.equal(audit.integerBufferElements,tensors.filter(x=>/^[IU]/.test(x.dtype)).reduce((n,x)=>n+x.elements,0));
+    assert.equal(audit.floatingElements,audit.totalTensorElements-audit.integerBufferElements);
+    assert.equal(audit.totalTensorElements,spec.parameters);
+    assert.equal(data.parameterCount,audit.floatingElements);
+    for(const tensor of tensors) assert.equal(tensor.elements,tensor.shape.reduce((n,x)=>n*x,1));
     assert.equal(data.pairs.length,protocol.corpus.pairs.length); assert.equal(data.legacyPairs.length,96);
     for(const [rows,labels] of [[data.pairs,protocol.corpus.pairs],[data.legacyPairs,protocol.layaExploratory]]) {
       assert.deepEqual(rows.map(x=>x.id),labels.map(x=>x.id));
       for(const row of rows) assert.ok(Number.isFinite(row.score)&&Math.abs(row.score)<=1.00001);
     }
+    assert.equal(data.weightBytes,data.assets.filter(x=>x.file.endsWith('.safetensors')).reduce((n,x)=>n+x.bytes,0));
+    for(const asset of data.assets) {assert.ok(asset.bytes>0);assert.match(asset.sha256,/^[a-f0-9]{64}$/);}
   }
 }
 assert.equal(successful.size,8,'All preregistered attempts must complete to claim a complete comparison');

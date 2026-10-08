@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2fa09eb6-fe54-469a-a72f-bb4c73535dd2",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.update",
+  "payload": {
+    "description": "Compare open-source task-retrieval and relationship models against the preserved Laya pilot. Expanded at user's request: train/distill a specialized non-generative dense or static relation encoder with target budgets near 10M and 100M total parameters, and tokenizer-vocabulary ablations including 100k/200k tokens where feasible. Use user request Q and assistant response/plan A as separate evidence channels: test Q only, A only, Q+A concatenation and a predeclared fusion. Benchmark retrieval across large Markdown and structured DIP stores, not only classification of one supplied pair. Research shortlist includes Model2Vec/Potion (7.6M/32.3M English and128.1M multilingual), multilingual E5-small and MiniLM-L12 (~117.7M, Hebrew listed), small English BGE/MiniLM controls, and larger GTE/Qwen/BGE reranker references. The bounded pretrained stage task_358d32ed-9c7b-453e-a23f-244f00ef174c evaluated seven pinned alternatives plus BM25 on new family-separated synthetic retrieval/pair cases. Multilingual MiniLM raw top10 44/48, E5 43/48, Potion multilingual37/48 versus BM25 24/48 at10k; this is not autonomous identity or real-agent quality. Custom training, larger references, independent labels and downstream evaluation remain unperformed. Licensed source/weight review and independent held-out evaluation required.",
+    "scope": [
+      "scripts",
+      "docs/benchmarks"
+    ],
+    "status": "backlog"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:57:50.083Z",
+  "parents": [
+    "7958a719-71e1-4b6e-a6d6-6b6311b1e762"
+  ],
+  "branch": "main"
+}

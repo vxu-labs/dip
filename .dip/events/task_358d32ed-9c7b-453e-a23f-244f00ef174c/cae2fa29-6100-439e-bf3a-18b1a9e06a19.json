@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cae2fa29-6100-439e-bf3a-18b1a9e06a19",
+  "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+    "role": "plan",
+    "hash": "4471023e0b76ee4ecd19301c6f6cf26a8611159f706e033f1aa0c6987e9697bf",
+    "bytes": 3983,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:43:09.594Z",
+  "parents": [
+    "5f311ca4-e9e7-4927-9aa9-f1e5fadd5bf3"
+  ],
+  "branch": "main"
+}

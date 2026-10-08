@@ -27,6 +27,7 @@ jobs:
       - run: node scripts/longitudinal-stress-oracle.mjs
       - run: node scripts/longitudinal-stress-evidence.mjs
       - run: node scripts/laya-pilot-evidence.mjs
+      - run: node scripts/semantic-evidence.mjs
       - run: node scripts/scale-evidence.mjs
       - run: node scripts/host-qa-evidence.mjs
       - run: node scripts/codex-lifecycle-evidence.mjs

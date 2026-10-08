@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f760174d-6a48-42ec-b423-e437afc7a56c",
+  "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "scripts/semantic-corpus.mjs",
+      "scripts/semantic-protocol.mjs",
+      "scripts/semantic-alternatives.py",
+      "scripts/semantic-analysis.mjs",
+      "scripts/semantic-publish.mjs",
+      "scripts/semantic-evidence.mjs",
+      "scripts/semantic-tensors.py",
+      "test/semantic-analysis.test.js",
+      ".github/workflows/ci.yml",
+      ".dip/config.json",
+      "README.md",
+      "docs/benchmarks/semantic-retrieval-pilot.md",
+      "docs/benchmarks/semantic-alternatives.md",
+      "docs/benchmarks/2026-10-08-semantic-protocol.json",
+      "docs/benchmarks/2026-10-08-semantic-requirements.txt",
+      "docs/benchmarks/2026-10-08-semantic-summary.json",
+      "docs/benchmarks/2026-10-08-semantic-tensors.json",
+      "docs/benchmarks/2026-10-08-semantic-lexical.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-minishlab--potion-base-8M.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-minishlab--potion-retrieval-32M.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-minishlab--potion-multilingual-128M.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-intfloat--multilingual-e5-small.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-BAAI--bge-small-en-v1.5.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-sentence-transformers--all-MiniLM-L6-v2.json.gz",
+      "scripts/semantic-report.mjs",
+      "scripts/semantic-check.mjs"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:56:02.981Z",
+  "parents": [
+    "03f12c1c-2a15-41b5-94c6-ca25595fcefb"
+  ],
+  "branch": "main"
+}

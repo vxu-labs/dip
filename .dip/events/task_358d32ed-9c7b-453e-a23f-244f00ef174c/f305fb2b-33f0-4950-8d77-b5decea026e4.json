@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f305fb2b-33f0-4950-8d77-b5decea026e4",
+  "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+  "type": "task.create",
+  "payload": {
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "title": "Execute preregistered seven-model pretrained retrieval alternatives pilot",
+    "description": "Bounded first stage of task_8b4318ef-b13d-4420-988f-5266db4cd215: local CPU alternatives comparison on new synthetic calibration/test families and preserved exploratory Laya pairs. Deliver results and replayable evidence, not custom training or independent downstream product quality.",
+    "scope": [
+      "scripts/semantic-corpus.mjs",
+      "scripts/semantic-protocol.mjs",
+      "scripts/semantic-alternatives.py",
+      "scripts/semantic-analysis.mjs",
+      "scripts/semantic-publish.mjs",
+      "scripts/semantic-evidence.mjs",
+      "scripts/semantic-tensors.py",
+      "test/semantic-analysis.test.js",
+      ".github/workflows/ci.yml",
+      ".dip/config.json",
+      "README.md",
+      "docs/benchmarks/semantic-retrieval-pilot.md",
+      "docs/benchmarks/semantic-alternatives.md",
+      "docs/benchmarks/2026-10-08-semantic-protocol.json",
+      "docs/benchmarks/2026-10-08-semantic-requirements.txt",
+      "docs/benchmarks/2026-10-08-semantic-summary.json",
+      "docs/benchmarks/2026-10-08-semantic-tensors.json",
+      "docs/benchmarks/2026-10-08-semantic-lexical.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-minishlab--potion-base-8M.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-minishlab--potion-retrieval-32M.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-minishlab--potion-multilingual-128M.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-intfloat--multilingual-e5-small.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-BAAI--bge-small-en-v1.5.json.gz",
+      "docs/benchmarks/2026-10-08-semantic-sentence-transformers--all-MiniLM-L6-v2.json.gz"
+    ],
+    "acceptance": [
+      "Freeze protocol, corpus and scoring source before inference; seven pinned pretrained candidates plus capable lexical baseline, same information/index in Markdown and structured experimental adapters, no outcome-dependent tuning.",
+      "Retain all eight attempts and all Q/A/QA/fusion cases at100/1000/10000 histories, with8 calibration and16 test families; report retrieval separately from identity, no-match and stale suggestions.",
+      "Verify pinned weight/code licenses, actual learned parameter versus integer buffer counts, assets and resources; record CPU warm encoding, indexing/update, RAM, tokens and all failures without product dependency changes.",
+      "Publish auditable raw compressed results, summaries, limitations and original-Laya exploratory bridge; no automatic task-state mutation or proven live agent advantage.",
+      "Pass configured offline evidence and scorer leakage/false-positive-cap checks, integrate replay into CI. Leave custom training, independent labels and downstream real-agent quality open in the parent task."
+    ],
+    "status": "backlog"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:43:08.522Z",
+  "parents": [],
+  "branch": "main"
+}

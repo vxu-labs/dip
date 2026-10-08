@@ -84,6 +84,8 @@ When the current hook has not supplied a task ID, the agent must explicitly save
 
 ## Measured quality, cost and real workflow QA
 
+Seven pretrained retrieval alternatives were evaluated with BM25 on new English/Hebrew task families and histories of 100/1,000/10,000 items. At 10,000 items, multilingual MiniLM recovered the correct current task in its raw top ten for **44/48** matching test queries, E5 **43/48**, Potion multilingual **37/48**, and BM25 **24/48**. These clustered synthetic results measure candidate retrieval, not autonomous identity or code completion. Conservative cosine identity gates missed nearly all true identities, and misleading assistant replies could hurt ranking. Indexed Markdown with the same information/model produced the same results as the structured adapter. [Frozen protocol, every alternative, costs and limitations](docs/benchmarks/semantic-retrieval-pilot.md).
+
 In a separate synthetic scale measurement, warm context p95 at 10,000 tasks changed from **10.11 seconds to 1.58 seconds** after local event caching; output stayed around 1.3 KB. Fresh-process projection remained around **10 seconds**. This is local persistence/navigation performance on one machine, not improved agent quality or productivity. [All scale/capture samples, memory and limitations](docs/benchmarks/scale.md).
 
 A longer controlled quality experiment used **four matched project pairs and 72 scheduled fresh Codex turns**, including actual requirement revisions, abrupt process interruption, two concurrent Git worktree workers, real merges and final audits. Both arms were instructed to preserve repository intent and handoffs; the baseline used ordinary Markdown.

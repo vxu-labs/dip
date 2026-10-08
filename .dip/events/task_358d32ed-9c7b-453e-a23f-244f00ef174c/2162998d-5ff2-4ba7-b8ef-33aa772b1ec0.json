@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2162998d-5ff2-4ba7-b8ef-33aa772b1ec0",
+  "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Executed and published the complete preregistered pretrained alternatives stage: seven pinned models plus capable BM25; all20,736 ranking rows and pair scores preserved with raw evidence, resource/license/tensor audits and family-separated calibration. Offline scoring/leakage/cap checks passed. No autonomous identity, completion or live-agent benefit claimed. Broader training/independent downstream requirements remain open in the parent.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:57:50.196Z",
+  "parents": [
+    "f760174d-6a48-42ec-b423-e437afc7a56c"
+  ],
+  "branch": "main"
+}

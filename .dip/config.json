@@ -205,7 +205,7 @@
     "semantic-evidence": {
       "command": [
         "node",
-        "scripts/semantic-evidence.mjs"
+        "scripts/semantic-check.mjs"
       ],
       "timeoutMs": 60000
     }

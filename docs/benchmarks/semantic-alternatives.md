@@ -2,6 +2,8 @@
 
 Research snapshot: 7 October 2026. These are candidates, not measured winners. No candidate in this shortlist was downloaded, trained or evaluated during this research turn. The [Laya pilot](laya-pilot.md) tested pair classification, not retrieval across a large history.
 
+Execution update, 8 October 2026: the [preregistered pretrained retrieval pilot](semantic-retrieval-pilot.md) now contains actual seven-model/BM25 CPU results, new family-separated calibration/test cases, Q/A query diagnostics and all three history sizes. This is a bounded first stage. Custom training/vocabulary ablations, larger references, independently reviewed real histories and downstream agent quality remain open; the original design below is preserved.
+
 The proposed small model learns text-to-task relationships through dense or static embeddings. It does not need to generate language. It still needs representations that distinguish paraphrases from negation, changed constraints, unrelated components and different versions/tenants. A large tokenizer vocabulary by itself does not supply those representations.
 
 ## Shortlist
@@ -79,4 +81,4 @@ Split reviewed training, calibration and test data by project, chronology and se
 
 ## Recorded follow-up
 
-The existing DIP alternatives task task_8b4318ef-b13d-4420-988f-5266db4cd215 now includes the custom 10M/100M model, tokenizer ablations, Q/A queries and these factorial baselines. It remains backlog. The current research task completed a shortlist and design only; no training or candidate performance comparison is claimed.
+The existing DIP alternatives task task_8b4318ef-b13d-4420-988f-5266db4cd215 includes the custom 10M/100M model, tokenizer ablations, Q/A queries and these factorial baselines. The original research turn completed a shortlist and design only. The measured pretrained stage is tracked separately as task_358d32ed-9c7b-453e-a23f-244f00ef174c. The broader task remains open for the unperformed training, independent label review and downstream evaluation; do not reinterpret the retrieval pilot as completion of that broader requirement.

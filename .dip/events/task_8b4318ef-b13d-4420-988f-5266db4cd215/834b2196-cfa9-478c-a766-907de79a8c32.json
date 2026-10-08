@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "834b2196-cfa9-478c-a766-907de79a8c32",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Preregistered pretrained stage is running unchanged, all completed attempts retained. This deliverable is narrower than custom training, independent reviewed real histories and downstream implementation requirements. Track the completed stage separately and leave the broad research task open.",
+    "next": "Compare final seven-model results, then use them to select retrieval shortlist and future calibration/training work.",
+    "head": "44d6f4f252ae83e2721d410d1011290f67ec4829"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:43:08.440Z",
+  "parents": [
+    "6435ce96-f904-4ac2-87ba-60b8c77c041f"
+  ],
+  "branch": "main"
+}

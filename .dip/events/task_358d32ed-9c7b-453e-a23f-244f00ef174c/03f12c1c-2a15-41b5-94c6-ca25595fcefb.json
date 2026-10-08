@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "03f12c1c-2a15-41b5-94c6-ca25595fcefb",
+  "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/semantic-alternatives.md",
+    "role": "plan",
+    "hash": "ddb311c8675d7131559978c8dbdb5121af67dbb83f19efdb40c149cb32628bbd",
+    "bytes": 12929,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:55:42.190Z",
+  "parents": [
+    "bfe9e231-68c7-4c52-af24-d6b9719938b7"
+  ],
+  "branch": "main"
+}
