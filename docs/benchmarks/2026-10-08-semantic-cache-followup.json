@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-08T12:09:04.317Z",
+  "sources": [
+    {
+      "id": "task_export",
+      "kind": "task",
+      "path": "memory/export.md",
+      "text": "# Export rows\nPreserve Unicode and request order.",
+      "status": "backlog",
+      "contentHash": "512c92714e433cf007b73caf4e53f7e78348ca38409433e85ebdda1562e56f79"
+    },
+    {
+      "id": "task_queue",
+      "kind": "task",
+      "path": "memory/queue.md",
+      "text": "# Work queue\nKeep waiting work open.",
+      "status": "backlog",
+      "contentHash": "6883dda2316f53c7d301c8db8c9e266349fa175d4648a3bbe8e07a4ce1e9ed02"
+    },
+    {
+      "id": "doc_export",
+      "kind": "document",
+      "path": "docs/export.md",
+      "text": "# Export\n\n## Current contract\nPreserve Unicode and request order.\n\n## Future\nPriority sorting is deferred.",
+      "status": "source",
+      "contentHash": "55aceee42f11013eb13b92a59857e3616ac5fd1396d1ed4dc34a83cbb5c85c7f"
+    }
+  ],
+  "rows": [
+    {
+      "label": "before",
+      "channel": "tasks",
+      "candidates": [
+        {
+          "id": "task_export",
+          "kind": "task",
+          "path": "memory/export.md",
+          "contentHash": "512c92714e433cf007b73caf4e53f7e78348ca38409433e85ebdda1562e56f79",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 49,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Export rows\nPreserve Unicode and request order.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.924268901348114
+        },
+        {
+          "id": "task_queue",
+          "kind": "task",
+          "path": "memory/queue.md",
+          "contentHash": "6883dda2316f53c7d301c8db8c9e266349fa175d4648a3bbe8e07a4ce1e9ed02",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 36,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Work queue\nKeep waiting work open.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8071959018707275
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 2,
+      "reused": 0,
+      "sections": 2,
+      "cacheRebuilt": true,
+      "elapsedMs": 98.04499999154359,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "before",
+      "channel": "documents",
+      "candidates": [
+        {
+          "id": "doc_export",
+          "kind": "document",
+          "path": "docs/export.md",
+          "contentHash": "55aceee42f11013eb13b92a59857e3616ac5fd1396d1ed4dc34a83cbb5c85c7f",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Export",
+            "Current contract"
+          ],
+          "start": 10,
+          "end": 67,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Current contract\nPreserve Unicode and request order.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.9190782308578491
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 3,
+      "reused": 0,
+      "sections": 3,
+      "cacheRebuilt": false,
+      "elapsedMs": 104.9189999466762,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "before",
+      "channel": "tasks",
+      "candidates": [
+        {
+          "id": "task_export",
+          "kind": "task",
+          "path": "memory/export.md",
+          "contentHash": "512c92714e433cf007b73caf4e53f7e78348ca38409433e85ebdda1562e56f79",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 49,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Export rows\nPreserve Unicode and request order.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.924268901348114
+        },
+        {
+          "id": "task_queue",
+          "kind": "task",
+          "path": "memory/queue.md",
+          "contentHash": "6883dda2316f53c7d301c8db8c9e266349fa175d4648a3bbe8e07a4ce1e9ed02",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 36,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Work queue\nKeep waiting work open.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8071959018707275
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 2,
+      "reused": 0,
+      "sections": 2,
+      "cacheRebuilt": false,
+      "elapsedMs": 80.29960002750158,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "before",
+      "channel": "documents",
+      "candidates": [
+        {
+          "id": "doc_export",
+          "kind": "document",
+          "path": "docs/export.md",
+          "contentHash": "55aceee42f11013eb13b92a59857e3616ac5fd1396d1ed4dc34a83cbb5c85c7f",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Export",
+            "Current contract"
+          ],
+          "start": 10,
+          "end": 67,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Current contract\nPreserve Unicode and request order.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.9190782308578491
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 3,
+      "reused": 0,
+      "sections": 3,
+      "cacheRebuilt": false,
+      "elapsedMs": 69.28970001172274,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "after",
+      "channel": "tasks",
+      "candidates": [
+        {
+          "id": "task_export",
+          "kind": "task",
+          "path": "memory/export.md",
+          "contentHash": "512c92714e433cf007b73caf4e53f7e78348ca38409433e85ebdda1562e56f79",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 49,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Export rows\nPreserve Unicode and request order.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.924268901348114
+        },
+        {
+          "id": "task_queue",
+          "kind": "task",
+          "path": "memory/queue.md",
+          "contentHash": "6883dda2316f53c7d301c8db8c9e266349fa175d4648a3bbe8e07a4ce1e9ed02",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 36,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Work queue\nKeep waiting work open.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8071959018707275
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 2,
+      "reused": 0,
+      "sections": 2,
+      "cacheRebuilt": true,
+      "elapsedMs": 83.29219999723136,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "after",
+      "channel": "documents",
+      "candidates": [
+        {
+          "id": "doc_export",
+          "kind": "document",
+          "path": "docs/export.md",
+          "contentHash": "55aceee42f11013eb13b92a59857e3616ac5fd1396d1ed4dc34a83cbb5c85c7f",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Export",
+            "Current contract"
+          ],
+          "start": 10,
+          "end": 67,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Current contract\nPreserve Unicode and request order.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.9190782308578491
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 3,
+      "reused": 0,
+      "sections": 3,
+      "cacheRebuilt": true,
+      "elapsedMs": 81.26539993099868,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "after",
+      "channel": "tasks",
+      "candidates": [
+        {
+          "id": "task_export",
+          "kind": "task",
+          "path": "memory/export.md",
+          "contentHash": "512c92714e433cf007b73caf4e53f7e78348ca38409433e85ebdda1562e56f79",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 49,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Export rows\nPreserve Unicode and request order.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.924268901348114
+        },
+        {
+          "id": "task_queue",
+          "kind": "task",
+          "path": "memory/queue.md",
+          "contentHash": "6883dda2316f53c7d301c8db8c9e266349fa175d4648a3bbe8e07a4ce1e9ed02",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 36,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Work queue\nKeep waiting work open.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8071959018707275
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 2,
+      "sections": 2,
+      "cacheRebuilt": false,
+      "elapsedMs": 38.84639998432249,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "after",
+      "channel": "documents",
+      "candidates": [
+        {
+          "id": "doc_export",
+          "kind": "document",
+          "path": "docs/export.md",
+          "contentHash": "55aceee42f11013eb13b92a59857e3616ac5fd1396d1ed4dc34a83cbb5c85c7f",
+          "status": "source",
+          "sourceTruncated": false,
+          "heading": [
+            "Export",
+            "Current contract"
+          ],
+          "start": 10,
+          "end": 67,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Current contract\nPreserve Unicode and request order.\n\n",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.9190782308578491
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 3,
+      "sections": 3,
+      "cacheRebuilt": false,
+      "elapsedMs": 35.128099960274994,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "after",
+      "case": "changed",
+      "channel": "tasks",
+      "candidates": [
+        {
+          "id": "task_export",
+          "kind": "task",
+          "path": "memory/export.md",
+          "contentHash": "433a8a3a151faaa7cff75f6f65b3a158463e619a29b8557c0c4b3d51839ddb56",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 64,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Export rows\nPreserve Unicode and request order. New criterion.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8799008131027222
+        },
+        {
+          "id": "task_queue",
+          "kind": "task",
+          "path": "memory/queue.md",
+          "contentHash": "6883dda2316f53c7d301c8db8c9e266349fa175d4648a3bbe8e07a4ce1e9ed02",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 36,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Work queue\nKeep waiting work open.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.8109824657440186
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 1,
+      "reused": 1,
+      "sections": 2,
+      "cacheRebuilt": false,
+      "elapsedMs": 57.150700013153255,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "label": "after",
+      "case": "deleted",
+      "channel": "tasks",
+      "candidates": [
+        {
+          "id": "task_queue",
+          "kind": "task",
+          "path": "memory/queue.md",
+          "contentHash": "6883dda2316f53c7d301c8db8c9e266349fa175d4648a3bbe8e07a4ce1e9ed02",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [],
+          "start": 0,
+          "end": 36,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "# Work queue\nKeep waiting work open.",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.810982346534729
+        }
+      ],
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "encoded": 0,
+      "reused": 1,
+      "sections": 1,
+      "cacheRebuilt": false,
+      "elapsedMs": 44.90739991888404,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    }
+  ],
+  "readOnly": true,
+  "beforeHash": "556be3274a21e5fcf5478670d9fdca08d834ac9141a6deccea8839ad2062a8a9",
+  "afterHash": "16d54f47d9c20f84ece284c9781a91ec7ca78e2aa666ce356ce614ffb40e4e73",
+  "completedAt": "2026-10-08T12:09:31.147Z"
+}

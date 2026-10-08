@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "42eb0d57-13c7-43ca-868a-fb20d3008992",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Shortlisted E5 progressed to an opt-in local prototype and frozen18-run agent experiment against strong Markdown and identical E5 Markdown controls. All arms48/48 functional36/36 memory; no observed quality gain and higher measured time/input under mandatory searches. Custom tiny encoder training/vocabulary/parameter studies, independent labels and natural large-project downstream trials remain open. No training performed.",
+    "next": "",
+    "head": "eea07de3353aaaac941027530ef685a76bf61b43"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T12:15:47.652Z",
+  "parents": [
+    "123ff503-2b23-4fd0-afff-b617b130d3d9"
+  ],
+  "branch": "main"
+}

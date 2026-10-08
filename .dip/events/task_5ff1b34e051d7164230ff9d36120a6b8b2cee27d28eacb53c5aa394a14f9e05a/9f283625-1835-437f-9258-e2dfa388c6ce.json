@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9f283625-1835-437f-9258-e2dfa388c6ce",
+  "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Opt-in read-only pinned E5 prototype, heading-aware documents and source-freshness guard implemented. All18 preregistered fresh agent trials retained and causal-replayed: each arm48/48 functional36/36 memory, no observed quality gain, higher E5 time/input under mandatory dual reads. Failed/passing preflights preserved. Post-collection cache-only correction independently verified with actual model; frozen original worker archived and benchmark not rerun. Configured checks passed; broader independent real-project, identity/training and service hardening work remains backlog.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T12:16:27.963Z",
+  "parents": [
+    "b2b46f9c-fcac-46f6-bc1d-c51531d6da9d"
+  ],
+  "branch": "main"
+}

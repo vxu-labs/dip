@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3342d7b7-2495-4439-99ed-e2ca77db95e1",
+  "taskId": "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Opt-in pinned E5 task/document prototype implemented with current source hashes, asynchronous stale-source omission and channel-separated cache; actual model/cache QA passed. All18 frozen agent trials retained and replayed: every arm48/48 functional36/36 memory, so no quality gain observed; mandatory E5 reads increased time and reported input. Broader routing remains backlog for naturalistic larger histories, independent relevance/identity labels, selective tool routing/overhead reduction, learned no-match/relations and multi-process cache coordination. No automatic identity, merge or completion.",
+    "next": "",
+    "head": "eea07de3353aaaac941027530ef685a76bf61b43"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T12:15:47.541Z",
+  "parents": [
+    "0c0c5bc3-2052-4668-be46-c2380abdfbe6"
+  ],
+  "branch": "main"
+}

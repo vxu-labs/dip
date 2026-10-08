@@ -78,7 +78,7 @@ class Engine:
         keys=[sha((self.identity+'\0'+e['embeddingText']).encode()) for e in chunks]
         namespace=request.get('namespace','')
         if not re.fullmatch('[a-f0-9]{64}',namespace):raise ValueError('Invalid cache namespace')
-        file=self.cache/(namespace+'-'+channel+'.npz');cached={};reason=None
+        file=self.cache/(namespace+'.npz');cached={};reason=None
         try:
             with np.load(file,allow_pickle=False) as data:
                 if str(data['identity'])!=self.identity:raise ValueError('Cache identity changed')

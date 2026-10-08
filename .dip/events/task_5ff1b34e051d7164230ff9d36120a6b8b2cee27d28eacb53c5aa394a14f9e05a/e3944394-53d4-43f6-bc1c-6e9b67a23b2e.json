@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e3944394-53d4-43f6-bc1c-6e9b67a23b2e",
+  "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/semantic-agent-quality.md",
+    "role": "plan",
+    "hash": "1708eb48acd0bb17d2c244489b22fc115f7fbffa8198b1e9cd5df17a79037c19",
+    "bytes": 14481,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T12:15:47.383Z",
+  "parents": [
+    "a20ba683-2fc1-49e1-8da5-eed3537df734"
+  ],
+  "branch": "main"
+}

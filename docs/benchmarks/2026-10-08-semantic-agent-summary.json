@@ -1,0 +1,571 @@
+{
+  "schemaVersion": 1,
+  "protocolHash": "506b6e4783c37b16dc682ad45f0e73c01644c626defc9e60c45194c2bbd031c0",
+  "completedAt": "2026-10-08T12:07:05.844Z",
+  "arms": [
+    {
+      "arm": "markdown",
+      "runs": 6,
+      "completed": 6,
+      "timeouts": 0,
+      "functionalPassed": 48,
+      "functionalTotal": 48,
+      "allFunctional": 6,
+      "memoryPassed": 36,
+      "memoryTotal": 36,
+      "wrongTaskIdentity": 0,
+      "medianWallMs": 80856,
+      "inputTokens": 613377,
+      "cachedInputTokens": 428928,
+      "outputTokens": 16234,
+      "usageMissing": 0,
+      "toolCalls": 33,
+      "toolOutputBytes": 322501,
+      "searchCalls": 0,
+      "sectionReads": 0,
+      "errors": 0,
+      "mcpErrors": 0,
+      "rows": [
+        {
+          "index": 0,
+          "kind": "allocation",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 77645,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 1,
+          "kind": "billing",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 79536,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 2,
+          "kind": "redaction",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 72447,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 3,
+          "kind": "allocation",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 91667,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 4,
+          "kind": "billing",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 82176,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 5,
+          "kind": "redaction",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 88916,
+          "completed": true,
+          "timedOut": false
+        }
+      ]
+    },
+    {
+      "arm": "markdown-e5",
+      "runs": 6,
+      "completed": 6,
+      "timeouts": 0,
+      "functionalPassed": 48,
+      "functionalTotal": 48,
+      "allFunctional": 6,
+      "memoryPassed": 36,
+      "memoryTotal": 36,
+      "wrongTaskIdentity": 0,
+      "medianWallMs": 116901,
+      "inputTokens": 736187,
+      "cachedInputTokens": 570240,
+      "outputTokens": 17364,
+      "usageMissing": 0,
+      "toolCalls": 55,
+      "toolOutputBytes": 251377,
+      "searchCalls": 12,
+      "sectionReads": 8,
+      "errors": 0,
+      "mcpErrors": 0,
+      "rows": [
+        {
+          "index": 0,
+          "kind": "allocation",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 121851,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 1,
+          "kind": "billing",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 117197,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 2,
+          "kind": "redaction",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 108764,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 3,
+          "kind": "allocation",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 116605,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 4,
+          "kind": "billing",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 120581,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 5,
+          "kind": "redaction",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 103452,
+          "completed": true,
+          "timedOut": false
+        }
+      ]
+    },
+    {
+      "arm": "dip",
+      "runs": 6,
+      "completed": 6,
+      "timeouts": 0,
+      "functionalPassed": 48,
+      "functionalTotal": 48,
+      "allFunctional": 6,
+      "memoryPassed": 36,
+      "memoryTotal": 36,
+      "wrongTaskIdentity": 0,
+      "medianWallMs": 119136.5,
+      "inputTokens": 736651,
+      "cachedInputTokens": 539904,
+      "outputTokens": 18259,
+      "usageMissing": 0,
+      "toolCalls": 56,
+      "toolOutputBytes": 237056,
+      "searchCalls": 12,
+      "sectionReads": 10,
+      "errors": 0,
+      "mcpErrors": 0,
+      "rows": [
+        {
+          "index": 0,
+          "kind": "allocation",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 126416,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 1,
+          "kind": "billing",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 117457,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 2,
+          "kind": "redaction",
+          "language": "en",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 117114,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 3,
+          "kind": "allocation",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 135274,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 4,
+          "kind": "billing",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 120816,
+          "completed": true,
+          "timedOut": false
+        },
+        {
+          "index": 5,
+          "kind": "redaction",
+          "language": "he",
+          "functional": 8,
+          "memory": 6,
+          "wallMs": 106483,
+          "completed": true,
+          "timedOut": false
+        }
+      ]
+    }
+  ],
+  "retrievalAudits": [
+    {
+      "index": 0,
+      "arm": "markdown",
+      "searches": []
+    },
+    {
+      "index": 0,
+      "arm": "markdown-e5",
+      "searches": [
+        {
+          "query": "current warehouse request distributor latest revision ordering policy",
+          "channel": "tasks",
+          "firstId": "task_ccc44820dba0ea93bad65bb46274f06c",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "warehouse request distributor current revision ordering policy",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Allocate available warehouse units to incoming requests",
+            "Historical design v1"
+          ],
+          "currentContractFirst": false
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "arm": "dip",
+      "searches": [
+        {
+          "query": "warehouse request distributor current latest revision ordering policy",
+          "channel": "tasks",
+          "firstId": "task_ccc44820dba0ea93bad65bb46274f06c",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "warehouse request distributor ordering latest revision current requirements",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Allocate available warehouse units to incoming requests",
+            "Historical design v1"
+          ],
+          "currentContractFirst": false
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "arm": "markdown-e5",
+      "searches": [
+        {
+          "query": "current payable rollup credits currency handling",
+          "channel": "tasks",
+          "firstId": "task_49d6d17c5aedd60e89a9f11e87334dea",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current payable rollup contract credits currency revision",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Summarize payable invoice lines by currency",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "arm": "dip",
+      "searches": [
+        {
+          "query": "current payable rollup credits currency",
+          "channel": "tasks",
+          "firstId": "task_49d6d17c5aedd60e89a9f11e87334dea",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current payable rollup contract credits currency revisions",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Summarize payable invoice lines by currency",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "arm": "markdown",
+      "searches": []
+    },
+    {
+      "index": 2,
+      "arm": "dip",
+      "searches": [
+        {
+          "query": "current request-target privacy filtering preserve formatting normalization",
+          "channel": "tasks",
+          "firstId": "task_0a7b120ebe279d21805c48b7daf2af73",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current request-target privacy filtering intended formatting older normalization",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Remove sensitive query values from relative request targets",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "arm": "markdown",
+      "searches": []
+    },
+    {
+      "index": 2,
+      "arm": "markdown-e5",
+      "searches": [
+        {
+          "query": "current request-target privacy filtering preserve formatting older normalization notes",
+          "channel": "tasks",
+          "firstId": "task_0a7b120ebe279d21805c48b7daf2af73",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current request-target privacy filtering formatting normalization requirements",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Remove sensitive query values from relative request targets",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "arm": "markdown",
+      "searches": []
+    },
+    {
+      "index": 3,
+      "arm": "markdown-e5",
+      "searches": [
+        {
+          "query": "current inventory allocation requests ordering policy allocate stock",
+          "channel": "tasks",
+          "firstId": "task_ccc44820dba0ea93bad65bb46274f06c",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current inventory allocation requirements ordering policy revisions",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Allocate available warehouse units to incoming requests",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "arm": "dip",
+      "searches": [
+        {
+          "query": "current inventory allocation requests ordering policy חלוקת מלאי לבקשות",
+          "channel": "tasks",
+          "firstId": "task_ccc44820dba0ea93bad65bb46274f06c",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current inventory allocation ordering revision policy priority request stock",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Allocate available warehouse units to incoming requests",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "arm": "markdown-e5",
+      "searches": [
+        {
+          "query": "current billing summary invoice totals credits currencies contract",
+          "channel": "tasks",
+          "firstId": "task_b5c8e43e5618f9735dab6c5177d0ddce",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current billing summary contract credits currencies",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Summarize payable invoice lines by currency",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "arm": "dip",
+      "searches": [
+        {
+          "query": "current billing charge summary contract credits currencies סיכום חיובים זיכויים מטבעות",
+          "channel": "tasks",
+          "firstId": "task_b5c8e43e5618f9735dab6c5177d0ddce",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current billing summary contract credits currencies latest revision",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Summarize payable invoice lines by currency",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "arm": "markdown",
+      "searches": []
+    },
+    {
+      "index": 5,
+      "arm": "dip",
+      "searches": [
+        {
+          "query": "current request URL sensitive data redaction preserve formatting no normalization",
+          "channel": "tasks",
+          "firstId": "task_30a884532dd431a75b53030e9e60e85c",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "latest request URL redaction formatting preservation normalization query userinfo fragment",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Remove sensitive query values from relative request targets",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "arm": "markdown",
+      "searches": []
+    },
+    {
+      "index": 5,
+      "arm": "markdown-e5",
+      "searches": [
+        {
+          "query": "current request URL sensitive information redaction preserve formatting no normalization",
+          "channel": "tasks",
+          "firstId": "task_30a884532dd431a75b53030e9e60e85c",
+          "firstHeading": [],
+          "currentContractFirst": false
+        },
+        {
+          "query": "current URL redaction formatting preserve requirements",
+          "channel": "documents",
+          "firstId": "document:docs/current.md",
+          "firstHeading": [
+            "Remove sensitive query values from relative request targets",
+            "Current contract v2"
+          ],
+          "currentContractFirst": true
+        }
+      ]
+    }
+  ],
+  "rawHash": "12f578dcb6fe2d6c340e28837a0fa4b9220529d47c4ec3403d68d6b3fca7a0dd"
+}
