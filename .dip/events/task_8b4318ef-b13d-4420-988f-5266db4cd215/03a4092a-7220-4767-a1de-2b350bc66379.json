@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "03a4092a-7220-4767-a1de-2b350bc66379",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "scripts",
+      "docs/benchmarks",
+      "scripts/semantic-corpus.mjs",
+      "scripts/semantic-protocol.mjs",
+      "scripts/semantic-alternatives.py",
+      "scripts/semantic-analysis.mjs",
+      "scripts/semantic-evidence.mjs",
+      "scripts/semantic-publish.mjs"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:26:43.425Z",
+  "parents": [
+    "57d51879-f81d-4f05-b386-8b0964399087"
+  ],
+  "branch": "main"
+}

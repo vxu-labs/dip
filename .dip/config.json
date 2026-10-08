@@ -201,6 +201,13 @@
         "scripts/delivery-evidence.mjs"
       ],
       "timeoutMs": 180000
+    },
+    "semantic-evidence": {
+      "command": [
+        "node",
+        "scripts/semantic-evidence.mjs"
+      ],
+      "timeoutMs": 60000
     }
   },
   "mode": "coordinate",

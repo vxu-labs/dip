@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d3b7e74e-328b-4be7-a2ed-7c68a7b3549f",
+  "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "New pretrained alternatives pilot preregistered: seven pinned models, lexical baseline,24 new families8cal/16test,216 queries Q/A/QA/fusion,288 pair cases,100/1000/10000 histories. Same search/information in Markdown and structured experimental adapters. Custom training, independent labels and downstream agent quality remain open.",
+    "next": "Freeze protocol/source commit before actual scored model inference, run all eight attempts sequentially, retain failures, publish raw scores and replay evidence.",
+    "head": "6ef06bfdc0e3925c007cfb47a9205b5188ce670d"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:27:57.002Z",
+  "parents": [
+    "31f83ceb-a99f-4b9d-b890-41091d635666"
+  ],
+  "branch": "main"
+}

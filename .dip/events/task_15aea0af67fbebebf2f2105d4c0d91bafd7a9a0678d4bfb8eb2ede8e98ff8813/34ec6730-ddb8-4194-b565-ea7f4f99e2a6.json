@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "eventId": "34ec6730-ddb8-4194-b565-ea7f4f99e2a6",
+  "taskId": "task_15aea0af67fbebebf2f2105d4c0d91bafd7a9a0678d4bfb8eb2ede8e98ff8813",
+  "type": "task.update",
+  "payload": {
+    "status": "superseded",
+    "resolution": {
+      "outcome": "superseded",
+      "summary": "User requests execution of the documented alternatives experiment. Start a preregistered pretrained retrieval pilot; preserve custom training and independent real-world downstream evaluation as open requirements.",
+      "replacedBy": [
+        "task_8b4318ef-b13d-4420-988f-5266db4cd215"
+      ]
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T07:18:18.421Z",
+  "parents": [
+    "9818c5f9-7520-4014-8e37-1e486a346da8"
+  ],
+  "branch": "main"
+}
