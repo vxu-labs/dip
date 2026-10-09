@@ -1,3 +1,5 @@
 * text=auto eol=lf
 *.png binary
 *.tgz binary
+# Preserve original byte hashes for the Windows-generated experiment evidence.
+docs/benchmarks/2026-10-09-production-cache-race*.json -text -eol
