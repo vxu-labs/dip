@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-10-09T13:29:56.007Z",
+  "sourceHash": "06e1baeece3e176334698196eb8d3842f7cf6e7265d9d959cf1a767f99ace3a7",
+  "harnessHash": "76fd98b6441e2129522186a6ad7fda5a2a208f848ce34e18dba984454a10763b",
+  "cases": [
+    "twenty-mib-doc-budget",
+    "unicode-at-task-truncation-boundary",
+    "directory-junction-rejection",
+    "structured-plan-source-coverage"
+  ],
+  "expected": "Explicit budget truncation; well-formed Unicode; reject redirected document directories. Plan coverage is descriptive, not a promised prototype feature."
+}

@@ -1,0 +1,36 @@
+{
+  "protocolHash": "6080221ca400f600217bd1e63057c754fdfa578a442a1671e98f490fc9677752",
+  "sourceHash": "06e1baeece3e176334698196eb8d3842f7cf6e7265d9d959cf1a767f99ace3a7",
+  "modelCalls": 0,
+  "rows": [
+    {
+      "name": "twenty-mib-doc-budget",
+      "productionPass": true,
+      "documents": 20,
+      "truncated": true,
+      "errors": [
+        {
+          "path": "doc9.md",
+          "error": "Document byte budget exceeded"
+        }
+      ]
+    },
+    {
+      "name": "unicode-at-task-truncation-boundary",
+      "productionPass": false,
+      "sourceTruncated": true,
+      "lastCodeUnit": 55357,
+      "length": 40000
+    },
+    {
+      "name": "directory-junction-rejection",
+      "productionPass": true
+    },
+    {
+      "name": "structured-plan-source-coverage",
+      "productionPass": null,
+      "indexed": false,
+      "note": "Native structured plan text is outside this prototype collector; existing plan/requirements tools remain necessary."
+    }
+  ]
+}

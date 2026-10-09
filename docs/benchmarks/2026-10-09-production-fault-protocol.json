@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-10-09T13:05:42.686Z",
+  "sourceHash": "06e1baeece3e176334698196eb8d3842f7cf6e7265d9d959cf1a767f99ace3a7",
+  "harnessHash": "791c9cb05aba80a46a9ab7ad59f085faa3b36d3787ac434070117c18d5533888",
+  "cases": [
+    "malformed-response-isolation",
+    "overbudget-response-recovery",
+    "late-response-after-close"
+  ],
+  "expected": "Every current request receives its own response or explicit failure; stale transport bytes never satisfy another request. Parser/size failures reset the broken transport.",
+  "modelMocked": true
+}

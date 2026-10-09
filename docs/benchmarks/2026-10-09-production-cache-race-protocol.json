@@ -1,0 +1,8 @@
+{
+  "sourceHash": "16d54f47d9c20f84ece284c9781a91ec7ca78e2aa666ce356ce614ffb40e4e73",
+  "harnessHash": "5a20123259740974d1959ed678a348b16ee1fd11cf67b906d5f161a0c1faef4c",
+  "processes": 4,
+  "synchronization": "Barrier immediately before production os.replace, after each writer saves the same fixed tmp file",
+  "encoderMocked": true,
+  "expected": "All four requests complete; final NPZ loads safely with matching checksum"
+}

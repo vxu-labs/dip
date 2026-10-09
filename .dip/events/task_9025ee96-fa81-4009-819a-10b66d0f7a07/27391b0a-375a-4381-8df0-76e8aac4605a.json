@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "27391b0a-375a-4381-8df0-76e8aac4605a",
+  "taskId": "task_9025ee96-fa81-4009-819a-10b66d0f7a07",
+  "type": "task.create",
+  "payload": {
+    "title": "Coordinate semantic cache writers across processes",
+    "description": "Live multi-model load exceeded available virtual memory; a low-memory mocked-encoder filesystem probe separately reproduced three FileNotFoundError failures when four completed writes share one temporary NPZ path and renames are serialized. Preserve passing parallel interleaving. Use unique temp files and validate cache coordination/recovery with real encoder under declared resource budget.",
+    "status": "backlog",
+    "scope": [
+      "src/semantic-worker.py"
+    ],
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T13:08:52.376Z",
+  "parents": [],
+  "branch": "main"
+}

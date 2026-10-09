@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-09T13:41:38.635Z",
+  "protocolHash": "7e2406f14796df613dbbb9428611c75cb5ed4edaebecfcc2359fadfb6a75003b",
+  "rows": [
+    {
+      "name": "actual-tool-discovery",
+      "productionPass": true
+    },
+    {
+      "name": "read-tasks",
+      "productionPass": true,
+      "wallMs": 37633.437999999995,
+      "error": null,
+      "data": {
+        "candidates": [
+          {
+            "id": "task_sdk",
+            "kind": "task",
+            "path": ".dip/events/task_sdk",
+            "contentHash": "bc91bfa88b72f4ed0b375bb1d4a03e4d1b670471abd340c9980f9334e65a8f68",
+            "status": "backlog",
+            "sourceTruncated": false,
+            "heading": [],
+            "start": 0,
+            "end": 307,
+            "offsetUnit": "Unicode code points",
+            "excerpt": "# Unicode export\n\nKeep Hebrew text and input order.\n\n## Current criteria\n- Preserve Unicode and input order\n\n## Metadata\n{\"id\":\"task_sdk\",\"status\":\"backlog\",\"scope\":[],\"dependencies\":[],\"documents\":[{\"path\":\"plan.md\",\"role\":\"plan\",\"hash\":\"c9e70e0cb7284343408abdf71df1030974a970cc60ed2c9c812667b6930adec0\"}]}",
+            "excerptTruncated": false,
+            "score": 0.9030894637107849
+          }
+        ],
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "encoded": 1,
+        "reused": 0,
+        "sections": 1,
+        "cacheRebuilt": true,
+        "elapsedMs": 176.0206000180915,
+        "identityEstablished": false,
+        "verification": "not_checked",
+        "changedDuringRead": [],
+        "errors": [],
+        "sourceSetTruncated": false,
+        "sourceTextTrusted": false
+      }
+    },
+    {
+      "name": "read-documents",
+      "productionPass": true,
+      "wallMs": 60.47149999999965,
+      "error": null,
+      "data": {
+        "candidates": [
+          {
+            "id": "document:plan.md",
+            "kind": "document",
+            "path": "plan.md",
+            "contentHash": "c9e70e0cb7284343408abdf71df1030974a970cc60ed2c9c812667b6930adec0",
+            "status": "source",
+            "sourceTruncated": false,
+            "heading": [
+              "Unicode export",
+              "Current criteria"
+            ],
+            "start": 18,
+            "end": 71,
+            "offsetUnit": "Unicode code points",
+            "excerpt": "## Current criteria\nKeep Hebrew text and input order.",
+            "excerptTruncated": false,
+            "links": [
+              {
+                "taskId": "task_sdk",
+                "role": "plan",
+                "recordedHash": "c9e70e0cb7284343408abdf71df1030974a970cc60ed2c9c812667b6930adec0",
+                "freshness": "current"
+              }
+            ],
+            "score": 0.9014053344726562
+          }
+        ],
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "encoded": 2,
+        "reused": 0,
+        "sections": 2,
+        "cacheRebuilt": true,
+        "elapsedMs": 46.95039999205619,
+        "identityEstablished": false,
+        "verification": "not_checked",
+        "changedDuringRead": [],
+        "errors": [],
+        "sourceSetTruncated": false,
+        "sourceTextTrusted": false
+      }
+    },
+    {
+      "name": "read-tasks",
+      "productionPass": true,
+      "wallMs": 46.68970000000263,
+      "error": null,
+      "data": {
+        "candidates": [
+          {
+            "id": "task_sdk",
+            "kind": "task",
+            "path": ".dip/events/task_sdk",
+            "contentHash": "bc91bfa88b72f4ed0b375bb1d4a03e4d1b670471abd340c9980f9334e65a8f68",
+            "status": "backlog",
+            "sourceTruncated": false,
+            "heading": [],
+            "start": 0,
+            "end": 307,
+            "offsetUnit": "Unicode code points",
+            "excerpt": "# Unicode export\n\nKeep Hebrew text and input order.\n\n## Current criteria\n- Preserve Unicode and input order\n\n## Metadata\n{\"id\":\"task_sdk\",\"status\":\"backlog\",\"scope\":[],\"dependencies\":[],\"documents\":[{\"path\":\"plan.md\",\"role\":\"plan\",\"hash\":\"c9e70e0cb7284343408abdf71df1030974a970cc60ed2c9c812667b6930adec0\"}]}",
+            "excerptTruncated": false,
+            "score": 0.9030894637107849
+          }
+        ],
+        "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+        "encoded": 0,
+        "reused": 1,
+        "sections": 1,
+        "cacheRebuilt": false,
+        "elapsedMs": 33.805000013671815,
+        "identityEstablished": false,
+        "verification": "not_checked",
+        "changedDuringRead": [],
+        "errors": [],
+        "sourceSetTruncated": false,
+        "sourceTextTrusted": false
+      }
+    },
+    {
+      "name": "ordinary-fallback",
+      "productionPass": true
+    },
+    {
+      "name": "canonical-read-only",
+      "productionPass": true
+    },
+    {
+      "name": "server-close-descendants",
+      "productionPass": true
+    }
+  ],
+  "modelMocked": false,
+  "processSample": [
+    {
+      "Name": "node.exe",
+      "ProcessId": 10868,
+      "ParentProcessId": 19592,
+      "WorkingSetSize": 73474048,
+      "PrivatePageCount": 38330368
+    },
+    {
+      "Name": "conhost.exe",
+      "ProcessId": 25684,
+      "ParentProcessId": 10868,
+      "WorkingSetSize": 7983104,
+      "PrivatePageCount": 1253376
+    },
+    {
+      "Name": "python.exe",
+      "ProcessId": 21660,
+      "ParentProcessId": 10868,
+      "WorkingSetSize": 4911104,
+      "PrivatePageCount": 851968
+    },
+    {
+      "Name": "conhost.exe",
+      "ProcessId": 22524,
+      "ParentProcessId": 21660,
+      "WorkingSetSize": 7917568,
+      "PrivatePageCount": 1220608
+    },
+    {
+      "Name": "python.exe",
+      "ProcessId": 18204,
+      "ParentProcessId": 21660,
+      "WorkingSetSize": 725254144,
+      "PrivatePageCount": 1705959424
+    }
+  ],
+  "sampleKind": "One warm process-tree sample including Python descendants, not peak memory",
+  "afterClose": [],
+  "stderr": "",
+  "completedAt": "2026-10-09T13:42:21.112Z"
+}

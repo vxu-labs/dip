@@ -222,6 +222,13 @@
         "scripts/semantic-prototype-check.mjs"
       ],
       "timeoutMs": 60000
+    },
+    "production-evaluation": {
+      "command": [
+        "node",
+        "scripts/production-evidence.mjs"
+      ],
+      "timeoutMs": 120000
     }
   },
   "mode": "coordinate",

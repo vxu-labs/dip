@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4c37423d-2155-40c6-9184-0d0c54c513fa",
+  "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Frozen product 329bbb6 isolated after unrelated concurrent edits invalidated unscored setup. Live32 diagnostics completed: freshness/branch/delete/read-only/bounds pass; warm small p95 78ms and1000+100 plain-source p95 1.63s; cold index70s. Full canonical MCP cold searches timed out120s in two preflights. Four-heavy-worker run had resource failures with other live workers; do not assert exact four-only memory envelope. Controlled encoder/IPC-mocked probes separately demonstrate stale reply attribution, poisoned overbudget recovery, and serialized shared-temp-file races. All failures retained; unit suite exceeded240s while targeted18 tests and syntax passed; clean package smoke passed. 18 scheduled optional-retrieval agent trials now running with degraded fallback explicitly permitted. No release/default enablement. Independent/multiweek/Claude/platform gates remain open.",
+    "next": "",
+    "head": "329bbb627a2e8e602d109485126f625f921a8f95"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T13:16:21.781Z",
+  "parents": [
+    "59f5e748-1856-44ce-8ddd-a8f5c7861d11"
+  ],
+  "branch": "main"
+}

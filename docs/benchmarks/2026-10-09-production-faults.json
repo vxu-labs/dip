@@ -1,0 +1,28 @@
+{
+  "createdAt": "2026-10-09T13:05:42.835Z",
+  "protocolHash": "29b18ea6f1f5deea55e7b3c859ec7cca701bc20929e2f77b876ab2364dbc9763",
+  "sourceHash": "06e1baeece3e176334698196eb8d3842f7cf6e7265d9d959cf1a767f99ace3a7",
+  "transformedHash": "273a257bd19c42194ec1df77df6da6a2ca5268ff52a53af688e6533e3679a9e3",
+  "modelMocked": true,
+  "rows": [
+    {
+      "name": "malformed-response-isolation",
+      "productionPass": false,
+      "receivedIds": [
+        "first"
+      ]
+    },
+    {
+      "name": "overbudget-response-recovery",
+      "productionPass": false,
+      "error": "Worker response exceeds budget"
+    },
+    {
+      "name": "late-response-after-close",
+      "productionPass": false,
+      "receivedIds": [
+        "first"
+      ]
+    }
+  ]
+}

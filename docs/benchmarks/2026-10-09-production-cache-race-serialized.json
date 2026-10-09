@@ -1,0 +1,30 @@
+{
+  "protocolHash": "8a93f32df62a0dbb3471295d0636660b8119096266e0ffb50ed847bcb4421e0d",
+  "sourceHash": "16d54f47d9c20f84ece284c9781a91ec7ca78e2aa666ce356ce614ffb40e4e73",
+  "encoderMocked": true,
+  "rows": [
+    {
+      "index": 0,
+      "completed": true,
+      "encoded": 1
+    },
+    {
+      "index": 1,
+      "completed": false,
+      "error": "FileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:\\\\Users\\\\offic\\\\AppData\\\\Local\\\\Temp\\\\dip-production-cache-fault-ga7kd1bh\\\\129ce50dd90bf244858763d3f10932a9f6d8a521ad4f2c946574e9a566e04054-tasks.tmp.npz' -> 'C:\\\\Users\\\\offic\\\\AppData\\\\Local\\\\Temp\\\\dip-production-cache-fault-ga7kd1bh\\\\129ce50dd90bf244858763d3f10932a9f6d8a521ad4f2c946574e9a566e04054-tasks.npz'"
+    },
+    {
+      "index": 2,
+      "completed": false,
+      "error": "FileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:\\\\Users\\\\offic\\\\AppData\\\\Local\\\\Temp\\\\dip-production-cache-fault-ga7kd1bh\\\\129ce50dd90bf244858763d3f10932a9f6d8a521ad4f2c946574e9a566e04054-tasks.tmp.npz' -> 'C:\\\\Users\\\\offic\\\\AppData\\\\Local\\\\Temp\\\\dip-production-cache-fault-ga7kd1bh\\\\129ce50dd90bf244858763d3f10932a9f6d8a521ad4f2c946574e9a566e04054-tasks.npz'"
+    },
+    {
+      "index": 3,
+      "completed": false,
+      "error": "FileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:\\\\Users\\\\offic\\\\AppData\\\\Local\\\\Temp\\\\dip-production-cache-fault-ga7kd1bh\\\\129ce50dd90bf244858763d3f10932a9f6d8a521ad4f2c946574e9a566e04054-tasks.tmp.npz' -> 'C:\\\\Users\\\\offic\\\\AppData\\\\Local\\\\Temp\\\\dip-production-cache-fault-ga7kd1bh\\\\129ce50dd90bf244858763d3f10932a9f6d8a521ad4f2c946574e9a566e04054-tasks.npz'"
+    }
+  ],
+  "finalCacheValid": true,
+  "cacheError": null,
+  "productionPass": false
+}

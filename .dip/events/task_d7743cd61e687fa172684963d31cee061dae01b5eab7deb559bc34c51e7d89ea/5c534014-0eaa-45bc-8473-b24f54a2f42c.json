@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5c534014-0eaa-45bc-8473-b24f54a2f42c",
+  "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "plan": [
+        {
+          "step": "Freeze protocol and isolated test harness",
+          "status": "in_progress"
+        },
+        {
+          "step": "Run operational, scale and safety diagnostics",
+          "status": "pending"
+        },
+        {
+          "step": "Run extended agent comparisons and replay scoring",
+          "status": "pending"
+        },
+        {
+          "step": "Publish evidence and readiness verdict; preserve unmet rollout gates",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T12:46:34.128Z",
+  "parents": [
+    "ec59ab56-006a-433d-a78e-cb2fcb2ef234"
+  ],
+  "branch": "main"
+}

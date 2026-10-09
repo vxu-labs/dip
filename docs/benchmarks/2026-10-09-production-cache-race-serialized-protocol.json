@@ -1,0 +1,9 @@
+{
+  "sourceHash": "16d54f47d9c20f84ece284c9781a91ec7ca78e2aa666ce356ce614ffb40e4e73",
+  "harnessHash": "e607ecaeb9d323897c84df747754b51a30415f91254e58c0eb92acfd837f0c2c",
+  "processes": 4,
+  "synchronization": "Barrier immediately before production os.replace, after each writer saves the same fixed tmp file",
+  "legalSchedule": "All writes finish; rename calls execute in index order using explicit events",
+  "encoderMocked": true,
+  "expected": "All four requests complete; final NPZ loads safely with matching checksum"
+}

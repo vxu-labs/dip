@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-10-09T13:23:03.908Z",
+  "sourceHashes": {
+    "src/semantic.js": "06e1baeece3e176334698196eb8d3842f7cf6e7265d9d959cf1a767f99ace3a7",
+    "src/semantic-worker.py": "16d54f47d9c20f84ece284c9781a91ec7ca78e2aa666ce356ce614ffb40e4e73",
+    "src/mcp.js": "6e36e92850a6d2b619f088bdb59d555873ec365a6cb151483711abe3a6b93490"
+  },
+  "harnessHash": "2ac6dc780508c7923975b42ed0ae57c12ffc089b6b81ee35a39e334f011f98a9",
+  "cases": [
+    "actual-tool-discovery",
+    "actual-task-document-read",
+    "channel-cache-reuse",
+    "canonical-read-only",
+    "ordinary-fallback",
+    "server-close-descendants"
+  ],
+  "modelMocked": false
+}

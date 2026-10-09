@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "44db4196-2f17-44d0-b730-5cb001f6a5a9",
+  "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/production-readiness-plan.md",
+    "role": "plan",
+    "hash": "a4691f0e0662742d36bf5bee419323a7be9d1f7d17e9ac0a62236cbaa57f78cb",
+    "bytes": 5717,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T12:57:25.046Z",
+  "parents": [
+    "09031d24-0b5f-476b-98d2-c0e23fbdbc4e"
+  ],
+  "branch": "main"
+}

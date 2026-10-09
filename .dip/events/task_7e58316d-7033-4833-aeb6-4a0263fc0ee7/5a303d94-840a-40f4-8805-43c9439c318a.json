@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5a303d94-840a-40f4-8805-43c9439c318a",
+  "taskId": "task_7e58316d-7033-4833-aeb6-4a0263fc0ee7",
+  "type": "task.create",
+  "payload": {
+    "title": "Isolate semantic worker responses and reset broken transports",
+    "description": "Controlled frozen-source IPC probes showed stale response satisfies a new request after malformed JSON or close; oversized buffer poisons subsequent reads. Add request correlation and generation fencing, bounded reset/restart, no old-child data acceptance and cancellation tests before production. Encoder transport was mocked to isolate control flow.",
+    "status": "backlog",
+    "scope": [
+      "src/semantic.js"
+    ],
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T13:08:52.029Z",
+  "parents": [],
+  "branch": "main"
+}

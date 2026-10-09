@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "09031d24-0b5f-476b-98d2-c0e23fbdbc4e",
+  "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "scripts/production-*",
+      "test/production-*",
+      "docs/benchmarks/production-*",
+      ".dip/config.json",
+      "scripts/production-fixtures.mjs",
+      "docs/benchmarks/production-readiness-plan.md",
+      "scripts/production-operations.mjs",
+      "scripts/production-agents.mjs"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T12:52:35.520Z",
+  "parents": [
+    "1ebe7906-88b6-4469-8ee4-71f2c5b6e729"
+  ],
+  "branch": "main"
+}

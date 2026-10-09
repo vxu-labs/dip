@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "722b2365-1e0c-4354-8be9-175a86fdd424",
+  "taskId": "task_29131646-3b2b-4434-be66-ee4a9b3e13da",
+  "type": "task.create",
+  "payload": {
+    "title": "Complete independent real-project and multiweek production pilot",
+    "description": "Local Windows diagnostics and larger-history synthetic repetitions do not replace independently labelled natural changes in multiple projects, actual Claude, cross-platform E5 inference, fresh upgrades or a several-week opt-in user pilot. Remains a production acceptance gate; no deployment authorized.",
+    "status": "backlog",
+    "scope": [
+      "docs/benchmarks"
+    ],
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T13:08:52.653Z",
+  "parents": [],
+  "branch": "main"
+}

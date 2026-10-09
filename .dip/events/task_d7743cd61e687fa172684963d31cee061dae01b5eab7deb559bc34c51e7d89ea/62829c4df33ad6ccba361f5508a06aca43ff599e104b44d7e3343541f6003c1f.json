@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "62829c4df33ad6ccba361f5508a06aca43ff599e104b44d7e3343541f6003c1f",
+  "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+  "type": "task.create",
+  "payload": {
+    "title": "תעשה את הניסוי המקיף של כל מה שהצעת כאן לבדוק אם זה מוכן לproduction או לא",
+    "description": "תעשה את הניסוי המקיף של כל מה שהצעת כאן לבדוק אם זה מוכן לproduction או לא \n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T12:45:30.634Z",
+  "parents": [],
+  "branch": "main"
+}

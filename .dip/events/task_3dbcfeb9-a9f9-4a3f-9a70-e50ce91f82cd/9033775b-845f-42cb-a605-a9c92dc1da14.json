@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9033775b-845f-42cb-a605-a9c92dc1da14",
+  "taskId": "task_3dbcfeb9-a9f9-4a3f-9a70-e50ce91f82cd",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/production-readiness.md",
+    "role": "reference",
+    "hash": "d58ce18861be7cd3528f024e4aa774f9a773577ded8f900525541995ab3363be",
+    "bytes": 11662,
+    "source": "manual"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T13:48:27.955Z",
+  "parents": [
+    "0ff941ce-ae8a-4bea-a889-18c3597fc495"
+  ],
+  "branch": "main"
+}

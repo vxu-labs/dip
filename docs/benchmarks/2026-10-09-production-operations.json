@@ -1,0 +1,2488 @@
+{
+  "schemaVersion": 1,
+  "protocolHash": "81974d62a999592945f191ea92750cb35f1872168fc22dcc9b34e42284ed0c2d",
+  "startedAt": "2026-10-09T12:57:13.828Z",
+  "platform": "win32",
+  "rows": [
+    {
+      "name": "cold-small",
+      "completed": true,
+      "wallMs": 58814,
+      "productionPass": true,
+      "elapsedMs": 294.6391999721527,
+      "encoded": 5,
+      "candidates": [
+        {
+          "id": "doc",
+          "hash": "4f94e30e67ab5b4c93afff0674df5d8d4f60abb28e32362195cef8542f2fa1d5"
+        },
+        {
+          "id": "export",
+          "hash": "f5dca209419a3d821788fca5503771229e6dd908e7f8e4e6a5f720f9a0a2fadb"
+        },
+        {
+          "id": "queue",
+          "hash": "a1a9e9b7bb32df07b423ac04b5afc5b6cb6e0eb8099e1f80a40cc1a6cc8983ec"
+        }
+      ],
+      "readOnly": true
+    },
+    {
+      "name": "warm-small-20",
+      "completed": true,
+      "wallMs": 1200,
+      "productionPass": true,
+      "p95Ms": 78.3698000000004,
+      "timingsMs": [
+        45.07180000000517,
+        46.226800000004005,
+        48.73660000000382,
+        49.610200000002806,
+        50.696499999998196,
+        52.29139999999461,
+        53.439100000003236,
+        53.534099999997125,
+        53.57809999999881,
+        56.38610000000335,
+        57.47830000000249,
+        61.89119999999821,
+        62.41389999999956,
+        62.9349000000002,
+        63.4629999999961,
+        69.38760000000184,
+        71.57459999999992,
+        71.58359999999811,
+        78.3698000000004,
+        91.07080000000133
+      ]
+    },
+    {
+      "name": "warm-process-memory",
+      "completed": true,
+      "wallMs": 851,
+      "productionPass": null,
+      "sample": {
+        "WorkingSet64": 4915200,
+        "PrivateMemorySize64": 860160
+      },
+      "note": "One post-warm sample, not peak memory"
+    },
+    {
+      "name": "single-worker-parallel",
+      "completed": true,
+      "wallMs": 102,
+      "productionPass": false,
+      "fulfilled": 1,
+      "errors": [
+        "Semantic worker is busy; retry after the current read completes",
+        "Semantic worker is busy; retry after the current read completes",
+        "Semantic worker is busy; retry after the current read completes"
+      ],
+      "fallbackAvailable": true
+    },
+    {
+      "name": "close-active-and-restart",
+      "completed": false,
+      "productionPass": false,
+      "wallMs": 24862,
+      "error": "Semantic worker exited"
+    },
+    {
+      "name": "crash-active-and-restart",
+      "completed": false,
+      "productionPass": false,
+      "wallMs": 31567,
+      "error": "Semantic worker exited"
+    },
+    {
+      "name": "corrupt-channel-cache",
+      "completed": true,
+      "wallMs": 25496,
+      "productionPass": true,
+      "encoded": 5
+    },
+    {
+      "name": "changed-deleted-cache-sources",
+      "completed": true,
+      "wallMs": 123,
+      "productionPass": true,
+      "changedEncoded": 1,
+      "deletedEncoded": 0
+    },
+    {
+      "name": "missing-model-fallback",
+      "completed": true,
+      "wallMs": 11725,
+      "productionPass": true,
+      "error": "ValueError: Use the pinned E5-small snapshot revision",
+      "fallbackSources": 2
+    },
+    {
+      "name": "actual-live-read-only",
+      "completed": true,
+      "wallMs": 16791,
+      "productionPass": true,
+      "readOnly": true,
+      "identityEstablished": false,
+      "verification": "not_checked"
+    },
+    {
+      "name": "changed-during-real-read",
+      "completed": true,
+      "wallMs": 13436,
+      "productionPass": true,
+      "changed": [
+        "document:plan.md"
+      ],
+      "candidateCount": 0
+    },
+    {
+      "name": "modified-link-freshness",
+      "completed": true,
+      "wallMs": 87,
+      "productionPass": true,
+      "links": [
+        {
+          "taskId": "task_live",
+          "role": "plan",
+          "recordedHash": "d469606481e89c5cc783c239bde0b42d62775fdc4709fef1a0895d9c92cde263",
+          "freshness": "changed"
+        }
+      ]
+    },
+    {
+      "name": "actual-git-branch-switch",
+      "completed": true,
+      "wallMs": 1568,
+      "productionPass": true,
+      "changed": [
+        "document:plan.md"
+      ],
+      "branchHashesDiffer": true
+    },
+    {
+      "name": "deleted-during-real-read",
+      "completed": true,
+      "wallMs": 130,
+      "productionPass": true,
+      "changed": [
+        "document:plan.md"
+      ],
+      "errors": [
+        {
+          "path": "plan.md",
+          "error": "ENOENT: no such file or directory, lstat 'C:\\Users\\offic\\AppData\\Local\\Temp\\dip-production-vDhHKN\\live\\plan.md'"
+        }
+      ]
+    },
+    {
+      "name": "unlinked-document",
+      "completed": true,
+      "wallMs": 63,
+      "productionPass": true,
+      "documentCount": 0
+    },
+    {
+      "name": "cancelled-during-real-read",
+      "completed": true,
+      "wallMs": 214,
+      "productionPass": true,
+      "changed": [
+        "task_live"
+      ]
+    },
+    {
+      "name": "missing-repository",
+      "completed": true,
+      "wallMs": 1,
+      "productionPass": true,
+      "error": "Initialize DIP explicitly before semantic retrieval"
+    },
+    {
+      "name": "unsafe-document-paths",
+      "completed": true,
+      "wallMs": 3,
+      "productionPass": true,
+      "rejected": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "invalid-utf8-and-size",
+      "completed": true,
+      "wallMs": 36,
+      "productionPass": true,
+      "errors": [
+        "The encoded data was not valid for encoding utf-8",
+        "Document must be a regular file of at most 1 MiB"
+      ]
+    },
+    {
+      "name": "symlink-document",
+      "completed": true,
+      "wallMs": 2,
+      "productionPass": null,
+      "notTested": true,
+      "error": "EPERM: operation not permitted, symlink 'C:\\Users\\offic\\AppData\\Local\\Temp\\dip-production-vDhHKN\\outside.md' -> 'C:\\Users\\offic\\AppData\\Local\\Temp\\dip-production-vDhHKN\\live\\link.md'"
+    },
+    {
+      "name": "malformed-query-bounds",
+      "completed": true,
+      "wallMs": 0,
+      "productionPass": true,
+      "rejected": 4
+    },
+    {
+      "name": "worker-duplicate-namespace-budget",
+      "completed": true,
+      "wallMs": 183,
+      "productionPass": true,
+      "errors": [
+        "ValueError: Duplicate source identity",
+        "ValueError: Invalid cache namespace",
+        "ValueError: Source budget exceeded"
+      ]
+    },
+    {
+      "name": "fenced-headings-and-unicode-offsets",
+      "completed": true,
+      "wallMs": 85,
+      "productionPass": true,
+      "candidates": [
+        {
+          "id": "unicode",
+          "kind": "document",
+          "path": "unicode.md",
+          "contentHash": "98cf30476fe286b3cbbb45621177fe65e5a7fa1ccd639adce3509c3c7661cdd8",
+          "status": "backlog",
+          "sourceTruncated": false,
+          "heading": [
+            "Valid",
+            "Unicode"
+          ],
+          "start": 53,
+          "end": 83,
+          "offsetUnit": "Unicode code points",
+          "excerpt": "## Unicode\nעברית 😀 input order",
+          "excerptTruncated": false,
+          "links": [],
+          "score": 0.9112130999565125
+        }
+      ]
+    },
+    {
+      "name": "injection-candidate-only",
+      "completed": true,
+      "wallMs": 195,
+      "productionPass": true,
+      "note": "Retrieval boundary only; host agent injection resistance requires separate adversarial agent runs"
+    },
+    {
+      "name": "no-match-is-not-abstention",
+      "completed": true,
+      "wallMs": 48,
+      "productionPass": null,
+      "candidateCount": 3,
+      "identityEstablished": false,
+      "note": "Candidates remain possible for unrelated queries; not an automatic identity tool"
+    },
+    {
+      "name": "shared-cache-four-workers",
+      "completed": true,
+      "wallMs": 18854,
+      "productionPass": false,
+      "trials": [
+        {
+          "fulfilled": 0,
+          "errors": [
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited"
+          ]
+        },
+        {
+          "fulfilled": 0,
+          "errors": [
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited"
+          ]
+        },
+        {
+          "fulfilled": 0,
+          "errors": [
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited"
+          ]
+        },
+        {
+          "fulfilled": 0,
+          "errors": [
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited",
+            "Semantic worker exited"
+          ]
+        },
+        {
+          "fulfilled": 1,
+          "errors": [
+            "OSError: [WinError 1114] A dynamic link library (DLL) initialization routine failed. Error loading \"C:\\Users\\offic\\Documents\\ChatGPT\\CUSTOM GIT\\.dip-local\\laya-env\\Lib\\site-packages\\torch\\lib\\shm.dll\" or one of its dependencies.",
+            "ImportError: DLL load failed while importing select: The paging file is too small for this operation to complete.",
+            "Semantic worker exited"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "scale-1000-tasks-100-documents",
+      "completed": true,
+      "wallMs": 82449,
+      "productionPass": true,
+      "coldMs": 70185.50359993242,
+      "coldEncoded": 1416,
+      "sourceCount": 1100,
+      "sections": 1416,
+      "p95Ms": 1628.300099999993,
+      "timingsMs": [
+        1029.607799999998,
+        1073.5642000000225,
+        1092.4211999999825,
+        1174.7861999999732,
+        1179.6699000000372,
+        1191.7069999999949,
+        1254.699900000007,
+        1259.7995000000228,
+        1267.5827999999747,
+        1628.300099999993
+      ]
+    },
+    {
+      "name": "collector-task-and-document-limits",
+      "completed": true,
+      "wallMs": 8052,
+      "productionPass": true,
+      "truncated": true,
+      "tasks": 2000,
+      "documents": 100,
+      "errors": []
+    },
+    {
+      "name": "current-real-project-known-queries",
+      "completed": true,
+      "wallMs": 117580,
+      "productionPass": null,
+      "snapshotHash": "aa4a1234ce0d2d3c58095f4a5c23b796457f509428bbe0e580624175d0982fbb",
+      "sourceCount": 78,
+      "knownQueries": true,
+      "rows": [
+        {
+          "id": "real-task_2362d29e-7f1b-4f76-8d38-43fbaf961335-en",
+          "gold": [
+            "task_2362d29e-7f1b-4f76-8d38-43fbaf961335"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+              "path": ".dip/events/task_e688572e-bac2-4207-833a-0d6f970b5bde",
+              "heading": [],
+              "score": 0.8497430086135864
+            },
+            {
+              "id": "task_2362d29e-7f1b-4f76-8d38-43fbaf961335",
+              "path": ".dip/events/task_2362d29e-7f1b-4f76-8d38-43fbaf961335",
+              "heading": [],
+              "score": 0.8475794196128845
+            },
+            {
+              "id": "task_e0098db7-8a67-4363-bef0-509e0955d475",
+              "path": ".dip/events/task_e0098db7-8a67-4363-bef0-509e0955d475",
+              "heading": [],
+              "score": 0.8383746147155762
+            },
+            {
+              "id": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "path": ".dip/events/task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "heading": [],
+              "score": 0.8375272154808044
+            },
+            {
+              "id": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "path": ".dip/events/task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "heading": [],
+              "score": 0.8317750096321106
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 29178.118100040592
+        },
+        {
+          "id": "real-task_2362d29e-7f1b-4f76-8d38-43fbaf961335-he",
+          "gold": [
+            "task_2362d29e-7f1b-4f76-8d38-43fbaf961335"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.860264778137207
+            },
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8551539182662964
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8522738218307495
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8522738218307495
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8447438478469849
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 875.2831999445334
+        },
+        {
+          "id": "real-task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344-en",
+          "gold": [
+            "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+              "path": ".dip/events/task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344",
+              "heading": [],
+              "score": 0.8635193109512329
+            },
+            {
+              "id": "task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+              "path": ".dip/events/task_4fd611bcdd77287c9641a4e26326ad876a73f0abe9663682363a0dac45f29183",
+              "heading": [],
+              "score": 0.8578751087188721
+            },
+            {
+              "id": "task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+              "path": ".dip/events/task_33c6a780-4445-4fe9-b090-9fc20deb4ae6",
+              "heading": [],
+              "score": 0.8547905683517456
+            },
+            {
+              "id": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "path": ".dip/events/task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "heading": [],
+              "score": 0.8531128168106079
+            },
+            {
+              "id": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "path": ".dip/events/task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "heading": [],
+              "score": 0.8506208658218384
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 779.3096000095829
+        },
+        {
+          "id": "real-task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344-he",
+          "gold": [
+            "task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8820151686668396
+            },
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8657248020172119
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8620532751083374
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8620532751083374
+            },
+            {
+              "id": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+              "path": ".dip/events/task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+              "heading": [],
+              "score": 0.8504742980003357
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 631.5889999968931
+        },
+        {
+          "id": "real-task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df-en",
+          "gold": [
+            "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+              "path": ".dip/events/task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+              "heading": [],
+              "score": 0.8273535966873169
+            },
+            {
+              "id": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "path": ".dip/events/task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "heading": [],
+              "score": 0.8221227526664734
+            },
+            {
+              "id": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "path": ".dip/events/task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "heading": [],
+              "score": 0.8185295462608337
+            },
+            {
+              "id": "task_e0098db7-8a67-4363-bef0-509e0955d475",
+              "path": ".dip/events/task_e0098db7-8a67-4363-bef0-509e0955d475",
+              "heading": [],
+              "score": 0.8170073628425598
+            },
+            {
+              "id": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+              "path": ".dip/events/task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+              "heading": [],
+              "score": 0.8162320852279663
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 633.5038000252098
+        },
+        {
+          "id": "real-task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df-he",
+          "gold": [
+            "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8496309518814087
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8450051546096802
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8450051546096802
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8372213840484619
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8317762613296509
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 905.2511000772938
+        },
+        {
+          "id": "real-task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40-en",
+          "gold": [
+            "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "path": ".dip/events/task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "heading": [],
+              "score": 0.8838671445846558
+            },
+            {
+              "id": "task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+              "path": ".dip/events/task_819b353754ad86a6dfee6eda50c3387218f9520ba72f3df8bab80734a66742ba",
+              "heading": [],
+              "score": 0.8665242791175842
+            },
+            {
+              "id": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "path": ".dip/events/task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "heading": [],
+              "score": 0.8600658178329468
+            },
+            {
+              "id": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "path": ".dip/events/task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "heading": [],
+              "score": 0.852547824382782
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8488751649856567
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 840.6844999408349
+        },
+        {
+          "id": "real-task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40-he",
+          "gold": [
+            "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8587679266929626
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.856346070766449
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8517294526100159
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8517294526100159
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8484417200088501
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 1109.8201000131667
+        },
+        {
+          "id": "real-task_8b4318ef-b13d-4420-988f-5266db4cd215-en",
+          "gold": [
+            "task_8b4318ef-b13d-4420-988f-5266db4cd215"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "path": ".dip/events/task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "heading": [],
+              "score": 0.862001895904541
+            },
+            {
+              "id": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "path": ".dip/events/task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "heading": [],
+              "score": 0.8617122173309326
+            },
+            {
+              "id": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "path": ".dip/events/task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "heading": [],
+              "score": 0.8571645021438599
+            },
+            {
+              "id": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "path": ".dip/events/task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "heading": [],
+              "score": 0.8520570397377014
+            },
+            {
+              "id": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "path": ".dip/events/task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "heading": [],
+              "score": 0.8483275771141052
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 1050.9936000453308
+        },
+        {
+          "id": "real-task_8b4318ef-b13d-4420-988f-5266db4cd215-he",
+          "gold": [
+            "task_8b4318ef-b13d-4420-988f-5266db4cd215"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8524200916290283
+            },
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8477059006690979
+            },
+            {
+              "id": "task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e",
+              "path": ".dip/events/task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e",
+              "heading": [],
+              "score": 0.8398245573043823
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8396663069725037
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.839614987373352
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 951.4541000826284
+        },
+        {
+          "id": "real-task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90-en",
+          "gold": [
+            "task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90",
+              "path": ".dip/events/task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90",
+              "heading": [],
+              "score": 0.850844144821167
+            },
+            {
+              "id": "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+              "path": ".dip/events/task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+              "heading": [],
+              "score": 0.8343724012374878
+            },
+            {
+              "id": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "path": ".dip/events/task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "heading": [],
+              "score": 0.8282482624053955
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8275120258331299
+            },
+            {
+              "id": "task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7",
+              "path": ".dip/events/task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7",
+              "heading": [],
+              "score": 0.8263516426086426
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 854.0983999846503
+        },
+        {
+          "id": "real-task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90-he",
+          "gold": [
+            "task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8683939576148987
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8646317720413208
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8646317720413208
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8529636263847351
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8516061305999756
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 845.3922999324277
+        },
+        {
+          "id": "real-task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e-en",
+          "gold": [
+            "task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e",
+              "path": ".dip/events/task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e",
+              "heading": [],
+              "score": 0.8630111217498779
+            },
+            {
+              "id": "task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+              "path": ".dip/events/task_15f6f22f468d7f2ec8a226f523138f3b4d5132b0ab927266a6aa7b4d1ff75426",
+              "heading": [],
+              "score": 0.8380879163742065
+            },
+            {
+              "id": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "path": ".dip/events/task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "heading": [],
+              "score": 0.8342145681381226
+            },
+            {
+              "id": "task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90",
+              "path": ".dip/events/task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90",
+              "heading": [],
+              "score": 0.8339075446128845
+            },
+            {
+              "id": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "path": ".dip/events/task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "heading": [],
+              "score": 0.8336242437362671
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 830.9995000017807
+        },
+        {
+          "id": "real-task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e-he",
+          "gold": [
+            "task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8522568941116333
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8463093638420105
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8463093638420105
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8401926755905151
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8359184265136719
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 892.9576000664383
+        },
+        {
+          "id": "real-task_e0098db7-8a67-4363-bef0-509e0955d475-en",
+          "gold": [
+            "task_e0098db7-8a67-4363-bef0-509e0955d475"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_e0098db7-8a67-4363-bef0-509e0955d475",
+              "path": ".dip/events/task_e0098db7-8a67-4363-bef0-509e0955d475",
+              "heading": [],
+              "score": 0.8584336042404175
+            },
+            {
+              "id": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "path": ".dip/events/task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "heading": [],
+              "score": 0.8423758745193481
+            },
+            {
+              "id": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+              "path": ".dip/events/task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+              "heading": [],
+              "score": 0.840251088142395
+            },
+            {
+              "id": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "path": ".dip/events/task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "heading": [],
+              "score": 0.8379524946212769
+            },
+            {
+              "id": "task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+              "path": ".dip/events/task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df",
+              "heading": [],
+              "score": 0.8325238227844238
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 811.0763999866322
+        },
+        {
+          "id": "real-task_e0098db7-8a67-4363-bef0-509e0955d475-he",
+          "gold": [
+            "task_e0098db7-8a67-4363-bef0-509e0955d475"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8510615229606628
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8508038520812988
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8455350399017334
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8455350399017334
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8366954922676086
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 1117.244999972172
+        },
+        {
+          "id": "real-task_15793da9-9d59-4fa4-acbf-65e08b24907b-en",
+          "gold": [
+            "task_15793da9-9d59-4fa4-acbf-65e08b24907b"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+              "path": ".dip/events/task_15793da9-9d59-4fa4-acbf-65e08b24907b",
+              "heading": [],
+              "score": 0.8856779932975769
+            },
+            {
+              "id": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "path": ".dip/events/task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "heading": [],
+              "score": 0.8642408847808838
+            },
+            {
+              "id": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "path": ".dip/events/task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "heading": [],
+              "score": 0.8594136834144592
+            },
+            {
+              "id": "task_c0bffa8c657be52733213fb619d4ab246777f7a978663dba448f57210da20e9f",
+              "path": ".dip/events/task_c0bffa8c657be52733213fb619d4ab246777f7a978663dba448f57210da20e9f",
+              "heading": [],
+              "score": 0.8523125648498535
+            },
+            {
+              "id": "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+              "path": ".dip/events/task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+              "heading": [],
+              "score": 0.850984513759613
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 1024.2759000975639
+        },
+        {
+          "id": "real-task_15793da9-9d59-4fa4-acbf-65e08b24907b-he",
+          "gold": [
+            "task_15793da9-9d59-4fa4-acbf-65e08b24907b"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8595720529556274
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8584685921669006
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8529770374298096
+            },
+            {
+              "id": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "path": ".dip/events/task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "heading": [],
+              "score": 0.8528975248336792
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.852840781211853
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 790.3199999127537
+        },
+        {
+          "id": "real-task_0fc443ee-b79b-4f6d-977f-e14c34a9df57-en",
+          "gold": [
+            "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+              "path": ".dip/events/task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+              "heading": [],
+              "score": 0.8794572353363037
+            },
+            {
+              "id": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "path": ".dip/events/task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "heading": [],
+              "score": 0.8579809665679932
+            },
+            {
+              "id": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "path": ".dip/events/task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "heading": [],
+              "score": 0.8376994729042053
+            },
+            {
+              "id": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "path": ".dip/events/task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "heading": [],
+              "score": 0.8335290551185608
+            },
+            {
+              "id": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "path": ".dip/events/task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "heading": [],
+              "score": 0.8309586048126221
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 853.2914000097662
+        },
+        {
+          "id": "real-task_0fc443ee-b79b-4f6d-977f-e14c34a9df57-he",
+          "gold": [
+            "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8804604411125183
+            },
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8650519847869873
+            },
+            {
+              "id": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "path": ".dip/events/task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "heading": [],
+              "score": 0.862334132194519
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8601820468902588
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8601820468902588
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 777.7950000017881
+        },
+        {
+          "id": "real-task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d-en",
+          "gold": [
+            "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+              "path": ".dip/events/task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d",
+              "heading": [],
+              "score": 0.8248097896575928
+            },
+            {
+              "id": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "path": ".dip/events/task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "heading": [],
+              "score": 0.8182544708251953
+            },
+            {
+              "id": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "path": ".dip/events/task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "heading": [],
+              "score": 0.8179804086685181
+            },
+            {
+              "id": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "path": ".dip/events/task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "heading": [],
+              "score": 0.8177490830421448
+            },
+            {
+              "id": "task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e",
+              "path": ".dip/events/task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e",
+              "heading": [],
+              "score": 0.8170858025550842
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 774.2320999968797
+        },
+        {
+          "id": "real-task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d-he",
+          "gold": [
+            "task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8511707186698914
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8448554277420044
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8448554277420044
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8427102565765381
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8424313068389893
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 654.8853000858799
+        },
+        {
+          "id": "real-task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7-en",
+          "gold": [
+            "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+              "path": ".dip/events/task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7",
+              "heading": [],
+              "score": 0.866808295249939
+            },
+            {
+              "id": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "path": ".dip/events/task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "heading": [],
+              "score": 0.8380204439163208
+            },
+            {
+              "id": "task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+              "path": ".dip/events/task_132f1f2d6591769a3a390eed8917546ca0abf1b1e4d5bd49afbc7f1f06306cc0",
+              "heading": [],
+              "score": 0.8366125822067261
+            },
+            {
+              "id": "task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+              "path": ".dip/events/task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+              "heading": [],
+              "score": 0.833732008934021
+            },
+            {
+              "id": "task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "path": ".dip/events/task_937dcdcd0f4c12bb53f3c443efe227fbf3ac29429cb4396efd024fd072c44d30",
+              "heading": [],
+              "score": 0.8307194709777832
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 726.1520000174642
+        },
+        {
+          "id": "real-task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7-he",
+          "gold": [
+            "task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8658143281936646
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8599981665611267
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8599981665611267
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8581977486610413
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8574211597442627
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 615.4530999483541
+        },
+        {
+          "id": "real-task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be-en",
+          "gold": [
+            "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_e688572e-bac2-4207-833a-0d6f970b5bde",
+              "path": ".dip/events/task_e688572e-bac2-4207-833a-0d6f970b5bde",
+              "heading": [],
+              "score": 0.852636992931366
+            },
+            {
+              "id": "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "path": ".dip/events/task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be",
+              "heading": [],
+              "score": 0.8502230048179626
+            },
+            {
+              "id": "task_8f7255b9decbeda0ee382505be7e1ccdff1892f11cea641bd3fb4663a88a39e2",
+              "path": ".dip/events/task_8f7255b9decbeda0ee382505be7e1ccdff1892f11cea641bd3fb4663a88a39e2",
+              "heading": [],
+              "score": 0.8461004495620728
+            },
+            {
+              "id": "task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+              "path": ".dip/events/task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+              "heading": [],
+              "score": 0.8391726016998291
+            },
+            {
+              "id": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "path": ".dip/events/task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "heading": [],
+              "score": 0.8357081413269043
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 862.7885000314564
+        },
+        {
+          "id": "real-task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be-he",
+          "gold": [
+            "task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8559378385543823
+            },
+            {
+              "id": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "path": ".dip/events/task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "heading": [],
+              "score": 0.8506203293800354
+            },
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8481097221374512
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.844878077507019
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.844878077507019
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 716.8582999147475
+        },
+        {
+          "id": "real-task_961a3099-11c8-49d1-98c9-6c422a347fc8-en",
+          "gold": [
+            "task_961a3099-11c8-49d1-98c9-6c422a347fc8"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_961a3099-11c8-49d1-98c9-6c422a347fc8",
+              "path": ".dip/events/task_961a3099-11c8-49d1-98c9-6c422a347fc8",
+              "heading": [],
+              "score": 0.8842402100563049
+            },
+            {
+              "id": "task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+              "path": ".dip/events/task_acd8dc1b-5d4d-4082-a160-c8e82f455d97",
+              "heading": [],
+              "score": 0.8343675136566162
+            },
+            {
+              "id": "task_12aac6e1-5b5b-4faf-89fb-51973a3cd912",
+              "path": ".dip/events/task_12aac6e1-5b5b-4faf-89fb-51973a3cd912",
+              "heading": [],
+              "score": 0.8244113326072693
+            },
+            {
+              "id": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+              "path": ".dip/events/task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+              "heading": [],
+              "score": 0.8217170238494873
+            },
+            {
+              "id": "task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "path": ".dip/events/task_dc33811f1abe21a3d2c1cbb5c082bb0b6f19a04bbab220914da5aad7e63b3ce3",
+              "heading": [],
+              "score": 0.8205164074897766
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 649.2159999907017
+        },
+        {
+          "id": "real-task_961a3099-11c8-49d1-98c9-6c422a347fc8-he",
+          "gold": [
+            "task_961a3099-11c8-49d1-98c9-6c422a347fc8"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8388402462005615
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8343559503555298
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8343559503555298
+            },
+            {
+              "id": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "path": ".dip/events/task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "heading": [],
+              "score": 0.8306602239608765
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.821590781211853
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 657.2508999379352
+        },
+        {
+          "id": "real-task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d-en",
+          "gold": [
+            "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "path": ".dip/events/task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d",
+              "heading": [],
+              "score": 0.8695334792137146
+            },
+            {
+              "id": "task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7",
+              "path": ".dip/events/task_f2990ba9f233c4b3e9c368de72ee92652370dd42ab5ea84d6191ce85d24c7bf7",
+              "heading": [],
+              "score": 0.8448715209960938
+            },
+            {
+              "id": "task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+              "path": ".dip/events/task_0fc443ee-b79b-4f6d-977f-e14c34a9df57",
+              "heading": [],
+              "score": 0.8386012315750122
+            },
+            {
+              "id": "task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "path": ".dip/events/task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40",
+              "heading": [],
+              "score": 0.8338058590888977
+            },
+            {
+              "id": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "path": ".dip/events/task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "heading": [],
+              "score": 0.8293198943138123
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 681.0316999908537
+        },
+        {
+          "id": "real-task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d-he",
+          "gold": [
+            "task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8670406937599182
+            },
+            {
+              "id": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+              "path": ".dip/events/task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+              "heading": [],
+              "score": 0.8605226278305054
+            },
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8567322492599487
+            },
+            {
+              "id": "task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "path": ".dip/events/task_aefc0908a5a269dbcefc53963edf4089293df45cdcdd33ad805dd7710c50ff9b",
+              "heading": [],
+              "score": 0.8515714406967163
+            },
+            {
+              "id": "task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+              "path": ".dip/events/task_0bb068059c0b99440c9e5f57f7497df8add6d780745cffee56732346396973fd",
+              "heading": [],
+              "score": 0.8510492444038391
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 718.6463000252843
+        },
+        {
+          "id": "real-task_358d32ed-9c7b-453e-a23f-244f00ef174c-en",
+          "gold": [
+            "task_358d32ed-9c7b-453e-a23f-244f00ef174c"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "path": ".dip/events/task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+              "heading": [],
+              "score": 0.8343079686164856
+            },
+            {
+              "id": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+              "path": ".dip/events/task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+              "heading": [],
+              "score": 0.8337612748146057
+            },
+            {
+              "id": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "path": ".dip/events/task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+              "heading": [],
+              "score": 0.8315869569778442
+            },
+            {
+              "id": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "path": ".dip/events/task_8b4318ef-b13d-4420-988f-5266db4cd215",
+              "heading": [],
+              "score": 0.830040454864502
+            },
+            {
+              "id": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+              "path": ".dip/events/task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+              "heading": [],
+              "score": 0.8300309181213379
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 718.2507000397891
+        },
+        {
+          "id": "real-task_358d32ed-9c7b-453e-a23f-244f00ef174c-he",
+          "gold": [
+            "task_358d32ed-9c7b-453e-a23f-244f00ef174c"
+          ],
+          "kind": "task",
+          "candidates": [
+            {
+              "id": "task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "path": ".dip/events/task_348aa1b13475ac6ab3c033e026faf37ea953e8c0816bd048bd90744eb8fcd02d",
+              "heading": [],
+              "score": 0.8529927134513855
+            },
+            {
+              "id": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "path": ".dip/events/task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+              "heading": [],
+              "score": 0.8473879098892212
+            },
+            {
+              "id": "task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "path": ".dip/events/task_be4129ea1b744ba87c1ecb7f6333c7326543877100e4b2ca7aab80b014ea0a31",
+              "heading": [],
+              "score": 0.8473879098892212
+            },
+            {
+              "id": "task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "path": ".dip/events/task_c430ca7192a7932ecf651c16677f7d8a7fd87235446b27c40656af70ed5224f7",
+              "heading": [],
+              "score": 0.8448380827903748
+            },
+            {
+              "id": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "path": ".dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+              "heading": [],
+              "score": 0.8440194129943848
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": true,
+          "elapsedMs": 747.9192999890074
+        },
+        {
+          "id": "doc-0-en",
+          "gold": [
+            "docs/navigation.md"
+          ],
+          "kind": "document",
+          "heading": "Search and explicit relationships",
+          "candidates": [
+            {
+              "id": "document:docs/navigation.md",
+              "path": "docs/navigation.md",
+              "heading": [
+                "Ask for the part of project memory you need",
+                "Search and explicit relationships"
+              ],
+              "score": 0.8678792715072632
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-alternatives.md",
+              "path": "docs/benchmarks/semantic-alternatives.md",
+              "heading": [
+                "Task retrieval alternatives and proposed experiment",
+                "User request and assistant response"
+              ],
+              "score": 0.8562339544296265
+            },
+            {
+              "id": "document:skills/dip/SKILL.md",
+              "path": "skills/dip/SKILL.md",
+              "heading": [],
+              "score": 0.8376039862632751
+            },
+            {
+              "id": "document:docs/completion.md",
+              "path": "docs/completion.md",
+              "heading": [
+                "Explicit outcomes and compact reads"
+              ],
+              "score": 0.8350586891174316
+            },
+            {
+              "id": "document:docs/protocol.md",
+              "path": "docs/protocol.md",
+              "heading": [
+                "Project data protocol",
+                "Tasks and evidence"
+              ],
+              "score": 0.8339598178863525
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 58199.38390003517
+        },
+        {
+          "id": "doc-0-he",
+          "gold": [
+            "docs/navigation.md"
+          ],
+          "kind": "document",
+          "heading": "Search and explicit relationships",
+          "candidates": [
+            {
+              "id": "document:docs/benchmarks/semantic-retrieval-pilot.md",
+              "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+              "heading": [
+                "Pretrained alternatives retrieval pilot",
+                "Results",
+                "Interpretation and remaining work"
+              ],
+              "score": 0.7946809530258179
+            },
+            {
+              "id": "document:docs/desktop-qa.md",
+              "path": "docs/desktop-qa.md",
+              "heading": [
+                "Codex desktop workflow QA",
+                "Method and observations"
+              ],
+              "score": 0.7920935153961182
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-agent-quality.md",
+              "path": "docs/benchmarks/semantic-agent-quality.md",
+              "heading": [
+                "E5 retrieval prototype and downstream agent quality",
+                "Development and infrastructure preflight"
+              ],
+              "score": 0.7902604341506958
+            },
+            {
+              "id": "document:docs/intent-transitions.md",
+              "path": "docs/intent-transitions.md",
+              "heading": [
+                "Follow-up intent without duplicate work"
+              ],
+              "score": 0.7900747060775757
+            },
+            {
+              "id": "document:docs/navigation.md",
+              "path": "docs/navigation.md",
+              "heading": [
+                "Ask for the part of project memory you need",
+                "Search and explicit relationships"
+              ],
+              "score": 0.7895299196243286
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": true,
+          "headingR1": false,
+          "elapsedMs": 478.5095000406727
+        },
+        {
+          "id": "doc-1-en",
+          "gold": [
+            "docs/navigation.md"
+          ],
+          "kind": "document",
+          "heading": "Ownership",
+          "candidates": [
+            {
+              "id": "document:docs/navigation.md",
+              "path": "docs/navigation.md",
+              "heading": [
+                "Ask for the part of project memory you need",
+                "Ownership"
+              ],
+              "score": 0.862966775894165
+            },
+            {
+              "id": "document:docs/compatibility.md",
+              "path": "docs/compatibility.md",
+              "heading": [
+                "Adapter and platform compatibility"
+              ],
+              "score": 0.8535433411598206
+            },
+            {
+              "id": "document:docs/automation.md",
+              "path": "docs/automation.md",
+              "heading": [
+                "Automatic integration and coverage",
+                "Ownership"
+              ],
+              "score": 0.8462644815444946
+            },
+            {
+              "id": "document:docs/operations.md",
+              "path": "docs/operations.md",
+              "heading": [
+                "Operating DIP",
+                "Work and verification"
+              ],
+              "score": 0.8330138921737671
+            },
+            {
+              "id": "document:docs/benchmarks/scale.md",
+              "path": "docs/benchmarks/scale.md",
+              "heading": [
+                "Bounded ledger and capture measurements",
+                "Method and reproduction"
+              ],
+              "score": 0.8312260508537292
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 435.32239994965494
+        },
+        {
+          "id": "doc-1-he",
+          "gold": [
+            "docs/navigation.md"
+          ],
+          "kind": "document",
+          "heading": "Ownership",
+          "candidates": [
+            {
+              "id": "document:docs/navigation.md",
+              "path": "docs/navigation.md",
+              "heading": [
+                "Ask for the part of project memory you need",
+                "Ownership"
+              ],
+              "score": 0.7871426343917847
+            },
+            {
+              "id": "document:docs/automation.md",
+              "path": "docs/automation.md",
+              "heading": [
+                "Automatic integration and coverage"
+              ],
+              "score": 0.775234580039978
+            },
+            {
+              "id": "document:docs/compatibility.md",
+              "path": "docs/compatibility.md",
+              "heading": [
+                "Adapter and platform compatibility"
+              ],
+              "score": 0.7738572955131531
+            },
+            {
+              "id": "document:docs/operations.md",
+              "path": "docs/operations.md",
+              "heading": [
+                "Operating DIP",
+                "Data and host boundaries",
+                "Project capture controls"
+              ],
+              "score": 0.7653437852859497
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-retrieval-pilot.md",
+              "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+              "heading": [
+                "Pretrained alternatives retrieval pilot"
+              ],
+              "score": 0.7640073299407959
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 434.134199982509
+        },
+        {
+          "id": "doc-2-en",
+          "gold": [
+            "docs/operations.md"
+          ],
+          "kind": "document",
+          "heading": "Updates and recovery",
+          "candidates": [
+            {
+              "id": "document:docs/operations.md",
+              "path": "docs/operations.md",
+              "heading": [
+                "Repositories that disappear"
+              ],
+              "score": 0.8712273836135864
+            },
+            {
+              "id": "document:docs/protocol.md",
+              "path": "docs/protocol.md",
+              "heading": [
+                "Project data protocol",
+                "Events"
+              ],
+              "score": 0.8616068363189697
+            },
+            {
+              "id": "document:QA_REPORT.md",
+              "path": "QA_REPORT.md",
+              "heading": [
+                "v0.3.11 outbox recovery and management preparation"
+              ],
+              "score": 0.8539739847183228
+            },
+            {
+              "id": "document:docs/automation.md",
+              "path": "docs/automation.md",
+              "heading": [
+                "Automatic integration and coverage",
+                "Ownership"
+              ],
+              "score": 0.851337194442749
+            },
+            {
+              "id": "document:docs/portable.md",
+              "path": "docs/portable.md",
+              "heading": [
+                "Repository skills and portable intent",
+                "Owned upgrades and removal"
+              ],
+              "score": 0.8470625877380371
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": false,
+          "elapsedMs": 398.5710000852123
+        },
+        {
+          "id": "doc-2-he",
+          "gold": [
+            "docs/operations.md"
+          ],
+          "kind": "document",
+          "heading": "Updates and recovery",
+          "candidates": [
+            {
+              "id": "document:docs/protocol.md",
+              "path": "docs/protocol.md",
+              "heading": [
+                "Project data protocol",
+                "Events"
+              ],
+              "score": 0.7998776435852051
+            },
+            {
+              "id": "document:docs/host-qa/lifecycle.md",
+              "path": "docs/host-qa/lifecycle.md",
+              "heading": [
+                "Real Codex compaction and interruption"
+              ],
+              "score": 0.793013334274292
+            },
+            {
+              "id": "document:docs/automation.md",
+              "path": "docs/automation.md",
+              "heading": [
+                "Automatic integration and coverage",
+                "Recording and latency"
+              ],
+              "score": 0.7846218347549438
+            },
+            {
+              "id": "document:QA_REPORT.md",
+              "path": "QA_REPORT.md",
+              "heading": [
+                "DIP release validation",
+                "v0.3.5 Markdown source references"
+              ],
+              "score": 0.7818384766578674
+            },
+            {
+              "id": "document:docs/host-qa/README.md",
+              "path": "docs/host-qa/README.md",
+              "heading": [
+                "Live Codex intent workflow, 7 October 2026",
+                "Improvements and evidence"
+              ],
+              "score": 0.7804304361343384
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": false,
+          "elapsedMs": 417.25079994648695
+        },
+        {
+          "id": "doc-3-en",
+          "gold": [
+            "docs/completion.md"
+          ],
+          "kind": "document",
+          "heading": "Explicit outcomes and compact reads",
+          "candidates": [
+            {
+              "id": "document:docs/benchmarks/model-controlled-repeat.md",
+              "path": "docs/benchmarks/model-controlled-repeat.md",
+              "heading": [
+                "Repeated matched agent experiment",
+                "Protocol v5, DIP 0.3.12"
+              ],
+              "score": 0.8539275527000427
+            },
+            {
+              "id": "document:README.md",
+              "path": "README.md",
+              "heading": [
+                "Development Intelligence Platform",
+                "What you get"
+              ],
+              "score": 0.8417794108390808
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-agent-quality.md",
+              "path": "docs/benchmarks/semantic-agent-quality.md",
+              "heading": [
+                "E5 retrieval prototype and downstream agent quality",
+                "Development and infrastructure preflight"
+              ],
+              "score": 0.8392501473426819
+            },
+            {
+              "id": "document:QA_REPORT.md",
+              "path": "QA_REPORT.md",
+              "heading": [
+                "DIP release validation",
+                "v0.3.8 bounded low-friction integration"
+              ],
+              "score": 0.8384348750114441
+            },
+            {
+              "id": "document:docs/intent-transitions.md",
+              "path": "docs/intent-transitions.md",
+              "heading": [
+                "Follow-up intent without duplicate work"
+              ],
+              "score": 0.8375154733657837
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": false,
+          "elapsedMs": 405.2996999816969
+        },
+        {
+          "id": "doc-3-he",
+          "gold": [
+            "docs/completion.md"
+          ],
+          "kind": "document",
+          "heading": "Explicit outcomes and compact reads",
+          "candidates": [
+            {
+              "id": "document:docs/benchmarks/semantic-agent-quality.md",
+              "path": "docs/benchmarks/semantic-agent-quality.md",
+              "heading": [
+                "E5 retrieval prototype and downstream agent quality",
+                "Development and infrastructure preflight"
+              ],
+              "score": 0.7986088991165161
+            },
+            {
+              "id": "document:skills/dip/SKILL.md",
+              "path": "skills/dip/SKILL.md",
+              "heading": [],
+              "score": 0.7983623743057251
+            },
+            {
+              "id": "document:QA_REPORT.md",
+              "path": "QA_REPORT.md",
+              "heading": [
+                "DIP release validation",
+                "v0.3.9 privacy and recorder recovery"
+              ],
+              "score": 0.7949035167694092
+            },
+            {
+              "id": "document:docs/benchmarks/production-readiness-plan.md",
+              "path": "docs/benchmarks/production-readiness-plan.md",
+              "heading": [
+                "Semantic retrieval production acceptance experiment",
+                "Proposed release gates"
+              ],
+              "score": 0.7942006587982178
+            },
+            {
+              "id": "document:docs/completion.md",
+              "path": "docs/completion.md",
+              "heading": [
+                "Explicit outcomes and compact reads"
+              ],
+              "score": 0.7894325852394104
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": true,
+          "headingR1": false,
+          "elapsedMs": 450.6624999921769
+        },
+        {
+          "id": "doc-4-en",
+          "gold": [
+            "docs/plans/markdown-references.md"
+          ],
+          "kind": "document",
+          "heading": "Boundaries",
+          "candidates": [
+            {
+              "id": "document:docs/plans/markdown-references.md",
+              "path": "docs/plans/markdown-references.md",
+              "heading": [
+                "Markdown document references",
+                "Boundaries"
+              ],
+              "score": 0.8440322875976562
+            },
+            {
+              "id": "document:docs/intent-transitions.md",
+              "path": "docs/intent-transitions.md",
+              "heading": [
+                "Follow-up intent without duplicate work"
+              ],
+              "score": 0.8362745046615601
+            },
+            {
+              "id": "document:docs/automation.md",
+              "path": "docs/automation.md",
+              "heading": [
+                "Automatic integration and coverage",
+                "Requests, plans and future ideas"
+              ],
+              "score": 0.8350139856338501
+            },
+            {
+              "id": "document:skills/dip/SKILL.md",
+              "path": "skills/dip/SKILL.md",
+              "heading": [],
+              "score": 0.8340187668800354
+            },
+            {
+              "id": "document:docs/navigation.md",
+              "path": "docs/navigation.md",
+              "heading": [
+                "Ask for the part of project memory you need",
+                "Requirements and evidence"
+              ],
+              "score": 0.8328028321266174
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": true,
+          "elapsedMs": 386.01360004395247
+        },
+        {
+          "id": "doc-4-he",
+          "gold": [
+            "docs/plans/markdown-references.md"
+          ],
+          "kind": "document",
+          "heading": "Boundaries",
+          "candidates": [
+            {
+              "id": "document:docs/automation.md",
+              "path": "docs/automation.md",
+              "heading": [
+                "Automatic integration and coverage",
+                "Requests, plans and future ideas"
+              ],
+              "score": 0.7986690998077393
+            },
+            {
+              "id": "document:QA_REPORT.md",
+              "path": "QA_REPORT.md",
+              "heading": [
+                "DIP release validation",
+                "v0.3.4 trusted hook capture"
+              ],
+              "score": 0.7968161106109619
+            },
+            {
+              "id": "document:docs/navigation.md",
+              "path": "docs/navigation.md",
+              "heading": [
+                "Ask for the part of project memory you need",
+                "Requirements and evidence"
+              ],
+              "score": 0.7933623790740967
+            },
+            {
+              "id": "document:README.md",
+              "path": "README.md",
+              "heading": [
+                "Development Intelligence Platform",
+                "Verification against real code"
+              ],
+              "score": 0.7930399775505066
+            },
+            {
+              "id": "document:docs/desktop-qa.md",
+              "path": "docs/desktop-qa.md",
+              "heading": [
+                "Codex desktop workflow QA",
+                "Method and observations"
+              ],
+              "score": 0.7928519248962402
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": false,
+          "headingR1": false,
+          "elapsedMs": 427.3569999495521
+        },
+        {
+          "id": "doc-5-en",
+          "gold": [
+            "docs/benchmarks/semantic-retrieval-pilot.md"
+          ],
+          "kind": "document",
+          "heading": "Finding candidates",
+          "candidates": [
+            {
+              "id": "document:docs/benchmarks/winner-retrieval.md",
+              "path": "docs/benchmarks/winner-retrieval.md",
+              "heading": [
+                "Shortlisted encoders: project sources and long-document follow-up"
+              ],
+              "score": 0.8594385385513306
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-alternatives.md",
+              "path": "docs/benchmarks/semantic-alternatives.md",
+              "heading": [
+                "Task retrieval alternatives and proposed experiment",
+                "Shortlist"
+              ],
+              "score": 0.852063775062561
+            },
+            {
+              "id": "document:README.md",
+              "path": "README.md",
+              "heading": [
+                "Development Intelligence Platform",
+                "Measured quality, cost and real workflow QA"
+              ],
+              "score": 0.8516634702682495
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-retrieval-pilot.md",
+              "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+              "heading": [
+                "Pretrained alternatives retrieval pilot",
+                "Results",
+                "Finding candidates"
+              ],
+              "score": 0.8447214365005493
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-agent-quality.md",
+              "path": "docs/benchmarks/semantic-agent-quality.md",
+              "heading": [
+                "E5 retrieval prototype and downstream agent quality",
+                "Opt-in prototype setup"
+              ],
+              "score": 0.8386716842651367
+            }
+          ],
+          "sourceR1": false,
+          "sourceR5": true,
+          "headingR1": false,
+          "elapsedMs": 402.33299997635186
+        },
+        {
+          "id": "doc-5-he",
+          "gold": [
+            "docs/benchmarks/semantic-retrieval-pilot.md"
+          ],
+          "kind": "document",
+          "heading": "Finding candidates",
+          "candidates": [
+            {
+              "id": "document:docs/benchmarks/semantic-retrieval-pilot.md",
+              "path": "docs/benchmarks/semantic-retrieval-pilot.md",
+              "heading": [
+                "Pretrained alternatives retrieval pilot"
+              ],
+              "score": 0.78762286901474
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-alternatives.md",
+              "path": "docs/benchmarks/semantic-alternatives.md",
+              "heading": [
+                "Task retrieval alternatives and proposed experiment",
+                "Shortlist"
+              ],
+              "score": 0.7875299453735352
+            },
+            {
+              "id": "document:docs/benchmarks/semantic-agent-quality.md",
+              "path": "docs/benchmarks/semantic-agent-quality.md",
+              "heading": [
+                "E5 retrieval prototype and downstream agent quality",
+                "Results"
+              ],
+              "score": 0.7866591811180115
+            },
+            {
+              "id": "document:docs/desktop-qa.md",
+              "path": "docs/desktop-qa.md",
+              "heading": [
+                "Codex desktop workflow QA",
+                "Method and observations"
+              ],
+              "score": 0.7817370891571045
+            },
+            {
+              "id": "document:docs/benchmarks/winner-retrieval.md",
+              "path": "docs/benchmarks/winner-retrieval.md",
+              "heading": [
+                "Shortlisted encoders: project sources and long-document follow-up",
+                "Results",
+                "Real task source recovery"
+              ],
+              "score": 0.7794348001480103
+            }
+          ],
+          "sourceR1": true,
+          "sourceR5": true,
+          "headingR1": false,
+          "elapsedMs": 413.5208000661805
+        }
+      ],
+      "note": "Author-labelled known queries within one current real project; not independent generalization evidence"
+    },
+    {
+      "name": "injected-malformed-ipc-isolation",
+      "completed": false,
+      "productionPass": false,
+      "wallMs": 21091,
+      "error": "Semantic worker exited"
+    },
+    {
+      "name": "injected-overbudget-ipc-recovery",
+      "completed": false,
+      "productionPass": false,
+      "wallMs": 18515,
+      "error": "Semantic worker exited"
+    },
+    {
+      "name": "actual-120s-timeout-and-restart",
+      "completed": false,
+      "productionPass": false,
+      "wallMs": 14599,
+      "error": "Semantic worker exited"
+    }
+  ],
+  "limitations": [
+    "Single Windows machine; no multiweek users, independent labels or Claude",
+    "Shared cache tests are bounded observations, not a proof of race freedom",
+    "Malformed IPC uses an injected transport, distinct from real model inference"
+  ],
+  "completedAt": "2026-10-09T13:05:02.972Z",
+  "summary": {
+    "passed": 21,
+    "failed": 7,
+    "descriptiveOrUntested": 4
+  }
+}

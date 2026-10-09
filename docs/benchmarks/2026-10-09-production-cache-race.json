@@ -1,0 +1,30 @@
+{
+  "protocolHash": "28f92cd91a55ef6669e48016c22895a3812633ae2f79c9b688550115e710a0ff",
+  "sourceHash": "16d54f47d9c20f84ece284c9781a91ec7ca78e2aa666ce356ce614ffb40e4e73",
+  "encoderMocked": true,
+  "rows": [
+    {
+      "index": 0,
+      "completed": true,
+      "encoded": 1
+    },
+    {
+      "index": 1,
+      "completed": true,
+      "encoded": 1
+    },
+    {
+      "index": 2,
+      "completed": true,
+      "encoded": 1
+    },
+    {
+      "index": 3,
+      "completed": true,
+      "encoded": 1
+    }
+  ],
+  "finalCacheValid": true,
+  "cacheError": null,
+  "productionPass": true
+}

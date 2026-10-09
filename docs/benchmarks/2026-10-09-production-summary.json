@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "head": "329bbb627a2e8e602d109485126f625f921a8f95",
+  "protocolHash": "81974d62a999592945f191ea92750cb35f1872168fc22dcc9b34e42284ed0c2d",
+  "model": "gpt-6-astra",
+  "completedAt": "2026-10-09T13:40:43.361Z",
+  "collectionComplete": true,
+  "verdict": "NOT_READY_FOR_DEFAULT_PRODUCTION",
+  "agentRows": 18,
+  "arms": [
+    {
+      "arm": "markdown",
+      "runs": 6,
+      "completed": 6,
+      "timeouts": 0,
+      "functional": 48,
+      "functionalTotal": 48,
+      "memory": 36,
+      "memoryTotal": 36,
+      "medianWallMs": 78257,
+      "inputTokens": 863546,
+      "cachedInputTokens": 679424,
+      "outputTokens": 15791,
+      "usageMissing": 0,
+      "toolCalls": 42,
+      "toolOutputBytes": 1187141,
+      "searchAttempts": 0,
+      "successfulSearches": 0,
+      "failedMcpCalls": 0,
+      "requirementsCalls": 0,
+      "sourceIntegrity": 6,
+      "injectionMarkerAbsent": 6,
+      "attackTextExposure": 6
+    },
+    {
+      "arm": "markdown-e5",
+      "runs": 6,
+      "completed": 6,
+      "timeouts": 0,
+      "functional": 48,
+      "functionalTotal": 48,
+      "memory": 36,
+      "memoryTotal": 36,
+      "medianWallMs": 75970.5,
+      "inputTokens": 788815,
+      "cachedInputTokens": 584832,
+      "outputTokens": 15179,
+      "usageMissing": 0,
+      "toolCalls": 29,
+      "toolOutputBytes": 2787307,
+      "searchAttempts": 0,
+      "successfulSearches": 0,
+      "failedMcpCalls": 0,
+      "requirementsCalls": 0,
+      "sourceIntegrity": 6,
+      "injectionMarkerAbsent": 6,
+      "attackTextExposure": 6
+    },
+    {
+      "arm": "dip",
+      "runs": 6,
+      "completed": 6,
+      "timeouts": 0,
+      "functional": 48,
+      "functionalTotal": 48,
+      "memory": 36,
+      "memoryTotal": 36,
+      "medianWallMs": 82394,
+      "inputTokens": 865392,
+      "cachedInputTokens": 699264,
+      "outputTokens": 15768,
+      "usageMissing": 0,
+      "toolCalls": 32,
+      "toolOutputBytes": 2269612,
+      "searchAttempts": 0,
+      "successfulSearches": 0,
+      "failedMcpCalls": 0,
+      "requirementsCalls": 0,
+      "sourceIntegrity": 6,
+      "injectionMarkerAbsent": 6,
+      "attackTextExposure": 6
+    }
+  ],
+  "agentRawHash": "a2563ce9339ac006ae7682a58be951c6f04ca371dcdd18eaa7578ef48944ad0f",
+  "operational": {
+    "rows": 32,
+    "reportedPass": 21,
+    "reportedFail": 7,
+    "descriptiveOrUntested": 4
+  },
+  "realSources": 78,
+  "realRecovery": [
+    {
+      "kind": "task",
+      "queries": 32,
+      "r1": 12,
+      "r5": 16,
+      "headingAndSourceR1": 12
+    },
+    {
+      "kind": "document",
+      "queries": 12,
+      "r1": 6,
+      "r5": 9,
+      "headingAndSourceR1": 4
+    }
+  ],
+  "transportFaults": [
+    {
+      "name": "malformed-response-isolation",
+      "productionPass": false,
+      "receivedIds": [
+        "first"
+      ]
+    },
+    {
+      "name": "overbudget-response-recovery",
+      "productionPass": false,
+      "error": "Worker response exceeds budget"
+    },
+    {
+      "name": "late-response-after-close",
+      "productionPass": false,
+      "receivedIds": [
+        "first"
+      ]
+    }
+  ],
+  "bounds": [
+    {
+      "name": "twenty-mib-doc-budget",
+      "productionPass": true,
+      "documents": 20,
+      "truncated": true,
+      "errors": [
+        {
+          "path": "doc9.md",
+          "error": "Document byte budget exceeded"
+        }
+      ]
+    },
+    {
+      "name": "unicode-at-task-truncation-boundary",
+      "productionPass": false,
+      "sourceTruncated": true,
+      "lastCodeUnit": 55357,
+      "length": 40000
+    },
+    {
+      "name": "directory-junction-rejection",
+      "productionPass": true
+    },
+    {
+      "name": "structured-plan-source-coverage",
+      "productionPass": null,
+      "indexed": false,
+      "note": "Native structured plan text is outside this prototype collector; existing plan/requirements tools remain necessary."
+    }
+  ],
+  "liveMcp": [
+    {
+      "name": "actual-tool-discovery",
+      "productionPass": true
+    },
+    {
+      "name": "read-tasks",
+      "productionPass": true,
+      "wallMs": 37633.437999999995
+    },
+    {
+      "name": "read-documents",
+      "productionPass": true,
+      "wallMs": 60.47149999999965
+    },
+    {
+      "name": "read-tasks",
+      "productionPass": true,
+      "wallMs": 46.68970000000263
+    },
+    {
+      "name": "ordinary-fallback",
+      "productionPass": true
+    },
+    {
+      "name": "canonical-read-only",
+      "productionPass": true
+    },
+    {
+      "name": "server-close-descendants",
+      "productionPass": true
+    }
+  ],
+  "fullUnitFollowup": {
+    "exit": 0,
+    "wallMs": 151211,
+    "condition": "Full suite after isolated workflow passed: bundled Git cmd/usr-bin, trace disabled. Original timed-out attempt retained."
+  },
+  "serializedCacheRace": {
+    "encoderMocked": true,
+    "completed": 1,
+    "total": 4,
+    "finalCacheValid": true,
+    "productionPass": false
+  },
+  "artifactHashes": {
+    "2026-10-09-production-agent-results.json.gz": "a2563ce9339ac006ae7682a58be951c6f04ca371dcdd18eaa7578ef48944ad0f",
+    "2026-10-09-production-bounds-protocol.json": "6080221ca400f600217bd1e63057c754fdfa578a442a1671e98f490fc9677752",
+    "2026-10-09-production-bounds.json": "8264b36076b3eb5e90f94e5416818602394fe31c2eb0d7db42f8ee60235aaf47",
+    "2026-10-09-production-cache-race-protocol.json": "28f92cd91a55ef6669e48016c22895a3812633ae2f79c9b688550115e710a0ff",
+    "2026-10-09-production-cache-race-serialized-protocol.json": "8a93f32df62a0dbb3471295d0636660b8119096266e0ffb50ed847bcb4421e0d",
+    "2026-10-09-production-cache-race-serialized.json": "7b606e95f7c5605dafcae58748e2975f956c3a3cf4e157a0a70d1e698d51123c",
+    "2026-10-09-production-cache-race.json": "464adee9dac5cc80eff8fb7416b85daf516105f8e453a01b986756f477377baa",
+    "2026-10-09-production-fault-protocol.json": "29b18ea6f1f5deea55e7b3c859ec7cca701bc20929e2f77b876ab2364dbc9763",
+    "2026-10-09-production-faults.json": "29f3b7178f00dbaf9ce0e4cb1f365a0305763f68d771f7e6e14de8e1a2210052",
+    "2026-10-09-production-live-mcp-protocol.json": "7e2406f14796df613dbbb9428611c75cb5ed4edaebecfcc2359fadfb6a75003b",
+    "2026-10-09-production-live-mcp.json": "472187929265d8bd7eb7ce57e1845d1bf7009b2f8c02b28239a819bdf7a9620a",
+    "2026-10-09-production-operations.json": "fd4824120e9c42fa211113b98739b4c338625b98aaf44e8d2df8b8362f3e021d",
+    "2026-10-09-production-package.json": "cd2aa332f3e14e6683e0509599cab2ec0ffab54208f6faff17d85b27b7518c7f",
+    "2026-10-09-production-preflight-v1.json.gz": "2ea60424f9059c9748a4521ce6037cc4840b59b2886a80877378be56c7ed23cd",
+    "2026-10-09-production-preflight-v2.json.gz": "54dda38c8e960e4af738d8341d7c870a7673eb83fd8f7fde1869b7d74cb8c3a3",
+    "2026-10-09-production-preflight-v3.json.gz": "a52ca6575915eb323db417a1a21513467b3e20099e3eab7a5e022e44f168205a",
+    "2026-10-09-production-protocol-preflight-v1.json": "a973506a71e221bfc026c84aff5865f664d616829f9978205ab9e1ea0b054ce1",
+    "2026-10-09-production-protocol-setup-v0.json": "97a66cbea0da1bb5cc232c07a1681e4827bd76ce60c868e2f33dbb8f076e70fc",
+    "2026-10-09-production-protocol.json": "81974d62a999592945f191ea92750cb35f1872168fc22dcc9b34e42284ed0c2d",
+    "2026-10-09-production-source.json.gz": "157ba7f2b6569cf234d1bdc4fca3f8b79e5f1f3a4ef21125f8b3c9dce45ca9c9",
+    "2026-10-09-production-support.json": "fbd71f700a56a2eae20fdf99dd21e42942e28d54a3b7c93ff08dc8a6c2ec02c5",
+    "2026-10-09-production-targeted.json": "c22967ff1f8a93c9a9f73b0387cab62df4af85af20e3c7ce35cefc130fce79ee",
+    "2026-10-09-production-unit-followup.json": "f4e32da7ebb049357cdbc9ab64a40c8b90c04ea92a61780697ea96aed54df0b0",
+    "2026-10-09-production-workflow-followup.json": "2b7d38b8a46e0384d3e35f58c619d1da6986462e99c94949f738cccba659d6e8"
+  }
+}

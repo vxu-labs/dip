@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ec59ab56-006a-433d-a78e-cb2fcb2ef234",
+  "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+  "type": "task.update",
+  "payload": {
+    "title": "Evaluate semantic retrieval production readiness with preregistered operational and agent trials",
+    "scope": [
+      "scripts/production-*",
+      "test/production-*",
+      "docs/benchmarks/production-*",
+      ".dip/config.json"
+    ],
+    "acceptance": [
+      "Freeze protocol before results; retain failures and source hashes",
+      "Exercise actual pinned E5 freshness, branch changes, concurrency, crash/restart, corrupt cache, bounds and path safety in isolated repositories",
+      "Measure larger-history agent quality against strong Markdown and same-encoder controls using frozen outcomes and replayable scoring",
+      "Report production verdict and missing real-user multiweek/host/platform evidence explicitly; no deployment or default enablement"
+    ]
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T12:46:33.904Z",
+  "parents": [
+    "1108398d-b111-4d62-9009-3ecb0130dd31"
+  ],
+  "branch": "main"
+}

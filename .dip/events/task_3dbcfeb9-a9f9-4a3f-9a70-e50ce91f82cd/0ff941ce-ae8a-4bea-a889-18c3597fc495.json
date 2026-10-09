@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0ff941ce-ae8a-4bea-a889-18c3597fc495",
+  "taskId": "task_3dbcfeb9-a9f9-4a3f-9a70-e50ce91f82cd",
+  "type": "task.create",
+  "payload": {
+    "title": "Preserve valid Unicode at semantic task truncation boundaries",
+    "description": "Frozen collector slices task text at40000 UTF-16 code units. A valid original description with an emoji across that boundary returned a lone high surrogate (55357), sourceTruncated true and isWellFormed false. Truncate at a complete code point, retain explicit truncation and consistent content hashes; cover Hebrew/astral content and real worker ingestion. No live-model inference was needed to reproduce this collector fault.",
+    "status": "backlog",
+    "scope": [
+      "src/semantic.js"
+    ],
+    "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T13:31:26.890Z",
+  "parents": [],
+  "branch": "main"
+}
