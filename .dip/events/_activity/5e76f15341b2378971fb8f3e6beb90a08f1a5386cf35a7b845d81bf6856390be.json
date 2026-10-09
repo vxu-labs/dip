@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5e76f15341b2378971fb8f3e6beb90a08f1a5386cf35a7b845d81bf6856390be",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:41:44.363Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/semantic-tensors.py",
+          "scripts/semantic-evidence.mjs"
+        ],
+        "changeHash": "387f1d70b31c7755c8c9efb7e66bf5d716d60d05bf6b2682aea8a9c70c058543",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-6a2a9bf7-59e3-4b6d-8989-4afa4f631572"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:41:45.011Z",
+  "parents": [],
+  "branch": "main"
+}

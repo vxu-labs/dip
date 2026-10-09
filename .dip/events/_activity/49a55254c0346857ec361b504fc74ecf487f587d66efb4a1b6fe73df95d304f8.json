@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "49a55254c0346857ec361b504fc74ecf487f587d66efb4a1b6fe73df95d304f8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T12:00:51.042Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('.dip-local/semantic-agent-results.json'));console.log(JSON.stringify({runs:r.rows.length,arms:['markdown','markdown-e5','dip'].map(arm=>({arm,runs:r.rows.filter(x=>x.arm===arm).length,pass:r.rows.filter(x=>x.arm===arm).reduce((n,x)=>n+x.score.passed,0),memory:r.rows.filter(x=>x.arm===arm).reduce((n,x)=>n+x.score.memoryPassed,0)}))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1e026366-2a9f-41c2-bc98-f8be45a630f9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T12:00:51.932Z",
+  "parents": [],
+  "branch": "main"
+}

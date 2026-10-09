@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "601323508341c0ee24fb041e0a6124abdfe8dfe725c8e7f40d4342333c840b93",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:11:43.150Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {taskRead,project} from './src/core.js';\nconst t=taskRead(project(), 'task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22');\nconsole.log(JSON.stringify({scope:t.scope,documents:t.documents}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\n& \"$env:APPDATA/npm/dip.cmd\" task document-link --help",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1abbe5c1-178b-4fd0-8412-de1ea8dd5139"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:11:43.997Z",
+  "parents": [],
+  "branch": "main"
+}

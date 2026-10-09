@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8e8b486b0957f812bdee2d471676d9cbd904cc9587603bdfbc677555b574c402",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T08:54:44.977Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-08-semantic-lexical.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-minishlab--potion-base-8M.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-minishlab--potion-retrieval-32M.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-tensors.json"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "2f1c4e82-635f-4f31-bb4a-1042e1bcbd73"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T08:54:44.982Z",
+  "parents": [],
+  "branch": "main"
+}

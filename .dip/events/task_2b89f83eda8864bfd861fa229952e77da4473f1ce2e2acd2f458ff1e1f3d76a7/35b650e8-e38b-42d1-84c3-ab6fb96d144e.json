@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "eventId": "35b650e8-e38b-42d1-84c3-ab6fb96d144e",
+  "taskId": "task_2b89f83eda8864bfd861fa229952e77da4473f1ce2e2acd2f458ff1e1f3d76a7",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "discussion",
+    "resolution": {
+      "outcome": "answered",
+      "summary": "Production readiness requires selective retrieval, live source applicability and freshness, safe candidate-only behavior, bounded concurrency/cache/cancellation/failure recovery, adversarial document/path safety, cross-platform install and real host tests, representative held-out quality/cost comparisons against strong Markdown and same encoder controls with predefined gates, and an opt-in pilot with diagnostics and rollback. Existing bounded 18-run result showed no quality gain and extra cost; passing CI alone is insufficient. Proposed gates are targets, not achieved results. No rollout authorized.",
+      "replacedBy": []
+    }
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T10:30:12.089Z",
+  "parents": [
+    "7827c7d9-5614-4809-845d-61f3c401518a"
+  ],
+  "branch": "main"
+}

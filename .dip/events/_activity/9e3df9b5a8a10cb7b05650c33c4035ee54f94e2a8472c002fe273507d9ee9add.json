@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9e3df9b5a8a10cb7b05650c33c4035ee54f94e2a8472c002fe273507d9ee9add",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:11:51.314Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {taskRead,ensure} from './src/core.js';\nconst t=taskRead(ensure(process.cwd()), 'task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22');\nconsole.log(JSON.stringify({scope:t.scope,documents:t.documents}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-834308ce-e431-48ce-ba95-03c477eb2389"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:11:52.754Z",
+  "parents": [],
+  "branch": "main"
+}

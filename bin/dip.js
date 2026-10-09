@@ -85,6 +85,7 @@ const options = {
   offset: { type: "string" },
   patch: { type: "string" },
   steps: { type: "string" },
+  remaining: { type: "string" },
 };
 let flags, positionals;
 try {
@@ -229,6 +230,7 @@ try {
     const action = positionals.shift();
     const args = { ...flags };
     if (flags.steps) args.steps = JSON.parse(flags.steps);
+    if (flags.remaining) args.remaining = JSON.parse(flags.remaining);
     if (flags.patch) args.patch = JSON.parse(flags.patch);
     else if (action === "update")
       args.patch = {

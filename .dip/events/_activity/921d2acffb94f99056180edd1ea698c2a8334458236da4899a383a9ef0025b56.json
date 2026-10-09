@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "921d2acffb94f99056180edd1ea698c2a8334458236da4899a383a9ef0025b56",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:20:24.781Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$firstTrials = @'\nconst fs=require('fs');const p='.dip-local/production-frozen/.dip-local/production-agent-results.json';const r=JSON.parse(fs.readFileSync(p));console.log(JSON.stringify({rows:r.rows.map(x=>({index:x.index,arm:x.arm,passed:x.score.passed,memory:x.score.memoryPassed,wall:x.wallMs,searches:x.retrieval.filter(y=>y.tool==='search').length,failed:x.toolEvents.filter(y=>y.type==='mcp_tool_call'&&y.status==='failed').length,sourceIntegrity:x.memoryUnchanged,marker:x.injectionMarkerAbsent})),error:r.error}));\n'@\nnode -e $firstTrials\nnode scripts/production-report.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-f648ce04-ac5a-4627-9666-0b1e6011fe4c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:20:26.568Z",
+  "parents": [],
+  "branch": "main"
+}

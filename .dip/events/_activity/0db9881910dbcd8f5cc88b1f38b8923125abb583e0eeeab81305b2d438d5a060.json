@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0db9881910dbcd8f5cc88b1f38b8923125abb583e0eeeab81305b2d438d5a060",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T09:58:23.846Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/winner-publish.mjs .dip-local/winner-lexical.json .dip-local/winner-intfloat--multilingual-e5-small.json .dip-local/winner-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json\nnode scripts/winner-check.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-381a2e90-2fc5-49c8-b8f6-2762b68cf32c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:58:24.385Z",
+  "parents": [],
+  "branch": "main"
+}

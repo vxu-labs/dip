@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9f4939db462facdaa95e64767475b9e3dc7a953a0e22730518715a4488a4bb01",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:09:20.335Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$preflightSmall = @'\nconst fs=require('fs');const file='.dip-local/production-frozen/.dip-local/production-agent-preflight-v3.json';const r=JSON.parse(fs.readFileSync(file));console.log(JSON.stringify({rows:r.rows.map(x=>({arm:x.arm,tools:x.retrieval.map(y=>y.tool),errors:x.toolEvents.filter(t=>t.type==='mcp_tool_call'&&t.status==='failed').map(t=>({tool:t.tool,result:JSON.stringify(t.result).slice(0,250)}))})),passed:r.passed,error:r.error}));\n'@\nnode -e $preflightSmall",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-fed65a7d-7da4-4642-8388-f1467da8e087"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:09:22.972Z",
+  "parents": [],
+  "branch": "main"
+}

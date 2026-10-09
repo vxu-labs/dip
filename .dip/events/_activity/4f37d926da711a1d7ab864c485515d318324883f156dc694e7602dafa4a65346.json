@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4f37d926da711a1d7ab864c485515d318324883f156dc694e7602dafa4a65346",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:13:12.587Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg --files '.dip-local/production-frozen/test' | Select-String 'winner|work'; rg -n 'python|spawn|index-test|timeout' '.dip-local/production-frozen/test/winner-retrieval.test.js' '.dip-local/production-frozen/test' | Select-Object -Last 15",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a8bf877b-fc17-441d-9bfe-811fe2ddbbba"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:13:12.948Z",
+  "parents": [],
+  "branch": "main"
+}

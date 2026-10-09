@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0a2cc454ed4d7c92f5b853d20ecb7b18f5db8a9b56a254803edc302b304da90c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:04:25.004Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js doctor > \"$env:TEMP/dip-accuracy-doctor.json\"; $report = Get-Content \"$env:TEMP/dip-accuracy-doctor.json\" -Raw | ConvertFrom-Json; $report.gitHooks | ConvertTo-Json -Depth 5; $report.issues | Where-Object { $_ -match 'shell runtime' }; git diff --check",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PostToolUse:exec-09733820-7de1-4887-a194-26995a48a66b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:04:25.113Z",
+  "parents": [],
+  "branch": "main"
+}

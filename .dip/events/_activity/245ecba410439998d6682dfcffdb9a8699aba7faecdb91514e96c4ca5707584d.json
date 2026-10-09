@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "245ecba410439998d6682dfcffdb9a8699aba7faecdb91514e96c4ca5707584d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:27:57.679Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nimport {execute} from './src/actions.js';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session='01a10fa9-6164-7550-bdf9-5c21b772eafd', id='task_8b4318ef-b13d-4420-988f-5266db4cd215';\nconst file='.dip/config.json',cfg=JSON.parse(fs.readFileSync(file));cfg.verification['semantic-evidence']={command:['node','scripts/semantic-evidence.mjs'],timeoutMs:60000};fs.writeFileSync(file,JSON.stringify(cfg,null,2)+'\\n');\nconsole.log(JSON.stringify(await execute('prepare',{id,actor,session,patch:{scope:['scripts/semantic-corpus.mjs','scripts/semantic-protocol.mjs','scripts/semantic-alternatives.py','scripts/semantic-analysis.mjs','scripts/semantic-publish.mjs','scripts/semantic-evidence.mjs','docs/benchmarks/semantic-alternatives.md','docs/benchmarks/semantic-retrieval-pilot.md','docs/benchmarks/2026-10-08-semantic','README.md','.dip/config.json']}})));\nconsole.log(JSON.stringify(await execute('document-link',{id,actor,path:'docs/benchmarks/semantic-retrieval-pilot.md',role:'plan'})));\nconsole.log(JSON.stringify(await execute('checkpoint',{id,actor,summary:'New pretrained alternatives pilot preregistered: seven pinned models, lexical baseline,24 new families8cal/16test,216 queries Q/A/QA/fusion,288 pair cases,100/1000/10000 histories. Same search/information in Markdown and structured experimental adapters. Custom training, independent labels and downstream agent quality remain open.',next:'Freeze protocol/source commit before actual scored model inference, run all eight attempts sequentially, retain failures, publish raw scores and replay evidence.'})));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-f8f7ff58-df46-4d14-a9c3-3139c18d71a0"
+      },
+      {
+        "at": "2026-10-08T07:27:57.717Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execFileSync} from 'node:child_process';\nconst git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe';\nconst files=['scripts/semantic-corpus.mjs','scripts/semantic-protocol.mjs','scripts/semantic-alternatives.py','scripts/semantic-analysis.mjs','scripts/semantic-publish.mjs','scripts/semantic-evidence.mjs','docs/benchmarks/semantic-retrieval-pilot.md','docs/benchmarks/2026-10-08-semantic-protocol.json','docs/benchmarks/2026-10-08-semantic-requirements.txt','.dip/config.json','.dip/events/task_8b4318ef-b13d-4420-988f-5266db4cd215','.dip/events/task_15aea0af67fbebebf2f2105d4c0d91bafd7a9a0678d4bfb8eb2ede8e98ff8813'];\nexecFileSync(git,['add','--',...files]);\nconst output=execFileSync(git,['-c','core.hooksPath=.dip-local/empty-hooks','commit','-s','-m','Preregister pretrained task retrieval alternatives pilot'],{encoding:'utf8'});\nconsole.log(output.split('\\n').slice(0,2).join('\\n'));\nconsole.log('head',execFileSync(git,['rev-parse','HEAD'],{encoding:'utf8'}).trim());\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-be30cc00-d65a-4cbe-a2c2-a3c82be2a10a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:27:58.143Z",
+  "parents": [],
+  "branch": "main"
+}

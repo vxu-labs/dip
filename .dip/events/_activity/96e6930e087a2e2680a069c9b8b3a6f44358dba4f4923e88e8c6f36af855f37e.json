@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "96e6930e087a2e2680a069c9b8b3a6f44358dba4f4923e88e8c6f36af855f37e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T14:15:59.564Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_4566e7fd7a5e831fbc0b38225ac292ab57d0fc16bb2d72279b6b5ec74e2fe9ce",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:\\Users\\offic\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;' + $env:PATH; git.exe fetch origin; git.exe status --short --untracked-files=all | Select-String -NotMatch '\\.dip/'; git.exe rev-list --left-right --count origin/main...HEAD; @'\nimport {ensure,taskRead} from './src/core.js';import {assessEvidence} from './src/actions.js';\nconst repo=ensure(process.cwd(),{instructions:false});const task=taskRead(repo,'task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9');console.log(JSON.stringify({status:task.status,acceptance:task.acceptance,...assessEvidence(repo,task)}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PostToolUse:exec-d807d5c6-71ef-4ffc-8ef6-dd9a36ef96cb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T14:16:00.463Z",
+  "parents": [],
+  "branch": "main"
+}

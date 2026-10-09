@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e456e38eb931346cb92eb32c073144fcabf8743316eb369666949d70c3fbe66b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:10:28.440Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$productionArchive = @'\nconst fs=require('node:fs'),path=require('node:path'),zlib=require('node:zlib'),crypto=require('node:crypto');const root=JSON.parse(fs.readFileSync('.dip-local/production-frozen-location.json')).root;const protocol=JSON.parse(fs.readFileSync(path.join(root,'docs/benchmarks/2026-10-09-production-protocol.json')));const files=Object.fromEntries(Object.keys(protocol.sources).map(f=>[f,fs.readFileSync(path.join(root,f),'utf8')]));for(const f of ['bin/dip.js','scripts/production-faults.mjs','scripts/production-cache-race.py','scripts/fixtures/production-cache-race-v1.py'])files[f]=fs.readFileSync(path.join(root,f),'utf8');const raw=zlib.gzipSync(Buffer.from(JSON.stringify({head:'329bbb627a2e8e602d109485126f625f921a8f95',files})));fs.writeFileSync('docs/benchmarks/2026-10-09-production-source.json.gz',raw);fs.copyFileSync(path.join(root,'docs/benchmarks/2026-10-09-production-protocol.json'),'docs/benchmarks/2026-10-09-production-protocol.json');console.log(JSON.stringify({files:Object.keys(files).length,bytes:raw.length,hash:crypto.createHash('sha256').update(raw).digest('hex')}));\n'@\nnode -e $productionArchive",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-6f1386bc-93a3-426c-8ba0-a327b82f16af"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:10:29.364Z",
+  "parents": [],
+  "branch": "main"
+}

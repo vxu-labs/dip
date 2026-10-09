@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ac4ee071-6f5b-43e2-91b9-36b39adc4a41",
+  "taskId": "task_4566e7fd7a5e831fbc0b38225ac292ab57d0fc16bb2d72279b6b5ec74e2fe9ce",
+  "type": "task.update",
+  "payload": {
+    "status": "superseded",
+    "resolution": {
+      "outcome": "superseded",
+      "summary": "User explicitly requests committing and pushing the previously verified accuracy fixes to the configured remote; no source or acceptance changes.",
+      "replacedBy": [
+        "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9"
+      ]
+    }
+  },
+  "actor": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+  "createdAt": "2026-10-09T14:16:14.245Z",
+  "parents": [
+    "d66a6eb6-20f0-4b78-8043-2af27560e5fb"
+  ],
+  "branch": "main"
+}

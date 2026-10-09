@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5bd31d40346d16f24e2b5b2f2987a50b5bd4cbe9a97365ae3e20678a524874a2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:21:53.863Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath '.dip-local/production-frozen/src/mcp.js' -TotalCount 75; rg -n 'get pid|callTool\\(' node_modules/@modelcontextprotocol/sdk/dist/esm/client/stdio.js node_modules/@modelcontextprotocol/sdk/dist/esm/client/index.js | Select-Object -First 8",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c9af5425-d676-41d8-87a7-1650c690dba1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:21:53.987Z",
+  "parents": [],
+  "branch": "main"
+}

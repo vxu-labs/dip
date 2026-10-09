@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "30d3cf4c5a69bf1489f6b5be7872245e339f69b7361231fcc4a32bc3adc87f87",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T12:50:50.201Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/fixtures",
+          "scripts/fixtures/semantic-worker-protocol.py"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "1b7d7622-1cfa-414d-bdbc-fb6bb73e8804"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T12:50:50.207Z",
+  "parents": [],
+  "branch": "main"
+}

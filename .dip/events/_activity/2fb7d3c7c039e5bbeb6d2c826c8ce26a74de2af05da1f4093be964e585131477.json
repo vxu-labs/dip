@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2fb7d3c7c039e5bbeb6d2c826c8ce26a74de2af05da1f4093be964e585131477",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:12:17.437Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {taskRead,ensure} from './src/core.js';\nconst t=taskRead(ensure(process.cwd()),'task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22');\nconsole.log(JSON.stringify({status:t.status,resolution:t.resolution,validation:t.validation,leases:t.leases}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\n& \"$env:APPDATA/npm/dip.cmd\" task verify --id task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22 --check winner-evidence --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9046e603-f256-47f0-a53f-24babde7261b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:12:18.340Z",
+  "parents": [],
+  "branch": "main"
+}

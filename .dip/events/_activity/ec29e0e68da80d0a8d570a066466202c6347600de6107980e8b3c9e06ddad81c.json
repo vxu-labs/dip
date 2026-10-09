@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ec29e0e68da80d0a8d570a066466202c6347600de6107980e8b3c9e06ddad81c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:12:54.500Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execFileSync} from 'node:child_process';\nimport {taskRead,ensure} from './src/core.js';\nconst git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe';\nconst id='task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22';\nconst t=taskRead(ensure(process.cwd()),id);\nconst paths=[...t.scope,...[id,'task_8b4318ef-b13d-4420-988f-5266db4cd215','task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df'].map(x=>'.dip/events/'+x)];\nexecFileSync(git,['add','--',...paths],{stdio:'pipe'});\nexecFileSync(git,['diff','--cached','--check'],{stdio:'pipe'});\nconsole.log(execFileSync(git,['diff','--cached','--stat'],{encoding:'utf8'}));\nconsole.log(execFileSync(git,['-c','core.hooksPath=.dip-local/empty-hooks','commit','-s','-m','Publish shortlisted encoder and long-document retrieval evidence'],{encoding:'utf8'}).split('\\n').slice(0,2).join('\\n'));\nconsole.log(execFileSync(git,['rev-parse','HEAD'],{encoding:'utf8'}).trim());\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1dfe1ae1-0271-4c35-a7a6-a342204a20f7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:12:54.833Z",
+  "parents": [],
+  "branch": "main"
+}

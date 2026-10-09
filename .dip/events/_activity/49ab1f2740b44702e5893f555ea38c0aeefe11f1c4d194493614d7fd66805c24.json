@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "49ab1f2740b44702e5893f555ea38c0aeefe11f1c4d194493614d7fd66805c24",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:01:47.884Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Item 'E:/Program Files/Git/bin/sh.exe','E:/Program Files/Git/usr/bin/sh.exe','C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/bin/sh.exe','C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/usr/bin/sh.exe' -ErrorAction SilentlyContinue | Select-Object FullName,Length; & 'E:/Program Files/Git/bin/sh.exe' -c 'printf shell-ok'; git.exe --exec-path; Get-Content src/util.js -TotalCount 60; Get-Content test/integration.test.js -TotalCount 75",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PostToolUse:exec-64b629b8-2779-466b-9389-4fed1bc52050"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:01:50.300Z",
+  "parents": [],
+  "branch": "main"
+}

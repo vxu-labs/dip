@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "99af325223b7fb5aeea11657a3760f34bf39ea9fb0e38b1039100ddfc2afec49",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T07:27:56.369Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/semantic-evidence.mjs",
+          "docs/benchmarks/semantic-retrieval-pilot.md",
+          "docs/benchmarks"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "4f3c9a3b-0b59-43bc-a174-e6bd034c9862"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:27:56.380Z",
+  "parents": [],
+  "branch": "main"
+}

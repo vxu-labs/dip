@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f7e9a2f784fe103c6c2077816dcc07b660b108133fbce2ebd362bf2f02929ad8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T10:25:33.557Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/semantic-alternatives.py",
+          "scripts/semantic-analysis.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "54176b84-e81c-40fd-a340-a97eccad0e5f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:25:33.566Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7c31cf7d964c72e271ad2df0c91c62c81ef995bac48af85637bb8b250c78e1b9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:29:51.135Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nconst files=fs.readdirSync('.dip-local').filter(x=>x.startsWith('semantic-')&&x.endsWith('.json'));\nfor(const f of files){const d=JSON.parse(fs.readFileSync('.dip-local/'+f));console.log(JSON.stringify({model:d.model,complete:!!d.completedAt,rows:d.rows?.length,error:d.error?.type,peakMiB:d.peakRssBytes/2**20}));}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5db6154d-9b8f-47bc-b706-67bf14025895"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:29:52.502Z",
+  "parents": [],
+  "branch": "main"
+}

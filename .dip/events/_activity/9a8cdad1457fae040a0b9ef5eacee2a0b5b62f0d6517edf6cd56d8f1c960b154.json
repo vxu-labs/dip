@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9a8cdad1457fae040a0b9ef5eacee2a0b5b62f0d6517edf6cd56d8f1c960b154",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:01:25.851Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Command git.exe -All | Select-Object Source; where.exe git.exe; Get-Content \"$env:TEMP/dip-accuracy-integration.log\" -Tail 65",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-a407a248-54fb-4615-acb2-ac7282f51eb3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:01:28.669Z",
+  "parents": [],
+  "branch": "main"
+}

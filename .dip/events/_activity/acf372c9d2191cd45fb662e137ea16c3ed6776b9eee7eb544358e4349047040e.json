@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "acf372c9d2191cd45fb662e137ea16c3ed6776b9eee7eb544358e4349047040e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:28:01.272Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('.dip-local/semantic-agent-preflight.json'));console.log(JSON.stringify(r.rows.map(x=>({arm:x.arm,completed:x.completed,probe:x.files['probe.txt'],retrieval:x.retrieval.map(r=>r.tool),toolErrors:x.toolEvents.filter(e=>e.type==='mcp_tool_call'&&(e.status==='failed'||e.is_error)).map(e=>e.result)}))));\n'@ | node --input-type=module\nnode --check src/semantic.js\nnode --check scripts/semantic-agent-evidence.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-60a96e44-bf31-48fa-a1e2-41b3d253d670"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:28:01.571Z",
+  "parents": [],
+  "branch": "main"
+}

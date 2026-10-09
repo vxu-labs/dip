@@ -8,7 +8,7 @@ export function cliHelp(command = "help", action = "") {
     prepare:
       "dip task prepare --id ID --actor NAME --session SESSION [--patch JSON]\nRefines outstanding development, claims scope and returns compact criteria. Planning and future ideas use task update instead.\n",
     finish:
-      'dip task finish --id ID --outcome answered|implemented|superseded|cancelled --summary "..." [--check NAME] [--replacedBy ID] [--actor NAME] [--token TOKEN]\n',
+      'dip task finish --id ID --outcome answered|implemented|superseded|cancelled --summary "..." [--check NAME] [--remaining JSON] [--replacedBy ID] [--actor NAME] [--token TOKEN]\nRemaining entries: disposition required|follow_up|verification_limit|out_of_scope, summary, and taskId for follow_up. Required work blocks finish; [] records an explicit empty review. Omission means unreviewed.\n',
     requirements:
       "dip task requirements --id ID [--limit 10] [--offset 0] [--maxChars 6000]\n",
     changes: "dip task changes --id ID [--limit 10] [--offset 0]\n",

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8e657b074b7d1df8a01d8c7478911063588ef6a76bc1d988311618cf986a82d3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:33:39.211Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'mcp' bin/dip.js | Select-Object -First 6\n@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('.dip-local/semantic-agent-preflight-v2.json'));console.log(JSON.stringify({passed:r.passed,rows:r.rows.map(x=>({arm:x.arm,toolCalls:x.toolCalls,usage:x.usage,searches:x.retrieval.filter(y=>y.tool==='search').length}))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-7477b474-c288-4c67-bc7f-b5807a22d7a7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:33:39.403Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "224f2b514c8d46dadfc38cc42a876eb30d77dc8b2fca76ff24519a9513f0f9f1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:22:33.020Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "mcp__codex_app__list_artifacts",
+        "branch": "main",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PostToolUse:exec-f4790b11-dd8e-412c-b5aa-95fc91239e74"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:22:34.037Z",
+  "parents": [],
+  "branch": "main"
+}

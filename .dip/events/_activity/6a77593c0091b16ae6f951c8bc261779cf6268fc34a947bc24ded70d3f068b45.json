@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6a77593c0091b16ae6f951c8bc261779cf6268fc34a947bc24ded70d3f068b45",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:15:23.527Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {ensure,taskRead} from './src/core.js';\nimport {captureSnapshot} from './src/util.js';\nconst repo=ensure(process.cwd(),{instructions:false});\nconst task=taskRead(repo,'task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9');\nconst now=captureSnapshot(repo);\nconst last=task.evidence.at(-1).snapshot;\nconst prev=task.evidence.at(-2).snapshot;\nconst diff=(a,b)=>[...new Set([...Object.keys(a.files),...Object.keys(b.files)])].filter(p=>a.files[p]!==b.files[p]);\nconsole.log(JSON.stringify({root:repo.root,last:last.hash,now:now.hash,changedAfter:diff(last,now),fromPrevious:diff(prev,last),count:Object.keys(now.files).length}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-6289d635-c187-4b54-9350-3f8134d01568"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:15:25.530Z",
+  "parents": [],
+  "branch": "main"
+}

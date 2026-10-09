@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d788ba223ddcead62a127ac1e8bb654fe58d5ec7d63de93fb2d07008ec22c055",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T10:58:27.183Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks",
+          "docs/benchmarks/2026-10-08-winner-intfloat--multilingual-e5-small.json.gz",
+          "docs/benchmarks/2026-10-08-winner-lexical.json.gz",
+          "docs/benchmarks/2026-10-08-winner-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json.gz",
+          "docs/benchmarks/2026-10-08-winner-summary.json"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "0147485a-13b0-4b30-a8d3-c7366fc6183f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:58:27.189Z",
+  "parents": [],
+  "branch": "main"
+}

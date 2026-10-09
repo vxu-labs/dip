@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "1f4a8041004b8aa8fdb915720ed696313c985fb19080a01443e438370a69493a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:22:29.216Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$accuracySource = 'C:\\Users\\offic\\.codex\\worktrees\\dip-accuracy\\CUSTOM GIT'; $accuracyTarget = 'C:\\Users\\offic\\Documents\\ChatGPT\\CUSTOM GIT'; $accuracyFiles = @('bin/dip.js','docs/intent-transitions.md','skills/dip/SKILL.md','src/actions.js','src/automation.js','src/cli-help.js','src/core.js','src/health.js','src/mcp.js','src/views.js','src/workflow.js','test/accuracy.test.js'); foreach ($accuracyFile in $accuracyFiles) { if ((Get-FileHash -LiteralPath (Join-Path $accuracySource $accuracyFile)).Hash -ne (Get-FileHash -LiteralPath (Join-Path $accuracyTarget $accuracyFile)).Hash) { throw \"Source mismatch: $accuracyFile\" } }; $accuracyEvents = Join-Path $accuracySource '.dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9'; Get-ChildItem -LiteralPath $accuracyEvents -File | Copy-Item -Destination (Join-Path $accuracyTarget '.dip/events/task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9') -Force; @'\nimport {ensure,taskRead} from './src/core.js';import {assessEvidence} from './src/actions.js';\nconst repo=ensure(process.cwd(),{instructions:false});const task=taskRead(repo,'task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9');console.log(JSON.stringify({status:task.status,conflicts:task.conflicts,...assessEvidence(repo,task)}));\n'@ | node --input-type=module\ngit diff --check",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-f5110730-f009-4489-9836-e4dd11df7bc1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:22:29.232Z",
+  "parents": [],
+  "branch": "main"
+}

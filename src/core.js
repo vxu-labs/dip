@@ -16,7 +16,7 @@ import {
   inScope,
 } from "./util.js";
 import { ensureProjectHooks } from "./git-hooks.js";
-import { briefPlan } from "./workflow.js";
+import { briefPlan, validateRemaining } from "./workflow.js";
 import { validateDocument, documentKey, loadDocument } from "./documents.js";
 import { repositoryIntegration } from "./repository-integration.js";
 import { eventRecord } from "./event-cache.js";
@@ -759,6 +759,15 @@ export function updateValidation(patch) {
     throw new Error("Unknown task kind");
   if (patch.resolution !== undefined && patch.resolution !== null) {
     const r = patch.resolution;
+    validateRemaining(r?.remaining);
+    if (
+      r?.remaining !== undefined &&
+      (r.outcome !== "implemented" ||
+        r.remaining.some((item) => item.disposition === "required"))
+    )
+      throw new Error(
+        "Required remaining work prevents completion; review applies to implemented work",
+      );
     if (
       !r ||
       !["answered", "implemented", "superseded", "cancelled"].includes(
@@ -902,6 +911,17 @@ export function updateTask(
   for (const replacement of patch.resolution?.replacedBy || []) {
     if (replacement === taskId) throw new Error("A task cannot replace itself");
     taskRead(repo, replacement);
+  }
+  for (const item of patch.resolution?.remaining || []) {
+    if (item.disposition !== "follow_up") continue;
+    if (item.taskId === taskId)
+      throw new Error("Follow-up cannot reference itself");
+    const followUp = taskRead(repo, item.taskId);
+    if (
+      followUp.kind !== "work" ||
+      ["cancelled", "superseded"].includes(followUp.status)
+    )
+      throw new Error("Follow-up must reference applicable work");
   }
   if (task.resolution && patch.resolution === undefined) {
     const expected =

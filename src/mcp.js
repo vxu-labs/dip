@@ -180,12 +180,27 @@ export async function runMcp() {
   );
   add(
     "task_finish",
-    "Record an explicit answered, implemented, superseded or cancelled outcome. Answered closes informational requests, never verifies code. Use a configured check for implemented work; failed checks keep ownership. Stop alone does not close work.",
+    "Record an explicit outcome. For implemented work review remaining items: required blocks finish; follow_up needs an existing taskId; verification_limit and out_of_scope preserve boundaries. Pass [] for none; omission is unreviewed. Use a configured check; failed checks keep ownership. Answered is not code verification. Stop does not close work.",
     {
       id: z.string(),
       outcome: z.enum(["answered", "implemented", "superseded", "cancelled"]),
       summary: z.string().min(1).max(2000),
       replacedBy: z.array(z.string()).max(20).optional(),
+      remaining: z
+        .array(
+          z.object({
+            disposition: z.enum([
+              "required",
+              "follow_up",
+              "verification_limit",
+              "out_of_scope",
+            ]),
+            summary: z.string().min(1).max(1000),
+            taskId: z.string().optional(),
+          }),
+        )
+        .max(20)
+        .optional(),
       check: z.string().optional(),
       actor: z.string().optional(),
       token: z.string().optional(),

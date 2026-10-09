@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4ebe94ff-3751-42b3-a06d-0f15840ed361",
+  "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Implemented audit accuracy safeguards: narrow recommendation capture, explicit remaining-work review, bounded verification details, and Git hook/runtime diagnostics. Seven new regressions pass. Final unit check uses process-local bundled Git because system Git lacks its shell runtime; no global install or PATH changes.",
+      "replacedBy": [],
+      "remaining": [
+        {
+          "disposition": "verification_limit",
+          "summary": "Kiosk device coverage and its historical Git executable are not independently verified. Optional review preserves old clients; arbitrary intent and omitted obligations still require agent review."
+        },
+        {
+          "disposition": "out_of_scope",
+          "summary": "Repairing the global Git installation and publishing or installing this DIP revision are outside this code change."
+        }
+      ]
+    }
+  },
+  "actor": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+  "createdAt": "2026-10-09T13:04:14.713Z",
+  "parents": [
+    "114282b3-bc90-41b5-a937-40d8ea22b7fa"
+  ],
+  "branch": "main"
+}

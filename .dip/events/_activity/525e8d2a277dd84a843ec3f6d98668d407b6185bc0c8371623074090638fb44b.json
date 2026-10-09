@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "525e8d2a277dd84a843ec3f6d98668d407b6185bc0c8371623074090638fb44b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:03:29.003Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$prepareSupport = @'\nconst fs=require('node:fs');const freeze=JSON.parse(fs.readFileSync('.dip-local/production-frozen-location.json')).root;\nfs.writeFileSync('.dip-local/production-support-runner.cjs',`const fs=require('node:fs'),{spawnSync}=require('node:child_process');const rows=[];for(const [label,args]of [['unit',['--test','--test-concurrency=1']],['syntax',['scripts/check.mjs']]]){const t=Date.now(),r=spawnSync(process.execPath,args,{cwd:${JSON.stringify(freeze)},env:process.env,encoding:'utf8',timeout:240000,windowsHide:true,maxBuffer:8*1024*1024});const row={label,exit:r.status,error:r.error?.message,wallMs:Date.now()-t,stdout:r.stdout,stderr:r.stderr};rows.push(row);fs.writeFileSync(${JSON.stringify(freeze+'/docs/benchmarks/2026-10-09-production-support.json')},JSON.stringify({head:'329bbb627a2e8e602d109485126f625f921a8f95',rows},null,2));console.log(JSON.stringify({label,exit:row.exit,error:row.error,wallMs:row.wallMs}));}`);\n'@\nnode -e $prepareSupport",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a96ba255-e087-43f3-989b-873853f61766"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:03:29.187Z",
+  "parents": [],
+  "branch": "main"
+}

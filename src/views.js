@@ -1,4 +1,4 @@
-import { briefPlan } from "./workflow.js";
+import { briefPlan, verificationDetails } from "./workflow.js";
 
 const clip = (s, max) => (typeof s === "string" ? s.slice(0, max) : s);
 export function taskView(task) {
@@ -35,13 +35,9 @@ export function taskView(task) {
           next: clip(task.decisions.at(-1).next, 1000),
         }
       : null,
-    evidence: task.evidence.at(-1)
-      ? {
-          check: task.evidence.at(-1).check,
-          result: task.evidence.at(-1).result,
-          at: task.evidence.at(-1).at,
-        }
-      : null,
+    evidence: verificationDetails(task.evidence.at(-1)),
+    remainingReview:
+      task.resolution?.remaining === undefined ? "unreviewed" : "recorded",
     conflicts: task.conflicts.map((c) => ({
       field: c.field,
       eventIds: c.alternatives.map((a) => a.eventId),
@@ -104,30 +100,30 @@ export function reconcileView(state, args = {}) {
     workerCount: state.activeWorkers.length,
     total: all.length,
     nextOffset: offset + limit < all.length ? offset + limit : null,
-    tasks: all
-      .slice(offset, offset + limit)
-      .map((t) => ({
-        id: t.id,
-        title: clip(t.title, 300),
-        kind: t.kind,
-        status: t.status,
-        active: t.active,
-        interrupted: t.interrupted,
-        verification: t.verification,
-        integrated: t.integrated,
-        blockedBy: t.blockedBy.slice(0, 30),
-        blockedByCount: t.blockedBy.length,
-        conflicts: t.conflicts.map((c) => ({
-          field: c.field,
-          eventIds: c.alternatives.map((a) => a.eventId),
-        })),
-        resolution: t.resolution,
-        checkpoint: clip(
-          [...t.checkpoints].reverse().find((c) => !c.automatic)?.summary ||
-            t.checkpoints.at(-1)?.summary,
-          1000,
-        ),
+    tasks: all.slice(offset, offset + limit).map((t) => ({
+      id: t.id,
+      title: clip(t.title, 300),
+      kind: t.kind,
+      status: t.status,
+      active: t.active,
+      interrupted: t.interrupted,
+      verification: t.verification,
+      verificationDetails: t.verificationDetails,
+      remainingReview: t.remainingReview,
+      integrated: t.integrated,
+      blockedBy: t.blockedBy.slice(0, 30),
+      blockedByCount: t.blockedBy.length,
+      conflicts: t.conflicts.map((c) => ({
+        field: c.field,
+        eventIds: c.alternatives.map((a) => a.eventId),
       })),
+      resolution: t.resolution,
+      checkpoint: clip(
+        [...t.checkpoints].reverse().find((c) => !c.automatic)?.summary ||
+          t.checkpoints.at(-1)?.summary,
+        1000,
+      ),
+    })),
     errors: state.errors.slice(0, 20),
     errorCount: state.errors.length,
     activityIncluded: false,

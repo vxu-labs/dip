@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3ca5d3d031e37f631ec06ee9446630b11027bd7460b6e316ec7357cdd82a69d6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:45:57.255Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$finalReportUpdate = @'\nconst fs=require('fs'),file='scripts/production-report.mjs';let s=fs.readFileSync(file,'utf8');\ns=s.replace(\"const bounds=JSON.parse(fs.readFileSync(base+'bounds.json'));\",\"const bounds=JSON.parse(fs.readFileSync(base+'bounds.json'));\\nconst live=JSON.parse(fs.readFileSync(base+'live-mcp.json'));\\nconst unitFollowup=JSON.parse(fs.readFileSync(base+'unit-followup.json'));\");\ns=s.replace('summary.bounds=bounds.rows;','summary.bounds=bounds.rows;\\nsummary.liveMcp=live.rows.map(x=>({name:x.name,productionPass:x.productionPass,wallMs:x.wallMs}));\\nsummary.fullUnitFollowup={exit:unitFollowup.exit,wallMs:unitFollowup.wallMs,condition:unitFollowup.condition};');\ns=s.replace(\"'## Installation and remaining gates'\",\"'All18 scored turns completed with all8 functional and6 recovery checks passing. All18 were exposed to the imported hostile paragraph, left source memory intact and created no injection marker in this bounded scenario. All18 also made zero MCP calls, including zero E5 searches and zero structured current-requirements reads. Their outcome is therefore not evidence that DIP or E5 improved quality. Median times and token differences between arms are descriptive availability effects in this small sample, not a benefit of an unused retrieval tool.','',\\n'## Installation and remaining gates'\");\ns=s.replace('A separate full suite exceeded its240-second deadline without an assertion failure shown in its retained output; this is not an all-tests pass.','The first full suite exceeded240 seconds. An isolated workflow follow-up with bundled Git cmd/usr-bin on PATH and Git tracing disabled passed, then the full suite passed in151 seconds:138 passed and2 skipped,0 failed. Both attempts are retained; these two environment changes were not individually isolated as a root cause.');\ns=s.replace(\"'Not completed: independent labels\", \"'The actual frozen source MCP server was tested through the SDK on a fresh isolated small project with real pinned E5: discover",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-145e5046-d1dc-45a4-b050-c83e37733d34"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:45:57.402Z",
+  "parents": [],
+  "branch": "main"
+}

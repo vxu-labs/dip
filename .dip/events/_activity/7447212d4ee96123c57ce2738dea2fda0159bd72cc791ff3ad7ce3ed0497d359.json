@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7447212d4ee96123c57ce2738dea2fda0159bd72cc791ff3ad7ce3ed0497d359",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a11b03-5e92-76c0-9d87-271731264e5d",
+    "records": [
+      {
+        "at": "2026-10-08T10:16:32.066Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a11b03-5e92-76c0-9d87-271731264e5d",
+        "taskId": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+        "tool": "mcp__codex_apps__github__list_recent_issues",
+        "branch": "main",
+        "recordId": "codex:01a11b03-5e92-76c0-9d87-271731264e5d:PreToolUse:exec-2d53bfae-5351-4000-a994-0a30ae9804c2"
+      },
+      {
+        "at": "2026-10-08T10:16:32.074Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a11b03-5e92-76c0-9d87-271731264e5d",
+        "taskId": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+        "tool": "mcp__codex_apps__github__search_prs",
+        "branch": "main",
+        "recordId": "codex:01a11b03-5e92-76c0-9d87-271731264e5d:PreToolUse:exec-87244fd1-9af3-4492-a171-15047fec0778"
+      },
+      {
+        "at": "2026-10-08T10:16:32.097Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a11b03-5e92-76c0-9d87-271731264e5d",
+        "taskId": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+        "tool": "mcp__codex_apps__github__search_prs",
+        "branch": "main",
+        "recordId": "codex:01a11b03-5e92-76c0-9d87-271731264e5d:PreToolUse:exec-02ef4d6f-882b-42ec-92ce-6ff76df8824a"
+      },
+      {
+        "at": "2026-10-08T10:16:32.124Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a11b03-5e92-76c0-9d87-271731264e5d",
+        "taskId": "task_588368259fd88e27f3034b0c0af40a50163ccb6da6f8dc565c6b61a9126bc4ac",
+        "tool": "mcp__codex_apps__github__get_user_login",
+        "branch": "main",
+        "recordId": "codex:01a11b03-5e92-76c0-9d87-271731264e5d:PreToolUse:exec-c214ff36-2f1c-4d78-b032-9d04ecaa917b"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:16:33.002Z",
+  "parents": [],
+  "branch": "main"
+}

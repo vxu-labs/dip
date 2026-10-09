@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "86a01683d6eab1eee5a1e46a5bf00b21f47a1a937f76df8e9f0d78ee178c3f74",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:12:04.753Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& \"$env:APPDATA/npm/dip.cmd\" task document-link --id task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22 --path docs/benchmarks/winner-retrieval.md --role reference --actor codex:01a10fa9-6164-7550-bdf9-5c21b772eafd\n@'\nimport {execute} from './src/actions.js';\nconst id='task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd';\nawait execute('prepare',{id,actor,session:'01a10fa9-6164-7550-bdf9-5c21b772eafd'});\nconst r=await execute('finish',{id,actor,outcome:'implemented',check:'winner-evidence',summary:'Preregistered follow-up completed all188 frozen cases and1880 ranking rows for E5, MiniLM and BM25. Real-source E5 first recovery24/32 vs MiniLM19/32 and BM2517/32; late-source sections E5 top10 improved20/32 to31/32. Actual20 persisted indexes restarted in fresh processes with zero encodes, plus update/delete/corruption checks. Raw results, replay and explicit heading/fusion/no-match limitations published. Production neural routing, independent downstream trials and custom training remain backlog.'});\nconsole.log(JSON.stringify(r));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-228c0299-9839-41d7-aa01-9afd24e27c8e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:12:05.314Z",
+  "parents": [],
+  "branch": "main"
+}

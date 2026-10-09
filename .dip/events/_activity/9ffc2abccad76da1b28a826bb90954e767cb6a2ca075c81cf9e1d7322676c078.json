@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9ffc2abccad76da1b28a826bb90954e767cb6a2ca075c81cf9e1d7322676c078",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:16:47.420Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import os from 'node:os';import path from 'node:path';\nimport {ensure} from './src/core.js';import {captureSnapshot,digest} from './src/util.js';\nconst before=JSON.parse(fs.readFileSync(path.join(os.tmpdir(),'dip-accuracy-before.json'),'utf8'));const now=captureSnapshot(ensure(process.cwd(),{instructions:false}));\nconsole.log(JSON.stringify({before:before.hash,now:now.hash,beforeRehash:digest(JSON.stringify(before.files)),nowRehash:digest(JSON.stringify(now.files)),beforeKeys:Object.keys(before.files).slice(0,10),nowKeys:Object.keys(now.files).slice(0,10),same:JSON.stringify(before.files)===JSON.stringify(now.files)}));\n'@ | node --input-type=module\nGet-Content src/actions.js | Select-Object -Skip 684 -First 99",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-be4497c8-0f9d-43e7-88d4-0ece001a5ec4"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:16:48.551Z",
+  "parents": [],
+  "branch": "main"
+}

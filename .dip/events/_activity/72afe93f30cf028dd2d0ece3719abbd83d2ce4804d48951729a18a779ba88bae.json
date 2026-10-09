@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "72afe93f30cf028dd2d0ece3719abbd83d2ce4804d48951729a18a779ba88bae",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T21:58:17.844Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/host-qa",
+          "docs/host-qa/README.md",
+          "docs/host-qa/structured-plan.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "715910e3-1b43-4f48-9e74-92ac4b198042"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T21:58:17.849Z",
+  "parents": [],
+  "branch": "main"
+}

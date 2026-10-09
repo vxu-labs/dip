@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3288ed9811b3b9fc6dca40f7bc3435d406e235e17c393c8b9abc5cbb47b290b3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:04:08.901Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execute} from './src/actions.js';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session='01a10fa9-6164-7550-bdf9-5c21b772eafd',id='task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22';\nawait execute('prepare',{id,actor,session});\nfor(const file of ['docs/benchmarks/winner-retrieval.md','docs/benchmarks/semantic-alternatives.md','docs/navigation.md'])await execute('document-link',{id,actor,path:file,role:file.endsWith('winner-retrieval.md')?'plan':'reference'});\nfor(const parent of ['task_8b4318ef-b13d-4420-988f-5266db4cd215','task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df']) {\nawait execute('checkpoint',{id:parent,actor,summary:'Winner follow-up completed188 frozen cases across real16-task/18doc snapshot, late-requirement stress and known synthetic1000-item diagnostics. E5 whole real first24/32 versusMiniLM19/32,BM2517/32; E5 late sections top10 31/32 versus whole20/32.20 fresh-process indexes reused unchanged vectors without encoder calls; changes/deletions/corrupt recovery passed. Headings only2/12 first for E5 sections, fixedhybrid harmed known synthetic retrieval. Candidate-only, no training, identity or downstream quality proof.',next:'Test separate compact E5-intent and token/heading-aware long-document channels; evaluate signal-aware fusion, exact source sections, independently reviewed multiple projects and relation reranking before production integration. Preserve semantic routing/custom training and real-agent code quality as open work.'});\nawait execute('document-link',{id:parent,actor,path:'docs/benchmarks/winner-retrieval.md',role:'reference'});\n}\nconsole.log(JSON.stringify({task:id,documentsReviewed:true,broaderWorkLeftOpen:true}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c186accb-8cc3-48d1-ab32-c28284ff69c9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:04:09.649Z",
+  "parents": [],
+  "branch": "main"
+}

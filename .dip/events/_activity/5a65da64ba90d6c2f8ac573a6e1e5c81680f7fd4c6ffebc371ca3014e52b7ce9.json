@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5a65da64ba90d6c2f8ac573a6e1e5c81680f7fd4c6ffebc371ca3014e52b7ce9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T12:17:49.727Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {execFileSync} from 'node:child_process';import {taskRead,ensure} from './src/core.js';\nconst id='task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a',git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe';\nconst t=taskRead(ensure(process.cwd()),id);const paths=[...t.scope,...[id,'task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df','task_8b4318ef-b13d-4420-988f-5266db4cd215'].map(x=>'.dip/events/'+x)];\nif(t.scope.some(f=>!fs.existsSync(f)))throw new Error('Missing scoped artifact');\nexecFileSync(git,['add','--',...paths],{stdio:'pipe'});execFileSync(git,['diff','--cached','--check'],{stdio:'pipe'});\nconsole.log(execFileSync(git,['diff','--cached','--stat'],{encoding:'utf8'}));\nconsole.log(execFileSync(git,['-c','core.hooksPath=.dip-local/empty-hooks','commit','-s','-m','Publish three-arm agent evidence and harden E5 cache channels'],{encoding:'utf8'}).split('\\n').slice(0,2).join('\\n'));\nconsole.log(execFileSync(git,['rev-parse','HEAD'],{encoding:'utf8'}).trim());\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' push origin main\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' ls-remote origin refs/heads/main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4c5ef4a6-4d52-4ad3-ac10-0f1c39fba134"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T12:17:49.862Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4fbe2c32574f02b1e6a8bd3f09f9cd7ee31799b5a349e92e10ece1ca2576f6ae",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-07T22:15:34.866Z",
+        "kind": "files.changed",
+        "files": [
+          "test/outbox-recovery.test.js",
+          "QA_REPORT.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "cc3e6427-4a2f-4a4a-85c7-75c6d5e29e86"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-07T22:15:34.872Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "de937a7b0b4a1041563a69c4868c3c01a30e4343531b8b2ebb6668db53c223b8",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:35:19.433Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$productionVerificationConfig = @'\nconst fs=require('node:fs'),file='.dip/config.json';const c=JSON.parse(fs.readFileSync(file));c.verification['production-evaluation']={command:['node','scripts/production-evidence.mjs'],timeoutMs:120000};const temp=file+'.production-'+process.pid+'.tmp';fs.writeFileSync(temp,JSON.stringify(c,null,2)+'\\n',{flag:'wx'});fs.renameSync(temp,file);\n'@\nnode -e $productionVerificationConfig\nnode --check scripts/production-report.mjs\nnode --check scripts/production-evidence.mjs\nnode --check scripts/production-live-mcp.mjs\nnode --check scripts/production-bounds.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-5ffdf714-fb17-472c-82eb-3b5df55d90a2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:35:20.100Z",
+  "parents": [],
+  "branch": "main"
+}

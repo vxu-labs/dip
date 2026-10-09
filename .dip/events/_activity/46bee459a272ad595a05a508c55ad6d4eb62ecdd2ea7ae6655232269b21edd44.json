@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "eventId": "46bee459a272ad595a05a508c55ad6d4eb62ecdd2ea7ae6655232269b21edd44",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T12:54:04.672Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath '.dip-local/production-agent-preflight.json' -TotalCount 15; Get-Content -LiteralPath 'scripts/semantic-agent-report.mjs' -TotalCount 80; Get-Content -LiteralPath 'src/mcp.js' -Tail 18",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-2bfb7394-e958-4fde-ab77-70f115b080ee"
+      },
+      {
+        "at": "2026-10-09T12:54:05.983Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$productionRevision = @'\nconst fs=require('node:fs');\nfs.renameSync('docs/benchmarks/2026-10-09-production-protocol.json','docs/benchmarks/2026-10-09-production-protocol-setup-v0.json');\nlet s=fs.readFileSync('scripts/production-agents.mjs','utf8');\ns=s.replace(/design:'Six matched triples:[^']*'/,\"design:'Six matched triples, reused contracts, 1000 task Markdown files and 100 documents. Optional E5 searches; lexical-first navigation. Same production collector in both encoder arms aligns facts; structured requirement interface only in DIP arm. Hooks disabled equally. Fresh single-turn sessions, fixed deadline, no retries. Read production-readiness-plan.md for gates and boundaries; this is not independent naturalistic evidence.'\");\nfs.writeFileSync('scripts/production-agents.mjs',s);\n'@\nnode -e $productionRevision\nnode scripts/production-agents.mjs --protocol\n$env:DIP_SEMANTIC_PYTHON=(Resolve-Path -LiteralPath '.dip-local/laya-env/Scripts/python.exe').Path\n$env:DIP_SEMANTIC_MODEL=(Resolve-Path -LiteralPath '.dip-local/semantic-cache/hub/models--intfloat--multilingual-e5-small/snapshots/614241f622f53c4eeff9890bdc4f31cfecc418b3').Path\n$env:DIP_SEMANTIC_CACHE=Join-Path (Get-Location) '.dip-local/production-preflight-cache'\n$env:DIP_BENCH_CODEX=(Get-Command codex).Source\n$env:DIP_BENCH_GIT='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe'\n$env:PATH='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;'+$env:PATH\nnode scripts/production-agents.mjs --preflight",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-a3b8b951-e167-44aa-a92d-1a1f2da63df3"
+      },
+      {
+        "at": "2026-10-09T12:54:06.003Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath '.dip-local/production-agent-preflight.json' -TotalCount 15; Get-Content -LiteralPath 'scripts/semantic-agent-report.mjs' -TotalCount 80; Get-Content -LiteralPath 'src/mcp.js' -Tail 18",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-2bfb7394-e958-4fde-ab77-70f115b080ee"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T12:54:06.198Z",
+  "parents": [],
+  "branch": "main"
+}

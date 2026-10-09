@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ab7665a0e2fec0c747cd7342928ee4afede7f8f701a1970c8a00b684d8ed8d1b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T09:49:28.234Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Move-Item -LiteralPath docs/benchmarks/2026-10-08-winner-protocol.json -Destination docs/benchmarks/2026-10-08-winner-protocol-v1.json\nnode scripts/winner-protocol.mjs\n@'\nimport {execute} from './src/actions.js';const id='task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22',actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session='01a10fa9-6164-7550-bdf9-5c21b772eafd';\nconst task=await execute('get',{id});const scope=task.scope.filter(x=>x!=='docs/benchmarks/2026-10-08-winner');scope.push('scripts/winner-index-test.py','docs/benchmarks/2026-10-08-winner-protocol.json','docs/benchmarks/2026-10-08-winner-protocol-v1.json','docs/benchmarks/2026-10-08-winner-summary.json','docs/benchmarks/2026-10-08-winner-lexical.json.gz','docs/benchmarks/2026-10-08-winner-intfloat--multilingual-e5-small.json.gz','docs/benchmarks/2026-10-08-winner-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json.gz');\nawait execute('prepare',{id,actor,session,patch:{scope}});await execute('document-link',{id,actor,path:'docs/benchmarks/winner-retrieval.md',role:'plan'});\nawait execute('checkpoint',{id,actor,summary:'Winner follow-up protocol frozen before inference: E5/MiniLM+BM25,16 public real intent records18 Markdown references,188 Q-only queries over real/late/doc/known-synthetic suites. Whole/sections/fixedRRF and fresh-process persisted-cache update/recovery tests; previous known synthetic cases explicitly exploratory. No learned identity/status mutation. Three deterministic cache/section contract checks passed.',next:'Commit/publish preregistration, execute all3 scheduled attempts sequentially without tuning/retries, publish raw source/citation/latency/caching results and independent offline score replay.'});\nconsole.log(JSON.stringify({task:id,scopeCount:scope.length}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\n@'\nimport {execFileSync} from 'node:child_process';const git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d6c0be78-aab3-4aff-a8d0-0b304d453140"
+      },
+      {
+        "at": "2026-10-08T09:49:28.201Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "apply_patch",
+        "branch": "main",
+        "documents": [
+          {
+            "path": "docs/benchmarks/winner-retrieval.md",
+            "role": "reference",
+            "hash": "2a585916f83dd179cf7f0eaab66c08e1283b3d1233027795e633e4a9629297c3"
+          }
+        ],
+        "files": [
+          "scripts/winner-corpus.mjs",
+          "docs/benchmarks/winner-retrieval.md"
+        ],
+        "changeHash": "15d679719f40b463ff20c93b7ec5adf2597c795e6c0e159b094d43056a8a82c6",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-86b05bc5-dfcb-4bb8-8fa6-60175fb9a48a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:49:29.471Z",
+  "parents": [],
+  "branch": "main"
+}

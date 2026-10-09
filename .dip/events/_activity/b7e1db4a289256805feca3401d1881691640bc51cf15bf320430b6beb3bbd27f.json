@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b7e1db4a289256805feca3401d1881691640bc51cf15bf320430b6beb3bbd27f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:53:13.984Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$renormalizeEvidence = @'\nconst fs=require('node:fs'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process');const git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe',names=fs.readdirSync('docs/benchmarks').filter(f=>f.startsWith('2026-10-09-production-cache-race')&&f.endsWith('.json'));execFileSync(git,['add','--renormalize','--',...names.map(f=>'docs/benchmarks/'+f)]);const summary=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-09-production-summary.json'));const hash=b=>crypto.createHash('sha256').update(b).digest('hex');for(const[file,h]of Object.entries(summary.artifactHashes)){const stored=execFileSync(git,['show',':docs/benchmarks/'+file],{maxBuffer:16*1024*1024});if(hash(stored)!==h)throw new Error('Index changes original evidence bytes: '+file);}console.log('Every indexed artifact matches its original recorded byte hash.');\n'@\n$env:GIT_TRACE2_EVENT='0'\nnode -e $renormalizeEvidence",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-38cbc058-6fea-4b67-9121-7d6ae8ca0aeb"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:53:14.382Z",
+  "parents": [],
+  "branch": "main"
+}

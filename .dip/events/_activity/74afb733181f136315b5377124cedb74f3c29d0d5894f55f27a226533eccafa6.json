@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "74afb733181f136315b5377124cedb74f3c29d0d5894f55f27a226533eccafa6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:50:49.295Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execute} from './src/actions.js';import {taskRead,ensure} from './src/core.js';import fs from 'node:fs';\nconst id='task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a';const t=taskRead(ensure(process.cwd()),id);await execute('prepare',{id,actor:'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session:'01a10fa9-6164-7550-bdf9-5c21b772eafd',patch:{scope:[...t.scope,'scripts/fixtures/semantic-worker-protocol.py','scripts/semantic-cache-followup.mjs','docs/benchmarks/2026-10-08-semantic-cache-followup.json']}});\nfs.mkdirSync('scripts/fixtures',{recursive:true});fs.copyFileSync('src/semantic-worker.py','scripts/fixtures/semantic-worker-protocol.py');console.log('Frozen worker archived; running source remains unchanged');\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-896b6d75-8b5e-48eb-a8a9-608f2c5df06a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:50:50.661Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "94fc252efead2a7fc4ff563b1716a1749ea254dc58ee99133d1a3dd4c1f1e20c",
+  "taskId": "task_e05b6a3cd0e249c8bb30e89986bf88349699172a78b8728cd989115f15c29c75",
+  "type": "task.create",
+  "payload": {
+    "title": "מה השלב הבא האם לקדם את זה לפרודקשן ?",
+    "description": "מה השלב הבא האם לקדם את זה לפרודקשן ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T13:22:17.961Z",
+  "parents": [],
+  "branch": "main"
+}

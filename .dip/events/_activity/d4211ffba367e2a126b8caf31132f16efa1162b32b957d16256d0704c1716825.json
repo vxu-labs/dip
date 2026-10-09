@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d4211ffba367e2a126b8caf31132f16efa1162b32b957d16256d0704c1716825",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:57:48.565Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execute} from './src/actions.js';import fs from 'node:fs';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session='01a10fa9-6164-7550-bdf9-5c21b772eafd',id='task_358d32ed-9c7b-453e-a23f-244f00ef174c',parent='task_8b4318ef-b13d-4420-988f-5266db4cd215';\nconst r=await execute('prepare',{id,actor,session});\nconst broad=await execute('get',{id:parent});\nawait execute('update',{id:parent,actor,patch:{description:broad.description.replace('No alternative has yet been run or proven superior.','The bounded pretrained stage task_358d32ed-9c7b-453e-a23f-244f00ef174c evaluated seven pinned alternatives plus BM25 on new family-separated synthetic retrieval/pair cases. Multilingual MiniLM raw top10 44/48, E5 43/48, Potion multilingual37/48 versus BM25 24/48 at10k; this is not autonomous identity or real-agent quality. Custom training, larger references, independent labels and downstream evaluation remain unperformed.'),scope:['scripts','docs/benchmarks'],status:'backlog'}});\nawait execute('checkpoint',{id:parent,actor,summary:'Pretrained stage completed all eight scheduled CPU attempts,216 Q/A cases x4 modes x3 sizes,288 new pair cases8cal/16test plus96 known Laya pairs. At10k raw top10 multilingualMiniLM44/48,E5 43/48,Potion multilingual37/48,BM25 24/48. Conservative identity gates missed46-48 of48 true identities; all failures/false links/costs retained. Same-information Markdown and structured experimental adapters give identical retrieval. No training/real task mutations. Full broader acceptance is unfinished.',next:'Independently review real-project labels; evaluate relation reranking/domain training and true downstream agents before integration. Keep custom10M/100M/vocabulary ablations and larger references open. Read docs/benchmarks/semantic-retrieval-pilot.md for raw outcomes and methodological boundaries.'});\nfor(const [target,file] of [[id,'docs/benchmarks/semantic-retrieval-pilot.md'],[parent,'docs/benchmarks/semantic-retrieval-pilot.md']])await ex",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-3a0c0df1-7029-4b89-8da4-59c6f523db41"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:57:49.802Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7b30d4fb22970d933649db17d5f98ad246fe0c3a159917bbbb112ac472c67b4a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T09:56:04.338Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/winner-evidence.mjs",
+          "scripts",
+          "scripts/winner-publish.mjs",
+          "scripts/winner-check.mjs",
+          "test/winner-analysis.test.js",
+          "test"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "695b7017-ac77-4f3c-9561-b7fa231e7391"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:56:04.352Z",
+  "parents": [],
+  "branch": "main"
+}

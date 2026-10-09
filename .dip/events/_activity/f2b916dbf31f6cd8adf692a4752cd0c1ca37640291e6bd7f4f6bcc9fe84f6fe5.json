@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f2b916dbf31f6cd8adf692a4752cd0c1ca37640291e6bd7f4f6bcc9fe84f6fe5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:38:38.256Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$workflowDiagnostic = @'\nconst fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process');const root=JSON.parse(fs.readFileSync('.dip-local/production-frozen-location.json')).root;const at=Date.now(),r=spawnSync(process.execPath,['--test','test/workflow.test.js'],{cwd:root,env:{...process.env,GIT_TRACE2_EVENT:'0'},encoding:'utf8',timeout:60000,windowsHide:true,maxBuffer:4*1024*1024});fs.writeFileSync(path.join(root,'docs/benchmarks/2026-10-09-production-workflow-followup.json'),JSON.stringify({head:'329bbb627a2e8e602d109485126f625f921a8f95',condition:'Explicit workflow test with bundled Git cmd and usr/bin on PATH; trace disabled; follows full-suite timeout, not a scored retry',exit:r.status,error:r.error?.message,wallMs:Date.now()-at,stdout:r.stdout,stderr:r.stderr},null,2));console.log(JSON.stringify({exit:r.status,error:r.error?.message,wallMs:Date.now()-at}));\n'@\n$env:PATH='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/usr/bin;'+$env:PATH\nnode -e $workflowDiagnostic",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-aeb0c12c-2b0b-4f37-ad90-7abbdb3c06a1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:38:38.662Z",
+  "parents": [],
+  "branch": "main"
+}

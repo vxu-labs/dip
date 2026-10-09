@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5ab09fa7e33f1e08b1b6625779beb7f4f9e8db8e18b579fd1ecbfa32df2971cf",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-09T14:14:54.400Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/intent-transitions.md",
+          "skills/dip/SKILL.md",
+          "src/actions.js",
+          "src/health.js",
+          "src/mcp.js",
+          "src/views.js",
+          "src/workflow.js"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "40388f17-e9cd-4a9f-8e95-4c7ffaa223a9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T14:14:54.411Z",
+  "parents": [],
+  "branch": "main"
+}

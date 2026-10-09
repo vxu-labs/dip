@@ -41,6 +41,7 @@ import {
   readingCommand,
   intentCommand,
   promptRequest,
+  capturedKind,
   planInput,
 } from "./workflow.js";
 import {
@@ -589,6 +590,7 @@ export function handleHook(
         {
           title: prompt.trim().slice(0, 160) || "Agent request (text omitted)",
           description: prompt,
+          kind: capturedKind(prompt),
           status: "backlog",
           source: "prompt",
         },

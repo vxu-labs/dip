@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "813d85af7cde187a6ad6db0d5804cf414d2e04e29b54b994ba8555f50795a6e0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T09:27:12.983Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {ensure,taskRead} from './src/core.js';\nconst repo=ensure(process.cwd());\nconst ids=['task_2362d29e-7f1b-4f76-8d38-43fbaf961335','task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344','task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df','task_7d983f51fa4aa5ea423f209dd5f6142d8c577f80da9a7d4a42c86d1d044e2b40','task_8b4318ef-b13d-4420-988f-5266db4cd215','task_8e2b3942-b639-48d4-a324-0bfd6f8a8e90','task_a12b530ef91361c8ff8527e0048dde3b5a6ef45fb2a96b39fb71057776392f1e','task_e0098db7-8a67-4363-bef0-509e0955d475','task_15793da9-9d59-4fa4-acbf-65e08b24907b','task_0fc443ee-b79b-4f6d-977f-e14c34a9df57','task_fef5991042dd2c86eb047c1ac4db89f592beb1579913ffdbd3c5f19c0964030d','task_6c49493af99687df92ebdeacfee9581fe83d1373bba187a704dd98495495fbd7','task_946d6e12859ad5986645e9e0127add5a352aafb520417424c484f72982cd24be','task_961a3099-11c8-49d1-98c9-6c422a347fc8','task_85cdc79ef6e2c7c38586d0cd563158c3e009d4efb6a1c8f5516fbe465ca3b87d','task_358d32ed-9c7b-453e-a23f-244f00ef174c'];\nfor(const id of ids){const t=taskRead(repo,id);console.log(JSON.stringify({id,title:t.title,documents:t.documents?.map(x=>x.path)}));}\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-2e958c4d-b77b-415f-94b5-b3e25798c5d5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:27:14.163Z",
+  "parents": [],
+  "branch": "main"
+}

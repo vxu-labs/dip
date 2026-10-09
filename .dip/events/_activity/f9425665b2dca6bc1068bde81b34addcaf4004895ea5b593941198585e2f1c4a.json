@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f9425665b2dca6bc1068bde81b34addcaf4004895ea5b593941198585e2f1c4a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:40:30.845Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {scoreResult} from './scripts/semantic-analysis.mjs';\nconst p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-semantic-protocol.json'));\nfor(const slug of ['intfloat--multilingual-e5-small','sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2']) {const file=`.dip-local/semantic-${slug}.json`;if(!fs.existsSync(file))continue;const d=JSON.parse(fs.readFileSync(file));console.log(JSON.stringify({model:d.model,complete:!!d.completedAt,rows:d.rows.length,parameters:d.parameterCount}));if(!d.completedAt)continue;const s=scoreResult(d,p);console.log(JSON.stringify({identity:s.identity.test,legacy:s.identity.legacy,queries:s.retrieval.filter(x=>x.size===10000&&x.mode==='Q'&&x.scenario==='faithful'),warmQueryMs:s.resources.warmQueryMedianMs}));}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ab9baf02-b4da-43c0-9873-bb88c53115ad"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:40:32.184Z",
+  "parents": [],
+  "branch": "main"
+}

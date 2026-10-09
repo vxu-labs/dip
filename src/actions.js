@@ -23,7 +23,12 @@ import {
 } from "./util.js";
 import { repositoryIntegration } from "./repository-integration.js";
 import path from "node:path";
-import { planIntent, planSteps } from "./workflow.js";
+import {
+  planIntent,
+  planSteps,
+  validateRemaining,
+  verificationDetails,
+} from "./workflow.js";
 import {
   documentState,
   documentKey,
@@ -40,6 +45,9 @@ const intentHash = (task, repo) =>
       task.acceptance || [],
       task.scope || [],
       task.dependencies || [],
+      ...(task.resolution?.remaining !== undefined
+        ? [task.resolution.remaining]
+        : []),
       ...(task.plan ? [planIntent(task.plan)] : []),
       ...(task.documents?.length
         ? [
@@ -295,7 +303,31 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         outcome: args.outcome,
         summary: redact(args.summary),
         replacedBy,
+        ...(args.remaining === undefined ? {} : { remaining: args.remaining }),
       };
+      validateRemaining(args.remaining);
+      if (args.remaining !== undefined && args.outcome !== "implemented")
+        throw new Error("Remaining-work review applies to implemented work");
+      if (args.remaining?.some((item) => item.disposition === "required"))
+        throw new Error(
+          "Required remaining work prevents completion; checkpoint it or revise scope explicitly",
+        );
+      for (const item of args.remaining || []) {
+        if (item.disposition !== "follow_up") continue;
+        if (item.taskId === args.id)
+          throw new Error("Follow-up cannot reference itself");
+        const followUp = taskRead(repo, item.taskId);
+        if (
+          followUp.kind !== "work" ||
+          ["cancelled", "superseded"].includes(followUp.status)
+        )
+          throw new Error("Follow-up must reference applicable work");
+      }
+      if (args.remaining !== undefined)
+        resolution.remaining = args.remaining.map((item) => ({
+          ...item,
+          summary: redact(item.summary),
+        }));
       const retainVerified =
         args.outcome === "implemented" &&
         task.status === "verified" &&
@@ -716,6 +748,11 @@ async function verify(repo, args, actor, assertOwnership) {
     {
       check: name,
       command: check.command,
+      runner: {
+        platform: process.platform,
+        arch: process.arch,
+        node: process.version,
+      },
       result: passed ? "passed" : "failed",
       ...result,
       snapshot: after,
@@ -753,6 +790,9 @@ export function assessEvidence(repo, task, snapshot) {
       verification: "missing",
       integrated: false,
       verifiedComplete: false,
+      verificationDetails: null,
+      remainingReview:
+        task.resolution?.remaining === undefined ? "unreviewed" : "recorded",
     };
   snapshot ||= captureSnapshot(repo);
   const names = new Set(
@@ -776,6 +816,9 @@ export function assessEvidence(repo, task, snapshot) {
     integrated: snapshot.committed && current,
     verifiedComplete:
       task.kind === "work" && task.status === "verified" && current,
+    verificationDetails: verificationDetails(evidence),
+    remainingReview:
+      task.resolution?.remaining === undefined ? "unreviewed" : "recorded",
   };
 }
 

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ed605656-d5e8-4074-a084-d1b7183efd72",
+  "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/intent-transitions.md",
+    "role": "reference",
+    "hash": "40cf9524bf7465680440e2092938113f54ef986b28b1f49932073e46b626b496",
+    "bytes": 5902,
+    "source": "hook"
+  },
+  "actor": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+  "createdAt": "2026-10-09T12:55:04.514Z",
+  "parents": [
+    "e6e82357-d5c3-490a-9574-a75fa705419a"
+  ],
+  "branch": "main"
+}

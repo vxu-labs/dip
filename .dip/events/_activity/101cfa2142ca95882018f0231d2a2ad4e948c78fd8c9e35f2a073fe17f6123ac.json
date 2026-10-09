@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "101cfa2142ca95882018f0231d2a2ad4e948c78fd8c9e35f2a073fe17f6123ac",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:13:28.725Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Content -LiteralPath '.dip-local/production-frozen/test/workflow.test.js' -TotalCount 75; Get-Content -LiteralPath '.dip-local/production-frozen/test/winner-analysis.test.js' -Tail 30; $cp=Get-CimInstance Win32_Process; $cp | Where-Object {$_.ParentProcessId -eq 21580} | Select-Object Name,ProcessId,ParentProcessId | ConvertTo-Json -Compress",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-b18237c6-b08b-4bf5-92dc-12cdca7988ad"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:13:28.810Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "baf2b366a4f8135e5f2beeb0bf40433ac642c2063a687bb2987de7dcfce60901",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:39:35.364Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/semantic-evidence.mjs",
+          ".github/workflows/ci.yml"
+        ],
+        "changeHash": "f13e7cafa26d929fc77878aeae9489c7e3dd3e9b18808a9900dac20c98a90b0d",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-fb0b7fb7-d811-449a-9924-e441aef21a11"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:39:36.295Z",
+  "parents": [],
+  "branch": "main"
+}

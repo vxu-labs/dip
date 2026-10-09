@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "18758fcdf2496a56292ce6c5cd6eddfdc40a048d55f2f95e4ae2ff3c48d032b3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:27:16.152Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$toolsUsed = @'\nconst r=JSON.parse(require('fs').readFileSync('.dip-local/production-frozen/.dip-local/production-agent-results.json'));console.log(JSON.stringify({attempts:r.rows.length,tools:r.rows.map(x=>({i:x.index,arm:x.arm,tools:x.toolEvents.filter(t=>t.type==='mcp_tool_call').map(t=>({name:t.tool,status:t.status}))}))}));\n'@\nnode -e $toolsUsed",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-e8515803-b5f2-4ff0-adcf-fd173a3ef60d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:27:16.571Z",
+  "parents": [],
+  "branch": "main"
+}

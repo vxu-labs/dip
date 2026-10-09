@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8b6db3731a85a66b4e4309128fa51ad197ec0ff6f64fd39eac995dc27888ed94",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:42:12.083Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {scoreResult} from './scripts/semantic-analysis.mjs';\nconst p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-semantic-protocol.json'));\nconst d=JSON.parse(fs.readFileSync('.dip-local/semantic-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json'));const s=scoreResult(d,p);\nconsole.log(JSON.stringify({identity:s.identity.test,legacy:s.identity.legacy,top10k:s.retrieval.filter(x=>x.size===10000&&x.mode==='Q'&&x.language==='all'&&x.scenario==='faithful'),modes:s.retrieval.filter(x=>x.size===10000&&x.language==='all'&&x.scenario==='misleading').map(x=>({mode:x.mode,raw:x.raw,eligible:x.eligible})),resources:{warmQueryMs:s.resources.warmQueryMedianMs,peakGiB:s.resources.peakRssBytes/2**30,params:d.parameterCount}}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-38e1fa4e-3c52-4a0d-92d2-f410b8667104"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:42:13.237Z",
+  "parents": [],
+  "branch": "main"
+}

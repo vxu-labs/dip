@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "73bbbf43e331d17adfa4a03d44c48cbe056de9ff54235a54357cfbb329375b0f",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T14:54:49.346Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-08-semantic-BAAI--bge-small-en-v1.5.json.gz"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "e0553da5-f1b5-4fc4-a042-2000f9b053bd"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T14:54:49.351Z",
+  "parents": [],
+  "branch": "main"
+}

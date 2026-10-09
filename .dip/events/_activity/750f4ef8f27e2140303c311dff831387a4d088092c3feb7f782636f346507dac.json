@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "750f4ef8f27e2140303c311dff831387a4d088092c3feb7f782636f346507dac",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-09T13:53:07.296Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-09-production-protocol-setup-v0.json"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "d96b2407-58c4-4e07-b8d9-46a00baeab9e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:53:07.301Z",
+  "parents": [],
+  "branch": "main"
+}

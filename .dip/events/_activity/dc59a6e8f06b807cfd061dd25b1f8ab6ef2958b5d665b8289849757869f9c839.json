@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "dc59a6e8f06b807cfd061dd25b1f8ab6ef2958b5d665b8289849757869f9c839",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:23:04.643Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Copy-Item -LiteralPath 'scripts/production-live-mcp.mjs' -Destination '.dip-local/production-frozen/scripts/production-live-mcp.mjs'\nSet-Location -LiteralPath '.dip-local/production-frozen'\nnode scripts/production-live-mcp.mjs --protocol",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-cbe7b493-e1e6-4c63-9ac1-41d1973c288d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:23:05.923Z",
+  "parents": [],
+  "branch": "main"
+}

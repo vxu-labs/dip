@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2aacdc62a4b395ca5811e79e84aae0af9209820575083ff28d99789ed38c94cb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T12:14:13.215Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'follow-up|retrieval|pretrained' README.md .github/workflows/ci.yml | Select-Object -Last 12\nGet-Content README.md | Select-Object -Skip 162 -First 23",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-98ffdb7f-2378-491a-b012-dbb79e0b5fde"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T12:14:13.831Z",
+  "parents": [],
+  "branch": "main"
+}

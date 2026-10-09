@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3a41318526937ed4ecd8bc92ca9170d3592c3dfecdafe037d8dee79b8367682a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:35:13.227Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:DIP_SEMANTIC_PYTHON=(Resolve-Path '.dip-local/laya-env/Scripts/python.exe').Path\n$env:DIP_SEMANTIC_MODEL=(Resolve-Path '.dip-local/semantic-cache/hub/models--intfloat--multilingual-e5-small/snapshots/614241f622f53c4eeff9890bdc4f31cfecc418b3').Path\n$env:DIP_SEMANTIC_CACHE=Join-Path (Get-Location) '.dip-local/semantic-agent-index'\n$env:DIP_BENCH_GIT='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe'\nnode scripts/semantic-agent-benchmark.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a929979a-ff44-46b8-83df-ae395ac3f227"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:35:13.860Z",
+  "parents": [],
+  "branch": "main"
+}

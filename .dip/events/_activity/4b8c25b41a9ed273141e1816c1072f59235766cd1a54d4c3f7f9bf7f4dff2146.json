@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4b8c25b41a9ed273141e1816c1072f59235766cd1a54d4c3f7f9bf7f4dff2146",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T12:15:48.544Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {execute} from './src/actions.js';import {taskRead,ensure} from './src/core.js';\nconst id='task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a',actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session='01a10fa9-6164-7550-bdf9-5c21b772eafd';\nawait execute('prepare',{id,actor,session});\nfor(const d of taskRead(ensure(process.cwd()),id).documents)await execute('document-link',{id,actor,path:d.path,role:d.role});\nconst broad='task_76b337bcfa7db953636318fb7dd755799ae72c04cfc7c53fc29c5cbf60b5b4df';\nawait execute('document-link',{id:broad,actor,path:'docs/benchmarks/semantic-agent-quality.md',role:'reference'});\nawait execute('checkpoint',{id:broad,actor,summary:'Opt-in pinned E5 task/document prototype implemented with current source hashes, asynchronous stale-source omission and channel-separated cache; actual model/cache QA passed. All18 frozen agent trials retained and replayed: every arm48/48 functional36/36 memory, so no quality gain observed; mandatory E5 reads increased time and reported input. Broader routing remains backlog for naturalistic larger histories, independent relevance/identity labels, selective tool routing/overhead reduction, learned no-match/relations and multi-process cache coordination. No automatic identity, merge or completion.'});\nconst alt='task_8b4318ef-b13d-4420-988f-5266db4cd215';\nawait execute('document-link',{id:alt,actor,path:'docs/benchmarks/semantic-agent-quality.md',role:'reference'});\nawait execute('checkpoint',{id:alt,actor,summary:'Shortlisted E5 progressed to an opt-in local prototype and frozen18-run agent experiment against strong Markdown and identical E5 Markdown controls. All arms48/48 functional36/36 memory; no observed quality gain and higher measured time/input under mandatory searches. Custom tiny encoder training/vocabulary/parameter studies, independent labels and natural large-project downstream trials remain open. No training performed.'});\nfor(const f of ['README",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-fca13357-6bf1-451d-b1cb-06e634f1f46b"
+      },
+      {
+        "at": "2026-10-08T12:15:48.558Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/semantic-prototype-check.mjs\nnpm run check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-0399ab83-fe60-4490-8054-e8cad6cebc55"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T12:15:49.550Z",
+  "parents": [],
+  "branch": "main"
+}

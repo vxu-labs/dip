@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "36eb2835f03a736c61ab9821aaf407eb14e6923f3daa7bd198781e70bbd8ca77",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:44:11.768Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nfor(const slug of ['BAAI--bge-small-en-v1.5','sentence-transformers--all-MiniLM-L6-v2']){const f=`.dip-local/semantic-${slug}.json`;if(!fs.existsSync(f))continue;const x=JSON.parse(fs.readFileSync(f));console.log(JSON.stringify({model:x.model,rows:x.rows.length,parameters:x.parameterCount,load:x.loadSeconds,completedAt:x.completedAt,error:x.error?.type}));}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f3fb6145-a7cb-48af-961d-cfaf30316514"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:44:12.950Z",
+  "parents": [],
+  "branch": "main"
+}

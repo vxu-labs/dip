@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "68474f05c776c1647ce5f6e3ab2e626c3f5462d0b47182150887de3e6661540c",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:43:10.716Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {execute} from './src/actions.js';\nconst actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session='01a10fa9-6164-7550-bdf9-5c21b772eafd',parent='task_8b4318ef-b13d-4420-988f-5266db4cd215';\nconst r=await execute('prepare',{id:parent,actor,session});\nawait execute('checkpoint',{id:parent,actor,summary:'Preregistered pretrained stage is running unchanged, all completed attempts retained. This deliverable is narrower than custom training, independent reviewed real histories and downstream implementation requirements. Track the completed stage separately and leave the broad research task open.',next:'Compare final seven-model results, then use them to select retrieval shortlist and future calibration/training work.'});\nawait execute('release',{id:parent,actor,token:[REDACTED];\nawait execute('update',{id:parent,actor,patch:{status:'backlog'}});\nconst p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-semantic-protocol.json'));\nconst scope=['scripts/semantic-corpus.mjs','scripts/semantic-protocol.mjs','scripts/semantic-alternatives.py','scripts/semantic-analysis.mjs','scripts/semantic-publish.mjs','scripts/semantic-evidence.mjs','scripts/semantic-tensors.py','test/semantic-analysis.test.js','.github/workflows/ci.yml','.dip/config.json','README.md','docs/benchmarks/semantic-retrieval-pilot.md','docs/benchmarks/semantic-alternatives.md','docs/benchmarks/2026-10-08-semantic-protocol.json','docs/benchmarks/2026-10-08-semantic-requirements.txt','docs/benchmarks/2026-10-08-semantic-summary.json','docs/benchmarks/2026-10-08-semantic-tensors.json',...['lexical',...p.models.map(x=>x.id)].map(id=>'docs/benchmarks/2026-10-08-semantic-'+id.replaceAll('/','--')+'.json.gz')];\nconst task=await execute('create',{actor,title:'Execute preregistered seven-model pretrained retrieval alternatives pilot',description:'Bounded first stage of task_8b4318ef-b13d-4420-988f-5266db4cd215: local CPU alternatives comparison on new synthetic calibration/test fam",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ec150390-0b96-445c-ac9c-12b6155100a6"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:43:11.124Z",
+  "parents": [],
+  "branch": "main"
+}

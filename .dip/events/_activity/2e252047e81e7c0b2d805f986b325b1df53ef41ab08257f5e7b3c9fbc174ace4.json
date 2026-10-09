@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "2e252047e81e7c0b2d805f986b325b1df53ef41ab08257f5e7b3c9fbc174ace4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:07:16.317Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$cacheSerializedSetup = @'\nconst fs=require('node:fs'),path=require('node:path');\nfs.copyFileSync('scripts/production-cache-race.py','scripts/fixtures/production-cache-race-v1.py');\nlet t=fs.readFileSync('scripts/production-cache-race.py','utf8');\nt=t.replace('def run(index,cache,barrier,out):','def run(index,cache,barrier,completed,out):').replace(\"def synchronized_replace(a,b):barrier.wait(timeout=30);return replace(a,b)\",\"def synchronized_replace(a,b):\\n        barrier.wait(timeout=30)\\n        if index:completed[index-1].wait(timeout=30)\\n        try:return replace(a,b)\\n        finally:completed[index].set()\");\nt=t.replaceAll('production-cache-race-protocol.json','production-cache-race-serialized-protocol.json').replaceAll('production-cache-race.json','production-cache-race-serialized.json');\nt=t.replace(\"'encoderMocked':True,'expected'\",\"'legalSchedule':'All writes finish; rename calls execute in index order using explicit events','encoderMocked':True,'expected'\");\nt=t.replace('barrier=multiprocessing.Barrier(4);out=multiprocessing.Queue();children=', 'barrier=multiprocessing.Barrier(4);completed=[multiprocessing.Event() for _ in range(4)];out=multiprocessing.Queue();children=').replace('args=(i,cache,barrier,out)','args=(i,cache,barrier,completed,out)');\nfs.writeFileSync('scripts/production-cache-race.py',t);\nconst root=JSON.parse(fs.readFileSync('.dip-local/production-frozen-location.json')).root;fs.copyFileSync('scripts/production-cache-race.py',path.join(root,'scripts/production-cache-race.py'));fs.copyFileSync('scripts/fixtures/production-cache-race-v1.py',path.join(root,'scripts/fixtures/production-cache-race-v1.py'));\n'@\nnode -e $cacheSerializedSetup\n$productionPython=(Resolve-Path -LiteralPath '.dip-local/laya-env/Scripts/python.exe').Path\nSet-Location -LiteralPath '.dip-local/production-frozen'\n& $productionPython scripts/production-cache-race.py --protocol\n& $productionPython scripts/production-cache-race.py",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0526589f-0d06-4c4b-a47c-c56922a2e3c3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:07:17.458Z",
+  "parents": [],
+  "branch": "main"
+}

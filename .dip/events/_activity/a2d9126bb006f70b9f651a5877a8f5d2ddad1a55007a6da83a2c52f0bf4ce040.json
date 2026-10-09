@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a2d9126bb006f70b9f651a5877a8f5d2ddad1a55007a6da83a2c52f0bf4ce040",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:30:40.790Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';const p='.dip-local/semantic-agent-preflight-v2.json';const r=JSON.parse(fs.readFileSync(p));console.log(JSON.stringify(r.rows.map(x=>({arm:x.arm,retrieval:x.retrieval.map(t=>t.tool),errors:x.toolEvents.filter(t=>t.type==='mcp_tool_call'&&t.status==='failed').length}))));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-89c9b857-b6e4-4e79-8d7b-f555c9f98ed8"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:30:41.502Z",
+  "parents": [],
+  "branch": "main"
+}

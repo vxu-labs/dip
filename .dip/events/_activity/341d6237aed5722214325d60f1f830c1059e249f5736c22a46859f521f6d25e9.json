@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "341d6237aed5722214325d60f1f830c1059e249f5736c22a46859f521f6d25e9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T12:28:43.588Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-08-semantic-agent-preflight-v1.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-agent-protocol-v1.json"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "e9e23cc5-87a0-4ab8-a793-dd7334c4013d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T12:28:43.595Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4eff605bdaf8e18ceb6bde645b3448635dd453e921e0e0614f1f42764a2e852e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:33:05.631Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import zlib from 'node:zlib';import {execute} from './src/actions.js';import {taskRead,ensure} from './src/core.js';const prefix='docs/benchmarks/2026-10-08-semantic-agent-';\nconst pre=JSON.parse(fs.readFileSync('.dip-local/semantic-agent-preflight-v2.json'));if(!pre.passed)throw new Error('Preflight failed');fs.writeFileSync(prefix+'preflight-v2.json.gz',zlib.gzipSync(JSON.stringify(pre)));fs.copyFileSync(prefix+'protocol.json',prefix+'protocol-preflight.json');fs.unlinkSync(prefix+'protocol.json');\nconst id='task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a';const t=taskRead(ensure(process.cwd()),id);await execute('prepare',{id,actor:'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session:'01a10fa9-6164-7550-bdf9-5c21b772eafd',patch:{scope:[...t.scope,'scripts/semantic-agent-score.mjs',prefix+'protocol-preflight.json']}});console.log('Passing preflight retained; scorer now separately bounded before scored runs');\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\nnode scripts/semantic-agent-benchmark.mjs --protocol\nnode --test test/semantic-prototype.test.js test/semantic-agent.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-ed540dfc-6a35-4d92-bc8c-4059a948e7f5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:33:06.330Z",
+  "parents": [],
+  "branch": "main"
+}

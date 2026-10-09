@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b834824f92e6d5239e818657c77183e779766b693e82713e5e65e8afb86297d2",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T12:49:17.305Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$productionSetup = @'\nconst fs=require('node:fs');\nlet h=fs.readFileSync('scripts/semantic-agent-benchmark.mjs','utf8');\nh=h.replace(\"from './semantic-agent-fixtures.mjs'\",\"from './production-fixtures.mjs'\").replaceAll('2026-10-08-semantic-agent-protocol.json','2026-10-09-production-protocol.json').replaceAll('semantic-agent-preflight.json','production-agent-preflight.json').replaceAll('semantic-agent-results.json','production-agent-results.json').replaceAll('scripts/semantic-agent-mcp.mjs','scripts/production-mcp.mjs');\nh=h.replace(\"'scripts/semantic-agent-fixtures.mjs'\",\"'scripts/production-fixtures.mjs'\").replace(\"'scripts/semantic-agent-benchmark.mjs'\",\"'scripts/production-agents.mjs'\");\nh=h.replace(\"'scripts/semantic-agent-score.mjs'];\",\"'scripts/semantic-agent-score.mjs','scripts/semantic-agent-fixtures.mjs','scripts/production-operations.mjs','docs/benchmarks/production-readiness-plan.md'];\");\nh=h.replace(\"const {f,tasks}=memory(Math.max(0,index));\",\"const {f,tasks,documents}=memory(Math.max(0,index));\");\nh=h.replace(\"fs.writeFileSync(path.join(projectRoot,'docs/current.md'),f.document);\",\"for(const [file,text] of Object.entries(documents))fs.writeFileSync(path.join(projectRoot,file),text);\");\nh=h.replace(\"if(arm==='dip'){\",\"if(arm!=='markdown'){\");\nh=h.replace(\"linkDocument(repo,f.task.id,{path:'docs/current.md',role:'spec'},'fixture');\",\"for(const t of tasks)if(!['superseded','cancelled'].includes(t.status))linkDocument(repo,t.id,{path:t.document,role:'spec'},'fixture');\");\nh=h.replace(\"Before editing, use memory_search once for tasks and once for documents, then memory_requirements to inspect the selected candidate. memory_read selects a document heading.\",\"Start with INDEX.md and lexical shell search, or use optional memory_search only if useful. Do not run semantic search automatically. Inspect current requirements for the selected task. memory_read selects a document heading.\");\nh=h.replace(\"Six matched triples: three fresh synthetic domain projects, ea",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-06d8f034-fdf4-4683-b049-f8f1193652d3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T12:49:17.807Z",
+  "parents": [],
+  "branch": "main"
+}

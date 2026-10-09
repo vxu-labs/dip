@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "78464d7d690668df38bce37713274dace3c88de78440c58fceaacf26f779a9dc",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:34:07.558Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-ChildItem -LiteralPath 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git' | Select-Object Name\nGet-ChildItem -LiteralPath 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/usr/bin' -Filter sh.exe | Select-Object FullName\n$env:PATH='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/usr/bin;'+$env:PATH\nnode --test --test-concurrency=1 --test-name-pattern='Git init and clone post-command|Git hook chain|fresh clone portable' test/core.test.js test/integration.test.js test/low-friction.test.js",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9a22ed80-75e4-40cd-86f2-98ff4f71bb17"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:34:09.092Z",
+  "parents": [],
+  "branch": "main"
+}

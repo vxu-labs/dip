@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4a254e47f6c428bd982330f4ba0449fae0e1eeabb4ea5bac80419ce90a7d2a5e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:12:51.624Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$supportTail = @'\nconst fs=require('fs');const f='.dip-local/production-frozen/docs/benchmarks/2026-10-09-production-support.json';if(fs.existsSync(f)){const r=JSON.parse(fs.readFileSync(f));console.log(JSON.stringify(r.rows.map(x=>({label:x.label,exit:x.exit,error:x.error,stdout:x.stdout?.slice(-1600),stderr:x.stderr?.slice(-500)}))));}\n'@\nnode -e $supportTail",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-9b83fc8a-3e38-4a61-aaa2-4dec4e2468a7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:12:52.097Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -10,6 +10,60 @@ export function promptRequest(raw) {
   return match ? match[1] : text;
 }
 
+// Recognize the observed host template only; ordinary questions still require
+// classification by the current agent. Quoted reports must not match.
+export function capturedKind(prompt) {
+  return /^# Overview\r?\n\s*Generate 0 to 3 hyperpersonalized suggestions for what this user can do with Codex in this local project: [^\r\n]+(?:\r?\n|$)/.test(
+    prompt.trimStart(),
+  )
+    ? "discussion"
+    : "work";
+}
+
+export function validateRemaining(remaining) {
+  if (remaining === undefined) return;
+  if (
+    !Array.isArray(remaining) ||
+    remaining.length > 20 ||
+    remaining.some(
+      (item) =>
+        !item ||
+        ![
+          "required",
+          "follow_up",
+          "verification_limit",
+          "out_of_scope",
+        ].includes(item.disposition) ||
+        typeof item.summary !== "string" ||
+        !item.summary.trim() ||
+        item.summary.length > 1000 ||
+        (item.taskId !== undefined &&
+          (typeof item.taskId !== "string" || !/^[\w-]+$/.test(item.taskId))) ||
+        (item.disposition === "follow_up" && !item.taskId) ||
+        (item.disposition !== "follow_up" && item.taskId !== undefined),
+    )
+  )
+    throw new Error(
+      "Invalid remaining-work review; follow_up requires a taskId",
+    );
+}
+
+export function verificationDetails(evidence) {
+  if (!evidence) return null;
+  const command = evidence.command || [];
+  return {
+    check: evidence.check,
+    result: evidence.result,
+    at: evidence.at,
+    command: command.slice(0, 20).map((arg) => arg.slice(0, 500)),
+    commandTruncated:
+      command.length > 20 || command.some((arg) => arg.length > 500),
+    runner: evidence.runner || null,
+    meaning:
+      "Evidence covers this configured command and snapshot only. Runner identifies the local process, not an emulator or physical device. Device coverage and acceptance coverage are not inferred; Git integration is separate.",
+  };
+}
+
 export function planInput(tool, input) {
   if (/(?:^|[.:])ExitPlanMode$/i.test(tool) && typeof input.plan === "string") {
     const { plan, ...rest } = input;

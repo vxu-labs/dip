@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5540b2c9305db9c5571b00529684ec77bfd7bef2036457a813b3ca5f3c9812a7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:15:31.418Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$productionPackage = @'\nconst fs=require('node:fs'),path=require('node:path'),{spawnSync}=require('node:child_process');const root=JSON.parse(fs.readFileSync('.dip-local/production-frozen-location.json')).root;const npm=path.join(path.dirname(process.execPath),'node_modules/npm/bin/npm-cli.js');const at=Date.now();const r=spawnSync(process.execPath,['scripts/package-smoke.mjs'],{cwd:root,env:{...process.env,npm_execpath:npm,GIT_TRACE2_EVENT:'0'},encoding:'utf8',timeout:180000,windowsHide:true,maxBuffer:4*1024*1024});fs.writeFileSync(path.join(root,'docs/benchmarks/2026-10-09-production-package.json'),JSON.stringify({head:'329bbb627a2e8e602d109485126f625f921a8f95',exit:r.status,error:r.error?.message,wallMs:Date.now()-at,stdout:r.stdout,stderr:r.stderr},null,2));console.log(JSON.stringify({exit:r.status,error:r.error?.message,wallMs:Date.now()-at}));\n'@\n$env:PATH='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;'+$env:PATH\nnode -e $productionPackage",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-3d65e884-5f3d-4c0d-8daf-c503e11565e7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:15:31.865Z",
+  "parents": [],
+  "branch": "main"
+}

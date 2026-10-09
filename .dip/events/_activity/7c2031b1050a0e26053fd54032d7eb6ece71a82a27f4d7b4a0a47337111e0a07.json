@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7c2031b1050a0e26053fd54032d7eb6ece71a82a27f4d7b4a0a47337111e0a07",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T07:54:44.985Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-08-semantic-tensors.json",
+          "docs/benchmarks",
+          "docs/benchmarks/2026-10-08-semantic-lexical.json.gz"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "8b2c8243-33aa-4e33-ae7c-76429a81915c"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:54:44.992Z",
+  "parents": [],
+  "branch": "main"
+}

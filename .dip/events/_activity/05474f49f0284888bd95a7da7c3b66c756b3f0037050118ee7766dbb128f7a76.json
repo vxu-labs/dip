@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "eventId": "05474f49f0284888bd95a7da7c3b66c756b3f0037050118ee7766dbb128f7a76",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T11:19:22.402Z",
+        "kind": "files.changed",
+        "files": [
+          ".gitignore",
+          ".agents/skills/dip",
+          ".agents/skills",
+          ".agents",
+          ".claude/skills/dip",
+          ".claude/skills",
+          ".claude",
+          ".github/workflows",
+          ".github",
+          "bin",
+          "docs/host-qa",
+          "docs/images",
+          "docs/plans",
+          "docs",
+          "public",
+          "scripts/fixtures",
+          "skills/dip",
+          "skills"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "5c7b55fa-4b41-4f59-86ff-6acadcaf8791"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:19:22.418Z",
+  "parents": [],
+  "branch": "main"
+}

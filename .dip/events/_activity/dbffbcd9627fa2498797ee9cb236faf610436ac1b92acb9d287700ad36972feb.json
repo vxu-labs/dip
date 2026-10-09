@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "dbffbcd9627fa2498797ee9cb236faf610436ac1b92acb9d287700ad36972feb",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T09:57:18.824Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {winnerScore} from './scripts/winner-analysis.mjs';const p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-winner-protocol.json'));\nfor(const id of ['lexical','intfloat--multilingual-e5-small','sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2']){const d=JSON.parse(fs.readFileSync(`.dip-local/winner-${id}.json`));const s=winnerScore(d,p);console.log(JSON.stringify({model:d.model,complete:s.complete,error:d.error?.type,cacheChecks:d.cacheChecks.length,scores:s.scores?.filter(x=>x.language==='all').map(x=>({suite:x.suite,strategy:x.strategy,matching:x.matching,raw:x.raw,eligible:x.eligible,heading1:x.heading1})),tokens:d.resources.tokenCounts}));}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1a7f76b9-5136-448b-a076-c8a46d9644e5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:57:19.076Z",
+  "parents": [],
+  "branch": "main"
+}

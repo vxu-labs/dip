@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "923f5ae84ec61fa7b30785d3f3a380b56e0bca7ec8e7ec2d8668628c450f0cb5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:48:33.615Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$finishStudy = @'\nconst {execFileSync}=require('node:child_process'),fs=require('node:fs');const run=a=>process.stdout.write(execFileSync(process.execPath,['bin/dip.js',...a],{encoding:'utf8'}));const id='task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea',actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd';\nrun(['task','document-link','--id',id,'--path','docs/benchmarks/production-readiness.md','--role','reference','--actor',actor]);\nrun(['task','plan','--id',id,'--actor',actor,'--steps',JSON.stringify([{step:'Freeze protocol and isolated test harness',status:'completed'},{step:'Run operational, scale and safety diagnostics',status:'completed'},{step:'Run extended agent comparisons and replay scoring',status:'completed'},{step:'Publish evidence and readiness verdict; preserve unmet rollout gates',status:'completed'}])]);\nfor(const t of JSON.parse(fs.readFileSync('.dip-local/production-followup-tasks.json')))run(['task','document-link','--id',t.id,'--path','docs/benchmarks/production-readiness.md','--role','reference','--actor',actor]);\nrun(['task','update','--id','task_29131646-3b2b-4434-be66-ee4a9b3e13da','--actor',actor,'--patch',JSON.stringify({dependencies:['task_7e58316d-7033-4833-aeb6-4a0263fc0ee7','task_9025ee96-fa81-4009-819a-10b66d0f7a07','task_3dbcfeb9-a9f9-4a3f-9a70-e50ce91f82cd','task_684b230686f33a194d0cf09079e991f477c74329fba46b022f19b1bb89213344','task_e0098db7-8a67-4363-bef0-509e0955d475']})]);\nrun(['task','finish','--id',id,'--actor',actor,'--outcome','implemented','--check','production-evaluation','--summary','Bounded preregistered frozen-source production evaluation completed and evidence replays passed. Verdict NOT READY: stale IPC replies can satisfy later requests, response overflow poisons recovery, serialized shared-cache writers fail and Unicode truncation breaks valid source. Live freshness/branch/bounds/read-only probes and actual small-project MCP passed; cold full-canonical1000-task preflights timed out120s.18 matched ",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-258dd886-b542-4e47-97c1-e9ba815baaf6"
+      },
+      {
+        "at": "2026-10-09T13:48:33.680Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' status --short --untracked-files=no\n& 'C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe' diff -- .dip/config.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-0ec458ed-b24e-4f87-9999-948d0923ecab"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:48:34.795Z",
+  "parents": [],
+  "branch": "main"
+}

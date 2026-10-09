@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "87ecc68254a28a96d5879eafd498a5d535b01fceaad64b214d656496813d15ae",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:44:13.869Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';\nfor(const slug of ['BAAI--bge-small-en-v1.5','sentence-transformers--all-MiniLM-L6-v2']){const f=`.dip-local/semantic-${slug}.json`;if(!fs.existsSync(f))continue;const x=JSON.parse(fs.readFileSync(f));console.log(JSON.stringify({model:x.model,rows:x.rows.length,parameters:x.parameterCount,load:x.loadSeconds,completedAt:x.completedAt,error:x.error?.type}));}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-f3fb6145-a7cb-48af-961d-cfaf30316514"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:44:14.251Z",
+  "parents": [],
+  "branch": "main"
+}

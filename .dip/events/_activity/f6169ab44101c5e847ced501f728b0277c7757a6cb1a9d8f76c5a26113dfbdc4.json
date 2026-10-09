@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f6169ab44101c5e847ced501f728b0277c7757a6cb1a9d8f76c5a26113dfbdc4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:26:54.435Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$dipTrial=Get-ChildItem -LiteralPath $env:TEMP -Directory -Filter 'dip-semantic-agent-*' | Sort-Object LastWriteTime -Descending | Select-Object -First 1\nGet-ChildItem -LiteralPath $dipTrial.FullName -Recurse -File -Filter events.jsonl | Select-Object FullName,Length\nGet-ChildItem -LiteralPath $dipTrial.FullName -Recurse -File -Filter stderr.txt | ForEach-Object {Get-Content -LiteralPath $_.FullName -Tail 4}\n@'\nimport fs from 'node:fs';const r=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-semantic-prototype-live.json'));console.log(JSON.stringify({rows:r.rows.map(x=>({q:x.query,sourceHit:x.sourceHit,headingHit:x.headingHit})),cache:r.cache.map(x=>({case:x.case,encoded:x.encoded,reused:x.reused}))}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5b73674c-aeb9-4fad-bd4d-3cb27d6a4c20"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:26:55.403Z",
+  "parents": [],
+  "branch": "main"
+}

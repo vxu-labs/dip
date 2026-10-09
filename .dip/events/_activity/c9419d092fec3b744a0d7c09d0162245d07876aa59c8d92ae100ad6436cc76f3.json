@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c9419d092fec3b744a0d7c09d0162245d07876aa59c8d92ae100ad6436cc76f3",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:16:24.854Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$collectInitial = @'\nconst fs=require('fs'),path=require('path'),zlib=require('zlib');const root=JSON.parse(fs.readFileSync('.dip-local/production-frozen-location.json')).root;\nfor(const name of fs.readdirSync(path.join(root,'docs/benchmarks')).filter(x=>x.startsWith('2026-10-09-production-')&&x.endsWith('.json')))fs.copyFileSync(path.join(root,'docs/benchmarks',name),path.join('docs/benchmarks',name));\nfor(const [source,target]of [['.dip-local/production-agent-preflight.json','2026-10-09-production-preflight-v1.json.gz'],[path.join(root,'.dip-local/production-agent-preflight.json'),'2026-10-09-production-preflight-v2.json.gz'],[path.join(root,'.dip-local/production-agent-preflight-v3.json'),'2026-10-09-production-preflight-v3.json.gz']])fs.writeFileSync(path.join('docs/benchmarks',target),zlib.gzipSync(fs.readFileSync(source)));\n'@\nnode -e $collectInitial",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-8cba3cb4-e391-476d-a101-9b0df8736cb0"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:16:26.154Z",
+  "parents": [],
+  "branch": "main"
+}

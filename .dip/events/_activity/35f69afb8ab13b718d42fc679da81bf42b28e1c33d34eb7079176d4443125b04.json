@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "35f69afb8ab13b718d42fc679da81bf42b28e1c33d34eb7079176d4443125b04",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:37:04.337Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'CODEX_HOME|DIP_USER_HOME|codex.*config' '.dip-local/production-frozen/src/automation.js' '.dip-local/production-frozen/src/util.js' | Select-Object -First 15; $trialState = @'\nconst r=JSON.parse(require('fs').readFileSync('.dip-local/production-frozen/.dip-local/production-agent-results.json'));console.log(JSON.stringify({rows:r.rows.length,completedAt:r.completedAt,error:r.error}));\n'@\nnode -e $trialState",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-5d191e45-8779-47ae-9e63-fc1c525b41c3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:37:04.842Z",
+  "parents": [],
+  "branch": "main"
+}

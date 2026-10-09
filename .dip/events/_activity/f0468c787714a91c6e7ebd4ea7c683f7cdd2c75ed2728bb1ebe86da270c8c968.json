@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f0468c787714a91c6e7ebd4ea7c683f7cdd2c75ed2728bb1ebe86da270c8c968",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:16:22.834Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$collectInitial = @'\nconst fs=require('fs'),path=require('path'),zlib=require('zlib');const root=JSON.parse(fs.readFileSync('.dip-local/production-frozen-location.json')).root;\nfor(const name of fs.readdirSync(path.join(root,'docs/benchmarks')).filter(x=>x.startsWith('2026-10-09-production-')&&x.endsWith('.json')))fs.copyFileSync(path.join(root,'docs/benchmarks',name),path.join('docs/benchmarks',name));\nfor(const [source,target]of [['.dip-local/production-agent-preflight.json','2026-10-09-production-preflight-v1.json.gz'],[path.join(root,'.dip-local/production-agent-preflight.json'),'2026-10-09-production-preflight-v2.json.gz'],[path.join(root,'.dip-local/production-agent-preflight-v3.json'),'2026-10-09-production-preflight-v3.json.gz']])fs.writeFileSync(path.join('docs/benchmarks',target),zlib.gzipSync(fs.readFileSync(source)));\n'@\nnode -e $collectInitial",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-8cba3cb4-e391-476d-a101-9b0df8736cb0"
+      },
+      {
+        "at": "2026-10-09T13:16:23.046Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$prodCheckpoint = @'\nconst {execFileSync}=require('node:child_process');process.stdout.write(execFileSync(process.execPath,['bin/dip.js','task','checkpoint','--id','task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea','--actor','codex:01a10fa9-6164-7550-bdf9-5c21b772eafd','--summary','Frozen product 329bbb6 isolated after unrelated concurrent edits invalidated unscored setup. Live32 diagnostics completed: freshness/branch/delete/read-only/bounds pass; warm small p95 78ms and1000+100 plain-source p95 1.63s; cold index70s. Full canonical MCP cold searches timed out120s in two preflights. Four-heavy-worker run had resource failures with other live workers; do not assert exact four-only memory envelope. Controlled encoder/IPC-mocked probes separately demonstrate stale reply attribution, poisoned overbudget recovery, and serialized shared-temp-file races. All failures retained; unit suite exceeded240s while targeted18 tests and syntax passed; clean package smoke passed. 18 scheduled optional-retrieval agent trials now running with degraded fallback explicitly permitted. No release/default enablement. Independent/multiweek/Claude/platform gates remain open.'],{encoding:'utf8'}));\n'@\nnode -e $prodCheckpoint",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-fbb4bc90-0f75-4d02-833c-fa7458126e60"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:16:24.126Z",
+  "parents": [],
+  "branch": "main"
+}

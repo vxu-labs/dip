@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ff2306e03d86bb9f69918494a1c5ba5ac635389c8ef0f545374bcbbde93f6dcf",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:52:48.480Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/.gitattributes"
+        ],
+        "changeHash": "0bc23b2e059fc25a6cce422eecd44e1e02c6b767d584fcd12d8380b3e911f81d",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c8e0dd9a-fee4-4f56-be95-0dc4cedaf545"
+      },
+      {
+        "at": "2026-10-09T13:52:49.274Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "C:/Users/offic/Documents/ChatGPT/CUSTOM GIT/.gitattributes"
+        ],
+        "changeHash": "0bc23b2e059fc25a6cce422eecd44e1e02c6b767d584fcd12d8380b3e911f81d",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-c8e0dd9a-fee4-4f56-be95-0dc4cedaf545"
+      },
+      {
+        "at": "2026-10-09T13:52:49.439Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$preserveEvidenceBytes = @'\nconst fs=require('node:fs'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process');const git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe',names=fs.readdirSync('docs/benchmarks').filter(f=>f.startsWith('2026-10-09-production-cache-race')&&f.endsWith('.json'));execFileSync(git,['add','--','.gitattributes',...names.map(f=>'docs/benchmarks/'+f)]);const summary=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-09-production-summary.json'));const hash=b=>crypto.createHash('sha256').update(b).digest('hex');for(const[file,h]of Object.entries(summary.artifactHashes)){const stored=execFileSync(git,['show',':docs/benchmarks/'+file],{maxBuffer:16*1024*1024});if(hash(stored)!==h)throw new Error('Index changes original evidence bytes: '+file);}console.log('Every indexed artifact matches its original recorded byte hash.');\n'@\n$env:GIT_TRACE2_EVENT='0'\nnode -e $preserveEvidenceBytes",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-c51c22b1-fad0-43d6-ad1f-d53b4135800d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:52:50.091Z",
+  "parents": [],
+  "branch": "main"
+}

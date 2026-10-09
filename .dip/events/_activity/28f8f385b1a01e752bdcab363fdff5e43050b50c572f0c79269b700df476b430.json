@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "28f8f385b1a01e752bdcab363fdff5e43050b50c572f0c79269b700df476b430",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T12:56:03.460Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-ChildItem -LiteralPath '.dip-local/production-frozen' -Directory | Select-Object -ExpandProperty Name; Get-Content -LiteralPath 'scripts/production-agents.mjs' | Select-String 'baseEnv|mcp_servers'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-2b7c113a-c886-4823-b4f3-dab35db24c81"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T12:56:04.659Z",
+  "parents": [],
+  "branch": "main"
+}

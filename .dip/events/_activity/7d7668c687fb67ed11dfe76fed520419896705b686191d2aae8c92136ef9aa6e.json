@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7d7668c687fb67ed11dfe76fed520419896705b686191d2aae8c92136ef9aa6e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:11:45.176Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {taskRead,project} from './src/core.js';\nconst t=taskRead(project(), 'task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22');\nconsole.log(JSON.stringify({scope:t.scope,documents:t.documents}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\n& \"$env:APPDATA/npm/dip.cmd\" task document-link --help",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-1abbe5c1-178b-4fd0-8412-de1ea8dd5139"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:11:46.509Z",
+  "parents": [],
+  "branch": "main"
+}

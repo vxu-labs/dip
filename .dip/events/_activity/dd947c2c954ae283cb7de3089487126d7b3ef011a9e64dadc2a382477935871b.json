@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "dd947c2c954ae283cb7de3089487126d7b3ef011a9e64dadc2a382477935871b",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:01:34.809Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n '\\];$' scripts/winner-report.mjs",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-4f95d3d5-9c32-43f8-ae81-c1356ce70723"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:01:35.618Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "c58c774dbe2b451d4894b375bc097d2fc8e4d397c249401b9c59a88f72139e34",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:02:05.753Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:\\Users\\offic\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;' + $env:PATH; node --test --test-concurrency=1 --test-name-pattern 'Git hook chain' test/integration.test.js",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-bfa403c5-2892-4d2a-8ba5-72618539007e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:02:07.380Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "eventId": "22debb7e-3b4b-4f9b-96fa-3e116db5c082",
+  "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+  "type": "task.update",
+  "payload": {
+    "title": "Investigate Kiosk audit inaccuracies and improve DIP evidence boundaries",
+    "acceptance": [
+      "Reproduce current behavior behind the Kiosk report and cover bounded fixes with regression tests.",
+      "Expose verification boundaries and Git hook execution uncertainty without claiming unobserved results.",
+      "Improve recommendation classification and explicit remaining-work handling.",
+      "Pass configured unit checks and report limitations."
+    ],
+    "scope": [
+      "src/actions.js",
+      "src/automation.js",
+      "src/health.js",
+      "src/views.js",
+      "src/workflow.js",
+      "src/mcp.js",
+      "src/cli-help.js",
+      "bin/dip.js",
+      "test/accuracy.test.js",
+      "docs/intent-transitions.md",
+      "skills/dip/SKILL.md"
+    ]
+  },
+  "actor": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+  "createdAt": "2026-10-09T12:52:13.142Z",
+  "parents": [
+    "969dfae3-e09a-4d43-8236-0a3798de6b2e"
+  ],
+  "branch": "main"
+}

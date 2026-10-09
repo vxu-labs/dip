@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b917b5dc37f3097edf94ee37065a5557413c4039e705bec81575883a6d41fc05",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:58:44.478Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_358d32ed-9c7b-453e-a23f-244f00ef174c",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport {execFileSync} from 'node:child_process';import fs from 'node:fs';import {ensure,taskRead} from './src/core.js';\nconst git='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe';const repo=ensure(process.cwd());const id='task_358d32ed-9c7b-453e-a23f-244f00ef174c';const task=taskRead(repo,id);\nconst files=[...task.scope,'.dip/events/'+id,'.dip/events/task_8b4318ef-b13d-4420-988f-5266db4cd215','.dip/events/task_15aea0af67fbebebf2f2105d4c0d91bafd7a9a0678d4bfb8eb2ede8e98ff8813'];\nfor(const f of files) if(!fs.existsSync(f))throw new Error('Missing scoped deliverable '+f);\nexecFileSync(git,['add','--',...files]);\nconst stat=execFileSync(git,['diff','--cached','--stat'],{encoding:'utf8'});console.log(stat.split('\\n').slice(-2).join('\\n'));\nconst out=execFileSync(git,['-c','core.hooksPath=.dip-local/empty-hooks','commit','-s','-m','Publish measured seven-model task retrieval alternatives and evidence'],{encoding:'utf8'});console.log(out.split('\\n').slice(0,2).join('\\n'));\nconsole.log('head',execFileSync(git,['rev-parse','HEAD'],{encoding:'utf8'}).trim());\nconsole.log(execFileSync(git,['push','origin','main'],{encoding:'utf8'}));\nconsole.log(execFileSync(git,['ls-remote','origin','refs/heads/main'],{encoding:'utf8'}));\n'@ | node --disable-warning=ExperimentalWarning --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b6fbcaa1-4cf8-45af-9e96-c7ee2f27f5a3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:58:45.971Z",
+  "parents": [],
+  "branch": "main"
+}

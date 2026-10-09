@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "5851d102f10c4efb979ab62e3784fa7b4e685722773d9c170727e7b045b3d7b7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T12:55:57.820Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "webrun",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-46c19252-3d12-4d47-a222-f6d19c12285f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T12:55:58.072Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "4ebdb5e7479fc9005429c67103d71916af60c9b2ccf6707c7157ce55935a1890",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:04:33.646Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$report = Get-Content \"$env:TEMP/dip-accuracy-doctor.json\" -Raw | ConvertFrom-Json; $report.PSObject.Properties.Name; $report.automation.gitHooks | ConvertTo-Json -Depth 5; $report.automation.issues | Where-Object { $_ -match 'shell runtime' }; git diff --stat; git status --short --untracked-files=no",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PostToolUse:exec-3c9757c5-4d72-4247-8b5e-eb966766d8b5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:04:35.014Z",
+  "parents": [],
+  "branch": "main"
+}

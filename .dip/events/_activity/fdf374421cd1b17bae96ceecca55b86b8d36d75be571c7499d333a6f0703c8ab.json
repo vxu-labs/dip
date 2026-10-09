@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fdf374421cd1b17bae96ceecca55b86b8d36d75be571c7499d333a6f0703c8ab",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:01:03.978Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "Get-Command git,node | Format-List Name,Source; Get-Item 'C:/Program Files/Git/bin/sh.exe','C:/Program Files/Git/usr/bin/sh.exe' -ErrorAction SilentlyContinue | Select-Object FullName,Length; git diff --check; git diff -- src/mcp.js src/views.js",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-593a8bbe-d389-4059-bbb7-bc39588b92db"
+      },
+      {
+        "at": "2026-10-09T13:01:03.990Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node --test --test-concurrency=1 test/integration.test.js *> \"$env:TEMP/dip-accuracy-integration.log\"; Get-Content \"$env:TEMP/dip-accuracy-integration.log\" -Tail 100",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-80f73072-cda4-4828-9db7-c8c4eeca7cce"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:01:04.571Z",
+  "parents": [],
+  "branch": "main"
+}

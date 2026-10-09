@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e9997520faccd8b6c0c42b36aea5b8157e3ad0a135697564e1db5df276390c00",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-09T13:07:21.322Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/fixtures/production-cache-race-v1.py",
+          "scripts/production-cache-race.py",
+          "scripts/fixtures"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "42bda765-d7cc-4883-98c5-5b7feb464bbe"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:07:21.336Z",
+  "parents": [],
+  "branch": "main"
+}

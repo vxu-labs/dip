@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ecc828c36b4ed865bb09c511c6125aaac9b4db6eebc6e41210abcb13a1867c8d",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T12:01:23.285Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "clocksleep",
+        "branch": "main",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:call_4afc9869cc2e40c193364bebdf71e5c2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T12:01:23.551Z",
+  "parents": [],
+  "branch": "main"
+}

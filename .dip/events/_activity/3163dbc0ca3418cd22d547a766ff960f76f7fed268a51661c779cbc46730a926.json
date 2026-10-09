@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3163dbc0ca3418cd22d547a766ff960f76f7fed268a51661c779cbc46730a926",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T12:54:19.902Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$inspectPreflight = @'\nconst r=JSON.parse(require('fs').readFileSync('.dip-local/production-agent-preflight.json'));console.log(JSON.stringify({error:r.error,passed:r.passed,rows:r.rows.map(x=>({arm:x.arm,errors:x.errors,retrieval:x.retrieval.map(y=>y.tool)}))},null,2));\n'@\nnode -e $inspectPreflight",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-fcc74902-508d-4241-bca3-85d2a01325bf"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T12:54:20.786Z",
+  "parents": [],
+  "branch": "main"
+}

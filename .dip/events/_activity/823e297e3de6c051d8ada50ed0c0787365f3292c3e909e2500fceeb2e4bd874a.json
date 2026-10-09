@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "eventId": "823e297e3de6c051d8ada50ed0c0787365f3292c3e909e2500fceeb2e4bd874a",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T14:54:47.718Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-08-semantic-intfloat--multilingual-e5-small.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-lexical.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-minishlab--potion-base-8M.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-minishlab--potion-multilingual-128M.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-minishlab--potion-retrieval-32M.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-sentence-transformers--all-MiniLM-L6-v2.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2.json.gz",
+          "docs/benchmarks/2026-10-08-semantic-summary.json",
+          "docs/benchmarks/2026-10-08-semantic-tensors.json",
+          "docs/benchmarks/semantic-retrieval-pilot.md"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "11ed5e05-6cfb-4d62-91c2-1793ebeb4add"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T14:54:47.723Z",
+  "parents": [],
+  "branch": "main"
+}

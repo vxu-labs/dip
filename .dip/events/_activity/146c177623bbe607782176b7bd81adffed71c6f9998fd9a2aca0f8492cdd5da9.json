@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "eventId": "146c177623bbe607782176b7bd81adffed71c6f9998fd9a2aca0f8492cdd5da9",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T09:49:30.649Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-08-winner-protocol.json",
+          "docs/benchmarks/2026-10-08-winner-protocol-v1.json",
+          "docs/benchmarks"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "fc5cc667-4788-4096-bc8f-a743c9fc161d"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:49:30.656Z",
+  "parents": [],
+  "branch": "main"
+}

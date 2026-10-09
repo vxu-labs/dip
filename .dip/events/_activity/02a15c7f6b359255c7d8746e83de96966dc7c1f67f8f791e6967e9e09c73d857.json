@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "02a15c7f6b359255c7d8746e83de96966dc7c1f67f8f791e6967e9e09c73d857",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T12:46:34.840Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$dipPrep = @'\nconst {execFileSync}=require('node:child_process'); const run=a=>process.stdout.write(execFileSync(process.execPath,['bin/dip.js',...a],{encoding:'utf8'}));const id='task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea',actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd';\nrun(['task','prepare','--id',id,'--actor',actor,'--session','01a10fa9-6164-7550-bdf9-5c21b772eafd','--patch',JSON.stringify({title:'Evaluate semantic retrieval production readiness with preregistered operational and agent trials',scope:['scripts/production-*','test/production-*','docs/benchmarks/production-*','.dip/config.json'],acceptance:['Freeze protocol before results; retain failures and source hashes','Exercise actual pinned E5 freshness, branch changes, concurrency, crash/restart, corrupt cache, bounds and path safety in isolated repositories','Measure larger-history agent quality against strong Markdown and same-encoder controls using frozen outcomes and replayable scoring','Report production verdict and missing real-user multiweek/host/platform evidence explicitly; no deployment or default enablement']})]);\nrun(['task','plan','--id',id,'--actor',actor,'--steps',JSON.stringify([{step:'Freeze protocol and isolated test harness',status:'in_progress'},{step:'Run operational, scale and safety diagnostics',status:'pending'},{step:'Run extended agent comparisons and replay scoring',status:'pending'},{step:'Publish evidence and readiness verdict; preserve unmet rollout gates',status:'pending'}])]);\n'@\nnode -e $dipPrep",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-baae907e-eb7d-4335-bef8-373854a7fab7"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T12:46:35.269Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cd8a7008773b83f43e18a491a40958350737a889d40d82539132ebe8f51787d0",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T09:57:17.010Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/winner-evidence.mjs"
+        ],
+        "changeHash": "72fe5748b5553381bff83a45a31b407eadd4b1b9bd3c8fc0186dea7b77af752f",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-196dfdad-0bd1-4b73-8af9-530e3ca09b78"
+      },
+      {
+        "at": "2026-10-08T09:57:17.034Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PYTHONIOENCODING='utf-8'\n$winnerProtocol = Get-Content docs/benchmarks/2026-10-08-winner-protocol.json -Raw | ConvertFrom-Json\n$winnerCandidates = @('lexical') + @($winnerProtocol.models | ForEach-Object { $_.id })\nforeach ($winnerCandidate in $winnerCandidates) {\n  $winnerSlug = $winnerCandidate.Replace('/','--')\n  & .dip-local/laya-env/Scripts/python.exe scripts/winner-retrieval.py --protocol docs/benchmarks/2026-10-08-winner-protocol.json --model $winnerCandidate --output \".dip-local/winner-$winnerSlug.json\" --cache .dip-local/semantic-cache --index-dir .dip-local/winner-index\n  Write-Output \"WINNER_ATTEMPT_EXIT $winnerCandidate $LASTEXITCODE\"\n}",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-580b72f9-15fd-496c-8c85-ea860b571387"
+      },
+      {
+        "at": "2026-10-08T09:57:17.058Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import {winnerScore} from './scripts/winner-analysis.mjs';const p=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-winner-protocol.json'));\nfor(const id of ['lexical','intfloat--multilingual-e5-small','sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2']){const d=JSON.parse(fs.readFileSync(`.dip-local/winner-${id}.json`));const s=winnerScore(d,p);console.log(JSON.stringify({model:d.model,complete:s.complete,error:d.error?.type,cacheChecks:d.cacheChecks.length,scores:s.scores?.filter(x=>x.language==='all').map(x=>({suite:x.suite,strategy:x.strategy,matching:x.matching,raw:x.raw,eligible:x.eligible,heading1:x.heading1})),tokens:d.resources.tokenCounts}));}\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-1a7f76b9-5136-448b-a076-c8a46d9644e5"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:57:18.079Z",
+  "parents": [],
+  "branch": "main"
+}

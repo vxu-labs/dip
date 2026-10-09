@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "177edaff548a1c868abaa0ee91a76364e3db76c802f3921321ce6393f21e8108",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T07:27:54.698Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_8b4318ef-b13d-4420-988f-5266db4cd215",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/semantic-evidence.mjs",
+          "docs/benchmarks/semantic-retrieval-pilot.md"
+        ],
+        "changeHash": "2f5938d276e00b9b70c44080d7ea75ae5183f3a5aecd71fa90ce2d30c28d6596",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-663280ac-8912-46a2-841a-284d38e3a125"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T07:27:55.186Z",
+  "parents": [],
+  "branch": "main"
+}

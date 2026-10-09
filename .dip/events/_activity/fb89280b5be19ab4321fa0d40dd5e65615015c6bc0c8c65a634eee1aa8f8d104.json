@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "fb89280b5be19ab4321fa0d40dd5e65615015c6bc0c8c65a634eee1aa8f8d104",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:00:52.273Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node bin/dip.js task create --help; Get-Content -LiteralPath '.dip-local/production-frozen-location.json'; Get-Content -LiteralPath '.dip-local/production-frozen/.dip-local/production-agent-preflight.json' -Tail 8",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9b480dcd-5932-4ea8-b3e8-1d92f41b670a"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:00:53.471Z",
+  "parents": [],
+  "branch": "main"
+}

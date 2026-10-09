@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "eventId": "cb196f80feff42a027ab90a8be56586023577d14b6b48695ca756785c3962521",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T09:33:04.945Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/winner-corpus.mjs",
+          "scripts/winner-protocol.mjs"
+        ],
+        "changeHash": "75da0c6244f845495fe859d095cf21df43e833574aa4b3d4fa2e5487525c3707",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-39706c0b-8cc8-402f-8f99-5f32091f00be"
+      },
+      {
+        "at": "2026-10-08T09:33:05.947Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "apply_patch",
+        "branch": "main",
+        "files": [
+          "scripts/winner-corpus.mjs",
+          "scripts/winner-protocol.mjs"
+        ],
+        "changeHash": "75da0c6244f845495fe859d095cf21df43e833574aa4b3d4fa2e5487525c3707",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-39706c0b-8cc8-402f-8f99-5f32091f00be"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T09:33:05.972Z",
+  "parents": [],
+  "branch": "main"
+}

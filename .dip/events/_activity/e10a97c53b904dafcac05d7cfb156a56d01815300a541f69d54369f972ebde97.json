@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e10a97c53b904dafcac05d7cfb156a56d01815300a541f69d54369f972ebde97",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:18:01.820Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$env:PATH = 'C:\\Users\\offic\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;' + $env:PATH; node bin/dip.js task finish --id task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9 --actor codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43 --outcome implemented --check unit --summary 'Implemented audit accuracy safeguards: narrow recommendation capture, explicit remaining-work review, bounded verification details, and Git hook/runtime diagnostics. Configured unit verification uses an isolated worktree and process-local bundled Git. The system Git shell runtime is missing. Instruction-template drift was removed; focused completion verification passed with a stable snapshot.' --remaining '[{\"disposition\":\"verification_limit\",\"summary\":\"Kiosk device coverage and its historical Git executable are not independently verified. Optional review preserves old clients; arbitrary intent and omitted obligations still require agent review.\"},{\"disposition\":\"out_of_scope\",\"summary\":\"Repairing the global Git installation and publishing or installing this DIP revision are outside this code change.\"}]' > \"$env:TEMP/dip-accuracy-isolated-final.json\"; Get-Content \"$env:TEMP/dip-accuracy-isolated-final.json\"",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PreToolUse:exec-1cb2672b-79bd-47c3-b6df-1da4174520f2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:18:03.290Z",
+  "parents": [],
+  "branch": "main"
+}

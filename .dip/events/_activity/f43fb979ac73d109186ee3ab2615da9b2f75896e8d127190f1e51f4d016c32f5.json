@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f43fb979ac73d109186ee3ab2615da9b2f75896e8d127190f1e51f4d016c32f5",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T11:31:20.100Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "@'\nimport fs from 'node:fs';import zlib from 'node:zlib';import {execute} from './src/actions.js';import {taskRead,ensure} from './src/core.js';\nconst prefix='docs/benchmarks/2026-10-08-semantic-agent-';\nfs.copyFileSync(prefix+'protocol.json',prefix+'protocol-v1.json');fs.unlinkSync(prefix+'protocol.json');fs.writeFileSync(prefix+'preflight-v1.json.gz',zlib.gzipSync(fs.readFileSync('.dip-local/semantic-agent-preflight.json')));\nconst id='task_5ff1b34e051d7164230ff9d36120a6b8b2cee27d28eacb53c5aa394a14f9e05a';const t=taskRead(ensure(process.cwd()),id);await execute('prepare',{id,actor:'codex:01a10fa9-6164-7550-bdf9-5c21b772eafd',session:'01a10fa9-6164-7550-bdf9-5c21b772eafd',patch:{scope:[...t.scope,prefix+'protocol-v1.json',prefix+'preflight-v1.json.gz',prefix+'preflight-v2.json.gz']}});console.log('Failed preflight preserved; no scored calls yet');\n'@ | node --disable-warning=ExperimentalWarning --input-type=module\nnode scripts/semantic-agent-benchmark.mjs --protocol\n$env:DIP_SEMANTIC_PYTHON=(Resolve-Path '.dip-local/laya-env/Scripts/python.exe').Path\n$env:DIP_SEMANTIC_MODEL=(Resolve-Path '.dip-local/semantic-cache/hub/models--intfloat--multilingual-e5-small/snapshots/614241f622f53c4eeff9890bdc4f31cfecc418b3').Path\n$env:DIP_SEMANTIC_CACHE=Join-Path (Get-Location) '.dip-local/semantic-agent-index'\n$env:DIP_BENCH_GIT='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe'\nnode scripts/semantic-agent-benchmark.mjs --preflight --output .dip-local/semantic-agent-preflight-v2.json",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b0960095-69eb-4359-90de-61f809667188"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T11:31:20.706Z",
+  "parents": [],
+  "branch": "main"
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7827c7d9-5614-4809-845d-61f3c401518a",
+  "taskId": "task_2b89f83eda8864bfd861fa229952e77da4473f1ce2e2acd2f458ff1e1f3d76a7",
+  "type": "task.update",
+  "payload": {
+    "kind": "discussion",
+    "title": "Define production acceptance gates for optional semantic retrieval",
+    "description": "Explain required evidence and staged acceptance for optional E5 production readiness. Informational request; no implementation or rollout."
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-09T10:30:11.791Z",
+  "parents": [
+    "17920b5f-3d9c-4eef-912f-58a6929ac002"
+  ],
+  "branch": "main"
+}

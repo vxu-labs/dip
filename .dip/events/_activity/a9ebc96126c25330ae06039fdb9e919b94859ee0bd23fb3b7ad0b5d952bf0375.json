@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a9ebc96126c25330ae06039fdb9e919b94859ee0bd23fb3b7ad0b5d952bf0375",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:08:48.007Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$eligibleReal = @'\nconst fs=require('fs');const r=JSON.parse(fs.readFileSync('.dip-local/production-frozen/docs/benchmarks/2026-10-09-production-operations.json'));const snapshot=JSON.parse(fs.readFileSync('.dip-local/production-frozen/.dip-local/production-real-sources.json'));const ids=new Set(snapshot.sources.flatMap(x=>[x.id,x.path]));for(const kind of ['task','document']){const rows=r.rows.find(x=>x.name==='current-real-project-known-queries').rows.filter(x=>x.kind===kind);const eligible=rows.filter(x=>x.gold.some(g=>ids.has(g)));console.log(JSON.stringify({kind,total:rows.length,eligible:eligible.length,R1:eligible.filter(x=>x.sourceR1).length,R5:eligible.filter(x=>x.sourceR5).length,absent:rows.filter(x=>!eligible.includes(x)).map(x=>x.gold)}));}\n'@\nnode -e $eligibleReal",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-f003e3a9-0887-4d83-8fa9-ee39177082c3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:08:48.377Z",
+  "parents": [],
+  "branch": "main"
+}

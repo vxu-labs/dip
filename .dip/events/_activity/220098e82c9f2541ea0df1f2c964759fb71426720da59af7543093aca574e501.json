@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "220098e82c9f2541ea0df1f2c964759fb71426720da59af7543093aca574e501",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-08T10:05:39.277Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "npm run check",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-9893f0f5-f1ae-439a-a592-8fa1a40c9cdc"
+      },
+      {
+        "at": "2026-10-08T10:05:39.283Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_ab0da84fe6c7faa9b161f4ee73e114da339c1fbf84f5486dc4014a9595ebaf22",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "node scripts/winner-check.mjs\n@'\nimport fs from 'node:fs';\nfor(const f of ['README.md','docs/navigation.md','docs/benchmarks/semantic-alternatives.md','docs/benchmarks/winner-retrieval.md'])console.log(JSON.stringify({file:f,emDashes:(fs.readFileSync(f,'utf8').match(/\\u2014/g)||[]).length}));\nconst s=JSON.parse(fs.readFileSync('docs/benchmarks/2026-10-08-winner-summary.json'));console.log(JSON.stringify({evidenceBytes:s.attempts.reduce((n,a)=>n+fs.statSync(a.file).size,0),allAttemptsComplete:s.attempts.every(a=>a.summary.complete)}));\n'@ | node --input-type=module",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-e38394ac-b20b-4c0f-937c-16db9c28b0c2"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T10:05:40.228Z",
+  "parents": [],
+  "branch": "main"
+}

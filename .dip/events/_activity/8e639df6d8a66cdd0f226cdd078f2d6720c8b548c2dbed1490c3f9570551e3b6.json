@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "8e639df6d8a66cdd0f226cdd078f2d6720c8b548c2dbed1490c3f9570551e3b6",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+    "records": [
+      {
+        "at": "2026-10-09T13:19:21.185Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a120b7-9df1-7100-a0ca-6cd9716d9a43",
+        "taskId": "task_9969efe2a6f0c24d03450dad095784727616a1fe1d783b983eb97e45c9c9b7c9",
+        "tool": "clocksleep",
+        "branch": "main",
+        "recordId": "codex:01a120b7-9df1-7100-a0ca-6cd9716d9a43:PostToolUse:call_da7a535ad06542d1827d678f81bb3599"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:19:22.115Z",
+  "parents": [],
+  "branch": "main"
+}

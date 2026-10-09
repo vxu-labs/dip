@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "50b1321948d1a2587e1596dc64a06e67b7c0faea08c0878decd802bc31196866",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T13:08:50.077Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$eligibleReal = @'\nconst fs=require('fs');const r=JSON.parse(fs.readFileSync('.dip-local/production-frozen/docs/benchmarks/2026-10-09-production-operations.json'));const snapshot=JSON.parse(fs.readFileSync('.dip-local/production-frozen/.dip-local/production-real-sources.json'));const ids=new Set(snapshot.sources.flatMap(x=>[x.id,x.path]));for(const kind of ['task','document']){const rows=r.rows.find(x=>x.name==='current-real-project-known-queries').rows.filter(x=>x.kind===kind);const eligible=rows.filter(x=>x.gold.some(g=>ids.has(g)));console.log(JSON.stringify({kind,total:rows.length,eligible:eligible.length,R1:eligible.filter(x=>x.sourceR1).length,R5:eligible.filter(x=>x.sourceR5).length,absent:rows.filter(x=>!eligible.includes(x)).map(x=>x.gold)}));}\n'@\nnode -e $eligibleReal",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-f003e3a9-0887-4d83-8fa9-ee39177082c3"
+      },
+      {
+        "at": "2026-10-09T13:08:50.139Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$saveFaultIntent = @'\nconst fs=require('node:fs'),{execFileSync}=require('node:child_process');const actor='codex:01a10fa9-6164-7550-bdf9-5c21b772eafd';const tasks=[];\nfor(const [title,description,scope]of [\n['Isolate semantic worker responses and reset broken transports','Controlled frozen-source IPC probes showed stale response satisfies a new request after malformed JSON or close; oversized buffer poisons subsequent reads. Add request correlation and generation fencing, bounded reset/restart, no old-child data acceptance and cancellation tests before production. Encoder transport was mocked to isolate control flow.','src/semantic.js'],\n['Coordinate semantic cache writers across processes','Live multi-model load exceeded available virtual memory; a low-memory mocked-encoder filesystem probe separately reproduced three FileNotFoundError failures when four completed writes share one temporary NPZ path and renames are serialized. Preserve passing parallel interleaving. Use unique temp files and validate cache coordination/recovery with real encoder under declared resource budget.','src/semantic-worker.py'],\n['Complete independent real-project and multiweek production pilot','Local Windows diagnostics and larger-history synthetic repetitions do not replace independently labelled natural changes in multiple projects, actual Claude, cross-platform E5 inference, fresh upgrades or a several-week opt-in user pilot. Remains a production acceptance gate; no deployment authorized.','docs/benchmarks']]){\nconst r=JSON.parse(execFileSync(process.execPath,['bin/dip.js','task','create','--title',title,'--description',description,'--status','backlog','--scope',scope,'--actor',actor],{encoding:'utf8'}));tasks.push({id:r.id,title});}\nfs.writeFileSync('.dip-local/production-followup-tasks.json',JSON.stringify(tasks,null,2));console.log(JSON.stringify(tasks));\n'@\nnode -e $saveFaultIntent",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-d24f8744-86ca-447e-8618-ce9b7769f5f1"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T13:08:50.806Z",
+  "parents": [],
+  "branch": "main"
+}

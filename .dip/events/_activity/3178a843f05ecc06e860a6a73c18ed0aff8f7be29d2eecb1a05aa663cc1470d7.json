@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3178a843f05ecc06e860a6a73c18ed0aff8f7be29d2eecb1a05aa663cc1470d7",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+    "records": [
+      {
+        "at": "2026-10-09T12:53:06.456Z",
+        "kind": "PostToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "rg -n 'document-link|document-unlink|remove' src/actions.js src/core.js | Select-Object -First 25; Get-Content -LiteralPath 'scripts/production-agents.mjs' | Select-String 'memory_requirements|linkDocument|design:'",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PostToolUse:exec-b80e4443-62d7-49aa-95b2-824c0963de6b"
+      },
+      {
+        "at": "2026-10-09T12:53:06.470Z",
+        "kind": "PreToolUse",
+        "agent": "codex",
+        "session": "01a10fa9-6164-7550-bdf9-5c21b772eafd",
+        "taskId": "task_d7743cd61e687fa172684963d31cee061dae01b5eab7deb559bc34c51e7d89ea",
+        "tool": "Bash",
+        "branch": "main",
+        "command": "$productionRevision = @'\nconst fs=require('node:fs');\nfs.renameSync('docs/benchmarks/2026-10-09-production-protocol.json','docs/benchmarks/2026-10-09-production-protocol-setup-v0.json');\nlet s=fs.readFileSync('scripts/production-agents.mjs','utf8');\ns=s.replace(/design:'Six matched triples:[^']*'/,\"design:'Six matched triples, reused contracts, 1000 task Markdown files and 100 documents. Optional E5 searches; lexical-first navigation. Same production collector in both encoder arms aligns facts; structured requirement interface only in DIP arm. Hooks disabled equally. Fresh single-turn sessions, fixed deadline, no retries. Read production-readiness-plan.md for gates and boundaries; this is not independent naturalistic evidence.'\");\nfs.writeFileSync('scripts/production-agents.mjs',s);\n'@\nnode -e $productionRevision\nnode scripts/production-agents.mjs --protocol\n$env:DIP_SEMANTIC_PYTHON=(Resolve-Path -LiteralPath '.dip-local/laya-env/Scripts/python.exe').Path\n$env:DIP_SEMANTIC_MODEL=(Resolve-Path -LiteralPath '.dip-local/semantic-cache/hub/models--intfloat--multilingual-e5-small/snapshots/614241f622f53c4eeff9890bdc4f31cfecc418b3').Path\n$env:DIP_SEMANTIC_CACHE=Join-Path (Get-Location) '.dip-local/production-preflight-cache'\n$env:DIP_BENCH_CODEX=(Get-Command codex).Source\n$env:DIP_BENCH_GIT='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd/git.exe'\n$env:PATH='C:/Users/offic/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd;'+$env:PATH\nnode scripts/production-agents.mjs --preflight",
+        "recordId": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd:PreToolUse:exec-a3b8b951-e167-44aa-a92d-1a1f2da63df3"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-09T12:53:06.534Z",
+  "parents": [],
+  "branch": "main"
+}

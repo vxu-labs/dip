@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e8995293d549a33e6d4b1e0193788ceb9dc6bc65fbeff809e27d08f5aab9961a",
+  "taskId": "task_a784f8e2f58de001f5730d400e374bf7deeb6f2e05f9b987766244fd3c8ef040",
+  "type": "task.create",
+  "payload": {
+    "title": "מעולה מה השלב הבא ?",
+    "description": "מעולה מה השלב הבא ?\n",
+    "status": "backlog",
+    "source": "prompt"
+  },
+  "actor": "codex:01a10fa9-6164-7550-bdf9-5c21b772eafd",
+  "createdAt": "2026-10-08T11:09:29.779Z",
+  "parents": [],
+  "branch": "main"
+}

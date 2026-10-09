@@ -8,6 +8,33 @@ import { daemonAlive } from "./automation.js";
 import { capturePolicy } from "./capture-policy.js";
 import { processAlive } from "./recorder-supervisor.js";
 
+// Inspect the known Git for Windows layout without executing project hooks or
+// assuming that an existing shell is executable. Other distributions stay unknown.
+export function gitShellRuntime(execPath, platform = process.platform) {
+  if (
+    platform !== "win32" ||
+    !/[\\/]mingw(?:32|64)[\\/]libexec[\\/]git-core$/i.test(execPath)
+  )
+    return { status: "unknown", gitExecPath: execPath || null, shell: null };
+  const shell = path.resolve(execPath, "../../..", "usr/bin/sh.exe");
+  try {
+    return {
+      status: fs.statSync(shell, { throwIfNoEntry: false })?.isFile()
+        ? "present"
+        : "missing",
+      gitExecPath: execPath,
+      shell,
+    };
+  } catch (error) {
+    return {
+      status: "unknown",
+      gitExecPath: execPath,
+      shell,
+      error: error.code,
+    };
+  }
+}
+
 export function automationHealth(root) {
   const installation = json(path.join(home(), "install.json"), null);
   const daemon = json(path.join(home(), "daemon.json"), null);
@@ -58,6 +85,7 @@ export function automationHealth(root) {
     failures = [],
     deferredOutbox = { repositories: 0, records: 0, entries: [] },
     dataErrors = [],
+    hookEntries = [],
     captured = { promptCount: 0, planCount: 0, lastPromptAt: null };
   try {
     const deferred = runtime.db
@@ -91,6 +119,16 @@ export function automationHealth(root) {
           )
           .all(repo.root);
         const state = project(repo);
+        hookEntries = state.activity.filter((a) =>
+          [
+            "git.pre-commit",
+            "git.post-commit",
+            "git.post-checkout",
+            "git.post-merge",
+            "git.post-rewrite",
+            "git.pre-push",
+          ].includes(a.kind),
+        );
         dataErrors = state.errors;
         const prompts = state.activity.filter(
           (a) => a.kind === "UserPromptSubmit",
@@ -157,15 +195,66 @@ export function automationHealth(root) {
       );
   }
   let gitHooksConfigured = false;
+  let configuredHooksPath = null;
   if (repo && installation?.active && installation.hooksPath) {
     const hooksPath = git(
       repo.root,
       ["config", "--get", "core.hooksPath"],
       true,
     );
+    configuredHooksPath = hooksPath || null;
     gitHooksConfigured =
       hooksPath === installation.hooksPath ||
       hooksPath === path.join(repo.common, "dip-hooks");
+  }
+  const gitHooks = {
+    configured: gitHooksConfigured,
+    path: configuredHooksPath,
+    execution: "unverified",
+    failureObservation: "unavailable",
+    shellRuntime: repo
+      ? gitShellRuntime(git(repo.root, ["--exec-path"], true))
+      : null,
+    hooks: gitHooksConfigured
+      ? [
+          "pre-commit",
+          "post-commit",
+          "post-checkout",
+          "post-merge",
+          "post-rewrite",
+          "pre-push",
+        ].map((name) => ({
+          name,
+          filePresent:
+            fs
+              .statSync(path.resolve(repo.root, configuredHooksPath, name), {
+                throwIfNoEntry: false,
+              })
+              ?.isFile() || false,
+          lastEnteredAt:
+            hookEntries
+              .filter((entry) => entry.kind === `git.${name}`)
+              .map((entry) => entry.at)
+              .sort()
+              .at(-1) || null,
+        }))
+      : [],
+    meaning:
+      "Configuration and file presence do not prove execution. Historical entry records show only that the DIP handler was reached, not successful completion or current hook health. Failures before handler startup are not observed; cannot spawn does not prove a missing file.",
+  };
+  if (gitHooksConfigured) {
+    if (gitHooks.shellRuntime?.status === "missing")
+      issues.push(
+        `Git for Windows shell runtime is missing: ${gitHooks.shellRuntime.shell}. Existing hook files may fail to spawn; repair the selected Git installation.`,
+      );
+    const missing = gitHooks.hooks.filter((hook) => !hook.filePresent);
+    if (missing.length)
+      issues.push(
+        `Configured Git hook files are missing: ${missing.map((hook) => hook.name).join(", ")}`,
+      );
+    advisories.push(
+      "Git hook execution is unverified; configured paths and historical handler entries do not prove current hooks work.",
+    );
   }
   if (!installation?.active)
     issues.push("Machine automation is not installed. Run dip install.");
@@ -258,6 +347,7 @@ export function automationHealth(root) {
         "Observed hook records in this project; configuration alone does not prove host delivery or trust.",
     },
     gitHooksConfigured,
+    gitHooks,
     watcherAttached:
       !!repo &&
       running &&

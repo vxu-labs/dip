@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f09c0eab6ef90a7bc950610d5bd37789c6237b5d91af3bdb79f9e98c84dc3b91",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-08T13:46:47.342Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/winner-index-test.py"
+        ],
+        "agent": "filesystem",
+        "branch": "main",
+        "recordId": "31690686-0b9a-4bae-85b8-dea533cee64e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-08T13:46:47.348Z",
+  "parents": [],
+  "branch": "main"
+}
