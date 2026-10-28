@@ -8,7 +8,7 @@ export function cliHelp(command = "help", action = "") {
     prepare:
       "dip task prepare --id ID --actor NAME --session SESSION [--patch JSON]\nRefines outstanding development, claims scope and returns compact criteria. Planning and future ideas use task update instead.\n",
     finish:
-      'dip task finish --id ID --outcome answered|implemented|superseded|cancelled --summary "..." [--check NAME] [--remaining JSON] [--replacedBy ID] [--actor NAME] [--token TOKEN]\nRemaining entries: disposition required|follow_up|verification_limit|out_of_scope, summary, and taskId for follow_up. Required work blocks finish; [] records an explicit empty review. Omission means unreviewed.\n',
+      'dip task finish --id ID --outcome answered|implemented|superseded|cancelled|paused --summary "..." [--check NAME] [--remaining JSON] [--replacedBy ID] [--actor NAME] [--session SESSION] [--token TOKEN]\nAutomatic development uses one finish call with hook actor/session. Paused requires remaining items and never completes work. Remaining entries: disposition required|follow_up|verification_limit|out_of_scope, summary, and taskId for follow_up. Required work blocks completion; [] records an explicit empty review. Omission means unreviewed.\n',
     requirements:
       "dip task requirements --id ID [--limit 10] [--offset 0] [--maxChars 6000]\n",
     changes: "dip task changes --id ID [--limit 10] [--offset 0]\n",
@@ -36,7 +36,8 @@ export function cliHelp(command = "help", action = "") {
   return (
     header +
     `DIP: persistent project intent and automatic activity\n\n` +
-    `dip install [--roots PATH]     One-time machine integration\n` +
+    `dip install [--roots PATH] [--workflow automatic|reviewed]  Machine integration\n` +
+    `dip task requests              Captured request inbox (not work backlog)\n` +
     `dip repository [--remove]      Upgrade/remove owned repository skills and portable helper\n` +
     `dip discover-project --client NAME [--probe] [--disabled]  Explicit local Git-client callback\n` +
     `dip context                    Compact handoff; no activity dump\n` +

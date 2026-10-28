@@ -1,3 +1,5 @@
+import { workflowMode, mutationReceipt, isRequest } from "./automatic.js";
+import { openProject } from "./core.js";
 import { spawn } from "node:child_process";
 import {
   ensure,
@@ -45,7 +47,7 @@ const intentHash = (task, repo) =>
       task.acceptance || [],
       task.scope || [],
       task.dependencies || [],
-      ...(task.resolution?.remaining !== undefined
+      ...(task.resolution?.remaining?.length
         ? [task.resolution.remaining]
         : []),
       ...(task.plan ? [planIntent(task.plan)] : []),
@@ -93,23 +95,13 @@ const intentFields = (task, repo) =>
   );
 
 export async function execute(action, args = {}, cwd = process.cwd()) {
-  const repo = ensure(cwd, {
-      instructions: ![
-        "context",
-        "status",
-        "get",
-        "next",
-        "reconcile",
-        "document-list",
-        "document-read",
-        "requirements",
-        "owners",
-        "changes",
-        "search",
-        "related",
-        "repository",
-      ].includes(action),
-    }),
+  const result = await executeRaw(action, args, cwd);
+  return workflowMode(openProject(cwd).config) === "automatic"
+    ? mutationReceipt(action, result)
+    : result;
+}
+async function executeRaw(action, args = {}, cwd = process.cwd()) {
+  const repo = action === "repository" ? ensure(cwd) : openProject(cwd),
     rt = new Runtime();
   try {
     rt.register(repo);
@@ -133,6 +125,32 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       });
     const actor = args.actor || "agent";
     if (action === "context") return compactContext(repo, rt);
+    if (action === "requests") {
+      const offset = Number(args.offset || 0),
+        limit = Number(args.limit || 10);
+      if (
+        !Number.isInteger(offset) ||
+        offset < 0 ||
+        !Number.isInteger(limit) ||
+        limit < 1 ||
+        limit > 50
+      )
+        throw new Error("Invalid pagination");
+      const tasks = project(repo, rt, null, {
+        includeActivity: false,
+      }).tasks.filter(isRequest);
+      return {
+        total: tasks.length,
+        requests: tasks
+          .slice(offset, offset + limit)
+          .map((t) => ({
+            id: t.id,
+            title: t.title.slice(0, 200),
+            updatedAt: t.updatedAt,
+          })),
+        nextOffset: offset + limit < tasks.length ? offset + limit : null,
+      };
+    }
     if (action === "status") {
       rt.flush(repo.root);
       return project(repo, rt);
@@ -253,15 +271,34 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
       };
     }
     if (action === "finish") {
+      // Session-derived token is accepted only for the exact existing actor/task.
+      if (
+        workflowMode(repo.config) === "automatic" &&
+        args.session &&
+        !args.token
+      ) {
+        const session = rt.session(repo, args.session);
+        if (!session || session.task !== args.id || session.actor !== actor)
+          throw new Error("Finish session does not match task and actor");
+        const current = rt.db
+          .prepare("SELECT * FROM leases WHERE repo=? AND task=? AND actor=?")
+          .get(repo.key, args.id, actor);
+        if (current?.expires > Date.now())
+          args = { ...args, token: current.token };
+      }
       const lease = rt.guard(repo, args.id, actor, args.token);
       const task = taskRead(repo, args.id);
       if (
-        !["answered", "implemented", "superseded", "cancelled"].includes(
-          args.outcome,
-        )
+        ![
+          "answered",
+          "implemented",
+          "superseded",
+          "cancelled",
+          "paused",
+        ].includes(args.outcome)
       )
         throw new Error(
-          "Choose answered, implemented, superseded or cancelled",
+          "Choose answered, implemented, superseded, cancelled or paused",
         );
       if (
         typeof args.summary !== "string" ||
@@ -276,6 +313,58 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         throw new Error(
           "Answered is for informational requests without development scope, acceptance criteria or code evidence",
         );
+      if (args.outcome === "paused") {
+        if (args.check || args.replacedBy?.length)
+          throw new Error("Paused work cannot verify or supersede");
+        validateRemaining(args.remaining);
+        if (!args.remaining?.length)
+          throw new Error("Paused work requires remaining items");
+        // Reuse normal remaining-reference validation before any write.
+        for (const item of args.remaining)
+          if (item.taskId) {
+            if (item.taskId === args.id)
+              throw new Error("Follow-up cannot reference itself");
+            const target = taskRead(repo, item.taskId);
+            if (
+              target.kind !== "work" ||
+              ["cancelled", "superseded"].includes(target.status)
+            )
+              throw new Error("Invalid follow-up");
+          }
+        updateTask(
+          repo,
+          args.id,
+          {
+            status: "in_progress",
+            kind: "work",
+            requestState: "promoted",
+            resolution: null,
+          },
+          actor,
+        );
+        append(
+          repo,
+          args.id,
+          "task.checkpoint",
+          {
+            summary: redact(args.summary),
+            remaining: args.remaining.map((item) => ({
+              ...item,
+              summary: redact(item.summary),
+            })),
+            automatic: false,
+          },
+          { actor },
+        );
+        if (lease) rt.release(repo, args.id, lease.token);
+        return {
+          id: args.id,
+          status: "in_progress",
+          outcome: "paused",
+          released: !!lease,
+          verifiedComplete: false,
+        };
+      }
       const replacedBy = args.replacedBy || [];
       if (args.outcome === "superseded" && !replacedBy.length)
         throw new Error("Superseded requires replacement task IDs");
@@ -283,7 +372,11 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
         throw new Error("Replacement IDs require superseded outcome");
       if (args.check && args.outcome !== "implemented")
         throw new Error("Configured checks apply to implemented work");
-      if (args.outcome === "implemented" && task.kind === "discussion")
+      if (
+        args.outcome === "implemented" &&
+        task.kind === "discussion" &&
+        !(workflowMode(repo.config) === "automatic" && isRequest(task))
+      )
         throw new Error("Reclassify discussion as work before implementation");
       if (
         args.outcome === "implemented" &&
@@ -349,13 +442,33 @@ export async function execute(action, args = {}, cwd = process.cwd()) {
                     args.outcome === "answered" ? "implemented" : args.outcome,
                 }
               : {}),
-            ...(args.outcome === "answered" ? { kind: "discussion" } : {}),
+            ...(args.outcome === "answered"
+              ? { kind: "discussion" }
+              : args.outcome === "implemented"
+                ? { kind: "work", requestState: "promoted" }
+                : {}),
             resolution,
           },
           actor,
         );
       let result;
-      if (args.check) result = await execute("verify", { ...args }, cwd);
+      if (args.check) {
+        const currentTask = taskRead(repo, args.id);
+        const fresh = assessEvidence(repo, currentTask);
+        if (
+          currentTask.evidence.at(-1)?.check === args.check &&
+          fresh.verification === "current"
+        ) {
+          append(
+            repo,
+            args.id,
+            "task.update",
+            { status: "verified" },
+            { actor },
+          );
+          result = { passed: true, reused: true, taskStatus: "verified" };
+        } else result = await executeRaw("verify", { ...args }, cwd);
+      }
       if (lease && (!result || result.passed))
         rt.release(repo, args.id, lease.token);
       const current = taskRead(repo, args.id);

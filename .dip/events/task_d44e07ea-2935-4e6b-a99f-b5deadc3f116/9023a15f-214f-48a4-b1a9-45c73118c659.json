@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "eventId": "9023a15f-214f-48a4-b1a9-45c73118c659",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "plan": [
+        {
+          "step": "Pin exact local, installed and candidate sources",
+          "status": "completed"
+        },
+        {
+          "step": "Implement automatic lifecycle, bounded context and faster hooks",
+          "status": "completed"
+        },
+        {
+          "step": "Run regression, package, browser, legacy-read and runtime experiments",
+          "status": "completed"
+        },
+        {
+          "step": "Run 12 native model turns after human hook trust review",
+          "status": "pending"
+        },
+        {
+          "step": "Validate a real native workflow and evaluate acceptance thresholds",
+          "status": "pending"
+        },
+        {
+          "step": "Roll out globally only if acceptance passes; keep reviewed rollback",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T02:10:50.328Z",
+  "parents": [
+    "81091a50-1893-44e7-aaae-9ff66c3dfcd5"
+  ],
+  "branch": "codex/automatic-workflow"
+}

@@ -1,3 +1,4 @@
+import { workflowMode, AUTOMATIC_INSTRUCTIONS } from "./automatic.js";
 import fs from "node:fs";
 import path from "node:path";
 import { atomic, digest, json } from "./util.js";
@@ -32,9 +33,19 @@ For long plans write Markdown once and link it with installed DIP when available
 
 Portable intent events merge through Git and the normal runtime. Live coordination, automatic hooks, Markdown linking and configured verification require installed DIP (Node 24+). Portable writes have no leases; collaborators must coordinate independently. Use at your own responsibility.
 `;
-const templates = () => ({
-  ".agents/skills/dip/SKILL.md": skill,
-  ".claude/skills/dip/SKILL.md": skill,
+const templates = (repo) => ({
+  ".agents/skills/dip/SKILL.md":
+    workflowMode(repo.config) === "automatic"
+      ? skill.slice(0, skill.indexOf("Read the project")) +
+        AUTOMATIC_INSTRUCTIONS +
+        "\n"
+      : skill,
+  ".claude/skills/dip/SKILL.md":
+    workflowMode(repo.config) === "automatic"
+      ? skill.slice(0, skill.indexOf("Read the project")) +
+        AUTOMATIC_INSTRUCTIONS +
+        "\n"
+      : skill,
   ".dip/intent-guide.md": guide,
   ".dip/tools/portable.mjs": fs.readFileSync(
     new URL("./portable.js", import.meta.url),
@@ -68,7 +79,7 @@ export function repositoryIntegration(repo, { remove = false } = {}) {
   const files = { ...prior.files },
     changed = [],
     preserved = [];
-  for (const [relative, content] of Object.entries(templates())) {
+  for (const [relative, content] of Object.entries(templates(repo))) {
     const target = safe(repo.root, relative),
       expected = digest(content),
       exists = fs.existsSync(target);

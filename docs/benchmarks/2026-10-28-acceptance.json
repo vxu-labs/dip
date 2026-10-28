@@ -1,0 +1,12 @@
+{
+  "candidate": "0.3.13-automatic.0",
+  "globalRollout": false,
+  "codeRegression": "passed",
+  "startupContextTarget": "passed for measured snapshots",
+  "modelTurnsStarted": 0,
+  "routineCallTarget": "unmeasured",
+  "totalInjectedBytesTarget": "unmeasured",
+  "modelTimeTarget": "unmeasured",
+  "realNativeWorkflow": "pending",
+  "reason": "Human native-hook trust review is required before bounded model pilot; no bypass or host trust change."
+}

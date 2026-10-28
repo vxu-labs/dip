@@ -115,10 +115,15 @@ function column(title, tasks) {
   return `<div><h2 class="column-title">${title}<span>${tasks.length}</span></h2>${tasks.length ? tasks.map(card).join("") : '<div class="empty"><strong>A little room for what’s next.</strong>Saved work will appear here.</div>'}</div>`;
 }
 function render() {
-  const tasks = (state.tasks || []).filter(
-      (t) =>
-        $("#task-kind").value === "all" ||
-        (t.kind || "work") === $("#task-kind").value,
+  const tasks = (state.tasks || []).filter((t) =>
+      $("#task-kind").value === "requests"
+        ? t.requestState === "captured" &&
+          t.kind !== "work" &&
+          !["implemented", "verified", "cancelled", "superseded"].includes(
+            t.status,
+          )
+        : $("#task-kind").value === "all" ||
+          (t.kind || "work") === $("#task-kind").value,
     ),
     query = $("#search").value.toLowerCase(),
     filtered = tasks.filter((t) =>
@@ -301,7 +306,7 @@ function renderDetail(taskId) {
   if (!t) return;
   $("#detail-title").textContent = t.title;
   $("#detail").innerHTML =
-    `<span class="badge ${label(t)}">${escape(label(t))}</span> <small>${escape(t.id)}</small><div class="detail-section"><h3>Intent</h3><p>${escape(t.description || "No description")}</p><p>Scope: ${escape(t.scope.join(", ") || "Not specified")}<br>Depends on: ${escape(t.dependencies.join(", ") || "None")}<br>In current branch: ${escape(state.repo.branch)}</p>${(t.acceptance || []).map((a) => `<p>□ ${escape(a)}</p>`).join("")}</div><div class="detail-actions"><select id="task-status" aria-label="Task status">${["backlog", "ready", "in_progress", "blocked", "implemented", "cancelled", "superseded"].map((s) => `<option ${s === t.status ? "selected" : ""}>${s}</option>`).join("")}</select><button id="save-status">Update status</button><button id="claim">Claim task</button>${leases.has(t.id) ? '<button id="release">Release</button>' : ""}</div>${t.conflicts.length ? `<div class="detail-section"><h3>Competing updates</h3>${t.conflicts.map((c) => `<p>${escape(c.field)}: ${escape(c.alternatives.map((a) => JSON.stringify(a.value)).join(" / "))}</p>`).join("")}<button id="resolve">Resolve with selected status</button></div>` : ""}<div class="detail-section"><h3>Verification</h3><p>${escape(t.verification || "missing")} evidence · ${t.integrated ? "Integrated in current history" : "Integration not established"}</p>${state.checks.length ? `<select id="check">${state.checks.map((c) => `<option>${escape(c)}</option>`).join("")}</select><button id="verify">Run configured check</button>` : "<p>Configure checks in .dip/config.json to verify this task.</p>"}${t.evidence.map((e) => `<p><span class="badge ${escape(e.result)}">${escape(e.result)}</span> ${escape(e.check)} · ${escape(date(e.at))}</p>`).join("")}</div><div class="detail-section"><h3>Latest handoff</h3><p>${escape(t.checkpoints.at(-1)?.summary || "No checkpoint")}</p><textarea id="checkpoint" rows="3" placeholder="What was done, what remains, and the next step"></textarea><button id="save-checkpoint">Save meaningful checkpoint</button></div><div class="detail-section"><h3>History</h3>${t.history
+    `<span class="badge ${label(t)}">${escape(label(t))}</span> <small>${escape(t.id)}</small><div class="detail-section"><h3>Intent</h3><p>${escape(t.description || "No description")}</p><p>Scope: ${escape(t.scope.join(", ") || "Not specified")}<br>Depends on: ${escape(t.dependencies.join(", ") || "None")}<br>In current branch: ${escape(state.repo.branch)}</p>${(t.acceptance || []).map((a) => `<p>□ ${escape(a)}</p>`).join("")}</div><div class="detail-actions"><select id="task-status" aria-label="Task status">${["backlog", "ready", "in_progress", "blocked", "implemented", "cancelled", "superseded"].map((s) => `<option ${s === t.status ? "selected" : ""}>${s}</option>`).join("")}</select><button id="save-status">Update status</button><button id="claim">Claim task</button>${leases.has(t.id) ? '<button id="release">Release</button>' : ""}</div>${t.conflicts.length ? `<div class="detail-section"><h3>Competing updates</h3>${t.conflicts.map((c) => `<p>${escape(c.field)}: ${escape(c.alternatives.map((a) => JSON.stringify(a.value)).join(" / "))}</p>`).join("")}<button id="resolve">Resolve with selected status</button></div>` : ""}<div class="detail-section"><h3>Verification</h3><p>${escape(t.verification || "missing")} evidence · ${t.integrated ? "Integrated in current history" : "Integration not established"}</p>${state.checks.length ? `<select id="check">${state.checks.map((c) => `<option>${escape(c)}</option>`).join("")}</select><button id="verify">Run configured check</button>` : "<p>Configure checks in .dip/config.json to verify this task.</p>"}${t.evidence.map((e) => `<p><span class="badge ${escape(e.result)}">${escape(e.result)}</span> ${escape(e.check)} · ${escape(date(e.at))}</p>`).join("")}</div><div class="detail-section"><h3>Latest handoff</h3><p>${escape(([...t.checkpoints].reverse().find((c) => !c.automatic) || t.checkpoints.at(-1))?.summary || "No checkpoint")}</p><textarea id="checkpoint" rows="3" placeholder="What was done, what remains, and the next step"></textarea><button id="save-checkpoint">Save meaningful checkpoint</button></div><div class="detail-section"><h3>History</h3>${t.history
       .slice(-15)
       .reverse()
       .map(
@@ -329,6 +334,14 @@ function renderDetail(taskId) {
     `<div class="detail-section" id="linked-documents"><h3>Linked documents</h3><p>Source documents are read on demand. Task status and verification stay in DIP.</p><label>Find sections <input id="document-query" placeholder="Heading or keywords" maxlength="1000"></label><div id="document-links"></div><div id="document-preview" aria-live="polite"></div></div>`,
   );
   renderDocuments(t).catch((e) => notify(e.message));
+  const paused = [...t.checkpoints]
+    .reverse()
+    .find((c) => !c.automatic && c.remaining);
+  if (paused && !t.resolution)
+    $("#detail").insertAdjacentHTML(
+      "afterbegin",
+      `<div class="detail-section"><h3>Remaining work</h3>${paused.remaining.map((r) => `<p>${escape(r.disposition)}: ${escape(r.summary)}</p>`).join("")}</div>`,
+    );
   $("#detail").insertAdjacentHTML(
     "afterbegin",
     `<div class="detail-section" id="finish-section"><h3>Outcome</h3>${t.resolution ? `<p>${escape(t.resolution.outcome)}: ${escape(t.resolution.summary)}</p>${t.resolution.replacedBy.map((id) => `<button data-replacement="${escape(id)}">View replacement ${escape(id.slice(-8))}</button>`).join("")}` : "<p>Record an outcome explicitly. Implemented work still needs configured verification.</p>"}<label>Outcome<select id="finish-outcome">${(t.kind === "discussion" ? ["answered", "superseded", "cancelled"] : ["implemented", ...(!t.scope.length && !t.acceptance.length && !t.evidence.length ? ["answered"] : []), "superseded", "cancelled"]).map((o) => `<option>${o}</option>`).join("")}</select></label><label>Summary<textarea id="finish-summary" maxlength="2000" rows="2"></textarea></label><label>Replacement task IDs<input id="finish-replacements" placeholder="Required only for superseded"></label><button id="finish-task">Save outcome</button></div>`,

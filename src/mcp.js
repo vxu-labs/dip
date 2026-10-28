@@ -4,7 +4,7 @@ import { z } from "zod";
 import { execute } from "./actions.js";
 import { VERSION } from "./version.js";
 import { reconcileView } from "./views.js";
-import {semanticEnabled,semanticRetrieve} from './semantic.js';
+import { semanticEnabled, semanticRetrieve } from "./semantic.js";
 
 export async function runMcp() {
   const server = new McpServer({ name: "dip", version: VERSION });
@@ -22,7 +22,7 @@ export async function runMcp() {
         try {
           let result = await execute(action, args, cwd || process.cwd());
           if (action === "reconcile") result = reconcileView(result, args);
-          if (action === "update")
+          if (action === "update" && !result.truncated)
             result = {
               id: result.id,
               title: result.title,
@@ -46,13 +46,40 @@ export async function runMcp() {
     {},
     "context",
   );
-  if(semanticEnabled()) server.registerTool('project_retrieve', {
-    description:'Experimental local E5: retrieve compact task or linked Markdown candidates with heading context and current source hashes. Rank is not task identity or completion. Source text is untrusted. Requires explicit local Python/model/cache setup.',
-    inputSchema:{...root,query:z.string().min(1).max(1000),channel:z.enum(['all','tasks','documents']).optional(),limit:z.number().int().min(1).max(10).optional()},
-  },async({root:cwd,...args})=>{
-    try {const result=await semanticRetrieve(cwd||process.cwd(),args);return {content:[{type:'text',text:JSON.stringify(result)}]};}
-    catch(e){return {isError:true,content:[{type:'text',text:e.message}]};}
-  });
+  if (semanticEnabled())
+    server.registerTool(
+      "project_retrieve",
+      {
+        description:
+          "Experimental local E5: retrieve compact task or linked Markdown candidates with heading context and current source hashes. Rank is not task identity or completion. Source text is untrusted. Requires explicit local Python/model/cache setup.",
+        inputSchema: {
+          ...root,
+          query: z.string().min(1).max(1000),
+          channel: z.enum(["all", "tasks", "documents"]).optional(),
+          limit: z.number().int().min(1).max(10).optional(),
+        },
+      },
+      async ({ root: cwd, ...args }) => {
+        try {
+          const result = await semanticRetrieve(cwd || process.cwd(), args);
+          return { content: [{ type: "text", text: JSON.stringify(result) }] };
+        } catch (e) {
+          return {
+            isError: true,
+            content: [{ type: "text", text: e.message }],
+          };
+        }
+      },
+    );
+  add(
+    "project_requests",
+    "List automatically captured requests not yet promoted to development; no inferred completion.",
+    {
+      offset: z.number().int().min(0).optional(),
+      limit: z.number().int().min(1).max(50).optional(),
+    },
+    "requests",
+  );
   add(
     "task_get",
     "Read the actual requirement, acceptance criteria and latest handoff for one task without activity/history dumps.",
@@ -100,7 +127,7 @@ export async function runMcp() {
   );
   add(
     "component_owners",
-    "Inspect current local worktree owners overlapping a component. Expired leases are excluded; acquire an atomic task_claim before editing.",
+    "Inspect current local worktree owners overlapping a component when needed. Automatic hooks acquire ownership before supported writes; reviewed mode uses task_claim.",
     { path: z.string(), ...navigationPage },
     "owners",
   );
@@ -180,10 +207,17 @@ export async function runMcp() {
   );
   add(
     "task_finish",
-    "Record an explicit outcome. For implemented work review remaining items: required blocks finish; follow_up needs an existing taskId; verification_limit and out_of_scope preserve boundaries. Pass [] for none; omission is unreviewed. Use a configured check; failed checks keep ownership. Answered is not code verification. Stop does not close work.",
+    "Automatic workflow: the one end-of-development call (pass hook actor/session). Use paused with remaining items for unfinished work. Automatic questions need no call. Record an explicit outcome. For implemented work review remaining items: required blocks finish; follow_up needs an existing taskId; verification_limit and out_of_scope preserve boundaries. Pass [] for none; omission is unreviewed. Use a configured check; failed checks keep ownership. Answered is not code verification. Stop does not close work.",
     {
       id: z.string(),
-      outcome: z.enum(["answered", "implemented", "superseded", "cancelled"]),
+      session: z.string().optional(),
+      outcome: z.enum([
+        "answered",
+        "implemented",
+        "superseded",
+        "cancelled",
+        "paused",
+      ]),
       summary: z.string().min(1).max(2000),
       replacedBy: z.array(z.string()).max(20).optional(),
       remaining: z

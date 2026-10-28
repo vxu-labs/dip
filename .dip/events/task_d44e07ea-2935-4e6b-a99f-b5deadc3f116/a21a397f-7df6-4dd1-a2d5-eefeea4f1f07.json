@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "a21a397f-7df6-4dd1-a2d5-eefeea4f1f07",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Candidate 0.3.13-automatic.0 implemented. Final regression 163 passed/2 skipped; package/browser and old-reader checks pass. Exact-source runtime measurements and protocol saved. Native model experiment has started zero turns: isolated hook trust needs human review. Global installation unchanged; private rollback package/settings retained.",
+    "remaining": [
+      {
+        "disposition": "required",
+        "summary": "Review isolated native hooks, then run all 12 authorized model turns and retain failures."
+      },
+      {
+        "disposition": "required",
+        "summary": "Validate one real native workflow and evaluate correctness, recovery, management calls, injected bytes and time."
+      },
+      {
+        "disposition": "required",
+        "summary": "Roll out globally only if acceptance passes; otherwise retain reviewed mode and report unmet criteria."
+      }
+    ],
+    "automatic": false
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T02:10:58.349Z",
+  "parents": [
+    "009d6ccc-1112-490c-9939-c83554a1f36c"
+  ],
+  "branch": "codex/automatic-workflow"
+}

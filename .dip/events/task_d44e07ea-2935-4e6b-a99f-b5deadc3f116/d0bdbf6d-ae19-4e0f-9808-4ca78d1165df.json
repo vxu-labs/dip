@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d0bdbf6d-ae19-4e0f-9808-4ca78d1165df",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.create",
+  "payload": {
+    "title": "Automatic DIP workflow with one finish call and gated rollout",
+    "description": "Implement the user-approved automatic workflow plan: preserve intent, requests, native plans, coordination and remaining work while reducing model management overhead. Compare exact installed baseline with candidate, retain all failures and a private rollback package. Exclude Dan accessibility work. Full contract and measurements are linked documents. Originating user request tracked as task_8eca0bb71cda597a6e4e75f0c675f74366fbc6472faac655372c93bdb05aed76 in the host project.",
+    "acceptance": [
+      "Requests stay outside work backlog until promoted; writes coordinate; one finish can pause without false completion.",
+      "Startup context <=4096 UTF-8 bytes, routine receipts <=1024 bytes; preserve ledger and user-edited integrations.",
+      "Conservative read grammar, no routine integration repair, shared task read, durable recorder recovery and exact evidence reuse.",
+      "Behavioral/package/browser regressions pass; 12 bounded native model turns and real workflow must satisfy rollout gate before global upgrade."
+    ],
+    "scope": [
+      "src",
+      "bin",
+      "public",
+      "skills",
+      "scripts",
+      "test",
+      "docs",
+      "README.md",
+      "package.json",
+      "package-lock.json"
+    ],
+    "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+    "status": "backlog"
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T02:10:49.644Z",
+  "parents": [],
+  "branch": "codex/automatic-workflow"
+}

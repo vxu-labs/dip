@@ -67,7 +67,11 @@ dip serve
 
 Session hooks inject a compact context with outstanding work and a stable actor/session identity. Prompts become persistent requests without an extra LLM call. Tool events and file changes are collected automatically and batched. A stopped turn saves a checkpoint; it does **not** claim the task is complete.
 
-Use the MCP tools for meaningful transitions only:
+The opt-in `automatic` workflow captures unsorted requests in an inbox, promotes them to work and acquires ownership before supported writes. Questions and known reads need no management calls. For development, call `task_finish` once with the hook actor/session: `implemented` with a configured check and remaining-work review, or `paused` with unfinished items. Explicit adoption, changed requirements, future ideas and conflicts still need intent tools. Native plans need no second copy. See [automatic workflow, rollout gates and rollback](docs/automatic-workflow.md).
+
+Enable it for an isolated project with `dip init --workflow automatic`. Machine installation accepts `dip install --workflow automatic`; the default remains `reviewed` pending acceptance. Workflow is separate from `observe`, `coordinate` and `strict` ownership modes.
+
+The existing `reviewed` workflow retains these tools for meaningful transitions:
 
 1. `task_create` to save intent, acceptance criteria or a future idea.
 2. `task_claim` to select work, declare scope and associate the hook's session/actor.

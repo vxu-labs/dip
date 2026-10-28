@@ -9,6 +9,7 @@ export function taskView(task) {
     id: task.id,
     title: clip(task.title, 300),
     kind: task.kind,
+    requestState: task.requestState,
     status: task.status,
     description: clip(task.description, 6000),
     descriptionTruncated: task.description.length > 6000,
