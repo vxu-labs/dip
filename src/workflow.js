@@ -44,7 +44,7 @@ export function validateRemaining(remaining) {
     )
   )
     throw new Error(
-      "Invalid remaining-work review; follow_up requires a taskId",
+      "Invalid remaining-work review: follow_up requires a taskId; omit taskId for required, verification_limit and out_of_scope. Use up to 20 items with nonempty summaries of at most 1000 characters.",
     );
 }
 

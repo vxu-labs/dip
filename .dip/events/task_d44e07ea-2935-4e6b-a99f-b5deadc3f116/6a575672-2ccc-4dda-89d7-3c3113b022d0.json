@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6a575672-2ccc-4dda-89d7-3c3113b022d0",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "All 8 isolated hooks trusted; 297 native events, zero hook failures. Used all 12 authorized starts: 11 completed, one interrupted after MCP environment failure; no retries. All 66 evaluated functional and 30 memory checks pass. Measured .0 fails gate: routine calls30→14 (53.3% vs70%), payload proxy121764→62691 (48.5% vs60%), incomplete paired timing, all3 automatic recoveries leave originals open. Fixed harness MCP/CLI isolation and added no-model preflight. Working .1 clarifies adoption/finish arguments;170 tests168 pass2 skips; package smoke passes. Frozen source/raw results/report preserved. Global remains0.3.12 reviewed.",
+    "remaining": [
+      {
+        "disposition": "required",
+        "summary": "Obtain authorization beyond exhausted twelve-turn budget and re-evaluate .1 against the frozen baseline, retaining every failure."
+      },
+      {
+        "disposition": "required",
+        "summary": "Verify original requirement adoption, one-finish behavior and all performance targets, then one real native workflow."
+      },
+      {
+        "disposition": "required",
+        "summary": "Deploy globally only after the release gate passes; preserve rollback and user-edited integrations."
+      }
+    ],
+    "automatic": false
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T03:20:12.602Z",
+  "parents": [
+    "8165ce6a-912f-4f40-8b12-414f0a676032"
+  ],
+  "branch": "codex/automatic-workflow"
+}

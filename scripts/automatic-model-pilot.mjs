@@ -6,6 +6,7 @@ import { spawn, execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { parse, stringify } from "smol-toml";
+import { pilotMcpEnvVars, installPilotShims, trialEnvironment, preflightPilot } from "./pilot-support.mjs";
 import {
   fixture,
   score,
@@ -62,7 +63,7 @@ Object.assign(env, {
   GIT_CONFIG_NOSYSTEM: "1",
   GIT_TRACE2_EVENT: "0",
 });
-const protocolFile = path.join(base, "protocol.json");
+const protocolFile = process.env.DIP_PILOT_PROTOCOL_FILE || path.join(base, "protocol.json");
 if (process.argv[2] === "--score") {
   const result = await score(process.argv[3], Number(process.argv[4]), {
     seedOnly: process.argv[5] === "seed",
@@ -101,6 +102,7 @@ if (process.argv.includes("--prepare")) {
   write(path.join(base, "gitconfig"), "");
   const router = `import {spawnSync} from 'node:child_process';import fs from 'node:fs';import path from 'node:path';\nconst base=${JSON.stringify(base)};const arm=process.env.DIP_PILOT_ARM;if(!['reviewed','automatic'].includes(arm))process.exit(0);const args=process.argv.slice(2);const hook=args[0]==='hook';const input=hook?fs.readFileSync(0,'utf8'):null;const started=performance.now();const r=spawnSync(process.execPath,[path.join(base,arm,'bin/dip.js'),...args],{env:process.env,stdio:hook?['pipe','pipe','pipe']:'inherit',input,encoding:'utf8'});if(hook){process.stdout.write(r.stdout||'');process.stderr.write(r.stderr||'');const event=JSON.parse(input);let output={};try{output=JSON.parse(r.stdout||'{}')}catch{};fs.appendFileSync(path.join(process.env.DIP_PILOT_TRIAL,'hooks.jsonl'),JSON.stringify({event:event.hook_event_name,tool:event.tool_name,session:event.session_id,ms:performance.now()-started,exitCode:r.status,contextBytes:Buffer.byteLength(output.hookSpecificOutput?.additionalContext||''),output})+'\\n');}process.exit(r.status??1);`;
   write(path.join(base, "router.mjs"), router);
+  installPilotShims(base);
   const command = `${JSON.stringify(process.execPath)} ${JSON.stringify(path.join(base, "router.mjs"))} hook --agent codex`;
   const hooks = {};
   for (const event of [
@@ -150,6 +152,7 @@ if (process.argv.includes("--prepare")) {
       dip: {
         command: process.execPath,
         args: [path.join(base, "router.mjs"), "mcp"],
+        env_vars: pilotMcpEnvVars,
         tools: Object.fromEntries(
           tools.map((t) => [t, { approval_mode: "approve" }]),
         ),
@@ -220,6 +223,7 @@ if (process.argv.includes("--prepare")) {
       ),
     ),
     harnessHash: hash(fs.readFileSync(fileURLToPath(import.meta.url))),
+    supportHash: hash(fs.readFileSync(new URL("./pilot-support.mjs", import.meta.url))),
     trials,
   });
   write(
@@ -244,7 +248,8 @@ if (
   ) !== protocol.fixtureHash ||
   (protocol.harnessHash &&
     hash(fs.readFileSync(fileURLToPath(import.meta.url))) !==
-      protocol.harnessHash)
+      protocol.harnessHash) ||
+  (protocol.supportHash && hash(fs.readFileSync(new URL("./pilot-support.mjs", import.meta.url))) !== protocol.supportHash)
 )
   throw new Error(
     "Protocol harness or fixtures changed; do not run a changed scored protocol.",
@@ -267,23 +272,43 @@ if (
     "Human hook review required. Open review-hooks.sh and use /hooks. No model calls started.",
   );
 const output = path.join(base, "results.json");
-if (fs.existsSync(output))
+const continuing = process.argv.includes("--continue-unstarted");
+if (fs.existsSync(output) && !continuing)
   throw new Error("Results already exist. No scored retries permitted.");
-const results = { protocol, startedAt: new Date().toISOString(), trials: [] };
+let results;
+if (continuing) {
+  results = JSON.parse(fs.readFileSync(output));
+  if (!results.abortedAt || !protocol.resumes || results.finishedAt)
+    throw new Error("Only an explicitly documented aborted protocol may continue unstarted turns.");
+  for (const key of ["trials", "fixtureHash", "sourceFingerprints", "model", "effort", "turns", "timeoutMs"])
+    if (JSON.stringify(protocol[key]) !== JSON.stringify(results.protocol[key]))
+      throw new Error(`Resumption changed frozen ${key}`);
+  const recorded = results.trials.reduce((n, t) => n + t.turns.length, 0);
+  if (recorded !== results.turnsStarted || recorded + protocol.resumes.unstartedTurns !== 12)
+    throw new Error("Every started turn must be retained, including interrupted failures; budget must remain twelve.");
+  results.resumptionProtocol = protocol;
+  results.resumedAt = new Date().toISOString();
+} else {
+  results = { protocol, startedAt: new Date().toISOString(), turnsStarted: 0, trials: [] };
+}
+const preflight = await preflightPilot(base,
+  parse(fs.readFileSync(path.join(pilotHome, "config.toml"), "utf8")), env);
+write(path.join(base, "preflight.json"), preflight);
 const save = () => write(output, results);
 save();
 for (const t of protocol.trials) {
-  const e = {
-    ...env,
-    DIP_HOME: path.join(t.dir, "runtime"),
-    DIP_WORKFLOW: t.arm,
-    DIP_PILOT_ARM: t.arm,
-    DIP_PILOT_TRIAL: t.dir,
-  };
-  const trial = { index: t.index, arm: t.arm, turns: [] };
-  results.trials.push(trial);
+  const e = trialEnvironment(base, t, env);
+  let trial = results.trials.find((trial) => trial.index === t.index && trial.arm === t.arm);
+  if (!trial) {
+    trial = { index: t.index, arm: t.arm, turns: [] };
+    results.trials.push(trial);
+  }
   save();
   for (const phase of ["seed", "recovery"]) {
+    if (trial.turns.some((turn) => turn.phase === phase)) continue;
+    if (fs.existsSync(path.join(t.dir, phase + ".jsonl")))
+      throw new Error("Raw turn output already exists; never retry an unaccounted started turn.");
+    if (results.turnsStarted >= 12) throw new Error("Authorized twelve-turn budget exhausted.");
     for (const a of ["reviewed", "automatic"])
       if (fingerprint(path.join(base, a)) !== protocol.sourceFingerprints[a])
         throw new Error("Frozen source changed; stop collection.");
@@ -306,6 +331,8 @@ for (const t of protocol.trials) {
       "-",
     ];
     const start = performance.now();
+    results.turnsStarted++;
+    save();
     const child = spawn(codex, args, {
       env: e,
       stdio: ["pipe", "pipe", "pipe"],
@@ -449,6 +476,12 @@ for (const t of protocol.trials) {
     trial.turns.push(turn);
     save();
     console.log(JSON.stringify({ index: t.index, arm: t.arm, ...turn }));
+    if (/MCP server startup failed|MCP startup failed/i.test(stderr)) {
+      results.abortedAt = new Date().toISOString();
+      results.abortReason = "Native MCP startup failed; keep this turn and stop before spending further model calls.";
+      save();
+      throw new Error(results.abortReason);
+    }
   }
 }
 results.finishedAt = new Date().toISOString();

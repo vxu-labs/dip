@@ -1,6 +1,8 @@
 # Automatic workflow: implementation and acceptance report
 
-The candidate is **0.3.13-automatic.0**, branch `codex/automatic-workflow`, based on upstream `3f2aebc9611bf98ee76ecadb1f8697baca02bd77`. The code and isolated regression checks are complete. **Global rollout has not passed the acceptance gate:** the native 12-turn model experiment and real-workflow pilot are pending human review of the isolated hook definitions. No model turns have started. The existing machine installation remains 0.3.12/reviewed.
+The measured candidate is **0.3.13-automatic.0**, branch `codex/automatic-workflow`, based on upstream `3f2aebc9611bf98ee76ecadb1f8697baca02bd77`. The native twelve-turn budget is now exhausted: eleven turns completed and one was interrupted after an infrastructure failure. **Global rollout failed the acceptance gate.** Routine management fell 53.3%, below 70%; all three automatic recovery turns left the original requirement open while finishing a duplicate. Hook approval works: 297 recorded native hook events, zero hook exit failures. The existing machine installation remains 0.3.12/reviewed.
+
+The working candidate **0.3.13-automatic.1** clarifies continuation/adoption and finish arguments in hook context and MCP descriptions, with actionable validation errors. It also fixes the experiment's MCP/CLI routing and adds a no-model connection preflight. Its full suite passes **170 tests: 168 passed, 2 platform skips**. These fixes have not had a new model comparison; the .0 performance results must not be attributed to .1. A further comparison requires authorization beyond the original twelve-turn budget.
 
 ## Exact baseline
 
@@ -12,7 +14,8 @@ Automatic requests enter a separate inbox. Supported writes acquire ownership an
 
 ## Validation
 
-- Final full suite: **166 tests, 164 passed, 0 failed, 2 platform skips**, 51.00 seconds. Includes conflict/ownership fencing, automatic requests, native plans, pause/Stop, partial and failed checks, stale evidence, source preservation, runtime migration, recorder kill/restart and durable outbox recovery.
+- Measured .0 full suite: **166 tests, 164 passed, 0 failed, 2 platform skips**, 51.00 seconds. Includes conflict/ownership fencing, automatic requests, native plans, pause/Stop, partial and failed checks, stale evidence, source preservation, runtime migration, recorder kill/restart and durable outbox recovery.
+- Post-pilot .1 full suite: **170 tests, 168 passed, 0 failed, 2 platform skips**, 53.40 seconds; focused suite 29/29. Syntax and clean-package install/configuration/discovery/uninstall smoke pass. Added environment/CLI routing, atomic invalid-pause and explicit continuation tests. The new strict continuation test initially omitted required adoption ownership tokens; it was corrected to exercise the existing strict contract and rerun. [Unmeasured .1 source fingerprint](2026-10-28-post-pilot-candidate.json).
 - Sixteen focused automatic tests pass, including CLI receipt serialization and explicit workflow rollback preserving strict ownership mode.
 - JavaScript syntax check passes. Clean npm tarball install/discovery/configuration, portable documents, CLI and uninstall smoke passes.
 - Dashboard browser smoke passes in an isolated Chrome profile, including the captured-request filter, cross-worktree navigation and mobile layout. Initial default-browser attempt could not launch because the Playwright browser download was absent; the existing Chrome binary was used. No product issue was hidden by that infrastructure retry. A subsequent boundary check added explicit coverage for a single large multilingual task and oversized actor metadata; both budgets hold without trimming fencing tokens.
@@ -40,11 +43,32 @@ Real-project intent was copied once into isolated snapshots and read by both ver
 
 The approved budget is exactly 12 turns: three scenarios × two versions × seed/recovery, each at most 240 seconds. Both arms inherit the configured model and effort, use the same fixtures/scoring, and run in counterbalanced order. Sources and prompts are frozen. Every turn, timeout, native hook receipt, ledger snapshot, functional/memory score and tool count is retained. Scoring is separately bounded. No scored retry or extra tracking model is allowed.
 
-The native preflight correctly refuses to start without reviewed hook trust. The pilot has its own CODEX_HOME, runtime and repositories. It references the existing login locally; credentials and private rollback snapshots are excluded from Git and package artifacts. Host approval/trust settings were not changed. Human review is required by [Codex's hook trust flow](https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks) and the project's instruction not to bypass hook trust.
+The human approved all eight hook definitions in the isolated profile. The pilot has its own CODEX_HOME, runtime and repositories. It references the existing login locally; credentials and private rollback snapshots are excluded from Git and package artifacts. Host approval/trust settings were not changed. Review follows [Codex's hook trust flow](https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks).
 
-Run `/private/tmp/dip-automatic-pilot-20261028/review-hooks.sh` in Terminal, review the DIP hooks in `/hooks`, and exit using `/quit`. After that, the prepared experiment is run from this checkout with `node scripts/automatic-model-pilot.mjs --run`. Keep the prepared protocol and all results; do not overwrite a started experiment.
+The initial MCP router omitted explicit environment forwarding; the first reviewed turn used the global CLI and the second was interrupted when this was discovered. Both are retained as infrastructure-affected failures. A documented amendment repaired MCP routing and frozen CLI fallback before running only the ten unstarted turns. No turn was retried and product sources/prompts/model/order stayed frozen. See the [incident record](2026-10-28-native-pilot-incident.md), [per-turn analysis](2026-10-28-native-model-summary.json) and [retained raw records](2026-10-28-native-model-raw.tar.gz). The raw archive contains only synthetic trial outputs, ledgers and protocols; no login or private configuration snapshots.
 
-**Gate status:** correctness/regressions passed in local tests; >=60% smaller measured startup context passed. >=70% fewer routine management calls, total injected bytes, >=20% lower median model wall time, model requirement recovery, and one real native workflow remain **unmeasured**. Global deployment remains off until these are evaluated. A failure to preserve information or coordination blocks deployment. Report all calls as well as the routine/exceptional split; do not exclude failed turns. The small sample cannot support general performance claims.
+| Recorded metric, including failed attempts | Reviewed | Automatic .0 |
+|---|---:|---:|
+| Started / completed turns | 6 / 5 | 6 / 6 |
+| All DIP calls, including CLI help | 55 | 21 |
+| Routine mutation calls | 30 | 14 |
+| Explicit intent calls (create/adopt) | 5 | 3 |
+| Read calls / CLI help calls | 8 / 12 | 4 / 0 |
+| Failed management calls | 4 | 5 |
+| Measured management payload bytes | 121,764 | 62,691 |
+| Hook context bytes | 10,409 | 12,110 |
+| Median recorded wall time | 65.912 s (5 durations) | 61.647 s (6 durations) |
+| Recorded wall-time range | 62.609–79.317 s | 36.499–86.567 s |
+
+All-call reduction is 61.8%; routine-mutation reduction is **53.3%, below 70%**. The payload proxy falls **48.5%, below 60%**. It includes hook context, MCP replies, CLI output and whole instruction-read command output, including any mixed non-management output. It excludes initial host framing and tool schemas, so total injected model bytes remain unestablished. Startup savings on deep real-project histories above do not predict hook savings in these small fixtures. CLI counts are audited lexical invocations; help is separated from mutations. Explicit intent means create/adopt, and reads are reported separately. Initial intent preparation, plan/checkpoint/verification and finish attempts count as routine mutations.
+
+The overall recorded medians differ by 6.5%, but one reviewed duration is missing and another is infrastructure-affected: this is not a valid complete paired timing estimate. For transparency, the two fully run pairs (CSV/search) have four durations per arm: medians 70.470→53.324 s (24.3% lower), routine mutations 24→9 (62.5% fewer), and payload 63,246→38,855 bytes (38.6% fewer). This subset does not repair the failed full protocol or establish a general speedup. Wall time includes bounded post-turn scoring and ledger reads; the machine also performed ordinary inspection and brief focused tests during collection, without dedicated CPU isolation.
+
+All 66 functional checks on the eleven completed turns passed. All 30 evaluated recovery-memory checks passed; the interrupted reviewed recovery is unscored. No completed seed incorrectly marked partial work verified, and future ideas stayed deferred. However, **all three automatic recoveries finished the new captured request without explicit adoption**, leaving the original development task in progress. The completed reviewed recoveries correctly adopted the original requirement. This is a tracking regression and blocks rollout despite correct code and retained requirements.
+
+Automatic .0 also made three preliminary `task_verify` calls and five rejected finish attempts: paused work passed `check`, or a non-follow_up remaining item passed `taskId`. .1 now explicitly says implemented finish runs its own check, paused omits check/replacedBy, taskId belongs only to follow_up, and existing work must be explicitly adopted before development. Deterministic tests verify invalid pauses preserve evidence/ownership and an explicitly adopted continuation completes the original task; they do not prove model adherence to the revised guidance. Strict-mode exceptional adoption still requires its explicit ownership tokens.
+
+**Gate status: failed; no global deployment.** Code tests and observed requirement recovery pass, but routine-call and payload targets are unmet, original-task tracking regresses, and the full paired timing protocol is incomplete. The .1 candidate needs a newly authorized comparison and then one real native workflow before a global rollout can be considered. The original experiment cannot be rerun or resumed: all twelve starts are retained and consumed.
 
 ## Rollback
 

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "86492284ed25aa27a94dca727da152e998d7a1e8cdcb728b2972947b7c89b001",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-28T03:05:23.385Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/benchmarks/2026-10-28-native-pilot-incident.md"
+        ],
+        "agent": "filesystem",
+        "branch": "codex/automatic-workflow",
+        "recordId": "7309f54c-7c3c-428c-818f-892f3461ec6f"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-28T03:05:23.388Z",
+  "parents": [],
+  "branch": "codex/automatic-workflow"
+}

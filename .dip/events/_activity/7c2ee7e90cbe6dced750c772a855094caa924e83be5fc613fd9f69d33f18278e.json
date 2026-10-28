@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "7c2ee7e90cbe6dced750c772a855094caa924e83be5fc613fd9f69d33f18278e",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "git-discovery",
+    "records": [
+      {
+        "at": "2026-10-28T02:11:52.981418Z",
+        "kind": "git.discovered",
+        "agent": "git",
+        "branch": "codex/automatic-workflow",
+        "command": "reset",
+        "initialized": false,
+        "recordId": "git-discovery:af298c50ccbc4a357c8c1c9c100ce4009da3f2050fbe515e0e593f6e1b2415df"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-28T02:11:53.223Z",
+  "parents": [],
+  "branch": "codex/automatic-workflow"
+}

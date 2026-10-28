@@ -207,7 +207,7 @@ export async function runMcp() {
   );
   add(
     "task_finish",
-    "Automatic workflow: the one end-of-development call (pass hook actor/session). Use paused with remaining items for unfinished work. Automatic questions need no call. Record an explicit outcome. For implemented work review remaining items: required blocks finish; follow_up needs an existing taskId; verification_limit and out_of_scope preserve boundaries. Pass [] for none; omission is unreviewed. Use a configured check; failed checks keep ownership. Answered is not code verification. Stop does not close work.",
+    "Automatic workflow: the one end-of-development call (pass hook actor/session). implemented runs a configured check itself; no preliminary task_verify needed. paused saves unfinished work: pass nonempty remaining and omit check/replacedBy. Automatic questions need no call. required blocks completion; follow_up requires an existing taskId; omit taskId for every other disposition. verification_limit and out_of_scope preserve boundaries. Pass [] for no remaining work; omission is unreviewed. Failed checks keep ownership. For a continuation, explicitly task_adopt before development so the original requirement is finished. Stop does not close work.",
     {
       id: z.string(),
       session: z.string().optional(),
@@ -230,12 +230,12 @@ export async function runMcp() {
               "out_of_scope",
             ]),
             summary: z.string().min(1).max(1000),
-            taskId: z.string().optional(),
+            taskId: z.string().optional().describe("Required for follow_up; omit for required, verification_limit and out_of_scope."),
           }),
         )
         .max(20)
         .optional(),
-      check: z.string().optional(),
+      check: z.string().optional().describe("Configured check name for implemented work. Omit for paused; paused never verifies completion."),
       actor: z.string().optional(),
       token: z.string().optional(),
     },

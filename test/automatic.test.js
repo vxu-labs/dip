@@ -119,6 +119,32 @@ test("paused finish keeps remaining work and never asserts completion", async ()
   assert.equal(t.resolution, null);
   assert.equal(t.checkpoints.at(-1).remaining[0].summary, "UI remains");
 });
+test("invalid pause arguments do not alter evidence, checkpoint or ownership", async () => {
+  const f = fixture("strict"), c = f.prompt();
+  f.hook({ hook_event_name: "PreToolUse", tool_name: "Write", tool_input: { file_path: path.join(f.root, "parser.js") } });
+  const args = { id: c.task_id, actor: c.actor, session: c.session_id, outcome: "paused", summary: "Parser only", remaining: [{ disposition: "required", summary: "Exporter remains" }] };
+  const before = taskRead(f.repo, c.task_id);
+  await assert.rejects(execute("finish", { ...args, check: "unit" }, f.root), /omit check and replacedBy/);
+  await assert.rejects(execute("finish", { ...args, remaining: [{ disposition: "out_of_scope", summary: "Future work", taskId: "task_other" }] }, f.root), /omit taskId/);
+  assert.deepEqual(taskRead(f.repo, c.task_id), before);
+  const done = await execute("finish", args, f.root);
+  assert.equal(done.released, true);
+  assert.equal(done.verifiedComplete, false);
+});
+test("explicit automatic continuation finishes the original requirement and supersedes the captured duplicate", async () => {
+  const f = fixture("strict"), first = f.prompt();
+  f.hook({ hook_event_name: "PreToolUse", tool_name: "Write", tool_input: { file_path: path.join(f.root, "lib.js") } });
+  await execute("finish", { id: first.task_id, actor: first.actor, session: first.session_id, outcome: "paused", summary: "Part one", remaining: [{ disposition: "required", summary: "Part two" }] }, f.root);
+  const next = JSON.parse(f.hook({ hook_event_name: "UserPromptSubmit", session_id: "continuation", turn_id: "turn-two", prompt: "Continue part two" }).hookSpecificOutput.additionalContext);
+  // Strict ownership still requires explicit tokens for the exceptional adoption.
+  const sourceLease = await execute("claim", { id: next.task_id, actor: next.actor }, f.root);
+  const targetLease = await execute("claim", { id: first.task_id, actor: next.actor }, f.root);
+  await execute("adopt", { id: next.task_id, targetId: first.task_id, actor: next.actor, session: next.session_id, token: sourceLease.token, targetToken: targetLease.token, summary: "Reviewed continuation of the original requirement" }, f.root);
+  f.hook({ hook_event_name: "PreToolUse", session_id: "continuation", tool_name: "Write", tool_input: { file_path: path.join(f.root, "lib.js") } });
+  await execute("finish", { id: first.task_id, actor: next.actor, session: next.session_id, outcome: "implemented", summary: "Both parts done", remaining: [], check: "unit" }, f.root);
+  assert.equal(taskRead(f.repo, first.task_id).status, "verified");
+  assert.equal(taskRead(f.repo, next.task_id).status, "superseded");
+});
 test("Stop preserves unfinished work, native plan and durable outbox without a recorder", () => {
   const f = fixture(),
     c = f.prompt();

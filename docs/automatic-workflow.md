@@ -2,14 +2,18 @@
 
 Automatic keeps persistent intent and coordination while removing routine model bookkeeping. It is opt-in; `reviewed` remains the default until the acceptance gate passes. No additional model runs for logging or classification.
 
+The first native model comparison did not pass the rollout gate. Candidate .1 contains guidance fixes following the .0 experiment; its model behavior is not yet remeasured. See the [acceptance report](benchmarks/automatic-workflow-report.md). The machine remains on reviewed 0.3.12.
+
 ## Contract
 
 - Trusted prompt hooks save every request verbatim under the existing capture/redaction policy. Initially it is a `discussion` with additive `requestState: captured`, displayed in the captured-request inbox rather than the development backlog. No heuristic decides semantic task identity or completion.
 - Before a supported write (or unknown command on the conservative path), the hook reads the current task once, atomically claims its scope, and promotes the request to `work`. Known reads and native planning do not promote or claim it. A failure to claim denies the write in coordinate/strict mode; observe retains its existing semantics.
 - A development turn ends with one `task_finish`: `implemented`, summary, `remaining: []` or explicit exceptions, and a configured check. The hook's exact actor/session resolves its existing unexpired ownership token. It cannot borrow another actor's task or revive an expired lease.
 - Unfinished work uses `task_finish` with `outcome: paused`, summary and nonempty remaining items. It stays `in_progress`; the explicit checkpoint preserves the remaining review even after automatic Stop checkpoints. Paused cannot verify or supersede work.
+- For `paused`, omit `check` and `replacedBy`. For `implemented`, finish runs the configured check itself; a preliminary `task_verify` is not required. In remaining items, only `follow_up` accepts/requires `taskId`; other dispositions omit it.
 - Stop saves a checkpoint and releases ownership. Neither final-answer text, plan progress nor a partial passing check proves completion. Failed finish verification retains ownership. Outstanding plan steps and required remaining work block completion.
 - Adoption of an existing requirement, material scope changes, distinct future work and conflicts remain explicit. No automatic duplicate merging. Future ideas are work in backlog, never a claim merely because a model read a file.
+- A continuation must explicitly `task_adopt` the captured request into the reviewed original requirement before development, then finish that original requirement. Finishing the new request alone leaves the original open. Strict-mode exceptional adoption requires explicit ownership tokens for both tasks.
 
 ## Context and hot path
 

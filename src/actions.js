@@ -315,7 +315,7 @@ async function executeRaw(action, args = {}, cwd = process.cwd()) {
         );
       if (args.outcome === "paused") {
         if (args.check || args.replacedBy?.length)
-          throw new Error("Paused work cannot verify or supersede");
+          throw new Error("Paused work cannot verify or supersede: omit check and replacedBy; keep nonempty remaining. It records a checkpoint without completion.");
         validateRemaining(args.remaining);
         if (!args.remaining?.length)
           throw new Error("Paused work requires remaining items");

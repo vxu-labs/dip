@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "910f5f25311cfb0745ac24f173ad42220482431b468a58c4d041aa6aa80c5902",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-28T03:11:37.027Z",
+        "kind": "files.changed",
+        "files": [
+          "test/automatic.test.js"
+        ],
+        "agent": "filesystem",
+        "branch": "codex/automatic-workflow",
+        "recordId": "6df7372f-b598-4891-8b5d-50241d20c34e"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-28T03:11:37.028Z",
+  "parents": [],
+  "branch": "codex/automatic-workflow"
+}

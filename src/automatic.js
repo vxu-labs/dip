@@ -51,7 +51,7 @@ export function boundedContext(context, identity = {}, budget = 4096) {
   };
   out.branch = clip(context.branch, 120);
   out.instructions =
-    "Capture is automatic. No management calls for questions/reads. Development: task_finish once (implemented or paused). Details on demand; Stop is not completion.";
+    "Capture is automatic. No management calls for questions/reads. Continuing an existing requirement: review it, then task_adopt with captured id and targetId before development; do not finish a duplicate while leaving the original open. Development: task_finish once. implemented runs its configured check; no preliminary task_verify needed. paused requires remaining work and omits check/replacedBy. remaining.taskId is only for follow_up. Details on demand; Stop is not completion.";
   const brief = (t) => ({
     id: t.id,
     title: clip(t.title, 120),

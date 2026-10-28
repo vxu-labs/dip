@@ -1,0 +1,1051 @@
+{
+  "finishedAt": "2026-10-28T03:13:57.664Z",
+  "turnsStarted": 12,
+  "arms": {
+    "reviewed": {
+      "turns": 6,
+      "completed": 5,
+      "infrastructureAffected": 2,
+      "medianRecordedWallMs": 65912,
+      "recordedWallRangeMs": [
+        62609,
+        79317
+      ],
+      "allCalls": 55,
+      "routineMutations": 30,
+      "explicitIntent": 5,
+      "readCalls": 8,
+      "helpCalls": 12,
+      "failedCalls": 4,
+      "toolCounts": {
+        "task_prepare": 7,
+        "task_create": 4,
+        "task_plan": 13,
+        "task_document_link": 6,
+        "task_checkpoint": 4,
+        "task_verify": 4,
+        "task_get": 5,
+        "task_update": 1,
+        "reconcile": 1,
+        "task_requirements": 3,
+        "task_adopt": 3,
+        "task_finish": 4
+      },
+      "measuredPayloadBytes": 121764,
+      "hookContextBytes": 10409,
+      "hookFailures": 0
+    },
+    "automatic": {
+      "turns": 6,
+      "completed": 6,
+      "infrastructureAffected": 0,
+      "medianRecordedWallMs": 61646.5,
+      "recordedWallRangeMs": [
+        36499,
+        86567
+      ],
+      "allCalls": 21,
+      "routineMutations": 14,
+      "explicitIntent": 3,
+      "readCalls": 4,
+      "helpCalls": 0,
+      "failedCalls": 5,
+      "toolCounts": {
+        "task_create": 3,
+        "task_verify": 3,
+        "task_finish": 11,
+        "task_get": 2,
+        "task_requirements": 2
+      },
+      "measuredPayloadBytes": 62691,
+      "hookContextBytes": 12110,
+      "hookFailures": 0
+    }
+  },
+  "turns": [
+    {
+      "scenario": 0,
+      "arm": "reviewed",
+      "phase": "seed",
+      "completed": true,
+      "infrastructureFailure": "MCP initialization failed; CLI used unchanged installed baseline. Functional score retained; timing is not a valid paired MCP comparison.",
+      "timedOut": false,
+      "wallMs": 65912,
+      "functionalPassed": 4,
+      "functionalTotal": 4,
+      "memoryPassed": 0,
+      "memoryTotal": 0,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 34,
+      "hookContextBytes": 1311,
+      "mcpResultBytes": 0,
+      "cliResultBytes": 24948,
+      "instructionReadBytes": 2283,
+      "measuredPayloadBytes": 28542,
+      "calls": [
+        {
+          "tool": "task_prepare",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_create",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_document_link",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_checkpoint",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_verify",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_get",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "read"
+        },
+        {
+          "tool": "task_update",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_prepare",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_create",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_document_link",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_verify",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_checkpoint",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "reconcile",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "read"
+        }
+      ]
+    },
+    {
+      "scenario": 0,
+      "arm": "reviewed",
+      "phase": "recovery",
+      "completed": false,
+      "infrastructureFailure": "Interrupted after detecting failed MCP startup; no retry. Raw output preserved.",
+      "timedOut": false,
+      "wallMs": null,
+      "functionalPassed": null,
+      "functionalTotal": null,
+      "memoryPassed": null,
+      "memoryTotal": null,
+      "falseCompletion": null,
+      "hookFailures": 0,
+      "hookCount": 18,
+      "hookContextBytes": 2042,
+      "mcpResultBytes": 0,
+      "cliResultBytes": 16199,
+      "instructionReadBytes": 11735,
+      "measuredPayloadBytes": 29976,
+      "calls": [
+        {
+          "tool": "task_get",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_requirements",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "read"
+        },
+        {
+          "tool": "task_get",
+          "transport": "cli",
+          "failed": false,
+          "help": false,
+          "category": "read"
+        },
+        {
+          "tool": "task_adopt",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_prepare",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "cli",
+          "failed": false,
+          "help": true,
+          "category": "help"
+        }
+      ]
+    },
+    {
+      "scenario": 0,
+      "arm": "automatic",
+      "phase": "seed",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 68021,
+      "functionalPassed": 4,
+      "functionalTotal": 4,
+      "memoryPassed": 0,
+      "memoryTotal": 0,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 24,
+      "hookContextBytes": 1851,
+      "mcpResultBytes": 1437,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 6574,
+      "measuredPayloadBytes": 9862,
+      "calls": [
+        {
+          "tool": "task_create",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 119,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_verify",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 850,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 103,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 123,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 242,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 0,
+      "arm": "automatic",
+      "phase": "recovery",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 66271,
+      "functionalPassed": 8,
+      "functionalTotal": 8,
+      "memoryPassed": 6,
+      "memoryTotal": 6,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 18,
+      "hookContextBytes": 2235,
+      "mcpResultBytes": 4496,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 7243,
+      "measuredPayloadBytes": 13974,
+      "calls": [
+        {
+          "tool": "task_get",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 978,
+          "category": "read"
+        },
+        {
+          "tool": "task_requirements",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 3100,
+          "category": "read"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 418,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 1,
+      "arm": "automatic",
+      "phase": "seed",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 57022,
+      "functionalPassed": 6,
+      "functionalTotal": 6,
+      "memoryPassed": 0,
+      "memoryTotal": 0,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 17,
+      "hookContextBytes": 1851,
+      "mcpResultBytes": 1288,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 4589,
+      "measuredPayloadBytes": 7728,
+      "calls": [
+        {
+          "tool": "task_create",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 119,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 103,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_verify",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 824,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 242,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 1,
+      "arm": "automatic",
+      "phase": "recovery",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 49625,
+      "functionalPassed": 8,
+      "functionalTotal": 8,
+      "memoryPassed": 6,
+      "memoryTotal": 6,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 22,
+      "hookContextBytes": 2226,
+      "mcpResultBytes": 4338,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 6354,
+      "measuredPayloadBytes": 12918,
+      "calls": [
+        {
+          "tool": "task_requirements",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 3033,
+          "category": "read"
+        },
+        {
+          "tool": "task_get",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 887,
+          "category": "read"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 418,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 1,
+      "arm": "reviewed",
+      "phase": "seed",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 62609,
+      "functionalPassed": 6,
+      "functionalTotal": 6,
+      "memoryPassed": 0,
+      "memoryTotal": 0,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 26,
+      "hookContextBytes": 1311,
+      "mcpResultBytes": 3268,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 8257,
+      "measuredPayloadBytes": 12836,
+      "calls": [
+        {
+          "tool": "task_prepare",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 2068,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_create",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 119,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_document_link",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 222,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_verify",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 778,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_checkpoint",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 81,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 1,
+      "arm": "reviewed",
+      "phase": "recovery",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 64381,
+      "functionalPassed": 8,
+      "functionalTotal": 8,
+      "memoryPassed": 6,
+      "memoryTotal": 6,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 36,
+      "hookContextBytes": 2201,
+      "mcpResultBytes": 15362,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 2283,
+      "measuredPayloadBytes": 19846,
+      "calls": [
+        {
+          "tool": "task_requirements",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 3134,
+          "category": "read"
+        },
+        {
+          "tool": "task_get",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 959,
+          "category": "read"
+        },
+        {
+          "tool": "task_adopt",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 3922,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_prepare",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 3762,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 157,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 162,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_document_link",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 241,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_document_link",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 246,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 162,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 123,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 2494,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 2,
+      "arm": "reviewed",
+      "phase": "seed",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 76559,
+      "functionalPassed": 3,
+      "functionalTotal": 3,
+      "memoryPassed": 0,
+      "memoryTotal": 0,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 33,
+      "hookContextBytes": 1311,
+      "mcpResultBytes": 3513,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 2283,
+      "measuredPayloadBytes": 7107,
+      "calls": [
+        {
+          "tool": "task_prepare",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 1967,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 157,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 162,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_create",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 119,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_document_link",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 237,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_verify",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 628,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 162,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_checkpoint",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 81,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 2,
+      "arm": "reviewed",
+      "phase": "recovery",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 79317,
+      "functionalPassed": 8,
+      "functionalTotal": 8,
+      "memoryPassed": 6,
+      "memoryTotal": 6,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 29,
+      "hookContextBytes": 2233,
+      "mcpResultBytes": 16523,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 4701,
+      "measuredPayloadBytes": 23457,
+      "calls": [
+        {
+          "tool": "task_get",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 926,
+          "category": "read"
+        },
+        {
+          "tool": "task_requirements",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 3436,
+          "category": "read"
+        },
+        {
+          "tool": "task_adopt",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 4642,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_prepare",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 4482,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 157,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 162,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_plan",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 162,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 2556,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 2,
+      "arm": "automatic",
+      "phase": "seed",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 86567,
+      "functionalPassed": 3,
+      "functionalTotal": 3,
+      "memoryPassed": 0,
+      "memoryTotal": 0,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 22,
+      "hookContextBytes": 1851,
+      "mcpResultBytes": 1420,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 5378,
+      "measuredPayloadBytes": 8649,
+      "calls": [
+        {
+          "tool": "task_create",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 119,
+          "category": "explicit-intent"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 103,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_verify",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 833,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": true,
+          "resultBytes": 123,
+          "category": "routine-mutation"
+        },
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 242,
+          "category": "routine-mutation"
+        }
+      ]
+    },
+    {
+      "scenario": 2,
+      "arm": "automatic",
+      "phase": "recovery",
+      "completed": true,
+      "infrastructureFailure": null,
+      "timedOut": false,
+      "wallMs": 36499,
+      "functionalPassed": 8,
+      "functionalTotal": 8,
+      "memoryPassed": 6,
+      "memoryTotal": 6,
+      "falseCompletion": false,
+      "hookFailures": 0,
+      "hookCount": 18,
+      "hookContextBytes": 2096,
+      "mcpResultBytes": 418,
+      "cliResultBytes": 0,
+      "instructionReadBytes": 7046,
+      "measuredPayloadBytes": 9560,
+      "calls": [
+        {
+          "tool": "task_finish",
+          "transport": "mcp",
+          "failed": false,
+          "resultBytes": 418,
+          "category": "routine-mutation"
+        }
+      ]
+    }
+  ],
+  "recoveryLedger": [
+    {
+      "scenario": 0,
+      "arm": "automatic",
+      "tasks": [
+        {
+          "id": "task_c53c17dc-5e8e-4abe-893d-378f8ef9e6e0",
+          "title": "PRIORITY_SCHEDULING (deferred future feature)",
+          "status": "backlog",
+          "scope": []
+        },
+        {
+          "id": "task_ce30498baf296c766bb96d8b0b509007fb4ba7dea290cd463e4c547e942bc9cf",
+          "title": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeJobs(jobs) and scheduleJo",
+          "status": "in_progress",
+          "scope": [
+            "lib.mjs",
+            "lib.test.mjs",
+            "PLAN.md"
+          ]
+        },
+        {
+          "id": "task_eedb4c941d199fbdf5ab14a3cdd571143c176a6ab979b3f8a0093664de17a0c8",
+          "title": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 funct",
+          "status": "verified",
+          "outcome": "implemented",
+          "scope": [
+            "lib.mjs",
+            "lib.test.mjs",
+            "recovery.json",
+            "PLAN.md"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": 1,
+      "arm": "automatic",
+      "tasks": [
+        {
+          "id": "task_1f42090d05a06a059003ac7b320dcde88bf7fbc8483c2f1f1267f1834551d5e7",
+          "title": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export encodeCell(value) and encodeTable(",
+          "status": "in_progress",
+          "scope": [
+            "lib.mjs",
+            "lib.test.mjs",
+            "V1-HANDOFF.md"
+          ]
+        },
+        {
+          "id": "task_252fe989-060b-4cc6-9dba-86a180ab790c",
+          "title": "CSV_IMPORT (deferred future feature)",
+          "status": "backlog",
+          "scope": []
+        },
+        {
+          "id": "task_ad366d2f5acc31dadcae6e244ca2627b7b8fd2fc43a8a0a5f92b69a4a0bf0694",
+          "title": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 funct",
+          "status": "verified",
+          "outcome": "implemented",
+          "scope": [
+            "lib.mjs",
+            "lib.test.mjs",
+            "recovery.json",
+            "V1-HANDOFF.md"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": 1,
+      "arm": "reviewed",
+      "tasks": [
+        {
+          "id": "task_0f0881b8-daf7-46fd-bad5-9851834bc1bc",
+          "title": "CSV_IMPORT — deferred future feature",
+          "status": "backlog",
+          "scope": []
+        },
+        {
+          "id": "task_a71601f1595304218c872135fd8e0221ac5b39d5af19219223eeb3caf7f4b717",
+          "title": "CSV v1 encoding module — staged implementation",
+          "status": "verified",
+          "outcome": "implemented",
+          "scope": [
+            "lib.mjs",
+            "lib.test.mjs",
+            "CSV-V1.md",
+            "recovery.json"
+          ]
+        },
+        {
+          "id": "task_c068b6b0d86270d234c17ed58683bd03b5a1c5c62acac4efa2409844b137803c",
+          "title": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 funct",
+          "status": "superseded",
+          "outcome": "superseded",
+          "scope": []
+        }
+      ]
+    },
+    {
+      "scenario": 2,
+      "arm": "reviewed",
+      "tasks": [
+        {
+          "id": "task_3b2332d6fab35e54a3aa6786740b0cc177daaadc02cb268dad7b38f8e526c64e",
+          "title": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 funct",
+          "status": "superseded",
+          "outcome": "superseded",
+          "scope": []
+        },
+        {
+          "id": "task_eefcf76b-3d47-4829-a109-73f6dbbd9669",
+          "title": "FUZZY_SEARCH — deferred future feature",
+          "status": "backlog",
+          "scope": []
+        },
+        {
+          "id": "task_fa87aec45b0b9168c2556d5394e51fe122d8649b1d3fd1b5424546ab33a4fcb8",
+          "title": "Small v1 query module: staged implementation",
+          "status": "verified",
+          "outcome": "implemented",
+          "scope": [
+            "lib.mjs",
+            "notes/v1-query-module.md",
+            "recovery.json",
+            "test",
+            "test/query.test.mjs"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": 2,
+      "arm": "automatic",
+      "tasks": [
+        {
+          "id": "task_3663218caa238583f0cca45ec4a6940d43a53ee8577e193f4e89728afcd38025",
+          "title": "This is a new conversation without the previous chat. Recover the latest v1 requirements and deferred feature from repository state. Finish the pending v1 funct",
+          "status": "verified",
+          "outcome": "implemented",
+          "scope": [
+            "lib.mjs",
+            "lib.test.mjs",
+            "recovery.json",
+            "PLAN.md",
+            "HANDOFF.md"
+          ]
+        },
+        {
+          "id": "task_4b1c16e3-e1ee-44aa-b252-39ddb57ea870",
+          "title": "FUZZY_SEARCH — deferred beyond v1",
+          "status": "backlog",
+          "scope": []
+        },
+        {
+          "id": "task_bb9575a07a2b9c45a9ce599bb2fdf19dea906a3e4550991f94d3775a97e5ea0b",
+          "title": "Plan a small v1 module, remember the final constraints and a separate future feature, and start only part of the work. Export normalizeQuery(query) and findMatc",
+          "status": "in_progress",
+          "scope": [
+            "lib.mjs",
+            "lib.test.mjs",
+            "PLAN.md",
+            "FUTURE.md",
+            "HANDOFF.md"
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Two reviewed queue turns suffered infrastructure failure; one was interrupted. Do not drop them to claim a clean twelve-turn result.",
+    "Recorded wall times include bounded post-turn ledger/scoring overhead. Interrupted duration is unknown, not zero.",
+    "Payload includes native hook context, MCP replies, DIP CLI output and whole instruction-read command output (which can include other files). It excludes initial host framing and tool schemas; this is not total model-injected bytes.",
+    "Explicit intent means create/adopt. Other mutation calls, including failed attempts, count as routine; reads and CLI help are separate. CLI calls are lexical matches in recorded command executions, not an inferred hidden model action. No model-based classification."
+  ]
+}
