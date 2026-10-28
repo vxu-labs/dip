@@ -1,8 +1,8 @@
 # Automatic workflow: implementation and acceptance report
 
-The measured candidate is **0.3.13-automatic.0**, branch `codex/automatic-workflow`, based on upstream `3f2aebc9611bf98ee76ecadb1f8697baca02bd77`. The native twelve-turn budget is now exhausted: eleven turns completed and one was interrupted after an infrastructure failure. **Global rollout failed the acceptance gate.** Routine management fell 53.3%, below 70%; all three automatic recovery turns left the original requirement open while finishing a duplicate. Hook approval works: 297 recorded native hook events, zero hook exit failures. The existing machine installation remains 0.3.12/reviewed.
+The latest measured candidate is **0.3.13-automatic.1**. The separately authorized second round completed **12/12 turns** with no infrastructure failures or retries. Routine calls fell **81.0%** and median wall time fell **20.5%**; all functional, recovery-memory and original-task tracking checks passed. Measured administrative payload fell only **33.9%**, below the required 60%. **Global rollout remains blocked and the machine stays on 0.3.12/reviewed.** The real native workflow pilot remains pending. See the [round-two report](2026-10-28-round2-report.md), [results](2026-10-28-round2-summary.json) and [current acceptance decision](2026-10-28-acceptance.json).
 
-The working candidate **0.3.13-automatic.1** clarifies continuation/adoption and finish arguments in hook context and MCP descriptions, with actionable validation errors. It also fixes the experiment's MCP/CLI routing and adds a no-model connection preflight. Its full suite passes **170 tests: 168 passed, 2 platform skips**. These fixes have not had a new model comparison; the .0 performance results must not be attributed to .1. A further comparison requires authorization beyond the original twelve-turn budget.
+The .1 full suite passes **170 tests: 168 passed, 2 platform skips**. Both authorized twelve-turn budgets are exhausted (24 starts total). The historical .0 measurements below are retained separately and must not be attributed to .1. Product sources stayed frozen throughout each round.
 
 ## Exact baseline
 
@@ -15,14 +15,14 @@ Automatic requests enter a separate inbox. Supported writes acquire ownership an
 ## Validation
 
 - Measured .0 full suite: **166 tests, 164 passed, 0 failed, 2 platform skips**, 51.00 seconds. Includes conflict/ownership fencing, automatic requests, native plans, pause/Stop, partial and failed checks, stale evidence, source preservation, runtime migration, recorder kill/restart and durable outbox recovery.
-- Post-pilot .1 full suite: **170 tests, 168 passed, 0 failed, 2 platform skips**, 53.40 seconds; focused suite 29/29. Syntax and clean-package install/configuration/discovery/uninstall smoke pass. Added environment/CLI routing, atomic invalid-pause and explicit continuation tests. The new strict continuation test initially omitted required adoption ownership tokens; it was corrected to exercise the existing strict contract and rerun. [Unmeasured .1 source fingerprint](2026-10-28-post-pilot-candidate.json).
+- Post-pilot .1 full suite: **170 tests, 168 passed, 0 failed, 2 platform skips**, 53.40 seconds; focused suite 29/29. Syntax and clean-package install/configuration/discovery/uninstall smoke pass. Added environment/CLI routing, atomic invalid-pause and explicit continuation tests. The new strict continuation test initially omitted required adoption ownership tokens; it was corrected to exercise the existing strict contract and rerun. [Measured .1 source fingerprint](2026-10-28-post-pilot-candidate.json).
 - Sixteen focused automatic tests pass, including CLI receipt serialization and explicit workflow rollback preserving strict ownership mode.
 - JavaScript syntax check passes. Clean npm tarball install/discovery/configuration, portable documents, CLI and uninstall smoke passes.
 - Dashboard browser smoke passes in an isolated Chrome profile, including the captured-request filter, cross-worktree navigation and mobile layout. Initial default-browser attempt could not launch because the Playwright browser download was absent; the existing Chrome binary was used. No product issue was hidden by that infrastructure retry. A subsequent boundary check added explicit coverage for a single large multilingual task and oversized actor metadata; both budgets hold without trimming fencing tokens.
 - The frozen **old 0.3.12 reader** successfully reads candidate-generated paused history, including required remaining work after Stop. Its output does not expose the new inbox marker, as expected. [Compatibility receipt](2026-10-28-legacy-read.json).
 - Early full-suite execution found a Get-Content regression; it was fixed and both focused and full suites rerun. A separate initial sandboxed dashboard test could not bind localhost; the complete suite ran with approved localhost access. Neither failure was counted as a passing run.
 
-## Runtime measurements
+## Historical .0 runtime measurements
 
 Same disposable data in both arms: 106 tasks, one with 1,001 events. Warm timings use 30 samples; new-process timings 15; contention 5. Values are **median / p95 milliseconds**. Raw samples and ranges are in the JSON.
 
@@ -39,9 +39,9 @@ The pre-write improvement comes primarily from eliminating a second reduction of
 
 Real-project intent was copied once into isolated snapshots and read by both versions; automatic activity was excluded because startup context already excludes it. No active-worker information was supplied, matching the original diagnostic. DIP context falls **10,906→1,798 bytes (83.5%)**. PoCut falls **17,265→2,681 bytes (84.5%)**. Full completed summaries remain in the ledger. These exceed the 60% context-size target for the measured datasets; they do not establish the total injected-byte target across actual model runs.
 
-## Model experiment and release gate
+## Historical first model experiment and release gate
 
-The approved budget is exactly 12 turns: three scenarios × two versions × seed/recovery, each at most 240 seconds. Both arms inherit the configured model and effort, use the same fixtures/scoring, and run in counterbalanced order. Sources and prompts are frozen. Every turn, timeout, native hook receipt, ledger snapshot, functional/memory score and tool count is retained. Scoring is separately bounded. No scored retry or extra tracking model is allowed.
+The first approved budget was exactly 12 turns: three scenarios × two versions × seed/recovery, each at most 240 seconds. Both arms inherit the configured model and effort, use the same fixtures/scoring, and run in counterbalanced order. Sources and prompts are frozen. Every turn, timeout, native hook receipt, ledger snapshot, functional/memory score and tool count is retained. Scoring is separately bounded. No scored retry or extra tracking model is allowed.
 
 The human approved all eight hook definitions in the isolated profile. The pilot has its own CODEX_HOME, runtime and repositories. It references the existing login locally; credentials and private rollback snapshots are excluded from Git and package artifacts. Host approval/trust settings were not changed. Review follows [Codex's hook trust flow](https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks).
 
@@ -68,7 +68,7 @@ All 66 functional checks on the eleven completed turns passed. All 30 evaluated 
 
 Automatic .0 also made three preliminary `task_verify` calls and five rejected finish attempts: paused work passed `check`, or a non-follow_up remaining item passed `taskId`. .1 now explicitly says implemented finish runs its own check, paused omits check/replacedBy, taskId belongs only to follow_up, and existing work must be explicitly adopted before development. Deterministic tests verify invalid pauses preserve evidence/ownership and an explicitly adopted continuation completes the original task; they do not prove model adherence to the revised guidance. Strict-mode exceptional adoption still requires its explicit ownership tokens.
 
-**Gate status: failed; no global deployment.** Code tests and observed requirement recovery pass, but routine-call and payload targets are unmet, original-task tracking regresses, and the full paired timing protocol is incomplete. The .1 candidate needs a newly authorized comparison and then one real native workflow before a global rollout can be considered. The original experiment cannot be rerun or resumed: all twelve starts are retained and consumed.
+**First-round gate status: failed; no global deployment.** Code tests and observed requirement recovery pass, but routine-call and payload targets are unmet, original-task tracking regresses, and the full paired timing protocol is incomplete. The subsequently authorized .1 comparison is reported above; it fixes tracking and passes the routine-call target, but payload still prevents rollout. One real native workflow also remains required. The original experiment cannot be rerun or resumed: all twelve starts are retained and consumed.
 
 ## Rollback
 

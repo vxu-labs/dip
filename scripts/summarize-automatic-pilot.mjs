@@ -21,11 +21,15 @@ for (const trial of results.trials) {
       if (item.type === "mcp_tool_call" && item.server === "dip") calls.push({ tool:item.tool, transport:"mcp", failed:item.status === "failed", resultBytes:bytes(item.result) });
       if (item.type === "command_execution") {
         const matches = [...(item.command || "").matchAll(/\bdip\s+(?:task\s+([a-z-]+)|(context|reconcile|status|owners|search))/g)];
+        const portable = [...(item.command || "").matchAll(/\.dip\/tools\/portable\.mjs\s+([\w-]+)/g)];
+        for (const match of portable) calls.push({tool:"portable_"+match[1],transport:"cli",failed:item.exit_code!==0,help:match[1]==="--help"});
         if (matches.length) {
           cliResultBytes += bytes(item.aggregated_output || "");
           for (const [index, match] of matches.entries()) calls.push({tool: match[1] ? "task_"+match[1].replaceAll("-","_") : match[2]==="context" ? "project_context" : match[2],transport:"cli",failed:item.exit_code!==0,help:/--help\b/.test(item.command.slice(match.index, matches[index + 1]?.index))});
         } else if (/\bcat\b|\bsed\b/.test(item.command || "") && /AGENTS\.md|CLAUDE\.md|SKILL\.md|intent-guide\.md/.test(item.command || "")) {
           instructionReadBytes += bytes(item.aggregated_output || "");
+        } else if (portable.length) {
+          cliResultBytes += bytes(item.aggregated_output || "");
         }
       }
     }
@@ -50,12 +54,18 @@ const arms = Object.fromEntries(["reviewed","automatic"].map(arm=>{
     toolCounts:calls.reduce((a,c)=>(a[c.tool]=(a[c.tool]||0)+1,a),{}),measuredPayloadBytes:rows.reduce((n,r)=>n+r.measuredPayloadBytes,0),hookContextBytes:rows.reduce((n,r)=>n+r.hookContextBytes,0),hookFailures:rows.reduce((n,r)=>n+r.hookFailures,0)}];
 }));
 const recoveryLedger=[];
+const ledgerAudit=[];
 for(const trial of results.trials){
   const dir=results.protocol.trials.find(t=>t.index===trial.index&&t.arm===trial.arm).dir;
   const file=path.join(dir,"recovery.ledger.json");
   if(!fs.existsSync(file))continue;
   const tasks=JSON.parse(fs.readFileSync(file)).tasks;
   recoveryLedger.push({scenario:trial.index,arm:trial.arm,tasks:tasks.map(t=>({id:t.id,title:t.title,status:t.status,outcome:t.resolution?.outcome,scope:t.scope,remaining:t.checkpoint?.remaining}))});
+  const seedFile=path.join(dir,"seed.ledger.json");
+  const seedTasks=fs.existsSync(seedFile)?JSON.parse(fs.readFileSync(seedFile)).tasks:[];
+  const originals=seedTasks.filter(t=>t.kind==="work"&&t.scope?.length);
+  const states=originals.map(t=>{const final=tasks.find(x=>x.id===t.id);return {id:t.id,status:final?.status||"missing",outcome:final?.resolution?.outcome||null};});
+  ledgerAudit.push({scenario:trial.index,arm:trial.arm,originals:states,originalRequirementFinished:states.length>0&&states.every(t=>t.status==="verified"),futureTasks:tasks.filter(t=>/PRIORITY_SCHEDULING|CSV_IMPORT|FUZZY_SEARCH/.test(t.title)&&!t.scope?.length).map(t=>({id:t.id,status:t.status}))});
 }
-console.log(JSON.stringify({finishedAt:results.finishedAt,turnsStarted:results.turnsStarted,arms,turns,recoveryLedger,
-  limits:["Two reviewed queue turns suffered infrastructure failure; one was interrupted. Do not drop them to claim a clean twelve-turn result.","Recorded wall times include bounded post-turn ledger/scoring overhead. Interrupted duration is unknown, not zero.","Payload includes native hook context, MCP replies, DIP CLI output and whole instruction-read command output (which can include other files). It excludes initial host framing and tool schemas; this is not total model-injected bytes.","Explicit intent means create/adopt. Other mutation calls, including failed attempts, count as routine; reads and CLI help are separate. CLI calls are lexical matches in recorded command executions, not an inferred hidden model action. No model-based classification."]},null,2));
+console.log(JSON.stringify({round:results.protocol.round||1,finishedAt:results.finishedAt,turnsStarted:results.turnsStarted,arms,turns,recoveryLedger,ledgerAudit,
+  limits:[`${turns.filter(t=>t.infrastructureFailure).length} recorded turns are infrastructure-affected; ${turns.filter(t=>!t.completed).length} did not complete. Retain all failures in the gate assessment.`,"Recorded wall times include bounded post-turn ledger/scoring overhead. Interrupted duration is unknown, not zero.","Payload includes native hook context, MCP replies, DIP CLI output and whole instruction-read command output (which can include other files). It excludes initial host framing and tool schemas; this is not total model-injected bytes.","Explicit intent means create/adopt. Other mutation calls, including failed attempts, count as routine; reads and CLI help are separate. CLI calls are lexical matches in recorded command executions, not an inferred hidden model action. No model-based classification."]},null,2));

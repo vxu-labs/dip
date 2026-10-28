@@ -2,7 +2,7 @@
 
 Automatic keeps persistent intent and coordination while removing routine model bookkeeping. It is opt-in; `reviewed` remains the default until the acceptance gate passes. No additional model runs for logging or classification.
 
-The first native model comparison did not pass the rollout gate. Candidate .1 contains guidance fixes following the .0 experiment; its model behavior is not yet remeasured. See the [acceptance report](benchmarks/automatic-workflow-report.md). The machine remains on reviewed 0.3.12.
+Neither native comparison passed the complete rollout gate. The second, separately authorized twelve-turn comparison measured .1: routine calls fell 81.0%, median wall time fell 20.5%, and correctness/tracking passed. Administrative payload fell 33.9%, below the required 60%; the real native workflow pilot remains pending. Both twelve-turn budgets are exhausted. See the [acceptance report](benchmarks/automatic-workflow-report.md). The machine remains on reviewed 0.3.12.
 
 ## Contract
 

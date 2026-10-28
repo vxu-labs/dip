@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bbd47722-7d28-4820-9642-a69cd005de7d",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.plan",
+  "payload": {
+    "tool": "task_plan",
+    "input": {
+      "plan": [
+        {
+          "step": "Pin installed baseline and candidate sources",
+          "status": "completed"
+        },
+        {
+          "step": "Implement automatic capture, ownership, bounded context and finish",
+          "status": "completed"
+        },
+        {
+          "step": "Run correctness regressions, runtime benchmarks and package smoke",
+          "status": "completed"
+        },
+        {
+          "step": "Retain first twelve-turn comparison and its failed acceptance gate",
+          "status": "completed"
+        },
+        {
+          "step": "Run separately authorized corrected .1 twelve-turn comparison; preserve all raw evidence and failed payload gate",
+          "status": "completed"
+        },
+        {
+          "step": "Reduce administrative context/read overhead and validate without losing intent; further model comparison requires new authorization",
+          "status": "pending"
+        },
+        {
+          "step": "Complete real native workflow pilot after acceptance criteria pass",
+          "status": "pending"
+        },
+        {
+          "step": "Upgrade global installation only after all gates and pilot pass; preserve rollback and user configuration",
+          "status": "pending"
+        }
+      ]
+    }
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T05:57:20.230Z",
+  "parents": [
+    "50f6b6c7-4fcf-4811-ac99-385c00f875be"
+  ],
+  "branch": "codex/automatic-workflow"
+}

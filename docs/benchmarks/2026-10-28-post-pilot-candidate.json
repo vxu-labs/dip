@@ -1,7 +1,7 @@
 {
   "version": "0.3.13-automatic.1",
   "productFingerprint": "cb983da6f2792556adc392d10682dc0cd974e5008402d8a030b3f9ca298a98ea",
-  "modelMeasured": false,
+  "modelMeasured": true,
   "files": [
     [
       "bin/dip.js",
@@ -115,5 +115,7 @@
       "src/workflow.js",
       "71ed71210a5e60c9c9733c8b2195b69ea95953e40f3b191104d1a9de14ee758c"
     ]
-  ]
+  ],
+  "modelRound": 2,
+  "modelSummary": "2026-10-28-round2-summary.json"
 }

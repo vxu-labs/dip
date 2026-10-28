@@ -1,10 +1,11 @@
 {
-  "measuredCandidate": "0.3.13-automatic.0",
+  "round": 2,
+  "measuredCandidate": "0.3.13-automatic.1",
   "workingCandidate": "0.3.13-automatic.1",
   "globalRollout": false,
   "installedVersion": "0.3.12",
-  "nativeHookTrust": "8 definitions trusted by human",
-  "nativeHookEvents": 297,
+  "nativeHookTrust": "8 definitions trusted by human; unchanged",
+  "nativeHookEvents": 336,
   "nativeHookFailures": 0,
   "codeRegression": {
     "candidate": "0.3.13-automatic.1",
@@ -14,43 +15,44 @@
     "failed": 0,
     "packageSmoke": "passed"
   },
-  "startupContextTarget": "passed for original measured .0 snapshots; not total run context",
   "modelTurnsStarted": 12,
-  "modelTurnsCompleted": 11,
-  "infrastructureAffectedTurns": 2,
+  "modelTurnsCompleted": 12,
+  "totalAuthorizedStartsConsumed": 24,
+  "infrastructureAffectedTurns": 0,
   "retries": 0,
   "functionalChecks": {
-    "passed": 66,
-    "total": 66,
-    "interruptedTurn": "unscored"
+    "passed": 74,
+    "total": 74
   },
   "memoryChecks": {
-    "passed": 30,
-    "total": 30
+    "passed": 36,
+    "total": 36
   },
   "routineCallTarget": {
     "targetReductionPercent": 70,
-    "observedReductionPercent": 53.3,
-    "passed": false,
-    "completePairsOnlyReductionPercent": 62.5
+    "observedReductionPercent": 80.95238095238095,
+    "passed": true
   },
   "totalInjectedBytesTarget": {
     "targetReductionPercent": 60,
-    "measuredPayloadProxyReductionPercent": 48.5,
+    "measuredPayloadProxyReductionPercent": 33.889938792203765,
     "totalInjectedBytes": "not established: host framing/tool schemas excluded",
     "passed": false
   },
   "modelTimeTarget": {
     "targetReductionPercent": 20,
-    "fullPairedEstimate": "invalid: infrastructure-affected baseline and one missing duration",
-    "completePairsOnlyReductionPercent": 24.3,
-    "passed": false
+    "observedReductionPercent": 20.49609639502514,
+    "passed": true,
+    "limitation": "Exploratory small sample; no dedicated CPU isolation; wall includes bounded scoring."
   },
   "trackingCorrectness": {
-    "passed": false,
-    "reason": "All three automatic recovery turns completed a new captured request while leaving the original requirement open; reviewed completed recoveries adopted correctly."
+    "passed": true,
+    "reason": "All six original requirements completed; all three automatic continuations explicitly adopted; futures remain backlog; partial seeds not verified."
   },
-  "realNativeWorkflow": "not run; release gate failed first",
-  "next": "Evaluate .1 with newly authorized bounded model comparison, then real workflow if all gates pass. No original turn may be retried or extra turn started under the exhausted budget.",
-  "rawArchiveSha256": "80dc4d5a088d811239c0ccec15d06a1e29a09bf4828de9518311af483ac0288c"
+  "realNativeWorkflow": "not run; payload release gate failed first",
+  "next": "Reduce administrative context/read overhead without losing requirements; further model comparison needs separate authorization; complete real workflow before conditional global rollout.",
+  "rawArchiveSha256": "dbe3ba2bcb7bd6b8d0427976bff3a787efd7028e2909c3c3065d24b9b1e6eaec",
+  "summary": "2026-10-28-round2-summary.json",
+  "report": "2026-10-28-round2-report.md",
+  "previousAcceptance": "2026-10-28-round1-acceptance.json"
 }

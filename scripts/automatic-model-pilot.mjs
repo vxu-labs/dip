@@ -271,7 +271,9 @@ if (
   throw new Error(
     "Human hook review required. Open review-hooks.sh and use /hooks. No model calls started.",
   );
-const output = path.join(base, "results.json");
+// A newly authorized round has its own protocol and results directory. Never
+// overwrite the original round merely to reuse the human-trusted hook profile.
+const output = path.join(path.dirname(protocolFile), "results.json");
 const continuing = process.argv.includes("--continue-unstarted");
 if (fs.existsSync(output) && !continuing)
   throw new Error("Results already exist. No scored retries permitted.");
@@ -293,7 +295,7 @@ if (continuing) {
 }
 const preflight = await preflightPilot(base,
   parse(fs.readFileSync(path.join(pilotHome, "config.toml"), "utf8")), env);
-write(path.join(base, "preflight.json"), preflight);
+write(path.join(path.dirname(protocolFile), "preflight.json"), preflight);
 const save = () => write(output, results);
 save();
 for (const t of protocol.trials) {

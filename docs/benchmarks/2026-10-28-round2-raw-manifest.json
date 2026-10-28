@@ -1,0 +1,251 @@
+{
+  "archive": "2026-10-28-round2-raw.tar.gz",
+  "sha256": "dbe3ba2bcb7bd6b8d0427976bff3a787efd7028e2909c3c3065d24b9b1e6eaec",
+  "files": [
+    {
+      "path": "automatic-model-pilot.mjs",
+      "bytes": 17741,
+      "sha256": "251539dae3b9478f3d4b4436512b18b7ea232d8413f657e10c914eff36c3bd20"
+    },
+    {
+      "path": "model-benchmark-fixtures.mjs",
+      "bytes": 12877,
+      "sha256": "959de4eb4ab97661703ef11e1730a3f5ded6d0e0415a2890f95cc63baba3342f"
+    },
+    {
+      "path": "pilot-support.mjs",
+      "bytes": 4110,
+      "sha256": "051d089c8b7180317005cc76c893c3acef977bb2148659b51b39794171cd94df"
+    },
+    {
+      "path": "preflight.json",
+      "bytes": 458,
+      "sha256": "160a4c41a1235e0f910498fe5bfd6b249979f26bb63167b5052632f442d295f1"
+    },
+    {
+      "path": "protocol.json",
+      "bytes": 3632,
+      "sha256": "f5e9f973dd98f10158c01016a477db730dfc90fd0a2699f7a8066272563c690a"
+    },
+    {
+      "path": "results.json",
+      "bytes": 107143,
+      "sha256": "a487c378ef5922db211e68de2a5952aecdd48017b396f6da74fef2431406e68c"
+    },
+    {
+      "path": "summarize-used.mjs",
+      "bytes": 7039,
+      "sha256": "221cc1acd4458ca8f1593e3ee473325948b71d907cf41fac358b0a50ed520c0f"
+    },
+    {
+      "path": "trials/0-automatic/hooks.jsonl",
+      "bytes": 12515,
+      "sha256": "0f3002f0d49d0012ffafb8bb34b95e560dd3c8688bc3739840e4ad94eb724908"
+    },
+    {
+      "path": "trials/0-automatic/recovery.jsonl",
+      "bytes": 39020,
+      "sha256": "4f2b5becb7784e6f40c27f385024fe4af30633b1813fb9107e929ba670a2dcac"
+    },
+    {
+      "path": "trials/0-automatic/recovery.ledger.json",
+      "bytes": 59448,
+      "sha256": "f27d20cbdb2e345641203013f76fafe6ead85f96a864b86c79912af999fd6c15"
+    },
+    {
+      "path": "trials/0-automatic/recovery.stderr.txt",
+      "bytes": 138,
+      "sha256": "34f1210c74f064197149e21cc1dbbe48fdbc96aff56c6eb9d2c112938296db57"
+    },
+    {
+      "path": "trials/0-automatic/seed.jsonl",
+      "bytes": 12614,
+      "sha256": "183d0cd492ff3904323cc175f73f1b33bdfd6d7cd34608c3e57bd740b8b4b8b0"
+    },
+    {
+      "path": "trials/0-automatic/seed.ledger.json",
+      "bytes": 23080,
+      "sha256": "13274cebfe0a31d1ebcdc24a2f124af4206f75353a513ef0596c1306e279709c"
+    },
+    {
+      "path": "trials/0-automatic/seed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/0-reviewed/hooks.jsonl",
+      "bytes": 14187,
+      "sha256": "e16adbc0299d08bd070c15e82b7148dde783c60e8d91d4970cfc864fc1116d2b"
+    },
+    {
+      "path": "trials/0-reviewed/recovery.jsonl",
+      "bytes": 51274,
+      "sha256": "3e3a1444095ccb2981eb3f6c7280d77bddce8b68702d41d9d7e3c98a5ef187d4"
+    },
+    {
+      "path": "trials/0-reviewed/recovery.ledger.json",
+      "bytes": 83102,
+      "sha256": "3031f0f4019d0652d1ba4f2d4c5c57be8ef23798c5bf29ea8f4a2e93f9af8204"
+    },
+    {
+      "path": "trials/0-reviewed/recovery.stderr.txt",
+      "bytes": 228,
+      "sha256": "72dd51e084808b81d52e602bb9b882e7d2998cd1b415b3c118dde3f0d24d78c6"
+    },
+    {
+      "path": "trials/0-reviewed/seed.jsonl",
+      "bytes": 22881,
+      "sha256": "e7d49c54c1b544d170961e752bbd375f7e9d717c2d7c21d783f6abc64c329d63"
+    },
+    {
+      "path": "trials/0-reviewed/seed.ledger.json",
+      "bytes": 38361,
+      "sha256": "45f2664ed6d94ea16d8d67f7f57f0861825f3b0beac378647af00e464419702b"
+    },
+    {
+      "path": "trials/0-reviewed/seed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/1-automatic/hooks.jsonl",
+      "bytes": 12668,
+      "sha256": "6e955c5ca010cc1c1492e3762414b56da588bd4136628063700b27b7d4b897bd"
+    },
+    {
+      "path": "trials/1-automatic/recovery.jsonl",
+      "bytes": 31201,
+      "sha256": "246fb39bef9749a61e9c443d31c1df3101d1a5a44616da1375371637aaaf2e8f"
+    },
+    {
+      "path": "trials/1-automatic/recovery.ledger.json",
+      "bytes": 59026,
+      "sha256": "a78edf39a91ebddcc9cb691934cc22b4c42ea370a5f42448c98bcc01290a3cbc"
+    },
+    {
+      "path": "trials/1-automatic/recovery.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/1-automatic/seed.jsonl",
+      "bytes": 16530,
+      "sha256": "d030ce9f8dab046e1761936accb09e0d78cac4dddcf76c181e3470160f68361d"
+    },
+    {
+      "path": "trials/1-automatic/seed.ledger.json",
+      "bytes": 25306,
+      "sha256": "f2e40181d7cb558ecec29430cee0f09cdb50cea32dc9d8449ea6f78e3b4316d4"
+    },
+    {
+      "path": "trials/1-automatic/seed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/1-reviewed/hooks.jsonl",
+      "bytes": 14798,
+      "sha256": "f2a9bf5f3b611e8738bb3d3ca1539b55597bd103a9d7005058b7a625f8bdf08e"
+    },
+    {
+      "path": "trials/1-reviewed/recovery.jsonl",
+      "bytes": 47429,
+      "sha256": "add657a196a295bf4c9ffd7c7f0fa6e599daf3fd8599ca63cb29d399536a66a0"
+    },
+    {
+      "path": "trials/1-reviewed/recovery.ledger.json",
+      "bytes": 85640,
+      "sha256": "0dbeed1b1e3df00c9602c447839f0bfc86b7052d979663bbc11ec2c23c21d7fc"
+    },
+    {
+      "path": "trials/1-reviewed/recovery.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/1-reviewed/seed.jsonl",
+      "bytes": 28100,
+      "sha256": "f326d5923153b5f9785b51ee7a3415fa7a65f11ba1d6c22ec508886c3677b140"
+    },
+    {
+      "path": "trials/1-reviewed/seed.ledger.json",
+      "bytes": 41341,
+      "sha256": "fff5b0b8067b76a022905b93992652ab91b3c329780040a849e3a812a46d100b"
+    },
+    {
+      "path": "trials/1-reviewed/seed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/2-automatic/hooks.jsonl",
+      "bytes": 10471,
+      "sha256": "8d282f81c1ebfd1cc49ff472ba36a62ec586c569c50354e9bacb25f66aaeb7bf"
+    },
+    {
+      "path": "trials/2-automatic/recovery.jsonl",
+      "bytes": 21120,
+      "sha256": "3ca18efd864af01f7e28ebb67a6a7a3979bb825f0606cbb4b901ab66a8226470"
+    },
+    {
+      "path": "trials/2-automatic/recovery.ledger.json",
+      "bytes": 52585,
+      "sha256": "981745ddbcc8e0736ac1fff91c77dde95fbbbd4087bb8a7a055db702144d187d"
+    },
+    {
+      "path": "trials/2-automatic/recovery.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/2-automatic/seed.jsonl",
+      "bytes": 15077,
+      "sha256": "6fefc9b750e94056aae424b6f7dcc8590ca180f6ef0f2fa3ac8e13dc348c8bb0"
+    },
+    {
+      "path": "trials/2-automatic/seed.ledger.json",
+      "bytes": 27575,
+      "sha256": "a2fa1ac6ce9d05b02bf4459b41cb4f765c619c07bb156899bbd61db68f681ad7"
+    },
+    {
+      "path": "trials/2-automatic/seed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/2-reviewed/hooks.jsonl",
+      "bytes": 14062,
+      "sha256": "bf056510d2e387af3bb5df96b7080722b1db6bc339bd153cf8882210b96cbde7"
+    },
+    {
+      "path": "trials/2-reviewed/recovery.jsonl",
+      "bytes": 48065,
+      "sha256": "ed6ebf50f181309bf5247b3dcaa0d270bd98c3892c696b0fbce235ef07659a41"
+    },
+    {
+      "path": "trials/2-reviewed/recovery.ledger.json",
+      "bytes": 84458,
+      "sha256": "9fd53e26cd67195b8e617ea325624461116571230a5adb906689da4f67f32170"
+    },
+    {
+      "path": "trials/2-reviewed/recovery.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/2-reviewed/seed.jsonl",
+      "bytes": 24761,
+      "sha256": "c61a87fd220f746c32dec6765f5e989f12163bf34f5738bfcbd5b40c4131cc60"
+    },
+    {
+      "path": "trials/2-reviewed/seed.ledger.json",
+      "bytes": 37621,
+      "sha256": "c0049204a85a5cf1e0f6412016dbc2661c8520656745a36c6027a8b6083a1cfa"
+    },
+    {
+      "path": "trials/2-reviewed/seed.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
