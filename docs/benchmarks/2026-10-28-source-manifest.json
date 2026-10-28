@@ -67,13 +67,13 @@
   },
   "candidate": {
     "version": "0.3.13-automatic.0",
-    "fingerprint": "817e4bbd205250f331c568f96a3041029948c88816ae9e157c70c35d44784626",
+    "fingerprint": "9d57b3c09d01f6c99b86dad5587e2cf8247c5ef5e183c320b1c0942de67ac1ae",
     "files": {
       "bin/dip.js": "c3ab88f4ad6ddadde6b0eb42a6d9ab6b839f1fc5333ecd5240f42d48d569f204",
       "package.json": "299411d83d526ac19ac4d5c85bff74cf4fd267114d9b89b680ae386e4abbaa6f",
       "skills/dip/SKILL.md": "412d4dc29d3cd958cbab3803304317aee2fba8a46e516394a2f3e9fc017ffc85",
       "src/actions.js": "60002cbb20745a7827c16b87334c91e2e0225f81f39e954ec30cfc70ec2703fd",
-      "src/automatic.js": "e50a13451fe19f2ccf746d1c695d37c05aa1a82c46f71ff8aff33b904cbe9cfc",
+      "src/automatic.js": "6b76927847f01ad29c9b5de380805b8a545dec7cee4a0b433ee4ef1fa404c4ac",
       "src/automation.js": "bedb5d1903975a0cbbd6df5b8ea9ddc1583a4b50155ed84e4a9e1f964339a9f0",
       "src/capture-policy.js": "5bfd6c87970870febd961a197829666bf42bc4537e4dd24e7aec2b3f3fc11248",
       "src/cli-help.js": "72c9bd1ea40b1cab8d703a05a67918327405d72bcc5af7f37d11de09d31c4654",

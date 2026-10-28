@@ -499,3 +499,36 @@ test("CLI update preserves the bounded automatic receipt instead of re-expanding
   assert.equal(result.truncated, true);
   assert.ok(Buffer.byteLength(JSON.stringify(result)) <= 1024);
 });
+
+test("a single large multilingual current task respects budget and labels nested omissions", () => {
+  const current = {
+    id: "current",
+    title: "漢".repeat(500),
+    kind: "work",
+    status: "in_progress",
+    acceptance: Array(20).fill("漢".repeat(500)),
+    checkpoint: "漢".repeat(1000),
+    remaining: Array.from({ length: 10 }, () => ({
+      disposition: "required",
+      summary: "漢".repeat(500),
+    })),
+  };
+  const result = boundedContext(
+    { branch: "main", current },
+    { task_id: "current", actor: "codex:session", session_id: "session" },
+  );
+  assert.ok(Buffer.byteLength(JSON.stringify(result)) <= 4096);
+  assert.equal(result.current.id, "current");
+  assert.equal(result.truncated, true);
+  const receipt = mutationReceipt("prepare", {
+    task: { id: "current" },
+    lease: {
+      task: "current",
+      actor: "漢".repeat(2000),
+      token: "full-token",
+      expires: 123,
+    },
+  });
+  assert.ok(Buffer.byteLength(JSON.stringify(receipt)) <= 1024);
+  assert.equal(receipt.lease.token, "full-token");
+});

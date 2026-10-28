@@ -49,3 +49,25 @@ From 0.3.12, a passing `task_verify` on open work records current check evidence
 
 Use `task_finish` with outcome `implemented`, a summary and a configured check after reviewing all requirements. Successful checks then establish verified completion and release ownership; failures remain unverified and retain ownership. Outstanding structured plan steps reject an implemented finish before mutation. Completing plan progress alone still does not finish a task. Linked/prose plans and the semantic adequacy of tests require agent/user review; DIP cannot prove that a check covers every requirement. Existing historical statuses are preserved rather than silently reinterpreted.
 
+
+## Automatic workflow additions
+
+The schema version remains 1. Prompt-created requests in automatic mode use the
+existing `kind: discussion` plus optional `requestState: captured`. Successful
+pre-write coordination appends one ordinary `task.update` with `kind: work`,
+`requestState: promoted`, and any new scope/status. Unclassified requests are
+not development backlog. `project_requests` pages this inbox; resolved,
+superseded and cancelled requests are excluded. Older readers retain the
+request text and existing kinds even when they do not expose requestState.
+
+`task_finish` accepts `paused` as an action outcome, not a new resolution enum.
+It records `status: in_progress`, clears any old completion resolution, and
+appends an explicit `task.checkpoint` containing `summary`, structured
+`remaining`, and `automatic: false`. Stop may append a subsequent automatic
+checkpoint; current views prefer the latest explicit checkpoint. Existing
+readers continue to understand the history. No Stop event, answer text or
+partial check changes this into verified completion.
+
+The workflow setting (`automatic`/`reviewed`) is independent of ownership mode.
+These are additive operational choices; ledger events remain authoritative.
+Response compaction never changes event payloads or truncates stored intent.

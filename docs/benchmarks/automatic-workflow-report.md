@@ -1,6 +1,6 @@
 # Automatic workflow: implementation and acceptance report
 
-The candidate is **0.3.13-automatic.0**, branch `codex/automatic-workflow`, based on upstream `3f2aebc9611bf98ee76ecadb1f8697baca02bd77`. The code and isolated regression checks are complete. **Global rollout has not been authorized by the acceptance gate:** the native 12-turn model experiment and real-workflow pilot are pending human review of the isolated hook definitions. No model turns have started. The existing machine installation remains 0.3.12/reviewed.
+The candidate is **0.3.13-automatic.0**, branch `codex/automatic-workflow`, based on upstream `3f2aebc9611bf98ee76ecadb1f8697baca02bd77`. The code and isolated regression checks are complete. **Global rollout has not passed the acceptance gate:** the native 12-turn model experiment and real-workflow pilot are pending human review of the isolated hook definitions. No model turns have started. The existing machine installation remains 0.3.12/reviewed.
 
 ## Exact baseline
 
@@ -12,10 +12,10 @@ Automatic requests enter a separate inbox. Supported writes acquire ownership an
 
 ## Validation
 
-- Final full suite: **165 tests, 163 passed, 0 failed, 2 platform skips**, 51.66 seconds. Includes conflict/ownership fencing, automatic requests, native plans, pause/Stop, partial and failed checks, stale evidence, source preservation, runtime migration, recorder kill/restart and durable outbox recovery.
-- Fifteen focused automatic tests pass, including CLI receipt serialization and explicit workflow rollback preserving strict ownership mode.
+- Final full suite: **166 tests, 164 passed, 0 failed, 2 platform skips**, 51.00 seconds. Includes conflict/ownership fencing, automatic requests, native plans, pause/Stop, partial and failed checks, stale evidence, source preservation, runtime migration, recorder kill/restart and durable outbox recovery.
+- Sixteen focused automatic tests pass, including CLI receipt serialization and explicit workflow rollback preserving strict ownership mode.
 - JavaScript syntax check passes. Clean npm tarball install/discovery/configuration, portable documents, CLI and uninstall smoke passes.
-- Dashboard browser smoke passes in an isolated Chrome profile, including the captured-request filter, cross-worktree navigation and mobile layout. Initial default-browser attempt could not launch because the Playwright browser download was absent; the existing Chrome binary was used. No product issue was hidden by that infrastructure retry.
+- Dashboard browser smoke passes in an isolated Chrome profile, including the captured-request filter, cross-worktree navigation and mobile layout. Initial default-browser attempt could not launch because the Playwright browser download was absent; the existing Chrome binary was used. No product issue was hidden by that infrastructure retry. A subsequent boundary check added explicit coverage for a single large multilingual task and oversized actor metadata; both budgets hold without trimming fencing tokens.
 - The frozen **old 0.3.12 reader** successfully reads candidate-generated paused history, including required remaining work after Stop. Its output does not expose the new inbox marker, as expected. [Compatibility receipt](2026-10-28-legacy-read.json).
 - Early full-suite execution found a Get-Content regression; it was fixed and both focused and full suites rerun. A separate initial sandboxed dashboard test could not bind localhost; the complete suite ran with approved localhost access. Neither failure was counted as a passing run.
 
@@ -25,16 +25,16 @@ Same disposable data in both arms: 106 tasks, one with 1,001 events. Warm timing
 
 | Measurement | Installed reviewed | Candidate automatic |
 |---|---:|---:|
-| Post-tool hook, warm | 2.13 / 3.68 | 1.50 / 1.83 |
-| Pre-write hook, 1,001-event task | 44.04 / 97.69 | 19.83 / 24.15 |
-| Post-tool hook, new process | 51.29 / 67.29 | 37.80 / 38.62 |
-| Runtime open + register | 0.73 / 1.06 | 0.61 / 0.72 |
-| Read a task with deep history | 21.89 / 26.65 | 18.98 / 22.70 |
-| Runtime open/register with a 100 ms competing lock | 81.32 / 112.18 | 102.94 / 110.84 |
+| Post-tool hook, warm | 1.80 / 2.27 | 1.49 / 2.75 |
+| Pre-write hook, 1,001-event task | 37.59 / 44.12 | 19.38 / 31.93 |
+| Post-tool hook, new process | 39.87 / 41.31 | 38.47 / 41.57 |
+| Runtime open + register | 0.64 / 0.77 | 0.61 / 0.74 |
+| Read a task with deep history | 18.80 / 21.99 | 18.79 / 29.36 |
+| Runtime open/register with a 100 ms competing lock | 80.89 / 111.21 | 109.96 / 111.10 |
 
 The pre-write improvement comes primarily from eliminating a second reduction of the same task history. Reading the ledger itself still scales with history depth; it has not been replaced by a cache. Contention still waits on SQLite and is not eliminated. Cold-process results varied during engineering runs; do not interpret one favorable sample as a general model-speed improvement. Earlier corrected engineering measurements included approximately 39.63→42.24 ms and 50.73→53.45 ms cold-process medians. These are retained in the engineering log; the frozen comparison above was selected by final source state, not the best timing.
 
-Real-project intent was copied once into isolated snapshots and read by both versions; automatic activity was excluded because startup context already excludes it. No active-worker information was supplied, matching the original diagnostic. DIP context falls **10,906→1,799 bytes (83.5%)**. PoCut falls **19,127→2,682 bytes (86.0%)**. Full completed summaries remain in the ledger. These exceed the 60% context-size target for the measured datasets; they do not establish the total injected-byte target across actual model runs.
+Real-project intent was copied once into isolated snapshots and read by both versions; automatic activity was excluded because startup context already excludes it. No active-worker information was supplied, matching the original diagnostic. DIP context falls **10,906→1,798 bytes (83.5%)**. PoCut falls **17,265→2,681 bytes (84.5%)**. Full completed summaries remain in the ledger. These exceed the 60% context-size target for the measured datasets; they do not establish the total injected-byte target across actual model runs.
 
 ## Model experiment and release gate
 

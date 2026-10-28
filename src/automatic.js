@@ -40,9 +40,21 @@ export function boundedContext(context, identity = {}, budget = 4096) {
     details:
       "task_get / task_requirements / component_owners; request inbox: project_requests",
   };
+  const clip = (value, limit) => {
+    if (typeof value !== "string") return value;
+    if (value.length > limit) out.truncated = true;
+    return value.slice(0, limit);
+  };
+  const first = (values, limit) => {
+    if (values?.length > limit) out.truncated = true;
+    return values?.slice(0, limit);
+  };
+  out.branch = clip(context.branch, 120);
+  out.instructions =
+    "Capture is automatic. No management calls for questions/reads. Development: task_finish once (implemented or paused). Details on demand; Stop is not completion.";
   const brief = (t) => ({
     id: t.id,
-    title: t.title?.slice(0, 120),
+    title: clip(t.title, 120),
     status: t.status,
     kind: t.kind,
   });
@@ -57,14 +69,40 @@ export function boundedContext(context, identity = {}, budget = 4096) {
   if (current)
     out.current = {
       ...brief(current),
-      acceptance: current.acceptance?.slice(0, 3).map((s) => s.slice(0, 160)),
-      blockedBy: current.blockedBy?.slice(0, 3),
-      checkpoint: current.checkpoint?.slice(0, 300),
-      remaining: current.remaining?.slice(0, 3).map((r) => ({
+      acceptance: first(current.acceptance, 3)?.map((s) => clip(s, 160)),
+      blockedBy: first(current.blockedBy, 3),
+      checkpoint: clip(current.checkpoint, 300),
+      remaining: first(current.remaining, 3)?.map((r) => ({
         disposition: r.disposition,
-        summary: r.summary.slice(0, 160),
+        summary: clip(r.summary, 160),
         taskId: r.taskId,
       })),
+    };
+  // A single multilingual current task can exceed the budget before any lists
+  // are added. Remove optional detail, never slice identifiers or serialized JSON.
+  while (bytes(out) > budget && out.current) {
+    out.truncated = true;
+    if (out.current.checkpoint) {
+      delete out.current.checkpoint;
+      continue;
+    }
+    const key = ["acceptance", "remaining", "blockedBy"].find(
+      (k) => out.current[k]?.length,
+    );
+    if (key) {
+      out.current[key].pop();
+      continue;
+    }
+    break;
+  }
+  if (bytes(out) > budget)
+    return {
+      workflow: "automatic",
+      truncated: true,
+      identityOmitted: true,
+      error:
+        "Hook identity exceeds context budget; persist intent explicitly and read details.",
+      details: "task_get / project_requests",
     };
   const add = (key, value) => {
     out[key].push(value);
@@ -74,26 +112,16 @@ export function boundedContext(context, identity = {}, budget = 4096) {
     }
   };
   for (const e of context.errors || [])
-    add("errors", { error: String(e.error || e).slice(0, 160) });
+    add("errors", { error: clip(String(e.error || e), 160) });
   for (const w of context.workers || [])
     add("workers", {
       task: w.task,
       actor: w.actor,
-      scope: w.scope?.slice(0, 3).map((p) => p.slice(0, 100)),
+      scope: first(w.scope, 3)?.map((p) => clip(p, 100)),
     });
   for (const name of ["resume", "ready"])
     for (const t of context[name] || [])
       if (t.id !== identity.task_id) add(name, brief(t));
-  out.instructions =
-    "Capture is automatic. No management calls for questions/reads. Development: task_finish once (implemented or paused). Details on demand; Stop is not completion.";
-  while (bytes(out) > budget) {
-    const key = ["ready", "resume", "workers", "errors"].find(
-      (k) => out[k].length,
-    );
-    if (!key) break;
-    out[key].pop();
-    out.truncated = true;
-  }
   return out;
 }
 export function mutationReceipt(action, result) {
@@ -143,5 +171,9 @@ export function mutationReceipt(action, result) {
       exitCode: result.check.exitCode,
       reused: result.check.reused,
     };
+  if (bytes(out) > 1024 && out.lease) {
+    delete out.lease.actor;
+    delete out.lease.task;
+  }
   return out;
 }

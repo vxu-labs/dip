@@ -9,7 +9,7 @@
   "trust": "Human reviews native hooks in isolated CODEX_HOME via /hooks; no host trust change or bypass.",
   "sourceFingerprints": {
     "reviewed": "616c22127dea8c560740816703b5e0abd8f42d5dede587ff43fb0ec666d4ec0f",
-    "automatic": "817e4bbd205250f331c568f96a3041029948c88816ae9e157c70c35d44784626"
+    "automatic": "9d57b3c09d01f6c99b86dad5587e2cf8247c5ef5e183c320b1c0942de67ac1ae"
   },
   "fixtureHash": "959de4eb4ab97661703ef11e1730a3f5ded6d0e0415a2890f95cc63baba3342f",
   "trials": [
@@ -50,7 +50,7 @@
       "root": "/private/tmp/dip-automatic-pilot-20261028/trials/2-automatic/project"
     }
   ],
-  "frozenAt": "2026-10-28T02:08:05.719Z",
+  "frozenAt": "2026-10-28T02:14:35.766Z",
   "harnessHash": "5dd2d97670e4122c369cb97306b26f4a16916e2ad10ad4e191ab6aba492cc04d",
-  "freezeNote": "Candidate finalized after regression and compatibility checks, before any model call. Scoring, prompts, order, model and time limits unchanged. Original preparation protocol retained."
+  "freezeNote": "Candidate finalized after regression and compatibility checks, before any model call. Scoring, prompts, order, model and time limits unchanged. Original preparation protocol retained. Multilingual single-task budget edge fixed before any model execution; scoring/prompts/order unchanged."
 }
