@@ -1,3 +1,5 @@
+import { workflowMode, AUTOMATIC_INSTRUCTIONS } from "./automatic.js";
+import { openProject } from "./core.js";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
@@ -89,12 +91,15 @@ export function install({
   gitDiscovery = true,
   startup = true,
   port,
+  workflow,
 } = {}) {
   if (
     port !== undefined &&
     (!Number.isInteger(port) || port < 0 || port > 65535)
   )
     throw new Error("Dashboard port must be between 0 and 65535");
+  if (workflow !== undefined && !["automatic", "reviewed"].includes(workflow))
+    throw new Error("Unknown workflow");
   const directory = home();
   fs.mkdirSync(directory, { recursive: true });
   const user = USER_HOME();
@@ -179,6 +184,7 @@ export function install({
     state = {
       ...state,
       cliBeforeUpgrade: state.cli,
+      workflow: workflow || state.workflow || "reviewed",
       active: true,
       version: 1,
       roots: [...new Set(roots.map((p) => path.resolve(p)))],
@@ -236,6 +242,7 @@ export function install({
       roots: state.roots,
       initialized: discovered.initialized,
       errors: discovered.errors,
+      preservedInstructions: discovered.preservedInstructions,
       agents: !!agents,
       daemon: start,
       gitDiscovery: state.gitDiscovery || { enabled: false },
@@ -543,7 +550,7 @@ export function handleHook(
   if (!input.cwd) return {};
   let repo;
   try {
-    repo = ensure(input.cwd);
+    repo = openProject(input.cwd);
   } catch (e) {
     if (e.message.includes("not inside")) return {};
     throw e;
@@ -568,6 +575,7 @@ export function handleHook(
         (worker ? ":" + String(worker) : ""),
       actor = `${agent}:${session}`;
     const event = input.hook_event_name || "Unknown";
+    const automatic = workflowMode(repo.config) === "automatic";
     let active = rt.session(repo, session);
     if (event === "UserPromptSubmit") {
       const requestKey = input.turn_id
@@ -590,7 +598,8 @@ export function handleHook(
         {
           title: prompt.trim().slice(0, 160) || "Agent request (text omitted)",
           description: prompt,
-          kind: capturedKind(prompt),
+          kind: automatic ? "discussion" : capturedKind(prompt),
+          ...(automatic ? { requestState: "captured" } : {}),
           status: "backlog",
           source: "prompt",
         },
@@ -658,7 +667,7 @@ export function handleHook(
             );
           scope = [...new Set([...scope, ...inferred])];
         }
-        const lease = rt.claim(repo, active.task, actor, 120000, scope);
+        const lease = rt.claim(repo, active.task, actor, 120000, scope, task);
         if (input.tool_use_id && capture.files) {
           const mutations = documentMutations(tool, toolInput)
             .slice(0, 20)
@@ -714,16 +723,19 @@ export function handleHook(
             toolInput.timeout_ms ||
               (toolInput.timeout ? Number(toolInput.timeout) * 1000 : 1800000),
           );
-        if (JSON.stringify(scope) !== JSON.stringify(task.scope))
-          append(repo, active.task, "task.update", { scope }, { actor });
-        if (["backlog", "ready"].includes(task.status))
-          append(
-            repo,
-            active.task,
-            "task.update",
-            { status: "in_progress" },
-            { actor },
-          );
+        const patch = {
+          ...(automatic && task.requestState === "captured"
+            ? { kind: "work", requestState: "promoted" }
+            : {}),
+          ...(JSON.stringify(scope) !== JSON.stringify(task.scope)
+            ? { scope }
+            : {}),
+          ...(["backlog", "ready"].includes(task.status)
+            ? { status: "in_progress" }
+            : {}),
+        };
+        if (Object.keys(patch).length)
+          append(repo, active.task, "task.update", patch, { actor });
       } catch (e) {
         if (repo.config.mode !== "observe") {
           rt.enqueue(repo, session, {
@@ -937,8 +949,9 @@ export function handleHook(
             task_id: active.task,
             actor,
             session_id: session,
-            instructions:
-              "This request is already saved in DIP. For reviewed development, task_prepare refines this task, claims scope and returns compact criteria in one call using the supplied actor/session. Avoid rereading unchanged context. Planning and future ideas use task_update without claiming. For a reviewed follow-up, task_adopt selects an existing requirement before development. Classify informational requests as discussion. Finish fulfilled work with task_finish: answered for questions, implemented with a configured check for code, superseded with replacement IDs for duplicate requests. Checkpoint unfinished work. Do not call another model for tracking.",
+            instructions: automatic
+              ? AUTOMATIC_INSTRUCTIONS
+              : "This request is already saved in DIP. For reviewed development, task_prepare refines this task, claims scope and returns compact criteria in one call using the supplied actor/session. Avoid rereading unchanged context. Planning and future ideas use task_update without claiming. For a reviewed follow-up, task_adopt selects an existing requirement before development. Classify informational requests as discussion. Finish fulfilled work with task_finish: answered for questions, implemented with a configured check for code, superseded with replacement IDs for duplicate requests. Checkpoint unfinished work. Do not call another model for tracking.",
           }),
         },
       };
@@ -947,7 +960,11 @@ export function handleHook(
         hookSpecificOutput: {
           hookEventName: "SessionStart",
           additionalContext: JSON.stringify({
-            ...compactContext(repo, rt),
+            ...compactContext(repo, rt, {
+              session_id: session,
+              actor,
+              task_id: active?.task || null,
+            }),
             session_id: session,
             actor,
             task_id: active?.task || null,
@@ -960,7 +977,7 @@ export function handleHook(
   }
 }
 export function handleGitHook(name, cwd = process.cwd()) {
-  const repo = ensure(cwd),
+  const repo = openProject(cwd),
     rt = new Runtime();
   try {
     rt.register(repo);
@@ -1078,7 +1095,7 @@ const excluded = new Set([
   "Program Files (x86)",
 ]);
 export function scan(roots, limit = 100000) {
-  const result = { initialized: [], errors: [] },
+  const result = { initialized: [], errors: [], preservedInstructions: [] },
     rt = new Runtime(),
     stack = [...roots],
     visited = new Set();
@@ -1099,6 +1116,11 @@ export function scan(roots, limit = 100000) {
           const repo = ensure(folder);
           rt.register(repo);
           result.initialized.push(repo.root);
+          if (repo.preservedInstructions.length)
+            result.preservedInstructions.push({
+              root: repo.root,
+              files: repo.preservedInstructions,
+            });
         } catch (e) {
           result.errors.push({ root: folder, error: e.message });
         }

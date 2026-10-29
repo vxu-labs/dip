@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "b663456adc13bccf2372e04087af2a75446ecc1cdaf56281acedae9ceec51869",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-28T02:14:55.345Z",
+        "kind": "files.changed",
+        "files": [
+          "docs/protocol.md"
+        ],
+        "agent": "filesystem",
+        "branch": "codex/automatic-workflow",
+        "recordId": "f260426c-e296-474d-bc16-2037d41bf7e9"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-28T02:14:55.346Z",
+  "parents": [],
+  "branch": "codex/automatic-workflow"
+}

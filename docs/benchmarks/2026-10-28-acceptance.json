@@ -1,0 +1,58 @@
+{
+  "round": 2,
+  "measuredCandidate": "0.3.13-automatic.1",
+  "workingCandidate": "0.3.13-automatic.1",
+  "globalRollout": false,
+  "installedVersion": "0.3.12",
+  "nativeHookTrust": "8 definitions trusted by human; unchanged",
+  "nativeHookEvents": 336,
+  "nativeHookFailures": 0,
+  "codeRegression": {
+    "candidate": "0.3.13-automatic.1",
+    "total": 170,
+    "passed": 168,
+    "skipped": 2,
+    "failed": 0,
+    "packageSmoke": "passed"
+  },
+  "modelTurnsStarted": 12,
+  "modelTurnsCompleted": 12,
+  "totalAuthorizedStartsConsumed": 24,
+  "infrastructureAffectedTurns": 0,
+  "retries": 0,
+  "functionalChecks": {
+    "passed": 74,
+    "total": 74
+  },
+  "memoryChecks": {
+    "passed": 36,
+    "total": 36
+  },
+  "routineCallTarget": {
+    "targetReductionPercent": 70,
+    "observedReductionPercent": 80.95238095238095,
+    "passed": true
+  },
+  "totalInjectedBytesTarget": {
+    "targetReductionPercent": 60,
+    "measuredPayloadProxyReductionPercent": 33.889938792203765,
+    "totalInjectedBytes": "not established: host framing/tool schemas excluded",
+    "passed": false
+  },
+  "modelTimeTarget": {
+    "targetReductionPercent": 20,
+    "observedReductionPercent": 20.49609639502514,
+    "passed": true,
+    "limitation": "Exploratory small sample; no dedicated CPU isolation; wall includes bounded scoring."
+  },
+  "trackingCorrectness": {
+    "passed": true,
+    "reason": "All six original requirements completed; all three automatic continuations explicitly adopted; futures remain backlog; partial seeds not verified."
+  },
+  "realNativeWorkflow": "not run; payload release gate failed first",
+  "next": "Reduce administrative context/read overhead without losing requirements; further model comparison needs separate authorization; complete real workflow before conditional global rollout.",
+  "rawArchiveSha256": "dbe3ba2bcb7bd6b8d0427976bff3a787efd7028e2909c3c3065d24b9b1e6eaec",
+  "summary": "2026-10-28-round2-summary.json",
+  "report": "2026-10-28-round2-report.md",
+  "previousAcceptance": "2026-10-28-round1-acceptance.json"
+}

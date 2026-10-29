@@ -44,7 +44,7 @@ export function validateRemaining(remaining) {
     )
   )
     throw new Error(
-      "Invalid remaining-work review; follow_up requires a taskId",
+      "Invalid remaining-work review: follow_up requires a taskId; omit taskId for required, verification_limit and out_of_scope. Use up to 20 items with nonempty summaries of at most 1000 characters.",
     );
 }
 
@@ -76,14 +76,84 @@ export const readingTool = (name) =>
   /(?:^|[.:])(?:Read|Glob|Grep|read_file|list_files)$/i.test(name);
 
 // Status classification only: unknown shell syntax still takes the coordination path.
+// Conservative single-command grammar. Metacharacters, expansion, escapes and
+// executable options (rg --pre, git -c, external diff) never enter this path.
 export function readingCommand(input) {
   const command = String(input.command || input.cmd || "").trim();
-  if (/[;&|\n\r`<>$(){}]/.test(command)) return false;
-  const literal = String.raw`(?:"[^"\r\n]+"|'[^'\r\n]+'|[^\s"'\-]+)`;
-  return new RegExp(
-    String.raw`^(?:Get-Content|cat)\s+(?:(?:-LiteralPath|-Path)\s+)?${literal}(?:\s+(?:-Raw|-(?:TotalCount|Tail)\s+\d+))?$`,
-    "i",
-  ).test(command);
+  // Preserve the literal PowerShell read grammar (backslashes are path separators).
+  if (
+    !/[;&|\n\r`<>$(){}]/.test(command) &&
+    /^Get-Content\s+(?:(?:-LiteralPath|-Path)\s+)?(?:"[^"\r\n]+"|'[^'\r\n]+'|[^\s"'\-]+)(?:\s+(?:-Raw|-(?:TotalCount|Tail)\s+\d+))?$/i.test(
+      command,
+    )
+  )
+    return true;
+  if (!command || /[;&|\n\r`<>$(){}\\]/.test(command)) return false;
+  const tokens = command.match(/"[^"\r\n]*"|'[^'\r\n]*'|[^\s"']+/g) || [];
+  if (tokens.join(" ") !== command.replace(/\s+/g, " ")) return false;
+  const args = tokens.map((s) => (/^['"]/.test(s) ? s.slice(1, -1) : s));
+  const name = args.shift();
+  const allowed = {
+    cat: new Set(["-n", "-b", "-s", "--"]),
+    head: new Set(["-n", "-c", "--"]),
+    tail: new Set(["-n", "-c", "--"]),
+    rg: new Set([
+      "--files",
+      "-n",
+      "--line-number",
+      "-l",
+      "--files-with-matches",
+      "-i",
+      "--ignore-case",
+      "-F",
+      "--fixed-strings",
+      "-g",
+      "--glob",
+      "--hidden",
+      "--no-ignore",
+      "--count",
+      "-c",
+      "--",
+      "-e",
+      "--regexp",
+      "-m",
+      "--max-count",
+    ]),
+    ls: new Set(["-l", "-a", "-la", "-al", "-lh", "-lah", "-1", "--"]),
+    pwd: new Set(["-L", "-P"]),
+  };
+  if (name === "git")
+    return (
+      ["status", "ls-files", "rev-parse"].includes(args[0]) &&
+      args
+        .slice(1)
+        .every(
+          (a) =>
+            !a.startsWith("-") ||
+            [
+              "--short",
+              "--porcelain",
+              "--porcelain=v1",
+              "--porcelain=v2",
+              "--branch",
+              "--untracked-files=no",
+              "--cached",
+              "--others",
+              "--exclude-standard",
+              "--show-toplevel",
+              "--show-prefix",
+              "--git-dir",
+              "--abbrev-ref",
+              "--verify",
+              "--",
+              "-z",
+            ].includes(a),
+        )
+    );
+  if (!allowed[name]) return false;
+  return args.every(
+    (a) => !a.startsWith("-") || allowed[name].has(a) || /^-[0-9]+$/.test(a),
+  );
 }
 
 export function intentCommand(input) {

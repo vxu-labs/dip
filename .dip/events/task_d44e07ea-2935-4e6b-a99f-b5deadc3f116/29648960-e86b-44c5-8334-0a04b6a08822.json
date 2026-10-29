@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "29648960-e86b-44c5-8334-0a04b6a08822",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Round 2 complete: 12/12 turns, 336 hooks/0 failures, 74/74 functional and 36/36 memory checks; original task adoption correct. Routine calls 42 to 8 (81.0% fewer), median 86.395s to 68.687s (20.5% lower). Payload 106359 to 70314 bytes (33.9% less) fails 60% gate. Raw archive and reports preserved. Product unchanged from 168-pass/2-skip suite; syntax and archive/source integrity checks passed. Global remains 0.3.12/reviewed; no real workflow rollout pilot or global upgrade. Both authorized budgets exhausted:24 starts.",
+    "remaining": [
+      {
+        "disposition": "required",
+        "summary": "Reduce administrative read/context overhead and validate >=60% payload reduction with correctness maintained; additional scored model runs need separate authorization."
+      },
+      {
+        "disposition": "required",
+        "summary": "Complete real native workflow pilot, then global installation and integration upgrade only if all gates pass; preserve current user settings and refresh rollback backup."
+      }
+    ],
+    "automatic": false
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T05:57:20.945Z",
+  "parents": [
+    "25341bec-3eb8-4df2-ae47-56a41881ac19"
+  ],
+  "branch": "codex/automatic-workflow"
+}

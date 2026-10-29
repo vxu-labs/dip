@@ -35,6 +35,7 @@ if (
   process.exit(0);
 }
 const options = {
+  workflow: { type: "string" },
   title: { type: "string" },
   id: { type: "string" },
   targetId: { type: "string" },
@@ -107,7 +108,7 @@ try {
   if (command === "--version" || command === "version")
     process.stdout.write(VERSION + "\n");
   else if (command === "init") {
-    const r = ensure(cwd),
+    const r = ensure(cwd, { workflow: flags.workflow }),
       rt = new Runtime();
     try {
       rt.register(r);
@@ -118,6 +119,7 @@ try {
   } else if (command === "install")
     print(
       install({
+        workflow: flags.workflow,
         roots: flags.roots,
         start: !flags["no-start"],
         startup: !flags["no-startup"],
@@ -141,6 +143,7 @@ try {
   else if (command === "connect")
     print(
       install({
+        workflow: flags.workflow,
         roots:
           flags.roots ||
           json(path.join(home(), "install.json"), { roots: [cwd] }).roots,
@@ -240,7 +243,11 @@ try {
         ...(flags.title ? { title: flags.title } : {}),
       };
     const result = await execute(action, args, cwd);
-    print(action === "update" && !flags.full ? taskView(result) : result);
+    print(
+      action === "update" && !flags.full && !result.truncated
+        ? taskView(result)
+        : result,
+    );
   } else if (command === "doctor") {
     const { automationHealth } = await import("../src/health.js");
     print({

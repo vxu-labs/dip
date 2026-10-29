@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-29",
+  "candidate": "0.3.13-automatic.2",
+  "ownerAuthorizedMerge": true,
+  "deferredWork": "Reduce measured administrative payload by at least60%; current round2 result33.9%.",
+  "previousAcceptance": "2026-10-28-acceptance.json",
+  "historicalGatePassed": false,
+  "additionalModelStarts": 0,
+  "machineActivation": "Installed globally and activated automatic after explicit owner authorization.",
+  "combinedDashboardPR": "https://github.com/vxu-labs/dip/pull/5",
+  "defaultWorkflow": "reviewed",
+  "validation": {
+    "unit": {
+      "total": 170,
+      "passed": 168,
+      "skipped": 2,
+      "failed": 0
+    },
+    "syntax": "passed",
+    "browser": "passed including14 focused draft cases",
+    "cleanPackage": "passed"
+  },
+  "ownerAuthorizedGlobalAutomatic": true,
+  "installedVersion": "0.3.13-automatic.2",
+  "initializedProjects": 46,
+  "recorderRunning": true,
+  "codexHookDefinitionsUnchanged": true,
+  "unrelatedCodexSettingsPreserved": true,
+  "liveContextBytes": 3146,
+  "followUpTask": "task_dc50a210-042f-4a59-b102-e6fab35f2c54",
+  "limitations": [
+    "One project with symlinked AGENTS.md was preserved rather than overwritten (NextFrame).",
+    "Existing durable queue retains records for missing temporary/archived repositories; no history or queue records were deleted.",
+    "Existing MCP sessions may need restart to load new schemas; fresh MCP transport was checked.",
+    "Deferred payload target and full real-workflow evaluation remain follow-up work; no extra model runs."
+  ],
+  "rollback": "Private .dip-local/rollback-20261029 retains prior installed package and current settings; switch to reviewed via dip install --workflow reviewed using existing roots, or restore package/settings while preserving newer user edits."
+}

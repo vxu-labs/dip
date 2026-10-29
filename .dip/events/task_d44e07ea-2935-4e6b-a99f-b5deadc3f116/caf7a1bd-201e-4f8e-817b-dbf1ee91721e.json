@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "eventId": "caf7a1bd-201e-4f8e-817b-dbf1ee91721e",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.update",
+  "payload": {
+    "title": "Automatic DIP workflow with one finish call and owner-authorized rollout",
+    "description": "Implemented automatic capture and compact context with paused finish. Owner explicitly authorized merging progress and global automatic activation on2026-10-29 while deferring the failed60% payload target. Preserve historical failures; no additional model runs. Follow-up task_dc50a210-042f-4a59-b102-e6fab35f2c54 retains payload optimization and further real-workflow evaluation.",
+    "acceptance": [
+      "Requests stay outside work backlog until promoted; writes coordinate; one finish can pause without false completion.",
+      "Startup context <=4096 UTF-8 bytes, routine receipts <=1024 bytes; preserve ledger and user-edited integrations.",
+      "Conservative read grammar, no routine integration repair, shared task read, durable recorder recovery and exact evidence reuse.",
+      "Combined behavioral/package/browser regressions pass; retain both bounded model comparisons honestly. Merge validated progress and activate global automatic with current rollback backup and health checks under explicit owner authorization; deferred payload target remains in linked follow-up."
+    ]
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-29T02:23:04.669Z",
+  "parents": [
+    "ec5e4886-f386-462c-b3ee-b4daadd4ec76"
+  ],
+  "branch": "codex/automatic-workflow"
+}

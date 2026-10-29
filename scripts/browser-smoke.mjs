@@ -33,6 +33,11 @@ const discussion = createTask(repo, {
   title: "Explain the MCP connection",
   kind: "discussion",
 });
+const request = createTask(repo, {
+  title: "Captured question",
+  kind: "discussion",
+  requestState: "captured",
+});
 await execute(
   "finish",
   {
@@ -260,6 +265,10 @@ try {
     "page",
   );
   await page.getByRole("heading", { name: "Work board" }).waitFor();
+  assert.equal(await page.locator(`[data-task="${discussion}"]`).count(), 0);
+  assert.equal(await page.locator(`[data-task="${request}"]`).count(), 0);
+  await page.locator("#task-kind").selectOption("requests");
+  await page.locator(`[data-task="${request}"]`).waitFor();
   assert.equal(await page.locator(`[data-task="${discussion}"]`).count(), 0);
   await page.locator("#task-kind").selectOption("discussion");
   await page.locator(`[data-task="${discussion}"]`).click();

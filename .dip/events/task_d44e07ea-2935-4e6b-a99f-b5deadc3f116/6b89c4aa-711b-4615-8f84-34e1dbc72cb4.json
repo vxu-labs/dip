@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "eventId": "6b89c4aa-711b-4615-8f84-34e1dbc72cb4",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.update",
+  "payload": {
+    "scope": [
+      "src",
+      "public",
+      "scripts",
+      "docs",
+      "package.json",
+      "package-lock.json",
+      "skills",
+      "bin",
+      "test"
+    ],
+    "description": "Implement automatic DIP with one finish call. User now explicitly authorizes merging the validated progress while deferring the remaining 60% administrative payload target. Preserve original benchmark outcomes and unfinished optimization. Integrate current main dashboard fixes and validate combined code. Global activation scope is being clarified separately; no additional model experiment budget has been authorized."
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-29T02:13:08.606Z",
+  "parents": [
+    "29648960-e86b-44c5-8334-0a04b6a08822"
+  ],
+  "branch": "codex/automatic-workflow"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "eventId": "83665786-32f6-423c-974c-c5cccd9a5392",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.checkpoint",
+  "payload": {
+    "summary": "Final candidate 0.3.13-automatic.0 includes single-task multilingual byte-budget protection. Full regression: 166 tests, 164 pass, 2 platform skips, no failures. Package/browser/legacy reads pass. Frozen source and same-snapshot runtime measurements recorded; latest startup context DIP10906→1798 and PoCut17265→2681. Native model runs remain zero pending human hook trust. Private rollback and candidate package retained; global installation unchanged.",
+    "remaining": [
+      {
+        "disposition": "required",
+        "summary": "Review isolated native hooks, then run all 12 approved model turns and retain failures."
+      },
+      {
+        "disposition": "required",
+        "summary": "Validate one real native workflow and evaluate correctness, recovery, management calls, injected bytes and time."
+      },
+      {
+        "disposition": "required",
+        "summary": "Roll out globally only if acceptance passes; otherwise retain reviewed mode and report unmet criteria."
+      }
+    ],
+    "automatic": false
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T02:18:23.618Z",
+  "parents": [
+    "849e84cf-ee59-4a7a-a8f2-10bcd3c10624"
+  ],
+  "branch": "codex/automatic-workflow"
+}

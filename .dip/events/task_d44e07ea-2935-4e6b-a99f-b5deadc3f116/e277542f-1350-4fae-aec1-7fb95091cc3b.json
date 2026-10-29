@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "e277542f-1350-4fae-aec1-7fb95091cc3b",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/automatic-workflow.md",
+    "role": "plan",
+    "hash": "d2fd26bdb18b3f2845cf0dffed15264a048152448ccee6e6d6c05e19bbc57c37",
+    "bytes": 8107,
+    "source": "manual"
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-28T05:57:20.416Z",
+  "parents": [
+    "bbd47722-7d28-4820-9642-a69cd005de7d"
+  ],
+  "branch": "codex/automatic-workflow"
+}
