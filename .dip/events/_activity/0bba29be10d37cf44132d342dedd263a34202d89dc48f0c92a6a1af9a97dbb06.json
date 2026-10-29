@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "eventId": "0bba29be10d37cf44132d342dedd263a34202d89dc48f0c92a6a1af9a97dbb06",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "git",
+    "records": [
+      {
+        "at": "2026-10-29T02:05:15.989Z",
+        "kind": "git.post-commit",
+        "head": "2c906339f7db9ae0f9d0a99af0ddad1314f427f5",
+        "branch": "codex/review-dip-pr5",
+        "agent": "git",
+        "recordId": "fd3f7be4-41ce-41d8-8e65-45d1ec367b91"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-29T02:05:15.995Z",
+  "parents": [],
+  "branch": "codex/review-dip-pr5"
+}

@@ -1,0 +1,170 @@
+{
+  "pullRequest": "https://github.com/vxu-labs/dip/pull/5",
+  "reviewDate": "2026-10-29",
+  "base": "3f2aebc9611bf98ee76ecadb1f8697baca02bd77",
+  "contributorHead": "38e84998cd7fad768342b951d8acc0e432e3089a",
+  "scope": "Entire contributor diff and maintainer follow-up; no repository-wide security certification.",
+  "securityReview": {
+    "findings": [],
+    "observations": [
+      "Contributor changed only public/app.js and scripts/browser-smoke.mjs; ordinary text files, no binaries or symlinks.",
+      "No new dependencies, lifecycle scripts, installer changes, credential access, shell execution, external URLs, telemetry, authentication changes or backdoor behavior in the contributor diff.",
+      "Restored drafts are assigned to DOM value properties, not interpreted as HTML; literal markup regression passes.",
+      "Maintainer changes remain client-side form preservation plus synthetic isolated browser tests."
+    ],
+    "limitations": [
+      "Manual scoped review and local tests cannot guarantee absence of every vulnerability.",
+      "Firefox, Safari and screen readers were not tested."
+    ]
+  },
+  "maintainerCorrections": [
+    "Preserve selected finish outcome with its summary across background refreshes.",
+    "Clear submitted values only if the same task/project/dialog lifetime and unchanged submitted form are still active when the request settles.",
+    "Preserve selection direction as well as caret range."
+  ],
+  "validation": {
+    "environment": "macOS, Node.js 24.5.0, locally installed Google Chrome through Playwright",
+    "contributorUnitSuite": {
+      "total": 150,
+      "passed": 148,
+      "skipped": 2,
+      "failed": 0
+    },
+    "originalBrowserSmoke": "passed independently before changes",
+    "finalCombinedBrowserSmoke": "passed; includes original smoke and 14 additional focused cases",
+    "syntax": "passed",
+    "format": "passed",
+    "originalEdgeCases": [
+      {
+        "name": "drafts, caret, focus, scroll and literal markup survive refresh",
+        "passed": false,
+        "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    'checkpoint',\n    2,\n    7,\n+   'none'\n-   'backward'\n  ]\n"
+      },
+      {
+        "name": "outcome choice survives alongside its summary",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'answered'\n- 'cancelled'\n"
+      },
+      {
+        "name": "checkpoint: delayed response preserves unchanged draft correctly",
+        "passed": true
+      },
+      {
+        "name": "checkpoint: delayed response preserves edited draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'New unsaved draft'\n"
+      },
+      {
+        "name": "checkpoint: delayed response preserves other task draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'Submitted draft'\n"
+      },
+      {
+        "name": "checkpoint: delayed response preserves other project draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'Submitted draft'\n"
+      },
+      {
+        "name": "checkpoint: delayed response preserves reopened draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'Submitted draft'\n"
+      },
+      {
+        "name": "checkpoint: delayed response preserves failed draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves unchanged draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves edited draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'New unsaved draft'\n"
+      },
+      {
+        "name": "finish: delayed response preserves other task draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'Submitted draft'\n"
+      },
+      {
+        "name": "finish: delayed response preserves other project draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'Submitted draft'\n"
+      },
+      {
+        "name": "finish: delayed response preserves reopened draft correctly",
+        "passed": false,
+        "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ ''\n- 'Submitted draft'\n"
+      },
+      {
+        "name": "finish: delayed response preserves failed draft correctly",
+        "passed": true
+      }
+    ],
+    "finalEdgeCases": [
+      {
+        "name": "drafts, caret, focus, scroll and literal markup survive refresh",
+        "passed": true
+      },
+      {
+        "name": "outcome choice survives alongside its summary",
+        "passed": true
+      },
+      {
+        "name": "checkpoint: delayed response preserves unchanged draft correctly",
+        "passed": true
+      },
+      {
+        "name": "checkpoint: delayed response preserves edited draft correctly",
+        "passed": true
+      },
+      {
+        "name": "checkpoint: delayed response preserves other task draft correctly",
+        "passed": true
+      },
+      {
+        "name": "checkpoint: delayed response preserves other project draft correctly",
+        "passed": true
+      },
+      {
+        "name": "checkpoint: delayed response preserves reopened draft correctly",
+        "passed": true
+      },
+      {
+        "name": "checkpoint: delayed response preserves failed draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves unchanged draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves edited draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves other task draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves other project draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves reopened draft correctly",
+        "passed": true
+      },
+      {
+        "name": "finish: delayed response preserves failed draft correctly",
+        "passed": true
+      }
+    ]
+  },
+  "sourceHashes": {
+    "public/app.js": "407470285af39c3a278acfaa6f88ce789e30de1b8d171c4f5bb2392da55906bb",
+    "scripts/browser-smoke.mjs": "eedbf810c85ce39cd920480f91159874af72a3eadbe1cd69537f55fd4e60d1b7",
+    "scripts/detail-drafts-smoke.mjs": "8891d2ec02e53df22cf3debdfdee50109338d7fb9b6961fc308ecafe00510d10"
+  },
+  "boundary": "Finding 2 board focus restoration remains a separate follow-up. Automatic-workflow optimization and global installation are outside this PR."
+}

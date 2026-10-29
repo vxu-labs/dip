@@ -21,6 +21,37 @@ let editingTask = null;
 let healthAt = 0,
   healthRoot = "";
 const leases = new Map();
+// Unsaved inputs in the detail dialog, kept when the same task re-renders.
+const drafts = [
+  "finish-outcome",
+  "finish-summary",
+  "finish-replacements",
+  "document-query",
+  "checkpoint",
+];
+let draftKey = "",
+  draftGeneration = 0;
+// A response may arrive after editing, switching tasks, or reopening the dialog.
+// Clear only the submitted, unchanged form in the same dialog lifetime.
+function clearSubmittedDraft(ids) {
+  const key = draftKey,
+    generation = draftGeneration,
+    submitted = ids.map((id) => [id, $("#" + id).value]);
+  return () => {
+    if (
+      !$("#detail-dialog").open ||
+      key !== draftKey ||
+      key !== selected + "\n" + currentDetail ||
+      generation !== draftGeneration ||
+      submitted.some(([id, value]) => $("#" + id)?.value !== value)
+    )
+      return;
+    for (const [id] of submitted) {
+      const node = $("#" + id);
+      if (node.tagName !== "SELECT") node.value = "";
+    }
+  };
+}
 const url = (p) =>
   p + (selected ? "?root=" + encodeURIComponent(selected) : "");
 const label = (t) =>
@@ -299,6 +330,25 @@ function render() {
 function renderDetail(taskId) {
   const t = state.tasks.find((t) => t.id === taskId);
   if (!t) return;
+  const dialog = $("#detail-dialog"),
+    key = selected + "\n" + t.id,
+    same = dialog.open && draftKey === key,
+    kept = same
+      ? drafts
+          .map((id) => [id, $("#" + id)?.value])
+          .filter(([, v]) => v != null)
+      : [],
+    focused =
+      same && $("#detail").contains(document.activeElement)
+        ? document.activeElement
+        : null,
+    caret = [
+      focused?.selectionStart,
+      focused?.selectionEnd,
+      focused?.selectionDirection,
+    ],
+    scroll = dialog.scrollTop;
+  if (!same) draftGeneration++;
   $("#detail-title").textContent = t.title;
   $("#detail").innerHTML =
     `<span class="badge ${label(t)}">${escape(label(t))}</span> <small>${escape(t.id)}</small><div class="detail-section"><h3>Intent</h3><p>${escape(t.description || "No description")}</p><p>Scope: ${escape(t.scope.join(", ") || "Not specified")}<br>Depends on: ${escape(t.dependencies.join(", ") || "None")}<br>In current branch: ${escape(state.repo.branch)}</p>${(t.acceptance || []).map((a) => `<p>□ ${escape(a)}</p>`).join("")}</div><div class="detail-actions"><select id="task-status" aria-label="Task status">${["backlog", "ready", "in_progress", "blocked", "implemented", "cancelled", "superseded"].map((s) => `<option ${s === t.status ? "selected" : ""}>${s}</option>`).join("")}</select><button id="save-status">Update status</button><button id="claim">Claim task</button>${leases.has(t.id) ? '<button id="release">Release</button>' : ""}</div>${t.conflicts.length ? `<div class="detail-section"><h3>Competing updates</h3>${t.conflicts.map((c) => `<p>${escape(c.field)}: ${escape(c.alternatives.map((a) => JSON.stringify(a.value)).join(" / "))}</p>`).join("")}<button id="resolve">Resolve with selected status</button></div>` : ""}<div class="detail-section"><h3>Verification</h3><p>${escape(t.verification || "missing")} evidence · ${t.integrated ? "Integrated in current history" : "Integration not established"}</p>${state.checks.length ? `<select id="check">${state.checks.map((c) => `<option>${escape(c)}</option>`).join("")}</select><button id="verify">Run configured check</button>` : "<p>Configure checks in .dip/config.json to verify this task.</p>"}${t.evidence.map((e) => `<p><span class="badge ${escape(e.result)}">${escape(e.result)}</span> ${escape(e.check)} · ${escape(date(e.at))}</p>`).join("")}</div><div class="detail-section"><h3>Latest handoff</h3><p>${escape(t.checkpoints.at(-1)?.summary || "No checkpoint")}</p><textarea id="checkpoint" rows="3" placeholder="What was done, what remains, and the next step"></textarea><button id="save-checkpoint">Save meaningful checkpoint</button></div><div class="detail-section"><h3>History</h3>${t.history
@@ -341,6 +391,11 @@ function renderDetail(taskId) {
       }),
   );
   bind("#finish-task", async () => {
+    const clear = clearSubmittedDraft([
+      "finish-outcome",
+      "finish-summary",
+      "finish-replacements",
+    ]);
     const result = await action("finish", {
       id: t.id,
       outcome: $("#finish-outcome").value,
@@ -352,6 +407,7 @@ function renderDetail(taskId) {
       token: leases.get(t.id)?.token,
     });
     if (result.released) leases.delete(t.id);
+    clear();
   });
   if (t.plan) {
     const input = t.plan.input,
@@ -417,13 +473,32 @@ function renderDetail(taskId) {
       token: leases.get(t.id)?.token,
     }),
   );
-  bind("#save-checkpoint", () =>
-    action("checkpoint", {
+  bind("#save-checkpoint", async () => {
+    const clear = clearSubmittedDraft(["checkpoint"]);
+    await action("checkpoint", {
       id: t.id,
       summary: $("#checkpoint").value,
       token: leases.get(t.id)?.token,
-    }),
-  );
+    });
+    clear();
+  });
+  draftKey = key;
+  for (const [id, value] of kept) {
+    const node = $("#" + id);
+    // Requirement changes can make a previously selected outcome unavailable.
+    if (
+      node &&
+      (node.tagName !== "SELECT" ||
+        [...node.options].some((o) => o.value === value))
+    )
+      node.value = value;
+  }
+  const refocus = focused?.id && $("#" + focused.id);
+  if (refocus) {
+    refocus.focus({ preventScroll: true });
+    if (caret[0] != null) refocus.setSelectionRange(...caret);
+  }
+  if (same) dialog.scrollTop = scroll;
 }
 
 async function documentAction(action, args) {

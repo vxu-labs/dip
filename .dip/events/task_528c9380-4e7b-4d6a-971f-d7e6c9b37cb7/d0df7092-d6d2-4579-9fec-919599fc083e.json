@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "eventId": "d0df7092-d6d2-4579-9fec-919599fc083e",
+  "taskId": "task_528c9380-4e7b-4d6a-971f-d7e6c9b37cb7",
+  "type": "task.create",
+  "payload": {
+    "title": "Review and harden contributor PR #5 dialog draft preservation",
+    "description": "User authorized security and correctness review, fixes if needed, approval and merge, and a thank-you with contributor background/use questions. Inspect exact diff and independently reproduce edge cases. Keep automatic-workflow branch and global installation separate.",
+    "scope": [
+      "public/app.js,scripts/detail-drafts-smoke.mjs"
+    ],
+    "status": "backlog"
+  },
+  "actor": "agent",
+  "createdAt": "2026-10-29T01:57:58.035Z",
+  "parents": [],
+  "branch": "codex/review-dip-pr5"
+}
