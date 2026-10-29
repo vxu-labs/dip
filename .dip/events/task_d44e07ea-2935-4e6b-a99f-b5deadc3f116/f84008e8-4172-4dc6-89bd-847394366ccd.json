@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "eventId": "f84008e8-4172-4dc6-89bd-847394366ccd",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.update",
+  "payload": {
+    "status": "implemented",
+    "kind": "work",
+    "requestState": "promoted",
+    "resolution": {
+      "outcome": "implemented",
+      "summary": "Owner-authorized progress merged in PR6 as00f2510. Installed0.3.13-automatic.2 globally, enabled automatic, restarted recorder and upgraded46 project integrations. Fresh MCP reports26tools with paused finish and requests; PoCut context3146 bytes; hook definitions byte-identical and unrelated Codex settings preserved. Combined170tests168pass2skip plus browser/syntax/package checks passed. Prior package/settings retained in private rollback-20261029. Historical failed payload gate unchanged; no extra model runs.",
+      "replacedBy": [],
+      "remaining": [
+        {
+          "disposition": "follow_up",
+          "taskId": "task_dc50a210-042f-4a59-b102-e6fab35f2c54",
+          "summary": "Owner deferred >=60% administrative payload reduction and further real native workflow evaluation; current measured33.9%, both model budgets consumed."
+        },
+        {
+          "disposition": "verification_limit",
+          "summary": "NextFrame linked AGENTS.md preserved rather than replaced. Existing MCP processes require refresh to load new schemas; fresh transport verified. Existing durable records for missing temporary/archived roots retained."
+        }
+      ]
+    }
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-29T02:25:21.027Z",
+  "parents": [
+    "000720a8-1443-4385-a0cd-0c1ae1af5723"
+  ],
+  "branch": "codex/automatic-workflow"
+}
