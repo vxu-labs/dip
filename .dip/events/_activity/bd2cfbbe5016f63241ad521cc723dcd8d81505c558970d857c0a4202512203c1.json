@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "eventId": "bd2cfbbe5016f63241ad521cc723dcd8d81505c558970d857c0a4202512203c1",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "git-discovery",
+    "records": [
+      {
+        "at": "2026-10-29T01:56:20.951656Z",
+        "kind": "git.discovered",
+        "agent": "git",
+        "branch": "codex/review-dip-pr5",
+        "command": "reset",
+        "initialized": false,
+        "recordId": "git-discovery:1bdcc27ffe10e6ddbd000a75d7ade5fd40713fd4360bfd09d9b24b9578f2f068"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-29T01:56:27.295Z",
+  "parents": [],
+  "branch": "codex/review-dip-pr5"
+}

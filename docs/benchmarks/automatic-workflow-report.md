@@ -1,5 +1,7 @@
 # Automatic workflow: implementation and acceptance report
 
+**2026-10-29 integration update:** the owner authorized merging the validated progress and deferring the remaining payload target. Candidate `0.3.13-automatic.2` combines this work with dashboard PR #5. The measurements below remain historical evidence for .1; the failed 60% target is not reclassified, and no new model runs were started. See [merge decision](2026-10-29-merge-decision.json).
+
 The latest measured candidate is **0.3.13-automatic.1**. The separately authorized second round completed **12/12 turns** with no infrastructure failures or retries. Routine calls fell **81.0%** and median wall time fell **20.5%**; all functional, recovery-memory and original-task tracking checks passed. Measured administrative payload fell only **33.9%**, below the required 60%. **Global rollout remains blocked and the machine stays on 0.3.12/reviewed.** The real native workflow pilot remains pending. See the [round-two report](2026-10-28-round2-report.md), [results](2026-10-28-round2-summary.json) and [current acceptance decision](2026-10-28-acceptance.json).
 
 The .1 full suite passes **170 tests: 168 passed, 2 platform skips**. Both authorized twelve-turn budgets are exhausted (24 starts total). The historical .0 measurements below are retained separately and must not be attributed to .1. Product sources stayed frozen throughout each round.

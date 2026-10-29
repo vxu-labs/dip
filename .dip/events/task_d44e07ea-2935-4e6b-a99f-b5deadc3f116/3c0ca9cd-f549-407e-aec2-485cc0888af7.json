@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "eventId": "3c0ca9cd-f549-407e-aec2-485cc0888af7",
+  "taskId": "task_d44e07ea-2935-4e6b-a99f-b5deadc3f116",
+  "type": "task.document",
+  "payload": {
+    "path": "docs/benchmarks/automatic-workflow-report.md",
+    "role": "reference",
+    "hash": "50541dc2a4b89b88d5bb1d3d653b26e9e02d3ac39c48476512c7209ee22318f7",
+    "bytes": 12677,
+    "source": "manual"
+  },
+  "actor": "codex:01a12f05-0e65-7b01-b39e-565b96811fb4",
+  "createdAt": "2026-10-29T02:23:05.258Z",
+  "parents": [
+    "adb9858c-8572-4ad5-a7c0-da4f1ed61cb6"
+  ],
+  "branch": "codex/automatic-workflow"
+}

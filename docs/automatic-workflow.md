@@ -1,8 +1,8 @@
-# Automatic workflow (pilot)
+# Automatic workflow (opt-in)
 
-Automatic keeps persistent intent and coordination while removing routine model bookkeeping. It is opt-in; `reviewed` remains the default until the acceptance gate passes. No additional model runs for logging or classification.
+Automatic keeps persistent intent and coordination while removing routine model bookkeeping. It is opt-in; `reviewed` remains the default. Explicit machine or project configuration enables `automatic`. No additional model runs for logging or classification.
 
-Neither native comparison passed the complete rollout gate. The second, separately authorized twelve-turn comparison measured .1: routine calls fell 81.0%, median wall time fell 20.5%, and correctness/tracking passed. Administrative payload fell 33.9%, below the required 60%; the real native workflow pilot remains pending. Both twelve-turn budgets are exhausted. See the [acceptance report](benchmarks/automatic-workflow-report.md). The machine remains on reviewed 0.3.12.
+Neither native comparison passed the complete rollout gate. The second, separately authorized twelve-turn comparison measured .1: routine calls fell 81.0%, median wall time fell 20.5%, and correctness/tracking passed. Administrative payload fell 33.9%, below the required 60%; the real native workflow pilot remains pending. Both twelve-turn budgets are exhausted. See the [acceptance report](benchmarks/automatic-workflow-report.md). On 2026-10-29 the owner authorized merging this progress and explicitly activating it globally on their machine while deferring the remaining payload target. This merge authorization does not turn the failed measurement into a pass. The combined candidate is 0.3.13-automatic.2 and includes the separately reviewed dashboard PR #5; no further model comparison has been run.
 
 ## Contract
 
@@ -30,7 +30,7 @@ Post-tool recording retains the existing durable SQLite outbox and recorder reco
 node /path/to/candidate/bin/dip.js init --root /path/to/pilot --workflow automatic
 # Explicit project rollback (history remains)
 node /path/to/candidate/bin/dip.js init --root /path/to/pilot --workflow reviewed
-# Only after the gate: install/upgrade managed machine integrations
+# Explicitly authorized activation: install/upgrade managed machine integrations
 node /path/to/candidate/bin/dip.js install --workflow automatic --roots /path/to/projects
 # Roll back workflow using the same installed version
 node /path/to/candidate/bin/dip.js install --workflow reviewed --roots /path/to/projects
@@ -50,4 +50,4 @@ Run `npm test`, `npm run check`, `npm run test:package`, and the automatic bench
 
 `scripts/automatic-model-pilot.mjs --prepare` prepares three scenarios, two arms and two fresh conversations per scenario (12 turns, 240 seconds per turn). It inherits the configured model and effort, fixes arm order and source/fixture fingerprints, and retains every failure. Each scenario includes changed requirements, partial work and a later recovery turn. The existing Codex login is referenced locally, never placed in results. Native hooks must be reviewed by the human in the isolated profile's `/hooks` UI. `--run` refuses to start until review exists; no hook-trust bypass or host approval change is used. It refuses scored retries.
 
-Global rollout requires correctness and requirement recovery without regression, >=70% fewer routine management calls, >=60% less injected management data, and the target >=20% lower median comparison time, plus an isolated pilot and one real workflow. Report exceptional intent operations separately from routine calls, and report all calls too. Missing native-hook evidence or a failed gate prevents global rollout. A small 12-turn sample is exploratory, not a general performance guarantee. Dan's proposed accessibility changes are outside this work.
+The original rollout criteria are correctness and requirement recovery without regression, >=70% fewer routine management calls, >=60% less injected management data, and the target >=20% lower median comparison time, plus an isolated pilot and one real workflow. Report exceptional intent operations separately from routine calls, and report all calls too. The 2026-10-28 comparison did not satisfy that complete gate. The owner subsequently authorized merging the progress while deferring the payload target; any machine activation must be explicitly authorized and preserve rollback and hook trust. A small 12-turn sample is exploratory, not a general performance guarantee. Dan's dashboard changes were reviewed and merged separately in PR #5, then integrated into this candidate.

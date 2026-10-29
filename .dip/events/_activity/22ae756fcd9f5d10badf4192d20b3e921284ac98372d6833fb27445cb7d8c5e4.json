@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "eventId": "22ae756fcd9f5d10badf4192d20b3e921284ac98372d6833fb27445cb7d8c5e4",
+  "taskId": "_activity",
+  "type": "activity.batch",
+  "payload": {
+    "session": "filesystem",
+    "records": [
+      {
+        "at": "2026-10-29T01:58:42.543Z",
+        "kind": "files.changed",
+        "files": [
+          "scripts/detail-drafts-smoke.mjs"
+        ],
+        "agent": "filesystem",
+        "branch": "codex/review-dip-pr5",
+        "recordId": "db638e6d-f883-4a90-8deb-f434dfc45bcc"
+      }
+    ]
+  },
+  "actor": "recorder",
+  "createdAt": "2026-10-29T01:58:42.548Z",
+  "parents": [],
+  "branch": "codex/review-dip-pr5"
+}

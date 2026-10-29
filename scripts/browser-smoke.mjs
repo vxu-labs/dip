@@ -74,7 +74,7 @@ append(
   },
   { actor: "codex:export" },
 );
-createTask(repo, {
+const idea = createTask(repo, {
   title: "Remember Slack notifications",
   description:
     "A future idea: notify only when work needs attention or is verified.",
@@ -211,6 +211,53 @@ try {
   await page.waitForFunction(() =>
     document.querySelector("#document-preview")?.textContent.includes("stale"),
   );
+  // A background update must not discard a draft or move keyboard focus.
+  const checkpoint = page.locator("#checkpoint");
+  const rerendered = async (change) => {
+    await checkpoint.evaluate((el) => (window.draftField = el));
+    change();
+    await page.waitForFunction(
+      () => document.querySelector("#checkpoint") !== window.draftField,
+    );
+  };
+  await checkpoint.focus();
+  await page.keyboard.type("Draft handoff");
+  await rerendered(() =>
+    append(repo, idea, "task.checkpoint", { summary: "Unrelated change" }),
+  );
+  assert.equal(await checkpoint.inputValue(), "Draft handoff");
+  assert.equal(
+    await page.evaluate(() => document.activeElement.id),
+    "checkpoint",
+  );
+  await rerendered(() =>
+    append(repo, parser, "task.checkpoint", { summary: "Background handoff" }),
+  );
+  assert.ok(
+    (await page.locator("#detail").innerText()).includes("Background handoff"),
+  );
+  assert.equal(await checkpoint.inputValue(), "Draft handoff");
+  assert.equal(
+    await page.evaluate(() => document.activeElement.id),
+    "checkpoint",
+  );
+  await page
+    .getByRole("button", { name: "Save meaningful checkpoint" })
+    .click();
+  await page.waitForFunction(() =>
+    document.querySelector("#detail").innerText.includes("Draft handoff"),
+  );
+  assert.equal(await checkpoint.inputValue(), "");
+  await page.locator("#detail-dialog .close").click();
+  await page
+    .getByRole("button", { name: "Remember Slack notifications", exact: false })
+    .click();
+  assert.equal(await checkpoint.inputValue(), "");
+  await page.locator("#detail-dialog .close").click();
+  await page
+    .getByRole("button", { name: "Add CSV export", exact: false })
+    .click();
+  assert.equal(await checkpoint.inputValue(), "");
   await page.locator("#detail-dialog .close").click();
   await page.getByRole("button", { name: "Work board" }).click();
   assert.equal(
@@ -312,3 +359,6 @@ try {
   fs.rmSync(workerRoot, { recursive: true, force: true });
   fs.rmSync(root, { recursive: true, force: true });
 }
+
+// Exercise delayed responses as well as the normal dashboard update flow.
+await import("./detail-drafts-smoke.mjs");

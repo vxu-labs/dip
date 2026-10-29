@@ -69,7 +69,7 @@ Session hooks inject a compact context with outstanding work and a stable actor/
 
 The opt-in `automatic` workflow captures unsorted requests in an inbox, promotes them to work and acquires ownership before supported writes. Questions and known reads need no management calls. For development, call `task_finish` once with the hook actor/session: `implemented` with a configured check and remaining-work review, or `paused` with unfinished items. Explicit adoption, changed requirements, future ideas and conflicts still need intent tools. Native plans need no second copy. See [automatic workflow, rollout gates and rollback](docs/automatic-workflow.md).
 
-Enable it for an isolated project with `dip init --workflow automatic`. Machine installation accepts `dip install --workflow automatic`; the default remains `reviewed` pending acceptance. Workflow is separate from `observe`, `coordinate` and `strict` ownership modes.
+Enable it for an isolated project with `dip init --workflow automatic`. Machine installation accepts `dip install --workflow automatic`; the default remains `reviewed`; enable `automatic` explicitly. Workflow is separate from `observe`, `coordinate` and `strict` ownership modes.
 
 The existing `reviewed` workflow retains these tools for meaningful transitions:
 
