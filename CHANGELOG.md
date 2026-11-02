@@ -8,6 +8,7 @@
 - Bound detailed local activity by age, per-project compressed bytes and a machine-wide budget. Keep source provenance, explicit file-list overflow, durable failure handoffs and hook-observation counters. Raw activity stays out of Git.
 - Deduplicate evidence file maps into content-addressed compressed manifests while preserving historical evidence, causal parents and task conflicts.
 - Add `dip storage` inventory, migration, retirement, retention, recovery and synchronization commands. Fleet migration preserves private compressed backups, reports unavailable roots and failures, and never force-pushes or publishes unrelated source commits.
+- Complete the rollout's two initially missing remote destinations with authorized private GitHub repositories; verify metadata publication while preserving source worktrees.
 - Update native Git hooks, CLI, doctor, navigation and the dependency-free portable helper for shared storage. Include the hosted dashboard metadata-branch adapter and compatibility tests.
 
 ### Compatibility
