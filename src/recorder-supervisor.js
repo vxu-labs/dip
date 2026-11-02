@@ -1,3 +1,4 @@
+import { trimRuntimeLog } from "./runtime-logs.js";
 import fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
@@ -140,6 +141,7 @@ export async function runRecorderSupervisor(startRecorder) {
   const tick = () => {
     if (finished) return;
     try {
+      trimRuntimeLog("supervisor.log");
       const control = json(file("recorder-control.json"), null);
       const installation = json(file("install.json"), null);
       if (control?.enabled !== true || installation?.active === false)

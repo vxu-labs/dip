@@ -1,3 +1,4 @@
+import { storageStatus } from "./storage.js";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
@@ -130,13 +131,14 @@ export function automationHealth(root) {
           ].includes(a.kind),
         );
         dataErrors = state.errors;
+        const observations = storageStatus(repo).captureObservations || {};
         const prompts = state.activity.filter(
           (a) => a.kind === "UserPromptSubmit",
         );
         captured = {
-          promptCount: prompts.length,
+          promptCount: observations.promptCount ?? prompts.length,
           planCount: state.tasks.filter((t) => t.plan).length,
-          lastPromptAt: prompts[0]?.at || null,
+          lastPromptAt: observations.lastPromptAt || prompts[0]?.at || null,
         };
       }
     } else
@@ -292,6 +294,7 @@ export function automationHealth(root) {
     );
   return redactValue({
     installed: !!installation?.active,
+    storage: repo ? storageStatus(repo) : null,
     gitDiscovery: nativeGit,
     clientDiscovery: {
       available: true,

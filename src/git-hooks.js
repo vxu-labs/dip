@@ -19,7 +19,7 @@ export function writeGitHooks(directory, previous) {
       : `al_original="$(GIT_TRACE2_EVENT=0 git rev-parse --git-path hooks)/${name}"`;
     atomic(
       path.join(directory, name),
-      `#!/bin/sh\n# DIP managed hook; existing hooks are chained.\n${quote(process.execPath.replaceAll("\\", "/"))} --disable-warning=ExperimentalWarning ${quote(CLI.replaceAll("\\", "/"))} git-hook ${name}\nal_status=$?\nif [ "$al_status" -ne 0 ]; then exit "$al_status"; fi\n${original}\nif [ -x "$al_original" ] && [ "$al_original" != "$0" ]; then exec "$al_original" "$@"; fi\nexit 0\n`,
+      `#!/bin/sh\n# DIP managed hook; existing hooks are chained.\n${quote(process.execPath.replaceAll("\\", "/"))} --disable-warning=ExperimentalWarning ${quote(CLI.replaceAll("\\", "/"))} git-hook ${name} "$@"\nal_status=$?\nif [ "$al_status" -ne 0 ]; then exit "$al_status"; fi\n${original}\nif [ -x "$al_original" ] && [ "$al_original" != "$0" ]; then exec "$al_original" "$@"; fi\nexit 0\n`,
     );
     fs.chmodSync(path.join(directory, name), 0o755);
   }
@@ -31,6 +31,37 @@ export function ensureProjectHooks(repo) {
     mtime = fs.statSync(config).mtimeMs;
   const marker = path.join(repo.common, "dip-hook-state.json"),
     state = json(marker, null);
+  if (
+    state?.path === path.join(repo.common, "dip-hooks") &&
+    !state.forwardsArguments
+  ) {
+    for (const name of [
+      "pre-commit",
+      "post-commit",
+      "post-checkout",
+      "post-merge",
+      "post-rewrite",
+      "pre-push",
+    ]) {
+      const file = path.join(state.path, name);
+      if (!fs.existsSync(file)) continue;
+      const stat = fs.lstatSync(file);
+      if (!stat.isFile() || stat.isSymbolicLink()) continue;
+      const script = fs.readFileSync(file, "utf8");
+      if (!script.includes("# DIP managed hook; existing hooks are chained."))
+        continue;
+      const next = script.replace(
+        "git-hook " + name + "\n",
+        "git-hook " + name + ' "$@"\n',
+      );
+      if (next !== script) {
+        atomic(file, next);
+        fs.chmodSync(file, stat.mode & 0o777);
+      }
+    }
+    state.forwardsArguments = true;
+    atomic(marker, state);
+  }
   if (state?.mtime === mtime && state.globalPath === installation.hooksPath)
     return;
   const local = git(
@@ -50,6 +81,7 @@ export function ensureProjectHooks(repo) {
     atomic(marker, {
       root: repo.root,
       previousLocal: local || null,
+      forwardsArguments: true,
       path: managed,
       globalPath: installation.hooksPath,
       mtime: fs.statSync(config).mtimeMs,

@@ -29,6 +29,9 @@ export function git(cwd, args, optional = false, { raw = false } = {}) {
       windowsHide: true,
       stdio: ["ignore", "pipe", "pipe"],
       maxBuffer: 16 * 1024 * 1024,
+      ...(["fetch", "push", "ls-remote"].includes(args[0])
+        ? { timeout: 45000 }
+        : {}),
       env: {
         ...process.env,
         GIT_TRACE2_EVENT: "0",

@@ -18,6 +18,17 @@ import {
   daemonAlive,
 } from "../src/automation.js";
 import { home, json } from "../src/util.js";
+import { migrateFleet, checkpointFleet } from "../src/storage-fleet.js";
+import {
+  migrateStorage,
+  storageStatus,
+  publishStore,
+  maintainStorage,
+  retireLegacy,
+  configureStorage,
+  restoreStorage,
+} from "../src/storage.js";
+import { repoAt } from "../src/util.js";
 import { VERSION } from "../src/version.js";
 import { cliHelp, compactStatus } from "../src/cli-help.js";
 import { reconcileView, taskView } from "../src/views.js";
@@ -36,6 +47,12 @@ if (
 }
 const options = {
   workflow: { type: "string" },
+  all: { type: "boolean" },
+  "dry-run": { type: "boolean" },
+  cleanup: { type: "boolean" },
+  push: { type: "boolean" },
+  remote: { type: "string" },
+  storage: { type: "string" },
   title: { type: "string" },
   id: { type: "string" },
   targetId: { type: "string" },
@@ -108,13 +125,23 @@ try {
   if (command === "--version" || command === "version")
     process.stdout.write(VERSION + "\n");
   else if (command === "init") {
-    const r = ensure(cwd, { workflow: flags.workflow }),
+    if (flags.storage && !["shared", "legacy"].includes(flags.storage))
+      throw Error("storage must be shared or legacy");
+    const r = ensure(cwd, {
+        workflow: flags.workflow,
+        storage: flags.storage || "shared",
+      }),
       rt = new Runtime();
     try {
       rt.register(r);
     } finally {
       rt.close();
     }
+    if (flags.storage !== "legacy") {
+      await migrateStorage(cwd);
+      publishStore(r);
+    } else if (flags.storage && !["legacy", "shared"].includes(flags.storage))
+      throw Error("storage must be shared or legacy");
     print({ initialized: r.root });
   } else if (command === "install")
     print(
@@ -153,7 +180,72 @@ try {
         gitDiscovery: false,
       }),
     );
-  else if (command === "capture") {
+  else if (command === "storage") {
+    const action = positionals[0] || "status",
+      repo = repoAt(cwd);
+    if (action === "migrate") {
+      const args = {
+        roots: flags.roots || [],
+        dryRun: !!flags["dry-run"],
+        cleanup: !!flags.cleanup,
+        push: !!flags.push,
+        remote: flags.remote || "origin",
+      };
+      if (flags.all) {
+        const result = await migrateFleet({
+          ...args,
+          onProgress: (v) => process.stderr.write(JSON.stringify(v) + "\n"),
+        });
+        print(result);
+        if (result.failed) process.exitCode = 1;
+      } else {
+        const result = await migrateStorage(cwd, { ...args, cleanup: false });
+        if (!args.dryRun) {
+          result.integrations = result.worktrees.map((root) => {
+            const project = ensure(root);
+            return {
+              root,
+              preservedInstructions: project.preservedInstructions,
+            };
+          });
+          result.published = publishStore(repo, {
+            remote: args.push ? args.remote : undefined,
+            push: args.push,
+          });
+          if (args.cleanup)
+            result.retired = result.worktrees.map((root) => retireLegacy(root));
+        }
+        print(result);
+      }
+    } else if (action === "restore") {
+      if (!flags.path) throw Error("Pass --path BACKUP.ndjson.gz");
+      print(await restoreStorage(cwd, flags.path));
+    } else if (action === "sync")
+      print(
+        publishStore(repo, {
+          remote: flags.remote || "origin",
+          push: !!flags.push,
+        }),
+      );
+    else if (action === "maintain") print(maintainStorage(repo));
+    else if (action === "checkpoint")
+      print(
+        flags.all
+          ? checkpointFleet()
+          : {
+              published: publishStore(repo),
+              maintenance: maintainStorage(repo),
+            },
+      );
+    else if (action === "configure")
+      print(configureStorage(repo, JSON.parse(flags.patch || "{}")));
+    else if (action === "branches") print(storageStatus(repo).branches || []);
+    else if (action === "status") print(storageStatus(repo));
+    else
+      throw Error(
+        "Use dip storage status|migrate|sync|maintain|configure|branches",
+      );
+  } else if (command === "capture") {
     const repo = ensure(cwd, { instructions: false });
     print(
       flags.patch
@@ -195,7 +287,7 @@ try {
     });
     if (Object.keys(output).length) print(output);
   } else if (command === "git-hook") {
-    handleGitHook(positionals[0], cwd);
+    handleGitHook(positionals[0], cwd, positionals[1]);
   } else if (command === "after-git") {
     print(afterGit(positionals, cwd));
   } else if (command === "mcp") {

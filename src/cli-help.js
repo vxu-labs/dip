@@ -1,4 +1,6 @@
 export function cliHelp(command = "help", action = "") {
+  if (command === "storage")
+    return "dip storage status|branches|maintain\ndip storage migrate [--all] [--dry-run] [--cleanup] [--push] [--remote origin]\ndip storage sync [--push] [--remote origin]\ndip storage configure --patch JSON\nActivity is local and bounded; semantic metadata syncs only through dip/state. Migration creates compressed private backups and never force-pushes.\n";
   const specific = {
     adopt:
       'dip task adopt --id CAPTURED_ID --targetId EXISTING_ID --session SESSION --actor NAME --summary "Reviewed relationship" [--patch JSON] [--token TOKEN] [--targetToken TOKEN]\n',
@@ -37,6 +39,7 @@ export function cliHelp(command = "help", action = "") {
     header +
     `DIP: persistent project intent and automatic activity\n\n` +
     `dip install [--roots PATH] [--workflow automatic|reviewed]  Machine integration\n` +
+    `dip storage                    Shared storage, migration, retention and metadata sync\n` +
     `dip task requests              Captured request inbox (not work backlog)\n` +
     `dip repository [--remove]      Upgrade/remove owned repository skills and portable helper\n` +
     `dip discover-project --client NAME [--probe] [--disabled]  Explicit local Git-client callback\n` +

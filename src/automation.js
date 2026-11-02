@@ -1,3 +1,11 @@
+import { trimRuntimeLog } from "./runtime-logs.js";
+import { repoAt } from "./util.js";
+import {
+  sharedActive,
+  hasSharedTask,
+  publishStore,
+  maintainStorage,
+} from "./storage.js";
 import { workflowMode, AUTOMATIC_INSTRUCTIONS } from "./automatic.js";
 import { openProject } from "./core.js";
 import fs from "node:fs";
@@ -632,7 +640,11 @@ export function handleHook(
         rt.setSession(repo, session, task, actor);
         active = rt.session(repo, session);
       }
-      if (!fs.existsSync(path.join(repo.dir, "events", active.task))) {
+      if (
+        !(sharedActive(repo)
+          ? hasSharedTask(repo, active.task)
+          : fs.existsSync(path.join(repo.dir, "events", active.task)))
+      ) {
         const task = createTask(
           repo,
           { title: "Continue development in " + repo.branch, status: "ready" },
@@ -761,6 +773,7 @@ export function handleHook(
     const summary = {
       at: new Date().toISOString(),
       kind: event,
+      useId: input.tool_use_id || null,
       agent,
       session,
       taskId: active?.task || null,
@@ -976,10 +989,27 @@ export function handleHook(
     rt.close();
   }
 }
-export function handleGitHook(name, cwd = process.cwd()) {
+export function handleGitHook(name, cwd = process.cwd(), remote) {
+  if (process.env.DIP_INTERNAL_GIT === "1")
+    return { recorded: false, internal: true };
   const repo = openProject(cwd),
     rt = new Runtime();
   try {
+    if (
+      ["post-checkout", "post-merge", "post-rewrite"].includes(name) &&
+      sharedActive(repo) &&
+      git(repo.root, ["ls-files", "--", ".dip/events"])
+    ) {
+      execFileSync(
+        process.execPath,
+        [CLI, "storage", "migrate", "--cleanup", "--root", repo.root],
+        {
+          stdio: "pipe",
+          env: { ...process.env, DIP_INTERNAL_GIT: "1" },
+          maxBuffer: 16 * 1024 * 1024,
+        },
+      );
+    }
     rt.register(repo);
     rt.enqueue(repo, "git", {
       at: new Date().toISOString(),
@@ -993,7 +1023,13 @@ export function handleGitHook(name, cwd = process.cwd()) {
       throw new Error(
         "DIP outbox could not be persisted; run dip doctor and repair the reported project before publishing",
       );
-    if (name === "pre-commit") git(repo.root, ["add", "--", ".dip"]);
+    if (sharedActive(repo)) {
+      if (["pre-commit", "pre-push"].includes(name))
+        publishStore(repo, {
+          remote: name === "pre-push" ? remote : undefined,
+          push: name === "pre-push" && !!remote,
+        });
+    } else if (name === "pre-commit") git(repo.root, ["add", "--", ".dip"]);
     return { recorded: name };
   } finally {
     rt.close();
@@ -1268,7 +1304,9 @@ export async function runDaemon() {
   const rt = new Runtime(),
     watchers = new Map(),
     pending = new Map(),
+    pendingOrigins = new Map(),
     rootWatchers = [];
+  let lastStorageMaintenance = 0;
   const state = json(path.join(home(), "install.json"), {
     roots: [USER_HOME()],
   });
@@ -1280,6 +1318,7 @@ export async function runDaemon() {
         watcher.close();
         watchers.delete(root);
         pending.delete(root);
+        pendingOrigins.delete(root);
       }
     for (const registered of rt.repositories()) {
       if (watchers.has(registered.root) || !fs.existsSync(registered.root))
@@ -1292,6 +1331,17 @@ export async function runDaemon() {
             if (!recordablePath(registered.root, file)) return;
             if (!pending.has(registered.root))
               pending.set(registered.root, new Set());
+            if (!pendingOrigins.has(registered.root)) {
+              try {
+                const r = repoAt(registered.root);
+                pendingOrigins.set(registered.root, {
+                  worktree: r.root,
+                  branch: r.branch,
+                  head: r.head,
+                  projectFamily: r.key,
+                });
+              } catch {}
+            }
             pending.get(registered.root).add(file);
           }),
         );
@@ -1408,12 +1458,37 @@ export async function runDaemon() {
           at: new Date().toISOString(),
           kind: "files.changed",
           files: [...files],
+          origin: pendingOrigins.get(root) || null,
           agent: "filesystem",
           branch: repo.branch,
         });
         pending.delete(root);
+        pendingOrigins.delete(root);
       }
       rt.flush();
+      if (Date.now() - lastStorageMaintenance > 60000) {
+        const handled = new Set();
+        for (const registered of rt.repositories()) {
+          try {
+            const r = repoAt(registered.root);
+            if (!handled.has(r.key) && sharedActive(r)) {
+              handled.add(r.key);
+              const child = spawn(
+                process.execPath,
+                [CLI, "storage", "checkpoint", "--all", "--root", r.root],
+                {
+                  stdio: "ignore",
+                  env: { ...process.env, DIP_INTERNAL_GIT: "1" },
+                },
+              );
+              child.on("error", () => {});
+              child.unref();
+              break; // One bounded maintenance worker per recorder tick.
+            }
+          } catch {}
+        }
+        lastStorageMaintenance = Date.now();
+      }
       if (rt.lastFlushErrors.length)
         lastError = rt.lastFlushErrors.map((e) => e.error).join("; ");
       attach();
@@ -1445,6 +1520,11 @@ export async function runDaemon() {
     }
   };
   const timer = setInterval(() => {
+    try {
+      trimRuntimeLog("daemon.log");
+    } catch (error) {
+      lastError = redact(error.message);
+    }
     flushPending();
     const request = json(path.join(home(), "stop-request.json"), null);
     if (

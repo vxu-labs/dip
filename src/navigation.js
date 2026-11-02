@@ -1,3 +1,4 @@
+import { sharedActive, sharedTasks } from "./storage.js";
 import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
@@ -97,9 +98,14 @@ function index(repo, rt) {
   if (!existed)
     rt.db.prepare("DELETE FROM navigation_tasks WHERE root=?").run(repo.root);
   const base = path.join(repo.dir, "events");
-  const folders = fs
-    .readdirSync(base)
-    .filter((n) => n !== "_activity" && /^[a-zA-Z0-9_-]+$/.test(n));
+  const shared = sharedActive(repo)
+    ? new Map(sharedTasks(repo).map((r) => [r.task, r.signature]))
+    : null;
+  const folders = shared
+    ? [...shared.keys()]
+    : fs
+        .readdirSync(base)
+        .filter((n) => n !== "_activity" && /^[a-zA-Z0-9_-]+$/.test(n));
   const old = new Map(
     rt.db
       .prepare("SELECT id,signature FROM navigation_tasks WHERE root=?")
@@ -114,21 +120,29 @@ function index(repo, rt) {
       old.delete(id);
       try {
         const directory = path.join(base, id),
-          stat = fs.lstatSync(directory);
-        if (!stat.isDirectory() || stat.isSymbolicLink())
+          stat = shared ? null : fs.lstatSync(directory);
+        if (!shared && (!stat.isDirectory() || stat.isSymbolicLink()))
           throw new Error("Invalid task directory");
-        const signature = digest(
-          JSON.stringify(
-            fs
-              .readdirSync(directory)
-              .filter((s) => s.endsWith(".json") && !s.startsWith("._"))
-              .sort()
-              .map((name) => {
-                const s = fs.lstatSync(path.join(directory, name));
-                return [name, s.size, s.mtimeMs, s.ctimeMs, s.isSymbolicLink()];
-              }),
-          ),
-        );
+        const signature = shared
+          ? digest(shared.get(id))
+          : digest(
+              JSON.stringify(
+                fs
+                  .readdirSync(directory)
+                  .filter((s) => s.endsWith(".json") && !s.startsWith("._"))
+                  .sort()
+                  .map((name) => {
+                    const s = fs.lstatSync(path.join(directory, name));
+                    return [
+                      name,
+                      s.size,
+                      s.mtimeMs,
+                      s.ctimeMs,
+                      s.isSymbolicLink(),
+                    ];
+                  }),
+              ),
+            );
         if (
           rt.db
             .prepare(

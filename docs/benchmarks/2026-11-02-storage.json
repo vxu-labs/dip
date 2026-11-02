@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-02T08:35:10.719Z",
+  "platform": "darwin",
+  "node": "v24.5.0",
+  "synthetic": true,
+  "workload": {
+    "worktrees": 3,
+    "semanticEvents": 101,
+    "evidence": 100,
+    "manifestPaths": 7000,
+    "activityEvents": 500,
+    "activityPathsPerEvent": 7000
+  },
+  "before": {
+    "ledgers": [
+      {
+        "files": 605,
+        "bytes": 205423317,
+        "allocatedBytes": 206069760
+      },
+      {
+        "files": 605,
+        "bytes": 205423317,
+        "allocatedBytes": 206069760
+      },
+      {
+        "files": 605,
+        "bytes": 205423317,
+        "allocatedBytes": 206069760
+      }
+    ],
+    "gitObjects": {
+      "files": 617,
+      "bytes": 39924816,
+      "allocatedBytes": 41476096
+    }
+  },
+  "after": {
+    "ledgers": [
+      {
+        "files": 4,
+        "bytes": 26121,
+        "allocatedBytes": 36864
+      },
+      {
+        "files": 4,
+        "bytes": 26121,
+        "allocatedBytes": 36864
+      },
+      {
+        "files": 4,
+        "bytes": 26121,
+        "allocatedBytes": 36864
+      }
+    ],
+    "sharedIncludingBackup": {
+      "files": 4,
+      "bytes": 39643481,
+      "allocatedBytes": 39804928
+    },
+    "gitObjects": {
+      "files": 731,
+      "bytes": 40263422,
+      "allocatedBytes": 42242048
+    }
+  },
+  "beforeAllocated": 659685376,
+  "afterAllocated": 82157568,
+  "reduction": 0.875459467514405,
+  "migrationMs": 9684.247416999999,
+  "readMs": {
+    "p50": 816.3088339999995,
+    "p95": 956.3266250000015
+  },
+  "fidelity": {
+    "semanticEvents": 101,
+    "snapshotManifests": 1,
+    "allEvidenceReadable": true
+  },
+  "includes": [
+    "legacy Git objects retained",
+    "private compressed recovery archive",
+    "shared SQLite and WAL",
+    "all three worktree ledgers"
+  ],
+  "limits": [
+    "Synthetic file notifications, not a real recorder/checkout performance trial",
+    "Allocated blocks are not exclusive APFS physical usage",
+    "Historical Git objects were not rewritten or garbage-collected"
+  ]
+}
