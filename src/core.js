@@ -7,6 +7,7 @@ import {
 import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
+import { refreshProjectIndex } from "./project-index.js";
 import {
   atomic,
   json,
@@ -63,6 +64,7 @@ export function ensure(
     (!fs.lstatSync(dir).isDirectory() || fs.lstatSync(dir).isSymbolicLink())
   )
     throw new Error("Ledger directory must be a real project directory");
+  fs.mkdirSync(dir, { recursive: true });
   if (
     !fs.existsSync(path.join(dir, "config.json")) &&
     (storage === "shared" ||
@@ -185,6 +187,7 @@ export function openProject(cwd = process.cwd()) {
 
 export class Runtime {
   constructor(directory = home()) {
+    this.directory = path.resolve(directory);
     fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
     this.db = new DatabaseSync(path.join(directory, "runtime.sqlite"));
     this.db.exec("PRAGMA busy_timeout=5000");
@@ -231,6 +234,10 @@ export class Runtime {
     this.db
       .prepare("INSERT OR REPLACE INTO repositories VALUES (?,?,?)")
       .run(repo.root, repo.key, Date.now());
+    this.refreshProjects();
+  }
+  refreshProjects() {
+    return refreshProjectIndex(this);
   }
   repositories() {
     return this.db.prepare("SELECT * FROM repositories").all();

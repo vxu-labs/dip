@@ -1159,6 +1159,13 @@ export function scan(roots, limit = 100000) {
             });
         } catch (e) {
           result.errors.push({ root: folder, error: e.message });
+          // A custom/linked instruction file can prevent integration repair;
+          // an existing DIP project still belongs in the local catalog.
+          if (fs.existsSync(path.join(folder, ".dip", "config.json"))) {
+            try {
+              rt.register(repoAt(folder));
+            } catch {}
+          }
         }
       }
       for (const entry of entries)
@@ -1177,7 +1184,11 @@ export function scan(roots, limit = 100000) {
       });
     return result;
   } finally {
-    rt.close();
+    try {
+      rt.refreshProjects();
+    } finally {
+      rt.close();
+    }
   }
 }
 export function daemonAlive() {
@@ -1306,7 +1317,24 @@ export async function runDaemon() {
     pending = new Map(),
     pendingOrigins = new Map(),
     rootWatchers = [];
-  let lastStorageMaintenance = 0;
+  let lastStorageMaintenance = 0,
+    lastProjectIndexRefresh = 0,
+    projectIndexTimer = null;
+  const refreshIndex = () => {
+    rt.refreshProjects();
+    lastProjectIndexRefresh = Date.now();
+  };
+  const scheduleIndexRefresh = () => {
+    if (projectIndexTimer) return;
+    projectIndexTimer = setTimeout(() => {
+      projectIndexTimer = null;
+      try {
+        refreshIndex();
+      } catch (error) {
+        console.error(redact(error.message));
+      }
+    }, 300);
+  };
   const state = json(path.join(home(), "install.json"), {
     roots: [USER_HOME()],
   });
@@ -1328,6 +1356,13 @@ export async function runDaemon() {
           registered.root,
           fs.watch(registered.root, { recursive: true }, (event, filename) => {
             const file = String(filename || "").replaceAll("\\", "/");
+            if (
+              [".dip", ".dip/config.json", ".git"].includes(file) ||
+              /^\.git\/worktrees(?:\/[^/]+(?:\/(?:gitdir|commondir))?)?$/.test(
+                file,
+              )
+            )
+              scheduleIndexRefresh();
             if (!recordablePath(registered.root, file)) return;
             if (!pending.has(registered.root))
               pending.set(registered.root, new Set());
@@ -1381,9 +1416,18 @@ export async function runDaemon() {
           let candidate;
           if (gitIndex >= 0) {
             candidate = path.resolve(root, ...segments.slice(0, gitIndex));
-            if (watchers.has(candidate)) return;
+            if (watchers.has(candidate)) {
+              if (segments.length === gitIndex + 1) scheduleIndexRefresh();
+              return;
+            }
           } else if (event === "rename") {
             const changed = path.resolve(root, value);
+            if (
+              [...watchers.keys()].some(
+                (p) => changed === p || p.startsWith(changed + path.sep),
+              )
+            )
+              scheduleIndexRefresh();
             if (
               [...watchers.keys()].some(
                 (p) => changed === p || changed.startsWith(p + path.sep),
@@ -1466,6 +1510,7 @@ export async function runDaemon() {
         pendingOrigins.delete(root);
       }
       rt.flush();
+      if (Date.now() - lastProjectIndexRefresh > 5000) refreshIndex();
       if (Date.now() - lastStorageMaintenance > 60000) {
         const handled = new Set();
         for (const registered of rt.repositories()) {
@@ -1538,6 +1583,7 @@ export async function runDaemon() {
     clearInterval(timer);
     clearInterval(periodic);
     clearTimeout(scheduled);
+    clearTimeout(projectIndexTimer);
     dashboard.close();
     for (const w of [...watchers.values(), ...rootWatchers]) w.close();
     try {

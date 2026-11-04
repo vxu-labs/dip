@@ -88,6 +88,11 @@ test("minor Git commands bootstrap unknown repos without profiles, hooks or watc
       assert.equal(fs.existsSync(path.join(root, ".dip")), false);
       const result = discovery.drain();
       assert.deepEqual(result.errors, []);
+      assert.ok(
+        json(path.join(process.env.DIP_HOME, "projects.json")).projects.some(
+          (p) => p.root === root,
+        ),
+      );
       rt.flush(root);
       assert.ok(
         fs.existsSync(path.join(root, ".dip", "config.json")),

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1 — 2026-11-05
+
+- Add a single private local project index at `~/.dip/projects.json`, grouping linked worktrees and retaining independent repositories as separate projects.
+- Refresh the index through initialization, agent/Git hooks, native Git and client discovery. Recorder filesystem signals handle removals and renames, with a five-second reconciliation fallback and startup rebuild.
+- Add `dip projects` and project-index diagnostics to `dip doctor`. Serialize concurrent publishers through the runtime database and write atomically only when the index changes. Removing an active entry preserves historical registrations, semantic data and pending outbox records.
+- Include available linked worktrees automatically and keep existing DIP projects discoverable when custom instruction files prevent integration repair.
+- Fix fresh shared-storage initialization creating its `.dip` directory before writing configuration.
+
 ## 0.4.0 — 2026-11-02
 
 ### Changed

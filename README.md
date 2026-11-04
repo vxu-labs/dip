@@ -23,6 +23,7 @@ Explicit [outcome receipts](docs/completion.md) distinguish answered questions, 
 - **Clear ownership for parallel agents.** See who owns a task and its declared scope across local worktrees, and wait for conflicting work to be released.
 - **Completion you can check.** Run configured checks against the code and requirements. Earlier evidence becomes stale when the relevant inputs change.
 - **Automatic project adoption.** Install once. Compatible native Git commands, including `git status`, let the running recorder adopt projects outside watched folders.
+- **One local project index.** [`~/.dip/projects.json`](docs/project-index.md) lists available DIP projects and their linked worktrees. Hooks and the recorder keep it current as projects appear, move or disappear; `dip projects` refreshes and prints it.
 
 **Local-first. Apache-2.0. Works with Codex and Claude Code.** DIP requires Node.js 24+ and enabled, trusted agent hooks. Live coordination covers one Git worktree family on one machine. See [automation coverage](docs/automation.md), [operations and recovery](docs/operations.md), and [adapter verification](docs/compatibility.md) for supported behavior and QA boundaries.
 

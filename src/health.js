@@ -1,4 +1,5 @@
 import { storageStatus } from "./storage.js";
+import { projectIndexStatus } from "./project-index.js";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
@@ -294,6 +295,7 @@ export function automationHealth(root) {
     );
   return redactValue({
     installed: !!installation?.active,
+    projectIndex: projectIndexStatus(home()),
     storage: repo ? storageStatus(repo) : null,
     gitDiscovery: nativeGit,
     clientDiscovery: {

@@ -157,7 +157,14 @@ try {
       }),
     );
   else if (command === "uninstall") print(uninstall());
-  else if (command === "repository")
+  else if (command === "projects") {
+    const rt = new Runtime();
+    try {
+      print(rt.refreshProjects());
+    } finally {
+      rt.close();
+    }
+  } else if (command === "repository")
     print(await execute("repository", flags, cwd));
   else if (command === "discover-project")
     print(
