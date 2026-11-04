@@ -18,6 +18,12 @@ The local directory lists project locations, dashboards and worktrees. Search pr
 
 Browser restrictions can prevent direct `file:` navigation from a web page; the Open folder action and Copy path control provide explicit local access. The JSON file URLs remain useful to native clients and agents. The HTML launcher requires a running recorder; `dip start` starts it.
 
+## Favorites
+
+Project cards also have a favorite star. Favorites appear first in the directory and project selector; the Favorites filter shows only starred projects and can be bookmarked in the URL. The preference applies to the Git family, including its linked worktrees. It remains saved while a checkout is temporarily unavailable. Catalog entries expose `favorite`, with `favoriteCount` at the top level.
+
+Personal selections are stored privately in `$DIP_HOME/project-preferences.json`, separately from the rebuildable catalog and runtime cache. Regenerating the catalog does not erase them. Preference changes use the local session token and origin checks; invalid preference files are preserved for repair while normal project registration continues.
+
 ## Agent discovery across sessions
 
 Trusted SessionStart and UserPromptSubmit hooks include a compact `localProjects` descriptor with the actual catalog path, local dashboard and supported discovery commands. Projectless sessions receive this descriptor without a fabricated project or task ID. Existing owned AGENTS.md/CLAUDE.md blocks, generated skills and portable guides also explain the catalog. Custom blocks and linked instruction files remain user-owned.

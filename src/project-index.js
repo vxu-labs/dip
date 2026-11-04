@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomic, json, repoAt } from "./util.js";
+import {
+  readProjectPreferences,
+  projectPreferencesPath,
+} from "./project-preferences.js";
 
 export const projectIndexPath = (directory) =>
   path.join(directory, "projects.json");
@@ -89,6 +93,7 @@ export function listLocalProjects(
     file: index.file,
     dashboard: index.dashboard,
     projectCount: index.projectCount,
+    favoriteCount: index.favoriteCount,
     total: matched.length,
     nextOffset: offset + limit < matched.length ? offset + limit : null,
     projects: matched.slice(offset, offset + limit).map((p) => ({
@@ -117,6 +122,15 @@ export function refreshProjectIndex(runtime) {
         .sort(),
       queued = new Set(known),
       commonDirs = new Set();
+    let favorites = new Set();
+    try {
+      favorites = readProjectPreferences(runtime.directory).favorites;
+    } catch (error) {
+      errors.push({
+        root: projectPreferencesPath(runtime.directory),
+        error: error.message,
+      });
+    }
     const add = (root) => {
       if (!queued.has(root)) {
         queued.add(root);
@@ -193,6 +207,7 @@ export function refreshProjectIndex(runtime) {
         }
         return {
           id: family.id,
+          favorite: favorites.has(family.id),
           name: path.basename(primary.path),
           root: primary.path,
           gitCommonDir: family.gitCommonDir,
@@ -200,12 +215,17 @@ export function refreshProjectIndex(runtime) {
           worktrees: family.worktrees,
         };
       })
-      .sort((a, b) => a.root.localeCompare(b.root));
+      .sort(
+        (a, b) =>
+          Number(b.favorite) - Number(a.favorite) ||
+          a.root.localeCompare(b.root),
+      );
     const origin = localDashboardOrigin(runtime.directory);
     const linked = catalogForOrigin({ projects }, origin);
     const content = {
       schemaVersion: 1,
       projectCount: projects.length,
+      favoriteCount: projects.filter((project) => project.favorite).length,
       worktreeCount: projects.reduce((n, p) => n + p.worktrees.length, 0),
       dashboard: {
         url: origin + "/local",
@@ -270,6 +290,7 @@ export function projectIndexStatus(directory) {
       available: !!index,
       schemaVersion: index?.schemaVersion || null,
       projectCount: index?.projectCount ?? null,
+      favoriteCount: index?.favoriteCount ?? 0,
       worktreeCount: index?.worktreeCount ?? null,
       updatedAt: index?.updatedAt || null,
       dashboard: index?.dashboard || null,

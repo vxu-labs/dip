@@ -1169,6 +1169,36 @@ label select {
 .project-card h3 {
   margin: 14px 0 8px;
 }
+.project-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.favorite-star {
+  padding: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--muted);
+  background: transparent;
+  flex-shrink: 0;
+}
+.favorite-star[aria-pressed="true"] {
+  color: #a96800;
+  background: #fff4d8;
+  border-color: #e7c46b;
+}
+#favorites-filter {
+  white-space: nowrap;
+}
+#favorites-filter[aria-pressed="true"] {
+  color: #865319;
+  background: #fff4d8;
+  border-color: #e7c46b;
+}
 .project-path,
 .worktree-link code {
   overflow-wrap: anywhere;

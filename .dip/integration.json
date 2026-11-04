@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "0.4.2",
+  "version": "0.4.3",
   "files": {
     ".agents/skills/dip/SKILL.md": "466a770602a22c47bd322511e4824b1206ddc1aa55f240cef964560cb16f249e",
     ".claude/skills/dip/SKILL.md": "466a770602a22c47bd322511e4824b1206ddc1aa55f240cef964560cb16f249e",

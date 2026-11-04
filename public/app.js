@@ -16,6 +16,7 @@ const initialQuery = new URLSearchParams(location.search);
 let catalog = {
     projects: [],
     projectCount: 0,
+    favoriteCount: 0,
     worktreeCount: 0,
     errors: [],
     file: "Loading local directory…",
@@ -33,6 +34,8 @@ let state = { tasks: [], activity: [], checks: [] },
   signature = "",
   currentDetail = null;
 let editingTask = null;
+let favoritesOnly = initialQuery.get("favorites") === "1";
+const pendingFavorites = new Set();
 if (
   localDashboard &&
   ["projects", "overview", "board", "activity", "schedule"].includes(
@@ -152,7 +155,7 @@ async function refresh(force = false) {
           catalog.projects
             .map(
               (p) =>
-                `<optgroup label="${escape(p.name + " · " + p.root)}">${p.worktrees.map((w) => `<option value="${escape(w.path)}">${escape(short(w.path))} · ${escape(w.path)}</option>`).join("")}</optgroup>`,
+                `<optgroup label="${escape((p.favorite ? "★ " : "") + p.name + " · " + p.root)}">${p.worktrees.map((w) => `<option value="${escape(w.path)}">${escape(short(w.path))} · ${escape(w.path)}</option>`).join("")}</optgroup>`,
             )
             .join("")
         : projects
@@ -221,6 +224,7 @@ function updateLocation() {
   if (!localDashboard) return;
   const query = new URLSearchParams();
   if (selected) query.set("root", selected);
+  if (favoritesOnly) query.set("favorites", "1");
   if (view !== "overview" && !(view === "projects" && !selected))
     query.set("view", view);
   history.replaceState(null, "", "/local" + (query.size ? "?" + query : ""));
@@ -253,14 +257,30 @@ async function chooseProject(root) {
   $("#content").innerHTML = '<div class="empty">Loading project…</div>';
   await refresh(true);
 }
+function projectCard(p) {
+  const favoriteLabel =
+    (p.favorite ? "Remove from favorites: " : "Add to favorites: ") + p.name;
+  return `<article class="project-card" data-project-id="${escape(p.id)}" data-favorite="${!!p.favorite}">
+    <div class="project-card-header"><span class="badge">Local project</span>
+      <button class="favorite-star" data-favorite-id="${escape(p.id)}" data-favorite-next="${!p.favorite}" aria-pressed="${!!p.favorite}" aria-label="${escape(favoriteLabel)}" title="${escape(favoriteLabel)}" ${pendingFavorites.has(p.id) ? "disabled" : ""}>${p.favorite ? "★" : "☆"}</button>
+    </div>
+    <h3 dir="auto">${escape(p.name)}</h3><p class="project-path" dir="auto">${escape(p.root)}</p>
+    <div class="project-actions"><button class="primary" data-project-root="${escape(p.root)}">Open project</button><a href="${escape(p.links.dashboard)}" target="_blank" rel="noopener">Project dashboard ↗</a><button data-open-folder="${escape(p.root)}">Open folder</button><button data-copy-path="${escape(p.root)}">Copy path</button></div>
+    <details><summary>${p.worktrees.length} worktree${p.worktrees.length === 1 ? "" : "s"}</summary>${p.worktrees.map((w) => `<div class="worktree-link"><button data-project-root="${escape(w.path)}">${escape(short(w.path))}</button><code dir="auto">${escape(w.path)}</code></div>`).join("")}</details>
+  </article>`;
+}
 function renderProjectCatalog() {
   const query = $("#search").value.toLocaleLowerCase();
-  const projects = catalog.projects.filter((p) =>
-    JSON.stringify([p.name, p.root, p.worktrees.map((w) => w.path)])
-      .toLocaleLowerCase()
-      .includes(query),
+  const projects = catalog.projects.filter(
+    (p) =>
+      (!favoritesOnly || p.favorite) &&
+      JSON.stringify([p.name, p.root, p.worktrees.map((w) => w.path)])
+        .toLocaleLowerCase()
+        .includes(query),
   );
-  $("#heading").textContent = "All local projects";
+  $("#heading").textContent = favoritesOnly
+    ? "Favorite projects"
+    : "All local projects";
   $(".subtitle").textContent =
     "Choose a project to see its tasks, handoffs, activity and verification.";
   $("#section-label").textContent = "PROJECTS ON THIS COMPUTER";
@@ -269,6 +289,7 @@ function renderProjectCatalog() {
   $("#automation-status").textContent = "Project directory: " + catalog.file;
   $("#metrics").innerHTML = [
     ["Local projects", catalog.projectCount],
+    ["Favorites", catalog.favoriteCount || 0],
     ["Worktrees", catalog.worktreeCount],
     ["Matching projects", projects.length],
   ]
@@ -278,13 +299,59 @@ function renderProjectCatalog() {
     )
     .join("");
   $("#content").innerHTML =
-    `<div class="project-grid">${projects.map((p) => `<article class="project-card"><span class="badge">Local project</span><h3 dir="auto">${escape(p.name)}</h3><p class="project-path" dir="auto">${escape(p.root)}</p><div class="project-actions"><button class="primary" data-project-root="${escape(p.root)}">Open project</button><a href="${escape(p.links.dashboard)}" target="_blank" rel="noopener">Project dashboard ↗</a><button data-open-folder="${escape(p.root)}">Open folder</button><button data-copy-path="${escape(p.root)}">Copy path</button></div><details><summary>${p.worktrees.length} worktree${p.worktrees.length === 1 ? "" : "s"}</summary>${p.worktrees.map((w) => `<div class="worktree-link"><button data-project-root="${escape(w.path)}">${escape(short(w.path))}</button><code dir="auto">${escape(w.path)}</code></div>`).join("")}</details></article>`).join("") || '<div class="empty">No matching local projects.</div>'}</div>`;
+    '<div class="project-grid">' +
+    (projects.map(projectCard).join("") ||
+      '<div class="empty">' +
+        (favoritesOnly
+          ? "No matching favorite projects. <button data-show-all-projects>Show all projects</button>"
+          : "No matching local projects.") +
+        "</div>") +
+    "</div>";
   document
     .querySelectorAll("[data-project-root]")
     .forEach(
       (button) =>
         (button.onclick = () => chooseProject(button.dataset.projectRoot)),
     );
+  document.querySelectorAll("[data-favorite-id]").forEach(
+    (button) =>
+      (button.onclick = async () => {
+        const id = button.dataset.favoriteId;
+        if (pendingFavorites.has(id)) return;
+        pendingFavorites.add(id);
+        button.disabled = true;
+        try {
+          const favorite = button.dataset.favoriteNext === "true";
+          const response = await fetch("/api/project-favorite", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-dip-token": token,
+            },
+            body: JSON.stringify({ id, favorite }),
+          });
+          const data = await response.json();
+          if (!response.ok)
+            throw Error(data.error || "Favorite could not be saved");
+          await refresh(true);
+          notify(
+            data.favorite ? "Added to favorites." : "Removed from favorites.",
+          );
+        } catch (error) {
+          notify(error.message);
+        } finally {
+          pendingFavorites.delete(id);
+          document.querySelectorAll("[data-favorite-id]").forEach((node) => {
+            node.disabled = pendingFavorites.has(node.dataset.favoriteId);
+          });
+        }
+      }),
+  );
+  $("[data-show-all-projects]")?.addEventListener("click", () => {
+    favoritesOnly = false;
+    updateLocation();
+    render();
+  });
   document.querySelectorAll("[data-copy-path]").forEach(
     (button) =>
       (button.onclick = async () => {
@@ -331,6 +398,11 @@ function column(title, tasks) {
 }
 function render() {
   updateNavigation();
+  const favoritesFilter = $("#favorites-filter");
+  if (favoritesFilter) {
+    favoritesFilter.hidden = view !== "projects";
+    favoritesFilter.setAttribute("aria-pressed", String(favoritesOnly));
+  }
   $("#task-kind").hidden = view === "projects";
   $("#search").placeholder =
     view === "projects"
@@ -793,6 +865,12 @@ document.querySelectorAll(".nav[data-view]").forEach(
     }),
 );
 $("#search").oninput = render;
+if ($("#favorites-filter"))
+  $("#favorites-filter").onclick = () => {
+    favoritesOnly = !favoritesOnly;
+    updateLocation();
+    render();
+  };
 $("#task-kind").onchange = render;
 $("#projects").onchange = () => {
   chooseProject($("#projects").value);

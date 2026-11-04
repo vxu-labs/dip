@@ -396,6 +396,54 @@ try {
       "Project dashboard",
     ),
   );
+  const favoriteCard = page
+    .locator(".project-card")
+    .filter({ hasText: otherRepo.root });
+  const favoriteId = await favoriteCard.getAttribute("data-project-id");
+  await favoriteCard.locator(".favorite-star").click();
+  await page.waitForFunction(
+    (id) =>
+      document
+        .querySelector(`[data-favorite-id="${id}"]`)
+        ?.getAttribute("aria-pressed") === "true",
+    favoriteId,
+  );
+  assert.equal(
+    await page.locator(".project-card").first().getAttribute("data-project-id"),
+    favoriteId,
+  );
+  await page.reload();
+  await page.waitForFunction(
+    (id) =>
+      document
+        .querySelector(`[data-favorite-id="${id}"]`)
+        ?.getAttribute("aria-pressed") === "true",
+    favoriteId,
+  );
+  await page.locator("#favorites-filter").click();
+  await page
+    .getByRole("heading", { name: "Favorite projects", exact: true })
+    .waitFor();
+  assert.equal(await page.locator(".project-card").count(), 1);
+  await page.reload();
+  await page
+    .getByRole("heading", { name: "Favorite projects", exact: true })
+    .waitFor();
+  await page.locator(".favorite-star").click();
+  await page
+    .getByRole("button", { name: "Show all projects", exact: true })
+    .waitFor();
+  await page
+    .getByRole("button", { name: "Show all projects", exact: true })
+    .click();
+  await favoriteCard.locator(".favorite-star").click();
+  await page.waitForFunction(
+    (id) =>
+      document
+        .querySelector(`[data-favorite-id="${id}"]`)
+        ?.getAttribute("aria-pressed") === "true",
+    favoriteId,
+  );
   await page.screenshot({
     path: "/tmp/dip-local-dashboard-desktop.png",
     fullPage: true,

@@ -9,6 +9,7 @@ import { automationHealth } from "./health.js";
 import { VERSION } from "./version.js";
 import { catalogForOrigin } from "./project-index.js";
 import { openProjectFolder } from "./open-folder.js";
+import { setProjectFavorite } from "./project-preferences.js";
 
 const publicDir = fileURLToPath(new URL("../public/", import.meta.url));
 export function createServer({
@@ -107,6 +108,32 @@ export function createServer({
       if (url.pathname === "/api/catalog") {
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify({ ...catalog, version: VERSION }));
+        return;
+      }
+      if (url.pathname === "/api/project-favorite" && req.method === "POST") {
+        if (req.headers["x-dip-token"] !== token) {
+          res.writeHead(403);
+          res.end("Token required");
+          return;
+        }
+        let body = "";
+        for await (const chunk of req) {
+          body += chunk;
+          if (body.length > 4096) {
+            res.writeHead(413);
+            res.end();
+            return;
+          }
+        }
+        const { id, favorite } = JSON.parse(body);
+        const preferences = new Runtime();
+        try {
+          const result = setProjectFavorite(preferences, id, favorite);
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ id: result.id, favorite: result.favorite }));
+        } finally {
+          preferences.close();
+        }
         return;
       }
       if (url.pathname === "/api/open-project" && req.method === "POST") {

@@ -10,7 +10,7 @@ You ask your agent to remember a feature for later. A migration stops halfway th
 
 Your coding agent supplies the intent. DIP's automatic capture makes **no model calls**. Planning and task management use your agent's normal tool loop and add measurable overhead.
 
-**Storage in 0.4:** dynamic history is shared across local worktrees and synchronized through one `dip/state` metadata branch. Detailed activity stays local with retention and size budgets; snapshot manifests are deduplicated. Run `dip storage migrate --all --dry-run` to inspect existing projects, then follow the [migration and recovery guide](docs/storage.md). See [CHANGELOG](CHANGELOG.md). Until the npm release is published, install this repository release with `npm install -g github:vxu-labs/dip#v0.4.2`.
+**Storage in 0.4:** dynamic history is shared across local worktrees and synchronized through one `dip/state` metadata branch. Detailed activity stays local with retention and size budgets; snapshot manifests are deduplicated. Run `dip storage migrate --all --dry-run` to inspect existing projects, then follow the [migration and recovery guide](docs/storage.md). See [CHANGELOG](CHANGELOG.md). Until the npm release is published, install this repository release with `npm install -g github:vxu-labs/dip#v0.4.3`.
 
 ## What you get
 

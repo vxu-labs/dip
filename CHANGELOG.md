@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.3 — 2026-11-05
+
+- Add project favorite stars, a Favorites-only directory filter and favorite-first project ordering. Favorites are shared by linked worktrees and persist locally across reloads and catalog/runtime-cache rebuilds.
+- Store preferences separately from the generated catalog, serialize concurrent updates and protect preference changes with the local dashboard session token, origin checks and registered family IDs. Corrupt preferences are preserved and reported without blocking project registration.
+
 ## 0.4.2 — 2026-11-05
 
 - Extend the private project catalog with folder, dashboard, local-workspace and live task-data links for each project and worktree.
