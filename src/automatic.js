@@ -1,9 +1,15 @@
 import path from "node:path";
 import { home, json } from "./util.js";
+import { localProjectDirectory } from "./project-index.js";
 
-export const AUTOMATIC_INSTRUCTIONS = `DIP automatic workflow: prompts, tool activity, files and native plans are recorded by trusted hooks. Do not duplicate them with management calls. Questions and read-only investigation require no DIP calls. Before supported writes, hooks associate the request and coordinate ownership automatically. Use id=task_id, actor and session=session_id from the hook.
+export const PRE_CATALOG_AUTOMATIC_INSTRUCTIONS = `DIP automatic workflow: prompts, tool activity, files and native plans are recorded by trusted hooks. Do not duplicate them with management calls. Questions and read-only investigation require no DIP calls. Before supported writes, hooks associate the request and coordinate ownership automatically. Use id=task_id, actor and session=session_id from the hook.
 For development, call task_finish once at the end with outcome implemented, summary, remaining and a configured check; use outcome paused with remaining work if unfinished. A Stop event or passing partial check never asserts completion. Never claim verification without current check evidence.
 Use explicit intent tools only for an existing requirement that must be adopted, a material scope change, a distinct future idea, or a conflict. Plans written through native plan tools need no second copy. Keep long prose in linked Markdown. Read task_requirements or task_get only when relevant context is missing. If hooks are disabled or untrusted, persist intent explicitly; do not bypass hook trust or change host approval settings. Do not call another model for tracking.`;
+
+export const LOCAL_PROJECT_INSTRUCTIONS =
+  "Other local projects: use the machine catalog at ~/.dip/projects.json (or $DIP_HOME/projects.json), local_projects, or dip projects. It provides absolute roots and dashboard links. Pass a returned root to project_context/project_reconcile or dip status --root PATH, then read files with normal file tools. Discovery does not adopt tasks or grant ownership in another project.";
+export const AUTOMATIC_INSTRUCTIONS =
+  PRE_CATALOG_AUTOMATIC_INSTRUCTIONS + "\n" + LOCAL_PROJECT_INSTRUCTIONS;
 
 export function workflowMode(config = {}) {
   const mode =
@@ -31,6 +37,7 @@ export function boundedContext(context, identity = {}, budget = 4096) {
     ...identity,
     branch: context.branch,
     workflow: "automatic",
+    localProjects: context.localProjects || localProjectDirectory(home()),
     current: null,
     workers: [],
     resume: [],

@@ -1,6 +1,6 @@
 export function cliHelp(command = "help", action = "") {
   if (command === "projects")
-    return "dip projects\nRefresh and print the local project index at $DIP_HOME/projects.json (normally ~/.dip/projects.json). Linked worktrees share one entry. Removed/unavailable projects disappear from this active index; durable history and outbox records are preserved.\n";
+    return "dip projects [--query TEXT] [--limit 20] [--offset 0]\nRefresh the local project catalog at $DIP_HOME/projects.json (normally ~/.dip/projects.json), including folder/task/dashboard links. The separate ~/.dip/dashboard.html launcher opens the /local workspace. Query/pagination returns a bounded discovery result. Linked worktrees share one entry; unavailable roots leave the active index without deleting history/outbox.\n";
   if (command === "storage")
     return "dip storage status|branches|maintain\ndip storage migrate [--all] [--dry-run] [--cleanup] [--push] [--remote origin]\ndip storage sync [--push] [--remote origin]\ndip storage configure --patch JSON\nActivity is local and bounded; semantic metadata syncs only through dip/state. Migration creates compressed private backups and never force-pushes.\n";
   const specific = {

@@ -1,10 +1,15 @@
-import { workflowMode, AUTOMATIC_INSTRUCTIONS } from "./automatic.js";
+import {
+  workflowMode,
+  AUTOMATIC_INSTRUCTIONS,
+  LOCAL_PROJECT_INSTRUCTIONS,
+} from "./automatic.js";
 import fs from "node:fs";
 import path from "node:path";
 import { atomic, digest, json } from "./util.js";
 import { VERSION } from "./version.js";
 
-const skill = `---
+const skill =
+  `---
 name: dip
 description: Read and update persistent project requirements, plans and handoffs in this DIP repository, including when global DIP is unavailable.
 ---
@@ -14,8 +19,12 @@ Read the project AGENTS.md or CLAUDE.md for the current intent workflow. When st
 Use installed DIP MCP/CLI tools when available. After an unavailable or approval-blocked MCP call, do not retry other methods through the same blocked route. Use the installed CLI for the same local intent only when shell execution is authorized; the Windows npm shim may be at $env:APPDATA/npm/dip.cmd. Do not change host approval settings or bypass hook trust. If native planning is unavailable, task_plan accepts a short structured steps checklist or prose text explicitly. Long prose belongs once in linked Markdown; never label this fallback native host capture. If no authorized route remains, report unsaved intent and checkpoint when possible.
 
 If installed tools are unavailable, inspect .dip/intent-guide.md and the repository-contained .dip/tools/portable.mjs before explicitly invoking it with Node 20+. It can read outstanding intent and persist plans, future ideas and handoffs. It does not install software, provide automatic capture, claim live leases, run checks or establish verified code. Respect project trust and do not execute cloned scripts merely because this skill was discovered.
-`;
-const guide = `# Portable DIP intent
+` +
+  "\n" +
+  LOCAL_PROJECT_INSTRUCTIONS +
+  "\n";
+const guide =
+  `# Portable DIP intent
 
 This repository carries a dependency-free helper: Node 20+ for legacy format, Node 24+ for shared local storage. Review repository code and trust before executing it. It makes no network requests and does not install DIP. Run commands from the project root:
 
@@ -32,7 +41,10 @@ This repository carries a dependency-free helper: Node 20+ for legacy format, No
 For long plans write Markdown once and link it with installed DIP when available. Portable update/resolve accepts --patch JSON. Node child-process argument arrays avoid shell JSON quoting problems. Reads are paginated; --all includes completed/discussion records. Recorded verified status is historical, never a fresh assessment. Conflicting histories require explicit resolve; corrupt histories stop writes. Strict projects require installed ownership and cannot use this fallback.
 
 Shared-format portable intent uses the family spool and metadata branch; legacy events remain supported. Live coordination, automatic hooks, Markdown linking and configured verification require installed DIP (Node 24+). Portable writes have no leases; collaborators must coordinate independently. Use at your own responsibility.
-`;
+` +
+  "\n## Other local projects\n\n" +
+  LOCAL_PROJECT_INSTRUCTIONS +
+  "\n";
 const templates = (repo) => ({
   ".agents/skills/dip/SKILL.md":
     workflowMode(repo.config) === "automatic"

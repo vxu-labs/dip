@@ -10,7 +10,7 @@ You ask your agent to remember a feature for later. A migration stops halfway th
 
 Your coding agent supplies the intent. DIP's automatic capture makes **no model calls**. Planning and task management use your agent's normal tool loop and add measurable overhead.
 
-**Storage in 0.4:** dynamic history is shared across local worktrees and synchronized through one `dip/state` metadata branch. Detailed activity stays local with retention and size budgets; snapshot manifests are deduplicated. Run `dip storage migrate --all --dry-run` to inspect existing projects, then follow the [migration and recovery guide](docs/storage.md). See [CHANGELOG](CHANGELOG.md). Until the npm release is published, install this repository release with `npm install -g github:vxu-labs/dip#v0.4.0`.
+**Storage in 0.4:** dynamic history is shared across local worktrees and synchronized through one `dip/state` metadata branch. Detailed activity stays local with retention and size budgets; snapshot manifests are deduplicated. Run `dip storage migrate --all --dry-run` to inspect existing projects, then follow the [migration and recovery guide](docs/storage.md). See [CHANGELOG](CHANGELOG.md). Until the npm release is published, install this repository release with `npm install -g github:vxu-labs/dip#v0.4.2`.
 
 ## What you get
 
@@ -24,6 +24,7 @@ Explicit [outcome receipts](docs/completion.md) distinguish answered questions, 
 - **Completion you can check.** Run configured checks against the code and requirements. Earlier evidence becomes stale when the relevant inputs change.
 - **Automatic project adoption.** Install once. Compatible native Git commands, including `git status`, let the running recorder adopt projects outside watched folders.
 - **One local project index.** [`~/.dip/projects.json`](docs/project-index.md) lists available DIP projects and their linked worktrees. Hooks and the recorder keep it current as projects appear, move or disappear; `dip projects` refreshes and prints it.
+- **A dedicated local workspace.** Open `~/.dip/dashboard.html` for the local project directory, then switch projects using the same task, board, activity and scheduling views as the main dashboard. Catalog entries link to folders, individual dashboards and live task data. Trusted hooks tell agents where to find other projects; `local_projects` provides bounded MCP discovery even without a current Git project.
 
 **Local-first. Apache-2.0. Works with Codex and Claude Code.** DIP requires Node.js 24+ and enabled, trusted agent hooks. Live coordination covers one Git worktree family on one machine. See [automation coverage](docs/automation.md), [operations and recovery](docs/operations.md), and [adapter verification](docs/compatibility.md) for supported behavior and QA boundaries.
 

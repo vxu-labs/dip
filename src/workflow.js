@@ -73,7 +73,9 @@ export function planInput(tool, input) {
 }
 
 export const readingTool = (name) =>
-  /(?:^|[.:])(?:Read|Glob|Grep|read_file|list_files)$/i.test(name);
+  /(?:^|[.:])(?:Read|Glob|Grep|read_file|list_files|local_projects)$/i.test(
+    name,
+  );
 
 // Status classification only: unknown shell syntax still takes the coordination path.
 // Conservative single-command grammar. Metacharacters, expansion, escapes and
@@ -166,7 +168,7 @@ export function intentCommand(input) {
     /^(?:dip(?:\.cmd|\.ps1)?|["'][^"']*[/\\]dip(?:\.cmd|\.ps1)["'])\s+/i;
   const args = command.replace(launcher, "");
   if (args === command) return false;
-  return /^(?:context|status|reconcile|doctor|init|capture|search|owners|repository|discover-project|task\s+(?:create|get|next|update|prepare|adopt|finish|plan|checkpoint|decision|claim|release|heartbeat|verify|requirements|changes|related|document-(?:link|unlink|list|read)))(?:\s|$)/.test(
+  return /^(?:context|status|reconcile|doctor|projects|init|capture|search|owners|repository|discover-project|task\s+(?:create|get|next|update|prepare|adopt|finish|plan|checkpoint|decision|claim|release|heartbeat|verify|requirements|changes|related|document-(?:link|unlink|list|read)))(?:\s|$)/.test(
     args,
   );
 }

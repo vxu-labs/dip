@@ -11,13 +11,35 @@ const $ = (s) => document.querySelector(s),
           "'": "&#39;",
         })[c],
     );
+const localDashboard = document.documentElement.dataset.dashboard === "local";
+const initialQuery = new URLSearchParams(location.search);
+let catalog = {
+    projects: [],
+    projectCount: 0,
+    worktreeCount: 0,
+    errors: [],
+    file: "Loading local directory…",
+  },
+  refreshGeneration = 0,
+  refreshInFlight = 0;
 let state = { tasks: [], activity: [], checks: [] },
-  view = "overview",
+  view = localDashboard
+    ? initialQuery.get("root")
+      ? "overview"
+      : "projects"
+    : "overview",
   selected = new URLSearchParams(location.search).get("root") || "",
   token = "",
   signature = "",
   currentDetail = null;
 let editingTask = null;
+if (
+  localDashboard &&
+  ["projects", "overview", "board", "activity", "schedule"].includes(
+    initialQuery.get("view"),
+  )
+)
+  view = initialQuery.get("view");
 let healthAt = 0,
   healthRoot = "";
 const leases = new Map();
@@ -95,23 +117,76 @@ async function action(action, args) {
   return data;
 }
 async function refresh(force = false) {
+  const generation = ++refreshGeneration;
+  refreshInFlight++;
   try {
-    const projects = await (await fetch("/api/projects")).json();
+    let projects;
+    if (localDashboard) {
+      const response = await fetch("/api/catalog");
+      const data = await response.json();
+      if (!response.ok) throw Error(data.error || "Catalog unavailable");
+      if (generation !== refreshGeneration) return;
+      catalog = data;
+      projects = catalog.projects.flatMap((p) =>
+        p.worktrees.map((w) => w.path),
+      );
+      $("#app-version").textContent = `v${catalog.version} · Local projects`;
+    } else projects = await (await fetch("/api/projects")).json();
+    if (generation !== refreshGeneration) return;
     const select = $("#projects");
-    if (JSON.stringify(projects) !== select.dataset.values) {
-      select.innerHTML = projects
-        .map((p) => `<option value="${escape(p)}">${escape(short(p))}</option>`)
-        .join("");
-      select.dataset.values = JSON.stringify(projects);
+    const values = JSON.stringify(localDashboard ? catalog.projects : projects);
+    if (values !== select.dataset.values) {
+      if (selected && !projects.includes(selected)) {
+        selected = "";
+        currentDetail = null;
+        $("#detail-dialog").close();
+        $("#task-dialog").close();
+        if (localDashboard) {
+          view = "projects";
+          $("#search").value = "";
+          updateLocation();
+        }
+      }
+      select.innerHTML = localDashboard
+        ? '<option value="">Choose a local project</option>' +
+          catalog.projects
+            .map(
+              (p) =>
+                `<optgroup label="${escape(p.name + " · " + p.root)}">${p.worktrees.map((w) => `<option value="${escape(w.path)}">${escape(short(w.path))} · ${escape(w.path)}</option>`).join("")}</optgroup>`,
+            )
+            .join("")
+        : projects
+            .map(
+              (p) =>
+                `<option value="${escape(p)}">${escape(short(p))}</option>`,
+            )
+            .join("");
+      select.dataset.values = values;
       if (selected) select.value = selected;
-      else selected = select.value;
+      else if (!localDashboard) selected = select.value;
     }
+    if (localDashboard && (view === "projects" || !selected)) {
+      view = "projects";
+      $("#connection").textContent = "Local connection active";
+      $(".sidebar-bottom").dataset.connected = "true";
+      $("#updated").textContent = "Updated " + new Date().toLocaleTimeString();
+      const next = JSON.stringify(catalog);
+      if (force || next !== signature) {
+        signature = next;
+        render();
+      }
+      return;
+    }
+    const requestedRoot = selected;
     const data = await (await fetch(url("/api/state"))).json();
+    if (generation !== refreshGeneration || requestedRoot !== selected) return;
     if (data.error) throw new Error(data.error);
     state = data;
     $("#app-version").textContent = `v${data.version} · Apache-2.0`;
     if (selected !== healthRoot || Date.now() - healthAt > 10000) {
       const health = await (await fetch(url("/api/health"))).json();
+      if (generation !== refreshGeneration || requestedRoot !== selected)
+        return;
       healthAt = Date.now();
       healthRoot = selected;
       const messages = [...(health.issues || []), ...(health.advisories || [])];
@@ -126,7 +201,7 @@ async function refresh(force = false) {
     $(".sidebar-bottom").dataset.connected = "true";
     $("#branch").textContent = state.repo?.branch || "No project yet";
     $("#updated").textContent = "Updated " + new Date().toLocaleTimeString();
-    const next = JSON.stringify(data);
+    const next = JSON.stringify([data, localDashboard ? catalog : null]);
     if (force || next !== signature) {
       signature = next;
       render();
@@ -134,10 +209,119 @@ async function refresh(force = false) {
         renderDetail(currentDetail);
     }
   } catch (e) {
+    if (generation !== refreshGeneration) return;
     $("#connection").textContent = "Connection unavailable";
     $(".sidebar-bottom").dataset.connected = "false";
     notify(e.message);
+  } finally {
+    refreshInFlight--;
   }
+}
+function updateLocation() {
+  if (!localDashboard) return;
+  const query = new URLSearchParams();
+  if (selected) query.set("root", selected);
+  if (view !== "overview" && !(view === "projects" && !selected))
+    query.set("view", view);
+  history.replaceState(null, "", "/local" + (query.size ? "?" + query : ""));
+}
+function updateNavigation() {
+  document.querySelectorAll(".nav[data-view]").forEach((node) => {
+    const active = node.dataset.view === view;
+    node.classList.toggle("active", active);
+    if (active) node.setAttribute("aria-current", "page");
+    else node.removeAttribute("aria-current");
+  });
+}
+async function chooseProject(root) {
+  selected = root;
+  $("#projects").value = selected;
+  currentDetail = null;
+  editingTask = null;
+  $("#detail-dialog").close();
+  $("#task-dialog").close();
+  state = { tasks: [], activity: [], checks: [] };
+  signature = "";
+  $("#search").value = "";
+  healthAt = 0;
+  if (localDashboard) {
+    view = selected ? "overview" : "projects";
+    updateLocation();
+    updateNavigation();
+  }
+  $("#new-task").disabled = true;
+  $("#content").innerHTML = '<div class="empty">Loading project…</div>';
+  await refresh(true);
+}
+function renderProjectCatalog() {
+  const query = $("#search").value.toLocaleLowerCase();
+  const projects = catalog.projects.filter((p) =>
+    JSON.stringify([p.name, p.root, p.worktrees.map((w) => w.path)])
+      .toLocaleLowerCase()
+      .includes(query),
+  );
+  $("#heading").textContent = "All local projects";
+  $(".subtitle").textContent =
+    "Choose a project to see its tasks, handoffs, activity and verification.";
+  $("#section-label").textContent = "PROJECTS ON THIS COMPUTER";
+  $("#branch").textContent = "Local workspace";
+  $("#automation-status").className = "automation";
+  $("#automation-status").textContent = "Project directory: " + catalog.file;
+  $("#metrics").innerHTML = [
+    ["Local projects", catalog.projectCount],
+    ["Worktrees", catalog.worktreeCount],
+    ["Matching projects", projects.length],
+  ]
+    .map(
+      ([label, count]) =>
+        `<div class="metric"><div class="metric-label">${label}</div><div class="metric-number">${count}</div><div class="metric-note">Available on this computer</div></div>`,
+    )
+    .join("");
+  $("#content").innerHTML =
+    `<div class="project-grid">${projects.map((p) => `<article class="project-card"><span class="badge">Local project</span><h3 dir="auto">${escape(p.name)}</h3><p class="project-path" dir="auto">${escape(p.root)}</p><div class="project-actions"><button class="primary" data-project-root="${escape(p.root)}">Open project</button><a href="${escape(p.links.dashboard)}" target="_blank" rel="noopener">Project dashboard ↗</a><button data-open-folder="${escape(p.root)}">Open folder</button><button data-copy-path="${escape(p.root)}">Copy path</button></div><details><summary>${p.worktrees.length} worktree${p.worktrees.length === 1 ? "" : "s"}</summary>${p.worktrees.map((w) => `<div class="worktree-link"><button data-project-root="${escape(w.path)}">${escape(short(w.path))}</button><code dir="auto">${escape(w.path)}</code></div>`).join("")}</details></article>`).join("") || '<div class="empty">No matching local projects.</div>'}</div>`;
+  document
+    .querySelectorAll("[data-project-root]")
+    .forEach(
+      (button) =>
+        (button.onclick = () => chooseProject(button.dataset.projectRoot)),
+    );
+  document.querySelectorAll("[data-copy-path]").forEach(
+    (button) =>
+      (button.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyPath);
+          notify("Project path copied.");
+        } catch {
+          notify("Project path: " + button.dataset.copyPath);
+        }
+      }),
+  );
+  document.querySelectorAll("[data-open-folder]").forEach(
+    (button) =>
+      (button.onclick = async () => {
+        button.disabled = true;
+        try {
+          const response = await fetch(
+            "/api/open-project?root=" +
+              encodeURIComponent(button.dataset.openFolder),
+            { method: "POST", headers: { "x-dip-token": token } },
+          );
+          const data = await response.json();
+          if (!response.ok)
+            throw Error(data.error || "Folder could not be opened");
+          notify("Opened " + data.root);
+        } catch (error) {
+          notify(error.message);
+        } finally {
+          button.disabled = false;
+        }
+      }),
+  );
+  if (catalog.errors.length)
+    notify(
+      "Some project entries need attention: " +
+        catalog.errors.map((e) => e.error).join("; "),
+    );
 }
 function card(t) {
   return `<button class="card" data-task="${escape(t.id)}"><span class="badge ${label(t)}">${escape(label(t).replaceAll("_", " "))}</span><h3>${escape(t.title)}</h3><p>${escape(t.scope.join(" · ") || t.description.slice(0, 100) || "Scope not yet specified")}</p><div class="card-footer"><span>${escape(t.lease?.actor || "Unassigned")}</span><span>${t.due ? escape(t.due) : escape(t.id.slice(-8))}</span></div></button>`;
@@ -146,6 +330,22 @@ function column(title, tasks) {
   return `<div><h2 class="column-title">${title}<span>${tasks.length}</span></h2>${tasks.length ? tasks.map(card).join("") : '<div class="empty"><strong>A little room for what’s next.</strong>Saved work will appear here.</div>'}</div>`;
 }
 function render() {
+  updateNavigation();
+  $("#task-kind").hidden = view === "projects";
+  $("#search").placeholder =
+    view === "projects"
+      ? "Search local projects or paths"
+      : "Search tasks, agents, or scope";
+  $("#search").setAttribute(
+    "aria-label",
+    view === "projects" ? "Search local projects" : "Search tasks",
+  );
+  $("#new-task").disabled = view === "projects" || !state.repo;
+  if (view === "projects") {
+    renderProjectCatalog();
+    return;
+  }
+  if (localDashboard) $(".subtitle").textContent = selected;
   const tasks = (state.tasks || []).filter((t) =>
       $("#task-kind").value === "requests"
         ? t.requestState === "captured" &&
@@ -307,10 +507,7 @@ function render() {
     document.querySelectorAll("[data-worker-root]").forEach(
       (b) =>
         (b.onclick = async () => {
-          selected = b.dataset.workerRoot;
-          $("#projects").value = selected;
-          currentDetail = null;
-          await refresh(true);
+          await chooseProject(b.dataset.workerRoot);
         }),
     );
   }
@@ -577,9 +774,11 @@ async function renderDocuments(task) {
     };
   });
 }
-document.querySelectorAll(".nav").forEach(
+document.querySelectorAll(".nav[data-view]").forEach(
   (b) =>
     (b.onclick = () => {
+      if ((view === "projects") !== (b.dataset.view === "projects"))
+        $("#search").value = "";
       view = b.dataset.view;
       document.querySelectorAll(".nav").forEach((n) => {
         n.classList.toggle("active", n === b);
@@ -587,14 +786,16 @@ document.querySelectorAll(".nav").forEach(
         else n.removeAttribute("aria-current");
       });
       render();
+      if (localDashboard) {
+        updateLocation();
+        refresh(true);
+      }
     }),
 );
 $("#search").oninput = render;
 $("#task-kind").onchange = render;
 $("#projects").onchange = () => {
-  selected = $("#projects").value;
-  signature = "";
-  refresh(true);
+  chooseProject($("#projects").value);
 };
 $("#new-task").onclick = () => {
   editingTask = null;
@@ -646,7 +847,9 @@ $("#task-form").onsubmit = async (e) => {
 };
 token = (await (await fetch("/api/session")).json()).token;
 const events = new EventSource("/api/events");
-events.onmessage = () => refresh();
+events.onmessage = () => {
+  if (!refreshInFlight) refresh();
+};
 events.onerror = () => {
   $("#connection").textContent = "Reconnecting";
   $(".sidebar-bottom").dataset.connected = "false";

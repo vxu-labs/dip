@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "version": "0.4.1",
+  "version": "0.4.2",
   "files": {
-    ".agents/skills/dip/SKILL.md": "e78a56b29f4a23b08958ce870f04bdf68188575643dae3cffc1a4b81cd53e451",
-    ".claude/skills/dip/SKILL.md": "e78a56b29f4a23b08958ce870f04bdf68188575643dae3cffc1a4b81cd53e451",
-    ".dip/intent-guide.md": "8473219bd4bd781fae1cc9a72ff2c0dc33421a2482026cbc1b233f14b111a97a",
+    ".agents/skills/dip/SKILL.md": "466a770602a22c47bd322511e4824b1206ddc1aa55f240cef964560cb16f249e",
+    ".claude/skills/dip/SKILL.md": "466a770602a22c47bd322511e4824b1206ddc1aa55f240cef964560cb16f249e",
+    ".dip/intent-guide.md": "eee472d5eed265ceebccc0d9ff2e2a53cbdac06dd067bff4f0b05a323eeb7251",
     ".dip/tools/portable.mjs": "c4ba219e1ea085d56fe19e0dcdb30326258bfbf20df5e8406d8a41d97b74121d"
   }
 }

@@ -61,6 +61,7 @@ import {
 } from "./git-discovery.js";
 export { writeGitHooks } from "./git-hooks.js";
 import { capturePolicy } from "./capture-policy.js";
+import { localProjectDirectory } from "./project-index.js";
 import {
   acquireRecorderLock,
   requestRecorderStart,
@@ -549,18 +550,37 @@ export function handleHook(
   agent = "unknown",
   { skipPlanTools = false } = {},
 ) {
+  const directoryHint = (projectError = null) =>
+    ["UserPromptSubmit", "SessionStart"].includes(input.hook_event_name)
+      ? {
+          hookSpecificOutput: {
+            hookEventName: input.hook_event_name,
+            additionalContext: JSON.stringify({
+              localProjects: localProjectDirectory(home()),
+              ...(projectError
+                ? { projectError: String(projectError).slice(0, 240) }
+                : {}),
+              instructions:
+                "No current DIP project or captured task is asserted. Use the local catalog to discover project roots and read their context explicitly.",
+            }),
+          },
+        }
+      : {};
   if (
     skipPlanTools &&
     input.hook_event_name === "PostToolUse" &&
     planningTool(input.tool_name || "")
   )
     return {};
-  if (!input.cwd) return {};
+  if (!input.cwd) return directoryHint();
   let repo;
   try {
     repo = openProject(input.cwd);
   } catch (e) {
-    if (e.message.includes("not inside")) return {};
+    if (e.message.includes("not inside") || e.code === "ENOENT")
+      return directoryHint();
+    if (["SessionStart", "UserPromptSubmit"].includes(input.hook_event_name))
+      return directoryHint(e.message);
     throw e;
   }
   const rt = new Runtime();
@@ -573,7 +593,8 @@ export function handleHook(
             hookSpecificOutput: {
               hookEventName: "UserPromptSubmit",
               additionalContext:
-                "DIP automatic capture and hook coordination are intentionally disabled for this project. Persist intent explicitly through DIP tools; no captured task ID was supplied.",
+                "DIP automatic capture and hook coordination are intentionally disabled for this project. Persist intent explicitly through DIP tools; no captured task ID was supplied. Local project directory: " +
+                JSON.stringify(localProjectDirectory(home())),
             },
           }
         : {};
@@ -960,6 +981,7 @@ export function handleHook(
           hookEventName: "UserPromptSubmit",
           additionalContext: JSON.stringify({
             task_id: active.task,
+            localProjects: localProjectDirectory(home()),
             actor,
             session_id: session,
             instructions: automatic

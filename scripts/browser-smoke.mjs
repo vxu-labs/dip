@@ -9,6 +9,7 @@ import {
   append,
   Runtime,
   linkDocument,
+  project,
 } from "../src/core.js";
 import { git } from "../src/util.js";
 import { createServer } from "../src/server.js";
@@ -97,6 +98,7 @@ git(root, ["config", "user.email", "qa@example.invalid"]);
 git(root, ["add", ".dip", "AGENTS.md", "CLAUDE.md"]);
 git(root, ["commit", "-m", "Browser fixture"]);
 const workerRoot = root + "-worker";
+const otherRoot = root + "-other";
 git(root, ["worktree", "add", workerRoot, "-b", "agent-export"]);
 const workerRepo = ensure(workerRoot);
 const workerTask = createTask(workerRepo, {
@@ -347,6 +349,125 @@ try {
       .evaluate((el) => getComputedStyle(el).transitionDuration),
     "0s",
   );
+  // The separate local workspace reuses project views and actions, while its
+  // directory switches between independent projects as well as linked worktrees.
+  fs.mkdirSync(otherRoot);
+  git(otherRoot, ["init", "-b", "main"]);
+  const otherRepo = ensure(otherRoot),
+    registry = new Runtime();
+  try {
+    registry.register(otherRepo);
+  } finally {
+    registry.close();
+  }
+  createTask(otherRepo, { title: "Only the other local project" });
+  await page.emulateMedia({
+    reducedMotion: "no-preference",
+    forcedColors: "none",
+  });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const origin = `http://127.0.0.1:${server.address().port}`;
+  let releaseCatalog;
+  const catalogGate = new Promise((resolve) => {
+    releaseCatalog = resolve;
+  });
+  let firstCatalog = true;
+  await page.route("**/api/catalog", async (route) => {
+    if (firstCatalog) {
+      firstCatalog = false;
+      await catalogGate;
+    }
+    await route.continue();
+  });
+  await page.goto(origin + "/local");
+  await page
+    .getByRole("heading", { name: "All local projects", exact: true })
+    .waitFor();
+  await page.locator("#search").fill("dip-browser");
+  releaseCatalog();
+  await page.waitForFunction(
+    () => document.querySelectorAll(".project-card").length === 2,
+  );
+  await page.locator("#search").fill("");
+  assert.equal(await page.locator(".project-card").count(), 2);
+  assert.equal(await page.locator("#new-task").isDisabled(), true);
+  assert.ok(
+    (await page.locator(".project-card").first().innerText()).includes(
+      "Project dashboard",
+    ),
+  );
+  await page.screenshot({
+    path: "/tmp/dip-local-dashboard-desktop.png",
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  assert.equal(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth > innerWidth,
+    ),
+    false,
+  );
+  await page.screenshot({
+    path: "/tmp/dip-local-dashboard-mobile.png",
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const otherCard = page
+    .locator(".project-card")
+    .filter({ hasText: otherRepo.root });
+  await page.locator("#search").fill(otherRepo.root);
+  await otherCard
+    .getByRole("button", { name: "Open project", exact: true })
+    .click();
+  assert.equal(await page.locator("#search").inputValue(), "");
+  await page
+    .getByRole("button", { name: "Only the other local project", exact: false })
+    .waitFor();
+  assert.ok(page.url().includes(encodeURIComponent(otherRepo.root)));
+  await page.locator("#new-task").click();
+  await page.locator('[name="title"]').fill("Created in the local workspace");
+  await page
+    .getByRole("button", { name: "Save to project", exact: true })
+    .click();
+  await page
+    .getByRole("button", {
+      name: "Created in the local workspace",
+      exact: false,
+    })
+    .waitFor();
+  assert.ok(
+    project(otherRepo).tasks.some(
+      (t) => t.title === "Created in the local workspace",
+    ),
+  );
+  assert.equal(
+    project(repo).tasks.some(
+      (t) => t.title === "Created in the local workspace",
+    ),
+    false,
+  );
+  await page.locator("#projects").selectOption(workerRepo.root);
+  await page.waitForFunction(
+    () => document.querySelector("#branch").textContent === "agent-export",
+  );
+  await page.getByRole("button", { name: "Work board", exact: false }).click();
+  await page
+    .getByRole("heading", { name: "Work board", exact: true })
+    .waitFor();
+  assert.ok(
+    (await page.locator("#content").innerText()).includes(
+      "Branch-only Unicode tests",
+    ),
+  );
+  await page.locator("#projects").selectOption(otherRepo.root);
+  await page
+    .getByRole("button", { name: "Only the other local project", exact: false })
+    .waitFor();
+  fs.rmSync(otherRoot, { recursive: true, force: true });
+  await page
+    .getByRole("heading", { name: "All local projects", exact: true })
+    .waitFor();
+  assert.equal(await page.locator(".project-card").count(), 1);
   assert.deepEqual(errors, []);
   console.log(
     "Browser smoke passed: task creation, handoff, board, cross-worktree workers/navigation and mobile layout; no JavaScript errors.",
@@ -357,6 +478,7 @@ try {
   assert.ok(root.startsWith(path.join(os.tmpdir(), "dip-browser-")));
   assert.equal(workerRoot, root + "-worker");
   fs.rmSync(workerRoot, { recursive: true, force: true });
+  fs.rmSync(otherRoot, { recursive: true, force: true });
   fs.rmSync(root, { recursive: true, force: true });
 }
 

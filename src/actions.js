@@ -24,6 +24,7 @@ import {
   atomic,
 } from "./util.js";
 import { repositoryIntegration } from "./repository-integration.js";
+import { listLocalProjects } from "./project-index.js";
 import path from "node:path";
 import {
   planIntent,
@@ -95,6 +96,14 @@ const intentFields = (task, repo) =>
   );
 
 export async function execute(action, args = {}, cwd = process.cwd()) {
+  if (action === "local-projects") {
+    const rt = new Runtime();
+    try {
+      return listLocalProjects(rt, args);
+    } finally {
+      rt.close();
+    }
+  }
   const result = await executeRaw(action, args, cwd);
   return workflowMode(openProject(cwd).config) === "automatic"
     ? mutationReceipt(action, result)
@@ -141,13 +150,11 @@ async function executeRaw(action, args = {}, cwd = process.cwd()) {
       }).tasks.filter(isRequest);
       return {
         total: tasks.length,
-        requests: tasks
-          .slice(offset, offset + limit)
-          .map((t) => ({
-            id: t.id,
-            title: t.title.slice(0, 200),
-            updatedAt: t.updatedAt,
-          })),
+        requests: tasks.slice(offset, offset + limit).map((t) => ({
+          id: t.id,
+          title: t.title.slice(0, 200),
+          updatedAt: t.updatedAt,
+        })),
         nextOffset: offset + limit < tasks.length ? offset + limit : null,
       };
     }
@@ -315,7 +322,9 @@ async function executeRaw(action, args = {}, cwd = process.cwd()) {
         );
       if (args.outcome === "paused") {
         if (args.check || args.replacedBy?.length)
-          throw new Error("Paused work cannot verify or supersede: omit check and replacedBy; keep nonempty remaining. It records a checkpoint without completion.");
+          throw new Error(
+            "Paused work cannot verify or supersede: omit check and replacedBy; keep nonempty remaining. It records a checkpoint without completion.",
+          );
         validateRemaining(args.remaining);
         if (!args.remaining?.length)
           throw new Error("Paused work requires remaining items");

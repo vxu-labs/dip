@@ -41,6 +41,16 @@ export async function runMcp() {
       },
     );
   add(
+    "local_projects",
+    "Find other local DIP projects, absolute file locations and dashboard links in the machine catalog. Available without a current Git project. Read another project's context/tasks using its returned root; discovery does not adopt work or grant ownership.",
+    {
+      query: z.string().max(300).optional(),
+      limit: z.number().int().min(1).max(50).optional(),
+      offset: z.number().int().min(0).optional(),
+    },
+    "local-projects",
+  );
+  add(
     "project_context",
     "Compact persistent context. Routine activity capture is automatic: do not call this after each edit.",
     {},
@@ -230,12 +240,22 @@ export async function runMcp() {
               "out_of_scope",
             ]),
             summary: z.string().min(1).max(1000),
-            taskId: z.string().optional().describe("Required for follow_up; omit for required, verification_limit and out_of_scope."),
+            taskId: z
+              .string()
+              .optional()
+              .describe(
+                "Required for follow_up; omit for required, verification_limit and out_of_scope.",
+              ),
           }),
         )
         .max(20)
         .optional(),
-      check: z.string().optional().describe("Configured check name for implemented work. Omit for paused; paused never verifies completion."),
+      check: z
+        .string()
+        .optional()
+        .describe(
+          "Configured check name for implemented work. Omit for paused; paused never verifies completion.",
+        ),
       actor: z.string().optional(),
       token: z.string().optional(),
     },

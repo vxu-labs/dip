@@ -1147,3 +1147,57 @@ label select {
 #document-query {
   max-width: 100%;
 }
+/* Local project directory reuses the main workspace's visual system. */
+.workspace-link {
+  display: block;
+  margin: 8px 0 20px;
+  font-size: 12px;
+  color: var(--muted, #6b7280);
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+  gap: 20px;
+}
+.project-card {
+  padding: 24px;
+  border: 1px solid var(--border, #e4e4e7);
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  min-width: 0;
+}
+.project-card h3 {
+  margin: 14px 0 8px;
+}
+.project-path,
+.worktree-link code {
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  color: var(--muted, #6b7280);
+}
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+.project-actions a {
+  font-size: 12px;
+}
+.project-card details {
+  border-top: 1px solid var(--border, #e4e4e7);
+  padding-top: 14px;
+  font-size: 12px;
+}
+.project-card summary {
+  cursor: pointer;
+}
+.worktree-link {
+  display: grid;
+  gap: 6px;
+  margin-top: 14px;
+}
+.worktree-link button {
+  justify-self: start;
+}

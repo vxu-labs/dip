@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" data-dashboard="local">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DIP Local · All projects</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="/local" aria-label="DIP home"
+        ><span class="brand-mark" aria-hidden="true"
+          ><svg viewBox="0 0 32 32" fill="none">
+            <path
+              d="M10 8h6a8 8 0 0 1 0 16h-6V8Z"
+              stroke="currentColor"
+              stroke-width="2.5"
+            />
+            <path
+              d="M14 12h2a4 4 0 0 1 0 8h-2"
+              stroke="currentColor"
+              stroke-width="2.5"
+            /></svg></span
+        ><span>DIP<small>Development intelligence</small></span></a
+      >
+      <span class="edition">All your local project work.</span>
+      <label class="project-label" for="projects">Workspace</label
+      ><select id="projects" aria-label="Project"></select>
+      <a class="workspace-link" href="/">Main dashboard ↗</a>
+      <nav aria-label="Workspace views">
+        <button class="nav active" data-view="projects" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 6h7l2 2h9v12H3z" /></svg
+          ><span>Local projects</span>
+        </button>
+        <button class="nav" data-view="overview">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="4" width="6" height="6" rx="1.5" />
+            <rect x="14" y="4" width="6" height="6" rx="1.5" />
+            <rect x="4" y="14" width="6" height="6" rx="1.5" />
+            <rect x="14" y="14" width="6" height="6" rx="1.5" /></svg
+          ><span>Overview</span>
+        </button>
+        <button class="nav" data-view="board">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="3" />
+            <path d="M9 5v14M15 5v14M5.5 9h1M11.5 12h1M17.5 9h1" /></svg
+          ><span>Work board</span>
+        </button>
+        <button class="nav" data-view="activity">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 12h4l3-7 4 14 3-7h4" /></svg
+          ><span>Activity</span>
+        </button>
+        <button class="nav" data-view="schedule">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="5" width="16" height="16" rx="3" />
+            <path d="M8 3v4M16 3v4M4 10h16M8 14h2M14 14h2M8 17h2" /></svg
+          ><span>Schedule</span>
+        </button>
+      </nav>
+      <div class="sidebar-bottom" data-connected="false">
+        <div class="connection-state">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="connection">Connecting</span>
+        </div>
+        <p>Your project memory.<br />Right alongside your code.</p>
+        <small id="app-version">DIP · Apache-2.0</small>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div>
+          <div class="eyebrow">
+            Workspace <span class="breadcrumb-divider">/</span>
+            <span id="branch" class="branch-chip">...</span>
+          </div>
+          <h1 id="heading">All local projects</h1>
+          <p class="subtitle">
+            A persistent record of what’s planned, running, and actually
+            verified.
+          </p>
+        </div>
+        <button class="primary" id="new-task">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" /></svg
+          >New task
+        </button>
+      </header>
+      <div id="notice" role="status" hidden></div>
+      <div id="automation-status" role="status"></div>
+      <section class="metrics" id="metrics"></section>
+      <div class="toolbar">
+        <div class="section-label" id="section-label">
+          YOUR WORK, AT A GLANCE
+        </div>
+        <input
+          id="search"
+          type="search"
+          placeholder="Search tasks, agents, or scope"
+          aria-label="Search tasks"
+        />
+        <select id="task-kind" aria-label="Task category">
+          <option value="work">Development work</option>
+          <option value="requests">Captured requests</option>
+          <option value="discussion">Discussions</option>
+          <option value="all">All records</option>
+        </select>
+      </div>
+      <section id="content"></section>
+      <footer>
+        Automatic activity capture · Intent and evidence stay explicit
+        <span id="updated"></span>
+      </footer>
+    </main>
+    <dialog id="task-dialog" aria-labelledby="task-form-title">
+      <form id="task-form">
+        <div class="dialog-head">
+          <h2 id="task-form-title">Save a task or future idea</h2>
+          <button
+            type="button"
+            class="icon close"
+            aria-label="Close task dialog"
+          >
+            ×
+          </button>
+        </div>
+        <label
+          >Title<input
+            name="title"
+            dir="auto"
+            autofocus
+            required
+            maxlength="240"
+            placeholder="What should we build or remember?" /></label
+        ><label
+          >Description<textarea
+            name="description"
+            dir="auto"
+            rows="3"
+            placeholder="Context, intended outcome, or a future idea"
+          ></textarea>
+        </label>
+        <div class="form-row">
+          <label
+            >Priority<select name="priority">
+              <option value="1">1 · Critical</option>
+              <option value="2">2 · High</option>
+              <option value="3" selected>3 · Normal</option>
+              <option value="4">4 · Low</option>
+              <option value="5">5 · Later</option>
+            </select></label
+          >
+          <label>Target date<input type="date" name="due" /></label>
+        </div>
+        <div class="form-row">
+          <label
+            >Scope<input
+              name="scope"
+              placeholder="src/auth, tests/auth (optional)" /></label
+          ><label
+            >Dependencies<input
+              name="dependencies"
+              placeholder="Task IDs, separated by commas"
+          /></label>
+        </div>
+        <label
+          >Acceptance criteria<textarea
+            name="acceptance"
+            dir="auto"
+            rows="3"
+            placeholder="One criterion per line"
+          ></textarea></label
+        ><button class="primary" type="submit">Save to project</button>
+      </form>
+    </dialog>
+    <dialog id="detail-dialog" aria-labelledby="detail-title">
+      <div class="dialog-head">
+        <h2 id="detail-title"></h2>
+        <button class="icon close" aria-label="Close task details">×</button>
+      </div>
+      <div id="detail"></div>
+    </dialog>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

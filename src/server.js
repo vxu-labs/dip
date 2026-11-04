@@ -7,11 +7,24 @@ import { execute } from "./actions.js";
 import { ensure, Runtime } from "./core.js";
 import { automationHealth } from "./health.js";
 import { VERSION } from "./version.js";
+import { catalogForOrigin } from "./project-index.js";
+import { openProjectFolder } from "./open-folder.js";
 
 const publicDir = fileURLToPath(new URL("../public/", import.meta.url));
-export function createServer({ root = process.cwd(), port = 4317 } = {}) {
+export function createServer({
+  root = process.cwd(),
+  port = 4317,
+  openFolder = openProjectFolder,
+} = {}) {
   try {
-    root = ensure(root, { instructions: false }).root;
+    const repo = ensure(root, { instructions: false });
+    root = repo.root;
+    const runtime = new Runtime();
+    try {
+      runtime.register(repo);
+    } finally {
+      runtime.close();
+    }
   } catch {
     root = null;
   }
@@ -40,23 +53,72 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
         res.end("Host rejected");
         return;
       }
+      if (!url.pathname.startsWith("/api/")) {
+        const routes = {
+          "/": "index.html",
+          "/local": "local.html",
+          "/app.js": "app.js",
+          "/style.css": "style.css",
+        };
+        const file = routes[url.pathname];
+        if (!file) {
+          res.writeHead(404);
+          res.end("Not found");
+          return;
+        }
+        res.setHeader(
+          "Content-Type",
+          file.endsWith(".js")
+            ? "text/javascript"
+            : file.endsWith(".css")
+              ? "text/css"
+              : "text/html",
+        );
+        res.setHeader(
+          "Content-Security-Policy",
+          "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'",
+        );
+        res.end(fs.readFileSync(path.join(publicDir, file)));
+        return;
+      }
       const runtime = new Runtime();
-      let repos;
+      let catalog;
       try {
-        repos = runtime
-          .repositories()
-          .map((r) => r.root)
-          .filter((p) => fs.existsSync(p));
+        catalog = catalogForOrigin(
+          runtime.refreshProjects(),
+          `http://127.0.0.1:${server.address().port}`,
+        );
       } finally {
         runtime.close();
       }
-      if (root && !repos.includes(root)) repos.unshift(root);
-      const selected = url.searchParams.get("root") || root || repos[0];
+      const repos = catalog.projects.flatMap((p) =>
+        p.worktrees.map((w) => w.path),
+      );
+      const selected =
+        url.searchParams.get("root") ||
+        (repos.includes(root) ? root : repos[0]);
       if (selected && !repos.includes(selected))
         throw new Error("Project is not registered");
       if (url.pathname === "/api/projects") {
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify(repos));
+        return;
+      }
+      if (url.pathname === "/api/catalog") {
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ ...catalog, version: VERSION }));
+        return;
+      }
+      if (url.pathname === "/api/open-project" && req.method === "POST") {
+        if (req.headers["x-dip-token"] !== token) {
+          res.writeHead(403);
+          res.end("Token required");
+          return;
+        }
+        if (!selected) throw Error("Choose a registered project first");
+        await openFolder(selected);
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ opened: true, root: selected }));
         return;
       }
       if (url.pathname === "/api/health") {
@@ -158,29 +220,8 @@ export function createServer({ root = process.cwd(), port = 4317 } = {}) {
         res.end(JSON.stringify({ token }));
         return;
       }
-      const routes = {
-        "/": "index.html",
-        "/app.js": "app.js",
-        "/style.css": "style.css",
-      };
-      if (!routes[url.pathname]) {
-        res.writeHead(404);
-        res.end("Not found");
-        return;
-      }
-      res.setHeader(
-        "Content-Type",
-        url.pathname.endsWith(".js")
-          ? "text/javascript"
-          : url.pathname.endsWith(".css")
-            ? "text/css"
-            : "text/html",
-      );
-      res.setHeader(
-        "Content-Security-Policy",
-        "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'",
-      );
-      res.end(fs.readFileSync(path.join(publicDir, routes[url.pathname])));
+      res.writeHead(404);
+      res.end("Not found");
     } catch (e) {
       res.writeHead(400, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: e.message }));

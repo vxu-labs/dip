@@ -34,6 +34,7 @@ import { cliHelp, compactStatus } from "../src/cli-help.js";
 import { reconcileView, taskView } from "../src/views.js";
 import { discoverClientProject } from "../src/client-discovery.js";
 import { capturePolicy, configureCapture } from "../src/capture-policy.js";
+import { listLocalProjects } from "../src/project-index.js";
 
 const argv = process.argv.slice(2);
 const command = argv.shift() || "help";
@@ -160,7 +161,17 @@ try {
   else if (command === "projects") {
     const rt = new Runtime();
     try {
-      print(rt.refreshProjects());
+      print(
+        flags.query !== undefined ||
+          flags.limit !== undefined ||
+          flags.offset !== undefined
+          ? listLocalProjects(rt, {
+              query: flags.query || "",
+              limit: Number(flags.limit || 20),
+              offset: Number(flags.offset || 0),
+            })
+          : rt.refreshProjects(),
+      );
     } finally {
       rt.close();
     }

@@ -15,3 +15,7 @@ This repository carries a dependency-free helper: Node 20+ for legacy format, No
 For long plans write Markdown once and link it with installed DIP when available. Portable update/resolve accepts --patch JSON. Node child-process argument arrays avoid shell JSON quoting problems. Reads are paginated; --all includes completed/discussion records. Recorded verified status is historical, never a fresh assessment. Conflicting histories require explicit resolve; corrupt histories stop writes. Strict projects require installed ownership and cannot use this fallback.
 
 Shared-format portable intent uses the family spool and metadata branch; legacy events remain supported. Live coordination, automatic hooks, Markdown linking and configured verification require installed DIP (Node 24+). Portable writes have no leases; collaborators must coordinate independently. Use at your own responsibility.
+
+## Other local projects
+
+Other local projects: use the machine catalog at ~/.dip/projects.json (or $DIP_HOME/projects.json), local_projects, or dip projects. It provides absolute roots and dashboard links. Pass a returned root to project_context/project_reconcile or dip status --root PATH, then read files with normal file tools. Discovery does not adopt tasks or grant ownership in another project.

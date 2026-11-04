@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.2 — 2026-11-05
+
+- Extend the private project catalog with folder, dashboard, local-workspace and live task-data links for each project and worktree.
+- Add a separate `~/.dip/dashboard.html` launcher and `/local` workspace, reusing the main dashboard views, task actions and styling. Include project search, worktree switching, path copying and token-protected native folder opening.
+- Add bounded `local_projects` MCP discovery and CLI catalog query/pagination. Inject directory knowledge into trusted prompts and session starts, including projectless sessions, without copying other projects' task bodies into every context.
+- Upgrade owned agent instructions and portable guides with cross-project discovery guidance while preserving custom instructions and project-local ownership.
+- Use the active catalog for HTTP root selection, preserve per-project task isolation, ignore obsolete refresh responses and avoid overlapping background refresh requests.
+
 ## 0.4.1 — 2026-11-05
 
 - Add a single private local project index at `~/.dip/projects.json`, grouping linked worktrees and retaining independent repositories as separate projects.
