@@ -1,3 +1,4 @@
+import { endObservation } from "./lifecycle.js";
 import { trimRuntimeLog } from "./runtime-logs.js";
 import { repoAt } from "./util.js";
 import {
@@ -637,7 +638,34 @@ export function handleHook(
       );
       if (!repeated) rt.setSession(repo, session, task, actor, prompt);
       active = rt.session(repo, session);
+      rt.db
+        .prepare("INSERT OR REPLACE INTO hook_turns VALUES (?,?,?,?,?)")
+        .run(
+          repo.key,
+          session,
+          active.task,
+          actor,
+          input.turn_id ? String(input.turn_id) : null,
+        );
     }
+    const ending = [
+      "Stop",
+      "SessionEnd",
+      "PreCompact",
+      "Interrupt",
+      "StopFailure",
+    ].includes(event);
+    const turn = rt.db
+      .prepare("SELECT * FROM hook_turns WHERE repo=? AND session=?")
+      .get(repo.key, session);
+    // A delayed terminal hook must never stop the newer request in this session.
+    if (
+      ending &&
+      input.turn_id &&
+      turn?.turn &&
+      String(input.turn_id) !== turn.turn
+    )
+      return {};
     const tool = input.tool_name || "",
       toolInput = input.tool_input || {};
     if (
@@ -756,8 +784,22 @@ export function handleHook(
             toolInput.timeout_ms ||
               (toolInput.timeout ? Number(toolInput.timeout) * 1000 : 1800000),
           );
+        if (task.lifecycle && task.lifecycle.state !== "running")
+          append(
+            repo,
+            active.task,
+            "task.lifecycle",
+            { state: "running", event: "PreToolUse", source: "hook" },
+            { actor },
+          );
         const patch = {
-          ...(automatic && task.requestState === "captured"
+          ...(automatic &&
+          task.requestState === "captured" &&
+          (capturedKind(task.description) !== "discussion" ||
+            /apply_patch|Write|Edit/.test(tool) ||
+            /(?:^|[.:])(?:Bash|PowerShell|exec_command|shell_command)$/i.test(
+              tool,
+            ))
             ? { kind: "work", requestState: "promoted" }
             : {}),
           ...(JSON.stringify(scope) !== JSON.stringify(task.scope)
@@ -942,24 +984,34 @@ export function handleHook(
         event,
       )
     ) {
-      if (
-        active?.task &&
-        !["implemented", "verified", "cancelled", "superseded"].includes(
-          taskRead(repo, active.task).status,
-        )
-      )
-        append(
-          repo,
-          active.task,
-          "task.checkpoint",
-          {
-            summary:
-              "Automatic checkpoint: agent paused; see activity and working tree. Completion has not been asserted.",
-            automatic: true,
-            head: repo.head,
-          },
-          { actor },
-        );
+      if (active?.task) {
+        const task = taskRead(repo, active.task);
+        if (
+          !["implemented", "verified", "cancelled", "superseded"].includes(
+            task.status,
+          )
+        ) {
+          const observation = endObservation(input, task.lifecycle);
+          append(
+            repo,
+            active.task,
+            "task.checkpoint",
+            {
+              summary:
+                observation.state === "response_recorded"
+                  ? "Assistant response recorded. Task completion and verification have not been asserted."
+                  : observation.state === "interrupted" ||
+                      observation.state === "failed"
+                    ? "Host reported an interruption or failure. Work remains open; inspect activity and working tree."
+                    : "Agent activity ended or paused. Task completion and verification have not been asserted.",
+              lifecycle: observation,
+              automatic: true,
+              head: repo.head,
+            },
+            { actor },
+          );
+        }
+      }
       rt.endSessionTools(repo, session);
       rt.flush(repo.root);
       if (

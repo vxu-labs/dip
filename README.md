@@ -225,3 +225,5 @@ Core integration tests cover persistence, merge conflicts, claims, scope exclusi
 ## License
 
 [Apache-2.0](LICENSE). Commercial use and forks are permitted under its terms. Contributions use the same license and a Developer Certificate of Origin sign-off. No project trademark rights are granted by the code license.
+
+Task activity and completion are separate: Inactive means no live worker; Interrupted requires recorded interruption/failure. Response recorded does not assert fulfillment or verification. See [lifecycle semantics and historical audit](docs/task-lifecycle.md).

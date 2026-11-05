@@ -15,7 +15,10 @@ export function promptRequest(raw) {
 export function capturedKind(prompt) {
   return /^# Overview\r?\n\s*Generate 0 to 3 hyperpersonalized suggestions for what this user can do with Codex in this local project: [^\r\n]+(?:\r?\n|$)/.test(
     prompt.trimStart(),
-  )
+  ) ||
+    /^This is an app-generated request for a suggested next user message\. The user did not write this message\.(?:\r?\n|$)/.test(
+      prompt.trimStart(),
+    )
     ? "discussion"
     : "work";
 }

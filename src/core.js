@@ -1,7 +1,9 @@
+import { activityState, lifecycleStates } from "./lifecycle.js";
 import {
   workflowMode,
   AUTOMATIC_INSTRUCTIONS,
   PRE_CATALOG_AUTOMATIC_INSTRUCTIONS,
+  PRE_LIFECYCLE_AUTOMATIC_INSTRUCTIONS,
   LOCAL_PROJECT_INSTRUCTIONS,
   boundedContext,
   isRequest,
@@ -138,6 +140,7 @@ export function ensure(
           LEGACY_INSTRUCTIONS,
           PRE_CATALOG_INSTRUCTIONS,
           PRE_CATALOG_AUTOMATIC_INSTRUCTIONS,
+          PRE_LIFECYCLE_AUTOMATIC_INSTRUCTIONS,
           AUTOMATIC_INSTRUCTIONS,
         ].includes(block[1])
       ) {
@@ -234,6 +237,11 @@ export class Runtime {
       }
       this.db.exec("PRAGMA user_version=1");
     }
+    if (this.db.prepare("PRAGMA user_version").get().user_version < 2) {
+      this.db.exec(
+        `CREATE TABLE IF NOT EXISTS hook_turns (repo TEXT, session TEXT, task TEXT, actor TEXT, turn TEXT, PRIMARY KEY(repo,session)); PRAGMA user_version=2;`,
+      );
+    }
   }
   close() {
     this.db.close();
@@ -259,6 +267,11 @@ export class Runtime {
     this.db
       .prepare("INSERT OR REPLACE INTO sessions VALUES (?,?,?,?,?,?)")
       .run(repo.key, session, task, actor, redact(prompt), Date.now());
+    this.db
+      .prepare(
+        "UPDATE hook_turns SET task=? WHERE repo=? AND session=? AND actor=?",
+      )
+      .run(task, repo.key, session, actor);
   }
   claim(repo, task, actor, ttl = 120000, scope = [], currentTask = null) {
     updateValidation({ scope });
@@ -825,7 +838,37 @@ export function project(repo, runtime = null, taskOnly = null, options = {}) {
     };
     const writes = new Map(),
       documentWrites = new Map();
+    let lifecycleWrites = [];
     for (const e of ordered) {
+      if (["task.update", "task.resolve", "task.plan"].includes(e.type))
+        lifecycleWrites = lifecycleWrites.filter(
+          (w) => !ancestors.get(e.eventId).has(w.eventId),
+        );
+      const observation =
+        e.type === "task.lifecycle"
+          ? e.payload
+          : e.type === "task.checkpoint"
+            ? e.payload.lifecycle
+            : null;
+      if (observation && lifecycleStates.has(observation.state)) {
+        lifecycleWrites = lifecycleWrites.filter(
+          (w) => !ancestors.get(e.eventId).has(w.eventId),
+        );
+        lifecycleWrites.push({ ...e, payload: observation });
+      }
+      if (
+        e.type === "task.checkpoint" &&
+        e.payload.automatic === false &&
+        e.payload.remaining?.length
+      ) {
+        lifecycleWrites = lifecycleWrites.filter(
+          (w) => !ancestors.get(e.eventId).has(w.eventId),
+        );
+        lifecycleWrites.push({
+          ...e,
+          payload: { state: "paused", source: "task_finish" },
+        });
+      }
       if (
         e.type === "task.create" ||
         e.type === "task.update" ||
@@ -925,7 +968,19 @@ export function project(repo, runtime = null, taskOnly = null, options = {}) {
     const lease = leases.find((l) => l.task === taskId);
     state.lease = lease || null;
     state.active = lease?.active || false;
-    state.interrupted = state.status === "in_progress" && !state.active;
+    state.lifecycle =
+      lifecycleWrites.length === 1
+        ? {
+            ...lifecycleWrites[0].payload,
+            at: lifecycleWrites[0].createdAt,
+            actor: lifecycleWrites[0].actor,
+          }
+        : lifecycleWrites.length
+          ? { state: "unknown", conflict: true }
+          : null;
+    state.inactive = state.status === "in_progress" && !state.active;
+    state.activityState = activityState(state);
+    state.interrupted = state.activityState === "interrupted";
     tasks.push(state);
   }
   const taskMap = new Map(tasks.map((t) => [t.id, t]));
@@ -1117,8 +1172,8 @@ export function taskGet(repo, taskId) {
   if (!task) throw new Error("Task not found");
   return task;
 }
-export function taskRead(repo, taskId) {
-  const state = project(repo, null, taskId, { includeActivity: false });
+export function taskRead(repo, taskId, runtime = null) {
+  const state = project(repo, runtime, taskId, { includeActivity: false });
   if (state.errors.length)
     throw new Error(
       "Task history is invalid (corrupt events): " + state.errors[0].error,
@@ -1192,7 +1247,7 @@ export function compactContext(repo, runtime, identity = {}) {
       .map(brief),
     activeCount: state.tasks.filter((t) => t.active).length,
     resume: state.tasks
-      .filter((t) => t.kind === "work" && t.interrupted)
+      .filter((t) => t.kind === "work" && t.inactive)
       .slice(0, 5)
       .map(brief),
     ready: state.tasks
@@ -1248,6 +1303,7 @@ const brief = (t) => ({
   id: t.id,
   title: t.title.slice(0, 300),
   status: t.status,
+  activityState: t.activityState,
   kind: t.kind,
   resolution: t.resolution,
   scope: t.scope.slice(0, 30),

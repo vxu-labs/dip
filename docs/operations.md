@@ -67,3 +67,7 @@ Activity for a missing repository stays in the local durable outbox. DIP defers 
 
 Restoring the original repository at its original path resumes delivery on the next flush, without waiting for the retry deadline. `dip flush` explicitly retries every pending repository and reports deferred entries; it does not discard records. Do not substitute an unrelated repository at that path. Permission failures and malformed configuration in an existing repository remain active errors that require repair.
 
+
+## Activity labels and completion
+
+Inactive work is not automatically interrupted. The dashboard distinguishes an observed assistant response, explicit interruption/failure, a paused finish and the absence of a live worker. Responses and ordinary Stop events never manufacture verification or close unfinished development. See [task lifecycle and the historical audit](task-lifecycle.md).

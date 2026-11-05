@@ -8,8 +8,11 @@ Use explicit intent tools only for an existing requirement that must be adopted,
 
 export const LOCAL_PROJECT_INSTRUCTIONS =
   "Other local projects: use the machine catalog at ~/.dip/projects.json (or $DIP_HOME/projects.json), local_projects, or dip projects. It provides absolute roots and dashboard links. Pass a returned root to project_context/project_reconcile or dip status --root PATH, then read files with normal file tools. Discovery does not adopt tasks or grant ownership in another project.";
-export const AUTOMATIC_INSTRUCTIONS =
+export const PRE_LIFECYCLE_AUTOMATIC_INSTRUCTIONS =
   PRE_CATALOG_AUTOMATIC_INSTRUCTIONS + "\n" + LOCAL_PROJECT_INSTRUCTIONS;
+export const AUTOMATIC_INSTRUCTIONS =
+  PRE_LIFECYCLE_AUTOMATIC_INSTRUCTIONS +
+  "\nActivity and completion are separate: inactive means no live worker; Interrupted requires a recorded interruption/failure. A host-recorded response does not prove fulfillment or verification. Fulfilled non-development requests may be closed explicitly with task_finish answered; routine questions/reads still require no management call. Development still requires explicit configured completion.";
 
 export function workflowMode(config = {}) {
   const mode =
@@ -58,11 +61,12 @@ export function boundedContext(context, identity = {}, budget = 4096) {
   };
   out.branch = clip(context.branch, 120);
   out.instructions =
-    "Capture is automatic. No management calls for questions/reads. Continuing an existing requirement: review it, then task_adopt with captured id and targetId before development; do not finish a duplicate while leaving the original open. Development: task_finish once. implemented runs its configured check; no preliminary task_verify needed. paused requires remaining work and omits check/replacedBy. remaining.taskId is only for follow_up. Details on demand; Stop is not completion.";
+    "Capture is automatic. No management calls for questions/reads. Continuing an existing requirement: review it, then task_adopt with captured id and targetId before development; do not finish a duplicate while leaving the original open. Development: task_finish once. implemented runs its configured check; no preliminary task_verify needed. paused requires remaining work and omits check/replacedBy. remaining.taskId is only for follow_up. Details on demand; Stop is not completion; inactive does not imply interruption.";
   const brief = (t) => ({
     id: t.id,
     title: clip(t.title, 120),
     status: t.status,
+    activityState: t.activityState,
     kind: t.kind,
   });
   const candidates = [

@@ -585,6 +585,8 @@ h1 {
   background: #eaf5ee;
   color: #2f6b48;
 }
+.badge.inactive,
+.badge.paused,
 .badge.interrupted,
 .badge.blocked,
 .badge.stale {
@@ -1230,4 +1232,16 @@ label select {
 }
 .worktree-link button {
   justify-self: start;
+}
+
+.badge.responded {
+  background: #edf3fa;
+  color: #39649b;
+}
+.activity-explanation {
+  background: #edf3fa;
+  color: #39649b;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 12px;
 }

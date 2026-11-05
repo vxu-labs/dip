@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.4 — 2026-11-05
+
+- Separate task activity from completion: inactive workers no longer imply Interrupted. Show Response recorded for observed assistant replies, preserve explicit interruption/failure and paused work, and retain existing evidence requirements.
+- Persist compact lifecycle metadata in automatic checkpoints without duplicating assistant prose. Ignore stale terminal turn IDs and expose lifecycle information consistently in the dashboard, CLI and task reads.
+- Keep recognized app-generated suggestion prompts out of the development backlog during opaque connector activity while preserving coordination and promotion on actual writes. Historical candidates remain untouched.
+- Update owned workflow instructions, add lifecycle regressions and a read-only audit tool. The historical audit and semantics are documented in `docs/task-lifecycle.md`.
+
 ## 0.4.3 — 2026-11-05
 
 - Add project favorite stars, a Favorites-only directory filter and favorite-first project ordering. Favorites are shared by linked worktrees and persist locally across reloads and catalog/runtime-cache rebuilds.

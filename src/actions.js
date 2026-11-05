@@ -164,7 +164,9 @@ async function executeRaw(action, args = {}, cwd = process.cwd()) {
     }
     if (action === "create") return { id: createTask(repo, args, actor) };
     if (action === "get") {
-      const task = args.full ? taskGet(repo, args.id) : taskRead(repo, args.id);
+      const task = args.full
+        ? taskGet(repo, args.id)
+        : taskRead(repo, args.id, rt);
       return args.full ? task : taskView(task);
     }
     if (action === "adopt") {
