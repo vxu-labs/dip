@@ -7,6 +7,7 @@
 - Surface a bounded project knowledge briefing in trusted session and prompt hooks. Document native precedence, declared conflicts, and the CodeIP world asset preview pilot.
 - Add a copyable skill migration prompt for computers already running DIP.
 - Add `dip skills create` to author project and global skills in DIP storage while keeping native Codex and Claude Code discovery. Surface the authoring rule in trusted hooks and repository guidance.
+- Accept lifecycle events when importing shared history so existing activity observations no longer block synchronization.
 
 ## 0.4.4 — 2026-11-05
 

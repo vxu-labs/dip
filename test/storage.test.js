@@ -271,6 +271,10 @@ test("two independent clones synchronize concurrent histories without force or i
     id = createTask(a, { title: "Across clones" });
   commit(a);
   await migrateStorage(a.root);
+  const observation = append(ensure(a.root), id, "task.lifecycle", {
+    state: "response_recorded",
+    source: "hook",
+  });
   publishStore(a);
   retireLegacy(a.root);
   const bare = path.join(sandbox, "remote-" + serial + ".git");
@@ -280,7 +284,8 @@ test("two independent clones synchronize concurrent histories without force or i
   git(a.root, ["clone", bare, bRoot]);
   const b = repoAt(bRoot);
   assert.equal(recoverShared(b), true);
-  const parent = events(ensure(a.root), id).events[0].eventId;
+  assert.equal(taskRead(ensure(b.root), id).lifecycle.state, "response_recorded");
+  const parent = observation.eventId;
   append(
     ensure(a.root),
     id,

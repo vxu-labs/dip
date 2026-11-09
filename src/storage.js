@@ -128,7 +128,7 @@ export function validateStoredEvent(e) {
   identity(e.taskId);
   if (
     e.schemaVersion !== 1 ||
-    !/^task\.(create|update|resolve|checkpoint|decision|plan|document|evidence)$/.test(
+    !/^task\.(create|update|resolve|checkpoint|decision|plan|document|evidence|lifecycle)$/.test(
       e.type,
     ) ||
     typeof e.actor !== "string" ||
