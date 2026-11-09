@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.5 — 2026-11-09
+
+- Add Skills and Knowledge views to the local dashboards and a project-scoped machine skill inventory with metadata-only global export.
+- Add a Git-backed project knowledge catalog with scoped CLI and MCP retrieval, source-version checks, native instruction and skill inventory, and machine-local memories.
+- Surface a bounded project knowledge briefing in trusted session and prompt hooks. Document native precedence, declared conflicts, and the CodeIP world asset preview pilot.
+- Add a copyable skill migration prompt for computers already running DIP.
+- Add `dip skills create` to author project and global skills in DIP storage while keeping native Codex and Claude Code discovery. Surface the authoring rule in trusted hooks and repository guidance.
+
 ## 0.4.4 — 2026-11-05
 
 - Separate task activity from completion: inactive workers no longer imply Interrupted. Show Response recorded for observed assistant replies, preserve explicit interruption/failure and paused work, and retain existing evidence requirements.

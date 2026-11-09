@@ -115,6 +115,27 @@ export function boundedContext(context, identity = {}, budget = 4096) {
         "Hook identity exceeds context budget; persist intent explicitly and read details.",
       details: "task_get / project_requests",
     };
+  if (context.skillAuthoring) {
+    out.skillAuthoring = context.skillAuthoring;
+    if (bytes(out) > budget) {
+      delete out.skillAuthoring;
+      out.truncated = true;
+    }
+  }
+  if (context.knowledge) {
+    out.knowledge = context.knowledge;
+    while (bytes(out) > budget && out.knowledge.sources?.length) {
+      out.knowledge = {
+        ...out.knowledge,
+        sources: out.knowledge.sources.slice(0, -1),
+      };
+      out.truncated = true;
+    }
+    if (bytes(out) > budget) {
+      delete out.knowledge;
+      out.truncated = true;
+    }
+  }
   const add = (key, value) => {
     out[key].push(value);
     if (bytes(out) > budget) {

@@ -35,6 +35,8 @@ import { reconcileView, taskView } from "../src/views.js";
 import { discoverClientProject } from "../src/client-discovery.js";
 import { capturePolicy, configureCapture } from "../src/capture-policy.js";
 import { listLocalProjects } from "../src/project-index.js";
+import { readSkillCatalog, syncSkills } from "../src/skill-catalog.js";
+import { createSkill } from "../src/skill-storage.js";
 
 const argv = process.argv.slice(2);
 const command = argv.shift() || "help";
@@ -78,6 +80,12 @@ const options = {
   status: { type: "string" },
   statuses: { type: "string", multiple: true },
   kind: { type: "string" },
+  category: { type: "string" },
+  taskId: { type: "string" },
+  local: { type: "boolean" },
+  global: { type: "boolean" },
+  host: { type: "string" },
+  input: { type: "string" },
   outcome: { type: "string" },
   replacedBy: { type: "string", multiple: true },
   open: { type: "boolean" },
@@ -174,6 +182,54 @@ try {
       );
     } finally {
       rt.close();
+    }
+  } else if (command === "skills") {
+    const operation = positionals[0] || "list";
+    if (operation === "create") {
+      if (positionals.length !== 2 || flags.scope?.length > 1)
+        throw Error(
+          "Use dip skills create NAME --description TEXT [--scope PATH]",
+        );
+      print(
+        createSkill(cwd, {
+          ...flags,
+          name: positionals[1],
+          scope: flags.scope?.[0],
+        }),
+      );
+    } else {
+      if (!["list", "sync"].includes(operation))
+        throw Error("Use dip skills list|sync|create");
+      let index = operation === "list" && readSkillCatalog();
+      if (!index) {
+        const rt = new Runtime();
+        let catalog;
+        try {
+          catalog = rt.refreshProjects();
+        } finally {
+          rt.close();
+        }
+        index = await syncSkills(catalog);
+      }
+      print(
+        flags.full
+          ? index
+          : {
+              updatedAt: index.updatedAt,
+              global: index.global.length,
+              projects: index.projects.length,
+              worktreeEntries: index.projects.reduce(
+                (count, project) =>
+                  count +
+                  project.worktrees.reduce(
+                    (sum, worktree) => sum + worktree.skills.length,
+                    0,
+                  ),
+                0,
+              ),
+              errors: index.errors,
+            },
+      );
     }
   } else if (command === "repository")
     print(await execute("repository", flags, cwd));
@@ -339,6 +395,39 @@ try {
     );
   } else if (command === "search" || command === "owners") {
     print(await execute(command, { ...flags }, cwd));
+  } else if (command === "knowledge") {
+    const operation = positionals.shift() || "list";
+    if (
+      ![
+        "list",
+        "search",
+        "context",
+        "read",
+        "set",
+        "refresh",
+        "remove",
+      ].includes(operation)
+    )
+      throw new Error("Use dip knowledge --help");
+    if (flags.patch && flags.input)
+      throw new Error("Use one of --patch or --input");
+    if (flags.local && operation === "set" && !flags.input)
+      throw new Error("Use --input FILE or --input - for local memory");
+    const patch = flags.input
+      ? JSON.parse(
+          fs.readFileSync(
+            flags.input === "-" ? 0 : path.resolve(cwd, flags.input),
+            "utf8",
+          ),
+        )
+      : flags.patch && JSON.parse(flags.patch);
+    print(
+      await execute(
+        "knowledge-" + (operation === "search" ? "list" : operation),
+        { ...flags, patch, includeLocal: flags.local },
+        cwd,
+      ),
+    );
   } else if (command === "task") {
     const action = positionals.shift();
     const args = { ...flags };

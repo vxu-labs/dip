@@ -37,12 +37,28 @@ let editingTask = null;
 let favoritesOnly = initialQuery.get("favorites") === "1";
 const pendingFavorites = new Set();
 if (
-  localDashboard &&
-  ["projects", "overview", "board", "activity", "schedule"].includes(
-    initialQuery.get("view"),
-  )
+  [
+    ...(localDashboard ? ["projects"] : []),
+    "overview",
+    "board",
+    "activity",
+    "schedule",
+    "knowledge",
+    "skills",
+  ].includes(initialQuery.get("view"))
 )
   view = initialQuery.get("view");
+let libraryRequest = 0;
+let libraryKey = "",
+  libraryData = null,
+  libraryError = "",
+  libraryTimer;
+let skillGroup = "all",
+  skillProject = "",
+  skillLimit = 60;
+let knowledgeCategory = "",
+  knowledgeOffset = 0;
+const libraryView = () => ["skills", "knowledge"].includes(view);
 let healthAt = 0,
   healthRoot = "";
 const leases = new Map();
@@ -144,7 +160,7 @@ async function refresh(force = false) {
         currentDetail = null;
         $("#detail-dialog").close();
         $("#task-dialog").close();
-        if (localDashboard) {
+        if (localDashboard && !libraryView()) {
           view = "projects";
           $("#search").value = "";
           updateLocation();
@@ -167,6 +183,12 @@ async function refresh(force = false) {
       select.dataset.values = values;
       if (selected) select.value = selected;
       else if (!localDashboard) selected = select.value;
+    }
+    if (libraryView()) {
+      $("#connection").textContent = "Local connection active";
+      $(".sidebar-bottom").dataset.connected = "true";
+      if (force || !libraryKey) await loadLibrary();
+      return;
     }
     if (localDashboard && (view === "projects" || !selected)) {
       view = "projects";
@@ -221,13 +243,16 @@ async function refresh(force = false) {
   }
 }
 function updateLocation() {
-  if (!localDashboard) return;
   const query = new URLSearchParams();
   if (selected) query.set("root", selected);
   if (favoritesOnly) query.set("favorites", "1");
   if (view !== "overview" && !(view === "projects" && !selected))
     query.set("view", view);
-  history.replaceState(null, "", "/local" + (query.size ? "?" + query : ""));
+  history.replaceState(
+    null,
+    "",
+    (localDashboard ? "/local" : "/") + (query.size ? "?" + query : ""),
+  );
 }
 function updateNavigation() {
   document.querySelectorAll(".nav[data-view]").forEach((node) => {
@@ -248,6 +273,12 @@ async function chooseProject(root) {
   signature = "";
   $("#search").value = "";
   healthAt = 0;
+  if (libraryView()) {
+    knowledgeOffset = 0;
+    updateLocation();
+    await loadLibrary();
+    return;
+  }
   if (localDashboard) {
     view = selected ? "overview" : "projects";
     updateLocation();
@@ -396,6 +427,173 @@ function card(t) {
 function column(title, tasks) {
   return `<div><h2 class="column-title">${title}<span>${tasks.length}</span></h2>${tasks.length ? tasks.map(card).join("") : '<div class="empty"><strong>A little room for what’s next.</strong>Saved work will appear here.</div>'}</div>`;
 }
+
+async function loadLibrary(refresh = false) {
+  const request = ++libraryRequest;
+  const mode = view;
+  const params = new URLSearchParams();
+  if (mode === "knowledge") {
+    if (selected) params.set("root", selected);
+    if (knowledgeCategory) params.set("category", knowledgeCategory);
+    if ($("#search").value.trim())
+      params.set("query", $("#search").value.trim());
+    if (knowledgeOffset) params.set("offset", String(knowledgeOffset));
+  }
+  const key = mode + "?" + params;
+  if (key !== libraryKey || refresh) {
+    libraryData = null;
+    libraryError = "";
+    libraryKey = key;
+    render();
+  }
+  if (mode === "knowledge" && !selected) return;
+  if (refresh) params.set("refresh", "1");
+  try {
+    const response = await fetch(
+      "/api/" + mode + "?" + params,
+      refresh ? { headers: { "x-dip-token": token } } : undefined,
+    );
+    const data = await response.json();
+    if (!response.ok) throw Error(data.error || "Library unavailable");
+    if (request !== libraryRequest || mode !== view) return;
+    libraryData = data;
+    render();
+  } catch (error) {
+    if (request !== libraryRequest || mode !== view) return;
+    libraryError = error.message;
+    render();
+  }
+}
+function renderLibrary() {
+  const content = $("#content");
+  const skills = view === "skills";
+  $("#heading").textContent = skills ? "Skills" : "Project knowledge";
+  $(".subtitle").textContent = skills
+    ? "Find installed skills and see where they apply."
+    : selected || "Choose a project to view its indexed sources.";
+  $("#branch").textContent = skills
+    ? "Local workspace"
+    : libraryData?.project?.branch || "Project knowledge";
+  if (libraryError || !libraryData) {
+    content.innerHTML = `<div class="empty" role="status">${escape(libraryError || (!skills && !selected ? "Choose a project from the sidebar." : "Loading library…"))}</div>`;
+    return;
+  }
+  if (!skills) {
+    const categories = [
+      "repository",
+      "configuration",
+      "requirement",
+      "architecture",
+      "decision",
+      "development",
+      "testing",
+      "deployment",
+      "instruction",
+      "skill",
+    ];
+    content.innerHTML = `<div class="library-controls"><label>Category <select id="knowledge-category"><option value="">All categories</option>${categories.map((category) => `<option value="${category}" ${knowledgeCategory === category ? "selected" : ""}>${category}</option>`).join("")}</select></label><span>${libraryData.total} sources</span></div>
+      <div class="library-grid">${libraryData.entries.map((entry) => `<article class="project-card library-card"><div class="library-badges"><span class="badge">${escape(entry.category)}</span><span class="badge">${escape(entry.currentness)}</span></div><h2>${escape(entry.title)}</h2>${entry.summary && entry.currentness === "current" ? `<p>${escape(entry.summary)}</p>` : ""}<code>${escape(entry.source)}</code><small>Scope ${escape((entry.scopes || ["."]).join(", "))}${entry.activation ? " · " + escape(entry.activation) : ""}</small></article>`).join("") || '<div class="empty">No matching project knowledge.</div>'}</div>
+      <div class="library-controls"><button class="secondary" id="knowledge-back" ${knowledgeOffset === 0 ? "disabled" : ""}>Previous</button><button class="secondary" id="knowledge-next" ${knowledgeOffset + 30 >= libraryData.total ? "disabled" : ""}>Next</button></div>`;
+    $("#knowledge-category").onchange = (event) => {
+      knowledgeCategory = event.target.value;
+      knowledgeOffset = 0;
+      loadLibrary();
+    };
+    $("#knowledge-back").onclick = () => {
+      knowledgeOffset -= 30;
+      loadLibrary();
+    };
+    $("#knowledge-next").onclick = () => {
+      knowledgeOffset += 30;
+      loadLibrary();
+    };
+    return;
+  }
+  const query = $("#search").value.trim().toLowerCase();
+  const entries =
+    skillGroup === "project" || (skillProject && skillGroup !== "global")
+      ? []
+      : [...libraryData.global];
+  if (skillGroup !== "global")
+    for (const project of libraryData.projects) {
+      if (skillProject && skillProject !== project.id) continue;
+      const variants = new Map();
+      for (const tree of project.worktrees)
+        for (const skill of tree.skills) {
+          const key = JSON.stringify([
+            skill.source,
+            skill.hash,
+            skill.policyHash,
+            skill.activation,
+          ]);
+          if (!variants.has(key))
+            variants.set(key, {
+              ...skill,
+              project: project.name,
+              root: tree.root,
+              branches: new Set(),
+            });
+          variants.get(key).branches.add(tree.branch);
+        }
+      entries.push(...variants.values());
+    }
+  const filtered = entries.filter((entry) =>
+    [
+      entry.name,
+      entry.description,
+      entry.source,
+      entry.project,
+      entry.host,
+      entry.activation,
+    ].some((value) =>
+      String(value || "")
+        .toLowerCase()
+        .includes(query),
+    ),
+  );
+  content.innerHTML = `<div class="library-controls">
+    <label>Installation <select id="skill-group">${[
+      ["all", "All skills"],
+      ["global", "Global"],
+      ["project", "Project"],
+    ]
+      .map(
+        ([value, title]) =>
+          `<option value="${value}" ${skillGroup === value ? "selected" : ""}>${title}</option>`,
+      )
+      .join("")}</select></label>
+    <label>Project <select id="skill-project" ${skillGroup === "global" ? "disabled" : ""}><option value="">All projects</option>${libraryData.projects.map((project) => `<option value="${escape(project.id)}" ${skillProject === project.id ? "selected" : ""}>${escape(project.name)}</option>`).join("")}</select></label>
+    <button class="secondary" id="sync-skills">Refresh inventory</button><a class="secondary" href="/api/skills?export=1" download>Export global list</a><span>${filtered.length} skills · ${libraryData.projects.length} projects</span>
+    </div>${libraryData.errors.length ? `<details class="automation warning"><summary>${libraryData.errors.length} worktrees could not be indexed</summary>${libraryData.errors.map(({ root }) => `<p>${escape(root)}</p>`).join("")}</details>` : ""}
+    <div class="library-grid">${
+      filtered
+        .slice(0, skillLimit)
+        .map(
+          (
+            entry,
+          ) => `<article class="project-card library-card"><div class="library-badges"><span class="badge">${escape(entry.host)}</span><span class="badge">${escape(entry.activation)}</span></div><h2>${escape(entry.name)}</h2>${entry.description ? `<p>${escape(entry.description)}</p>` : ""}<code>${escape(entry.source)}</code>
+    ${entry.project ? `<small><a href="/local?view=knowledge&amp;root=${encodeURIComponent(entry.root)}">${escape(entry.project)}</a> · Scope ${escape(entry.scope)} · ${escape([...entry.branches].join(", "))}</small>` : `<small>Global · ${escape(entry.installation)}</small>`}</article>`,
+        )
+        .join("") || '<div class="empty">No skills match your filters.</div>'
+    }</div>
+    ${filtered.length > skillLimit ? '<button class="secondary" id="more-skills">Show more skills</button>' : ""}`;
+  $("#skill-group").onchange = (event) => {
+    skillGroup = event.target.value;
+    skillLimit = 60;
+    render();
+  };
+  $("#skill-project").onchange = (event) => {
+    skillProject = event.target.value;
+    skillLimit = 60;
+    render();
+  };
+  $("#sync-skills").onclick = () => loadLibrary(true);
+  if ($("#more-skills"))
+    $("#more-skills").onclick = () => {
+      skillLimit += 60;
+      render();
+    };
+}
 function render() {
   updateNavigation();
   const favoritesFilter = $("#favorites-filter");
@@ -403,16 +601,26 @@ function render() {
     favoritesFilter.hidden = view !== "projects";
     favoritesFilter.setAttribute("aria-pressed", String(favoritesOnly));
   }
-  $("#task-kind").hidden = view === "projects";
+  $("#task-kind").hidden = view === "projects" || libraryView();
   $("#search").placeholder =
     view === "projects"
       ? "Search local projects or paths"
-      : "Search tasks, agents, or scope";
+      : libraryView()
+        ? "Search " + view
+        : "Search tasks, agents, or scope";
   $("#search").setAttribute(
     "aria-label",
-    view === "projects" ? "Search local projects" : "Search tasks",
+    view === "projects"
+      ? "Search local projects"
+      : libraryView()
+        ? "Search " + view
+        : "Search tasks",
   );
-  $("#new-task").disabled = view === "projects" || !state.repo;
+  $("#new-task").disabled = view === "projects" || libraryView() || !state.repo;
+  if (libraryView()) {
+    renderLibrary();
+    return;
+  }
   if (view === "projects") {
     renderProjectCatalog();
     return;
@@ -861,7 +1069,12 @@ async function renderDocuments(task) {
 document.querySelectorAll(".nav[data-view]").forEach(
   (b) =>
     (b.onclick = () => {
-      if ((view === "projects") !== (b.dataset.view === "projects"))
+      if (
+        view !== b.dataset.view &&
+        (libraryView() ||
+          ["projects", "skills", "knowledge"].includes(b.dataset.view) ||
+          view === "projects")
+      )
         $("#search").value = "";
       view = b.dataset.view;
       document.querySelectorAll(".nav").forEach((n) => {
@@ -869,14 +1082,28 @@ document.querySelectorAll(".nav[data-view]").forEach(
         if (n === b) n.setAttribute("aria-current", "page");
         else n.removeAttribute("aria-current");
       });
-      render();
-      if (localDashboard) {
-        updateLocation();
+      updateLocation();
+      if (libraryView()) {
+        knowledgeOffset = 0;
+        loadLibrary();
+      } else {
+        render();
         refresh(true);
       }
     }),
 );
-$("#search").oninput = render;
+$("#search").oninput = () => {
+  if (view === "knowledge") {
+    knowledgeOffset = 0;
+    clearTimeout(libraryTimer);
+    libraryTimer = setTimeout(() => {
+      if (view === "knowledge") loadLibrary();
+    }, 250);
+  } else {
+    if (view === "skills") skillLimit = 60;
+    render();
+  }
+};
 if ($("#favorites-filter"))
   $("#favorites-filter").onclick = () => {
     favoritesOnly = !favoritesOnly;
@@ -892,6 +1119,37 @@ $("#new-task").onclick = () => {
   $("#task-form").reset();
   $("#task-form-title").textContent = "Save a task or future idea";
   $("#task-dialog").showModal();
+};
+$("#skill-migration-open").onclick = async () => {
+  const dialog = $("#skill-migration-dialog");
+  const prompt = $("#skill-migration-text");
+  const status = $("#skill-migration-status");
+  dialog.showModal();
+  status.textContent = "";
+  if (prompt.value) return;
+  status.textContent = "Loading prompt…";
+  try {
+    const response = await fetch("/skill-migration-prompt.txt");
+    if (!response.ok)
+      throw new Error("Could not load the skill migration prompt.");
+    prompt.value = await response.text();
+    $("#skill-migration-copy").disabled = false;
+    status.textContent = "";
+  } catch (error) {
+    status.textContent = error.message;
+  }
+};
+$("#skill-migration-copy").onclick = async () => {
+  const prompt = $("#skill-migration-text");
+  const status = $("#skill-migration-status");
+  try {
+    await navigator.clipboard.writeText(prompt.value);
+    status.textContent = "Prompt copied.";
+  } catch {
+    prompt.focus();
+    prompt.select();
+    status.textContent = "Prompt selected. Copy it with your keyboard.";
+  }
 };
 document.querySelectorAll(".close").forEach(
   (b) =>

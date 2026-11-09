@@ -40,14 +40,13 @@ export function projectRelativePath(root, value) {
   return relative;
 }
 
-export function documentPath(root, value) {
+export function projectTextPath(root, value) {
   const relative = projectRelativePath(root, value);
   if (
     !relative ||
     relative.includes(":") ||
     relative.startsWith("../") ||
     path.isAbsolute(relative) ||
-    !/\.md$/i.test(relative) ||
     relative
       .split("/")
       .some((p) =>
@@ -57,12 +56,23 @@ export function documentPath(root, value) {
       ) ||
     sensitive(relative)
   )
+    throw new Error("Document must be a nonsensitive project file");
+  return relative;
+}
+
+export function documentPath(root, value) {
+  const relative = projectTextPath(root, value);
+  if (!/\.md$/i.test(relative))
     throw new Error("Document must be a nonsensitive project Markdown file");
   return relative;
 }
 
 export function loadDocument(repo, value) {
-  const relative = documentPath(repo.root, value);
+  return loadProjectText(repo, documentPath(repo.root, value));
+}
+
+export function loadProjectText(repo, value) {
+  const relative = projectTextPath(repo.root, value);
   let target = repo.root;
   for (const component of relative.split("/")) {
     target = path.join(target, component);

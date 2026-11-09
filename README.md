@@ -10,7 +10,7 @@ You ask your agent to remember a feature for later. A migration stops halfway th
 
 Your coding agent supplies the intent. DIP's automatic capture makes **no model calls**. Planning and task management use your agent's normal tool loop and add measurable overhead.
 
-**Storage in 0.4:** dynamic history is shared across local worktrees and synchronized through one `dip/state` metadata branch. Detailed activity stays local with retention and size budgets; snapshot manifests are deduplicated. Run `dip storage migrate --all --dry-run` to inspect existing projects, then follow the [migration and recovery guide](docs/storage.md). See [CHANGELOG](CHANGELOG.md). Until the npm release is published, install this repository release with `npm install -g github:vxu-labs/dip#v0.4.3`.
+**Storage in 0.4:** dynamic history is shared across local worktrees and synchronized through one `dip/state` metadata branch. Detailed activity stays local with retention and size budgets; snapshot manifests are deduplicated. Run `dip storage migrate --all --dry-run` to inspect existing projects, then follow the [migration and recovery guide](docs/storage.md). See [CHANGELOG](CHANGELOG.md). Install this repository release with `npm install -g github:vxu-labs/dip#v0.4.5`.
 
 ## What you get
 
@@ -87,6 +87,10 @@ The existing `reviewed` workflow retains these tools for meaningful transitions:
 8. `task_finish` to record an explicit outcome, with configured verification for code.
 
 No manual logging per edit, no repeated plan upload, no separate model account. `project_context` is available for a compact refresh; it is not needed after every tool call. The durable format is documented in [the protocol](docs/protocol.md).
+
+Project knowledge connects agents to the repository's development rules, configuration and runbooks. Use `dip knowledge` or the `project_knowledge_*` MCP tools to find guidance by task or path, inspect native instructions and skills, and check whether a source changed after review. [Project knowledge guide](docs/project-knowledge.md)
+
+Use **Skill migration prompt** in the local dashboard to organize existing agent skills on another computer. Use `dip skills create NAME --description TEXT` to author a new external agent skill in DIP storage. [Skill migration and authoring guide](docs/project-knowledge.md#authoring-and-migrating-skills-on-another-computer)
 
 When the current hook has not supplied a task ID, the agent must explicitly save intent and plans through MCP or CLI. `dip doctor` and the dashboard report unobserved prompt capture; installed configuration alone is insufficient. `dip --help` and task-specific help work outside Git. `dip status` returns a compact summary, with `--full` available for raw history.
 

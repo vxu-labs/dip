@@ -391,6 +391,35 @@ try {
   await page.locator("#search").fill("");
   assert.equal(await page.locator(".project-card").count(), 2);
   assert.equal(await page.locator("#new-task").isDisabled(), true);
+  await page
+    .context()
+    .grantPermissions(["clipboard-read", "clipboard-write"], { origin });
+  await page
+    .getByRole("button", { name: "Skill migration prompt", exact: true })
+    .click();
+  const migrationDialog = page.getByRole("dialog", {
+    name: "Skill migration prompt",
+  });
+  const promptText = migrationDialog.getByRole("textbox", {
+    name: "Skill migration prompt text",
+  });
+  const copyPrompt = migrationDialog.getByRole("button", {
+    name: "Copy prompt",
+  });
+  await copyPrompt.click();
+  await migrationDialog.getByText("Prompt copied.", { exact: true }).waitFor();
+  assert.match(
+    await promptText.inputValue(),
+    /internal agents stays in its existing application path/,
+  );
+  assert.match(await promptText.inputValue(), /dip skills create NAME/);
+  assert.equal(
+    await page.evaluate(() => navigator.clipboard.readText()),
+    await promptText.inputValue(),
+  );
+  await migrationDialog
+    .getByRole("button", { name: "Close skill migration prompt" })
+    .click();
   assert.ok(
     (await page.locator(".project-card").first().innerText()).includes(
       "Project dashboard",

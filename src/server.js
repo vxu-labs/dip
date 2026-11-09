@@ -10,6 +10,11 @@ import { VERSION } from "./version.js";
 import { catalogForOrigin } from "./project-index.js";
 import { openProjectFolder } from "./open-folder.js";
 import { setProjectFavorite } from "./project-preferences.js";
+import {
+  exportGlobalSkills,
+  readSkillCatalog,
+  syncSkills,
+} from "./skill-catalog.js";
 
 const publicDir = fileURLToPath(new URL("../public/", import.meta.url));
 export function createServer({
@@ -31,6 +36,7 @@ export function createServer({
   }
   const token = crypto.randomBytes(32).toString("hex");
   const clients = new Set();
+  let skillScan;
   const server = http.createServer(async (req, res) => {
     res.setHeader("Cache-Control", "no-store");
     try {
@@ -60,6 +66,7 @@ export function createServer({
           "/local": "local.html",
           "/app.js": "app.js",
           "/style.css": "style.css",
+          "/skill-migration-prompt.txt": "skill-migration-prompt.txt",
         };
         const file = routes[url.pathname];
         if (!file) {
@@ -73,7 +80,9 @@ export function createServer({
             ? "text/javascript"
             : file.endsWith(".css")
               ? "text/css"
-              : "text/html",
+              : file.endsWith(".txt")
+                ? "text/plain; charset=utf-8"
+                : "text/html",
         );
         res.setHeader(
           "Content-Security-Policy",
@@ -108,6 +117,57 @@ export function createServer({
       if (url.pathname === "/api/catalog") {
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify({ ...catalog, version: VERSION }));
+        return;
+      }
+      if (url.pathname === "/api/skills" && req.method === "GET") {
+        const cached = readSkillCatalog();
+        if (
+          url.searchParams.has("refresh") &&
+          req.headers["x-dip-token"] !== token
+        ) {
+          res.writeHead(403);
+          res.end("Token required");
+          return;
+        }
+        const scan = () =>
+          (skillScan ??= syncSkills(catalog).finally(() => {
+            skillScan = undefined;
+          }));
+        const index =
+          cached && !url.searchParams.has("refresh") ? cached : await scan();
+        if (
+          cached &&
+          !url.searchParams.has("export") &&
+          Date.now() - Date.parse(cached.updatedAt) > 300_000
+        )
+          void scan().catch(() => {});
+        res.setHeader("Content-Type", "application/json");
+        if (url.searchParams.has("export")) {
+          res.setHeader(
+            "Content-Disposition",
+            'attachment; filename="dip-global-skills.json"',
+          );
+          res.end(JSON.stringify(exportGlobalSkills(index)));
+        } else res.end(JSON.stringify(index));
+        return;
+      }
+      if (url.pathname === "/api/knowledge" && req.method === "GET") {
+        if (!selected) throw Error("Choose a registered project first");
+        const get = (key) => url.searchParams.get(key) || undefined;
+        const data = await execute(
+          "knowledge-list",
+          {
+            category: get("category"),
+            query: get("query")?.slice(0, 500),
+            path: get("path"),
+            offset: get("offset"),
+            limit: 30,
+            includeLocal: get("local") === "1",
+          },
+          selected,
+        );
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify(data));
         return;
       }
       if (url.pathname === "/api/project-favorite" && req.method === "POST") {

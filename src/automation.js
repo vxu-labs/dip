@@ -8,6 +8,7 @@ import {
   maintainStorage,
 } from "./storage.js";
 import { workflowMode, AUTOMATIC_INSTRUCTIONS } from "./automatic.js";
+import { SKILL_AUTHORING_INSTRUCTIONS } from "./skill-storage.js";
 import { openProject } from "./core.js";
 import fs from "node:fs";
 import path from "node:path";
@@ -63,6 +64,7 @@ import {
 export { writeGitHooks } from "./git-hooks.js";
 import { capturePolicy } from "./capture-policy.js";
 import { localProjectDirectory } from "./project-index.js";
+import { knowledgeBrief } from "./knowledge.js";
 import {
   acquireRecorderLock,
   requestRecorderStart,
@@ -558,6 +560,7 @@ export function handleHook(
             hookEventName: input.hook_event_name,
             additionalContext: JSON.stringify({
               localProjects: localProjectDirectory(home()),
+              skillAuthoring: SKILL_AUTHORING_INSTRUCTIONS,
               ...(projectError
                 ? { projectError: String(projectError).slice(0, 240) }
                 : {}),
@@ -927,7 +930,10 @@ export function handleHook(
           ...command.matchAll(/^\*\*\* (?:Add|Update|Delete) File: (.+)$/gm),
         ].map((m) => m[1]);
         summary.changeHash = digest(command);
-      } else summary.command = redact(command).slice(0, 2000);
+      } else
+        summary.command = /\bknowledge\s+set\b[\s\S]*--local\b/.test(command)
+          ? "dip knowledge set --local"
+          : redact(command).slice(0, 2000);
     }
     if (/plan|task|todo/i.test(tool) && !tool.includes("dip"))
       summary.plan = redact(JSON.stringify(toolInput));
@@ -1034,8 +1040,18 @@ export function handleHook(
           additionalContext: JSON.stringify({
             task_id: active.task,
             localProjects: localProjectDirectory(home()),
+            ...(/\bskills?\b|סקיל/iu.test(
+              String(input.prompt || input.user_prompt || ""),
+            ) && {
+              skillAuthoring: SKILL_AUTHORING_INSTRUCTIONS,
+            }),
             actor,
             session_id: session,
+            knowledge: knowledgeBrief(repo, {
+              cwd: input.cwd,
+              prompt: input.prompt || input.user_prompt,
+              taskId: active.task,
+            }),
             instructions: automatic
               ? AUTOMATIC_INSTRUCTIONS
               : "This request is already saved in DIP. For reviewed development, task_prepare refines this task, claims scope and returns compact criteria in one call using the supplied actor/session. Avoid rereading unchanged context. Planning and future ideas use task_update without claiming. For a reviewed follow-up, task_adopt selects an existing requirement before development. Classify informational requests as discussion. Finish fulfilled work with task_finish: answered for questions, implemented with a configured check for code, superseded with replacement IDs for duplicate requests. Checkpoint unfinished work. Do not call another model for tracking.",
@@ -1047,11 +1063,16 @@ export function handleHook(
         hookSpecificOutput: {
           hookEventName: "SessionStart",
           additionalContext: JSON.stringify({
-            ...compactContext(repo, rt, {
-              session_id: session,
-              actor,
-              task_id: active?.task || null,
-            }),
+            ...compactContext(
+              repo,
+              rt,
+              {
+                session_id: session,
+                actor,
+                task_id: active?.task || null,
+              },
+              { cwd: input.cwd },
+            ),
             session_id: session,
             actor,
             task_id: active?.task || null,

@@ -12,6 +12,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { refreshProjectIndex, localProjectDirectory } from "./project-index.js";
+import { knowledgeBrief } from "./knowledge.js";
+import { SKILL_AUTHORING_INSTRUCTIONS } from "./skill-storage.js";
 import {
   atomic,
   json,
@@ -1233,10 +1235,17 @@ export function updateTask(
   });
   return taskRead(repo, taskId);
 }
-export function compactContext(repo, runtime, identity = {}) {
+export function compactContext(repo, runtime, identity = {}, knowledge = {}) {
   const state = project(repo, runtime, null, { includeActivity: false });
+  const current = state.tasks.find((t) => t.id === identity.task_id);
   const context = {
     branch: repo.branch,
+    skillAuthoring: SKILL_AUTHORING_INSTRUCTIONS,
+    knowledge: knowledgeBrief(
+      repo,
+      { ...knowledge, taskId: current?.id },
+      current,
+    ),
     localProjects: localProjectDirectory(runtime?.directory || home()),
     errors: state.errors,
     workers: state.activeWorkers.slice(0, 20),
@@ -1271,7 +1280,6 @@ export function compactContext(repo, runtime, identity = {}) {
       "Automatic prompt/plan capture requires current trusted hook context. If no task_id was injected, explicitly save intent and plans via MCP or CLI. Use task get for details, not full activity history.",
   };
   if (workflowMode(repo.config) === "automatic") {
-    const current = state.tasks.find((t) => t.id === identity.task_id);
     if (current) {
       const checkpoint =
         [...current.checkpoints].reverse().find((c) => !c.automatic) ||

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "version": "0.4.4",
   "files": {
-    ".agents/skills/dip/SKILL.md": "0c2d9159917335916b3cff10f5ecd7a34939a42960e43a5c01c2aedfb8f79944",
-    ".claude/skills/dip/SKILL.md": "0c2d9159917335916b3cff10f5ecd7a34939a42960e43a5c01c2aedfb8f79944",
+    ".agents/skills/dip/SKILL.md": "60d28f2bae4bc4aa986bf0041e005a873753e00ed2ce419c1c8a360001baa63d",
+    ".claude/skills/dip/SKILL.md": "60d28f2bae4bc4aa986bf0041e005a873753e00ed2ce419c1c8a360001baa63d",
     ".dip/intent-guide.md": "eee472d5eed265ceebccc0d9ff2e2a53cbdac06dd067bff4f0b05a323eeb7251",
     ".dip/tools/portable.mjs": "c4ba219e1ea085d56fe19e0dcdb30326258bfbf20df5e8406d8a41d97b74121d"
   }

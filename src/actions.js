@@ -25,6 +25,7 @@ import {
 } from "./util.js";
 import { repositoryIntegration } from "./repository-integration.js";
 import { listLocalProjects } from "./project-index.js";
+import { mutateKnowledge, projectKnowledge } from "./knowledge.js";
 import path from "node:path";
 import {
   planIntent,
@@ -133,7 +134,26 @@ async function executeRaw(action, args = {}, cwd = process.cwd()) {
         assessEvidence,
       });
     const actor = args.actor || "agent";
-    if (action === "context") return compactContext(repo, rt);
+    if (action === "context") {
+      const taskId = args.taskId || args.id;
+      if (args.path || taskId)
+        return projectKnowledge(
+          repo,
+          "context",
+          { ...args, cwd, taskId },
+          taskId ? taskRead(repo, taskId, rt) : undefined,
+        );
+      return compactContext(repo, rt, {}, { cwd });
+    }
+    if (action.startsWith("knowledge-")) {
+      const operation = action.slice("knowledge-".length);
+      if (["set", "refresh", "remove"].includes(operation)) {
+        if (args.patch?.taskId) taskRead(repo, args.patch.taskId, rt);
+        return mutateKnowledge(repo, rt, operation, args);
+      }
+      const task = args.taskId ? taskRead(repo, args.taskId, rt) : undefined;
+      return projectKnowledge(repo, operation, { ...args, cwd }, task);
+    }
     if (action === "requests") {
       const offset = Number(args.offset || 0),
         limit = Number(args.limit || 10);

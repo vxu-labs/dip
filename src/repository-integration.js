@@ -3,6 +3,7 @@ import {
   AUTOMATIC_INSTRUCTIONS,
   LOCAL_PROJECT_INSTRUCTIONS,
 } from "./automatic.js";
+import { SKILL_AUTHORING_INSTRUCTIONS } from "./skill-storage.js";
 import fs from "node:fs";
 import path from "node:path";
 import { atomic, digest, json } from "./util.js";
@@ -46,24 +47,23 @@ Shared-format portable intent uses the family spool and metadata branch; legacy 
   LOCAL_PROJECT_INSTRUCTIONS +
   "\n";
 const templates = (repo) => ({
-  ".agents/skills/dip/SKILL.md":
-    workflowMode(repo.config) === "automatic"
-      ? skill.slice(0, skill.indexOf("Read the project")) +
-        AUTOMATIC_INSTRUCTIONS +
-        "\n"
-      : skill,
-  ".claude/skills/dip/SKILL.md":
-    workflowMode(repo.config) === "automatic"
-      ? skill.slice(0, skill.indexOf("Read the project")) +
-        AUTOMATIC_INSTRUCTIONS +
-        "\n"
-      : skill,
+  ".agents/skills/dip/SKILL.md": repositorySkill(repo),
+  ".claude/skills/dip/SKILL.md": repositorySkill(repo),
   ".dip/intent-guide.md": guide,
   ".dip/tools/portable.mjs": fs.readFileSync(
     new URL("./portable.js", import.meta.url),
     "utf8",
   ),
 });
+function repositorySkill(repo) {
+  const instructions =
+    workflowMode(repo.config) === "automatic"
+      ? skill.slice(0, skill.indexOf("Read the project")) +
+        AUTOMATIC_INSTRUCTIONS +
+        "\n"
+      : skill;
+  return instructions + "\n" + SKILL_AUTHORING_INSTRUCTIONS + "\n";
+}
 export const repositoryTemplates = templates;
 function safe(root, relative) {
   let target = root;

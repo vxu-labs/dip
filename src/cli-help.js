@@ -1,4 +1,8 @@
 export function cliHelp(command = "help", action = "") {
+  if (command === "skills")
+    return "dip skills list|sync [--full]\ndip skills create NAME --description TEXT [--host codex|claude] [--root PROJECT] [--scope DIRECTORY | --global]\nCreate new external agent skills in DIP and edit the returned canonicalSource.\n";
+  if (command === "knowledge")
+    return "dip knowledge list|search|context [--query WORDS] [--path PATH] [--taskId ID] [--category NAME] [--local]\ndip knowledge read (--id ID | --path FILE.md) [--expectedHash SHA256] [--heading NAME]\ndip knowledge set --id ID (--patch JSON | --input FILE)\ndip knowledge refresh --id ID [--expectedHash SHA256]\ndip knowledge remove --id ID [--local]\nSave machine-local memory with --local --input FILE or --local --input - (stdin).\n";
   if (command === "projects")
     return "dip projects [--query TEXT] [--limit 20] [--offset 0]\nRefresh the local project catalog at $DIP_HOME/projects.json (normally ~/.dip/projects.json), including folder/task/dashboard links. The separate ~/.dip/dashboard.html launcher opens the /local workspace. Query/pagination returns a bounded discovery result. Linked worktrees share one entry; unavailable roots leave the active index without deleting history/outbox.\n";
   if (command === "storage")
@@ -47,6 +51,8 @@ export function cliHelp(command = "help", action = "") {
     `dip repository [--remove]      Upgrade/remove owned repository skills and portable helper\n` +
     `dip discover-project --client NAME [--probe] [--disabled]  Explicit local Git-client callback\n` +
     `dip context                    Compact handoff; no activity dump\n` +
+    `dip knowledge                  Project knowledge, instructions and skills\n` +
+    `dip skills                     List, refresh, or create agent skills in DIP\n` +
     `dip status [--limit 30]         Compact tasks and capture counts\n` +
     `dip status --full              Full task/activity history\n` +
     `dip task create --title X       Save a distinct task or future idea\n` +
