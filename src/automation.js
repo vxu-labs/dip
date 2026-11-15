@@ -1245,7 +1245,7 @@ export function scan(roots, limit = 100000) {
       if (entries.some((e) => e.name === ".git")) {
         try {
           const repo = ensure(folder);
-          rt.register(repo);
+          rt.register(repo, { refresh: false });
           result.initialized.push(repo.root);
           if (repo.preservedInstructions.length)
             result.preservedInstructions.push({
@@ -1258,7 +1258,7 @@ export function scan(roots, limit = 100000) {
           // an existing DIP project still belongs in the local catalog.
           if (fs.existsSync(path.join(folder, ".dip", "config.json"))) {
             try {
-              rt.register(repoAt(folder));
+              rt.register(repoAt(folder), { refresh: false });
             } catch {}
           }
         }

@@ -107,13 +107,22 @@ export function listLocalProjects(
   };
 }
 
-// A rebuildable local projection, not a second ledger. The runtime writer lock
-// serializes publishers across hooks/processes; every publisher reads fresh rows
-// after acquiring it, so an older snapshot cannot overwrite a newer registration.
+// A rebuildable local projection, not a second ledger. File-system discovery
+// runs outside the shared writer lock. A generation prevents an older scan from
+// overwriting a newer publication, while hooks can keep recording activity.
 export function refreshProjectIndex(runtime) {
   const file = projectIndexPath(runtime.directory);
-  runtime.db.exec("BEGIN IMMEDIATE");
+  runtime.db.exec(`CREATE TABLE IF NOT EXISTS catalog_generation
+    (id INTEGER PRIMARY KEY CHECK(id=1), requested INTEGER NOT NULL)`);
+  const generation = runtime.db
+    .prepare(
+      `INSERT INTO catalog_generation VALUES (1,1)
+    ON CONFLICT(id) DO UPDATE SET requested=requested+1 RETURNING requested`,
+    )
+    .get().requested;
+  let publishing = false;
   try {
+    const discovered = [];
     const families = new Map(),
       errors = [],
       known = runtime
@@ -172,9 +181,7 @@ export function refreshProjectIndex(runtime) {
         const config = json(path.join(root, ".dip", "config.json"));
         if (![1, 2].includes(config?.schemaVersion))
           throw Error("Unsupported DIP project configuration");
-        runtime.db
-          .prepare("INSERT OR IGNORE INTO repositories VALUES (?,?,?)")
-          .run(repo.root, repo.key, Date.now());
+        discovered.push([repo.root, repo.key, Date.now()]);
         let family = families.get(repo.key);
         if (!family) {
           family = { id: repo.key, gitCommonDir: repo.common, worktrees: [] };
@@ -237,6 +244,22 @@ export function refreshProjectIndex(runtime) {
           a.root.localeCompare(b.root) || a.error.localeCompare(b.error),
       ),
     };
+    runtime.db.exec("BEGIN IMMEDIATE");
+    publishing = true;
+    if (
+      runtime.db
+        .prepare("SELECT requested FROM catalog_generation WHERE id=1")
+        .get().requested !== generation
+    ) {
+      runtime.db.exec("COMMIT");
+      publishing = false;
+      // A newer scan owns publication; never replace its catalog with ours.
+      return { file, ...(json(file, null) || content) };
+    }
+    for (const row of discovered)
+      runtime.db
+        .prepare("INSERT OR IGNORE INTO repositories VALUES (?,?,?)")
+        .run(...row);
     const stat = fs.lstatSync(file, { throwIfNoEntry: false });
     if (stat && (!stat.isFile() || stat.isSymbolicLink()))
       throw Error("Project index must be a regular file");
@@ -268,7 +291,7 @@ export function refreshProjectIndex(runtime) {
     runtime.db.exec("COMMIT");
     return { file, ...index };
   } catch (error) {
-    runtime.db.exec("ROLLBACK");
+    if (publishing) runtime.db.exec("ROLLBACK");
     throw error;
   }
 }
