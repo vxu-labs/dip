@@ -248,11 +248,11 @@ export class Runtime {
   close() {
     this.db.close();
   }
-  register(repo) {
+  register(repo, { refresh = true } = {}) {
     this.db
       .prepare("INSERT OR REPLACE INTO repositories VALUES (?,?,?)")
       .run(repo.root, repo.key, Date.now());
-    this.refreshProjects();
+    if (refresh) this.refreshProjects();
   }
   refreshProjects() {
     return refreshProjectIndex(this);

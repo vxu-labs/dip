@@ -289,3 +289,32 @@ test("a live recorder discovers, renames and removes projects and rebuilds a del
     if (child.exitCode === null) child.kill();
   }
 });
+
+test("catalog discovery does not hold the activity writer lock and an older scan cannot overwrite a newer registration", () => {
+  const first = fixture(),
+    second = fixture(),
+    a = new Runtime(),
+    b = new Runtime();
+  const originalExists = fs.existsSync;
+  let interleaved = false;
+  try {
+    a.register(first);
+    b.db.exec("PRAGMA busy_timeout=0");
+    fs.existsSync = function (file) {
+      if (!interleaved && file === path.join(first.root, ".git")) {
+        interleaved = true;
+        // This is a second connection while the first publisher scans disk.
+        b.register(second);
+      }
+      return originalExists.apply(this, arguments);
+    };
+    const result = a.refreshProjects();
+    assert.equal(interleaved, true);
+    assert.ok(result.projects.some((p) => p.root === second.root));
+    assert.ok(json(indexFile).projects.some((p) => p.root === second.root));
+  } finally {
+    fs.existsSync = originalExists;
+    a.close();
+    b.close();
+  }
+});
