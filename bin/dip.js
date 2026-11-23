@@ -27,6 +27,7 @@ import {
   retireLegacy,
   configureStorage,
   restoreStorage,
+  mergeStore,
 } from "../src/storage.js";
 import { repoAt } from "../src/util.js";
 import { VERSION } from "../src/version.js";
@@ -55,6 +56,7 @@ const options = {
   cleanup: { type: "boolean" },
   push: { type: "boolean" },
   remote: { type: "string" },
+  keep: { type: "string" },
   storage: { type: "string" },
   title: { type: "string" },
   id: { type: "string" },
@@ -301,7 +303,15 @@ try {
           push: !!flags.push,
         }),
       );
-    else if (action === "maintain") print(maintainStorage(repo));
+    else if (action === "merge") {
+      const result = mergeStore(repo, {
+        remote: flags.remote || "origin",
+        keep: flags.keep || "remote",
+        push: !!flags.push,
+        dryRun: !!flags["dry-run"],
+      });
+      print(result);
+    } else if (action === "maintain") print(maintainStorage(repo));
     else if (action === "checkpoint")
       print(
         flags.all
@@ -317,7 +327,7 @@ try {
     else if (action === "status") print(storageStatus(repo));
     else
       throw Error(
-        "Use dip storage status|migrate|sync|maintain|configure|branches",
+        "Use dip storage status|migrate|sync|merge|maintain|configure|branches",
       );
   } else if (command === "capture") {
     const repo = ensure(cwd, { instructions: false });

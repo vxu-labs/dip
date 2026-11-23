@@ -14,6 +14,8 @@ dip storage migrate --cleanup
 dip storage migrate --all --dry-run
 dip storage migrate --all --cleanup --push
 dip storage sync --push --remote origin
+dip storage merge --dry-run
+dip storage merge --push [--keep remote|local]
 dip storage maintain
 dip storage restore --path /private/backup/migration.ndjson.gz
 ```
@@ -21,6 +23,23 @@ dip storage restore --path /private/backup/migration.ndjson.gz
 `--all` inventories registered existing DIP projects and groups their linked worktrees by Git common directory. Missing/archived temporary roots are reported separately, not recreated. Independent repositories with identical names remain separate. A project without a remote can migrate locally. Errors are recorded per family and the command exits unsuccessfully if any family failed. The private machine report is `$DIP_HOME/storage-migration-latest.json` (normally `~/.dip/`). Successful fleet migration sets the machine default for future discovered projects to shared storage. Explicit `dip init` defaults to shared; `--storage legacy` retains compatibility for an isolated v1 project.
 
 `--push` publishes metadata only, to the selected existing remote. It never pushes unrelated local source commits or force-pushes. Publishing implementation source is a separate ordinary Git push. A normal source pre-push hook also synchronizes the metadata branch to that same remote. Runtime maintenance checkpoints metadata locally; it does not initiate network publication.
+
+## Merging two ledgers
+
+Each shared store has a project identity. Two workstations that each started DIP on their own end up with
+different identities for the same repository, and a sync (including the source pre-push hook) stops with
+`Remote DIP project identity mismatch` rather than mixing unrelated ledgers silently.
+
+`dip storage merge` combines them. Run `--dry-run` first: it reports both identities, the identity that will
+survive and the event counts, and changes nothing. Then `dip storage merge --push`:
+
+1. backs up the local store (`backups/merge-<time>.sqlite.gz` and `.storage.json.gz`);
+2. imports every event of the remote `dip/state`; events are content-addressed, so nothing is rewritten, and an
+   event ID with different content aborts the merge without changes;
+3. keeps one identity: `--keep remote` (default) adopts the server's, so other workstations keep syncing with no
+   action; `--keep local` keeps this one and every other workstation must then merge as well;
+4. remembers the retired identity in `storage.json` (`mergedProjectIds`), so refs that still carry it are accepted;
+5. publishes a `dip/state` commit whose parents are both ledgers, so the push is a fast-forward, never a force.
 
 ## Migration and recovery
 

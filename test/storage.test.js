@@ -24,6 +24,7 @@ import {
   maintainStorage,
   withStore,
   recoverShared,
+  mergeStore,
   STATE_REF,
 } from "../src/storage.js";
 import { navigate } from "../src/navigation.js";
@@ -652,4 +653,82 @@ test("filtered clones fetch required metadata in batches without materializing s
     git(root, ["config", "--get", "remote.origin.partialclonefilter"]),
     "blob:none",
   );
+});
+
+async function independentLedger(title) {
+  const repo = fixture(),
+    task = createTask(repo, { title });
+  commit(repo);
+  await migrateStorage(repo.root);
+  publishStore(repo);
+  retireLegacy(repo.root);
+  return { repo: repoAt(repo.root), task };
+}
+const markerOf = (repo) =>
+  JSON.parse(
+    fs.readFileSync(path.join(repo.common, "dip", "storage.json"), "utf8"),
+  );
+
+test("merge combines a remote ledger with a different project identity and pushes without force", async () => {
+  const a = await independentLedger("Built on workstation A");
+  const bare = path.join(sandbox, "merge-remote-" + serial + ".git");
+  git(a.repo.root, ["init", "--bare", bare]);
+  git(a.repo.root, ["remote", "add", "origin", bare]);
+  publishStore(a.repo, { remote: "origin", push: true });
+  const remoteBefore = git(a.repo.root, ["ls-remote", "--heads", "origin", "dip/state"]).split(/\s+/)[0];
+
+  // Workstation B initialised DIP on its own, so its ledger has another identity.
+  const b = await independentLedger("Built on workstation B");
+  git(b.repo.root, ["remote", "add", "origin", bare]);
+  const before = markerOf(b.repo);
+  assert.notEqual(before.projectId, markerOf(a.repo).projectId);
+  assert.throws(
+    () => publishStore(b.repo, { remote: "origin", push: true }),
+    /identity mismatch.*dip storage merge/,
+  );
+
+  const preview = mergeStore(b.repo, { dryRun: true });
+  assert.equal(preview.merged, false);
+  assert.equal(preview.survivor, markerOf(a.repo).projectId);
+  assert.ok(preview.remoteEvents >= 1);
+  assert.deepEqual(markerOf(b.repo), before, "a dry run changes nothing");
+
+  const result = mergeStore(b.repo, { push: true });
+  assert.equal(result.merged, true);
+  assert.ok(fs.existsSync(result.backup.database) && fs.existsSync(result.backup.marker));
+  const after = markerOf(b.repo);
+  assert.equal(after.projectId, markerOf(a.repo).projectId, "the server identity survives by default");
+  assert.deepEqual(after.mergedProjectIds, [before.projectId]);
+  assert.ok(taskRead(ensure(b.repo.root), a.task), "B now has A's task");
+  assert.ok(taskRead(ensure(b.repo.root), b.task), "and keeps its own");
+  assert.equal(result.after.events, result.local.events + result.remoteEvents);
+
+  const remoteAfter = git(b.repo.root, ["ls-remote", "--heads", "origin", "dip/state"]).split(/\s+/)[0];
+  assert.equal(remoteAfter, git(b.repo.root, ["rev-parse", STATE_REF]));
+  git(b.repo.root, ["merge-base", "--is-ancestor", remoteBefore, remoteAfter]);
+  assert.ok(storageStatus(b.repo).mergedProjectIds.includes(before.projectId));
+
+  // Workstation A keeps syncing unchanged and receives B's history.
+  publishStore(a.repo, { remote: "origin", push: true });
+  assert.ok(taskRead(ensure(a.repo.root), b.task), "A sees B's task after a normal sync");
+  // B's later syncs accept its own pre-merge local ref.
+  publishStore(b.repo, { remote: "origin", push: true });
+  assert.equal(mergeStore(b.repo).reason, "same ledger; use dip storage sync");
+});
+
+test("merge can keep the local identity and remembers the remote one", async () => {
+  const a = await independentLedger("Remote side");
+  const bare = path.join(sandbox, "keep-remote-" + serial + ".git");
+  git(a.repo.root, ["init", "--bare", bare]);
+  git(a.repo.root, ["remote", "add", "origin", bare]);
+  publishStore(a.repo, { remote: "origin", push: true });
+  const c = await independentLedger("Local side");
+  git(c.repo.root, ["remote", "add", "origin", bare]);
+  const local = markerOf(c.repo).projectId;
+  const result = mergeStore(c.repo, { keep: "local" });
+  assert.equal(result.merged, true);
+  assert.equal(markerOf(c.repo).projectId, local);
+  assert.deepEqual(markerOf(c.repo).mergedProjectIds, [markerOf(a.repo).projectId]);
+  assert.ok(taskRead(ensure(c.repo.root), a.task));
+  assert.throws(() => mergeStore(c.repo, { keep: "both" }), /keep must be remote or local/);
 });

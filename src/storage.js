@@ -71,6 +71,11 @@ const identity = (value) => {
     throw Error("Invalid storage identity");
   return value;
 };
+/** The ledger this store writes, plus any ledgers merged into it with `dip storage merge`. */
+export const knownLedgers = (marker) =>
+  new Set(
+    [marker?.projectId, ...(marker?.mergedProjectIds || [])].filter(Boolean),
+  );
 function safeDirectory(dir) {
   if (
     fs.existsSync(dir) &&
@@ -618,7 +623,7 @@ export function publishStore(repo, { remote, push = false } = {}) {
       );
       if (
         manifest.schemaVersion !== 2 ||
-        manifest.projectId !== marker.projectId
+        !knownLedgers(marker).has(manifest.projectId)
       )
         throw Error("Reserved dip/state branch belongs to a different ledger");
       command(repo, ["read-tree", old], { env });
@@ -775,15 +780,136 @@ export function drainPortable(repo) {
   });
   for (const name of files) fs.rmSync(path.join(dir, name));
 }
-export function importRef(repo, ref) {
+function backupStore(repo, label) {
+  const dir = path.join(storeDirectory(repo), "backups");
+  safeDirectory(dir);
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-"),
+    base = path.join(dir, `${label}-${stamp}`),
+    copy = base + ".sqlite";
+  withStore(repo, (db) => db.exec(`VACUUM INTO '${copy.replace(/'/g, "''")}'`));
+  fs.writeFileSync(base + ".sqlite.gz", gzipSync(fs.readFileSync(copy)), {
+    mode: 0o600,
+  });
+  fs.rmSync(copy, { force: true });
+  fs.writeFileSync(
+    base + ".storage.json.gz",
+    gzipSync(fs.readFileSync(path.join(storeDirectory(repo), "storage.json"))),
+    { mode: 0o600 },
+  );
+  return { database: base + ".sqlite.gz", marker: base + ".storage.json.gz" };
+}
+const ledgerCounts = (repo) =>
+  withStore(repo, (db) => ({
+    events: db.prepare("SELECT count(*) AS n FROM events").get().n,
+    tasks: db.prepare("SELECT count(DISTINCT task) AS n FROM events").get().n,
+  }));
+
+/**
+ * Combines this store's ledger with the one on `remote`'s dip/state when the
+ * two carry different project identities (for example after a second
+ * workstation initialised DIP on its own). Events are content-addressed and
+ * imported as-is; nothing is rewritten or dropped. One identity survives:
+ * `keep: "remote"` (default) adopts the server's, so other workstations keep
+ * syncing unchanged; `keep: "local"` keeps this one and requires every other
+ * workstation to merge too. The retired identity is remembered, so refs still
+ * carrying it are accepted. The local store is backed up first, and the
+ * published commit has both ledgers as parents, so the push is a
+ * fast-forward and never a force.
+ */
+export function mergeStore(
+  repo,
+  { remote = "origin", keep = "remote", push = false, dryRun = false } = {},
+) {
+  if (!["remote", "local"].includes(keep))
+    throw Error("keep must be remote or local");
+  const file = path.join(storeDirectory(repo), "storage.json"),
+    marker = json(file, null);
+  if (!marker || marker.schemaVersion !== 2)
+    throw Error("Migrate shared storage before merging");
+  const advertised = command(repo, [
+    "ls-remote",
+    "--heads",
+    remote,
+    "dip/state",
+  ]).trim();
+  if (!advertised)
+    throw Error(
+      `No dip/state on ${remote}; nothing to merge. Publish with dip storage sync --push`,
+    );
+  command(repo, ["fetch", "--no-tags", remote, "refs/heads/dip/state"]);
+  const fetched = git(repo.root, ["rev-parse", "FETCH_HEAD"]);
+  const manifest = JSON.parse(
+    command(repo, ["show", fetched + ":.dip/storage.json"]),
+  );
+  if (manifest.schemaVersion !== 2)
+    throw Error("Unsupported remote DIP schema");
+  const remoteId = identity(manifest.projectId),
+    localId = marker.projectId,
+    survivor = keep === "remote" ? remoteId : localId,
+    retired = survivor === localId ? remoteId : localId;
+  const remoteEvents = command(repo, [
+    "ls-tree",
+    "-r",
+    "--name-only",
+    fetched,
+    "--",
+    ".dip/events",
+  ])
+    .split("\n")
+    .filter(Boolean).length;
+  const plan = {
+    remote,
+    keep,
+    localProjectId: localId,
+    remoteProjectId: remoteId,
+    survivor,
+    local: ledgerCounts(repo),
+    remoteEvents,
+  };
+  if (knownLedgers(marker).has(remoteId))
+    return {
+      ...plan,
+      merged: false,
+      reason: "same ledger; use dip storage sync",
+    };
+  if (dryRun) return { ...plan, dryRun: true, merged: false };
+  const backup = backupStore(repo, "merge");
+  importRef(repo, fetched, { acceptProjectId: remoteId });
+  atomic(file, {
+    ...marker,
+    projectId: survivor,
+    mergedProjectIds: [
+      ...new Set([...(marker.mergedProjectIds || []), retired]),
+    ].filter((value) => value !== survivor),
+    mergedAt: new Date().toISOString(),
+  });
+  const published = publishStore(repo, {
+    remote,
+    push,
+  });
+  return {
+    ...plan,
+    merged: true,
+    backup,
+    after: ledgerCounts(repo),
+    published,
+  };
+}
+export function importRef(repo, ref, { acceptProjectId } = {}) {
   const manifest = JSON.parse(
     command(repo, ["show", ref + ":.dip/storage.json"]),
   );
   if (manifest.schemaVersion !== 2)
     throw Error("Unsupported remote DIP schema");
   const marker = json(path.join(storeDirectory(repo), "storage.json"), null);
-  if (marker && marker.projectId !== manifest.projectId)
-    throw Error("Remote DIP project identity mismatch");
+  if (
+    marker &&
+    !knownLedgers(marker).has(manifest.projectId) &&
+    manifest.projectId !== acceptProjectId
+  )
+    throw Error(
+      "Remote DIP project identity mismatch; run `dip storage merge --dry-run` to inspect and `dip storage merge --push` to combine both ledgers",
+    );
   const entries = command(repo, [
     "ls-tree",
     "-r",
@@ -889,6 +1015,9 @@ export function storageStatus(repo) {
     schemaVersion: 2,
     shared: true,
     projectId: marker.projectId,
+    ...(marker.mergedProjectIds?.length
+      ? { mergedProjectIds: marker.mergedProjectIds }
+      : {}),
     directory: dir,
     semanticEvents: db.prepare("SELECT count(*) AS n FROM events").get().n,
     semanticCompressedBytes: db
