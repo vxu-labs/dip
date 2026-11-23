@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.7 — 2026-11-23
+
+- Add the project essence: `.dip-essence.md`, DIP's internal README for a project's vision, principles, systems and open ideas. Read and edit it with `dip essence read|set|init` and the MCP tools `project_essence_read` / `project_essence_set` (whole document or one section, with an optional hash guard), browse it in the new dashboard Essence view, and get a section-name pointer in prompt hooks. See `docs/project-essence.md`.
+
 ## 0.4.6 — 2026-11-23
 
 - Add `dip storage merge` to combine a remote `dip/state` ledger that carries a different project identity, for example after a second workstation initialised DIP on its own. It previews with `--dry-run`, backs up the local store, imports every event unchanged, keeps the server identity by default (`--keep local` is available), remembers the retired identity so its refs are still accepted, and publishes a two-parent commit so the push is a fast-forward. The identity-mismatch error now points to the command.

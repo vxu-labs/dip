@@ -1,6 +1,8 @@
 export function cliHelp(command = "help", action = "") {
   if (command === "skills")
     return "dip skills list|sync [--full]\ndip skills create NAME --description TEXT [--host codex|claude] [--root PROJECT] [--scope DIRECTORY | --global]\nCreate new external agent skills in DIP and edit the returned canonicalSource.\n";
+  if (command === "essence")
+    return "dip essence [read] [--heading NAME]\ndip essence init [--title NAME]\ndip essence set [--heading NAME] [--input FILE|-]\nThe project essence (.dip-essence.md) is DIP's internal README: vision, principles, systems and open ideas. Concrete work belongs in tasks.\n";
   if (command === "knowledge")
     return "dip knowledge list|search|context [--query WORDS] [--path PATH] [--taskId ID] [--category NAME] [--local]\ndip knowledge read (--id ID | --path FILE.md) [--expectedHash SHA256] [--heading NAME]\ndip knowledge set --id ID (--patch JSON | --input FILE)\ndip knowledge refresh --id ID [--expectedHash SHA256]\ndip knowledge remove --id ID [--local]\nSave machine-local memory with --local --input FILE or --local --input - (stdin).\n";
   if (command === "projects")
@@ -51,6 +53,7 @@ export function cliHelp(command = "help", action = "") {
     `dip repository [--remove]      Upgrade/remove owned repository skills and portable helper\n` +
     `dip discover-project --client NAME [--probe] [--disabled]  Explicit local Git-client callback\n` +
     `dip context                    Compact handoff; no activity dump\n` +
+    `dip essence                    Project essence: vision and ideas (DIP's internal README)\n` +
     `dip knowledge                  Project knowledge, instructions and skills\n` +
     `dip skills                     List, refresh, or create agent skills in DIP\n` +
     `dip status [--limit 30]         Compact tasks and capture counts\n` +

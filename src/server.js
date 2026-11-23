@@ -151,6 +151,13 @@ export function createServer({
         } else res.end(JSON.stringify(index));
         return;
       }
+      if (url.pathname === "/api/essence" && req.method === "GET") {
+        if (!selected) throw Error("Choose a registered project first");
+        const data = await execute("essence-read", {}, selected);
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify(data));
+        return;
+      }
       if (url.pathname === "/api/knowledge" && req.method === "GET") {
         if (!selected) throw Error("Choose a registered project first");
         const get = (key) => url.searchParams.get(key) || undefined;

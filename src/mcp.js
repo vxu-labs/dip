@@ -78,6 +78,28 @@ export async function runMcp() {
     .regex(/^[a-f0-9]{64}$/)
     .optional();
   add(
+    "project_essence_read",
+    "Read the project essence (.dip-essence.md): DIP's internal README with the project's vision, principles, systems and open ideas. Pass heading to read one section. Concrete work lives in tasks.",
+    {
+      heading: z.string().max(200).optional(),
+      maxChars: z.number().int().min(200).max(60000).optional(),
+    },
+    "essence-read",
+  );
+  add(
+    "project_essence_set",
+    "Write the project essence. Without heading, replaces the whole Markdown; with heading, replaces or appends that section. Pass expectedHash from project_essence_read (or \"absent\") to avoid overwriting a concurrent edit. Keep vision and ideas here; create tasks for concrete work.",
+    {
+      content: z.string().min(1).max(262144),
+      heading: z.string().max(200).optional(),
+      expectedHash: z
+        .string()
+        .regex(/^([a-f0-9]{64}|absent)$/)
+        .optional(),
+    },
+    "essence-set",
+  );
+  add(
     "project_knowledge_list",
     "Search the project's Git-backed knowledge catalog and inventory native instruction and skill files with their scope and activation policy. Inventory does not invoke skills.",
     knowledgeScope,

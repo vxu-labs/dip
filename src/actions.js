@@ -40,6 +40,7 @@ import {
   documentPath,
 } from "./documents.js";
 import { navigate } from "./navigation.js";
+import { initEssence, readEssence, writeEssence } from "./essence.js";
 import { taskView } from "./views.js";
 
 const intentHash = (task, repo) =>
@@ -145,6 +146,15 @@ async function executeRaw(action, args = {}, cwd = process.cwd()) {
         );
       return compactContext(repo, rt, {}, { cwd });
     }
+    if (action === "essence-read")
+      return readEssence(repo, { heading: args.heading, maxChars: args.maxChars });
+    if (action === "essence-set")
+      return writeEssence(repo, {
+        content: args.content,
+        heading: args.heading,
+        expectedHash: args.expectedHash,
+      });
+    if (action === "essence-init") return initEssence(repo, args.name);
     if (action.startsWith("knowledge-")) {
       const operation = action.slice("knowledge-".length);
       if (["set", "refresh", "remove"].includes(operation)) {

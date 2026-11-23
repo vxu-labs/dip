@@ -43,6 +43,7 @@ if (
     "board",
     "activity",
     "schedule",
+    "essence",
     "knowledge",
     "skills",
   ].includes(initialQuery.get("view"))
@@ -58,7 +59,44 @@ let skillGroup = "all",
   skillLimit = 60;
 let knowledgeCategory = "",
   knowledgeOffset = 0;
-const libraryView = () => ["skills", "knowledge"].includes(view);
+const libraryView = () => ["skills", "knowledge", "essence"].includes(view);
+/** Minimal, escape-first Markdown for the essence view: headings, lists, quotes, code, bold, inline code. */
+function essenceHtml(markdown) {
+  const inline = (text) =>
+    escape(text)
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  let html = "",
+    list = false,
+    fence = false;
+  for (const line of markdown.split("\n")) {
+    if (/^\s*```/.test(line)) {
+      if (list) (html += "</ul>"), (list = false);
+      html += fence ? "</code></pre>" : "<pre><code>";
+      fence = !fence;
+      continue;
+    }
+    if (fence) {
+      html += escape(line) + "\n";
+      continue;
+    }
+    const heading = /^(#{1,6})\s+(.*)$/.exec(line),
+      item = /^\s*[-*]\s+(.*)$/.exec(line);
+    if (!item && list) (html += "</ul>"), (list = false);
+    if (heading) {
+      const level = Math.min(6, heading[1].length + 1);
+      html += `<h${level}>${inline(heading[2])}</h${level}>`;
+    } else if (item) {
+      if (!list) (html += "<ul>"), (list = true);
+      html += `<li>${inline(item[1])}</li>`;
+    } else if (/^>\s?/.test(line))
+      html += `<blockquote>${inline(line.replace(/^>\s?/, ""))}</blockquote>`;
+    else if (line.trim()) html += `<p>${inline(line)}</p>`;
+  }
+  if (list) html += "</ul>";
+  if (fence) html += "</code></pre>";
+  return html;
+}
 let healthAt = 0,
   healthRoot = "";
 const leases = new Map();
@@ -446,7 +484,8 @@ async function loadLibrary(refresh = false) {
     libraryKey = key;
     render();
   }
-  if (mode === "knowledge" && !selected) return;
+  if (mode === "essence" && selected) params.set("root", selected);
+  if ((mode === "knowledge" || mode === "essence") && !selected) return;
   if (refresh) params.set("refresh", "1");
   try {
     const response = await fetch(
@@ -466,6 +505,25 @@ async function loadLibrary(refresh = false) {
 }
 function renderLibrary() {
   const content = $("#content");
+  if (view === "essence") {
+    $("#heading").textContent = "Project essence";
+    $(".subtitle").textContent =
+      selected || "Choose a project to read its essence.";
+    $("#branch").textContent = libraryData?.lastCommit
+      ? "Updated " + libraryData.lastCommit.split(" ")[1]?.slice(0, 10)
+      : ".dip-essence.md";
+    if (libraryError || !libraryData) {
+      content.innerHTML = `<div class="empty" role="status">${escape(libraryError || (!selected ? "Choose a project from the sidebar." : "Loading essence…"))}</div>`;
+      return;
+    }
+    if (!libraryData.exists) {
+      content.innerHTML = `<div class="empty"><strong>No project essence yet.</strong>${escape(libraryData.hint || "")}</div>`;
+      return;
+    }
+    const sections = libraryData.sections.filter((s) => s.level === 2);
+    content.innerHTML = `<div class="essence-layout"><nav class="essence-toc">${sections.map((s) => `<span>${escape(s.heading)}</span>`).join("")}</nav><article class="essence">${essenceHtml(libraryData.content)}</article></div>`;
+    return;
+  }
   const skills = view === "skills";
   $("#heading").textContent = skills ? "Skills" : "Project knowledge";
   $(".subtitle").textContent = skills
@@ -1072,7 +1130,9 @@ document.querySelectorAll(".nav[data-view]").forEach(
       if (
         view !== b.dataset.view &&
         (libraryView() ||
-          ["projects", "skills", "knowledge"].includes(b.dataset.view) ||
+          ["projects", "skills", "knowledge", "essence"].includes(
+            b.dataset.view,
+          ) ||
           view === "projects")
       )
         $("#search").value = "";

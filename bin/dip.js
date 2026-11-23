@@ -405,6 +405,26 @@ try {
     );
   } else if (command === "search" || command === "owners") {
     print(await execute(command, { ...flags }, cwd));
+  } else if (command === "essence") {
+    const operation = positionals.shift() || "read";
+    if (!["read", "set", "init"].includes(operation))
+      throw new Error("Use dip essence read|set|init");
+    const content =
+      operation === "set"
+        ? fs.readFileSync(
+            !flags.input || flags.input === "-"
+              ? 0
+              : path.resolve(cwd, flags.input),
+            "utf8",
+          )
+        : undefined;
+    print(
+      await execute(
+        "essence-" + operation,
+        { heading: flags.heading, content, name: flags.title },
+        cwd,
+      ),
+    );
   } else if (command === "knowledge") {
     const operation = positionals.shift() || "list";
     if (

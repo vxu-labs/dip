@@ -1311,3 +1311,12 @@ label select {
   gap: 12px;
   margin-top: 12px;
 }
+
+.essence-layout { display: grid; grid-template-columns: minmax(140px, 200px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.essence-toc { position: sticky; top: 12px; display: grid; gap: 6px; font-size: 13px; color: var(--muted, #667); }
+.essence { max-width: 860px; line-height: 1.65; }
+.essence h2 { font-size: 1.5rem; margin: 0 0 8px; }
+.essence h3 { margin: 28px 0 8px; padding-top: 12px; border-top: 1px solid var(--line, #e3e6ea); }
+.essence blockquote { margin: 8px 0; padding: 6px 12px; border-inline-start: 3px solid var(--accent, #4b6bfb); color: var(--muted, #556); }
+.essence pre { overflow: auto; padding: 10px; border-radius: 8px; background: var(--panel, #f4f5f7); }
+@media (max-width: 760px) { .essence-layout { grid-template-columns: 1fr; } .essence-toc { position: static; display: flex; flex-wrap: wrap; } }

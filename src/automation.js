@@ -65,6 +65,7 @@ export { writeGitHooks } from "./git-hooks.js";
 import { capturePolicy } from "./capture-policy.js";
 import { localProjectDirectory } from "./project-index.js";
 import { knowledgeBrief } from "./knowledge.js";
+import { essenceBrief } from "./essence.js";
 import {
   acquireRecorderLock,
   requestRecorderStart,
@@ -1052,6 +1053,7 @@ export function handleHook(
               prompt: input.prompt || input.user_prompt,
               taskId: active.task,
             }),
+            ...(essenceBrief(repo) && { essence: essenceBrief(repo) }),
             instructions: automatic
               ? AUTOMATIC_INSTRUCTIONS
               : "This request is already saved in DIP. For reviewed development, task_prepare refines this task, claims scope and returns compact criteria in one call using the supplied actor/session. Avoid rereading unchanged context. Planning and future ideas use task_update without claiming. For a reviewed follow-up, task_adopt selects an existing requirement before development. Classify informational requests as discussion. Finish fulfilled work with task_finish: answered for questions, implemented with a configured check for code, superseded with replacement IDs for duplicate requests. Checkpoint unfinished work. Do not call another model for tracking.",
